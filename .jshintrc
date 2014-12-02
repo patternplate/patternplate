@@ -1,0 +1,29 @@
+{
+  "globals": {
+    "module": false,
+    "define": false,
+    "require": false,
+    "__dirname": false,
+    "process": false,
+    "window": false,
+    "document": false,
+    "global": false
+  },
+  "forin": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "quotmark": true,
+  "undef": true,
+  "unused": true,
+  "scripturl": true,
+  "trailing": true,
+  "loopfunc": true,
+  "expr": true,
+  "devel": true,
+  "white": true,
+  "esnext": true
+}
