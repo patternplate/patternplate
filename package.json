@@ -3,11 +3,7 @@
   "name": "patternplate",
   "version": "0.0.1",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
-  "main": "lib/app/index.js",
-  "scripts": {
-    "start": "node ./bin/patternplate start",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git@git.sinnerschrader.com:team-ux/patternplate.git"
@@ -46,14 +42,7 @@
     "url": "https://git.sinnerschrader.com/team-ux/patternplate/issues"
   },
   "homepage": "https://git.sinnerschrader.com/team-ux/patternplate",
-  "devDependencies": {
-    "minimist": "^1.1.0",
-    "winston": "^0.8.3"
-  },
   "dependencies": {
-    "lodash": "^2.4.1",
-    "rc": "^0.5.4",
-    "require-all": "0.0.8",
-    "winston": "^0.8.3"
+    "patternplate-utils": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-utils.git"
   }
 }
