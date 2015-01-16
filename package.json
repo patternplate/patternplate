@@ -43,6 +43,12 @@
   },
   "homepage": "https://git.sinnerschrader.com/team-ux/patternplate",
   "dependencies": {
-    "patternplate-utils": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-utils.git"
+    "async": "^0.9.0",
+    "chokidar": "^0.12.6",
+    "es6-shim": "^0.22.2",
+    "glob": "^4.3.5",
+    "patternplate-utils": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-utils.git",
+    "rc": "^0.5.5",
+    "winston": "^0.8.3"
   }
 }

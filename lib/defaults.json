@@ -1,0 +1,20 @@
+{
+    "port": 1337,
+    "host": "0.0.0.0",
+    "ssl": false,
+    "dir": "patterns",
+    "loglevel": "info",
+    "patterns": {
+        "blacklist": [
+            "node_modules",
+            "bower_components",
+            "package.json",
+            "pattern.json"
+        ],
+        "rules": {
+            "sorted": "([0-9]+)-(.*)",
+            "shared": "_(.*)",
+            "demoed": "(.*).demo"
+        }
+    }
+}

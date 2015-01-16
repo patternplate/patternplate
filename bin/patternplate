@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+var rc = require('rc');
+
+var patternplate = require('../');
+var config = rc('patternplate', {});
+
+// Try to use elevate to local install of
+// patternplate
+config.elevate = true;
+
+patternplate(config, function(err){
+	if (err) {
+		console.error('error: Failed to start patternplate! Exit with code 1.');
+		process.exit(1);
+	}
+});
