@@ -3,6 +3,13 @@
     "host": "0.0.0.0",
     "ssl": false,
     "dir": "patterns",
+    "api": "api",
+    "intents": {
+        "dir": "intents"
+    },
+    "transforms": {
+        "dir": "transforms"
+    },
     "loglevel": "info",
     "patterns": {
         "blacklist": [

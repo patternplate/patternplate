@@ -49,6 +49,7 @@
     "glob": "^4.3.5",
     "patternplate-utils": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-utils.git",
     "rc": "^0.5.5",
+    "require-all": "^1.0.0",
     "winston": "^0.8.3"
   }
 }
