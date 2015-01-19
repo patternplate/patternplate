@@ -1,0 +1,26 @@
+{
+    "html": {
+
+    },
+    "js": {
+
+    },
+    "jsx": {
+
+    },
+    "less": {
+        "ieCompat": false,
+        "javascriptEnabled": false,
+        "lint": false,
+        "strictImports": true,
+        "strictMath": true,
+        "globalVars": {},
+        "modifyVars": {},
+        "urlArgs": "",
+        "dumpLineNumbers": false,
+        "insecure": false
+    },
+    "markdown": {
+
+    }
+}

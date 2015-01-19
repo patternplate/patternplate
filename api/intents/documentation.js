@@ -3,13 +3,5 @@ module.exports = {
 		name: 'Documentation',
 		transforms: 'markdown',
 		pattern: /(.*).md/
-	},
-
-	beforeTransform: function() {
-
-	},
-
-	afterTransform: function() {
-
 	}
 };

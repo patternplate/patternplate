@@ -1,0 +1,18 @@
+{
+    "html": {
+
+    },
+    "js": {
+
+    },
+    "jsx": {
+
+    },
+    "less": {
+        "compress": false,
+        "sourceMap": true
+    },
+    "markdown": {
+
+    }
+}

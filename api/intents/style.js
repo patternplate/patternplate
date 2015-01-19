@@ -3,13 +3,5 @@ module.exports = {
 		name: 'Style',
 		transforms: 'less',
 		pattern: /(.*).less/
-	},
-
-	beforeTransform: function() {
-
-	},
-
-	afterTransform: function() {
-
 	}
 };

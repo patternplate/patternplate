@@ -2,8 +2,7 @@ module.exports = {
 	config: {
 		pattern: /(.*).js/
 	},
-	transform: function(buffer, next) {
-		console.log('jsx');
+	transform: function(buffer, config, next) {
 		next(null, buffer);
 	}
 };
