@@ -1,3 +1,4 @@
+/* global Buffer */
 var less = require('less');
 
 module.exports = {
