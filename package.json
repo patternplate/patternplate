@@ -48,6 +48,7 @@
     "es6-shim": "^0.22.2",
     "glob": "^4.3.5",
     "less": "^2.2.0",
+    "lodash": "^2.4.1",
     "marked": "^0.3.2",
     "patternplate-utils": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-utils.git",
     "rc": "^0.5.5",
