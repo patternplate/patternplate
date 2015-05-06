@@ -1,2 +1,2 @@
-c2g-styleguide
---------------
+patternplate
+------------
