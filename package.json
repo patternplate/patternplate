@@ -1,58 +1,43 @@
 {
-  "private": true,
   "name": "patternplate",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
-  "main": "lib/index.js",
+  "scripts": {
+    "start": "node binary/start.js"
+  },
+  "dependencies": {
+    "babel-core": "5.1.13",
+    "babel-runtime": "^5.2.9",
+    "babelify": "^6.0.2",
+    "lodash": "^3.8.0",
+    "minimist": "^1.1.1",
+    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-client.git",
+    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-server.git",
+    "rc": "^1.0.1",
+    "uglifyify": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.0.1",
+    "eslint": "^0.20.0"
+  },
   "repository": {
     "type": "git",
     "url": "git@git.sinnerschrader.com:team-ux/patternplate.git"
   },
-  "keywords": [
-    "living styleguide",
-    "styleguide",
-    "documentation",
-    "tool",
-    "pattern"
-  ],
   "author": {
-    "name": "S2 Team UX",
+    "name": "SinnerSchrader - Team UX",
     "email": "team-ux@sinnerschrader.com"
   },
   "contributors": [
     {
-      "name": "Daniel Gooß",
-      "email": "daniel.goos@sinnerschrader.com"
-    },
-    {
-      "name": "Veit Lehmann",
-      "email": "veit.lehmann@sinnerschrader.com"
-    },
-    {
       "name": "Mario Nebl",
       "email": "mario.nebl@sinnerschrader.com"
-    },
-    {
-      "name": "Mauricio Palma",
-      "email": "mauricio.palma@sinnerschrader.com"
     }
   ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://git.sinnerschrader.com/team-ux/patternplate/issues"
-  },
-  "homepage": "https://git.sinnerschrader.com/team-ux/patternplate",
-  "dependencies": {
-    "async": "^0.9.0",
-    "chokidar": "^0.12.6",
-    "es6-shim": "^0.22.2",
-    "glob": "^4.3.5",
-    "less": "^2.2.0",
-    "lodash": "^2.4.1",
-    "marked": "^0.3.2",
-    "patternplate-utils": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-utils.git",
-    "rc": "^0.5.5",
-    "require-all": "^1.0.0",
-    "winston": "^0.8.3"
+  "engines": {
+    "iojs": ">= 1.4.3",
+    "node": ">= 0.12.0",
+    "npm": ">= 2.5.1"
   }
 }
