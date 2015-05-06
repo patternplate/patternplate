@@ -13,6 +13,7 @@
     "minimist": "^1.1.1",
     "patternplate-client": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-client.git",
     "patternplate-server": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-server.git",
+    "pretty-data": "^0.40.0",
     "rc": "^1.0.1",
     "uglifyify": "^3.0.1"
   },
