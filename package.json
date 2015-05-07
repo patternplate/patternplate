@@ -15,11 +15,9 @@
   },
   "dependencies": {
     "babel": "^5.2.16",
-    "babelify": "^6.0.2",
     "minimist": "^1.1.1",
     "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git",
-    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git",
-    "uglifyify": "^3.0.1"
+    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git"
   },
   "devDependencies": {
     "babel-eslint": "^3.0.1",
