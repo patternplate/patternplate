@@ -11,8 +11,8 @@
     "babelify": "^6.0.2",
     "lodash": "^3.8.0",
     "minimist": "^1.1.1",
-    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-client.git",
-    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:team-ux/patternplate-server.git",
+    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git",
+    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git",
     "pretty-data": "^0.40.0",
     "rc": "^1.0.1",
     "uglifyify": "^3.0.1"
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.sinnerschrader.com:team-ux/patternplate.git"
+    "url": "git@git.sinnerschrader.com:patternplate/patternplate.git"
   },
   "author": {
     "name": "SinnerSchrader - Team UX",
