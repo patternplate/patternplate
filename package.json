@@ -19,7 +19,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^3.0.1",
-    "eslint": "^0.20.0"
+    "eslint": "^0.20.0",
+    "eslint-plugin-react": "^2.2.0"
   },
   "repository": {
     "type": "git",
