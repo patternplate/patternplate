@@ -14,7 +14,7 @@
     "patternplate": "binary/patternplate.js"
   },
   "dependencies": {
-    "babel": "^5.2.16",
+    "babel-core": "^5.2.17",
     "babelify": "^6.0.2",
     "minimist": "^1.1.1",
     "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git",
@@ -22,6 +22,7 @@
     "uglifyify": "^3.0.1"
   },
   "devDependencies": {
+    "babel": "^5.2.17",
     "babel-eslint": "^3.0.1",
     "eslint": "^0.20.0"
   },

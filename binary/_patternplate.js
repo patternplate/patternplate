@@ -8,8 +8,6 @@ exports['default'] = start;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-/*eslint-disable no-process-env */
-
 var _path = require('path');
 
 var _patternplateServer = require('patternplate-server');

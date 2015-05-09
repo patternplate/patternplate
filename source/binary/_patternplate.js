@@ -1,5 +1,4 @@
 #!/usr/bin/env node --harmony
-/*eslint-disable no-process-env */
 import {resolve} from 'path';
 
 import patternPlateServer from 'patternplate-server';

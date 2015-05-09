@@ -1,6 +1,5 @@
 #!/usr/bin/env node --harmony
-/*eslint-disable no-sync */
-require('babel/polyfill');
+require('babel-core/polyfill');
 var minimist = require('minimist');
 
 var start = require('./_patternplate');
