@@ -1,5 +1,5 @@
 ![patternplate logo](https://git.sinnerschrader.com/uploads/group/avatar/348/patternplate-icon.png)
-### patternplate
+# patternplate
 ---
 Create flexible, powerful and comprehensive Living Styleguides with ease.
 <div style="clear:both;"></div>
