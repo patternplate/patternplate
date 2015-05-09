@@ -7,7 +7,7 @@ Create flexible, powerful and comprehensive Living Styleguides with ease.
 
 # Overview
 
-patternplate makes it easy to create Living Styleguides and helps you to modularize your frontend components consequently. patternplate uses a powerful node.js/io.js driven architecture at its core  to make splitting large projects into manageable and editable components as frictionless as possible.
+patternplate makes it easy to create Living Styleguides and helps you to modularize your frontend components consequently. It uses a powerful node.js/io.js driven architecture at its core  to make splitting large projects into manageable and editable components as frictionless as possible.
 
 ### Quick start
 * Install local dependencies: `npm install`
