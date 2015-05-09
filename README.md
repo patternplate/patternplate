@@ -1,9 +1,6 @@
-<div style="margin-bottom: 30px">
-<div style="float: left; margin-right: 15px">
 ![patternplate logo](https://git.sinnerschrader.com/uploads/group/avatar/348/patternplate-icon.png)
-</div>
-
 ### patternplate
+---
 Create flexible, powerful and comprehensive Living Styleguides with ease.
 <div style="clear:both;"></div>
 </div>
