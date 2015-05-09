@@ -20,50 +20,53 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 ### Creating your first pattern
 * Sart patternplate, refer to the [quick start section](#quick-start)
 * Create a folder in [patterns](./patterns/) `mkdir patterns/my-pattern`
-* Place a `pattern.json` in your folder `vim patterns/my-pattern/pattern.js`
 
- ```json
- {
-	"name": "my-pattern",
-	"version": "0.0.1"
- }
- ```
+* **Place a `pattern.json` in your folder `vim patterns/my-pattern/pattern.js`**
 
-* Create a markup file `vim patterns/my-pattern/index.html`
+    ```json
+    {
+	    "name": "my-pattern",
+	    "version": "0.0.1"
+    }
+    ```
 
-  ```html
+* **Create a markup file `vim patterns/my-pattern/index.html`**
+
+    ```html
 	<div className="my-pattern">
 		Hello <span className="em">patternplate</span>, this is my first pattern.
 	</div>
-	```
+    ```
 
-* Create a documentation file `vim patterns/my-pattern/index.md`
+* **Create a documentation file `vim patterns/my-pattern/index.md`**
 
- ```markdown
- ### My Pattern
- * I could document it here, but it does not do a thing
- ```
+     ```markdown
+        ### My Pattern
+        * I could document it here, but it does not do a thing
+    ```
 
-* Create a styling file `vim patterns/my-pattern/index.less`
+* **Create a styling file `vim patterns/my-pattern/index.less`**
 
- ```less
-.my-pattern{
-	color: #000;
-	.em{
-		font-weight: bold;
-		color: #333;
- 	}
- }
- ```
+     ```less
+        .my-pattern{
+	        color: #000;
+	        .em{
+		        font-weight: bold;
+		        color: #333;
+ 	        }
+        }
+    ```
 
-* Create a scripting file `vim patterns/my-pattern/index.js`
+* **Create a scripting file `vim patterns/my-pattern/index.js`**
 
- ```js
-	console.log('Hello patternplate, this is my first pattern.');
- ```
+    ```js
+	    console.log('Hello patternplate, this is my first pattern.');
+    ```
+
 
 * Visit [localhost:1337/pattern/my-pattern](http://localhost:1337/pattern/my-pattern) to see it in action
 * Congratulations! You just created your first pattern. Only `index.html` and `pattern.json` are required, so pop off and make more of them!
+
 ---
 * See [patterns](./patterns/) folder for more examples of patterns
 * Detailed documentation available in the Patterns section
