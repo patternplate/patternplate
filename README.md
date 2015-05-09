@@ -78,7 +78,7 @@ patternplate serves a web interface accessible at [localhost:1337](http://localh
 ![patternplate screenshot](http://i.imgur.com/l7HzYo3.jpg?1)
 
 ---
-Detailed documentation available at [CLI Usage](./documentation/usage/cli.md)
+Detailed documentation available at [Fronted Usage](./documentation/usage/frontage.md)
 
 ### CLI
 patternplate exposes a command line interface with reduced options. This will be expanded in short notice.
