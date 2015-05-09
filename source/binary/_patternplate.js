@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 /*eslint-disable no-process-env */
 import {resolve} from 'path';
 

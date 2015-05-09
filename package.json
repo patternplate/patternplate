@@ -4,7 +4,7 @@
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "binary/_patternplate.js",
   "scripts": {
-    "start": "node binary/patternplate.js",
+    "start": "node --harmony binary/patternplate.js",
     "build": "npm run babel",
     "watch": "npm run babel -- --watch",
     "babel": "babel source --out-dir ./"

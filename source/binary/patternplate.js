@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 /*eslint-disable no-sync */
 require('babel/polyfill');
 var minimist = require('minimist');

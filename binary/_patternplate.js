@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
