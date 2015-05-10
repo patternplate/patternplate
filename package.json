@@ -2,20 +2,21 @@
   "name": "patternplate",
   "version": "0.2.0",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
-  "main": "binary/_patternplate.js",
+  "main": "library/",
   "scripts": {
     "start": "node --harmony binary/patternplate.js",
     "build": "npm run babel",
     "watch": "npm run babel -- --watch",
-    "babel": "babel source --out-dir ./"
+    "babel": "npm run clean && babel source --out-dir ./",
+    "clean": "rm -r binary library"
   },
   "bin": {
-    "_patternplate": "binary/_patternplate.js",
     "patternplate": "binary/patternplate.js"
   },
   "dependencies": {
     "babel-core": "^5.2.17",
     "babelify": "^6.0.2",
+    "boilerplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/boilerplate-server.git",
     "minimist": "^1.1.1",
     "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git",
     "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git",
