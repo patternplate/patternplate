@@ -8,7 +8,7 @@
     "build": "npm run babel",
     "watch": "npm run babel -- --watch",
     "babel": "npm run clean && babel source --out-dir ./",
-    "clean": "rm -r binary library"
+    "clean": "rm -rf binary library"
   },
   "bin": {
     "patternplate": "binary/patternplate.js"
