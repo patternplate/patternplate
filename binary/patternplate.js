@@ -35,9 +35,9 @@ function start(options) {
 
 							case 6:
 								context$2$0.prev = 6;
-								context$2$0.t0 = context$2$0['catch'](0);
+								context$2$0.t1 = context$2$0['catch'](0);
 
-								application.log.error(context$2$0.t0);
+								application.log.error(context$2$0.t1);
 								process.exit(1);
 
 							case 10:
@@ -59,10 +59,10 @@ function start(options) {
 
 			case 8:
 				context$1$0.prev = 8;
-				context$1$0.t1 = context$1$0['catch'](2);
+				context$1$0.t2 = context$1$0['catch'](2);
 
-				console.log(context$1$0.t1);
-				throw new Error(context$1$0.t1);
+				console.log(context$1$0.t2);
+				throw new Error(context$1$0.t2);
 
 			case 12:
 				context$1$0.prev = 12;
@@ -75,10 +75,10 @@ function start(options) {
 
 			case 17:
 				context$1$0.prev = 17;
-				context$1$0.t2 = context$1$0['catch'](12);
+				context$1$0.t3 = context$1$0['catch'](12);
 
-				application.log.error(context$1$0.t2);
-				throw new Error(context$1$0.t2);
+				application.log.error(context$1$0.t3);
+				throw new Error(context$1$0.t3);
 
 			case 21:
 

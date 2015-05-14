@@ -13,7 +13,7 @@ async function patternplate ( args ) {
 
 	let patternplate = await boilerplate({
 		'name': 'patternplate',
-		'cwd': resolve(__dirname, '..')
+		'cwd': process.cwd()
 	});
 
 	let server = await patternServer(Object.assign(options.patternServer, {
@@ -32,7 +32,7 @@ async function patternplate ( args ) {
 
 	server.cache = patternplate.cache;
 	client.cache = patternplate.cache;
-	
+
 	client.configuration.client.path = server.runtime.prefix;
 	return patternplate;
 }
