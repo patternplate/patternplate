@@ -53,13 +53,11 @@ async function serve( application, root, configuration = {} ) {
 }
 
 export default function staticRouteFactory ( application, configuration ) {
-	let root = resolve( application.runtime.base, application.configuration.paths.static );
-	let userStaticPath = resolve( application.runtime.cwd, configuration.options.root );
+	let userStaticPath = resolve( application.runtime.patterncwd, configuration.options.root );
 
 	return async function staticRoute ( ) {
 		let statist = serve.bind( this );
 
-		await statist( application, root, configuration );
 		await statist( application, userStaticPath, configuration );
 	};
 }

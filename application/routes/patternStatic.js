@@ -107,8 +107,7 @@ function serve(application, root) {
 }
 
 function staticRouteFactory(application, configuration) {
-	var root = (0, _path.resolve)(application.runtime.base, application.configuration.paths['static']);
-	var userStaticPath = (0, _path.resolve)(application.runtime.cwd, configuration.options.root);
+	var userStaticPath = (0, _path.resolve)(application.runtime.patterncwd, configuration.options.root);
 
 	return function staticRoute() {
 		var statist;
@@ -117,13 +116,9 @@ function staticRouteFactory(application, configuration) {
 				case 0:
 					statist = serve.bind(this);
 					context$2$0.next = 3;
-					return statist(application, root, configuration);
-
-				case 3:
-					context$2$0.next = 5;
 					return statist(application, userStaticPath, configuration);
 
-				case 5:
+				case 3:
 				case 'end':
 					return context$2$0.stop();
 			}

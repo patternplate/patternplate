@@ -6,14 +6,15 @@ import boilerplate from 'boilerplate-server';
 import patternServer from 'patternplate-server';
 import patternClient from 'patternplate-client';
 
-const defaults = { patternServer: {}, patternClient: {} };
+const defaults = { patternServer: {}, patternClient: {}, core: {} };
 
 async function patternplate ( args ) {
 	const options = Object.assign({}, defaults, args);
 
 	let patternplate = await boilerplate({
 		'name': 'patternplate',
-		'cwd': process.cwd()
+		'cwd': options.core.cwd || resolve(__dirname, '..'),
+		'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
 	});
 
 	let server = await patternServer(Object.assign(options.patternServer, {
