@@ -11,7 +11,10 @@ const defaults = { patternServer: {}, patternClient: {} };
 async function patternplate ( args ) {
 	const options = Object.assign({}, defaults, args);
 
-	let patternplate = await boilerplate();
+	let patternplate = await boilerplate({
+		'name': 'patternplate',
+		'cwd': resolve(__dirname, '..')
+	});
 
 	let server = await patternServer(Object.assign(options.patternServer, {
 		'cwd': options.patternServer.cwd || resolve(require.resolve('patternplate-server'), '..', '..'),
@@ -27,6 +30,9 @@ async function patternplate ( args ) {
 	patternplate.mount(client);
 	patternplate.mount(server, '/api');
 
+	server.cache = patternplate.cache;
+	client.cache = patternplate.cache;
+	
 	client.configuration.client.path = server.runtime.prefix;
 	return patternplate;
 }

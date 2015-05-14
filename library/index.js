@@ -31,22 +31,25 @@ function patternplate(args) {
 			case 0:
 				options = Object.assign({}, defaults, args);
 				context$1$0.next = 3;
-				return _boilerplateServer2['default']();
+				return (0, _boilerplateServer2['default'])({
+					'name': 'patternplate',
+					'cwd': (0, _path.resolve)(__dirname, '..')
+				});
 
 			case 3:
 				patternplate = context$1$0.sent;
 				context$1$0.next = 6;
-				return _patternplateServer2['default'](Object.assign(options.patternServer, {
-					'cwd': options.patternServer.cwd || _path.resolve(require.resolve('patternplate-server'), '..', '..'),
+				return (0, _patternplateServer2['default'])(Object.assign(options.patternServer, {
+					'cwd': options.patternServer.cwd || (0, _path.resolve)(require.resolve('patternplate-server'), '..', '..'),
 					'patterncwd': options.patterncwd || options.patternServer.patterncwd || process.cwd()
 				}));
 
 			case 6:
 				server = context$1$0.sent;
 				context$1$0.next = 9;
-				return _patternplateClient2['default'](Object.assign(options.patternClient, {
+				return (0, _patternplateClient2['default'])(Object.assign(options.patternClient, {
 					'env': options.patternClient.env || options.env || 'production',
-					'cwd': options.patternClient.cwd || _path.resolve(require.resolve('patternplate-client'), '..', '..'),
+					'cwd': options.patternClient.cwd || (0, _path.resolve)(require.resolve('patternplate-client'), '..', '..'),
 					'routes': { 'enabled': { 'api': { 'enabled': false } } }
 				}));
 
@@ -56,10 +59,13 @@ function patternplate(args) {
 				patternplate.mount(client);
 				patternplate.mount(server, '/api');
 
+				server.cache = patternplate.cache;
+				client.cache = patternplate.cache;
+
 				client.configuration.client.path = server.runtime.prefix;
 				return context$1$0.abrupt('return', patternplate);
 
-			case 14:
+			case 16:
 			case 'end':
 				return context$1$0.stop();
 		}

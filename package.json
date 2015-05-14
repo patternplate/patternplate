@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
@@ -16,10 +16,11 @@
   "dependencies": {
     "babel-core": "^5.2.17",
     "boilerplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/boilerplate-server.git#v0.4.1",
+    "lru-cache": "^2.6.2",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
-    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git#v0.2.2",
-    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git#v0.3.2"
+    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git#v0.2.3",
+    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git#v0.3.3"
   },
   "devDependencies": {
     "babel": "^5.2.17",
