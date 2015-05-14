@@ -17,6 +17,7 @@
     "babel-core": "^5.2.17",
     "boilerplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/boilerplate-server.git",
     "minimist": "^1.1.1",
+    "normalize.less": "^1.0.0",
     "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git",
     "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git"
   },
