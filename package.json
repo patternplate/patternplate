@@ -18,8 +18,8 @@
     "boilerplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/boilerplate-server.git#v0.4.1",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
-    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git#v0.2.1",
-    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git#v0.3.0"
+    "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git#v0.2.2",
+    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git#v0.3.1"
   },
   "devDependencies": {
     "babel": "^5.2.17",
