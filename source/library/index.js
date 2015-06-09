@@ -14,7 +14,10 @@ async function patternplate ( args ) {
 	let patternplate = await boilerplate({
 		'name': 'patternplate',
 		'cwd': options.core.cwd || resolve(__dirname, '..'),
-		'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
+		'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd(),
+		'server': {
+			'port': process.env.NODE_PORT || process.env.PORT
+		}
 	});
 
 	let server = await patternServer(Object.assign(options.patternServer, {

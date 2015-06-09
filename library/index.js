@@ -34,7 +34,10 @@ function patternplate(args) {
 				return regeneratorRuntime.awrap((0, _boilerplateServer2['default'])({
 					'name': 'patternplate',
 					'cwd': options.core.cwd || (0, _path.resolve)(__dirname, '..'),
-					'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
+					'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd(),
+					'server': {
+						'port': process.env.NODE_PORT || process.env.PORT
+					}
 				}));
 
 			case 3:
