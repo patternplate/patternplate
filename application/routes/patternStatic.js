@@ -58,7 +58,7 @@ function serve(application, root) {
 				stats = undefined;
 				context$1$0.prev = 9;
 				context$1$0.next = 12;
-				return (0, _libraryUtilitiesFs.stat)(path);
+				return regeneratorRuntime.awrap((0, _libraryUtilitiesFs.stat)(path));
 
 			case 12:
 				stats = context$1$0.sent;
@@ -116,7 +116,7 @@ function staticRouteFactory(application, configuration) {
 				case 0:
 					statist = serve.bind(this);
 					context$2$0.next = 3;
-					return statist(application, userStaticPath, configuration);
+					return regeneratorRuntime.awrap(statist(application, userStaticPath, configuration));
 
 				case 3:
 				case 'end':
