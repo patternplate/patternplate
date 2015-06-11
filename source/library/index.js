@@ -38,6 +38,8 @@ async function patternplate ( args ) {
 	client.cache = patternplate.cache;
 
 	client.configuration.client.path = server.runtime.prefix;
+
+	patternplate.server = server;
 	return patternplate;
 }
 

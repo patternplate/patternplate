@@ -4,14 +4,14 @@
 import 'babel-core/polyfill';
 import minimist from 'minimist';
 
-import boilerplate from '../';
+import patternplate from '../';
 
 async function start ( options = {} ) {
 	let application;
 	let settings = Object.assign( options, { 'mode': 'console' } );
 
 	try {
-		application = await boilerplate( settings );
+		application = await patternplate( settings );
 	} catch ( error ) {
 		let log = application ? application.log || console : console;
 		log.error( error );
@@ -19,7 +19,7 @@ async function start ( options = {} ) {
 	}
 
 	try {
-		await application.start( settings );
+		await application.server.run( settings );
 	} catch ( error ) {
 		application.log.error( error );
 		throw new Error( error );
