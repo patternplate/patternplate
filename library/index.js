@@ -67,9 +67,11 @@ function patternplate(args) {
 				client.cache = patternplate.cache;
 
 				client.configuration.client.path = server.runtime.prefix;
+
+				patternplate.server = server;
 				return context$1$0.abrupt('return', patternplate);
 
-			case 16:
+			case 17:
 			case 'end':
 				return context$1$0.stop();
 		}

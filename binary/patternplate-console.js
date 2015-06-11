@@ -44,7 +44,7 @@ function start() {
 			case 13:
 				context$1$0.prev = 13;
 				context$1$0.next = 16;
-				return regeneratorRuntime.awrap(application.start(settings));
+				return regeneratorRuntime.awrap(application.server.run(settings));
 
 			case 16:
 				context$1$0.next = 22;

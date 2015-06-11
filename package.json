@@ -1,27 +1,29 @@
 {
   "name": "patternplate",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
     "start": "node --harmony binary/patternplate.js",
+    "console": "node --harmony binary/patternplate-console",
     "build": "npm run babel",
     "watch": "npm run babel -- --watch",
     "babel": "npm run clean && babel source --out-dir ./",
     "clean": "rm -rf binary library application configuration"
   },
   "bin": {
-    "patternplate": "binary/patternplate.js"
+    "patternplate": "binary/patternplate.js",
+    "patternplate-console": "binary/patternplate-console.js"
   },
   "dependencies": {
     "babel-core": "^5.2.17",
     "bluebird": "^2.9.25",
-    "boilerplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/boilerplate-server.git#v0.5.5",
+    "boilerplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/boilerplate-server.git#v0.6.0",
     "lru-cache": "^2.6.2",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
     "patternplate-client": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-client.git#v0.3.4",
-    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git#v0.5.2",
+    "patternplate-server": "git+ssh://git@git.sinnerschrader.com:patternplate/patternplate-server.git#v0.6.0",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
