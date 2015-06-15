@@ -31,4 +31,4 @@ node_modules
 _test
 
 # Build targets
-/build
+.tmp
