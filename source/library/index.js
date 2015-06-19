@@ -34,9 +34,6 @@ async function patternplate ( args ) {
 	patternplate.mount(client);
 	patternplate.mount(server, '/api');
 
-	server.cache = patternplate.cache;
-	client.cache = patternplate.cache;
-
 	client.configuration.client.path = server.runtime.prefix;
 
 	patternplate.server = server;

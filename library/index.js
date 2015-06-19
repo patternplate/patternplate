@@ -63,15 +63,12 @@ function patternplate(args) {
 				patternplate.mount(client);
 				patternplate.mount(server, '/api');
 
-				server.cache = patternplate.cache;
-				client.cache = patternplate.cache;
-
 				client.configuration.client.path = server.runtime.prefix;
 
 				patternplate.server = server;
 				return context$1$0.abrupt('return', patternplate);
 
-			case 17:
+			case 15:
 			case 'end':
 				return context$1$0.stop();
 		}
