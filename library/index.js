@@ -34,10 +34,7 @@ function patternplate(args) {
 				return regeneratorRuntime.awrap((0, _boilerplateServer2['default'])({
 					'name': 'patternplate',
 					'cwd': options.core.cwd || (0, _path.resolve)(__dirname, '..'),
-					'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd(),
-					'server': {
-						'port': process.env.NODE_PORT || process.env.PORT
-					}
+					'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
 				}));
 
 			case 3:
@@ -45,16 +42,20 @@ function patternplate(args) {
 				context$1$0.next = 6;
 				return regeneratorRuntime.awrap((0, _patternplateServer2['default'])(Object.assign(options.patternServer, {
 					'cwd': options.patternServer.cwd || (0, _path.resolve)(require.resolve('patternplate-server'), '..', '..'),
-					'patterncwd': options.patterncwd || options.patternServer.patterncwd || process.cwd()
+					'patterncwd': options.patterncwd || options.patternServer.patterncwd || process.cwd(),
+					'paths': {
+						'configuration': ['./configuration', (0, _path.resolve)(__dirname, '..', './configuration/server'), (0, _path.resolve)(process.cwd(), './configuration/server')]
+					}
 				})));
 
 			case 6:
 				server = context$1$0.sent;
 				context$1$0.next = 9;
 				return regeneratorRuntime.awrap((0, _patternplateClient2['default'])(Object.assign(options.patternClient, {
-					'env': options.patternClient.env || options.env || 'production',
-					'cwd': options.patternClient.cwd || (0, _path.resolve)(require.resolve('patternplate-client'), '..', '..'),
-					'routes': { 'enabled': { 'api': { 'enabled': false } } }
+					'cwd': (0, _path.resolve)(require.resolve('patternplate-client'), '..', '..'),
+					'paths': {
+						'configuration': ['./configuration', (0, _path.resolve)(__dirname, '..', './configuration/client'), (0, _path.resolve)(process.cwd(), './configuration/client')]
+					}
 				})));
 
 			case 9:
