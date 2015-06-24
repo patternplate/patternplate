@@ -31,6 +31,7 @@ async function patternplate ( args ) {
 
 	let client = await patternClient(Object.assign(options.patternClient, {
 		'cwd': resolve(require.resolve('patternplate-client'), '..', '..'),
+		'env': options.patternClient.env || 'production',
 		'paths': {
 			'configuration': [
 				'./configuration',

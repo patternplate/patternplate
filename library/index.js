@@ -53,6 +53,7 @@ function patternplate(args) {
 				context$1$0.next = 9;
 				return regeneratorRuntime.awrap((0, _patternplateClient2['default'])(Object.assign(options.patternClient, {
 					'cwd': (0, _path.resolve)(require.resolve('patternplate-client'), '..', '..'),
+					'env': options.patternClient.env || 'production',
 					'paths': {
 						'configuration': ['./configuration', (0, _path.resolve)(__dirname, '..', './configuration/client'), (0, _path.resolve)(process.cwd(), './configuration/client')]
 					}
