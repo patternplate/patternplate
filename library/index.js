@@ -31,11 +31,11 @@ function patternplate(args) {
 			case 0:
 				options = Object.assign({}, defaults, args);
 				context$1$0.next = 3;
-				return regeneratorRuntime.awrap((0, _boilerplateServer2['default'])({
+				return regeneratorRuntime.awrap((0, _boilerplateServer2['default'])(Object.assign({
 					'name': 'patternplate',
 					'cwd': options.core.cwd || (0, _path.resolve)(__dirname, '..'),
 					'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
-				}));
+				}, { 'mode': options.mode || 'server' })));
 
 			case 3:
 				patternplate = context$1$0.sent;
@@ -57,21 +57,25 @@ function patternplate(args) {
 					'paths': {
 						'configuration': ['./configuration', (0, _path.resolve)(__dirname, '..', './configuration/client'), (0, _path.resolve)(process.cwd(), './configuration/client')]
 					}
-				})));
+				}, { 'mode': options.mode || 'server' })));
 
 			case 9:
 				client = context$1$0.sent;
+
+				patternplate.log.info('Running in mode ' + server.runtime.mode + '...');
 
 				if (server.runtime.mode === 'server') {
 					patternplate.mount(client);
 					patternplate.mount(server, '/api');
 					client.configuration.client.path = server.runtime.prefix;
+				} else {
+					patternplate.log.info('Skipping mounts, not in mode server.');
 				}
 
 				patternplate.server = server;
 				return context$1$0.abrupt('return', patternplate);
 
-			case 13:
+			case 14:
 			case 'end':
 				return context$1$0.stop();
 		}

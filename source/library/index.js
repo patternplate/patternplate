@@ -11,11 +11,11 @@ const defaults = { patternServer: {}, patternClient: {}, core: {} };
 async function patternplate ( args ) {
 	const options = Object.assign({}, defaults, args);
 
-	let patternplate = await boilerplate({
+	let patternplate = await boilerplate(Object.assign({
 		'name': 'patternplate',
 		'cwd': options.core.cwd || resolve(__dirname, '..'),
 		'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
-	});
+	}, { 'mode': options.mode || 'server' }));
 
 	let server = await patternServer(Object.assign({}, options.patternServer, {
 		'cwd': options.patternServer.cwd || resolve(require.resolve('patternplate-server'), '..', '..'),
@@ -39,12 +39,16 @@ async function patternplate ( args ) {
 				resolve(process.cwd(), './configuration/client')
 			]
 		}
-	}));
-	
+	}, { 'mode': options.mode || 'server' }));
+
+	patternplate.log.info(`Running in mode ${server.runtime.mode}...`);
+
 	if (server.runtime.mode === 'server') {
 		patternplate.mount(client);
 		patternplate.mount(server, '/api');
 		client.configuration.client.path = server.runtime.prefix;
+	} else {
+		patternplate.log.info(`Skipping mounts, not in mode server.`);
 	}
 
 	patternplate.server = server;
