@@ -15,7 +15,7 @@ async function patternplate ( args ) {
 		'name': 'patternplate',
 		'cwd': options.core.cwd || resolve(__dirname, '..'),
 		'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
-	}, { 'mode': options.mode });
+	});
 
 	let server = await patternServer(Object.assign({}, options.patternServer, {
 		'cwd': options.patternServer.cwd || resolve(require.resolve('patternplate-server'), '..', '..'),
@@ -27,9 +27,9 @@ async function patternplate ( args ) {
 				resolve(process.cwd(), './configuration/server')
 			]
 		}
-	}, { 'mode': options.mode }));
+	}, { 'mode': options.mode || 'server' }));
 
-	let client = await patternClient(Object.assign(options.patternClient, {
+	let client = await patternClient(Object.assign({}, options.patternClient, {
 		'cwd': resolve(require.resolve('patternplate-client'), '..', '..'),
 		'env': options.patternClient.env || 'production',
 		'paths': {
@@ -39,8 +39,8 @@ async function patternplate ( args ) {
 				resolve(process.cwd(), './configuration/client')
 			]
 		}
-	}, { 'mode': options.mode }));
-
+	}));
+	
 	if (server.runtime.mode === 'server') {
 		patternplate.mount(client);
 		patternplate.mount(server, '/api');

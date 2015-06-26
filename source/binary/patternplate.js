@@ -8,7 +8,7 @@ import boilerplate from '../';
 
 async function start ( options = {} ) {
 	let application;
-	let settings = Object.assign( options, { 'mode': 'console' } );
+	let settings = Object.assign( options, { 'mode': 'server' } );
 
 	try {
 		application = await boilerplate( settings );

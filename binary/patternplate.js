@@ -23,7 +23,7 @@ function start() {
 		while (1) switch (context$1$0.prev = context$1$0.next) {
 			case 0:
 				application = undefined;
-				settings = Object.assign(options, { 'mode': 'console' });
+				settings = Object.assign(options, { 'mode': 'server' });
 				context$1$0.prev = 2;
 				context$1$0.next = 5;
 				return regeneratorRuntime.awrap((0, _2['default'])(settings));
