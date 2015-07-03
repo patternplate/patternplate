@@ -3,7 +3,7 @@ import {resolve} from 'path';
 import 'babel-core/polyfill';
 
 import merge from 'lodash.merge';
-import appRootPath from 'app-root-path';
+import findRoot from 'find-root';
 
 import boilerplate from 'boilerplate-server';
 import patternplateServer from 'patternplate-server';
@@ -21,7 +21,7 @@ async function patternplate ( args ) {
 	let patternplate = await boilerplate({
 		'name': 'patternplate',
 		'mode': options.mode,
-		'cwd': appRootPath.path
+		'cwd': findRoot(__dirname)
 	});
 
 	let patternplateServerInstance = await patternplateServer(

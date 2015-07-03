@@ -14,9 +14,9 @@ var _lodashMerge = require('lodash.merge');
 
 var _lodashMerge2 = _interopRequireDefault(_lodashMerge);
 
-var _appRootPath = require('app-root-path');
+var _findRoot = require('find-root');
 
-var _appRootPath2 = _interopRequireDefault(_appRootPath);
+var _findRoot2 = _interopRequireDefault(_findRoot);
 
 var _boilerplateServer = require('boilerplate-server');
 
@@ -46,7 +46,7 @@ function patternplate(args) {
 				return regeneratorRuntime.awrap((0, _boilerplateServer2['default'])({
 					'name': 'patternplate',
 					'mode': options.mode,
-					'cwd': _appRootPath2['default'].path
+					'cwd': (0, _findRoot2['default'])(__dirname)
 				}));
 
 			case 3:
