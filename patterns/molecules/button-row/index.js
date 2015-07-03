@@ -1,3 +1,7 @@
 var atomButton = require('atom-button');
 
-console.log(atomButton);
+function demoDependencies() {
+	atomButton();
+}
+
+module.exports = demoDependencies;

@@ -2,56 +2,55 @@ import {resolve} from 'path';
 
 import 'babel-core/polyfill';
 
-import boilerplate from 'boilerplate-server';
-import patternServer from 'patternplate-server';
-import patternClient from 'patternplate-client';
+import merge from 'lodash.merge';
+import appRootPath from 'app-root-path';
 
-const defaults = { patternServer: {}, patternClient: {}, core: {} };
+import boilerplate from 'boilerplate-server';
+import patternplateServer from 'patternplate-server';
+import patternplateClient from 'patternplate-client';
+
+const defaults = {
+	'patternplate-server': {},
+	'patternplate-client': {},
+	'patternplate': {}
+};
 
 async function patternplate ( args ) {
-	const options = Object.assign({}, defaults, args);
+	const options = merge({}, defaults, args);
 
-	let patternplate = await boilerplate(Object.assign({
+	let patternplate = await boilerplate({
 		'name': 'patternplate',
-		'cwd': options.core.cwd || resolve(__dirname, '..'),
-		'patterncwd': options.patterncwd || options.core.patterncwd || process.cwd()
-	}, { 'mode': options.mode || 'server' }));
+		'mode': options.mode,
+		'cwd': appRootPath.path
+	});
 
-	let server = await patternServer(Object.assign({}, options.patternServer, {
-		'cwd': options.patternServer.cwd || resolve(require.resolve('patternplate-server'), '..', '..'),
-		'patterncwd': options.patterncwd || options.patternServer.patterncwd || process.cwd(),
-		'paths': {
-			'configuration': [
-				'./configuration',
-				resolve(__dirname, '..', './configuration/server'),
-				resolve(process.cwd(), './configuration/server')
-			]
-		}
-	}, { 'mode': options.mode || 'server' }));
+	let patternplateServerInstance = await patternplateServer(
+		merge(options['patternplate-server'],
+		{
+			'mode': options.mode,
+			'patterncwd': process.cwd()
+		}));
 
-	let client = await patternClient(Object.assign({}, options.patternClient, {
-		'cwd': resolve(require.resolve('patternplate-client'), '..', '..'),
-		'env': options.patternClient.env || 'production',
-		'paths': {
-			'configuration': [
-				'./configuration',
-				resolve(__dirname, '..', './configuration/client'),
-				resolve(process.cwd(), './configuration/client')
-			]
-		}
-	}, { 'mode': options.mode || 'server' }));
+	let patternplateClientInstance = await patternplateClient(
+		merge(options['patternplate-client'],
+		{
+			'mode': options.mode,
+			'env': options['patternplate-client'].env || 'production'
+		}));
 
-	patternplate.log.info(`Running in mode ${server.runtime.mode}...`);
+	patternplate.log.info(`Running in mode ${patternplateServerInstance.runtime.mode}...`);
 
-	if (server.runtime.mode === 'server') {
-		patternplate.mount(client);
-		patternplate.mount(server, '/api');
-		client.configuration.client.path = server.runtime.prefix;
+	if (patternplateServerInstance.runtime.mode === 'server') {
+		patternplate.mount(patternplateClientInstance);
+		patternplate.mount(patternplateServerInstance, '/api');
+		patternplateClientInstance.configuration.client.path = patternplateServerInstance.runtime.prefix;
+
+		patternplateClientInstance.log.warn(`Changing patternplate-client.client.path to ${patternplateServerInstance.runtime.prefix}`);
 	} else {
 		patternplate.log.info(`Skipping mounts, not in mode server.`);
 	}
 
-	patternplate.server = server;
+	patternplate.server = patternplateServerInstance;
 	return patternplate;
 }
 
