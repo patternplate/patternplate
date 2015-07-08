@@ -32,3 +32,5 @@ _test
 
 # Build targets
 .tmp
+.cache
+/build
