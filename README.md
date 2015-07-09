@@ -88,6 +88,7 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 # Usage
 ### Frontend
 patternplate serves a web interface accessible at [localhost:1337](http://localhost:1337/) when started.
+
 ---
 Detailed documentation available at [Fronted Usage](./documentation/usage/frontage.md)
 
