@@ -10,12 +10,29 @@ Create flexible, powerful and comprehensive Living Styleguides with ease.
 patternplate makes it easy to create Living Styleguides and helps you to modularize your frontend components consequently. It uses a powerful node.js/io.js driven architecture at its core  to make splitting large projects into manageable and editable components as frictionless as possible.
 
 ### Quick start
-* Install local dependencies: `npm install`
-* Start as application: `npm start`
-* patternplate is accessible at `localhost:1337` by default
+#### As local dependency (preferred)
+* Install: `npm install --save git+https://git.sinnerschrader.com:patternplate/patternplate.git` 
+* Add start scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "start": "npm run patternplate",
+    "console": "npm run patternplate-console",
+    "patternplate": "patternplate",
+    "patternplate-console": "patternplate-console"
+  }
+}
+```
+
+* Start: `npm start`
+
+#### As global dependency
+* Install: `npm install -g git+https://git.sinnerschrader.com:patternplate/patternplate.git`
+* Start: `patternplate`
 
 ### Creating your first pattern
-* Sart patternplate, refer to the [quick start section](#quick-start)
+* Start patternplate, refer to the [quick start section](#quick-start)
 * Create a folder in [patterns](./patterns/) `mkdir patterns/my-pattern`
 
 * **Place a `pattern.json` in your folder `vim patterns/my-pattern/pattern.js`**
