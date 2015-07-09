@@ -33,7 +33,7 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 
 ### Creating your first pattern
 * Start patternplate, refer to the [quick start section](#quick-start)
-* Create a folder in [patterns](./patterns/) `mkdir patterns/my-pattern`
+* Create a folder in [patterns](./patterns/) `mkdir -p patterns/my-pattern`
 
 * **Place a `pattern.json` in your folder `vim patterns/my-pattern/pattern.js`**
 
