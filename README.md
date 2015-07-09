@@ -44,9 +44,9 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
     }
     ```
 
-* **Create a markup file `vim patterns/my-pattern/index.html`**
+* **Create a markup file `vim patterns/my-pattern/index.jsx`**
 
-    ```html
+    ```jsx
 	<div className="my-pattern">
 		Hello <span className="em">patternplate</span>, this is my first pattern.
 	</div>
@@ -79,7 +79,7 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 
 
 * Visit [localhost:1337/pattern/my-pattern](http://localhost:1337/pattern/my-pattern) to see it in action
-* Congratulations! You just created your first pattern. Only `index.html` and `pattern.json` are required, so pop off and make more of them!
+* Congratulations! You just created your first pattern. Only `index.jsx` and `pattern.json` are required, so pop off and make more of them!
 
 ---
 * See [patterns](./patterns/) folder for more examples of patterns
