@@ -5,6 +5,11 @@ Create flexible, powerful and comprehensive Living Styleguides with ease.
 <div style="clear:both;"></div>
 </div>
 
+# Important
+
+There is currently a bug in ``npm@2.12.1`` preventing the usage of ``git+https`` cloning.
+An [issue](https://github.com/npm/npm/issues/8881) has been submitted. In the meanwhile please downgrade to ``npm@2.12.0``
+
 # Overview
 
 patternplate makes it easy to create Living Styleguides and helps you to modularize your frontend components consequently. It uses a powerful node.js/io.js driven architecture at its core  to make splitting large projects into manageable and editable components as frictionless as possible.
