@@ -5,18 +5,13 @@ Create flexible, powerful and comprehensive Living Styleguides with ease.
 <div style="clear:both;"></div>
 </div>
 
-# Important
-
-There is currently a bug in ``npm@2.12.1`` preventing the usage of ``git+https`` cloning.
-An [issue](https://github.com/npm/npm/issues/8881) has been submitted. In the meanwhile please downgrade to ``npm@2.12.0``
-
 # Overview
 
 patternplate makes it easy to create Living Styleguides and helps you to modularize your frontend components consequently. It uses a powerful node.js/io.js driven architecture at its core  to make splitting large projects into manageable and editable components as frictionless as possible.
 
 ### Quick start
 #### As local dependency (preferred)
-* Install: `npm install --save git+https://git.sinnerschrader.com:patternplate/patternplate.git` 
+* Install: `npm install --save git+https://git.sinnerschrader.com:patternplate/patternplate.git`
 * Add start scripts to your `package.json`:
 
 ```json
@@ -128,3 +123,7 @@ Detailed documentation available at [API Usage](./documentation/usage/api.md)
 ### Global Dependencies
 * node `>= v0.12.0` or io `>= v1.4.4`
 * npm `>= 2.5.1`
+
+
+### Version specifics
+* patternplate < v0.11.8 relied on using relative https urls to resolve dependencies hosted on git.sinnerschrader.com. Relative urls are not supported as of npm >= 0.12.1. If you are bound on using a patternplate version < 0.10.8 downgrade your npm to 0.12.0 or lower.
