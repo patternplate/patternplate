@@ -17,7 +17,7 @@ var _ = require('../');
 var _2 = _interopRequireDefault(_);
 
 function start() {
-	var options = arguments[0] === undefined ? {} : arguments[0];
+	var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	var application, settings, log;
 	return regeneratorRuntime.async(function start$(context$1$0) {
 		while (1) switch (context$1$0.prev = context$1$0.next) {
