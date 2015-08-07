@@ -19,14 +19,14 @@
     "app-root-path": "^1.0.0",
     "babel-core": "^5.2.17",
     "bluebird": "^2.9.25",
-    "boilerplate-server": "git+https://git.sinnerschrader.com/patternplate/boilerplate-server.git#v0.9.4",
+    "boilerplate-server": "git+https://git.sinnerschrader.com/patternplate/boilerplate-server.git",
     "find-root": "^0.1.1",
     "lodash.merge": "^3.3.2",
     "lru-cache": "^2.6.2",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
-    "patternplate-client": "git+https://git.sinnerschrader.com/patternplate/patternplate-client.git#v0.11.5",
-    "patternplate-server": "git+https://git.sinnerschrader.com/patternplate/patternplate-server.git#v0.12.1",
+    "patternplate-client": "git+https://git.sinnerschrader.com/patternplate/patternplate-client.git",
+    "patternplate-server": "git+https://git.sinnerschrader.com/patternplate/patternplate-server.git",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
