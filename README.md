@@ -55,26 +55,26 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 * **Create a documentation file `vim patterns/my-pattern/index.md`**
 
      ```markdown
-        ### My Pattern
-        * I could document it here, but it does not do a thing
+    ### My Pattern
+    * I could document it here, but it does not do a thing
     ```
 
 * **Create a styling file `vim patterns/my-pattern/index.less`**
 
      ```less
-        .my-pattern{
-	        color: #000;
-	        .em{
-		        font-weight: bold;
-		        color: #333;
- 	        }
+    .my-pattern{
+        color: #000;
+        .em{
+            font-weight: bold;
+            color: #333;
         }
+    }
     ```
 
 * **Create a scripting file `vim patterns/my-pattern/index.js`**
 
     ```js
-	    console.log('Hello patternplate, this is my first pattern.');
+    console.log('Hello patternplate, this is my first pattern.');
     ```
 
 
