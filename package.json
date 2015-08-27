@@ -10,7 +10,7 @@
     "watch": "npm run babel -- --watch",
     "babel": "npm run clean && babel source --out-dir ./",
     "clean": "rm -rf binary library application configuration",
-    "publish": "npm run build && npm publish"
+    "prepublish": "npm run build"
   },
   "bin": {
     "patternplate": "binary/patternplate.js",
