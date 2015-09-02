@@ -27,7 +27,7 @@
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
     "patternplate-client": "^0.12.0",
-    "patternplate-server": "^0.12.2",
+    "patternplate-server": "^0.13.2",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
