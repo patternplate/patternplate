@@ -33,4 +33,8 @@ _test
 # Build targets
 .tmp
 .cache
+/application
 /build
+/binary
+/configuration
+/library
