@@ -1,7 +1,7 @@
 ![patternplate logo](https://cdn.rawgit.com/sinnerschrader/patternplate/master/static/images/logo.svg)
 
 # patternplate
----
+
 Create flexible, powerful and comprehensive Living Styleguides with ease.
 
 # Overview
