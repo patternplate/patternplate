@@ -7,7 +7,7 @@ indent_style = tab
 [*rc]
 indent_style = space
 
-[*.json]
+[{package.json}]
 indent_style = space
 
 [*.font]
