@@ -10,7 +10,7 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 
 ### Quick start
 #### As local dependency (preferred)
-* Install: `npm install --save git+https://github.com/sinnerschrader/patternplate.git`
+* Install: `npm install --save patternplate`
 * Add start scripts to your `package.json`:
 
 ```json
@@ -27,7 +27,7 @@ patternplate makes it easy to create Living Styleguides and helps you to modular
 * Start: `npm start`
 
 #### As global dependency
-* Install: `npm install -g git+https://github.com/sinnerschrader/patternplate.git`
+* Install: `npm install -g patternplate`
 * Start: `patternplate`
 
 ### Creating your first pattern
