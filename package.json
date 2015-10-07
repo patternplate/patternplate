@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
