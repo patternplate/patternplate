@@ -18,4 +18,8 @@ async function start (options) {
 const args = minimist(process.argv.slice(1));
 
 start(args)
-	.catch(err => { throw err; });
+	.catch(err => {
+		setTimeout(() => {
+			throw err;
+		});
+	});
