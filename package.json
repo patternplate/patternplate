@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.14.3",
+  "version": "0.15.0-beta",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
@@ -27,7 +27,7 @@
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
     "patternplate-client": "~0.12.4",
-    "patternplate-server": "~0.13.6",
+    "patternplate-server": "0.14.0-beta",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
