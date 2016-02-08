@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.15.2-dev",
+  "version": "0.15.3-dev",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
@@ -26,7 +26,7 @@
     "lru-cache": "^2.6.2",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
-    "patternplate-client": "~0.12.4",
+    "patternplate-client": "^0.13.0-beta",
     "patternplate-server": "^0.14.2-dev",
     "resolve-path": "^1.2.2"
   },
