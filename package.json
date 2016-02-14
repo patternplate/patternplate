@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.15.3-dev",
+  "version": "0.15.4-dev",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
@@ -27,13 +27,14 @@
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
     "patternplate-client": "^0.13.0-beta",
-    "patternplate-server": "^0.14.2-dev",
+    "patternplate-server": "^0.14.3-dev",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
     "babel": "^5.2.17",
     "babel-eslint": "^3.0.1",
-    "eslint": "^0.20.0"
+    "eslint": "^0.20.0",
+    "jsonlint": "^1.6.2"
   },
   "repository": {
     "type": "git",
