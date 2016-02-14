@@ -1,3 +1,13 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.1.0...v0.1.1) (2016-02-14)
+
+
+### Bug Fixes
+
+* silence react 0.14 warnings ([baf4287](https://github.com/sinnerschrader/patternplate-transform-react/commit/baf4287))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2016-02-14)
 
