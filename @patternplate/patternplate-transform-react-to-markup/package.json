@@ -1,0 +1,88 @@
+{
+  "name": "patternplate-transform-react-to-markup",
+  "version": "0.0.0",
+  "description": "patternplate transform creating markup from react components",
+  "main": "distribution/index.js",
+  "files": [
+    "distribution"
+  ],
+  "scripts": {
+    "start": "npm run watch",
+    "clean": "rm -rf distribution",
+    "prepare": "mkdir -p distribution",
+    "prebuild": "parallelshell 'npm run test' 'npm run clean && npm run prepare'",
+    "build": "babel source --out-dir distribution && echo '' || notify -t $npm_package_name -m 'Build failed! 😢'",
+    "postbuild": "npm run notify",
+    "test": "(eslint source/**/*.js && conventional-changelog-lint --to=HEAD && jsonlint-cli **/*.json) && echo '' || notify -t $npm_package_name -m 'Linting failed! 😢'",
+    "watch": "watch 'npm run build' source",
+    "notify": "echo 'Build ready, happy hacking! ✊' && notify -t $npm_package_name -m 'Build ready, happy hacking! ✊'",
+    "commit": "git-cz",
+    "commitmsg": "conventional-changelog-lint --e",
+    "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
+    "push": "git push && git push --tags && hub release create \"v$(cat .git/RELEASE_VERSION.tmp)\" --message=\"v$(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && npm publish && rm .git/RELEASE_VERSION.tmp && rm .git/COMMITMSG.tmp",
+    "release": "npm version $(conventional-recommended-bump -p angular)",
+    "preversion": "npm run build && npm test",
+    "version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\" > .git/COMMITMSG.tmp",
+    "postversion": "echo $(git log -1 --pretty=%B HEAD^..HEAD) > .git/RELEASE_VERSION.tmp && git tag -d v$(cat .git/RELEASE_VERSION.tmp) && git commit --amend -m \"chore(release): $(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && git tag -a v$(cat .git/RELEASE_VERSION.tmp) -m \"$(cat .git/COMMITMSG.tmp)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate-transform-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate-transform-react/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate-transform-react#readme",
+  "keywords": [
+    "react",
+    "patternplate",
+    "transform",
+    "pattern"
+  ],
+  "author": {
+    "name": "SinnerSchrader Deutschland GmbH",
+    "email": "jobs@sinnerschrader.com"
+  },
+  "contributors": [
+    {
+      "name": "Mario Nebl",
+      "email": "mario.nebl@sinnerschrader.com"
+    },
+    {
+      "name": "Markus Wolf",
+      "email": "markus.wolf@sinnerschrader.com"
+    }
+  ],
+  "license": "MIT",
+  "licenses": [
+    "MIT"
+  ],
+  "devDependencies": {
+    "babel": "6.5.2",
+    "babel-cli": "6.4.0",
+    "babel-eslint": "4.1.8",
+    "babel-plugin-add-module-exports": "0.1.2",
+    "babel-preset-es2015": "6.3.13",
+    "babel-preset-stage-0": "6.3.13",
+    "commitizen": "2.5.0",
+    "conventional-changelog-cli": "1.1.1",
+    "conventional-changelog-lint": "0.1.7",
+    "conventional-recommended-bump": "0.1.0",
+    "cz-conventional-changelog": "1.1.5",
+    "eslint": "1.10.3",
+    "eslint-config-xo": "0.9.1",
+    "eslint-plugin-babel": "3.1.0",
+    "husky": "0.10.2",
+    "jsonlint-cli": "0.2.7",
+    "node-notifier": "4.4.0",
+    "parallelshell": "2.0.0",
+    "react": ">= 0.13",
+    "react-dom": ">= 0.13",
+    "watch": "0.17.1"
+  },
+  "peerDependencies": {
+    "react": ">= 0.13",
+    "react-dom": ">= 0.13",
+    "patternplate-transform-react": "*"
+  }
+}
