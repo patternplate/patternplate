@@ -1,3 +1,13 @@
+<a name="0.1.0"></a>
+# 0.1.0 (2016-02-14)
+
+
+### Features
+
+* move react-to-markup transform to own module ([4844080](https://github.com/sinnerschrader/patternplate-transform-react/commit/4844080))
+
+
+
 
 
 ---
