@@ -1,9 +1,9 @@
-# patternplate-transform-react
-[patternplate](/sinnerschrader/patternplate) transform creating reusable React classes from jsx templates.
+# patternplate-transform-react-to-markup
+[patternplate](/sinnerschrader/patternplate) transform creating markup from react components.
 
 ## Installation
 ```shell
-npm install --save patternplate-transform-react react react-dom babel@5
+npm install --save patternplate-transform-react-to-markup react-dom
 ```
 
 ---
