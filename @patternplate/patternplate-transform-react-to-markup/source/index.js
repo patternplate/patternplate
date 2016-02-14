@@ -1,10 +1,20 @@
 import * as React from 'react';
 
-function renderMarkup(source) {
+function getRenderFunction(toStatic = true) {
+	const nameSpace = React.version < 0.14 ?
+		React :
+		require('react-dom/server');
+	return toStatic ?
+		nameSpace.renderToStaticMarkup :
+		nameSpace.renderToString;
+}
+
+function renderMarkup(source, options = {}) {
+	const renderFunction = getRenderFunction(options.static !== false);
 	const moduleScope = {exports: {}};
-	const fn = new Function('module', 'exports', 'require', source); // eslint-disable-line no-new-func
-	fn(moduleScope, moduleScope.exports, require);
-	return React.renderToStaticMarkup(React.createElement(moduleScope.exports));
+	const moduleContext = new Function('module', 'exports', 'require', source); // eslint-disable-line no-new-func
+	moduleContext(moduleScope, moduleScope.exports, require);
+	return renderFunction(React.createElement(moduleScope.exports));
 }
 
 export default function createReactRendererFactory(application) {
