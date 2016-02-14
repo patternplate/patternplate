@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.15.4-dev",
+  "version": "0.15.5-dev",
   "description": "Create flexible, powerful and comprehensive Living Styleguides with ease.",
   "main": "library/",
   "scripts": {
@@ -20,14 +20,14 @@
     "app-root-path": "^1.0.0",
     "babel-core": "^5.2.17",
     "bluebird": "^2.9.25",
-    "boilerplate-server": "~0.10.0",
+    "boilerplate-server": "^0.11.0",
     "find-root": "^0.1.1",
     "lodash.merge": "^3.3.2",
     "lru-cache": "^2.6.2",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
-    "patternplate-client": "^0.13.0-beta",
-    "patternplate-server": "^0.14.3-dev",
+    "patternplate-client": "^0.13.1-beta",
+    "patternplate-server": "^0.14.5-dev",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
