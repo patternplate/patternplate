@@ -1,3 +1,13 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.0...v0.2.1) (2016-02-15)
+
+
+### Bug Fixes
+
+* correct react version detection ([092f1e6](https://github.com/sinnerschrader/patternplate-transform-react/commit/092f1e6))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.1.1...v0.2.0) (2016-02-15)
 
