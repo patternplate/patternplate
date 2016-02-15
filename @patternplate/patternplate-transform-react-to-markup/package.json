@@ -13,7 +13,7 @@
     "prebuild": "parallelshell 'npm run test' 'npm run clean && npm run prepare'",
     "build": "babel source --out-dir distribution && echo '' || notify -t $npm_package_name -m 'Build failed! 😢'",
     "postbuild": "npm run notify",
-    "test": "(eslint source/**/*.js && conventional-changelog-lint --to=HEAD && jsonlint-cli **/*.json) && echo '' || notify -t $npm_package_name -m 'Linting failed! 😢'",
+    "test": "(eslint source/**/*.js && conventional-changelog-lint --to=HEAD~1 && jsonlint-cli **/*.json) && echo '' || notify -t $npm_package_name -m 'Linting failed! 😢'",
     "watch": "watch 'npm run build' source",
     "notify": "echo 'Build ready, happy hacking! ✊' && notify -t $npm_package_name -m 'Build ready, happy hacking! ✊'",
     "commit": "git-cz",
