@@ -1,3 +1,13 @@
+<a name="0.1.0"></a>
+# 0.1.0 (2016-02-15)
+
+
+### Features
+
+* add react-mount transform ([2f97709](https://github.com/sinnerschrader/patternplate-transform-react-mount/commit/2f97709))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.0...v0.2.1) (2016-02-15)
 
