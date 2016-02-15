@@ -86,6 +86,7 @@
     "patternplate-transform-react": "*"
   },
   "dependencies": {
-    "compare-semver": "1.1.0"
+    "compare-semver": "1.1.0",
+    "lodash": "4.3.0"
   }
 }
