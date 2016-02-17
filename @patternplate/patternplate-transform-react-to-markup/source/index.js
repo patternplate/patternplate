@@ -19,7 +19,15 @@ function renderMarkup(file, options = {}) {
 	const moduleScope = {exports: {}};
 	const moduleContext = new Function('module', 'exports', 'require', source); // eslint-disable-line no-new-func
 	moduleContext(moduleScope, moduleScope.exports, require);
-	const rendered = renderFunction(React.createElement(moduleScope.exports));
+	const defaultExport = typeof moduleScope.exports === 'function' ?
+		moduleScope.exports :
+		moduleScope.exports.default;
+
+	if (typeof defaultExport !== 'function') {
+		throw new Error(`Default export of file ${file.path} in pattern ${file.pattern.id} is no function, can't render as React component`);
+	}
+
+	const rendered = renderFunction(React.createElement(defaultExport));
 	const buffer = options.automount ?
 		`<div data-mountpoint>${rendered}</div>` :
 		rendered;
