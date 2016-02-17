@@ -1,3 +1,14 @@
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.1...v0.2.3) (2016-02-17)
+
+
+### Bug Fixes
+
+* add missing lodash dependency ([626dc39](https://github.com/sinnerschrader/patternplate-transform-react/commit/626dc39))
+* handle multiple exports gracefully ([5b5d6b5](https://github.com/sinnerschrader/patternplate-transform-react/commit/5b5d6b5))
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.1...v0.2.2) (2016-02-15)
 
