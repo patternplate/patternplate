@@ -1,3 +1,13 @@
+<a name="0.2.5"></a>
+## [0.2.5](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.4...v0.2.5) (2016-02-17)
+
+
+### Bug Fixes
+
+* pacify babelHelpers correctly ([9397ef3](https://github.com/sinnerschrader/patternplate-transform-react/commit/9397ef3))
+
+
+
 <a name="0.2.4"></a>
 ## [0.2.4](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.3...v0.2.4) (2016-02-17)
 
