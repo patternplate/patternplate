@@ -8,13 +8,14 @@ export default file => {
 
 	// prepare script and context
 	const sandbox = {
-		self: sandbox,
 		module,
 		exports,
 		require,
 		__filename,
 		__dirname
 	};
+
+	sandbox.global = sandbox;
 
 	const context = new Context(sandbox);
 	const script = new Script(source);
