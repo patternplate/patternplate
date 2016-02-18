@@ -1,3 +1,13 @@
+<a name="0.2.6"></a>
+## [0.2.6](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.5...v0.2.6) (2016-02-18)
+
+
+### Bug Fixes
+
+* allow deprecated usage of react.render if react-dom is unavailable ([15a5451](https://github.com/sinnerschrader/patternplate-transform-react/commit/15a5451))
+
+
+
 <a name="0.2.5"></a>
 ## [0.2.5](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.4...v0.2.5) (2016-02-17)
 
