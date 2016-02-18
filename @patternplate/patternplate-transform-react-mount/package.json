@@ -1,6 +1,6 @@
 {
   "name": "patternplate-transform-react-mount",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "patternplate transform mounting react components with full life cycle on the client side",
   "main": "distribution/index.js",
   "files": [

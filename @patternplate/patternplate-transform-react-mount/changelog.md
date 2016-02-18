@@ -1,3 +1,13 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v0.1.0...v0.1.1) (2016-02-18)
+
+
+### Bug Fixes
+
+* enable react version interoperability ([fc7c48f](https://github.com/sinnerschrader/patternplate-transform-react-mount/commit/fc7c48f))
+
+
+
 <a name="0.1.0"></a>
 # 0.1.0 (2016-02-15)
 
