@@ -3,9 +3,9 @@ import React from 'react';
 import getComponent from './get-component';
 import getRenderFunction from './get-render-function';
 
-export default (file, options = {}) => {
+export default (file, options = {}, application) => {
 	const isStatic = options.static !== false && options.automount !== true;
-	const renderFunction = getRenderFunction(isStatic);
+	const renderFunction = getRenderFunction(isStatic, application);
 	const component = getComponent(file);
 
 	const rendered = renderFunction(React.createElement(component));
