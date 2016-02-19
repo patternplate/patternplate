@@ -1,14 +1,11 @@
 #!/usr/bin/env node
-/*eslint-disable no-process-env, no-process-exit */
-
-import 'babel-core/polyfill';
+import 'babel-polyfill';
 import minimist from 'minimist';
 
 import patternplate from '../';
 
-async function start (options) {
-	const mode = 'console';
-	const settings = {...options, mode};
+async function main(options) {
+	const settings = merge({}, options, { 'mode': 'console' });
 	const command = settings._[1];
 
 	const application = await patternplate(settings);
@@ -17,9 +14,15 @@ async function start (options) {
 
 const args = minimist(process.argv.slice(1));
 
-start(args)
+main(args)
 	.catch(err => {
 		setTimeout(() => {
 			throw err;
 		});
 	});
+
+// Catch unhandled rejections globally
+process.on('unhandledRejection', (reason, promise) => {
+	console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+	throw reason;
+});

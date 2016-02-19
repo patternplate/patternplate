@@ -1,7 +1,5 @@
 import {resolve} from 'path';
 
-import 'babel-core/polyfill';
-
 import merge from 'lodash.merge';
 import findRoot from 'find-root';
 
