@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*eslint-disable no-process-env, no-process-exit */
 
-import 'babel-core/polyfill';
+import 'babel-polyfill';
 import minimist from 'minimist';
 
 import patternplate from '../';
