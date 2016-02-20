@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import 'babel-polyfill';
 import minimist from 'minimist';
+import {merge} from 'lodash';
 
 import patternplate from '../';
 
 async function main(options) {
-	const settings = merge({}, options, { 'mode': 'console' });
+	const settings = merge({}, options, {mode: 'console'});
 	const command = settings._[1];
 
 	const application = await patternplate(settings);
