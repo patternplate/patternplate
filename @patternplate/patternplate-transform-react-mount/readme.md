@@ -30,7 +30,7 @@ npm install --save patternplate-transform-react-mount react react-dom
 ```
 
 ## Configuration
-Install `patternplate-transform-react-mount`, `patternplate-transform-react`, `patternplate-transform-react-to-markup`, `react` and `react-dom` in your [patternplate](sinnerschrader/patternplate) project.
+Install `patternplate-transform-react-mount`, `patternplate-transform-react`, `patternplate-transform-react-to-markup`, `react` and `react-dom` in your [patternplate](https://github.com/sinnerschrader/patternplate) project.
 
 ```
 No configuration parameters available yet
@@ -40,7 +40,7 @@ No configuration parameters available yet
 `patternplate-transform-react-mount` is triggered by `patternplate-transform-react-to-markup`. To enable auto mounting enable it in `patternplate-transform-react-to-markup` config.
 
 ---
-⇨ See [patternplate-transform-react-to-markup](sinnerschrader/patternplate-transform-react-to-markup#component-auto-mounting) for details
+⇨ See [patternplate-transform-react-to-markup](https://github.com/sinnerschrader/patternplate-transform-react-to-markup#component-auto-mounting) for details
 
 
 ### React version interoperability
