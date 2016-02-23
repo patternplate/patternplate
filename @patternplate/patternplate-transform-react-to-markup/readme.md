@@ -57,7 +57,9 @@ module.exports = {
 // configuration/patternplate-server/transforms.js
 module.exports = {
 	"react-to-markup": {
-		"automount": true
+		"opts": {
+			"automount": true
+		}
 	}
 }
 ```
@@ -70,7 +72,9 @@ To enable auto mounting on a per pattern basis specify
 	"version": "0.1.0",
 	"options": {
 		"react-to-markup": {
-			"automount": true
+			"opts": {
+				"automount": true
+			}
 		}
 	}
 }
