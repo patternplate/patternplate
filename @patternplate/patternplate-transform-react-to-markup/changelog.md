@@ -1,3 +1,13 @@
+<a name="0.2.8"></a>
+## [0.2.8](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.7...v0.2.8) (2016-02-23)
+
+
+### Bug Fixes
+
+* read automount config from opts no matter what ([3286e18](https://github.com/sinnerschrader/patternplate-transform-react/commit/3286e18))
+
+
+
 <a name="0.2.7"></a>
 ## [0.2.7](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.6...v0.2.7) (2016-02-18)
 
