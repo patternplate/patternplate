@@ -1,3 +1,14 @@
+<a name="0.2.9"></a>
+## [0.2.9](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.8...v0.2.9) (2016-02-23)
+
+
+### Bug Fixes
+
+* log detailed React.render errors, encapsulate ([98ebfda](https://github.com/sinnerschrader/patternplate-transform-react/commit/98ebfda))
+* provide console to code evaluated ([b8540b3](https://github.com/sinnerschrader/patternplate-transform-react/commit/b8540b3))
+
+
+
 <a name="0.2.8"></a>
 ## [0.2.8](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.7...v0.2.8) (2016-02-23)
 
