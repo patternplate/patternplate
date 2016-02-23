@@ -86,8 +86,10 @@
     "patternplate-transform-react": "*"
   },
   "dependencies": {
+    "chalk": "1.1.1",
     "compare-semver": "1.1.0",
     "lodash": "4.3.0",
+    "stack-trace": "0.0.9",
     "try-require": "1.2.1"
   }
 }
