@@ -1,3 +1,13 @@
+<a name="0.15.14"></a>
+## [0.15.14](https://github.com/sinnerschrader/patternplate/compare/v0.15.13...v0.15.14) (2016-02-24)
+
+
+### Bug Fixes
+
+* readd missing docs ([b93ed1b](https://github.com/sinnerschrader/patternplate/commit/b93ed1b))
+
+
+
 <a name="0.15.13"></a>
 ## [0.15.13](https://github.com/sinnerschrader/patternplate/compare/v0.15.12-beta...v0.15.13) (2016-02-20)
 
