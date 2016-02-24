@@ -120,7 +120,7 @@ Detailed documentation available at [API Usage](./documentation/usage/api.md)
 # Development
 
 ### Global Dependencies
-* node `>= v0.12.0` or io `>= v1.4.4`
+* node `>= v4.0.0`
 * npm `>= 2.5.1`
 
 
