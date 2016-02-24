@@ -1,29 +1,30 @@
 #!/usr/bin/env node
-/*eslint-disable no-process-env, no-process-exit */
 
 import 'babel-polyfill';
 import minimist from 'minimist';
 
-import boilerplate from '../';
+import patternplate from '../';
 
-async function start ( options = {} ) {
-	let application;
-	let settings = Object.assign( options, { 'mode': 'server' } );
+async function main(options = {}) {
+	const application = await patternplate({
+		...options,
+		mode: 'server'
+	});
 
-	try {
-		application = await boilerplate( settings );
-	} catch ( error ) {
-		let log = application ? application.log || console : console;
-		log.error( error );
-		throw new Error( error );
-	}
-
-	try {
-		await application.start( settings );
-	} catch ( error ) {
-		application.log.error( error );
-		throw new Error( error );
-	}
+	await application.start();
 }
 
-start( minimist( process.argv.slice( 1 ) ) );
+const args = minimist(process.argv.slice(1));
+
+main(args)
+	.catch(err => {
+		setTimeout(() => {
+			throw err;
+		});
+	});
+
+// Catch unhandled rejections globally
+process.on('unhandledRejection', (reason, promise) => {
+	console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+	throw reason;
+});

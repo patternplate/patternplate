@@ -1,16 +1,14 @@
 #!/usr/bin/env node
-/*eslint-disable no-process-env, no-process-exit */
 
 import 'babel-polyfill';
 import minimist from 'minimist';
 
 import patternplate from '../';
 
-async function start (options) {
+async function start(options) {
 	const mode = 'console';
 	const settings = {...options, mode};
-	const command = settings._[1];
-
+	const {_: [, command]} = settings;
 	const application = await patternplate(settings);
 	await application.server.run(command, settings);
 }
@@ -23,3 +21,9 @@ start(args)
 			throw err;
 		});
 	});
+
+// Catch unhandled rejections globally
+process.on('unhandledRejection', (reason, promise) => {
+	console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+	throw reason;
+});

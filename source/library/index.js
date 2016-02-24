@@ -1,5 +1,3 @@
-import {resolve} from 'path';
-
 import merge from 'lodash.merge';
 import findRoot from 'find-root';
 
@@ -13,28 +11,30 @@ const defaults = {
 	'patternplate': {}
 };
 
-async function patternplate ( args ) {
+async function patternplate(args) {
 	const options = merge({}, defaults, args);
 
-	let patternplate = await boilerplate({
-		'name': 'patternplate',
-		'mode': options.mode,
-		'cwd': findRoot(__dirname)
+	const patternplate = await boilerplate({
+		name: 'patternplate',
+		mode: options.mode,
+		cwd: findRoot(__dirname)
 	});
 
-	let patternplateServerInstance = await patternplateServer(
+	const patternplateServerInstance = await patternplateServer(
 		merge(options['patternplate-server'],
-		{
-			'mode': options.mode,
-			'patterncwd': process.cwd()
-		}));
+			{
+				mode: options.mode,
+				patterncwd: process.cwd()
+			}
+		));
 
-	let patternplateClientInstance = await patternplateClient(
+	const patternplateClientInstance = await patternplateClient(
 		merge(options['patternplate-client'],
-		{
-			'mode': options.mode,
-			'env': options['patternplate-client'].env || 'production'
-		}));
+			{
+				mode: options.mode,
+				env: options['patternplate-client'].env || 'production'
+			}
+	));
 
 	patternplate.log.info(`Running in mode ${patternplateServerInstance.runtime.mode}...`);
 
