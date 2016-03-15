@@ -3,7 +3,7 @@
 <p align="center">
   <img
     alt="patternplate-logo"
-    src="https://cdn.rawgit.com/sinnerschrader/patternplate-client/master/static/images/logo.svg"
+    src="https://rawgit.com/sinnerschrader/patternplate/master/static/images/logo-animated.svg"
     width="150"
     height="150" />
   <h1 align="center">patternplate</h1>
