@@ -12,8 +12,7 @@ import getRenderFunction from './get-render-function';
 export default (file, options = {}, application) => {
 	const isStatic = options.static !== false && options.automount !== true;
 	const renderFunction = getRenderFunction(isStatic, application);
-	const component = getComponent(file, application);
-	const prefix = chalk.grey(`[${[file.pattern.id, file.name].join(':')}]`);
+	const component = getComponent(file);
 
 	const meta = options.automount ?
 		{
@@ -27,33 +26,13 @@ export default (file, options = {}, application) => {
 	// prepare script and context
 	const sandbox = {
 		module,
+		console,
 		exports,
 		require,
 		patternplate: {
 			component,
 			renderFunction,
 			result: ''
-		},
-		// Provide proxied console, prepend with file
-		console: {
-			log(...args) {
-				application.log.info(...[prefix, ...args]);
-			},
-			debug(...args) {
-				application.log.debug(...[prefix, ...args]);
-			},
-			error(...args) {
-				application.log.error(...[prefix, ...args]);
-			},
-			info(...args) {
-				application.log.info(...[prefix, ...args]);
-			},
-			warn(...args) {
-				application.log.warn(...[prefix, ...args]);
-			},
-			trace(...args) {
-				application.log.trace(...[prefix, ...args]);
-			}
 		}
 	};
 
