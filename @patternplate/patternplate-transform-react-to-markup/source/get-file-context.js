@@ -18,7 +18,7 @@ export default (file, run, cache = {}) => {
 			return require(name);
 		}
 	};
-	
+
 	sandbox.global = sandbox;
 	return new Context(sandbox);
-}
+};

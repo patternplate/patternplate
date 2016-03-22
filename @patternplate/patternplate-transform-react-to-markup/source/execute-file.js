@@ -15,4 +15,4 @@ export default (file, context) => {
 	});
 
 	return context.exports;
-}
+};
