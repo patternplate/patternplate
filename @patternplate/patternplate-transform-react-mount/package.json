@@ -54,9 +54,6 @@
     }
   ],
   "license": "MIT",
-  "licenses": [
-    "MIT"
-  ],
   "devDependencies": {
     "babel": "6.5.2",
     "babel-cli": "6.4.0",

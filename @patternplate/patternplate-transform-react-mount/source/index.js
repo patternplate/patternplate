@@ -23,6 +23,7 @@ export default function (application) {
 			'React.render(mountableElement, mountElement);';
 
 		const code = [
+			`var React = require('react');`,
 			requireStatement,
 			`var mountableElement = React.createElement(module.exports);`,
 			`var mountElement = document.querySelector('[data-mountpoint]');`,
