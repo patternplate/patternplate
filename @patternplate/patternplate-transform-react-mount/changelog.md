@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v0.1.1...v0.1.2) (2016-03-28)
+
+
+### Bug Fixes
+
+* **generation:** make React available in automount scope ([e641120](https://github.com/sinnerschrader/patternplate-transform-react-mount/commit/e641120))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v0.1.0...v0.1.1) (2016-02-18)
 
