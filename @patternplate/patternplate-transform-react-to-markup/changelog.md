@@ -1,3 +1,13 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.9...v0.3.0) (2016-03-28)
+
+
+### Features
+
+* **generation:** resolve dependencies ([133ddef](https://github.com/sinnerschrader/patternplate-transform-react/commit/133ddef))
+
+
+
 <a name="0.2.9"></a>
 ## [0.2.9](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.8...v0.2.9) (2016-02-23)
 
