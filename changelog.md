@@ -1,3 +1,9 @@
+<a name="0.15.15"></a>
+## [0.15.15](https://github.com/sinnerschrader/patternplate/compare/v0.15.14...v0.15.15) (2016-04-06)
+
+
+
+
 <a name="0.15.14"></a>
 ## [0.15.14](https://github.com/sinnerschrader/patternplate/compare/v0.15.13...v0.15.14) (2016-02-24)
 
