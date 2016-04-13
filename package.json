@@ -33,8 +33,8 @@
     "lodash.merge": "^3.3.2",
     "minimist": "^1.1.1",
     "normalize.less": "^1.0.0",
-    "patternplate-client": "^0.14.0",
-    "patternplate-server": "^0.14.16",
+    "patternplate-client": "^0.15.0",
+    "patternplate-server": "^0.14.25",
     "resolve-path": "^1.2.2"
   },
   "devDependencies": {
