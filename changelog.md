@@ -1,3 +1,13 @@
+<a name="0.16.0"></a>
+# [0.16.0](https://github.com/sinnerschrader/patternplate/compare/v0.15.16...v0.16.0) (2016-04-16)
+
+
+### Features
+
+* **system:** update to latest patternplate-* versions ([67af3a1](https://github.com/sinnerschrader/patternplate/commit/67af3a1))
+
+
+
 <a name="0.15.16"></a>
 ## [0.15.16](https://github.com/sinnerschrader/patternplate/compare/v0.15.15...v0.15.16) (2016-04-13)
 
