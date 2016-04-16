@@ -1,3 +1,13 @@
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.0...v0.3.1) (2016-04-16)
+
+
+### Bug Fixes
+
+* **generation:** handle named component exports properly ([d101995](https://github.com/sinnerschrader/patternplate-transform-react/commit/d101995))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.2.9...v0.3.0) (2016-03-28)
 
