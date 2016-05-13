@@ -1,3 +1,13 @@
+<a name="0.17.0"></a>
+# [0.17.0](https://github.com/sinnerschrader/patternplate/compare/v0.16.0...v0.17.0) (2016-05-13)
+
+
+### Features
+
+* update to patternplate-* minors ([91f6414](https://github.com/sinnerschrader/patternplate/commit/91f6414))
+
+
+
 <a name="0.16.0"></a>
 # [0.16.0](https://github.com/sinnerschrader/patternplate/compare/v0.15.16...v0.16.0) (2016-04-16)
 
