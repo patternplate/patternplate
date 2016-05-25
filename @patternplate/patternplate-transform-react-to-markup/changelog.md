@@ -1,3 +1,14 @@
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.1...v0.3.2) (2016-05-25)
+
+
+### Bug Fixes
+
+* **generation:** expose process.env to sandboxed react components ([0aae384](https://github.com/sinnerschrader/patternplate-transform-react/commit/0aae384))
+* **generation:** resolve npm deps from process.cwd() ([9fe0b8d](https://github.com/sinnerschrader/patternplate-transform-react/commit/9fe0b8d))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.0...v0.3.1) (2016-04-16)
 
