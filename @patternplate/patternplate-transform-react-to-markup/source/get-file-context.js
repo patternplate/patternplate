@@ -8,10 +8,30 @@ import {
 
 const cwd = process.cwd();
 
-export default (file, run, cache = {}) => {
+function getSandboxedRequire(dependencies, run) {
+	return name => {
+		const dependency = dependencies[name];
+
+		if (dependency) {
+			return run(dependency);
+		}
+
+		const resolved = resolve(name, {
+			basedir: cwd
+		});
+
+		return require(resolved);
+	};
+}
+
+export default (file, run) => {
 	const {
 		env
 	} = process;
+
+	const {
+		dependencies
+	} = file;
 
 	const sandbox = {
 		module,
@@ -20,19 +40,7 @@ export default (file, run, cache = {}) => {
 			env
 		},
 		exports: {},
-		require(name) {
-			const dependency = file.dependencies[name];
-			if (dependency) {
-				const result = cache[dependency.path] ||
-					run(dependency, cache);
-				cache[dependency.path] = result;
-				return result;
-			}
-			const resolved = resolve(name, {
-				basedir: cwd
-			});
-			return require(resolved);
-		}
+		require: getSandboxedRequire(dependencies, run)
 	};
 
 	sandbox.global = sandbox;
