@@ -11,7 +11,12 @@ export default (toStatic = true, application) => {
 	const methodName = toStatic ? 'renderToStaticMarkup' : 'renderToString';
 
 	if (wantsReactDOM && !reactDOMavailable) {
-		const warning = `${deprecation} React version ${React.version} deprecated React.${methodName} and moved it to react-dom/server's ${methodName}, but react-dom is not available via require.resolve. Consider installing react-dom.`;
+		const warning = [
+			`${deprecation} React version ${React.version} deprecated`,
+			`React.${methodName} and moved it to react-dom/server's ${methodName},`
+			`but react-dom is not available via require.resolve.`,
+			`Consider installing react-dom.`
+		].join('');
 		application.log.warn(yellow(warning));
 	}
 

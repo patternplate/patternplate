@@ -7,12 +7,17 @@ export default function run(file) {
 
 	try {
 		const result = executeFile(file, context);
-		return typeof result.default === 'object' || typeof result.default === 'function' ?
+		const hasDefaultExport = typeof result.default === 'object' ||
+			typeof result.default === 'function';
+		return hasDefaultExport ?
 			merge(result.default, result) :
 			result;
 	} catch (error) {
 		const errorFile = file || {pattern: {}};
-		const message = `Error during parsing of file ${errorFile.path} in pattern ${errorFile.pattern.id}:`;
+		const message = [
+			`Error during parsing of file ${errorFile.path} in pattern`,
+			`${errorFile.pattern.id}:`
+		].join(' ');
 		error.message = [
 			message,
 			error.message

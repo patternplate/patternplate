@@ -9,6 +9,8 @@ import trace from 'stack-trace';
 import getComponent from './get-component';
 import getRenderFunction from './get-render-function';
 
+const topFileName = 'evalmachine.<anonymous>';
+
 export default (file, options = {}, application) => {
 	const isStatic = options.static !== false && options.automount !== true;
 	const renderFunction = getRenderFunction(isStatic, application);
@@ -70,7 +72,7 @@ export default (file, options = {}, application) => {
 		const stack = trace.parse(error);
 
 		// find first relevant item in trace
-		const top = stack.filter(item => item.fileName === 'evalmachine.<anonymous>' &&
+		const top = stack.filter(item => item.fileName === topFileName &&
 			(item.functionName || '').indexOf('babelHelpers') === -1
 		)[0];
 
@@ -84,7 +86,8 @@ export default (file, options = {}, application) => {
 		] : [];
 
 		const message = [
-			`Error during rendering of file ${file.path} in pattern ${file.pattern.id}:`,
+			`Error during rendering of file ${file.path}`,
+			`in pattern ${file.pattern.id}:`,
 			top ? `Tried to print offending lines` : ''
 		].join('\n');
 
