@@ -2,6 +2,12 @@ import {
 	createContext as Context
 } from 'vm';
 
+import {
+	sync as resolve
+} from 'resolve';
+
+const cwd = process.cwd();
+
 export default (file, run, cache = {}) => {
 	const {
 		env
@@ -22,7 +28,10 @@ export default (file, run, cache = {}) => {
 				cache[dependency.path] = result;
 				return result;
 			}
-			return require(name);
+			const resolved = resolve(name, {
+				basedir: cwd
+			});
+			return require(resolved);
 		}
 	};
 
