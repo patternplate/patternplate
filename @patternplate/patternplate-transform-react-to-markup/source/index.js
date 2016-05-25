@@ -15,7 +15,7 @@ export default function createReactRendererFactory(application) {
 		const {
 			pattern: {
 				manifest: {
-					patternOptions = {}
+					options: patternOptions = {}
 				}
 			}
 		} = file;
