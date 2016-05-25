@@ -3,9 +3,16 @@ import {
 } from 'vm';
 
 export default (file, run, cache = {}) => {
+	const {
+		env
+	} = process;
+
 	const sandbox = {
 		module,
 		console,
+		process: {
+			env
+		},
 		exports: {},
 		require(name) {
 			const dependency = file.dependencies[name];
