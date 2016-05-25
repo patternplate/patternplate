@@ -5,6 +5,7 @@
       "always",
       [
         "detection",
+        "general",
         "generation",
         "transformation",
         "release",
