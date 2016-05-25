@@ -1,6 +1,6 @@
 {
   "name": "patternplate-transform-react-to-markup",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "patternplate transform creating markup from react components",
   "main": "distribution/index.js",
   "files": [
@@ -17,11 +17,11 @@
     "commit": "git-cz",
     "commitmsg": "conventional-changelog-lint -e",
     "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
-		"push": "git push && git push --tags && hub release create \"v$npm_package_version\" --message=\"v$npm_package_version\n$(conventional-changelog -p angular)\" && npm publish",
+    "push": "git push && git push --tags && hub release create \"v$npm_package_version\" --message=\"v$npm_package_version\n$(conventional-changelog -p angular)\" && npm publish",
     "release": "npm version $(conventional-recommended-bump -p angular)",
-		"preversion": "npm run build && npm test",
-		"version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\"",
-		"postversion": "git tag -d v$npm_package_version && git commit --amend -m \"chore(release): $npm_package_version\n$(conventional-changelog -p angular)\" && git tag -a v$npm_package_version -m \"$(conventional-changelog -p angular)\""
+    "preversion": "npm run build && npm test",
+    "version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\"",
+    "postversion": "git tag -d v$npm_package_version && git commit --amend -m \"chore(release): $npm_package_version\n$(conventional-changelog -p angular)\" && git tag -a v$npm_package_version -m \"$(conventional-changelog -p angular)\""
   },
   "config": {
     "commitizen": {
