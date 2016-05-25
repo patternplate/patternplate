@@ -1,3 +1,13 @@
+<a name="0.3.4"></a>
+## [0.3.4](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.3...v0.3.4) (2016-05-25)
+
+
+### Bug Fixes
+
+* **generation:** remove unneeded require cache ([a28897e](https://github.com/sinnerschrader/patternplate-transform-react/commit/a28897e))
+
+
+
 <a name="0.3.3"></a>
 ## [0.3.3](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.2...v0.3.3) (2016-05-25)
 
