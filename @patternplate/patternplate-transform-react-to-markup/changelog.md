@@ -1,3 +1,13 @@
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.4...v0.3.5) (2016-07-12)
+
+
+### Bug Fixes
+
+* **generation:** eval react scripts indefinitely ([4cbfc44](https://github.com/sinnerschrader/patternplate-transform-react/commit/4cbfc44)), closes [sinnerschrader/patternplate#27](https://github.com/sinnerschrader/patternplate/issues/27)
+
+
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.3...v0.3.4) (2016-05-25)
 
