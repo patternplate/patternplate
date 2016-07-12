@@ -55,8 +55,7 @@ export default (file, options = {}, application) => {
 			filename: file.path,
 			lineOffset: 1,
 			columnOffset: 1,
-			displayErrors: true,
-			timeout: 5000
+			displayErrors: true
 		});
 
 		const result = sandbox.patternplate.result;

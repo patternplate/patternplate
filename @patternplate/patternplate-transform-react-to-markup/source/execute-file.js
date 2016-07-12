@@ -10,8 +10,7 @@ export default (file, context) => {
 		filename: file.path,
 		lineOffset: 1,
 		columnOffset: 1,
-		displayErrors: true,
-		timeout: 5000
+		displayErrors: true
 	});
 
 	return context.exports;
