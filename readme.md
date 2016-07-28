@@ -43,6 +43,8 @@ npm start -- --open
 *  💡 Show
 *  🍕 Deliver
 
+---
+For detailed documentation see the [documentation folder](./documentation/)
 
 ## Contribute
 
