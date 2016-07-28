@@ -1,7 +1,7 @@
 {
   "name": "patternplate",
   "version": "0.17.0",
-  "description": "Create, show and deliver living styleguides as well as component libraries",
+  "description": "Create, show and deliver component libraries",
   "main": "library/",
   "scripts": {
     "start": "node binary/patternplate.js",
@@ -13,7 +13,7 @@
     "babel": "babel source --out-dir ./",
     "clean": "rm -rf binary library application configuration",
     "commit": "git-cz",
-    "commitmsg": "conventional-changelog-lint --e",
+    "commitmsg": "conventional-changelog-lint -e",
     "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
     "push": "git push && git push --tags && hub release create \"v$(cat .git/RELEASE_VERSION.tmp)\" --message=\"v$(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && npm publish && rm .git/RELEASE_VERSION.tmp && rm .git/COMMITMSG.tmp",
     "release": "npm version $(conventional-recommended-bump -p angular)",

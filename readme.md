@@ -14,10 +14,11 @@ patternplate is a platform designed to help you create and maintain component li
 
 ## Prerequisites
 
-patternplate is based on Node.js and provides long term support:
+patternplate is based on Node.js. Lowest supported version is the current LTS release and
+the npm version that ships with it.
 
 *  node `>= 4`
-*  npm `>= 3`
+*  npm `>= 2`
 
 ## Quickstart
 
@@ -28,7 +29,7 @@ Get up and running with patternplate in three steps:
 npm install --save patternplate
 
 # Create an initial patternplate setup
-patternplate init
+./node_modules/.bin/patternplate init
 
 # Start patternplate and open in default browser
 npm start -- --open
