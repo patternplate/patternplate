@@ -1,4 +1,4 @@
-> Create, show and deliver living styleguides as well as component libraries
+> Create, show and deliver component libraries
 
 <p align="center">
   <img
@@ -9,7 +9,7 @@
   <h1 align="center">patternplate</h1>
 </p>
 
-patternplate is a platform designed to help you create and maintain living styleguides, component libraries and ui toolkits.
+patternplate is a platform designed to help you create and maintain component libraries.
 
 
 ## Prerequisites
