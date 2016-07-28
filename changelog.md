@@ -1,3 +1,13 @@
+<a name="0.18.0"></a>
+# [0.18.0](https://github.com/sinnerschrader/patternplate/compare/v0.17.0...v0.18.0) (2016-07-28)
+
+
+### Features
+
+* **cli:** add init command ([42114fb](https://github.com/sinnerschrader/patternplate/commit/42114fb))
+
+
+
 <a name="0.17.0"></a>
 # [0.17.0](https://github.com/sinnerschrader/patternplate/compare/v0.16.0...v0.17.0) (2016-05-13)
 
