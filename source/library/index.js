@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import {merge, omit} from 'lodash';
 import findRoot from 'find-root';
 
 import boilerplate from 'boilerplate-server';
@@ -6,35 +6,27 @@ import patternplateServer from 'patternplate-server';
 import patternplateClient from 'patternplate-client';
 
 const defaults = {
-	'patternplate-server': {},
-	'patternplate-client': {},
-	'patternplate': {}
+	patternplateServer: {},
+	patternplateClient: {},
+	patternplate: {}
 };
 
 async function patternplate(args) {
 	const options = merge({}, defaults, args);
+	const topLevel = omit(options, Object.keys(defaults));
+	const patterncwd = process.cwd();
 
-	const patternplate = await boilerplate({
-		name: 'patternplate',
-		mode: options.mode,
-		cwd: findRoot(__dirname)
-	});
+	const patternplateSpecifics = {name: 'patternplate', cwd: findRoot(__dirname)};
+	const patternplateOptions = merge({}, topLevel, options.patternplate, patternplateSpecifics);
+	const patternplate = await boilerplate(patternplateOptions);
 
-	const patternplateServerInstance = await patternplateServer(
-		merge(options['patternplate-server'],
-			{
-				mode: options.mode,
-				patterncwd: process.cwd()
-			}
-		));
+	const patternplateSeverSpecifics = {patterncwd};
+	const patternplateServerOptions = merge({}, topLevel, options.patternplateServer, topLevel, patternplateSeverSpecifics);
+	const patternplateServerInstance = await patternplateServer(patternplateServerOptions);
 
-	const patternplateClientInstance = await patternplateClient(
-		merge(options['patternplate-client'],
-			{
-				mode: options.mode,
-				env: options['patternplate-client'].env || 'production'
-			}
-	));
+	const patternplateClientSpecifics = {env: options.patternplateClient.env || 'production'};
+	const patternplateClientOptions = merge({}, topLevel, options.patternplateServer, topLevel, patternplateClientSpecifics);
+	const patternplateClientInstance = await patternplateClient(patternplateClientOptions);
 
 	patternplate.log.info(`Running in mode ${patternplateServerInstance.runtime.mode}...`);
 
