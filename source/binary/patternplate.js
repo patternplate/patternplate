@@ -2,9 +2,19 @@
 
 import 'babel-polyfill';
 import meow from 'meow';
+import opn from 'opn';
+import {omitBy, isNull} from 'lodash';
 
 import patternplate from '../';
-import init from '../library/init';
+import patternplateInit from '../library/init/index.js';
+
+const defaults = {
+	'open': null,
+	'log.colorize': null,
+	'log.timestamp': null,
+	'log.showLevel': null,
+	'server.autoPort': null
+};
 
 const cli = meow(`
 	Usage
@@ -25,6 +35,7 @@ const cli = meow(`
 	  help                 - show this help
 
 	Start options (patternplate [=start])
+		open                 - enable/disable automatic opening of default browser after start [true, =false]
 	  server.port          - set the port the server should listen on [=1337]
 	  server.host          - set the host the server should listen on [=localhost]
 	  server.autoPort      - enable/disable free port detection if server.port is taken [=true, false]
@@ -40,6 +51,8 @@ const cli = meow(`
 
 	Examples
 	  $ patternplate start
+		$ patternplate start --open # Start and open in default browser
+		$ patternplate start --open=safari # Start and open in safari
 	  $ patternplate console build-commonjs
 	  $ patternplate init
 
@@ -51,7 +64,8 @@ const cli = meow(`
 			'log.timestamp',
 			'log.showLevel',
 			'server.autoPort'
-		]
+		],
+		default: defaults
 	});
 
 async function main(command = 'start', options = {}, input = []) {
@@ -60,11 +74,19 @@ async function main(command = 'start', options = {}, input = []) {
 		return;
 	}
 
+	options.log.showLevel = options.log['show-level'];
+	options.server.autoPort = options.server['auto-port'];
+
+	const normalized = omitBy(options, isNull);
+	normalized.log = omitBy(normalized.log, isNull);
+	normalized.server = omitBy(normalized.server, isNull);
+
 	const mode = command === 'console' ? 'console' : 'server';
-	const settings = {...options, mode};
+	const settings = {...normalized, mode};
 
 	if (command === 'init') {
-		await init(settings);
+		const [, path] = input;
+		await patternplateInit(path, settings);
 		return;
 	}
 
@@ -77,6 +99,21 @@ async function main(command = 'start', options = {}, input = []) {
 	}
 
 	await application.start();
+
+	if (settings.open) {
+		const {host, port} = application.configuration.server;
+		const address = `http://${host}:${port}`;
+		const explicit = typeof settings.open === 'string';
+		const openOptions = explicit ? {app: settings.open} : {};
+		const browserName = explicit ? settings.open : 'default browser';
+		application.log.info(`[application] Opening ${browserName} at ${address}`);
+
+		opn(address, openOptions)
+			.catch(error => {
+				application.log.error(error);
+				console.log(error.stack);
+			});
+	}
 }
 
 const {input, flags} = cli;
