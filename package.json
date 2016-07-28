@@ -43,7 +43,7 @@
     "babel-eslint": "^6.0.2",
     "commitizen": "^2.5.0",
     "conventional-changelog-cli": "^1.1.1",
-    "conventional-changelog-lint": "^0.1.10",
+    "conventional-changelog-lint": "^1.0.0",
     "conventional-recommended-bump": "^0.1.1",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.7.0",
