@@ -1,19 +1,20 @@
-# Pattern Development
-
+# Getting started
 patternplate is a platform for the pattern-driven development of component libraries.
 This sounds daunting but actually is pretty easy. Just follow the steps below and
 you'll be churning out components in a breeze. See [sinnerschrader/patternplate-getting-started](https://github.com/sinnerschrader/patternplate-getting-started)
 for the complete sources created during this tutorial.
 
-* [Getting started](#getting-started) - See scaffolding and pattern manifests
-* [Adding markup to the button](#adding-markup-to-the-button) - Understand index files and markup
-* [Style the button](#style-the-button) - Meet less.js
-* [Introducing interactive demos](#introducing-interactive-demos) - Learn about demo files and javascript
-* [Moving your pattern](#moving-your-pattern) - Folder structure and navigation
-* [Using patterns](#using-patterns) - Dependencies and composition of patterns
-* [sinnerschrader/patternplate](https://github.com/sinnerschrader/patternplate) for more information and documentation
+1. [Getting started](#1-getting-started) - See scaffolding and pattern manifests
+2. [Adding markup to the button](#2-adding-markup-to-the-button) - Understand index files and markup
+3. [Style the button](#3-style-the-button) - Meet less.js
+4. [Introducing interactive demos](#4-introducing-interactive-demos) - Learn about demo files and javascript
+5. [Moving your pattern](#5-moving-your-pattern) - Folder structure and navigation
+6. [Using patterns](#6-using-patterns) - Dependencies and composition of patterns
 
-## Getting started
+---
+[sinnerschrader/patternplate](https://github.com/sinnerschrader/patternplate) for more information and documentation
+
+## 1. Getting started
 ### Step by step
 
 In order to get started with patternplate, you'll have to create your first pattern.
@@ -55,7 +56,10 @@ As a bonus it allows you to define properties of your patterns, e.g.
 }
 ```
 
-## Adding markup to the button
+### Further reading
+* [Pattern](https://github.com/sinnerschrader/patternplate/blob/master/documentation/pattern.md)
+
+## 2. Adding markup to the button
 
 ### Step by step
 
@@ -90,7 +94,7 @@ If interested you can [read up on jsx here](https://facebook.github.io/react/doc
 *  patternplate transforms your `jsx` to executable
 components and renders them in a second step
 
-## Style the button
+## 3. Style the button
 
 ### Step by step
 
@@ -124,7 +128,7 @@ Reload [Button](/pattern/button) to inspect the button's new styling.
 *  Another index file, another format. patternplate picks up on the `.less` file by default,
 transforms it and delivers it as `css` to the browser
 
-## Introducing interactive demos
+## 4. Introducing interactive demos
 
 ### Step by step
 
@@ -206,7 +210,7 @@ pattern();
 @import 'Pattern';
 ```
 
-## Moving your pattern
+## 5. Moving your pattern
 
 ### Step by step
 
@@ -231,7 +235,7 @@ It is now available as [pattern/atoms/button](pattern/atoms/button) in the web i
 *  Nesting is supported to indefinite levels
 
 
-## Using patterns
+## 6. Using patterns
 
 ### Step by step
 

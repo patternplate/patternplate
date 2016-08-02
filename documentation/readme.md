@@ -1,4 +1,4 @@
 # patternplate documentation
 
 *  [Command Line Interface](./cli.md) - How to use the included CLI
-*  [Pattern Development](./pattern-development.md) - A primer on pattern-driven development
+*  [First steps](./first-steps.md) - Guided tour to your first patterns
