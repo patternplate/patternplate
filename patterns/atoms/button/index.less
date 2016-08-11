@@ -1,6 +1,19 @@
 @import 'npm://normalize.less/normalize.less';
 
-.button{
-	background: green;
-	transform: translate3d(0, 0, 0);
+.button {
+	display: inline-block;
+	border: 1px solid black;
+	&__native {
+		appearance: none;
+		background: none;
+		border: none;
+		padding: 5px 10px;
+	}
+	&::before {
+		content: "@{global-env-name}";
+		color: white;
+		background: black;
+		display: inline-block;
+		padding: 5px;
+	}
 }

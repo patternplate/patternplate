@@ -1,14 +1,14 @@
 {
 	"name": "index",
+	"display": true,
 	"version": "0.1.0",
-	"conditional-comment": "!IE",
-	"exclude": ["ecospheres/**"],
 	"formats": ["js", "css", "less"],
 	"environment": {
 		"less": {
 			"opts": {
 				"globalVars": {
-					"global-is-legacy": true
+					"global-env-name": "index",
+					"global-is-legacy": false
 				}
 			}
 		}

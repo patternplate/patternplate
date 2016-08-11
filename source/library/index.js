@@ -41,6 +41,10 @@ async function patternplate(args) {
 	}
 
 	patternplate.server = patternplateServerInstance;
+	patternplate.client = patternplateClientInstance;
+
+	patternplate.server.parent = patternplate;
+	patternplate.client.parent = patternplate;
 	return patternplate;
 }
 

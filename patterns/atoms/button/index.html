@@ -1,3 +1,5 @@
-<button className="button" type="button">
-	{ this.props.children || 'Button'}
-</button>
+<div className={'button ' + this.props.className}>
+	<button className="button__native" type="button">
+		{ this.props.children || 'Button'}
+	</button>
+</div>

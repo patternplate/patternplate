@@ -1,35 +1,14 @@
 {
 	"name": "legacy",
+	"display": true,
 	"version": "0.1.0",
-	"exclude": ["ecospheres/**"],
 	"formats": ["js", "css", "less"],
-	"conditional-comment": "lte IE 8",
 	"environment": {
-		"browserify": {
-			"transforms": {
-				"envify": {
-					"opts": {
-						"BROWSER": "legacy"
-					}
-				}
-			}
-		},
 		"less": {
 			"opts": {
 				"globalVars": {
+					"global-env-name": "legacy",
 					"global-is-legacy": true
-				}
-			},
-			"plugins": {
-				"autoprefix": {
-					"opts": {
-						"browsers": ["ie 8"]
-					}
-				},
-				"clean-css": {
-					"opts": {
-						"compatibility": "ie8"
-					}
 				}
 			}
 		}
