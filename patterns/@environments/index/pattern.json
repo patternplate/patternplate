@@ -1,9 +1,17 @@
 {
 	"name": "index",
+	"displayName": "Default",
 	"display": true,
 	"version": "0.1.0",
 	"formats": ["js", "css", "less"],
 	"environment": {
+		"react": {
+			"opts": {
+				"globals": {
+					"envName": "index"
+				}
+			}
+		},
 		"less": {
 			"opts": {
 				"globalVars": {

@@ -1,9 +1,17 @@
 {
 	"name": "legacy",
+	"displayName": "Legacy",
 	"display": true,
 	"version": "0.1.0",
 	"formats": ["js", "css", "less"],
 	"environment": {
+		"react": {
+			"opts": {
+				"globals": {
+					"envName": "legacy"
+				}
+			}
+		},
 		"less": {
 			"opts": {
 				"globalVars": {
