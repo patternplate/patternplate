@@ -20,6 +20,9 @@ const renderPage = require(resolve('patternplate-client/library/render-page'));
 const getNavigation = require(resolve('patternplate-server/library/get-navigation'));
 const getPatternData = require(resolve('patternplate-server/library/get-pattern-data'));
 const getPatternDemo = require(resolve('patternplate-server/library/get-pattern-demo'));
+const getPatternFile = require(resolve('patternplate-server/library/get-pattern-file'));
+
+const urlQuery = require(resolve('patternplate-server/library/utilities/url-query'));
 
 function getNavigationUrls(tree) {
 	return Object.values(tree || {})
@@ -100,61 +103,114 @@ async function buildInterface(application, configuration) {
 	});
 
 	// Build pattern json data
-	const patternDataJobs = patterns.map(async pattern => {
-		const gettingData = getPatternData(server, pattern.id);
-		const dataPath = path.resolve(...[apiTargetPath, ...pattern.relative, `${pattern.baseName}.json`]);
-		const dataDirectory = path.dirname(dataPath);
+	const patternDatasets = await Promise.all(patterns.map(async pattern => {
+		const data = await getPatternData(server, pattern.id, 'index');
+		data.environmentNames = data.manifest.demoEnvironments.map(env => env.name);
+		data.variants = {};
+		data._pattern = pattern;
+		return data;
+	}));
 
-		if (!(await exists(dataDirectory))) {
-			await mkdirp(path.dirname(dataPath));
-		}
-		const patternData = await gettingData;
-		await fs.writeFile(dataPath, JSON.stringify(patternData));
-		return patternData;
+	const patternDataJobs = patternDatasets.map(async dataset => {
+		return Promise.all(dataset.environmentNames.map(async env => {
+			const data = await getPatternData(server, dataset.id, env);
+			dataset.variants[env] = data;
+			const short = path.resolve(...[apiTargetPath, ...dataset._pattern.relative, `${dataset._pattern.baseName}.json`]);
+			const long = urlQuery.format({
+				pathname: short,
+				query: {environment: env}
+			});
+
+			if (!(await exists(path.dirname(long)))) {
+				await mkdirp(path.dirname(long));
+			}
+
+			await fs.writeFile(long, JSON.stringify(data));
+
+			if (env === 'index') {
+				if (!(await exists(path.dirname(short)))) {
+					await mkdirp(path.dirname(short));
+				}
+				await fs.writeFile(short, JSON.stringify(data));
+			}
+			return data;
+		}));
 	});
 
 	// Build pattern demos
 	const patternDemoJobs = patterns.map(async pattern => {
-		const gettingDemo = getPatternDemo(server, pattern.id);
-		const demoPath = path.resolve(...[demoTargetPath, ...pattern.relative, pattern.name]);
-		const demoDirectory = path.dirname(demoPath);
+		return Promise.all(['index', 'legacy'].map(async env => {
+			const patternDemo = await getPatternDemo(server, pattern.id, {environments: [env]}, env);
 
-		if (!(await exists(demoDirectory))) {
-			await mkdirp(path.dirname(demoPath));
-		}
-		const patternDemo = await gettingDemo;
-		await fs.writeFile(demoPath, patternDemo);
-		return patternDemo;
-	});
+			const short = path.resolve(...[demoTargetPath, ...pattern.relative, pattern.name]);
+			const long = urlQuery.format({
+				pathname: short,
+				query: {environment: env}
+			});
 
-	// Get pattern files
-	const patternDatasets = await Promise.all(patternDataJobs);
-
-	const patternFileJobs = patternDatasets.map(async dataset => {
-		return Promise.all(['script', 'style'].map(async type => {
-			const format = find(dataset.outFormats, {type});
-			if (!format) {
-				return '';
-			}
-			const result = dataset.results.index[format.name] || {buffer: ''};
-
-			const fragments = dataset.id.split('/');
-			const tail = fragments[fragments.length - 1];
-			const relative = fragments.slice(0, fragments.length - 1);
-			const baseName = path.basename(tail, path.extname(tail));
-			const patternFilePath = path.resolve(...[patternTargetPath, ...relative, `${baseName}/index.${result.out}`]);
-			const patternDirectory = path.dirname(patternFilePath);
-
-			if (!(await exists(patternDirectory))) {
-				await mkdirp(patternDirectory);
+			if (!(await exists(path.dirname(long)))) {
+				await mkdirp(path.dirname(long));
 			}
 
-			await fs.writeFile(patternFilePath, result.buffer);
-			return result.buffer;
+			await fs.writeFile(long, patternDemo);
+
+			if (env === 'index') {
+				if (!(await exists(path.dirname(short)))) {
+					await mkdirp(path.dirname(short));
+				}
+				await fs.writeFile(short, patternDemo);
+			}
+			return patternDemo;
 		}));
 	});
 
-	await Promise.all([...patternPageJobs, ...patternFileJobs, ...patternDemoJobs]);
+	// Get pattern files
+	const patternFileJobs = patternDatasets.map(async dataset => {
+		return Promise.all(['script', 'style'].map(async type => {
+			return Promise.all(['index', 'legacy'].map(async env => {
+				const format = find(dataset.outFormats, {type});
+				if (!format) {
+					return '';
+				}
+
+				const result = dataset.results.index[format.name];
+				if (!result) {
+					return '';
+				}
+
+				const filters = {environments: [env]};
+				const patternFile = await getPatternFile(server, dataset.id, filters, result.out, env);
+
+				const fragments = dataset.id.split('/');
+				const tail = fragments[fragments.length - 1];
+				const relative = fragments.slice(0, fragments.length - 1);
+				const baseName = path.basename(tail, path.extname(tail));
+
+				const short = path.resolve(...[patternTargetPath, ...relative, `${baseName}/index.${result.out}`]);
+				const long = urlQuery.format({
+					pathname: short,
+					query: {environment: env}
+				});
+
+				if (!(await exists(path.dirname(long)))) {
+					await mkdirp(path.dirname(long));
+				}
+
+				await fs.writeFile(long, patternFile);
+
+				if (env === 'index') {
+					if (!(await exists(path.dirname(short)))) {
+						await mkdirp(path.dirname(short));
+					}
+					await fs.writeFile(short, patternFile);
+				}
+
+				return 'foo';
+			}));
+		}));
+	});
+
+	await Promise.all([...patternPageJobs, ...patternDataJobs, ...patternFileJobs, ...patternDemoJobs]);
 
 	// Copy static assets
 	await ncp(staticSourcePath, staticTargetPath);
