@@ -186,7 +186,7 @@ async function buildInterface(application, configuration) {
 				const relative = fragments.slice(0, fragments.length - 1);
 				const baseName = path.basename(tail, path.extname(tail));
 
-				const short = path.resolve(...[patternTargetPath, ...relative, `${baseName}/index.${result.out}`]);
+				const short = path.resolve(...[demoTargetPath, ...relative, `${baseName}/index.${result.out}`]);
 				const long = urlQuery.format({
 					pathname: short,
 					query: {environment: env}

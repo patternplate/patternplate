@@ -34,7 +34,6 @@ async function patternplate(args) {
 		patternplate.mount(patternplateClientInstance);
 		patternplate.mount(patternplateServerInstance, '/api');
 		patternplateClientInstance.configuration.client.path = patternplateServerInstance.runtime.prefix;
-
 		patternplateClientInstance.log.warn(`Changing patternplate-client.client.path to ${patternplateServerInstance.runtime.prefix}`);
 	} else {
 		patternplate.log.info(`Skipping mounts, not in mode server.`);
