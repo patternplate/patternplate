@@ -7,6 +7,7 @@ import mkdirp from 'mkdirp-promise';
 import ncp from 'ncp';
 import findRoot from 'find-root';
 import isStream from 'is-stream';
+import throat from 'throat';
 
 const defaults = {
 	target: 'build/build-interface'
@@ -95,13 +96,13 @@ async function buildInterface(application, configuration) {
 	await fs.writeFile(htaccessPath, htaccess);
 
 	// Build pattern json data
-	const patternDatasets = await Promise.all(patterns.map(async pattern => {
+	const patternDatasets = await Promise.all(patterns.map(throat(5, async pattern => {
 		const data = await getPatternMetaData(server, pattern.id, 'index');
 		data.environmentNames = data.environments.map(env => env.name);
 		data.variants = {};
 		data._pattern = pattern;
 		return data;
-	}));
+	})));
 
 	const componentPatterns = automount ?
 		patternDatasets :
@@ -117,7 +118,7 @@ async function buildInterface(application, configuration) {
 	const automountIds = componentPatterns.map(pattern => pattern.id);
 
 	// Build pattern and category pages
-	const patternPageJobs = ids.map(async id => {
+	const patternPageJobs = ids.map(throat(5, async id => {
 		const renderingPage = renderPage(client, `/pattern/${id.id}`);
 		const pagePath = path.resolve(...[patternTargetPath, ...id.relative, id.name]);
 		const pageDirectory = path.dirname(pagePath);
@@ -129,13 +130,17 @@ async function buildInterface(application, configuration) {
 		const pageContent = await renderingPage;
 		await fs.writeFile(pagePath, pageContent);
 		return pageContent;
-	});
+	}));
 
-	const patternDataJobs = patternDatasets.map(async dataset => {
-		return Promise.all(dataset.environmentNames.map(async env => {
+	const patternDataJobs = patternDatasets.map(throat(5, async dataset => {
+		return Promise.all(dataset.environmentNames.map(throat(1, async env => {
 			const data = await getPatternMetaData(server, dataset.id, env);
 			dataset.variants[env] = data;
-			const short = path.resolve(...[apiTargetPath, ...dataset._pattern.relative, `${dataset._pattern.baseName}.json`]);
+			const short = path.resolve(
+				...[apiTargetPath,
+					...dataset._pattern.relative,
+					`${dataset._pattern.baseName}.json`
+				]);
 			const long = urlQuery.format({
 				pathname: short,
 				query: {environment: env}
@@ -154,15 +159,21 @@ async function buildInterface(application, configuration) {
 				await fs.writeFile(short, JSON.stringify(data));
 			}
 			return data;
-		}));
-	});
+		})));
+	}));
 
-	const patternDemoJobs = patternDatasets.map(async dataset => {
-		return Promise.all(dataset.environmentNames.map(async env => {
+	const patternDemoJobs = patternDatasets.map(throat(5, async dataset => {
+		return Promise.all(dataset.environmentNames.map(throat(1, async env => {
 			const mount = automountIds.includes(dataset.id);
 			const patternDemo = await getPatternDemo(server, dataset.id, {environments: [env]}, env);
 
-			const short = path.resolve(...[demoTargetPath, ...dataset._pattern.relative, dataset._pattern.name]);
+			const short = path.resolve(
+				...[
+					demoTargetPath,
+					...dataset._pattern.relative,
+					dataset._pattern.name
+				]
+			);
 			const long = urlQuery.format({
 				pathname: short,
 				query: {environment: env}
@@ -183,7 +194,7 @@ async function buildInterface(application, configuration) {
 
 			const types = mount ? ['style'] : ['style', 'script'];
 
-			await Promise.all(types.map(async type => {
+			await Promise.all(types.map(throat(5, async type => {
 				const demo = find(dataset.files, {type, concern: 'demo'});
 				const index = find(dataset.files, {type, concern: 'index'});
 				const file = demo || index;
@@ -206,17 +217,21 @@ async function buildInterface(application, configuration) {
 					await fs.writeFile(shortFilePath, patternFile);
 				}
 				return null;
-			}));
+			})));
 
 			return patternDemo;
-		}));
-	});
+		})));
+	}));
 
-	const componentJobs = componentPatterns.map(async dataset => {
+	const componentJobs = componentPatterns.map(throat(5, async dataset => {
 		return Promise.all(dataset.environmentNames.map(async env => {
 			const component = await getComponent(server, dataset.id, env);
 
-			const short = path.resolve(...[demoTargetPath, ...dataset._pattern.relative, dataset._pattern.name]);
+			const short = path.resolve(...[
+				demoTargetPath,
+				...dataset._pattern.relative,
+				dataset._pattern.name
+			]);
 			const long = urlQuery.format({
 				pathname: short,
 				query: {environment: env}
@@ -235,11 +250,11 @@ async function buildInterface(application, configuration) {
 
 			return null;
 		}));
-	});
+	}));
 
-	const patternFileJobs = patternDatasets.map(async dataset => {
-		return Promise.all(dataset.environmentNames.map(async env => {
-			return Promise.all(dataset.files.map(async file => {
+	const patternFileJobs = patternDatasets.map(throat(5, async dataset => {
+		return Promise.all(dataset.environmentNames.map(throat(1, async env => {
+			return Promise.all(dataset.files.map(throat(1, async file => {
 				const types = file.type === 'documentation' ? ['source'] : ['source', 'transformed'];
 
 				return Promise.all(types.map(async type => {
@@ -274,9 +289,9 @@ async function buildInterface(application, configuration) {
 					}
 					return patternSource;
 				}));
-			}));
-		}));
-	});
+			})));
+		})));
+	}));
 
 	await Promise.all([
 		...patternPageJobs,

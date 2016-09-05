@@ -46,7 +46,8 @@
     "patternplate-client": "^0.16.0",
     "patternplate-server": "^0.17.0",
     "resolve": "^1.1.7",
-    "resolve-path": "^1.2.2"
+    "resolve-path": "^1.2.2",
+    "throat": "^3.0.0"
   },
   "devDependencies": {
     "babel": "^5.8.35",
