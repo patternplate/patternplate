@@ -3,5 +3,12 @@
 	"version": "0.1.0",
 	"patterns": {
 		"atom-button": "atoms/button"
+	},
+	"options": {
+		"react-to-markup": {
+			"opts": {
+				"automount": true
+			}
+		}
 	}
 }

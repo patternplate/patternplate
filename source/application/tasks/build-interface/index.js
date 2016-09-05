@@ -23,6 +23,7 @@ const getPatternMetaData = require(resolve('patternplate-server/library/get-patt
 const getPatternDemo = require(resolve('patternplate-server/library/get-pattern-demo'));
 const getPatternFile = require(resolve('patternplate-server/library/get-pattern-file'));
 const getPatternSource = require(resolve('patternplate-server/library/get-pattern-source'));
+const getComponent = require(resolve('patternplate-server/library/get-component'));
 
 const urlQuery = require(resolve('patternplate-server/library/utilities/url-query'));
 
@@ -72,6 +73,8 @@ async function buildInterface(application, configuration) {
 	const client = application.parent.client;
 	const server = application.parent.server;
 
+	const automount = ((server.configuration.transforms['react-mount'] || {}).opts || {}).autmount;
+
 	const navigation = await getNavigation(app, client, server);
 	const ids = getNavigationUrls(navigation);
 	const patterns = ids.filter(isPattern);
@@ -91,6 +94,28 @@ async function buildInterface(application, configuration) {
 	// Write a template .htaccess
 	await fs.writeFile(htaccessPath, htaccess);
 
+	// Build pattern json data
+	const patternDatasets = await Promise.all(patterns.map(async pattern => {
+		const data = await getPatternMetaData(server, pattern.id, 'index');
+		data.environmentNames = data.environments.map(env => env.name);
+		data.variants = {};
+		data._pattern = pattern;
+		return data;
+	}));
+
+	const componentPatterns = automount ?
+		patternDatasets :
+		patternDatasets.filter(dataset => {
+			const options = dataset.manifest.options;
+			if (!options) {
+				return false;
+			}
+			const opts = options['react-to-markup'] ? options['react-to-markup'].opts : {};
+			return opts.automount;
+		});
+
+	const automountIds = componentPatterns.map(pattern => pattern.id);
+
 	// Build pattern and category pages
 	const patternPageJobs = ids.map(async id => {
 		const renderingPage = renderPage(client, `/pattern/${id.id}`);
@@ -105,15 +130,6 @@ async function buildInterface(application, configuration) {
 		await fs.writeFile(pagePath, pageContent);
 		return pageContent;
 	});
-
-	// Build pattern json data
-	const patternDatasets = await Promise.all(patterns.map(async pattern => {
-		const data = await getPatternMetaData(server, pattern.id, 'index');
-		data.environmentNames = data.environments.map(env => env.name);
-		data.variants = {};
-		data._pattern = pattern;
-		return data;
-	}));
 
 	const patternDataJobs = patternDatasets.map(async dataset => {
 		return Promise.all(dataset.environmentNames.map(async env => {
@@ -143,6 +159,7 @@ async function buildInterface(application, configuration) {
 
 	const patternDemoJobs = patternDatasets.map(async dataset => {
 		return Promise.all(dataset.environmentNames.map(async env => {
+			const mount = automountIds.includes(dataset.id);
 			const patternDemo = await getPatternDemo(server, dataset.id, {environments: [env]}, env);
 
 			const short = path.resolve(...[demoTargetPath, ...dataset._pattern.relative, dataset._pattern.name]);
@@ -164,7 +181,9 @@ async function buildInterface(application, configuration) {
 				await fs.writeFile(short, patternDemo);
 			}
 
-			await Promise.all(['style', 'script'].map(async type => {
+			const types = mount ? ['style'] : ['style', 'script'];
+
+			await Promise.all(types.map(async type => {
 				const demo = find(dataset.files, {type, concern: 'demo'});
 				const index = find(dataset.files, {type, concern: 'index'});
 				const file = demo || index;
@@ -190,6 +209,31 @@ async function buildInterface(application, configuration) {
 			}));
 
 			return patternDemo;
+		}));
+	});
+
+	const componentJobs = componentPatterns.map(async dataset => {
+		return Promise.all(dataset.environmentNames.map(async env => {
+			const component = await getComponent(server, dataset.id, env);
+
+			const short = path.resolve(...[demoTargetPath, ...dataset._pattern.relative, dataset._pattern.name]);
+			const long = urlQuery.format({
+				pathname: short,
+				query: {environment: env}
+			});
+
+			if (!component.buffer) {
+				return null;
+			}
+			const longFilePath = path.resolve(path.dirname(long), `component.${component.out}`);
+			await fs.writeFile(longFilePath, component.buffer);
+
+			if (env === 'index') {
+				const shortFilePath = path.resolve(path.dirname(short), `component.${component.out}`);
+				await fs.writeFile(shortFilePath, component.buffer);
+			}
+
+			return null;
 		}));
 	});
 
@@ -238,6 +282,7 @@ async function buildInterface(application, configuration) {
 		...patternPageJobs,
 		...patternDataJobs,
 		...patternDemoJobs,
+		...componentJobs,
 		...patternFileJobs
 	]);
 
