@@ -10,6 +10,7 @@ import patternplateInit from '../library/init/index.js';
 
 const defaults = {
 	'open': null,
+	'log.level': 'info',
 	'log.colorize': null,
 	'log.timestamp': null,
 	'log.showLevel': null,
