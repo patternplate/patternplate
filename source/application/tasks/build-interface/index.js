@@ -1,9 +1,12 @@
-import fs from 'mz/fs';
 import path from 'path';
+
+import boxen from 'boxen';
+import fs from 'mz/fs';
 import exists from 'path-exists';
 import {sync as resolveSync} from 'resolve';
-import {find, merge} from 'lodash';
+import {find, merge, uniq} from 'lodash';
 import mkdirp from 'mkdirp-promise';
+import ora from 'ora';
 import ncp from 'ncp';
 import findRoot from 'find-root';
 import isStream from 'is-stream';
@@ -28,27 +31,7 @@ const getComponent = require(resolve('patternplate-server/library/get-component'
 
 const urlQuery = require(resolve('patternplate-server/library/utilities/url-query'));
 
-function getNavigationUrls(tree) {
-	return Object.values(tree || {})
-		.reduce((pool, item) => {
-			const fragments = item.id.split('/');
-			const baseName = fragments[fragments.length - 1];
-			const relative = fragments.slice(0, fragments.length - 1);
-
-			const children = getNavigationUrls(item.children);
-			return [...pool, {
-				id: item.id,
-				type: item.type,
-				relative,
-				baseName,
-				name: `${baseName}/index.html`
-			}, ...children];
-		}, []);
-}
-
-function isPattern({type}) {
-	return type === 'pattern';
-}
+export default buildInterface;
 
 /**
  * Create a static build of a patternplate instance ready to be deployed on a static web server
@@ -80,6 +63,9 @@ async function buildInterface(application, configuration) {
 	const ids = getNavigationUrls(navigation);
 	const patterns = ids.filter(isPattern);
 
+	const spinner = ora('build-interface').start();
+
+	spinner.text = 'entry html';
 	// Build the index page
 	const index = await renderPage(client, '/');
 	await mkdirp(targetPath);
@@ -94,6 +80,18 @@ async function buildInterface(application, configuration) {
 
 	// Write a template .htaccess
 	await fs.writeFile(htaccessPath, htaccess);
+
+	const warnings = [];
+	const warn = application.log.warn;
+	application.log.warn = (...args) => {
+		if (args.some(arg => arg.includes('Deprecation'))) {
+			warnings.push(args);
+			return;
+		}
+		warn(...args);
+	};
+
+	spinner.succeed();
 
 	// Build pattern json data
 	const patternDatasets = await Promise.all(patterns.map(throat(5, async pattern => {
@@ -118,7 +116,10 @@ async function buildInterface(application, configuration) {
 	const automountIds = componentPatterns.map(pattern => pattern.id);
 
 	// Build pattern and category pages
-	const patternPageJobs = ids.map(throat(5, async id => {
+	let pageCount = 1;
+	const patternPageJobs = ids.map(throat(1, async id => {
+		spinner.text = `pattern page ${id.id} ${pageCount}/${ids.length}`;
+
 		const renderingPage = renderPage(client, `/pattern/${id.id}`);
 		const pagePath = path.resolve(...[patternTargetPath, ...id.relative, id.name]);
 		const pageDirectory = path.dirname(pagePath);
@@ -129,10 +130,18 @@ async function buildInterface(application, configuration) {
 
 		const pageContent = await renderingPage;
 		await fs.writeFile(pagePath, pageContent);
+		pageCount += 1;
 		return pageContent;
 	}));
 
-	const patternDataJobs = patternDatasets.map(throat(5, async dataset => {
+	await Promise.all(patternPageJobs);
+	spinner.succeed();
+
+	let patternDataCount = 0;
+	const patternDataJobs = patternDatasets.map(throat(1, async dataset => {
+		patternDataCount++;
+		spinner.text = `pattern data ${dataset.id} ${patternDataCount}/${patternDatasets.length}`;
+
 		return Promise.all(dataset.environmentNames.map(throat(1, async env => {
 			const data = await getPatternMetaData(server, dataset.id, env);
 			dataset.variants[env] = data;
@@ -162,7 +171,14 @@ async function buildInterface(application, configuration) {
 		})));
 	}));
 
-	const patternDemoJobs = patternDatasets.map(throat(5, async dataset => {
+	await Promise.all(patternDataJobs);
+	spinner.succeed();
+
+	let patternDemCount = 0;
+	const patternDemoJobs = patternDatasets.map(throat(1, async dataset => {
+		patternDemCount++;
+		spinner.text = `pattern demo ${dataset.id} ${patternDemCount}/${patternDatasets.length}`;
+
 		return Promise.all(dataset.environmentNames.map(throat(1, async env => {
 			const mount = automountIds.includes(dataset.id);
 			const patternDemo = await getPatternDemo(server, dataset.id, {environments: [env]}, env);
@@ -223,7 +239,14 @@ async function buildInterface(application, configuration) {
 		})));
 	}));
 
-	const componentJobs = componentPatterns.map(throat(5, async dataset => {
+	await Promise.all(patternDemoJobs);
+	spinner.succeed();
+
+	let componentCount = 0;
+	const componentJobs = componentPatterns.map(throat(1, async dataset => {
+		componentCount++;
+		spinner.text = `pattern component ${dataset.id} ${componentCount}/${componentPatterns.length}`;
+
 		return Promise.all(dataset.environmentNames.map(async env => {
 			const component = await getComponent(server, dataset.id, env);
 
@@ -252,7 +275,13 @@ async function buildInterface(application, configuration) {
 		}));
 	}));
 
-	const patternFileJobs = patternDatasets.map(throat(5, async dataset => {
+	await Promise.all(componentJobs);
+	spinner.succeed();
+
+	let patternFileCount = 0;
+	const patternFileJobs = patternDatasets.map(throat(1, async dataset => {
+		patternFileCount++;
+		spinner.text = `pattern component ${dataset.id} ${patternFileCount}/${patternDatasets.length}`;
 		return Promise.all(dataset.environmentNames.map(throat(1, async env => {
 			return Promise.all(dataset.files.map(throat(1, async file => {
 				const types = file.type === 'documentation' ? ['source'] : ['source', 'transformed'];
@@ -293,20 +322,22 @@ async function buildInterface(application, configuration) {
 		})));
 	}));
 
-	await Promise.all([
-		...patternPageJobs,
-		...patternDataJobs,
-		...patternDemoJobs,
-		...componentJobs,
-		...patternFileJobs
-	]);
+	await Promise.all(patternFileJobs);
+	spinner.succeed();
 
 	// Copy static assets
 	await ncp(staticSourcePath, staticTargetPath);
 	await ncp(assetSourcePath, targetPath);
-}
 
-export default buildInterface;
+	spinner.stop();
+
+	const messages = uniq(warnings)
+		.map(warning => warning.join(' '));
+
+	messages.forEach(message => {
+		console.log(boxen(message, {borderColor: 'yellow', padding: 1}));
+	});
+}
 
 function pipe(readable, filePath) {
 	return new Promise((resolve, reject) => {
@@ -315,4 +346,26 @@ function pipe(readable, filePath) {
 		writable.on('close', resolve);
 		writable.on('error', reject);
 	});
+}
+
+function getNavigationUrls(tree) {
+	return Object.values(tree || {})
+		.reduce((pool, item) => {
+			const fragments = item.id.split('/');
+			const baseName = fragments[fragments.length - 1];
+			const relative = fragments.slice(0, fragments.length - 1);
+
+			const children = getNavigationUrls(item.children);
+			return [...pool, {
+				id: item.id,
+				type: item.type,
+				relative,
+				baseName,
+				name: `${baseName}/index.html`
+			}, ...children];
+		}, []);
+}
+
+function isPattern({type}) {
+	return type === 'pattern';
 }
