@@ -28,7 +28,7 @@
   "dependencies": {
     "app-root-path": "^1.0.0",
     "babel-polyfill": "^6.5.0",
-		"boilerplate-server": "^0.12.0",
+    "boilerplate-server": "^0.12.0",
     "cp-file": "^3.2.0",
     "find-root": "^0.1.1",
     "is-stream": "^1.1.0",
