@@ -9,6 +9,7 @@ export default function run(file) {
 		const result = executeFile(file, context);
 		const hasDefaultExport = typeof result.default === 'object' ||
 			typeof result.default === 'function';
+
 		return hasDefaultExport ?
 			merge(result.default, result) :
 			result;

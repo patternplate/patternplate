@@ -13,5 +13,5 @@ export default (file, context) => {
 		displayErrors: true
 	});
 
-	return context.exports;
+	return context.module.exports || context.exports;
 };
