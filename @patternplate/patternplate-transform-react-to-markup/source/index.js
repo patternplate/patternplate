@@ -3,15 +3,15 @@ import {merge} from 'lodash';
 import renderMarkup from './render-markup';
 
 export default function createReactRendererFactory(application) {
-	const {
-		configuration: {
-			transforms: {
-				'react-to-markup': configuration
-			}
-		}
-	} = application;
-
 	return async function renderReactComponent(file) {
+		const {
+			configuration: {
+				transforms: {
+					'react-to-markup': configuration
+				}
+			}
+		} = application;
+
 		const {
 			pattern: {
 				manifest: {

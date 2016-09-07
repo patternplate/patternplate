@@ -23,3 +23,6 @@ before_test:
 test_script:
   - npm test
 deploy: off
+branches:
+  only:
+    - master

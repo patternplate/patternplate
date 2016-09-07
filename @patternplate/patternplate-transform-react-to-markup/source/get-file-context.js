@@ -1,14 +1,30 @@
-import {
-	createContext as Context
-} from 'vm';
+import {createContext as Context} from 'vm';
 
-import {
-	sync as resolve
-} from 'resolve';
+import {merge} from 'lodash';
+import {sync as resolve} from 'resolve';
 
 const cwd = process.cwd();
 
-function getSandboxedRequire(dependencies, run) {
+function attemptResolve(id, options) {
+	try {
+		return [null, resolve(id, merge({}, {basedir: cwd}, options))];
+	} catch (error) {
+		const badResolveError = !error.message.includes(options.fileName) &&
+			error.message.startsWith(`Cannot find module '${id}'`);
+
+		error.message = badResolveError ?
+			`Can not find module '${id}' from '${options.fileName}'` :
+			error.message;
+
+		error.fileName = badResolveError ?
+			options.fileName :
+			error.fileName;
+
+		return [error];
+	}
+}
+
+function getSandboxedRequire(file, dependencies, run) {
 	return name => {
 		const dependency = dependencies[name];
 
@@ -16,9 +32,13 @@ function getSandboxedRequire(dependencies, run) {
 			return run(dependency);
 		}
 
-		const resolved = resolve(name, {
-			basedir: cwd
+		const [error, resolved] = attemptResolve(name, {
+			fileName: file.path
 		});
+
+		if (error) {
+			throw error;
+		}
 
 		return require(resolved);
 	};
@@ -40,7 +60,7 @@ export default (file, run) => {
 			env
 		},
 		exports: {},
-		require: getSandboxedRequire(dependencies, run)
+		require: getSandboxedRequire(file, dependencies, run)
 	};
 
 	sandbox.global = sandbox;

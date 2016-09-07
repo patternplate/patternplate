@@ -1,5 +1,15 @@
+sudo: false
 language: node_js
 node_js:
-  - '6'
-  - '5'
-  - '4'
+- '6'
+- '5'
+- '4'
+branches:
+  only:
+    - master
+cache:
+  directories:
+  - node_modules
+notifications:
+  email:
+    on_success: never

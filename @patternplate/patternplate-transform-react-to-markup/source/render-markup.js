@@ -1,15 +1,9 @@
-import {
-	createContext as Context,
-	Script
-} from 'vm';
-
 import chalk from 'chalk';
+import React from 'react';
 import trace from 'stack-trace';
 
 import getComponent from './get-component';
 import getRenderFunction from './get-render-function';
-
-const topFileName = 'evalmachine.<anonymous>';
 
 export default (file, options = {}, application) => {
 	const isStatic = options.static !== false && options.automount !== true;
@@ -17,48 +11,21 @@ export default (file, options = {}, application) => {
 	const component = getComponent(file);
 
 	const meta = options.automount ?
-		{
-			scripts: [{
-				path: 'react-mount',
-				id: file.pattern.id
-			}]
-		} :
-		{};
-
-	// prepare script and context
-	const sandbox = {
-		module,
-		console,
-		exports,
-		require,
-		patternplate: {
-			component,
-			renderFunction,
-			result: ''
-		}
-	};
-
-	const stanza = [
-		'var React = require(\'react\')',
-		'',
-		'patternplate.result = patternplate.renderFunction(',
-		'React.createElement(patternplate.component)',
-		')'
-	].join('\n');
-
-	sandbox.global = sandbox;
-	const context = new Context(sandbox);
-	const script = new Script(stanza);
+		{scripts: [{path: 'react-mount', id: file.pattern.id}]} : {};
 
 	try {
-		script.runInContext(context, {
-			filename: file.path,
-			lineOffset: 1,
-			columnOffset: 1,
-			displayErrors: true
-		});
+		const original = console.error;
 
-		const result = sandbox.patternplate.result;
+		console.error = (...args) => {
+			const message = args.join(' ');
+			if (message.includes('Expected props argument to be a plain object')) {
+				return;
+			}
+			original(...args);
+		};
+
+		const result = renderFunction(React.createElement(component));
+
 		const buffer = options.automount ?
 			`<div data-mountpoint>${result}</div>` :
 			result;
@@ -69,11 +36,7 @@ export default (file, options = {}, application) => {
 		};
 	} catch (error) {
 		const stack = trace.parse(error);
-
-		// find first relevant item in trace
-		const top = stack.filter(item => item.fileName === topFileName &&
-			(item.functionName || '').indexOf('babelHelpers') === -1
-		)[0];
+		const top = stack[0];
 
 		const source = file.buffer.toString();
 		const lines = source.split('\n');
@@ -86,8 +49,7 @@ export default (file, options = {}, application) => {
 
 		const message = [
 			`Error during rendering of file ${file.path}`,
-			`in pattern ${file.pattern.id}:`,
-			top ? `Tried to print offending lines` : ''
+			`in pattern ${file.pattern.id}:`
 		].join('\n');
 
 		error.message = [
@@ -95,6 +57,9 @@ export default (file, options = {}, application) => {
 			error.message,
 			cut.join('\n')
 		].join('\n');
+
+		error.fileName = file.path;
+
 		throw error;
 	}
 };

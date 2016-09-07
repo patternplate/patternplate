@@ -14,7 +14,8 @@
     "build": "babel source --out-dir distribution",
     "pretest": "eslint source/**/*.js",
     "test": "ava",
-    "watch": "npm run build -- --watch",
+    "lint": "dependency-check . --missing && dependency-check . --extra --no-dev",
+    "watch": "npm run test -- --watch",
     "commit": "git-cz",
     "commitmsg": "conventional-changelog-lint -e",
     "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
@@ -29,10 +30,12 @@
       "path": "cz-conventional-changelog-lint"
     }
   },
-	"ava": {
-		"require": ["babel-register"],
-		"babel": "inherit"
-	},
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sinnerschrader/patternplate-transform-react.git"
@@ -64,26 +67,28 @@
   "license": "MIT",
   "devDependencies": {
     "ava": "0.16.0",
-    "babel": "6.5.2",
     "babel-cli": "6.4.0",
     "babel-eslint": "4.1.8",
     "babel-plugin-add-module-exports": "0.1.2",
     "babel-preset-es2015-node4": "2.0.3",
     "babel-preset-stage-0": "6.3.13",
+    "babel-register": "6.14.0",
     "commitizen": "2.7.3",
     "conventional-changelog-cli": "1.1.1",
     "conventional-changelog-lint": "0.3.2",
     "conventional-recommended-bump": "0.1.0",
     "cz-conventional-changelog": "1.1.5",
     "cz-conventional-changelog-lint": "0.1.3",
+    "dependency-check": "2.6.0",
     "eslint": "1.10.3",
     "eslint-config-xo": "0.9.1",
     "eslint-plugin-babel": "3.1.0",
     "husky": "0.10.2",
     "jsonlint-cli": "1.0.1",
     "parallelshell": "2.0.0",
-    "react": ">= 0.13",
-    "react-dom": ">= 0.13"
+    "react": "15.3.1",
+    "react-dom": "15.3.1",
+    "unexpected": "10.17.0"
   },
   "peerDependencies": {
     "react": ">= 0.13",

@@ -22,3 +22,30 @@ export function getFile(extender) {
 	};
 	return merge({}, file, extender);
 }
+
+export function trap() {
+	const errors = [];
+	const warnings = [];
+	const infos = [];
+
+	function release() {
+		delete console.error;
+		delete console.log;
+		delete console.warn;
+		return {errors, infos, warnings};
+	}
+
+	console.error = (...args) => errors.push(args);
+	console.log = (...args) => infos.push(args);
+	console.warn = (...args) => warnings.push(args);
+
+	return release;
+}
+
+export async function nodeish(fn, ...args) {
+	try {
+		return [null, await fn(...args)];
+	} catch (error) {
+		return [error];
+	}
+}
