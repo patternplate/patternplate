@@ -1,3 +1,13 @@
+<a name="0.3.6"></a>
+## [0.3.6](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.5...v0.3.6) (2016-09-08)
+
+
+### Bug Fixes
+
+* **generation:** filter __proto__ warnings ([#3](https://github.com/sinnerschrader/patternplate-transform-react/issues/3)) ([914f1ab](https://github.com/sinnerschrader/patternplate-transform-react/commit/914f1ab))
+
+
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.4...v0.3.5) (2016-07-12)
 
