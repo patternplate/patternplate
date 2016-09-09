@@ -2,21 +2,24 @@
 	"name": "index",
 	"displayName": "Default",
 	"display": true,
+	"build": true,
 	"version": "0.1.0",
 	"formats": ["js", "css", "less"],
 	"environment": {
-		"react": {
-			"opts": {
-				"globals": {
-					"envName": "index"
+		"transforms": {
+			"react": {
+				"opts": {
+					"globals": {
+						"envName": "index"
+					}
 				}
-			}
-		},
-		"less": {
-			"opts": {
-				"globalVars": {
-					"global-env-name": "index",
-					"global-is-legacy": false
+			},
+			"less": {
+				"opts": {
+					"globalVars": {
+						"global-env-name": "index",
+						"global-is-legacy": false
+					}
 				}
 			}
 		}

@@ -2,21 +2,24 @@
 	"name": "legacy",
 	"displayName": "Legacy",
 	"display": true,
+	"build": true,
 	"version": "0.1.0",
 	"formats": ["js", "css", "less"],
 	"environment": {
-		"react": {
-			"opts": {
-				"globals": {
-					"envName": "legacy"
+		"transforms": {
+			"react": {
+				"opts": {
+					"globals": {
+						"envName": "legacy"
+					}
 				}
-			}
-		},
-		"less": {
-			"opts": {
-				"globalVars": {
-					"global-env-name": "legacy",
-					"global-is-legacy": true
+			},
+			"less": {
+				"opts": {
+					"globalVars": {
+						"global-env-name": "legacy",
+						"global-is-legacy": true
+					}
 				}
 			}
 		}
