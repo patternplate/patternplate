@@ -9,7 +9,7 @@ const getPatternFile = serverRequire('get-pattern-file');
 export default buildDemoFiles;
 
 async function buildDemoFiles(datasets, target, context) {
-	const {app, spinner} = context;
+	const {app, spinner, rewriter} = context;
 	const fileSets = getFileSets(datasets);
 
 	return await build(fileSets, {
@@ -27,7 +27,7 @@ async function buildDemoFiles(datasets, target, context) {
 			const frags = [target, ...pattern.relative, pattern.baseName];
 			const base = path.resolve(...frags);
 			const baseName = `index.${file.out}`;
-			return writeEach(result, getTargets(base, baseName, file.pattern));
+			return writeEach(result, getTargets(base, baseName, file.pattern), rewriter);
 		},
 		done() {
 			spinner.text = `files`;

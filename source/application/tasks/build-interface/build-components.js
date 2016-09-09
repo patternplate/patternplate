@@ -9,7 +9,7 @@ const getComponent = serverRequire('get-component');
 export default buildComponents;
 
 async function buildComponents(datasets, target, context) {
-	const {app, automount, spinner} = context;
+	const {app, automount, spinner, rewriter} = context;
 
 	// Build component patterns
 	return await build(getComponentSets(datasets, automount), {
@@ -20,7 +20,7 @@ async function buildComponents(datasets, target, context) {
 		async write(component, set) {
 			const base = path.resolve(...[target, ...set._pattern.relative, set._pattern.baseName]);
 			const baseName = 'component.js';
-			return writeEach(component.buffer, getTargets(base, baseName, set));
+			return writeEach(component.buffer, getTargets(base, baseName, set), rewriter);
 		},
 		done() {
 			spinner.text = 'components';

@@ -7,7 +7,7 @@ const renderPage = clientRequire('render-page');
 export default buildPages;
 
 async function buildPages(ids, target, context) {
-	const {spinner, app} = context;
+	const {spinner, app, rewriter} = context;
 	return await build(ids, {
 		async read(id, ids, count) {
 			spinner.text = `page ${id.id} ${count}/${ids.length}`;
@@ -15,7 +15,7 @@ async function buildPages(ids, target, context) {
 		},
 		async write(page, id) {
 			const pagePath = path.resolve(...[target, ...id.relative, id.name]);
-			return writeEach(page, [pagePath]);
+			return writeEach(page, [pagePath], rewriter);
 		},
 		done() {
 			spinner.text = `pages`;

@@ -11,7 +11,7 @@ const urlQuery = serverRequire('utilities/url-query');
 export default buildSources;
 
 async function buildSources(datasets, target, context) {
-	const {app, spinner} = context;
+	const {app, spinner, rewriter} = context;
 	const sourceSets = getSourceSets(datasets);
 	const getSource = getPatternSource(app);
 
@@ -28,7 +28,7 @@ async function buildSources(datasets, target, context) {
 			const baseName = path.basename(set.file.id);
 			const dirName = path.dirname(set.file.id);
 			const base = path.resolve(target, dirName, typePath);
-			return writeEach(source.body, getTargets(base, baseName, set));
+			return writeEach(source.body, getTargets(base, baseName, set), rewriter);
 		},
 		done() {
 			spinner.text = `sources`;

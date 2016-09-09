@@ -7,7 +7,7 @@ const renderPage = clientRequire('render-page');
 export default buildEntry;
 
 async function buildEntry(url, target, context) {
-	const {app} = context;
+	const {app, rewriter} = context;
 	const indexPath = path.resolve(target, 'index.html');
 	const htaccessPath = path.resolve(target, '.htaccess');
 	const notFoundPath = path.resolve(target, '404.html');
@@ -15,10 +15,10 @@ async function buildEntry(url, target, context) {
 	const index = await renderPage(app, url);
 
 	await mkdirp(target);
-	await fs.writeFile(indexPath, index);
+	await fs.writeFile(indexPath, rewriter(index, indexPath));
 
 	// Place a copy of index at 404.html
-	await fs.writeFile(notFoundPath, index);
+	await fs.writeFile(notFoundPath, rewriter(index, notFoundPath));
 
 	const htaccess = `
 		ErrorDocument 404 404.html

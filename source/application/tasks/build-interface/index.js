@@ -13,6 +13,7 @@ import buildSources from './build-sources';
 import buildStatics from './build-statics';
 import getPatternDatasets from './get-pattern-datasets';
 import getPatternIds from './get-pattern-ids';
+import getRewriter from './get-rewriter';
 import isPattern from './is-pattern';
 import trap from './trap';
 
@@ -47,13 +48,15 @@ async function buildInterface(application, configuration) {
 	const patterns = ids.filter(isPattern);
 	const datasets = await getPatternDatasets(patterns, server);
 
+	const rewriter = await getRewriter(targetPath);
+
 	// Build entry file
-	const context = {app: server, spinner, automount};
-	await buildEntry('/', targetPath, {app: client, spinner});
+	const context = {app: server, spinner, automount, rewriter};
+	await buildEntry('/', targetPath, {app: client, spinner, rewriter});
 
 	// Build pattern pages
 	const patternTargetPath = path.resolve(targetPath, 'pattern');
-	await buildPages(ids, patternTargetPath, {app: client, spinner});
+	await buildPages(ids, patternTargetPath, {app: client, spinner, rewriter});
 
 	// Build pattern json data
 	const apiTargetPath = path.resolve(targetPath, 'api', 'pattern');

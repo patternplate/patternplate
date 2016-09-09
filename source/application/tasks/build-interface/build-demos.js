@@ -1,4 +1,5 @@
 import path from 'path';
+
 import build from './build';
 import getEnvSets from './get-env-sets';
 import getTargets from './get-targets';
@@ -10,7 +11,8 @@ const getPatternDemo = serverRequire('get-pattern-demo');
 export default buildDemos;
 
 async function buildDemos(datasets, target, context) {
-	const {app, spinner} = context;
+	const {app, spinner, rewriter} = context;
+
 	return await build(getEnvSets(datasets), {
 		async read(set, sets, count) {
 			spinner.text = `demo ${set.id} ${count}/${sets.length}`;
@@ -19,7 +21,7 @@ async function buildDemos(datasets, target, context) {
 		async write(demo, set) {
 			const base = path.resolve(target, ...set._pattern.relative);
 			const baseName = set._pattern.name;
-			writeEach(demo, getTargets(base, baseName, set));
+			writeEach(demo, getTargets(base, baseName, set), rewriter);
 		},
 		done() {
 			spinner.text = `demos`;
