@@ -1,4 +1,7 @@
 {
 	"name": "image",
-	"version": "0.1.0"
+	"version": "0.1.0",
+	"patterns": {
+		"hidden": "atoms/hidden"
+	}
 }

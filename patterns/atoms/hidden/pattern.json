@@ -1,0 +1,10 @@
+{
+	"name": "sshh!",
+	"build": true,
+	"options": {
+		"hidden": true
+	},
+	"patterns": {
+		"button": "atoms/button"
+	}
+}
