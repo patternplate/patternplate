@@ -3,6 +3,7 @@
 import 'babel-polyfill';
 import meow from 'meow';
 import opn from 'opn';
+import ora from 'ora';
 import {omitBy, isNull} from 'lodash';
 
 import patternplate from '../';
@@ -91,7 +92,9 @@ async function main(command = 'start', options = {}, input = []) {
 		return;
 	}
 
+	const spinner = ora('Starting').start();
 	const application = await patternplate(settings);
+	spinner.stop();
 
 	if (mode === 'console') {
 		const [, consoleCommand] = input;
@@ -107,7 +110,7 @@ async function main(command = 'start', options = {}, input = []) {
 		const explicit = typeof settings.open === 'string';
 		const openOptions = explicit ? {app: settings.open} : {};
 		const browserName = explicit ? settings.open : 'default browser';
-		application.log.info(`[application] Opening ${browserName} at ${address}`);
+		application.log.info(`Opening ${browserName} at ${address}`);
 
 		opn(address, openOptions)
 			.catch(error => {

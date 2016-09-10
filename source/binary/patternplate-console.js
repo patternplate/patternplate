@@ -2,6 +2,7 @@
 
 import 'babel-polyfill';
 import minimist from 'minimist';
+import ora from 'ora';
 
 import patternplate from '../';
 
@@ -9,7 +10,11 @@ async function start(options) {
 	const mode = 'console';
 	const settings = {...options, mode};
 	const {_: [, command]} = settings;
+
+	const spinner = ora('Starting').start();
 	const application = await patternplate(settings);
+	spinner.stop();
+
 	await application.server.run(command, settings);
 }
 
