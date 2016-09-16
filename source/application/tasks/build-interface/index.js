@@ -68,6 +68,7 @@ async function buildInterface(application, configuration) {
 	await buildDemoFiles(datasets, demoTargetPath, context);
 	await buildComponents(datasets, demoTargetPath, context);
 
+	// Build pattern sources
 	const fileTargetPath = path.resolve(targetPath, 'api', 'file');
 	await buildSources(datasets, fileTargetPath, context);
 

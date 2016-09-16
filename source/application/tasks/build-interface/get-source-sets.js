@@ -15,10 +15,11 @@ function getSourceSets(datasets) {
 }
 
 function getSourceFileSets(datasets) {
-	return getEnvSets(datasets).reduce((sets, set) => {
+	const envSets = getEnvSets(datasets);
+	return envSets.reduce((sets, set) => {
 		const amend = set.files.map(file => {
 			return merge({}, set, {file});
 		});
 		return [...sets, ...amend];
-	});
+	}, []);
 }
