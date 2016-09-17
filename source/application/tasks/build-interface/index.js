@@ -22,7 +22,6 @@ const defaults = {
 };
 
 export default buildInterface;
-
 /**
  * Create a static build of a patternplate instance ready to be deployed on a static web server
  * @param {Object} application

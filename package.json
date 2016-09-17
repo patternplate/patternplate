@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "description": "Create, show and deliver component libraries",
   "main": "library/",
   "bin": {
@@ -61,8 +61,8 @@
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "path-exists": "^3.0.0",
-    "patternplate-client": "^1.0.0-development",
-    "patternplate-server": "^1.0.0-beta1",
+    "patternplate-client": "1.0.0-beta2",
+    "patternplate-server": "1.0.0-beta2",
     "remark-parse": "^2.0.1",
     "remark-vdom": "^3.0.1",
     "resolve": "^1.1.7",
