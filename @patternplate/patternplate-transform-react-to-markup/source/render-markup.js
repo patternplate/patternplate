@@ -24,7 +24,9 @@ export default (file, options = {}, application) => {
 			original(...args);
 		};
 
-		const result = renderFunction(React.createElement(component));
+		const result = component ?
+			renderFunction(React.createElement(component)) :
+			'';
 
 		const buffer = options.automount ?
 			`<div data-mountpoint>${result}</div>` :

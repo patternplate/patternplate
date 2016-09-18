@@ -7,6 +7,11 @@ export default function run(file) {
 
 	try {
 		const result = executeFile(file, context);
+
+		if (!result) {
+			return null;
+		}
+
 		const hasDefaultExport = typeof result.default === 'object' ||
 			typeof result.default === 'function';
 

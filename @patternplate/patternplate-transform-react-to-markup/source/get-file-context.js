@@ -53,14 +53,22 @@ export default (file, run) => {
 		dependencies
 	} = file;
 
+	const sanboxedRequire = getSandboxedRequire(file, dependencies, run);
+
 	const sandbox = {
-		module,
+		module: {
+			exports: {},
+			filename: file.path,
+			id: file.path,
+			loaded: true,
+			require: sanboxedRequire
+		},
 		console,
 		process: {
 			env
 		},
 		exports: {},
-		require: getSandboxedRequire(file, dependencies, run)
+		require: sanboxedRequire
 	};
 
 	sandbox.global = sandbox;
