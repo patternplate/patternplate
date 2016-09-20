@@ -1,3 +1,13 @@
+<a name="1.0.0-beta3"></a>
+# [1.0.0-beta3](https://github.com/sinnerschrader/patternplate/compare/v1.0.0-beta2...v1.0.0-beta3) (2016-09-20)
+
+
+### Bug Fixes
+
+* harden build-interface implementation ([6bf4ded](https://github.com/sinnerschrader/patternplate/commit/6bf4ded))
+
+
+
 <a name="0.18.0"></a>
 # [0.18.0](https://github.com/sinnerschrader/patternplate/compare/v0.17.0...v0.18.0) (2016-07-28)
 
