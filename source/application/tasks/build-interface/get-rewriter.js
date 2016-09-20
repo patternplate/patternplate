@@ -12,9 +12,10 @@ async function getRewriter(buildTargetPath) {
 	});
 
 	return (content, targetPath) => {
+		const source = (content || '').toString('utf-8');
 		return rewriteables.reduce((content, rewritable) => {
-			if (!content.includes(rewritable)) {
-				return content;
+			if (!source.includes(rewritable)) {
+				return source;
 			}
 
 			// Convert rewritable url to path (os-sensitive)
@@ -28,7 +29,7 @@ async function getRewriter(buildTargetPath) {
 				.split(path.sep).join('/');
 
 			const matcher = new RegExp(rewritable, 'g');
-			return content.replace(matcher, relative);
-		}, content);
+			return source.replace(matcher, relative);
+		}, source);
 	};
 }

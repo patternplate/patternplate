@@ -9,8 +9,8 @@ const packageResolve = (id, directory) => path.resolve(findRoot(resolve(id)), di
 
 export default buildStatic;
 
-async function buildStatic(pkg, target, context) {
-	const {spinner} = context;
+async function buildStatic(pkg, target) {
+	// const {spinner} = context;
 	const assetSourcePath = packageResolve(pkg, 'assets');
 	const assetTargetPath = path.resolve(target);
 	const clientStaticSourcePath = packageResolve(pkg, 'static');
@@ -18,16 +18,16 @@ async function buildStatic(pkg, target, context) {
 	const staticSourcePath = path.resolve(cwd, 'static');
 	const staticTargetPath = path.resolve(target, 'api', 'static');
 
-	spinner.text = `${path.relative(cwd, assetSourcePath)} => ${path.relative(cwd, assetTargetPath)}`;
+	// spinner.text = `${path.relative(cwd, assetSourcePath)} => ${path.relative(cwd, assetTargetPath)}`;
 	await ncp(assetSourcePath, assetTargetPath);
-	spinner.succeed();
+	// spinner.succeed();
 
-	spinner.text = `${path.relative(cwd, clientStaticSourcePath)} => ${path.relative(cwd, clientStaticTargetPath)}`;
+	// spinner.text = `${path.relative(cwd, clientStaticSourcePath)} => ${path.relative(cwd, clientStaticTargetPath)}`;
 	await ncp(clientStaticSourcePath, clientStaticTargetPath);
-	spinner.succeed();
+	// spinner.succeed();
 
-	spinner.text = `${path.relative(cwd, staticSourcePath)} => ${path.relative(cwd, staticTargetPath)}`;
+	// spinner.text = `${path.relative(cwd, staticSourcePath)} => ${path.relative(cwd, staticTargetPath)}`;
 	await ncp(staticSourcePath, staticTargetPath);
-	spinner.succeed();
+	// spinner.succeed();
 	return;
 }

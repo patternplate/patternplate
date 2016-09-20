@@ -5,7 +5,14 @@ export default getSourceSets;
 function getSourceSets(datasets) {
 	return getSourceFileSets(datasets)
 		.reduce((sets, set) => {
-			const types = set.file.type === 'documentation' ?
+			const isDoc = set.file.type === 'documentation';
+			const isIndex = set.file.concern === 'index';
+			const hasDemo = sets.some(sibling => {
+				return sibling.id === set.id &&
+					sibling.file.type === set.file.type &&
+					sibling.file.concern === 'demo';
+			});
+			const types = isDoc || (isIndex && hasDemo) ?
 				['source'] : ['source', 'transformed'];
 			const amend = types.map(type => {
 				return merge({}, set, {type});
