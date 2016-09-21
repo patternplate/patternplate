@@ -26,7 +26,9 @@ async function buildComponents(datasets, target, context) {
 			spinner.text = `${jobPad('component')} ${idPad(set.id)} ${count}/${sets.length}`;
 			const base = path.resolve(...[target, ...set._pattern.relative, set._pattern.baseName]);
 			const baseName = 'component.js';
-			return writeEach(component.buffer, getTargets(base, baseName, set), rewriter);
+			if (component) {
+				return writeEach(component.buffer, getTargets(base, baseName, set), rewriter);
+			}
 		},
 		done() {
 			spinner.text = `${jobPad('component')} ${sets.length}/${sets.length}`;
