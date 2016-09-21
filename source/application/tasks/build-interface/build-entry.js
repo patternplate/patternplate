@@ -35,7 +35,7 @@ async function buildEntry(url, target, context) {
 
 	// Write a template .htaccess
 	spinner.text = `${jobPad('write entry')} ${padPath(htaccess)} 3/4`;
-	await fs.writeFile(htaccess, htaccessPath);
+	await fs.writeFile(htaccessPath, htaccess);
 
 	spinner.text = `${jobPad('entry')} 4/4`;
 	spinner.succeed();
