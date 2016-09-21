@@ -1,7 +1,7 @@
 import path from 'path';
 
 import {merge} from 'lodash';
-import {max, padEnd} from 'lodash/fp';
+import {get, max, padEnd} from 'lodash/fp';
 // import ora from 'ora';
 
 import buildComponents from './build-components';
@@ -27,6 +27,8 @@ const jobPrefixes = [
 	'demo files', 'source'
 ];
 
+const selectAutoMount = get('configuration.transforms.react-to-markup.opts.automount');
+
 export default buildInterface;
 /**
  * Create a static build of a patternplate instance ready to be deployed on a static web server
@@ -43,7 +45,7 @@ async function buildInterface(application, configuration) {
 	const server = application.parent.server;
 
 	const release = trap(application);
-	const automount = ((server.configuration.transforms['react-mount'] || {}).opts || {}).autmount;
+	const automount = selectAutoMount(server);
 
 	const ids = await getPatternIds(app, client, server);
 	const patterns = ids.filter(isPattern);
