@@ -1,5 +1,8 @@
 import {isEmpty, isPlainObject} from 'lodash';
+import {find} from 'lodash/fp';
 import {Script} from 'vm';
+
+const findExport = find(isExport);
 
 export default (file, context) => {
 	const source = file.buffer.toString('utf-8');
@@ -12,12 +15,14 @@ export default (file, context) => {
 		displayErrors: true
 	});
 
-	return [context.exports, context.module.exports].find(e => {
-		if (isPlainObject(e) && !isEmpty(e)) {
-			return true;
-		}
-		if (!isPlainObject(e)) {
-			return Boolean(e);
-		}
-	});
+	return findExport([context.exports, context.module.exports]);
 };
+
+function isExport(o) {
+	if (isPlainObject(o) && !isEmpty(o)) {
+		return true;
+	}
+	if (!isPlainObject(o)) {
+		return Boolean(o);
+	}
+}
