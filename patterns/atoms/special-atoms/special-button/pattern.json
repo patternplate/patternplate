@@ -1,7 +1,0 @@
-{
-	"name": "special-button",
-	"displayName": "Super special button",
-	"patterns": {
-		"button": "atoms/button"
-	}
-}

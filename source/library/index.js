@@ -28,19 +28,22 @@ async function patternplate(args) {
 	const patternplateClientOptions = merge({}, topLevel, options.patternplateServer, topLevel, patternplateClientSpecifics);
 	const patternplateClientInstance = await patternplateClient(patternplateClientOptions);
 
-	patternplate.log.info(`Running in mode ${patternplateServerInstance.runtime.mode}...`);
+	patternplate.log.debug(`Running in mode ${patternplateServerInstance.runtime.mode}...`);
 
 	if (patternplateServerInstance.runtime.mode === 'server') {
 		patternplate.mount(patternplateClientInstance);
 		patternplate.mount(patternplateServerInstance, '/api');
 		patternplateClientInstance.configuration.client.path = patternplateServerInstance.runtime.prefix;
-
-		patternplateClientInstance.log.warn(`Changing patternplate-client.client.path to ${patternplateServerInstance.runtime.prefix}`);
+		patternplateClientInstance.log.debug(`Changing patternplate-client.client.path to ${patternplateServerInstance.runtime.prefix}`);
 	} else {
-		patternplate.log.info(`Skipping mounts, not in mode server.`);
+		patternplate.log.debug(`Skipping mounts, not in mode server.`);
 	}
 
 	patternplate.server = patternplateServerInstance;
+	patternplate.client = patternplateClientInstance;
+
+	patternplate.server.parent = patternplate;
+	patternplate.client.parent = patternplate;
 	return patternplate;
 }
 

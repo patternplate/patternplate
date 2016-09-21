@@ -1,14 +1,18 @@
 {
   "name": "patternplate",
-  "version": "0.18.0",
+  "version": "1.0.0-beta3",
   "description": "Create, show and deliver component libraries",
   "main": "library/",
+  "bin": {
+    "patternplate": "binary/patternplate.js",
+    "patternplate-console": "binary/patternplate-console.js"
+  },
   "scripts": {
     "start": "node binary/patternplate.js",
     "console": "node binary/patternplate-console",
     "prebuild": "npm run test && npm run clean",
     "build": "npm run babel",
-    "test": "eslint source/**/*.js && conventional-changelog-lint --from=HEAD~1 && jsonlint-cli **/*.json",
+    "test": "eslint source/**/*.js && conventional-changelog-lint --from=HEAD~1",
     "watch": "npm run babel -- --watch",
     "babel": "babel source --out-dir ./",
     "clean": "rm -rf binary library application configuration",
@@ -21,33 +25,56 @@
     "version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\" > .git/COMMITMSG.tmp",
     "postversion": "echo $(git log -1 --pretty=%B HEAD^..HEAD) > .git/RELEASE_VERSION.tmp && git tag -d v$(cat .git/RELEASE_VERSION.tmp) && git commit --amend -m \"chore(release): $(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && git tag -a v$(cat .git/RELEASE_VERSION.tmp) -m \"$(cat .git/COMMITMSG.tmp)\""
   },
-  "bin": {
-    "patternplate": "binary/patternplate.js",
-    "patternplate-console": "binary/patternplate-console.js"
+  "babel": {
+    "presets": [
+      "es2015-node4",
+      "es2016-node4",
+      "es2017"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog-lint"
+    }
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
     "babel-polyfill": "^6.5.0",
-    "boilerplate-server": "^0.11.6",
+    "boilerplate-server": "^0.12.0",
+    "boxen": "^0.8.0",
     "cp-file": "^3.2.0",
     "find-root": "^0.1.1",
+    "globby": "^6.0.0",
+    "is-stream": "^1.1.0",
     "lodash": "^4.14.0",
     "meow": "^3.7.0",
     "minimist": "^1.1.1",
     "mkdirp": "^0.5.1",
     "mkdirp-promise": "^2.0.0",
     "mz": "^2.4.0",
+    "ncp": "^2.0.0",
     "normalize-package-data": "^2.3.5",
     "normalize.less": "^1.0.0",
     "opn": "^4.0.2",
+    "ora": "^0.3.0",
     "path-exists": "^3.0.0",
-    "patternplate-client": "^0.16.0",
-    "patternplate-server": "^0.17.0",
-    "resolve-path": "^1.2.2"
+    "patternplate-client": "1.0.0-beta3",
+    "patternplate-server": "1.0.0-beta3",
+    "resolve": "^1.1.7",
+    "resolve-path": "^1.2.2",
+    "stream-to-string": "^1.1.0",
+    "throat": "^3.0.0"
   },
   "devDependencies": {
-    "babel": "^5.8.35",
+    "babel-cli": "^6.14.0",
     "babel-eslint": "^6.0.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015-node4": "^2.1.0",
+    "babel-preset-es2016-node4": "^6.0.1",
+    "babel-preset-es2017": "^6.14.0",
     "commitizen": "^2.5.0",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-changelog-lint": "^1.0.0",
@@ -56,9 +83,7 @@
     "eslint": "^2.7.0",
     "eslint-config-xo": "^0.12.0",
     "eslint-plugin-babel": "^3.1.0",
-    "husky": "^0.11.1",
-    "jsonlint": "^1.6.2",
-    "jsonlint-cli": "^0.2.7"
+    "husky": "^0.11.1"
   },
   "repository": {
     "type": "git",
