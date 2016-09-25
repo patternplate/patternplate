@@ -37,7 +37,7 @@ and place the following inside:
 }
 ```
 
-At this point you should see the [Button](/pattern/button) entry when reloading this interface.
+At this point you should see the [Button](/patterns/atoms/button) entry when reloading this interface.
 
 ### What just happend
 
@@ -57,13 +57,13 @@ As a bonus it allows you to define properties of your patterns, e.g.
 ```
 
 ### Further reading
-* [Pattern](https://github.com/sinnerschrader/patternplate/blob/master/documentation/pattern.md)
+* [Pattern](https://github.com/sinnerschrader/patternplate/blob/master/documentation/pattern.md) (not yet existing)
 
 ## 2. Adding markup to the button
 
 ### Step by step
 
-As you may have noticed we now have a [Button](/pattern/button) navigation
+As you may have noticed we now have a [Button](/patterns/atoms/button) navigation
 entry, but nothing much else. Let's create very basic markup for our button:
 
 ```js
@@ -75,7 +75,7 @@ const children = props.children || 'Button';
 </button>
 ```
 
-Reload [Button](/pattern/button), you'll see a rendered demo now. Hooray!
+Reload [Button](/patterns/atoms/button), you'll see a rendered demo now. Hooray!
 
 ### What just happend
 
@@ -121,7 +121,7 @@ Bare markup is pretty bleak. We'll add some basic styling to it.
 }
 ```
 
-Reload [Button](/pattern/button) to inspect the button's new styling.
+Reload [Button](/patterns/atoms/button) to inspect the button's new styling.
 
 ### What just happend
 
@@ -278,7 +278,7 @@ import Button from 'button'; // include patterns/atoms/button/index.jsx
 }
 ```
 
-Load [molecules/button-row](/pattern/molecules/button-row): Profit!
+Load [molecules/button-row](/patterns/molecules/button-row): Profit!
 
 #### What just happend
 
@@ -309,4 +309,4 @@ import Button from 'button';
 
 *  Notice how we imported the `jsx` and `less` sources but omitted the js
 imports? This leads to the markup and styling in place, but the click counters
-are not active on buttons in [molecules/button-row](/pattern/molecules/button-row).
+are not active on buttons in [molecules/button-row](/patterns/molecules/button-row).
