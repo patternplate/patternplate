@@ -4,7 +4,7 @@ This documentation is segmented by format, each modeled according to a Persona w
 
 *  **Guides** are step-by-step instructions to help [Harald](./personae/harald.md) and you as a patternplate beginner getting started with a complex topic.
 
-*  **Concepts and Mechanics** are explanations of fundamental concepts for [Stephanie](./personae/harald.md) and you as an intermediary patternplate user.
+*  **Concepts and Mechanics** are explanations of fundamental concepts for [Stephanie](./personae/stephanie.md) and you as an intermediary patternplate user.
 
 *  **References** are the central repository of hard facts and the last source of truth for anything. We expect all patternplate users to look into there from time to time. [Mika](./personae/mika.md) will use this section especially often to look up API for transform and plugin development.
 
