@@ -4,17 +4,17 @@ This sounds daunting but actually is pretty easy. Just follow the steps below an
 you'll be churning out components in a breeze. See [sinnerschrader/patternplate-getting-started](https://github.com/sinnerschrader/patternplate-getting-started)
 for the complete sources created during this tutorial.
 
-1. [Getting started](#1-getting-started) - See scaffolding and pattern manifests
-2. [Adding markup to the button](#2-adding-markup-to-the-button) - Understand index files and markup
-3. [Style the button](#3-style-the-button) - Meet less.js
-4. [Introducing interactive demos](#4-introducing-interactive-demos) - Learn about demo files and javascript
-5. [Moving your pattern](#5-moving-your-pattern) - Folder structure and navigation
-6. [Using patterns](#6-using-patterns) - Dependencies and composition of patterns
+* [Getting started](#getting-started) - See scaffolding and pattern manifests
+* [Adding markup to the button](#adding-markup-to-the-button) - Understand index files and markup
+* [Style the button](#style-the-button) - Meet less.js
+* [Introducing interactive demos](#introducing-interactive-demos) - Learn about demo files and javascript
+* [Moving your pattern](#moving-your-pattern) - Folder structure and navigation
+* [Using patterns](#using-patterns) - Dependencies and composition of patterns
 
 ---
 [sinnerschrader/patternplate](https://github.com/sinnerschrader/patternplate) for more information and documentation
 
-## 1. Getting started
+## Getting started
 ### Step by step
 
 In order to get started with patternplate, you'll have to create your first pattern.
@@ -31,9 +31,9 @@ and place the following inside:
 
 ```json
 {
-	"name": "button",
-	"displayName": "Button",
-	"version": "1.0.0"
+  "name": "button",
+  "displayName": "Button",
+  "version": "1.0.0"
 }
 ```
 
@@ -56,10 +56,7 @@ As a bonus it allows you to define properties of your patterns, e.g.
 }
 ```
 
-### Further reading
-* [Pattern](https://github.com/sinnerschrader/patternplate/blob/master/documentation/pattern.md)
-
-## 2. Adding markup to the button
+## Adding markup to the button
 
 ### Step by step
 
@@ -68,7 +65,7 @@ entry, but nothing much else. Let's create very basic markup for our button:
 
 ```js
 // patterns/button/index.jsx
-const children = props.children || 'Button';
+var children = this.props.children || 'Button';
 
 <button className="button">
 	{children}
@@ -94,7 +91,7 @@ If interested you can [read up on jsx here](https://facebook.github.io/react/doc
 *  patternplate transforms your `jsx` to executable
 components and renders them in a second step
 
-## 3. Style the button
+## Style the button
 
 ### Step by step
 
@@ -128,7 +125,7 @@ Reload [Button](/pattern/button) to inspect the button's new styling.
 *  Another index file, another format. patternplate picks up on the `.less` file by default,
 transforms it and delivers it as `css` to the browser
 
-## 4. Introducing interactive demos
+## Introducing interactive demos
 
 ### Step by step
 
@@ -137,42 +134,38 @@ We'll add some javascript into the mix. This time there are two files to add:
 ```js
 // patterns/button/index.js
 function clickHandler(times) {
-	return ({target}) => {
+	return function(e) {
 		times++;
 		const time = times < 2 ? 'time' : 'times';
-		const old = target.textContent;
-		target.textContent = `Clicked \${times} \${time}`;
+		const old = e.target.textContent;
+		e.target.textContent = ['Clicked' times, time].join(' ');
 
-		if (target.running) {
+		if (e.target.running) {
 			return;
 		}
 
-		target.running = true;
+		e.target.running = true;
 
-		setTimeout(() => {
-			target.textContent = old;
-			target.running = false;
+		setTimeout(function () {
+			e.target.textContent = old;
+			e.target.running = false;
 		}, 2000);
 	};
 }
 
 function main() {
 	const buttonElement = document.querySelector('.button');
-	if (!buttonElement) {
-		return;
-	}
-	
 	buttonElement.addEventListener('click', clickHandler(0));
 }
 
-export default main;
+module.exports = main;
 ```
 
 ```js
 // patterns/button/demo.js
 
-import pattern from 'Pattern'; // import default export of index.js
-pattern(); // pattern === main => true
+var button from 'Pattern'; // import default export of index.js
+button();
 ```
 
 Reload the button demo and click it. It counts the times you clicked and
@@ -189,19 +182,19 @@ idea is to have the flexibility of adding code that never is shipped with the
 pattern library but used only for presentational purposes.
 This e.g. comes in handy when you want to display variants of a pattern.
 
-*   When a `demo` file is present, patternplate will ignore `demo`
-files of the same format, so we have to import their contents under the special name `Pattern` it like this:
+*   When a `demo` file is present, patternplate will ignore `index`
+files of the same format, so we have to import their contents under the special name `Pattern`, like this:
 
 ```jsx
 // demo.jsx
-import Pattern from 'Pattern';
+var Pattern = require('Pattern');
 
 <Pattern />
 ```
 
 ```js
 // demo.js
-import pattern from 'Pattern';
+var pattern = require('Pattern');
 pattern();
 ```
 
@@ -210,7 +203,7 @@ pattern();
 @import 'Pattern';
 ```
 
-## 5. Moving your pattern
+## Moving your pattern
 
 ### Step by step
 
@@ -235,7 +228,7 @@ It is now available as [pattern/atoms/button](pattern/atoms/button) in the web i
 *  Nesting is supported to indefinite levels
 
 
-## 6. Using patterns
+## Using patterns
 
 ### Step by step
 
@@ -249,18 +242,18 @@ mkdir -p patterns/molecules/button-row
 ```js
 // patterns/molecules/button-row/pattern.json
 {
-	"name": "button-row",
-	"displayName": "Button Row",
-	"version": "1.0.0",
-	"patterns": {
-		"button": "atoms/button"
-	}
+  "name": "button-row",
+  "displayName": "Button Row",
+  "version": "1.0.0",
+  "patterns": {
+    "button": "atoms/button"
+  }
 }
 ```
 
 ```js
 // patterns/molecules/button-row/index.jsx
-import Button from 'button'; // include patterns/atoms/button/index.jsx
+var Button = require('button'); // include patterns/atoms/button/index.jsx
 
 <div className="button-row">
 	<Button className="button-row__button">First</Button>
@@ -304,7 +297,7 @@ pattern root, e.g. for `patterns/atoms/button` it is `atoms/button`.
 *  To actually use the dependency we have to import it into each format.
 
 ```js
-import Button from 'button';
+var Button = require('button');
 ```
 
 *  Notice how we imported the `jsx` and `less` sources but omitted the js

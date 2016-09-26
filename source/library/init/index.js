@@ -1,11 +1,16 @@
 import path from 'path';
 import {writeFile} from 'mz/fs';
+import defaultShell from 'default-shell';
 import exists from 'path-exists';
 import mkdirp from 'mkdirp-promise';
 import {merge} from 'lodash';
+import ora from 'ora';
 
+import copy from './copy';
 import getManifestData from './get-manifest-data';
 import getReadmeData from './get-readme-data';
+
+const templatePath = path.resolve(__dirname, 'template');
 
 const defaults = {
 	manifestPath: 'package.json',
@@ -30,20 +35,14 @@ const defaults = {
  * @params options.patternPath=patterns string
  */
 async function init(directory = '.', options) {
+	const spinner = ora().start();
 	const settings = merge({}, defaults, options);
 	const cwd = path.resolve(process.cwd(), directory);
 	const resolve = (...args) => path.resolve(...[cwd, ...args]);
 
 	const manifestPath = resolve(settings.manifestPath);
-	const patternDirectory = resolve(settings.patternPath);
-	const nodeModulesPath = resolve('node_modules');
-	const readmeTarget = resolve(settings.patternPath, 'readme.md');
-
-	// Create the pattern directory
-	await mkdirp(patternDirectory);
-
-	// Get actual or default manifestData
-	const name = path.basename(path.dirname(manifestPath));
+	const nodeModulesPath = resolve(cwd, 'node_modules');
+	const name = path.basename(path.dirname(cwd));
 
 	// Add a name based on directory if manifest does not exists
 	// Allow overriding of manifest fields in any case
@@ -52,38 +51,40 @@ async function init(directory = '.', options) {
 		merge({}, settings.manifest, {name});
 
 	// Read / create manifest data
-	const manifestData = await getManifestData(manifestPath, manifest);
+	const data = await getManifestData(manifestPath, manifest);
+	const readmeTarget = resolve(settings.patternPath, 'readme.md');
+
+	spinner.text = ` Initializing project ${data.name} at ${cwd}`;
+	await mkdirp(path.dirname(readmeTarget));
+
+	// copy init/template to $CWD
+	// replace ${} expressions in the process
+	await copy(templatePath, cwd);
 
 	// Create/extend existing manifest
-	await writeFile(manifestPath, JSON.stringify(manifestData, null, '  '));
+	await writeFile(manifestPath, JSON.stringify(data, null, '  '));
 
 	const readmeData = await getReadmeData({
-		name: settings.name || manifestData.name || name
+		name: settings.name || data.name || name
 	});
 
 	// Write pattern readme
 	await writeFile(readmeTarget, readmeData);
 
 	// Be nice and instructional
-	console.log(`Initialized patternplate project "${manifestData.name}" at ${cwd}`);
-	console.log(`Execute the following to start and open patternplate at http://localhost:1337`);
+	spinner.text = ` Initialized project ${data.name} at ${cwd}`;
+	spinner.succeed();
 
-	// Show cd if needed
-	if (process.cwd() !== cwd) {
-		console.log(`  cd ${directory}`);
-	}
+	const instructions = [
+		process.cwd() !== cwd && `cd ${directory}`,
+		!await exists(nodeModulesPath) && 'npm install',
+		data.scripts.start === 'patternplate' ?
+			'npm start -- --open' : './node_modules/.bin/patternplate start --open'
+	].filter(Boolean);
 
-	// Show npm install if needed
-	if (!await exists(nodeModulesPath)) {
-		console.log(`  npm install`);
-	}
-
-	// Show applicable patternplate project start command
-	if (manifestData.scripts.start === 'patternplate') {
-		console.log(`  npm start -- --open`);
-	} else {
-		console.log(`  ./node_modules/.bin/patternplate start --open`);
-	}
+	const sep = defaultShell.includes('fish') ? '; and ' : ' && ';
+	console.log(`🚀  Start and open patternplate:`);
+	console.log(`\n   ${instructions.join(sep)}`);
 }
 
 export default init;
