@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/sinnerschrader/patternplate/compare/v1.0.0...v1.0.1) (2016-09-26)
+
+
+### Bug Fixes
+
+* make patternplate init work in 1.0 ([ca51667](https://github.com/sinnerschrader/patternplate/commit/ca51667))
+
+
+
 <a name="1.0.0-beta3"></a>
 # [1.0.0-beta3](https://github.com/sinnerschrader/patternplate/compare/v1.0.0-beta2...v1.0.0-beta3) (2016-09-20)
 
