@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "description": "Create, show and deliver component libraries",
   "main": "library/",
   "scripts": {
