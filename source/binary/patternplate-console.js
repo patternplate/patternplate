@@ -16,6 +16,9 @@ async function start(options) {
 const args = minimist(process.argv.slice(1));
 
 start(args)
+	.then(() => {
+		process.exit(0);
+	})
 	.catch(err => {
 		setTimeout(() => {
 			throw err;
