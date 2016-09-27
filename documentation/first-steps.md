@@ -138,7 +138,7 @@ function clickHandler(times) {
 		times++;
 		const time = times < 2 ? 'time' : 'times';
 		const old = e.target.textContent;
-		e.target.textContent = ['Clicked' times, time].join(' ');
+		e.target.textContent = ['Clicked', times, time].join(' ');
 
 		if (e.target.running) {
 			return;
@@ -164,7 +164,7 @@ module.exports = main;
 ```js
 // patterns/button/demo.js
 
-var button from 'Pattern'; // import default export of index.js
+var button = require('Pattern'); // import default export of index.js
 button();
 ```
 

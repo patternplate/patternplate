@@ -10,7 +10,7 @@ import copy from './copy';
 import getManifestData from './get-manifest-data';
 import getReadmeData from './get-readme-data';
 
-const templatePath = path.resolve(__dirname, 'template');
+const templatePath = path.resolve(__dirname, '..', '..', 'init-template');
 
 const defaults = {
 	manifestPath: 'package.json',
@@ -42,7 +42,7 @@ async function init(directory = '.', options) {
 
 	const manifestPath = resolve(settings.manifestPath);
 	const nodeModulesPath = resolve(cwd, 'node_modules');
-	const name = path.basename(path.dirname(cwd));
+	const name = path.basename(cwd);
 
 	// Add a name based on directory if manifest does not exists
 	// Allow overriding of manifest fields in any case
@@ -51,7 +51,11 @@ async function init(directory = '.', options) {
 		merge({}, settings.manifest, {name});
 
 	// Read / create manifest data
-	const data = await getManifestData(manifestPath, manifest);
+	const data = await getManifestData(manifestPath, {
+		...manifest,
+		name: settings.name || name
+	});
+
 	const readmeTarget = resolve(settings.patternPath, 'readme.md');
 
 	spinner.text = ` Initializing project ${data.name} at ${cwd}`;
@@ -60,12 +64,17 @@ async function init(directory = '.', options) {
 	// copy init/template to $CWD
 	// replace ${} expressions in the process
 	await copy(templatePath, cwd);
+	console.log({templatePath, cwd});
 
 	// Create/extend existing manifest
 	await writeFile(manifestPath, JSON.stringify(data, null, '  '));
 
+	// Use name in this precedence
+	// explicit --name
+	// name based on dirname
+	// name found in data
 	const readmeData = await getReadmeData({
-		name: settings.name || data.name || name
+		name: settings.name || name || data.name
 	});
 
 	// Write pattern readme

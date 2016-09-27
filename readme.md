@@ -18,7 +18,7 @@ patternplate is based on Node.js. Lowest supported version is the current LTS re
 the npm version that ships with it.
 
 *  node `>= 4`
-*  npm `>= 2`
+*  npm `>= 3`
 
 ## Quickstart
 

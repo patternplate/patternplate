@@ -1,13 +1,6 @@
 'use strict';
 
 module.exports = {
-	'babel': {
-		inFormat: 'js',
-		outFormat: 'js',
-		opts: {
-			presets: ['es2015', 'react']
-		}
-	},
 	'browserify': {
 		inFormat: 'js',
 		outFormat: 'js',

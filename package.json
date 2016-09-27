@@ -119,6 +119,6 @@
   "license": "MIT",
   "engines": {
     "node": ">= 4",
-    "npm": ">= 2.5.1"
+    "npm": ">= 3"
   }
 }
