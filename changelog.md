@@ -1,3 +1,13 @@
+<a name="0.17.1"></a>
+## [0.17.1](https://github.com/sinnerschrader/patternplate/compare/v0.17.0...v0.17.1) (2016-09-27)
+
+
+### Bug Fixes
+
+* **system:** forcefully quit console after task resolves ([7af96d2](https://github.com/sinnerschrader/patternplate/commit/7af96d2))
+
+
+
 <a name="0.17.0"></a>
 # [0.17.0](https://github.com/sinnerschrader/patternplate/compare/v0.16.0...v0.17.0) (2016-05-13)
 
