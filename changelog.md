@@ -1,3 +1,13 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/sinnerschrader/patternplate/compare/v1.0.3...v1.0.4) (2016-09-29)
+
+
+### Bug Fixes
+
+* force-quit patternplate console <cmd> ([fc723c4](https://github.com/sinnerschrader/patternplate/commit/fc723c4))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/sinnerschrader/patternplate/compare/v1.0.2...v1.0.3) (2016-09-27)
 
