@@ -5,8 +5,8 @@ import exists from 'path-exists';
 import mkdirp from 'mkdirp-promise';
 import {merge} from 'lodash';
 import ora from 'ora';
+import sander from 'sander';
 
-import copy from './copy';
 import getManifestData from './get-manifest-data';
 import getReadmeData from './get-readme-data';
 
@@ -63,8 +63,7 @@ async function init(directory = '.', options) {
 
 	// copy init/template to $CWD
 	// replace ${} expressions in the process
-	await copy(templatePath, cwd);
-	console.log({templatePath, cwd});
+	await sander(templatePath).to(cwd);
 
 	// Create/extend existing manifest
 	await writeFile(manifestPath, JSON.stringify(data, null, '  '));
