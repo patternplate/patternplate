@@ -99,7 +99,7 @@ async function main(command = 'start', options = {}, input = []) {
 	if (mode === 'console') {
 		const [, consoleCommand] = input;
 		await application.server.run(consoleCommand, settings);
-		return;
+		return {mode: 'console'};
 	}
 
 	await application.start();
@@ -118,12 +118,19 @@ async function main(command = 'start', options = {}, input = []) {
 				console.log(error.stack);
 			});
 	}
+
+	return {mode: 'server'};
 }
 
 const {input, flags} = cli;
 const [command] = input;
 
 main(command, flags, input)
+	.then(i => {
+		if (i.mode === 'console') {
+			process.exit(0);
+		}
+	})
 	.catch(error => {
 		if (error.patternplate) {
 			console.log(cli.help);
