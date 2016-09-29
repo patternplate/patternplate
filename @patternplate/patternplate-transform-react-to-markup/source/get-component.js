@@ -18,16 +18,16 @@ export default function run(file) {
 		return hasDefaultExport ?
 			merge(result.default, result) :
 			result;
-	} catch (error) {
+	} catch (err) {
 		const errorFile = file || {pattern: {}};
 		const message = [
 			`Error during parsing of file ${errorFile.path} in pattern`,
 			`${errorFile.pattern.id}:`
 		].join(' ');
-		error.message = [
+		err.message = [
 			message,
-			error.message
+			err.message
 		].join('\n');
-		throw error;
+		throw err;
 	}
 }

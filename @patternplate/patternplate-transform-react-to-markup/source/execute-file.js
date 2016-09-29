@@ -1,6 +1,6 @@
+import {Script} from 'vm';
 import {isEmpty, isPlainObject} from 'lodash';
 import {find} from 'lodash/fp';
-import {Script} from 'vm';
 
 const findExport = find(isExport);
 

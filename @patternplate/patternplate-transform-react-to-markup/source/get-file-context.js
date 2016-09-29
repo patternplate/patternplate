@@ -8,19 +8,19 @@ const cwd = process.cwd();
 function attemptResolve(id, options) {
 	try {
 		return [null, resolve(id, merge({}, {basedir: cwd}, options))];
-	} catch (error) {
-		const badResolveError = !error.message.includes(options.fileName) &&
-			error.message.startsWith(`Cannot find module '${id}'`);
+	} catch (err) {
+		const badResolveError = !err.message.includes(options.fileName) &&
+			err.message.startsWith(`Cannot find module '${id}'`);
 
-		error.message = badResolveError ?
+		err.message = badResolveError ?
 			`Can not find module '${id}' from '${options.fileName}'` :
-			error.message;
+			err.message;
 
-		error.fileName = badResolveError ?
+		err.fileName = badResolveError ?
 			options.fileName :
-			error.fileName;
+			err.fileName;
 
-		return [error];
+		return [err];
 	}
 }
 

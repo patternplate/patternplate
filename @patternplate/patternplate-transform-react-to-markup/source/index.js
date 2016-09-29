@@ -29,7 +29,7 @@ export default function createReactRendererFactory(application) {
 			patternConfiguration.opts
 		);
 
-		const results = renderMarkup(file, settings, application);
+		const results = await renderMarkup(file, settings, application);
 		file.buffer = results.buffer;
 		file.meta = merge({}, file.meta, results.meta);
 		return file;

@@ -13,7 +13,7 @@ export default (toStatic = true, application) => {
 	if (wantsReactDOM && !reactDOMavailable) {
 		const warning = [
 			`${deprecation} React version ${React.version} deprecated`,
-			`React.${methodName} and moved it to react-dom/server's ${methodName},`
+			`React.${methodName} and moved it to react-dom/server's ${methodName},` // eslint-disable-line no-unexpected-multiline
 			`but react-dom is not available via require.resolve.`,
 			`Consider installing react-dom.`
 		].join('');

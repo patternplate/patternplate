@@ -36,8 +36,8 @@ export default (file, options = {}, application) => {
 			buffer,
 			meta
 		};
-	} catch (error) {
-		const stack = trace.parse(error);
+	} catch (err) {
+		const stack = trace.parse(err);
 		const top = stack[0];
 
 		const source = file.buffer.toString();
@@ -54,14 +54,14 @@ export default (file, options = {}, application) => {
 			`in pattern ${file.pattern.id}:`
 		].join('\n');
 
-		error.message = [
+		err.message = [
 			message,
-			error.message,
+			err.message,
 			cut.join('\n')
 		].join('\n');
 
-		error.fileName = file.path;
+		err.fileName = file.path;
 
-		throw error;
+		throw err;
 	}
 };
