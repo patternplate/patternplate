@@ -22,7 +22,7 @@ the npm version that ships with it.
 
 ## Quickstart
 
-Get up and running with patternplate in three steps:
+Get up and running with patternplate in three steps. You can find the source of a completed `patternplate init` guide at [getting-started](https://github.com/sinnerschrader/patternplate-getting-started).
 
 ```shell
 # Grab patternplate from npm
@@ -36,6 +36,11 @@ npm start -- --open
 
 # Go forth and create, show, deliver
 ```
+
+## Examples
+
+*  [getting-started](https://sinnerschrader.github.io/patternplate-getting-started/v2.0.0/) - The results of the `patternplate init` guide
+*  [patternplate-ui](https://sinnerschrader.github.io/patternplate-ui/) - Next version of patternplate developed in patternplate
 
 ## Next steps
 
