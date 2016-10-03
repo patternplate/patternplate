@@ -89,7 +89,7 @@ async function main(command = 'start', options = {}, input = []) {
 	if (command === 'init') {
 		const [, path] = input;
 		await patternplateInit(path, settings);
-		return;
+		return {mode: 'console'};
 	}
 
 	const spinner = ora('Starting').start();
