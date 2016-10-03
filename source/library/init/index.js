@@ -63,7 +63,7 @@ async function init(directory = '.', options) {
 
 	// copy init/template to $CWD
 	// replace ${} expressions in the process
-	await sander(templatePath).to(cwd);
+	await sander.copydir(templatePath).to(cwd);
 
 	// Create/extend existing manifest
 	await writeFile(manifestPath, JSON.stringify(data, null, '  '));
