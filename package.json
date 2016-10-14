@@ -12,12 +12,10 @@
     "console": "node binary/patternplate-console",
     "prebuild": "npm run test && npm run clean",
     "build": "npm run babel",
-    "test": "eslint source/**/*.js && conventional-changelog-lint --from=HEAD~1",
+    "test": "eslint source/**/*.js",
     "watch": "npm run babel -- --watch",
     "babel": "babel source --out-dir ./",
     "clean": "rm -rf binary library application configuration",
-    "commit": "git-cz",
-    "commitmsg": "conventional-changelog-lint -e",
     "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
     "push": "git push && git push --tags && hub release create \"v$(cat .git/RELEASE_VERSION.tmp)\" --message=\"v$(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && npm publish && rm .git/RELEASE_VERSION.tmp && rm .git/COMMITMSG.tmp",
     "release": "npm version $(conventional-recommended-bump -p angular)",
@@ -34,11 +32,6 @@
     "plugins": [
       "add-module-exports"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog-lint"
-    }
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
@@ -76,15 +69,12 @@
     "babel-preset-es2015-node4": "^2.1.0",
     "babel-preset-es2016-node4": "^6.0.1",
     "babel-preset-es2017": "^6.14.0",
-    "commitizen": "^2.5.0",
     "conventional-changelog-cli": "^1.1.1",
-    "conventional-changelog-lint": "^1.0.0",
     "conventional-recommended-bump": "^0.1.1",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.7.0",
     "eslint-config-xo": "^0.12.0",
-    "eslint-plugin-babel": "^3.1.0",
-    "husky": "^0.11.1"
+    "eslint-plugin-babel": "^3.1.0"
   },
   "repository": {
     "type": "git",
