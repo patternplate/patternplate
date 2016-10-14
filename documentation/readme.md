@@ -13,12 +13,15 @@ This documentation is segmented by format, each modeled according to a Persona w
 *  [First steps](./first-steps.md) - Guided tour to your first patterns.
 This is included in the `patternplate init` scaffold.
 
+
 ## Concepts and Mechanics
 
 *  Pattern
+*  [Transforms](./transforms.md)
 *  Environments
 *  Configuration
 
 ## References
 
+*  [Pattern Resolve Algorithm](./pattern-resolve-algorithm.md) - Description of the extended resolve algorithm in use by patternplate
 *  [Command Line Interface](./cli.md) - Commands and options of patternplate cli
