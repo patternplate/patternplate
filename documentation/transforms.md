@@ -64,7 +64,7 @@ module.exports = {
 Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-transform) on npmjs.org to find new transforms or browse the list below.
 
 |Name| Description | Stability | Tests | Typings |
-|--|--|--|:--:|:--:|
+|----|-------------|-----------|:-----:|:-------:|
 | [babel][babel] | babel your JavaScript sources | ![][stable] | Smoke | No |
 | [browserify][browserify] | bundle JavaScript sources with browserify | ![][stable] | Smoke | No |
 | [less][less] | create css from less sources | ![][stable] | Yes | Yes |
