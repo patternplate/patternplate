@@ -21,7 +21,7 @@ const defaults = {
 const cli = meow(`
 	Usage
 	$ patternplate [command=start] [options]
-	
+
 	Commands
 	  start   - start a patternplate instance in cwd
 	  console - execute a task in patternplate console
