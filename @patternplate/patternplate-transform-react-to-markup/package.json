@@ -92,7 +92,7 @@
     "cz-conventional-changelog": "1.1.5",
     "cz-conventional-changelog-lint": "0.1.3",
     "dependency-check": "2.6.0",
-    "husky": "0.11.8",
+    "husky": "0.11.9",
     "parallelshell": "2.0.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
