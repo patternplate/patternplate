@@ -26,13 +26,13 @@ Get up and running with patternplate in three steps. You can find the source of 
 
 ```shell
 # Grab patternplate from npm
-npm install --save patternplate
+npm install -g patternplate
 
 # Create an initial patternplate setup
-./node_modules/.bin/patternplate init
+patternplate init patternplate-project
 
 # Start patternplate and open in default browser
-npm start -- --open
+cd patternplate-project && npm install && npm start -- --open
 
 # Go forth and create, show, deliver
 ```
