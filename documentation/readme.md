@@ -16,10 +16,10 @@ This is included in the `patternplate init` scaffold.
 
 ## Concepts and Mechanics
 
+*  Environments
+*  [Formats](./formats.md)
 *  Pattern
 *  [Transforms](./transforms.md)
-*  Environments
-*  Configuration
 
 ## References
 
