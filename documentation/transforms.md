@@ -68,18 +68,18 @@ Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-
 
 |Name| Description | Stability | Tests | Typings |
 |----|-------------|-----------|:-----:|:-------:|
-| [babel][babel] | babel your JavaScript sources | ![][stable] | Smoke | No |
-| [browserify][browserify] | bundle JavaScript sources with browserify | ![][stable] | Smoke | No |
-| [less][less] | create css from less sources | ![][stable] | Yes | Yes |
-| [markdown][markdown] | process html from markdown sources | ![][deprecated] | No | No |
-| [node-sass][node-sass] | Process SASS and SCSS to CSS with patternplate | ![][experimental] | Yes | Yes |
-| [postcss][postcss] | apply postcss to css sources | ![][stable] | No | No |
-| [react-mount][react-mount] | mount react components with full life cycle on the client side | ![][experimental] | No | No |
-| [react-to-markup][react-to-markup] | create markup from react components | ![][stable] | Yes | No |
-| [react][react] | create reusable React classes from jsx templates | ![][stable] | Yes | No |
-| [resolve-includes][resolve-includes] | rewrite dependency includes to interoperable paths | ![][stable] | No | No |
-| [rewrite-imports][resolve-imports] | transform pattern dependency imports to interoperable paths | ![][stable] | No | No |
-| [uglify][uglify] | uglify your JavaScript sources | ![][stable] | No | No |
+| [babel][babel] | babel your JavaScript sources | ![][stable] | ![][smoke] | ![][untyped] |
+| [browserify][browserify] | bundle JavaScript sources with browserify | ![][stable] | ![][smoke] | ![][untyped] |
+| [less][less] | create css from less sources | ![][stable] | ![][tested] | ![][typed] |
+| [markdown][markdown] | process html from markdown sources | ![][deprecated] | ![][untested] | ![][untyped] |
+| [node-sass][node-sass] | Process SASS and SCSS to CSS with patternplate | ![][experimental] | ![][tested] | ![][typed] |
+| [postcss][postcss] | apply postcss to css sources | ![][stable] | ![][untested] | ![][untyped] |
+| [react-mount][react-mount] | mount react components with full life cycle on the client side | ![][experimental] | ![][untested] | ![][untyped] |
+| [react-to-markup][react-to-markup] | create markup from react components | ![][stable] | ![][tested] | ![][untyped] |
+| [react][react] | create reusable React classes from jsx templates | ![][stable] | ![][tested] | ![][untyped] |
+| [resolve-includes][resolve-includes] | rewrite dependency includes to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
+| [rewrite-imports][resolve-imports] | transform pattern dependency imports to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
+| [uglify][uglify] | uglify your JavaScript sources | ![][stable] | ![][untested] | ![][untyped] |
 
 ### Intent to implement
 
@@ -107,3 +107,10 @@ Holler at [sinnerschrader/patternplate](https://github.com/sinnerschrader/patter
 [experimental]: https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square
 [stable]: https://img.shields.io/badge/stability-stable-green.svg?style=flat-square
 [locked]: https://img.shields.io/badge/stability-locked-blue.svg?style=flat-square
+
+[tested]: https://img.shields.io/badge/tested-yes-green.svg?style=flat-square
+[smoke]: https://img.shields.io/badge/tested-smoke-orange.svg?style=flat-square
+[untested]: https://img.shields.io/badge/tested-no-red.svg?style=flat-square
+
+[typed]: https://img.shields.io/badge/typings-yes-green.svg?style=flat-square
+[untyped]: https://img.shields.io/badge/typings-no-red.svg?style=flat-square
