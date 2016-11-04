@@ -59,6 +59,9 @@ module.exports = {
 }
 ```
 
+---
+See [Formats](./formats.md) for further information
+
 ## Available transforms
 
 Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-transform) on npmjs.org to find new transforms or browse the list below.
