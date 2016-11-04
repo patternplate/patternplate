@@ -1,3 +1,14 @@
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/sinnerschrader/patternplate/compare/v1.0.6...v1.0.7) (2016-11-04)
+
+
+### Bug Fixes
+
+* always print the install instruction after init ([6f7b2ad](https://github.com/sinnerschrader/patternplate/commit/6f7b2ad)), closes [#110](https://github.com/sinnerschrader/patternplate/issues/110)
+* removed whitespace for eslint ([882f6c1](https://github.com/sinnerschrader/patternplate/commit/882f6c1))
+
+
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/sinnerschrader/patternplate/compare/v1.0.5...v1.0.6) (2016-10-03)
 
