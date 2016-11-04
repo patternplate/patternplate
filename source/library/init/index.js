@@ -41,7 +41,6 @@ async function init(directory = '.', options) {
 	const resolve = (...args) => path.resolve(...[cwd, ...args]);
 
 	const manifestPath = resolve(settings.manifestPath);
-	const nodeModulesPath = resolve(cwd, 'node_modules');
 	const name = path.basename(cwd);
 
 	// Add a name based on directory if manifest does not exists
@@ -85,7 +84,7 @@ async function init(directory = '.', options) {
 
 	const instructions = [
 		process.cwd() !== cwd && `cd ${directory}`,
-		!await exists(nodeModulesPath) && 'npm install',
+		'npm install',
 		data.scripts.start === 'patternplate' ?
 			'npm start -- --open' : './node_modules/.bin/patternplate start --open'
 	].filter(Boolean);
