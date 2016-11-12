@@ -1,6 +1,6 @@
 {
   "name": "patternplate-transform-react-to-markup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "patternplate transform creating markup from react components",
   "main": "distribution/index.js",
   "files": [

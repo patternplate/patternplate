@@ -24,7 +24,7 @@ export default (file, options = {}, application) => {
 			original(...args);
 		};
 
-		const result = component ?
+		const result = typeof component === 'function' ?
 			renderFunction(React.createElement(component)) :
 			'';
 

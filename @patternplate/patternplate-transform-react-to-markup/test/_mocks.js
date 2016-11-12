@@ -27,6 +27,16 @@ export const depending = getFile({
 	}
 });
 
+export const empty = getFile({
+	buffer: new Buffer(''),
+	path: 'empty/index.jsx'
+});
+
+export const nonDefaultExporting = getFile({
+	buffer: new Buffer('exports.example = function() {}'),
+	path: 'non-default-exporting/index.jsx'
+});
+
 export const simple = getFile({
 	buffer: new Buffer('var React = require("react"); module.exports.default = function() {return React.createElement("div")}'),
 	path: 'simple/index.jsx'

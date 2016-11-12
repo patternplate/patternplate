@@ -1,9 +1,9 @@
 import test from 'ava';
 import expect from 'unexpected';
 
+import factory from '../source';
 import * as helpers from './_helpers';
 import * as mocks from './_mocks';
-import factory from '../source';
 
 test('export a function as default', t => {
 	const actual = typeof factory;
@@ -34,7 +34,7 @@ test('promise resolves to an object', async t => {
 test('object has a buffer key', async t => {
 	const transform = factory(mocks.application);
 	const file = await transform(mocks.exportFile);
-	t.truthy(file.hasOwnProperty('buffer'));
+	t.truthy({}.hasOwnProperty.call(file, 'buffer'));
 });
 
 test('does not throw for module.exports', async t => {
@@ -50,6 +50,19 @@ test('does not throw for module.exports.default', async t => {
 test('does not throw for depending component', async t => {
 	const transform = factory(mocks.application);
 	t.notThrows(() => transform(mocks.depending));
+});
+
+test('does not throw for empty file', async t => {
+	const transform = factory(mocks.application);
+	t.notThrows(() => transform(mocks.empty));
+});
+
+test('component without default export', async t => {
+	const transform = factory(mocks.application);
+	const execution = transform(mocks.nonDefaultExporting);
+	t.notThrows(async () => await execution);
+	const {buffer: actual} = await execution;
+	t.is(actual, '', 'yields empty result');
 });
 
 test('simple component', async t => {
