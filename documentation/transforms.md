@@ -69,7 +69,7 @@ Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-
 |Name| Description | Stability | Tests | Typings |
 |----|-------------|-----------|:-----:|:-------:|
 | [babel][babel] | babel your JavaScript sources | ![][stable] | ![][smoke] | ![][untyped] |
-| [browserify][browserify] | bundle JavaScript sources with browserify | ![][stable] | ![][smoke] | ![][untyped] |
+| [browserify][browserify] | bundle JavaScript sources with browserify | ![][stable] | ![][smoke] | ![][typed] |
 | [less][less] | create css from less sources | ![][stable] | ![][tested] | ![][typed] |
 | [markdown][markdown] | process html from markdown sources | ![][deprecated] | ![][untested] | ![][untyped] |
 | [node-sass][node-sass] | Process SASS and SCSS to CSS with patternplate | ![][experimental] | ![][tested] | ![][typed] |
