@@ -40,7 +40,7 @@ function getSandboxedRequire(file, dependencies, run) {
 			throw error;
 		}
 
-		return require(resolved);
+		return require(resolved); // eslint-disable-line import/no-dynamic-require
 	};
 }
 

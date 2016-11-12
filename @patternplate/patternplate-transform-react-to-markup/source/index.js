@@ -3,7 +3,7 @@ import {merge} from 'lodash';
 import renderMarkup from './render-markup';
 
 export default function createReactRendererFactory(application) {
-	return async function renderReactComponent(file) {
+	return async file => {
 		const {
 			configuration: {
 				transforms: {
