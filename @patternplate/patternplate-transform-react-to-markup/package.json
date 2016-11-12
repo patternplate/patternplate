@@ -87,7 +87,7 @@
     "babel-register": "6.18.0",
     "commitizen": "2.7.3",
     "conventional-changelog-cli": "1.1.1",
-    "conventional-changelog-lint": "0.3.2",
+    "conventional-changelog-lint": "1.1.0",
     "conventional-recommended-bump": "0.1.0",
     "cz-conventional-changelog": "1.1.5",
     "cz-conventional-changelog-lint": "0.1.3",
