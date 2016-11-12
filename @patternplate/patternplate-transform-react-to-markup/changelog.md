@@ -1,3 +1,14 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/sinnerschrader/patternplate-transform-react/compare/v1.0.0...v1.0.2) (2016-11-12)
+
+
+### Bug Fixes
+
+* allow component files without default export ([f441423](https://github.com/sinnerschrader/patternplate-transform-react/commit/f441423)), closes [sinnerschrader/patternplate#124](https://github.com/sinnerschrader/patternplate/issues/124)
+* avoid Array.prototype.find for interop with patternplate < 1 ([#10](https://github.com/sinnerschrader/patternplate-transform-react/issues/10)) ([364c30b](https://github.com/sinnerschrader/patternplate-transform-react/commit/364c30b))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/sinnerschrader/patternplate-transform-react/compare/v0.3.7...v1.0.0) (2016-09-20)
 
