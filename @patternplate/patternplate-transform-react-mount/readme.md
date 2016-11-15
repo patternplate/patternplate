@@ -76,5 +76,5 @@ Copyright 2016 by [SinnerSchrader Deutschland GmbH](https://github.com/sinnersch
 [3]: https://npmjs.org/package/patternplate-transform-react-mount
 [4]: https://img.shields.io/travis/sinnerschrader/patternplate-transform-react-mount/master.svg?style=flat-square
 [5]: https://travis-ci.org/sinnerschrader/patternplate-transform-react-mount
-[6]: https://img.shields.io/appveyor/ci/sinnerschrader/patternplate-transform-react-mount/master.svg?style=flat-square
-[7]: https://ci.appveyor.com/project/sinnerschrader/patternplate-transform-react-mount
+[6]: https://img.shields.io/appveyor/ci/marionebl/patternplate-transform-react-mount/master.svg?style=flat-square
+[7]: https://ci.appveyor.com/project/marionebl/patternplate-transform-react-mount
