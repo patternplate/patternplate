@@ -1,3 +1,18 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v0.1.2...v1.0.0) (2016-11-15)
+
+
+### Features
+
+* complete overhaul ([5d754cb](https://github.com/sinnerschrader/patternplate-transform-react-mount/commit/5d754cb))
+
+
+### BREAKING CHANGES
+
+* Drop React < 0.14 support
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v0.1.1...v0.1.2) (2016-03-28)
 
