@@ -74,7 +74,7 @@ Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-
 | [markdown][markdown] | process html from markdown sources | ![][deprecated] | ![][untested] | ![][untyped] |
 | [node-sass][node-sass] | Process SASS and SCSS to CSS with patternplate | ![][experimental] | ![][tested] | ![][typed] |
 | [postcss][postcss] | apply postcss to css sources | ![][stable] | ![][untested] | ![][untyped] |
-| [react-mount][react-mount] | mount react components with full life cycle on the client side | ![][experimental] | ![][untested] | ![][untyped] |
+| [react-mount][react-mount] | mount react components with full life cycle on the client side | ![][experimental] | ![][tested] | ![][untyped] |
 | [react-to-markup][react-to-markup] | create markup from react components | ![][stable] | ![][tested] | ![][untyped] |
 | [react][react] | create reusable React classes from jsx templates | ![][stable] | ![][tested] | ![][untyped] |
 | [resolve-includes][resolve-includes] | rewrite dependency includes to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
