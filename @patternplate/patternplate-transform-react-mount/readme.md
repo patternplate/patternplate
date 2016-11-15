@@ -1,5 +1,7 @@
-# patternplate-transform-react-mount
+# patternplate-transform-react-mount [![stability][0]][1]
 [patternplate](/sinnerschrader/patternplate) transform mounting react components with full life cycle on the client side.
+
+[![npm version][2]][3] [![Travis branch][4]][5] [![Appveyor branch][6]][7]
 
 ## Installation
 ```shell
@@ -66,3 +68,13 @@ This means you can use `react` with and without `react-dom` - you'll see a warni
 
 ---
 Copyright 2016 by [SinnerSchrader Deutschland GmbH](https://github.com/sinnerschrader) and [contributors](./graphs/contributors). Released under the [MIT license]('./license.md').
+
+
+[0]: https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square
+[1]: https://nodejs.org/api/documentation.html#documentation_stability_index
+[2]: https://img.shields.io/npm/v/patternplate-transform-react-mount.svg?style=flat-square
+[3]: https://npmjs.org/package/patternplate-transform-react-mount
+[4]: https://img.shields.io/travis/sinnerschrader/patternplate-transform-react-mount/master.svg?style=flat-square
+[5]: https://travis-ci.org/sinnerschrader/patternplate-transform-react-mount
+[6]: https://img.shields.io/appveyor/ci/sinnerschrader/patternplate-transform-react-mount/master.svg?style=flat-square
+[7]: https://ci.appveyor.com/project/sinnerschrader/patternplate-transform-react-mount
