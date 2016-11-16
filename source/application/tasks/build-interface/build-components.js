@@ -20,14 +20,14 @@ async function buildComponents(datasets, target, context) {
 	return await build(sets, {
 		async read(set, sets, count) {
 			spinner.text = `${jobPad('component')} ${idPad(set.id)} ${count}/${sets.length}`;
-			return await getComponent(app, set.id, set.env);
+			return ((await getComponent(app, set.id, set.env)) || {}).buffer;
 		},
-		async write(component, set, sets, count) {
+		async write(source, set, sets, count) {
 			spinner.text = `${jobPad('component')} ${idPad(set.id)} ${count}/${sets.length}`;
 			const base = path.resolve(...[target, ...set._pattern.relative, set._pattern.baseName]);
 			const baseName = 'component.js';
-			if (component) {
-				return writeEach(component.buffer, getTargets(base, baseName, set), rewriter);
+			if (source) {
+				return writeEach(source, getTargets(base, baseName, set), rewriter);
 			}
 		},
 		done() {
