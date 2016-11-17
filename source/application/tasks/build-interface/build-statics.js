@@ -2,7 +2,6 @@ import path from 'path';
 import exists from 'path-exists';
 import findRoot from 'find-root';
 import sander from 'sander';
-import ora from 'ora';
 import {sync} from 'resolve';
 
 const cwd = process.cwd();
@@ -12,7 +11,6 @@ const packageResolve = (id, directory) => path.resolve(findRoot(resolve(id)), di
 export default buildStatic;
 
 async function buildStatic(pkg, target) {
-	const spinner = ora().start();
 	const assetSourcePath = packageResolve(pkg, 'assets');
 	const assetTargetPath = path.resolve(target);
 	const clientStaticSourcePath = packageResolve(pkg, 'static');
@@ -20,24 +18,10 @@ async function buildStatic(pkg, target) {
 	const staticSourcePath = path.resolve(cwd, 'static');
 	const staticTargetPath = path.resolve(target, 'api', 'static');
 
-	try {
-		spinner.text = `${path.relative(cwd, assetSourcePath)} => ${path.relative(cwd, assetTargetPath)}`;
-		await sander.copydir(assetSourcePath).to(assetTargetPath);
+	await sander.copydir(assetSourcePath).to(assetTargetPath);
+	await sander.copydir(clientStaticSourcePath).to(clientStaticTargetPath);
 
-		spinner.text = `${path.relative(cwd, clientStaticSourcePath)} => ${path.relative(cwd, clientStaticTargetPath)}`;
-		await sander.copydir(clientStaticSourcePath).to(clientStaticTargetPath);
-
-		if (await exists(staticSourcePath)) {
-			spinner.text = `${path.relative(cwd, staticSourcePath)} => ${path.relative(cwd, staticTargetPath)}`;
-			await sander.copydir(staticSourcePath).to(staticTargetPath);
-		}
-
-		spinner.text = 'statics';
-		spinner.succeed();
-		return;
-	} catch (error) {
-		spinner.text = error.message || error;
-		spinner.fail();
-		throw error;
+	if (await exists(staticSourcePath)) {
+		await sander.copydir(staticSourcePath).to(staticTargetPath);
 	}
 }

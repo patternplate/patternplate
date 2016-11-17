@@ -2,7 +2,8 @@ import path from 'path';
 
 import {merge} from 'lodash';
 import {get, max, padEnd} from 'lodash/fp';
-// import ora from 'ora';
+import Listr from 'listr';
+import minimatch from 'minimatch';
 
 import buildComponents from './build-components';
 import buildData from './build-data';
@@ -16,7 +17,10 @@ import getPatternDatasets from './get-pattern-datasets';
 import getPatternIds from './get-pattern-ids';
 import getRewriter from './get-rewriter';
 import isPattern from './is-pattern';
+import serverRequire from './server-require';
 import trap from './trap';
+
+const getEnvironments = serverRequire('get-environments');
 
 const defaults = {
 	target: 'build/build-interface'
@@ -44,43 +48,115 @@ async function buildInterface(application, configuration) {
 	const client = application.parent.client;
 	const server = application.parent.server;
 
-	const release = trap(application);
+	// const release = trap(application);
 	const automount = selectAutoMount(server);
 
-	const ids = await getPatternIds(app, client, server);
-	const patterns = ids.filter(isPattern);
+	const patterns = (await getPatternIds(app, client, server)).filter(isPattern);
+
+	const environments = await getEnvironments('./patterns', {
+		cache: server.cache
+	});
+
+	const patternSets = patterns.map(pattern => {
+		pattern.environmentNames = environments
+			.filter(env => {
+				return env.applyTo
+					.filter(glob => glob[0] !== '!')
+					.some(glob => minimatch(pattern.id, glob));
+			})
+			.filter(env => {
+				return !env.applyTo
+					.filter(glob => glob[0] === '!')
+					.some(glob => minimatch(pattern.id, glob));
+			})
+			.map(env => env.name);
+
+		return pattern;
+	});
 
 	const jobMax = 1 + max(jobPrefixes.map(i => i.length));
 	const jobPad = padEnd(jobMax);
-	const datasets = await getPatternDatasets(patterns, server, {jobPad});
-	const rewriter = await getRewriter(targetPath);
 
-	// Build entry file
+	const rewriter = await getRewriter(targetPath);
 	const serverContext = {app: server, automount, rewriter, jobPad};
 	const clientContext = {app: client, rewriter, jobPad};
-	await buildEntry('/', targetPath, clientContext);
 
-	// Build pattern pages
-	const patternTargetPath = path.resolve(targetPath, 'pattern');
-	await buildPages(ids, patternTargetPath, clientContext);
-
-	// Build pattern json data
 	const apiTargetPath = path.resolve(targetPath, 'api', 'pattern');
-	await buildData(datasets, apiTargetPath, serverContext);
-
-	// Build pattern demos
+	const patternTargetPath = path.resolve(targetPath, 'pattern');
 	const demoTargetPath = path.resolve(targetPath, 'demo');
-	await buildDemos(datasets, demoTargetPath, serverContext);
-	await buildDemoFiles(datasets, demoTargetPath, serverContext);
-	await buildComponents(datasets, demoTargetPath, serverContext);
 
-	// Build pattern sources
-	const fileTargetPath = path.resolve(targetPath, 'api', 'file');
-	await buildSources(datasets, fileTargetPath, serverContext);
+	const data = getPatternDatasets(patterns, server);
 
-	// Copy static files
-	await buildStatics('patternplate-client', targetPath, serverContext);
+	const release = trap(app);
 
-	// Log out trapped warnings
-	release(messages => messages.forEach(m => console.log(m)));
+	const tasks = new Listr([
+		{
+			title: 'Entry files',
+			task() {
+				return buildEntry('/', targetPath, clientContext);
+			}
+		},
+		{
+			title: 'Static files',
+			task() {
+				return buildStatics('patternplate-client', targetPath, serverContext);
+			}
+		},
+		{
+			title: 'Page files',
+			task() {
+				return buildPages(patterns, patternTargetPath, clientContext);
+			}
+		},
+		{
+			title: 'Automount components',
+			task() {
+				return buildComponents(patternSets, demoTargetPath, serverContext);
+			}
+		},
+		{
+			title: 'Meta data',
+			task: () => data.filter(d => d.message).map(d => d.message)
+		},
+		{
+			title: 'Demos',
+			task() {
+				return buildDemos(patternSets, demoTargetPath, serverContext);
+			}
+		},
+		{
+			title: 'Data',
+			task() {
+				return buildData(patternSets, apiTargetPath, serverContext);
+			}
+		},
+		{
+			title: 'Demo Files',
+			task() {
+				return data
+					.filter(d => d.data)
+					.map(d => d.data)
+					.flatMap(d => buildDemoFiles(d, demoTargetPath, serverContext));
+			}
+		},
+		{
+			title: 'Sources',
+			task() {
+				const fileTargetPath = path.resolve(targetPath, 'api', 'file');
+				return data
+					.filter(d => d.data)
+					.map(d => d.data)
+					.flatMap(d => buildSources([d], fileTargetPath, serverContext));
+			}
+		}
+	], {concurrent: true});
+
+	return tasks.run()
+		.then(() => {
+			release(messages => {
+				messages.forEach(message => {
+					console.log(message);
+				});
+			});
+		});
 }

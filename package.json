@@ -43,6 +43,7 @@
     "find-root": "^0.1.1",
     "globby": "^6.0.0",
     "is-stream": "^1.1.0",
+    "listr": "^0.7.0",
     "lodash": "^4.14.0",
     "meow": "^3.7.0",
     "minimist": "^1.1.1",
@@ -60,7 +61,8 @@
     "resolve-path": "^1.2.2",
     "sander": "^0.5.1",
     "stream-to-string": "^1.1.0",
-    "throat": "^3.0.0"
+    "throat": "^3.0.0",
+    "zen-observable": "^0.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
