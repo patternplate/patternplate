@@ -3,7 +3,6 @@ import path from 'path';
 import {merge} from 'lodash';
 import {get, max, padEnd} from 'lodash/fp';
 import Listr from 'listr';
-import minimatch from 'minimatch';
 
 import buildComponents from './build-components';
 import buildData from './build-data';
@@ -43,6 +42,7 @@ export default buildInterface;
 async function buildInterface(application, configuration) {
 	const settings = merge({}, defaults, configuration);
 	const targetPath = path.resolve(process.cwd(), settings.target);
+	const patternsPath = path.resolve(process.cwd(), './patterns');
 
 	const app = application.parent;
 	const client = application.parent.client;
@@ -53,22 +53,13 @@ async function buildInterface(application, configuration) {
 
 	const patterns = (await getPatternIds(app, client, server)).filter(isPattern);
 
-	const environments = await getEnvironments('./patterns', {
+	const environments = await getEnvironments(patternsPath, {
 		cache: server.cache
 	});
 
 	const patternSets = patterns.map(pattern => {
 		pattern.environmentNames = environments
-			.filter(env => {
-				return env.applyTo
-					.filter(glob => glob[0] !== '!')
-					.some(glob => minimatch(pattern.id, glob));
-			})
-			.filter(env => {
-				return !env.applyTo
-					.filter(glob => glob[0] === '!')
-					.some(glob => minimatch(pattern.id, glob));
-			})
+			.filter(env => env.display !== false)
 			.map(env => env.name);
 
 		return pattern;
