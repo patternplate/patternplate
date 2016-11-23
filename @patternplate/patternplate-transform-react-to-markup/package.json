@@ -94,14 +94,14 @@
     "dependency-check": "2.6.0",
     "husky": "0.11.9",
     "parallelshell": "2.0.0",
-    "react": "15.3.1",
-    "react-dom": "15.3.1",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
     "unexpected": "10.18.1",
     "xo": "0.17.1"
   },
   "peerDependencies": {
-    "react": ">= 0.13",
-    "react-dom": ">= 0.13"
+    "react": ">= 0.14",
+    "react-dom": ">= 0.14"
   },
   "dependencies": {
     "chalk": "1.1.3",
