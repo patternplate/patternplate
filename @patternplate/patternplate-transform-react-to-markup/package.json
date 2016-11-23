@@ -97,7 +97,7 @@
     "react": "15.3.1",
     "react-dom": "15.3.1",
     "unexpected": "10.18.1",
-    "xo": "0.17.0"
+    "xo": "0.17.1"
   },
   "peerDependencies": {
     "react": ">= 0.13",
