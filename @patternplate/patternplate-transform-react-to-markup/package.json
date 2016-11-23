@@ -96,7 +96,7 @@
     "parallelshell": "2.0.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
-    "unexpected": "10.18.1",
+    "unexpected": "10.19.0",
     "xo": "0.17.1"
   },
   "peerDependencies": {
