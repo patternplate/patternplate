@@ -19,7 +19,8 @@ async function buildEntry(url, target, context) {
 	await fs.writeFile(indexPath, rewriter(index, indexPath));
 
 	// Place a copy of index at 404.html
-	await fs.writeFile(notFoundPath, rewriter(index, notFoundPath));
+	const notFound = await renderPage(app, '//');
+	await fs.writeFile(notFoundPath, rewriter(notFound, notFoundPath));
 
 	const htaccess = `
 		ErrorDocument 404 404.html
