@@ -4,7 +4,8 @@ function getComponents(datasets, automount) {
 	return automount ?
 		datasets :
 		datasets.filter(dataset => {
-			const options = dataset.manifest.options;
+			const manifest = dataset.manifest;
+			const options = manifest.options;
 			if (!options) {
 				return false;
 			}
