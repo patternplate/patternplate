@@ -1,3 +1,19 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/sinnerschrader/patternplate/compare/v1.0.10...v1.1.0) (2016-12-13)
+
+
+### Bug Fixes
+
+* harden option lookup ([a10fb87](https://github.com/sinnerschrader/patternplate/commit/a10fb87))
+* produce pages for folders ([cc50739](https://github.com/sinnerschrader/patternplate/commit/cc50739)), closes [#134](https://github.com/sinnerschrader/patternplate/issues/134)
+
+
+### Features
+
+* use notFound for 404.html ([66783cb](https://github.com/sinnerschrader/patternplate/commit/66783cb))
+
+
+
 <a name="1.0.10"></a>
 ## [1.0.10](https://github.com/sinnerschrader/patternplate/compare/v1.0.9...v1.0.10) (2016-11-17)
 
