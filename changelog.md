@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/sinnerschrader/patternplate/compare/v1.1.0...v1.1.1) (2016-12-13)
+
+
+### Bug Fixes
+
+* use values intead of registry ([735f0df](https://github.com/sinnerschrader/patternplate/commit/735f0df))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/sinnerschrader/patternplate/compare/v1.0.10...v1.1.0) (2016-12-13)
 
