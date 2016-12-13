@@ -1,5 +1,6 @@
 import path from 'path';
 import {max, padEnd} from 'lodash/fp';
+import {values} from 'lodash';
 import Observable from 'zen-observable';
 
 import build from './build';
@@ -25,7 +26,7 @@ function buildPages(ids, target, context) {
 			return pages;
 		}, {});
 
-		build(pages, {
+		build(values(pages), {
 			async read(id, ids, count) {
 				observer.next(`${idPad(id.id)} ${count}/${ids.length}`);
 				return renderPage(app, `/pattern/${id.id}`);
