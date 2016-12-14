@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/sinnerschrader/patternplate/compare/v1.1.1...v1.2.0) (2016-12-14)
+
+
+### Features
+
+* allow to filter patterns built for interface via flags ([f5880d9](https://github.com/sinnerschrader/patternplate/commit/f5880d9))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/sinnerschrader/patternplate/compare/v1.1.0...v1.1.1) (2016-12-13)
 
