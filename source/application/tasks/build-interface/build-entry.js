@@ -12,14 +12,15 @@ async function buildEntry(url, target, context) {
 	const indexPath = path.resolve(target, 'index.html');
 	const htaccessPath = path.resolve(target, '.htaccess');
 	const notFoundPath = path.resolve(target, '404.html');
+	const renderFilters = {flags: context.flags};
 
-	const index = await renderPage(app, url);
+	const index = await renderPage(app, url, renderFilters);
 
 	await mkdirp(target);
 	await fs.writeFile(indexPath, rewriter(index, indexPath));
 
 	// Place a copy of index at 404.html
-	const notFound = await renderPage(app, url);
+	const notFound = await renderPage(app, url, renderFilters);
 	await fs.writeFile(notFoundPath, rewriter(notFound, notFoundPath));
 
 	const htaccess = `

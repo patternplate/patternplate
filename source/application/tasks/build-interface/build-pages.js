@@ -14,6 +14,7 @@ function buildPages(ids, target, context) {
 	return new Observable(observer => {
 		const {app, rewriter} = context;
 		const idPad = padEnd(max(ids.map(id => id.id.length)));
+		const renderFilters = {flags: context.flags};
 
 		const pages = ids.reduce((pages, page) => {
 			page.relative.forEach((_, index) => {
@@ -29,7 +30,7 @@ function buildPages(ids, target, context) {
 		build(values(pages), {
 			async read(id, ids, count) {
 				observer.next(`${idPad(id.id)} ${count}/${ids.length}`);
-				return renderPage(app, `/pattern/${id.id}`);
+				return renderPage(app, `/pattern/${id.id}`, renderFilters);
 			},
 			async write(page, id, ids, count) {
 				observer.next(`${idPad(id.id)} ${count}/${ids.length}`);

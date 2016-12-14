@@ -11,10 +11,10 @@ const getPatternFile = serverRequire('get-pattern-file');
 export default buildDemoFiles;
 
 function buildDemoFiles(dataset, target, context) {
-	return new Observable(observer => {
-		const {app, rewriter} = context;
-		const fileSets = getFileSets([dataset]);
+	const {app, rewriter} = context;
+	const fileSets = getFileSets([dataset]);
 
+	return new Observable(observer => {
 		if (!fileSets.length) {
 			return observer.complete();
 		}
@@ -30,7 +30,7 @@ function buildDemoFiles(dataset, target, context) {
 				}, file.out, set.env);
 			},
 			async write(result, file) {
-				const pattern = file.pattern._pattern;
+				const pattern = file.pattern;
 				const frags = [target, ...pattern.relative, pattern.baseName];
 				const base = path.resolve(...frags);
 				const baseName = `index.${file.out}`;
