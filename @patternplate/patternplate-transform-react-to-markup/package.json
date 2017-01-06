@@ -94,7 +94,7 @@
     "dependency-check": "2.6.0",
     "husky": "0.13.2",
     "parallelshell": "2.0.0",
-    "react": "15.4.1",
+    "react": "15.4.2",
     "react-dom": "15.4.1",
     "unexpected": "10.26.3",
     "xo": "0.17.1"
