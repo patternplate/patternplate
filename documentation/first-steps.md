@@ -10,6 +10,7 @@ for the complete sources created during this tutorial.
 * [Introducing interactive demos](#introducing-interactive-demos) - Learn about demo files and javascript
 * [Moving your pattern](#moving-your-pattern) - Folder structure and navigation
 * [Using patterns](#using-patterns) - Dependencies and composition of patterns
+* [Usage of static resources](#usage-of-static-resources) - Discover where static files should live
 
 ---
 [sinnerschrader/patternplate](https://github.com/sinnerschrader/patternplate) for more information and documentation
@@ -124,6 +125,7 @@ Reload [Button](/pattern/button) to inspect the button's new styling.
 
 *  Another index file, another format. patternplate picks up on the `.less` file by default,
 transforms it and delivers it as `css` to the browser
+
 
 ## Introducing interactive demos
 
@@ -273,7 +275,7 @@ var Button = require('button'); // include patterns/atoms/button/index.jsx
 
 Load [molecules/button-row](/pattern/molecules/button-row): Profit!
 
-#### What just happend
+### What just happend
 
 *  By adding the `patterns` key to `patterns/molecules/button-row/pattern.json`, we told patternplate to
 make the sources of `patterns/atoms/button` available to `button-row`
@@ -303,3 +305,69 @@ var Button = require('button');
 *  Notice how we imported the `jsx` and `less` sources but omitted the js
 imports? This leads to the markup and styling in place, but the click counters
 are not active on buttons in [molecules/button-row](/pattern/molecules/button-row).
+
+
+## Usage of static resources
+
+### Step by step
+
+Ressources like icons, fonts or images (e.g. logos, badges) can be used by
+multiple patterns.
+Thats why they live in a folder called `static`.
+
+First we have to create that folder in the root directory and add an image
+(you can use your own image or just copy the code below).
+
+```
+mkdir -p static/images
+touch static/images/patternplate.svg
+```
+
+```xml
+<!-- static/images/patternplate.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24" width="200" height="200">
+	<path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm-2 15.5v-2H8v2h2zm3-3v-2h-2v2h2zm-3 0v-2H8v2h2zm6 0v-2h-2v2h2zm-6-3v-2H8v2h2zm6 0v-2h-2v2h2zm-3-3v-2h-2v2h2zm-3 0v-2H8v2h2zm6 0v-2h-2v2h2z"/>
+</svg>
+```
+
+After having an image source in stock lets create a new pattern e.g.
+called `image`.
+
+```bash
+# create a new pattern folder
+mkdir -p patterns/atoms/image
+```
+
+```js
+// patterns/atoms/image/pattern.json
+{
+  "name": "image",
+  "displayName": "Image",
+  "version": "1.0.0"
+}
+```
+
+```js
+// patterns/atoms/image/index.jsx
+var src = this.props.src || '';
+var alt = this.props.alt || '';
+
+<img src={src} alt={alt} />
+```
+
+In the demo we add the path to our static folder beginning with `/api/static/`
+```jsx
+// patterns/atoms/image/demo.jsx
+var Pattern = require('Pattern');
+
+<Pattern src="/api/static/images/patternplate.svg" alt="Patternplate logo"/>
+```
+
+### What just happend
+
+*  Patternplate serves static resources from a folder called `static` from the
+root of your project
+* You can access these resources via `/api/static` by referencing them in
+your patterns
+* You can do that e.g. for your CSS as well, but keep in mind your applications
+static folder may be located somewhere else, so you might want to adjust paths!
