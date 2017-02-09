@@ -40,7 +40,7 @@ and place the following inside:
 
 At this point you should see the [Button](/pattern/button) entry when reloading this interface.
 
-### What just happend
+### What just happened
 
 `patterns/button/pattern.json` is a "manifest" in patternplate-slang.
 Manifests are the files patternplate uses to distinguish patterns from any
@@ -75,7 +75,7 @@ var children = this.props.children || 'Button';
 
 Reload [Button](/pattern/button), you'll see a rendered demo now. Hooray!
 
-### What just happend
+### What just happened
 
 There are some things going on here so we'll break them down:
 
@@ -121,7 +121,7 @@ Bare markup is pretty bleak. We'll add some basic styling to it.
 
 Reload [Button](/pattern/button) to inspect the button's new styling.
 
-### What just happend
+### What just happened
 
 *  Another index file, another format. patternplate picks up on the `.less` file by default,
 transforms it and delivers it as `css` to the browser
@@ -173,7 +173,7 @@ button();
 Reload the button demo and click it. It counts the times you clicked and
 reverts back to its original text content after two seconds.
 
-### What just happend
+### What just happened
 
 *   You'll recognise the `index.js` file as pattern
 `index` file by now. We just created a file in the js format,
@@ -221,7 +221,7 @@ mv patterns/button patterns/atoms/
 Reloading the interface will reveal that our button has moved along there:
 It is now available as [pattern/atoms/button](pattern/atoms/button) in the web interface. In the navigation on the left you'll see a category with the name [Atoms](pattern/atoms).
 
-### What just happend
+### What just happened
 
 *  The folder structure in `patterns` determines the navigational structure in the web interface
 
@@ -275,7 +275,7 @@ var Button = require('button'); // include patterns/atoms/button/index.jsx
 
 Load [molecules/button-row](/pattern/molecules/button-row): Profit!
 
-### What just happend
+### What just happened
 
 *  By adding the `patterns` key to `patterns/molecules/button-row/pattern.json`, we told patternplate to
 make the sources of `patterns/atoms/button` available to `button-row`
@@ -363,7 +363,7 @@ var Pattern = require('Pattern');
 <Pattern src="/api/static/images/patternplate.svg" alt="Patternplate logo"/>
 ```
 
-### What just happend
+### What just happened
 
 *  Patternplate serves static resources from a folder called `static` from the
 root of your project
