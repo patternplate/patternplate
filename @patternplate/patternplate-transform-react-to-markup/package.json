@@ -89,7 +89,7 @@
     "conventional-changelog-cli": "1.1.1",
     "conventional-changelog-lint": "1.1.1",
     "conventional-recommended-bump": "0.1.0",
-    "cz-conventional-changelog": "1.1.5",
+    "cz-conventional-changelog": "2.0.0",
     "cz-conventional-changelog-lint": "0.1.3",
     "dependency-check": "2.6.0",
     "husky": "0.13.2",
