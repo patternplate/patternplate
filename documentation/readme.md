@@ -13,6 +13,11 @@ This documentation is segmented by format, each modeled according to a Persona w
 *  [First steps](./first-steps.md) - Guided tour to your first patterns.
 This is included in the `patternplate init` scaffold.
 
+*  Setting up [eslint](./eslint.md) - Learn how to configure `eslint` or `xo`
+to work with patternplate.
+
+*  Setting up [flow-type](./flow-type.md) - Configure flow-type for your
+patternplate project.
 
 ## Concepts and Mechanics
 

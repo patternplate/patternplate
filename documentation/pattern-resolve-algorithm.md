@@ -1,3 +1,5 @@
+> < [Back](./readme.md) to Readme
+
 # Pattern resolve algorithm
 
 Patternplate uses an extended resolve algorithm based on [NodeJS' require.resolve algorithm](https://nodejs.org/docs/latest/api/modules.html#modules_all_together).
