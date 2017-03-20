@@ -53,7 +53,7 @@ export const emptyFile = getFile({
 });
 
 export const basicFile = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require('react');
 		module.exports = function Basic() {
 			return React.createElement('div', {id: 'basic'}, ['basic']);
@@ -64,7 +64,7 @@ export const basicFile = getFile({
 });
 
 export const componentDidMountFile = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require('react');
 		module.exports = React.createClass({
 			getInitialState() {
@@ -86,7 +86,7 @@ export const componentDidMountFile = getFile({
 });
 
 export const clickFile = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require('react');
 		module.exports = React.createClass({
 			getInitialState() {

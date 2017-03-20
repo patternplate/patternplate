@@ -19,16 +19,38 @@ const mountCode = `
 	}(window, document));
 `;
 
-export default function () {
+export default function (app) {
 	return async file => {
 		const source = Buffer.isBuffer(file.buffer) ?
 			file.buffer.toString('utf-8') :
 			file.buffer;
 
-		file.buffer = source.endsWith(mountCode) ?
-			source :
-			`${source}\n${mountCode}`;
+		const mounts = source.endsWith(mountCode);
 
+		if (!mounts) {
+			file.buffer = `${source}\n${mountCode}`;
+		}
+
+		const {pattern = {}} = file;
+		const {post = []} = pattern;
+		pattern.post = post.concat(publishResource(app, file));
 		return file;
+	};
+}
+
+function publishResource(app, file) {
+	const {pattern = {}} = file;
+	const {id} = pattern;
+
+	return result => {
+		app.resources = app.resources.filter(r => r.id !== `react-mount/${id}`);
+
+		app.resources.push({
+			id: `react-mount/${id}`,
+			pattern: id,
+			type: 'js',
+			reference: true,
+			content: result
+		});
 	};
 }
