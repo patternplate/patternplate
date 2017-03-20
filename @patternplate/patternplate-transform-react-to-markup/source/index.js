@@ -30,6 +30,7 @@ export default function createReactRendererFactory(application) {
 		);
 
 		const results = await renderMarkup(file, settings, application);
+
 		file.buffer = results.buffer;
 		file.meta = merge({}, file.meta, results.meta);
 		return file;

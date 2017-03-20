@@ -10,9 +10,6 @@ export default (file, options = {}, application) => {
 	const renderFunction = getRenderFunction(isStatic, application);
 	const component = getComponent(file);
 
-	const meta = options.automount ?
-		{scripts: [{path: 'react-mount', id: file.pattern.id}]} : {};
-
 	try {
 		const original = console.error;
 
@@ -28,13 +25,15 @@ export default (file, options = {}, application) => {
 			renderFunction(React.createElement(component)) :
 			'';
 
+		const post = file.pattern.post || [];
+		post.forEach(p => p());
+
 		const buffer = options.automount ?
 			`<div data-mountpoint>${result}</div>` :
 			result;
 
 		return {
-			buffer,
-			meta
+			buffer
 		};
 	} catch (err) {
 		const stack = trace.parse(err);

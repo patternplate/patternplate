@@ -6,18 +6,18 @@ export default function run(file) {
 	const context = getFileContext(file, run);
 
 	try {
-		const result = executeFile(file, context);
+		const main = executeFile(file, context);
 
-		if (!result) {
+		if (!main) {
 			return null;
 		}
 
-		const hasDefaultExport = typeof result.default === 'object' ||
-			typeof result.default === 'function';
+		const hasDefaultExport = typeof main.default === 'object' ||
+			typeof main.default === 'function';
 
 		return hasDefaultExport ?
-			merge(result.default, result) :
-			result;
+			merge(main.default, main) :
+			main;
 	} catch (err) {
 		const errorFile = file || {pattern: {}};
 		const message = [
