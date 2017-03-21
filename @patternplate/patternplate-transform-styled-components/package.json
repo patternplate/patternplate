@@ -1,6 +1,6 @@
 {
   "name": "patternplate-transform-styled-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serverside rendering for styled-components in patternplate",
   "files": [
     "index.js"
