@@ -1,4 +1,5 @@
 // @flow
+import requireUncached from 'require-uncached';
 import resolveFrom from 'resolve-from';
 
 export default styledComponentsTransformFactory;
@@ -39,7 +40,8 @@ function styledComponentsTransformFactory(application: Object): Function {
 
 function getCSS(file, app) {
 	return (): void => {
-		const styled = require(resolveFrom(process.cwd(), 'styled-components')); // eslint-disable-line flow-check/check, import/no-dynamic-require
+		const styledPath = resolveFrom(process.cwd(), 'styled-components');
+		const styled = requireUncached(styledPath); // eslint-disable-line flow-check/check, import/no-dynamic-require
 		const result = styled.styleSheet.getCSS();
 		styled.styleSheet.reset();
 

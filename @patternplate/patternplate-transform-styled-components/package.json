@@ -101,8 +101,7 @@
     "xo": "0.17.1"
   },
   "dependencies": {
-    "lodash.mergewith": "4.6.0",
-    "require-from": "0.10.0",
-    "require-uncached": "1.0.3"
+    "require-uncached": "1.0.3",
+    "resolve-from": "2.0.0"
   }
 }
