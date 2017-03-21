@@ -63,12 +63,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sinnerschrader/patternplate-transform-styled-components.git"
+    "url": "git+https://github.com/marionebl/patternplate-transform-styled-components.git"
   },
   "bugs": {
-    "url": "https://github.com/sinnerschrader/patternplate/issues"
+    "url": "https://github.com/marionebl/patternplate/issues"
   },
-  "homepage": "https://github.com/sinnerschrader/patternplate-transform-styled-components#readme",
+  "homepage": "https://github.com/marionebl/patternplate-transform-styled-components#readme",
   "keywords": [
     "react",
     "patternplate",
