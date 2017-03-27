@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/sinnerschrader/patternplate/compare/v1.3.0...v1.4.0) (2017-03-27)
+
+
+### Features
+
+* bump patternplate-server ([bb169e0](https://github.com/sinnerschrader/patternplate/commit/bb169e0))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/sinnerschrader/patternplate/compare/v1.2.1...v1.3.0) (2016-12-14)
 
