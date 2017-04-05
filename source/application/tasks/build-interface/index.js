@@ -21,7 +21,7 @@ import trap from './trap';
 const getEnvironments = serverRequire('get-environments');
 
 const defaults = {
-	target: 'build/build-interface'
+	out: 'build/build-interface'
 };
 
 const jobPrefixes = [
@@ -41,7 +41,7 @@ export default buildInterface;
 async function buildInterface(application, configuration) {
 	const renderer = configuration.verbose ? 'verbose' : 'default';
 	const settings = merge({}, defaults, configuration);
-	const targetPath = path.resolve(process.cwd(), settings.target);
+	const targetPath = path.resolve(process.cwd(), settings.out || settings.target);
 	const patternsPath = path.resolve(process.cwd(), './patterns');
 
 	const app = application.parent;
