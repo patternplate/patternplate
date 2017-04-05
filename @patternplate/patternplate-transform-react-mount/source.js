@@ -41,8 +41,13 @@ export default function (app) {
 function publishResource(app, file) {
 	const {pattern = {}} = file;
 	const {id} = pattern;
+	const isOverridden = file.basename === 'index' && `demo${file.ext}` in file.pattern.files;
 
 	return result => {
+		if (isOverridden) {
+			return;
+		}
+
 		app.resources = app.resources.filter(r => r.id !== `react-mount/${id}`);
 
 		app.resources.push({
