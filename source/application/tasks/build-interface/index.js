@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 
 import {merge} from 'lodash';
@@ -11,6 +12,7 @@ import buildDemoFiles from './build-demo-files';
 import buildDemos from './build-demos';
 import buildEntry from './build-entry';
 import buildPages from './build-pages';
+import buildResources from './build-resources';
 import buildSources from './build-sources';
 import buildStatics from './build-statics';
 import getPatternDatasets from './get-pattern-datasets';
@@ -30,6 +32,7 @@ const jobPrefixes = [
 ];
 
 const selectAutoMount = get('configuration.transforms.react-to-markup.opts.automount');
+const CWD = process.cwd();
 
 export default buildInterface;
 /**
@@ -40,8 +43,8 @@ export default buildInterface;
  */
 async function buildInterface(application, configuration) {
 	const settings = merge({}, defaults, configuration);
-	const targetPath = path.resolve(process.cwd(), settings.out || settings.target);
-	const patternsPath = path.resolve(process.cwd(), './patterns');
+	const targetPath = path.resolve(CWD, settings.out || settings.target);
+	const patternsPath = path.resolve(CWD, './patterns');
 
 	const app = application.parent;
 	const client = application.parent.client;
@@ -64,7 +67,8 @@ async function buildInterface(application, configuration) {
 	const serverContext = {app: server, automount, rewriter, jobPad, flags};
 	const clientContext = {app: client, rewriter, jobPad, flags};
 
-	const apiTargetPath = path.resolve(targetPath, 'api', 'pattern');
+	const apiPatternTargetPath = path.resolve(targetPath, 'api', 'pattern');
+	const apiResourceTargetPath = path.resolve(targetPath, 'api', 'resource');
 	const patternTargetPath = path.resolve(targetPath, 'pattern');
 	const demoTargetPath = path.resolve(targetPath, 'demo');
 
@@ -134,7 +138,7 @@ async function buildInterface(application, configuration) {
 		{
 			title: 'Data',
 			task() {
-				return buildData(patternData, apiTargetPath, serverContext);
+				return buildData(patternData, apiPatternTargetPath, serverContext);
 			}
 		},
 		{
@@ -151,9 +155,22 @@ async function buildInterface(application, configuration) {
 				return Observable.from(patternData)
 					.flatMap(data => buildSources([data], fileTargetPath, serverContext));
 			}
-		}
+		},
 	], {concurrent: true});
 
 	await tasks.run();
+
+	const resourceTask = new Listr([
+		{
+			title: 'Pattern resources',
+			task() {
+				return buildResources(application.resources, apiResourceTargetPath);
+			}
+		}
+	]);
+
+	await resourceTask.run();
+
+
 	release(m => m.forEach(message => console.log(message)));
 }
