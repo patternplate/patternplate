@@ -20,7 +20,6 @@ function buildResources(resources, target) {
 				return await source.content;
 			},
 			async write(source, set) {
-				console.log(source);
 				const baseName = path.basename(set.id);
 				const dirName = path.dirname(set.id);
 				const filePath = path.resolve(target, dirName, `${baseName}.${set.type}`);
