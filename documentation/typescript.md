@@ -21,7 +21,7 @@ module.exports = {
     inFormat: 'tsx',
     outFormat: 'js',
     opts: {
-			// TypeScript compiler options goes here
+      // TypeScript compiler options goes here
       target: 'es5',
       module: 'commonjs',
       jsx: 'react'
