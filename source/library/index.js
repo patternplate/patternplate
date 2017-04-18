@@ -42,9 +42,15 @@ async function patternplate(args) {
 	patternplate.server = patternplateServerInstance;
 	patternplate.client = patternplateClientInstance;
 
-	patternplate.resources = [];
-	patternplate.server.resources = patternplate.resources;
-	patternplate.client.resources = patternplate.resources;
+	const resources = [
+		...(patternplate.resources || []),
+		...(patternplate.server.resources || []),
+		...(patternplate.client.resources || [])
+	];
+
+	patternplate.resources = resources;
+	patternplate.server.resources = resources;
+	patternplate.client.resources = resources;
 
 	patternplate.server.parent = patternplate;
 	patternplate.client.parent = patternplate;
