@@ -1,3 +1,22 @@
+<a name="1.5.0-6"></a>
+# [1.5.0-6](https://github.com/sinnerschrader/patternplate/compare/v1.4.0-1...v1.5.0-6) (2017-05-11)
+
+
+### Bug Fixes
+
+* allow transforms to set app.resources during init ([f8dc8bf](https://github.com/sinnerschrader/patternplate/commit/f8dc8bf))
+* bump patternplate-* dependencies ([1f207c0](https://github.com/sinnerschrader/patternplate/commit/1f207c0))
+* persists .resources to interface build ([750f665](https://github.com/sinnerschrader/patternplate/commit/750f665))
+* support .out for target folder config ([5506a8c](https://github.com/sinnerschrader/patternplate/commit/5506a8c))
+
+
+### Features
+
+* bump patternplate-server ([416770a](https://github.com/sinnerschrader/patternplate/commit/416770a))
+* ensure presence of app.resources[] ([e7a5f3a](https://github.com/sinnerschrader/patternplate/commit/e7a5f3a))
+
+
+
 <a name="1.4.0-2"></a>
 # [1.4.0-2](https://github.com/sinnerschrader/patternplate/compare/v1.4.0-1...v1.4.0-2) (2017-03-27)
 
