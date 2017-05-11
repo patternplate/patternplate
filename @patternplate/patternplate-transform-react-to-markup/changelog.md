@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/sinnerschrader/patternplate-transform-react-to-markup/compare/v1.0.2...v1.0.3) (2017-05-11)
+
+
+### Bug Fixes
+
+* use correct repository url ([b6c9954](https://github.com/sinnerschrader/patternplate-transform-react-to-markup/commit/b6c9954))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/sinnerschrader/patternplate-transform-react/compare/v1.0.0...v1.0.2) (2016-11-12)
 
