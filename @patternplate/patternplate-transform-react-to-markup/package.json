@@ -51,12 +51,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sinnerschrader/patternplate-transform-react.git"
+    "url": "git+https://github.com/sinnerschrader/patternplate-transform-react-to-markup.git"
   },
   "bugs": {
-    "url": "https://github.com/sinnerschrader/patternplate-transform-react/issues"
+    "url": "https://github.com/sinnerschrader/patternplate-transform-react-to-markup/issues"
   },
-  "homepage": "https://github.com/sinnerschrader/patternplate-transform-react#readme",
+  "homepage": "https://github.com/sinnerschrader/patternplate-transform-react-to-markup#readme",
   "keywords": [
     "react",
     "patternplate",
