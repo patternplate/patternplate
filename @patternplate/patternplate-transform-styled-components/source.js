@@ -41,9 +41,8 @@ function styledComponentsTransformFactory(application: Object): Function {
 function getCSS(file, app) {
 	return (): void => {
 		const styledPath = resolveFrom(process.cwd(), 'styled-components');
-		const styled = requireUncached(styledPath); // eslint-disable-line flow-check/check, import/no-dynamic-require
-		const result = styled.styleSheet.getCSS();
-		styled.styleSheet.reset();
+		const styled = requireUncached(styledPath);
+		const sheet = new styled.ServerStyleSheet();
 
 		app.resources = app.resources.filter(r => r.id !== `styled-components/${file.pattern.id}`);
 
@@ -51,8 +50,9 @@ function getCSS(file, app) {
 			id: `styled-components/${file.pattern.id}`,
 			pattern: file.pattern.id,
 			type: 'css',
-			reference: true,
-			content: result
+			reference: false,
+			wrap: false,
+			content: sheet.getStyleTags()
 		});
 	};
 }
