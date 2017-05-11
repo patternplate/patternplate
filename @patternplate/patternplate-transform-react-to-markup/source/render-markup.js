@@ -1,6 +1,4 @@
-import chalk from 'chalk';
 import React from 'react';
-import trace from 'stack-trace';
 
 import getComponent from './get-component';
 import getRenderFunction from './get-render-function';
@@ -36,18 +34,6 @@ export default (file, options = {}, application) => {
 			buffer
 		};
 	} catch (err) {
-		const stack = trace.parse(err);
-		const top = stack[0];
-
-		const source = file.buffer.toString();
-		const lines = source.split('\n');
-
-		const cut = top ? [
-			...lines.slice(top.lineNumber - 2, top.lineNumber - 1),
-			chalk.bold.red(lines[top.lineNumber - 1]),
-			...lines.slice(top.lineNumber, top.lineNumber + 2)
-		] : [];
-
 		const message = [
 			`Error during rendering of file ${file.path}`,
 			`in pattern ${file.pattern.id}:`
@@ -55,8 +41,7 @@ export default (file, options = {}, application) => {
 
 		err.message = [
 			message,
-			err.message,
-			cut.join('\n')
+			err.message
 		].join('\n');
 
 		err.fileName = file.path;
