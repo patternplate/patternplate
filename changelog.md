@@ -1,3 +1,13 @@
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/sinnerschrader/patternplate/compare/v1.6.0...v1.6.1) (2017-05-17)
+
+
+### Bug Fixes
+
+* trap console output when not in verbose mode ([b95f74a](https://github.com/sinnerschrader/patternplate/commit/b95f74a))
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/sinnerschrader/patternplate/compare/v1.5.0...v1.6.0) (2017-05-17)
 
