@@ -1,3 +1,21 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/sinnerschrader/patternplate/compare/v1.6.1...v1.7.0) (2017-05-17)
+
+
+### Bug Fixes
+
+* allow transforms to set app.resources during init ([e18bcb9](https://github.com/sinnerschrader/patternplate/commit/e18bcb9))
+* persists .resources to interface build ([2e2e3d6](https://github.com/sinnerschrader/patternplate/commit/2e2e3d6))
+* support .out for target folder config ([b226112](https://github.com/sinnerschrader/patternplate/commit/b226112))
+
+
+### Features
+
+* ensure presence of app.resources[] ([9a98add](https://github.com/sinnerschrader/patternplate/commit/9a98add))
+* update to server[@1](https://github.com/1).2, client[@1](https://github.com/1).4 ([ce40dc2](https://github.com/sinnerschrader/patternplate/commit/ce40dc2))
+
+
+
 <a name="1.6.1"></a>
 ## [1.6.1](https://github.com/sinnerschrader/patternplate/compare/v1.6.0...v1.6.1) (2017-05-17)
 
