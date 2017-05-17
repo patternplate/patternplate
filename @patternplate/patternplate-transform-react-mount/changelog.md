@@ -1,3 +1,18 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v1.0.0...v1.1.0) (2017-05-17)
+
+
+### Bug Fixes
+
+* push only resources for non-overridden pattern files ([c86c879](https://github.com/sinnerschrader/patternplate-transform-react-mount/commit/c86c879))
+
+
+### Features
+
+* use resources queue ([4bf4fb0](https://github.com/sinnerschrader/patternplate-transform-react-mount/commit/4bf4fb0))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/sinnerschrader/patternplate-transform-react-mount/compare/v0.1.2...v1.0.0) (2016-11-15)
 
