@@ -1,3 +1,13 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/sinnerschrader/patternplate/compare/v1.4.0...v1.5.0) (2017-05-17)
+
+
+### Features
+
+* add --verbose flag to build-interface ([7e24338](https://github.com/sinnerschrader/patternplate/commit/7e24338))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/sinnerschrader/patternplate/compare/v1.3.0...v1.4.0) (2017-03-27)
 
