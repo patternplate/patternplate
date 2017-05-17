@@ -98,7 +98,7 @@ async function buildInterface(application, configuration) {
 			return p;
 		});
 
-	const release = configuration.verbose? trap(app) : () => {};
+	const release = configuration.verbose ? () => {} : trap(app);
 
 	const tasks = new Listr([
 		{
