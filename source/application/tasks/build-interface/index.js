@@ -39,6 +39,7 @@ export default buildInterface;
  * @return {Promise<void>}
  */
 async function buildInterface(application, configuration) {
+	const renderer = configuration.verbose ? 'verbose' : 'default';
 	const settings = merge({}, defaults, configuration);
 	const targetPath = path.resolve(process.cwd(), settings.target);
 	const patternsPath = path.resolve(process.cwd(), './patterns');
@@ -47,7 +48,6 @@ async function buildInterface(application, configuration) {
 	const client = application.parent.client;
 	const server = application.parent.server;
 
-	// const release = trap(application);
 	const automount = selectAutoMount(server);
 
 	const environments = await getEnvironments(patternsPath, {
@@ -85,7 +85,7 @@ async function buildInterface(application, configuration) {
 					.map(d => d.message).filter(Boolean);
 			}
 		}
-	]);
+	], {renderer});
 
 	await dataTask.run();
 
@@ -98,7 +98,7 @@ async function buildInterface(application, configuration) {
 			return p;
 		});
 
-	const release = trap(app);
+	const release = configuration.verbose? trap(app) : () => {};
 
 	const tasks = new Listr([
 		{
@@ -152,7 +152,7 @@ async function buildInterface(application, configuration) {
 					.flatMap(data => buildSources([data], fileTargetPath, serverContext));
 			}
 		}
-	], {concurrent: true});
+	], {concurrent: true, renderer});
 
 	await tasks.run();
 	release(m => m.forEach(message => console.log(message)));
