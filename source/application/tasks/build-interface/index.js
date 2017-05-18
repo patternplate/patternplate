@@ -43,6 +43,8 @@ export default buildInterface;
  */
 async function buildInterface(application, configuration) {
 	const renderer = configuration.verbose ? 'verbose' : 'default';
+	const concurrent = Boolean(configuration.concurrent);
+
 	const settings = merge({}, defaults, configuration);
 	const targetPath = path.resolve(CWD, settings.out || settings.target);
 	const patternsPath = path.resolve(CWD, './patterns');
@@ -156,7 +158,7 @@ async function buildInterface(application, configuration) {
 					.flatMap(data => buildSources([data], fileTargetPath, serverContext));
 			}
 		}
-	], {concurrent: true, renderer});
+	], {concurrent, renderer});
 
 	await tasks.run();
 
