@@ -1,4 +1,5 @@
 import path from 'path';
+import {max, padEnd} from 'lodash/fp';
 import Observable from 'zen-observable';
 
 import build from './build';
@@ -10,19 +11,16 @@ const getPatternFile = serverRequire('get-pattern-file');
 
 export default buildDemoFiles;
 
-function buildDemoFiles(dataset, target, context) {
-	const {app, rewriter} = context;
-	const fileSets = getFileSets([dataset]);
-
+function buildDemoFiles(datasets, target, context) {
 	return new Observable(observer => {
-		if (!fileSets.length) {
-			return observer.complete();
-		}
+		const {app, rewriter} = context;
+		const fileSets = getFileSets(datasets);
+		const idPad = padEnd(max(fileSets.map(e => e.id.length)));
 
 		build(fileSets, {
-			read(file) {
+			read(file, files, count) {
 				const set = file.pattern;
-				observer.next(file.id);
+				observer.next(`${context.verbose ? 'Demo files: ' : ''}${idPad(file.id)} ${count}/${files.length}`);
 				return getPatternFile(app, set.id, {
 					outFormats: [file.out],
 					baseNames: [path.basename(file.path, path.extname(file.path))],
@@ -37,6 +35,7 @@ function buildDemoFiles(dataset, target, context) {
 				return writeEach(result, getTargets(base, baseName, file.pattern), rewriter);
 			},
 			done() {
+				observer.next(`${context.verbose ? 'Demo files: ' : ''}${fileSets.length}/${fileSets.length}`);
 				observer.complete();
 			}
 		})

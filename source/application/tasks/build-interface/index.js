@@ -5,6 +5,7 @@ import {merge} from 'lodash';
 import {get, max, padEnd} from 'lodash/fp';
 import Listr from 'listr';
 import Observable from 'zen-observable';
+import isci from 'is-ci';
 
 import buildComponents from './build-components';
 import buildData from './build-data';
@@ -42,7 +43,8 @@ export default buildInterface;
  * @return {Promise<void>}
  */
 async function buildInterface(application, configuration) {
-	const renderer = configuration.verbose ? 'verbose' : 'default';
+	const verbose = typeof configuration.verbose === 'boolean' ? configuration.verbose : isci;
+	const renderer = verbose ? 'verbose' : 'default';
 	const concurrent = Boolean(configuration.concurrent);
 
 	const settings = merge({}, defaults, configuration);
@@ -66,8 +68,8 @@ async function buildInterface(application, configuration) {
 	const jobPad = padEnd(jobMax);
 
 	const rewriter = await getRewriter(targetPath);
-	const serverContext = {app: server, automount, rewriter, jobPad, flags};
-	const clientContext = {app: client, rewriter, jobPad, flags};
+	const serverContext = {app: server, automount, rewriter, jobPad, flags, verbose};
+	const clientContext = {app: client, rewriter, jobPad, flags, verbose};
 
 	const apiPatternTargetPath = path.resolve(targetPath, 'api', 'pattern');
 	const apiResourceTargetPath = path.resolve(targetPath, 'api', 'resource');
@@ -88,7 +90,9 @@ async function buildInterface(application, configuration) {
 						}
 						return d;
 					})
-					.map(d => d.message).filter(Boolean);
+					.map(d => d.message)
+					.filter(Boolean)
+					.map(m => `${verbose ? 'Pattern data: ' : ''}${m}`);
 			}
 		}
 	], {renderer});
@@ -104,7 +108,7 @@ async function buildInterface(application, configuration) {
 			return p;
 		});
 
-	const release = configuration.verbose ? () => {} : trap(app);
+	const release = verbose ? () => {} : trap(app);
 
 	const tasks = new Listr([
 		{
@@ -120,15 +124,27 @@ async function buildInterface(application, configuration) {
 			}
 		},
 		{
+			title: 'Data',
+			task() {
+				return buildData(patternData, apiPatternTargetPath, serverContext);
+			}
+		},
+		{
 			title: 'Page files',
 			task() {
 				return buildPages(patternData, patternTargetPath, clientContext);
 			}
 		},
 		{
-			title: 'Automount components',
+			title: 'Sources',
 			task() {
-				return buildComponents(patternData, demoTargetPath, serverContext);
+				return buildSources(patternData,  path.resolve(targetPath, 'api', 'file'), serverContext);
+			}
+		},
+		{
+			title: 'Demo Files',
+			task() {
+				return buildDemoFiles(patternData, demoTargetPath, serverContext);
 			}
 		},
 		{
@@ -138,24 +154,9 @@ async function buildInterface(application, configuration) {
 			}
 		},
 		{
-			title: 'Data',
+			title: 'Automount components',
 			task() {
-				return buildData(patternData, apiPatternTargetPath, serverContext);
-			}
-		},
-		{
-			title: 'Demo Files',
-			task() {
-				return Observable.from(patternData)
-					.flatMap(data => buildDemoFiles(data, demoTargetPath, serverContext));
-			}
-		},
-		{
-			title: 'Sources',
-			task() {
-				const fileTargetPath = path.resolve(targetPath, 'api', 'file');
-				return Observable.from(patternData)
-					.flatMap(data => buildSources([data], fileTargetPath, serverContext));
+				return buildComponents(patternData, demoTargetPath, serverContext);
 			}
 		}
 	], {concurrent, renderer});
@@ -166,7 +167,7 @@ async function buildInterface(application, configuration) {
 		{
 			title: 'Pattern resources',
 			task() {
-				return buildResources(application.resources, apiResourceTargetPath);
+				return buildResources(application.resources, apiResourceTargetPath, serverContext);
 			}
 		}
 	], {renderer});

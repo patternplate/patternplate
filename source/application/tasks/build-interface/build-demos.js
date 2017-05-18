@@ -21,17 +21,16 @@ function buildDemos(datasets, target, context) {
 
 		build(envs, {
 			async read(set, sets, count) {
-				observer.next(`${idPad(set.id)} ${count}/${envs.length}`);
+				observer.next(`${context.verbose ? 'Demos: ' : ''}${idPad(set.id)} ${count}/${envs.length}`);
 				return await getPatternDemo(app, set.id, {environments: set.env}, set.env);
 			},
 			async write(demo, set, sets, count) {
-				observer.next(`${idPad(set.id)} ${count}/${envs.length}`);
 				const base = path.resolve(target, ...set.relative);
 				const baseName = set.name;
 				writeEach(demo, getTargets(base, baseName, set), rewriter);
 			},
 			done() {
-				observer.next(`${envs.length}/${envs.length}`);
+				observer.next(`${context.verbose ? 'Demos: ' : ''}${envs.length}/${envs.length}`);
 				observer.complete();
 			}
 		}).catch(err => observer.error(err));

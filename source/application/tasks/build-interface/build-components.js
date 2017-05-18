@@ -20,11 +20,10 @@ function buildComponents(datasets, target, context) {
 		// Build component patterns
 		build(sets, {
 			async read(set, sets, count) {
-				observer.next(`${idPad(set.id)} ${count}/${sets.length}`);
+				observer.next(`${context.verbose ? 'Automount components: ' : ''}${idPad(set.id)} ${count}/${sets.length}`);
 				return ((await getComponent(app, set.id, set.env)) || {}).buffer;
 			},
 			async write(source, set, sets, count) {
-				observer.next(`${idPad(set.id)} ${count}/${sets.length}`);
 				const base = path.resolve(...[target, ...set.relative, set.baseName]);
 				const baseName = 'component.js';
 				if (source) {
@@ -32,7 +31,7 @@ function buildComponents(datasets, target, context) {
 				}
 			},
 			done() {
-				observer.next(`${sets.length}/${sets.length}`);
+				observer.next(`${context.verbose ? 'Automount components: ' : ''}${sets.length}/${sets.length}`);
 				observer.complete();
 			}
 		}).catch(err => observer.error(err));

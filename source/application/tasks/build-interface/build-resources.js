@@ -1,4 +1,5 @@
 import path from 'path';
+import {max, padEnd} from 'lodash/fp';
 import Observable from 'zen-observable';
 
 import build from './build';
@@ -7,16 +8,15 @@ import getSourceSets from './get-source-sets';
 import writeEach from './write-each';
 import serverRequire from './server-require';
 
-// const getPatternSource = serverRequire('get-pattern-source');
-// const urlQuery = serverRequire('utilities/url-query');
-
 export default buildResources;
 
-function buildResources(resources, target) {
+function buildResources(resources, target, context) {
 	return new Observable(observer => {
+		const idPad = padEnd(max(resources.map(r => r.id.length)));
+
 		build(resources, {
-			async read(source) {
-				observer.next(source.id);
+			async read(source, _, count) {
+				observer.next(`${context.verbose ? 'Resources: ' : ''}${idPad(source.id)} ${count}/${resources.length}`);
 				return await source.content;
 			},
 			async write(source, set) {
@@ -26,6 +26,7 @@ function buildResources(resources, target) {
 				return writeEach(source, [filePath]);
 			},
 			done() {
+				observer.next(`${context.verbose ? 'Resources: ' : ''}${resources.length}/${resources.length}`);
 				observer.complete();
 			}
 		}).catch(err => observer.error(err));

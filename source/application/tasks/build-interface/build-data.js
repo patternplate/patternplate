@@ -20,18 +20,18 @@ function buildData(datasets, target, context) {
 
 		build(envSets, {
 			async read(set, sets, count) {
-				observer.next(`${idPad(set.id)} ${count}/${sets.length}`);
+				observer.next(`${context.verbose ? 'Data: ' : ''}${idPad(set.id)} ${count}/${sets.length}`);
 				return getPatternMetaData(app, set.id, set.env);
 			},
 			async write(json, set, sets, count) {
-				observer.next(`${idPad(set.id)} ${count}/${sets.length}`);
+				observer.next(`${context.verbose ? 'Data: ' : ''}${idPad(set.id)} ${count}/${sets.length}`);
 				const base = path.resolve(target, ...set.relative);
 				const baseName = `${set.baseName}.json`;
 				const targets = getTargets(base, baseName, set);
 				return writeEach(JSON.stringify(json), targets);
 			},
 			done() {
-				observer.next(`${envSets.length}/${envSets.length}`);
+				observer.next(`${context.verbose ? 'Data: ' : ''}${envSets.length}/${envSets.length}`);
 				observer.complete();
 			}
 		}).catch(err => observer.error(err));

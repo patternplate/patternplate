@@ -1,4 +1,5 @@
 import path from 'path';
+import {max, padEnd} from 'lodash/fp';
 import Observable from 'zen-observable';
 
 import build from './build';
@@ -18,9 +19,11 @@ function buildSources(datasets, target, context) {
 		const sourceSets = getSourceSets(datasets);
 		const getSource = getPatternSource(app);
 
+		const idPad = padEnd(max(sourceSets.map(e => e.type.length + e.file.id.length + 1)));
+
 		build(sourceSets, {
-			async read(set) {
-				observer.next(set.file.id);
+			async read(set, sets, count) {
+				observer.next(`${context.verbose ? 'Sources: ' : ''}${idPad(`${set.type}:${set.file.id}`)} ${count}/${sets.length}`);
 				return getSource(set.file.id, set.type, set.env);
 			},
 			async write(source, set) {
@@ -34,6 +37,7 @@ function buildSources(datasets, target, context) {
 				return writeEach(source.body, getTargets(base, baseName, set), rewriter);
 			},
 			done() {
+				observer.next(`${context.verbose ? 'Sources: ' : ''}${sourceSets.length}/${sourceSets.length}`);
 				observer.complete();
 			}
 		}).catch(err => observer.error(err));

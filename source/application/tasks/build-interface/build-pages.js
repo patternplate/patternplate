@@ -29,16 +29,15 @@ function buildPages(ids, target, context) {
 
 		build(values(pages), {
 			async read(id, ids, count) {
-				observer.next(`${idPad(id.id)} ${count}/${ids.length}`);
+				observer.next(`${context.verbose ? 'Page files: ' : ''}${idPad(id.id)} ${count}/${ids.length}`);
 				return renderPage(app, `/pattern/${id.id}`, renderFilters);
 			},
 			async write(page, id, ids, count) {
-				observer.next(`${idPad(id.id)} ${count}/${ids.length}`);
 				const pagePath = path.resolve(...[target, ...id.relative, id.name]);
 				return writeEach(page, [pagePath], rewriter);
 			},
 			done() {
-				observer.next(`${ids.length}/${ids.length}`);
+				observer.next(`${context.verbose ? 'Page files: ' : ''}${ids.length}/${ids.length}`);
 				observer.complete();
 			}
 		}).catch(err => observer.error(err));

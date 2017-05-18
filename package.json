@@ -42,6 +42,7 @@
     "default-shell": "^1.0.1",
     "find-root": "^0.1.1",
     "globby": "^6.0.0",
+    "is-ci": "^1.0.10",
     "is-stream": "^1.1.0",
     "listr": "^0.7.0",
     "lodash": "^4.14.0",
