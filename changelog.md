@@ -1,3 +1,13 @@
+<a name="1.7.2"></a>
+## [1.7.2](https://github.com/sinnerschrader/patternplate/compare/v1.7.1...v1.7.2) (2017-05-18)
+
+
+### Bug Fixes
+
+* improve log output on ci ([e4d6f2f](https://github.com/sinnerschrader/patternplate/commit/e4d6f2f))
+
+
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://github.com/sinnerschrader/patternplate/compare/v1.7.0...v1.7.1) (2017-05-18)
 
