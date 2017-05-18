@@ -1,3 +1,13 @@
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/sinnerschrader/patternplate/compare/v1.7.0...v1.7.1) (2017-05-18)
+
+
+### Bug Fixes
+
+* build sequentially by default ([f5a2400](https://github.com/sinnerschrader/patternplate/commit/f5a2400))
+
+
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/sinnerschrader/patternplate/compare/v1.6.1...v1.7.0) (2017-05-17)
 
