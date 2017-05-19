@@ -1,3 +1,13 @@
+<a name="1.7.3-2"></a>
+## [1.7.3-2](https://github.com/sinnerschrader/patternplate/compare/v1.7.3-1...v1.7.3-2) (2017-05-19)
+
+
+### Bug Fixes
+
+* remove mkdirp, now incorporated in mkdirp-promise ([9566274](https://github.com/sinnerschrader/patternplate/commit/9566274))
+
+
+
 <a name="1.7.3-1"></a>
 ## [1.7.3-1](https://github.com/sinnerschrader/patternplate/compare/v1.7.3-0...v1.7.3-1) (2017-05-19)
 
