@@ -1,4 +1,4 @@
-import {readFile} from 'mz/fs';
+import * as sander from 'sander';
 import exists from 'path-exists';
 import {merge} from 'lodash';
 import pkg from '../../package';
@@ -30,7 +30,7 @@ const defaultManifest = {
 
 async function getManifestData(manifestPath, fallbackData) {
 	if (await exists(manifestPath)) {
-		const previousData = JSON.parse(await readFile(manifestPath));
+		const previousData = JSON.parse(await sander.readFile(manifestPath));
 		return merge({}, previousData, fallbackData);
 	}
 

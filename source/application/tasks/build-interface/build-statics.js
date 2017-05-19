@@ -1,7 +1,7 @@
 import path from 'path';
 import exists from 'path-exists';
 import findRoot from 'find-root';
-import sander from 'sander';
+import * as sander from 'sander';
 import {sync} from 'resolve';
 
 const cwd = process.cwd();
