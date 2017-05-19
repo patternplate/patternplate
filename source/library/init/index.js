@@ -1,11 +1,9 @@
 import path from 'path';
-import {writeFile} from 'mz/fs';
 import defaultShell from 'default-shell';
 import exists from 'path-exists';
-import mkdirp from 'mkdirp-promise';
 import {merge} from 'lodash';
 import ora from 'ora';
-import sander from 'sander';
+import * as sander from 'sander';
 
 import getManifestData from './get-manifest-data';
 import getReadmeData from './get-readme-data';
@@ -58,14 +56,13 @@ async function init(directory = '.', options) {
 	const readmeTarget = resolve(settings.patternPath, 'readme.md');
 
 	spinner.text = ` Initializing project ${data.name} at ${cwd}`;
-	await mkdirp(path.dirname(readmeTarget));
 
 	// copy init/template to $CWD
 	// replace ${} expressions in the process
 	await sander.copydir(templatePath).to(cwd);
 
 	// Create/extend existing manifest
-	await writeFile(manifestPath, JSON.stringify(data, null, '  '));
+	await sander.writeFile(manifestPath, JSON.stringify(data, null, '  '));
 
 	// Use name in this precedence
 	// explicit --name
@@ -76,7 +73,7 @@ async function init(directory = '.', options) {
 	});
 
 	// Write pattern readme
-	await writeFile(readmeTarget, readmeData);
+	await sander.writeFile(readmeTarget, readmeData);
 
 	// Be nice and instructional
 	spinner.text = ` Initialized project ${data.name} at ${cwd}`;
