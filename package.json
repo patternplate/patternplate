@@ -49,7 +49,7 @@
     "meow": "^3.7.0",
     "minimist": "^1.1.1",
     "mkdirp": "^0.5.1",
-    "mkdirp-promise": "^2.0.0",
+    "mkdirp-promise": "^5.0.1",
     "mz": "^2.4.0",
     "normalize-package-data": "^2.3.5",
     "normalize.less": "^1.0.0",
