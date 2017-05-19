@@ -1,3 +1,13 @@
+<a name="1.7.3"></a>
+## [1.7.3](https://github.com/sinnerschrader/patternplate/compare/v1.7.2...v1.7.3) (2017-05-19)
+
+
+### Bug Fixes
+
+* remove mkdirp-promise in favor of sander ([7c0abeb](https://github.com/sinnerschrader/patternplate/commit/7c0abeb))
+
+
+
 <a name="1.7.2"></a>
 ## [1.7.2](https://github.com/sinnerschrader/patternplate/compare/v1.7.1...v1.7.2) (2017-05-18)
 
