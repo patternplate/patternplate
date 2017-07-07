@@ -80,7 +80,8 @@ Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-
 | [react-to-markup][react-to-markup] | create markup from react components | ![][stable] | ![][tested] | ![][untyped] |
 | [react][react] | create reusable React classes from jsx templates | ![][stable] | ![][tested] | ![][untyped] |
 | [resolve-includes][resolve-includes] | rewrite dependency includes to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
-| [rewrite-imports][resolve-imports] | transform pattern dependency imports to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
+| [resolve-imports][resolve-imports] | transform pattern dependency imports to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
+| [typescript][typescript] | TypeScript transform for patternplate patterns | ![][stable] | ![][untested] | ![][typed] |
 | [uglify][uglify] | uglify your JavaScript sources | ![][stable] | ![][untested] | ![][untyped] |
 
 ### Intent to implement
@@ -103,6 +104,7 @@ Holler at [sinnerschrader/patternplate](https://github.com/sinnerschrader/patter
 [react]: https://www.npmjs.com/package/patternplate-transform-react
 [resolve-includes]: https://www.npmjs.com/package/patternplate-transform-resolve-includes
 [resolve-imports]: https://www.npmjs.com/package/patternplate-transform-resolve-imports
+[typescript]: https://www.npmjs.com/package/patternplate-transform-typescript
 [uglify]: https://www.npmjs.com/package/patternplate-transform-uglify
 
 [deprecated]: https://img.shields.io/badge/stability-deprecated-red.svg?style=flat-square
