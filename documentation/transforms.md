@@ -81,6 +81,7 @@ Search for [patternplate-transform](https://www.npmjs.com/search?q=patternplate-
 | [react][react] | create reusable React classes from jsx templates | ![][stable] | ![][tested] | ![][untyped] |
 | [resolve-includes][resolve-includes] | rewrite dependency includes to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
 | [resolve-imports][resolve-imports] | transform pattern dependency imports to interoperable paths | ![][stable] | ![][untested] | ![][untyped] |
+| [styled-components][styled-components] | Serverside rendering for styled-components styled patternplate patterns | ![][experimental] | ![][untested] | ![][untyped] |
 | [typescript][typescript] | TypeScript transform for patternplate patterns | ![][stable] | ![][untested] | ![][typed] |
 | [uglify][uglify] | uglify your JavaScript sources | ![][stable] | ![][untested] | ![][untyped] |
 
@@ -104,6 +105,7 @@ Holler at [sinnerschrader/patternplate](https://github.com/sinnerschrader/patter
 [react]: https://www.npmjs.com/package/patternplate-transform-react
 [resolve-includes]: https://www.npmjs.com/package/patternplate-transform-resolve-includes
 [resolve-imports]: https://www.npmjs.com/package/patternplate-transform-resolve-imports
+[styled-components]: https://www.npmjs.com/package/patternplate-transform-styled-components
 [typescript]: https://www.npmjs.com/package/patternplate-transform-typescript
 [uglify]: https://www.npmjs.com/package/patternplate-transform-uglify
 
