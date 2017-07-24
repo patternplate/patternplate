@@ -1,3 +1,13 @@
+<a name="1.8.0-0"></a>
+# [1.8.0-0](https://github.com/sinnerschrader/patternplate/compare/v1.7.3...v1.8.0-0) (2017-07-24)
+
+
+### Features
+
+* update to preversions ([7e3ac63](https://github.com/sinnerschrader/patternplate/commit/7e3ac63))
+
+
+
 <a name="1.7.3"></a>
 ## [1.7.3](https://github.com/sinnerschrader/patternplate/compare/v1.7.2...v1.7.3) (2017-05-19)
 
