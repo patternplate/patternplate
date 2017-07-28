@@ -3,13 +3,13 @@ import path from 'path';
 import {merge} from 'lodash';
 import {get, max, padEnd} from 'lodash/fp';
 import Listr from 'listr';
-import Observable from 'zen-observable';
 import isci from 'is-ci';
 
 import buildComponents from './build-components';
 import buildData from './build-data';
 import buildDemoFiles from './build-demo-files';
 import buildDemos from './build-demos';
+import buildDocs from './build-docs';
 import buildEntry from './build-entry';
 import buildPages from './build-pages';
 import buildResources from './build-resources';
@@ -33,6 +33,7 @@ const jobPrefixes = [
 
 const selectAutoMount = get('configuration.transforms.react-to-markup.opts.automount');
 const CWD = process.cwd();
+const cwd = path.resolve.bind(null, CWD);
 
 export default buildInterface;
 /**
@@ -47,8 +48,8 @@ async function buildInterface(application, configuration) {
 	const concurrent = Boolean(configuration.concurrent);
 
 	const settings = merge({}, defaults, configuration);
-	const targetPath = path.resolve(CWD, settings.out || settings.target);
-	const patternsPath = path.resolve(CWD, './patterns');
+	const targetPath = cwd(settings.out || settings.target);
+	const patternsPath = cwd('./patterns');
 
 	const app = application.parent;
 	const client = application.parent.client;
@@ -117,6 +118,12 @@ async function buildInterface(application, configuration) {
 			}
 		},
 		{
+			title: 'Docs',
+			task() {
+				return buildDocs(patternsPath, targetPath, clientContext);
+			}
+		},
+		{
 			title: 'Static files',
 			task() {
 				return buildStatics('patternplate-client', targetPath, serverContext);
@@ -137,7 +144,7 @@ async function buildInterface(application, configuration) {
 		{
 			title: 'Sources',
 			task() {
-				return buildSources(patternData,  path.resolve(targetPath, 'api', 'file'), serverContext);
+				return buildSources(patternData, path.resolve(targetPath, 'api', 'file'), serverContext);
 			}
 		},
 		{

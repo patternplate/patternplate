@@ -32,7 +32,7 @@ function buildPages(ids, target, context) {
 				observer.next(`${context.verbose ? 'Page files: ' : ''}${idPad(id.id)} ${count}/${ids.length}`);
 				return renderPage(app, `/pattern/${id.id}`, renderFilters);
 			},
-			async write(page, id, ids, count) {
+			async write(page, id) {
 				const pagePath = path.resolve(...[target, ...id.relative, id.name]);
 				return writeEach(page, [pagePath], rewriter);
 			},
