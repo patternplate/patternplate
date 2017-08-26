@@ -1,0 +1,51 @@
+{
+  "name": "@patternplate/components",
+  "version": "2.0.0",
+  "description": "ui component library for patternplate-client",
+  "main": "index.js",
+  "scripts": {
+    "start": "patternplate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinnerschrader/patternplate.git"
+  },
+  "author": "Sinnerschrader Deutschland GmbH",
+  "contributors": [
+    {
+      "name": "Daniel Gooß",
+      "email": "daniel.gooss@sinnerschrader.com"
+    },
+    {
+      "name": "Mario Nebl",
+      "email": "mario.nebl@sinnerschrader.com"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "devDependencies": {
+    "@patternplate/cli": "^2.0.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "browserify": "^14.4.0",
+    "patternplate-transform-babel": "^1.1.1",
+    "patternplate-transform-browserify": "^1.2.2",
+    "patternplate-transform-react-mount": "^1.1.0",
+    "patternplate-transform-react-to-markup": "^1.1.0",
+    "patternplate-transform-styled-components": "^1.0.1"
+  },
+  "dependencies": {
+    "color": "2.0.0",
+    "prop-types": "15.5.10",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-side-effect": "1.0.2",
+    "styled-components": "2.1.2",
+    "tag-hoc": "1.0.0"
+  }
+}

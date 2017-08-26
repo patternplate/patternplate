@@ -1,0 +1,11 @@
+{
+	"name": "main-header",
+	"displayName": "Main Header",
+	"version": "1.0.0",
+	"patterns": {
+		"icon": "icon"
+	},
+  "demoPatterns": {
+		"demo-themer": "demo-themer"
+	}
+}

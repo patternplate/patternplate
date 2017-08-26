@@ -1,0 +1,47 @@
+{
+  "name": "patternplate",
+  "version": "1.0.0",
+  "private": "true",
+  "license": "MIT",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "contributors": [
+    {
+      "name": "Paul Bienkowski",
+      "email": "paul.bienkowski@sinnerschrader.com"
+    },
+    {
+      "name": "Tim Brust",
+      "email": "tim.brust@sinnerschrader.com"
+    },
+    {
+      "name": "Daniel Gooß",
+      "email": "daniel.gooss@sinnerschrader.com"
+    },
+    {
+      "name": "Veit Lehmann",
+      "email": "veit.lehmann@sinnerschrader.com"
+    },
+    {
+      "name": "Mario Nebl",
+      "email": "mario.nebl@sinnerschrader.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "sinnerschrader/patternplate"
+  },
+  "devDependencies": {
+    "lerna": "^2.1.0",
+    "yarn": "^0.27.5"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "workspaces": [
+    "@patternplate/*"
+  ]
+}

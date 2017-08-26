@@ -1,0 +1,12 @@
+{
+	"name": "button",
+	"displayName": "Button",
+	"version": "1.0.0",
+	"patterns": {
+		"icon": "icon",
+		"link": "link"
+	},
+	"demoPatterns": {
+		"demo-themer": "demo-themer"
+	}
+}

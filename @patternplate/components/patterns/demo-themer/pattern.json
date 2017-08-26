@@ -1,0 +1,12 @@
+{
+	"name": "demo-themer",
+	"displayName": "Demo Themer",
+	"patterns": {
+		"themes": "themes"
+	},
+	"build": false,
+	"display": false,
+  "options": {
+    "hidden": true
+  }
+}

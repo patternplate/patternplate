@@ -1,0 +1,19 @@
+@import 'Pattern';
+
+body {
+	margin: 0;
+}
+
+.template-library {
+	border: 1px solid red;
+
+	& .template-library__main-sidebar {
+		border: inherit;
+		border-color: blue;
+	}
+
+	& .template-library__main-content {
+		border: inherit;
+		border-color: green;
+	}
+}

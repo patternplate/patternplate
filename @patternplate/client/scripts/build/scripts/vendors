@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+./scripts/build/scripts/bundle \
+	"false" \
+	assets/script/vendors.bundle.js \
+	-r \
+	./vendors.map \
+	assets/script/vendors.map \
+	"$@"

@@ -1,0 +1,19 @@
+@import 'root';
+
+.template-library {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: flex-start;
+	min-height: 100vh;
+	width: 100%;
+
+	& .template-library__main-sidebar {
+		flex-grow: 1;
+		max-width: var(--pp-size__navigation-width);
+	}
+
+	& .template-library__main-content {
+		flex-grow: 1;
+	}
+}

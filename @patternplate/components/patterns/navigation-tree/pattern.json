@@ -1,0 +1,7 @@
+{
+	"name": "navigation-tree",
+	"displayName": "Navigation Tree",
+	"patterns": {
+		"navigation-item": "navigation-item"
+	}
+}

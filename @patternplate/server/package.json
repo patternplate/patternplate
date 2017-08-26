@@ -1,0 +1,143 @@
+{
+  "name": "@patternplate/server",
+  "version": "2.0.0",
+  "description": "Programmatically serve atomic patterns via a REST API",
+  "main": "library/",
+  "bin": {
+    "patternplate-server": "binary/patternplate-server.js"
+  },
+  "scripts": {
+    "start": "binary/patternplate-server.js",
+    "console": "binary/patternplate-server-console.js",
+    "commitmsg": "conventional-changelog-lint -e",
+    "commit": "git-cz",
+    "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
+    "push": "git push && git push --tags && hub release create \"v$(cat .git/RELEASE_VERSION.tmp)\" --message=\"v$(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && npm publish && rm .git/RELEASE_VERSION.tmp && rm .git/COMMITMSG.tmp",
+    "release": "npm version $(conventional-recommended-bump -p angular)",
+    "test": "eslint source/**/*.js",
+    "build": "npm run clean && npm run babel",
+    "watch": "npm run babel -- --watch",
+    "babel": "babel source --out-dir ./",
+    "clean": "rm -rf application binary configuration library assets",
+    "preversion": "npm run build && npm test",
+    "version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\" > .git/COMMITMSG.tmp",
+    "postversion": "echo $(git log -1 --pretty=%B HEAD^..HEAD) > .git/RELEASE_VERSION.tmp && git tag -d v$(cat .git/RELEASE_VERSION.tmp) && git commit --amend -m \"chore(release): $(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && git tag -a v$(cat .git/RELEASE_VERSION.tmp) -m \"$(cat .git/COMMITMSG.tmp)\""
+  },
+  "babel": {
+    "presets": [
+      "es2015-node4",
+      "es2016-node4",
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog-lint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "sinnerschrader/patternplate-server"
+  },
+  "keywords": [
+    "patternplate"
+  ],
+  "author": {
+    "name": "Team UX",
+    "email": "team-ux@sinnerschrader.com"
+  },
+  "contributors": [
+    {
+      "name": "Paul Bienkowski",
+      "email": "paul.bienkowski@sinnerschrader.com"
+    },
+    {
+      "name": "Mario Nebl",
+      "email": "mario.nebl@sinnerschrader.com"
+    },
+    {
+      "name": "Markus Wolf",
+      "email": "markus.wolf@sinnerschrader.com"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 2.5.1"
+  },
+  "dependencies": {
+    "arson": "^0.2.3",
+    "babel-polyfill": "^6.5.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^5.8.24",
+    "boilerplate-server": "^0.12.0",
+    "boxen": "^0.8.0",
+    "chalk": "^1.1.1",
+    "chokidar": "^1.7.0",
+    "denodeify": "^1.2.1",
+    "duration": "^0.2.0",
+    "ensure-array": "0.0.5",
+    "escape-html": "^1.0.3",
+    "express": "^4.15.4",
+    "find-and-read-package-json": "^1.0.0",
+    "find-root": "^0.1.1",
+    "front-matter": "^2.1.2",
+    "globby": "^6.1.0",
+    "hotswap": "^1.1.0",
+    "html": "^1.0.0",
+    "koa-cors": "0.0.16",
+    "load-json-file": "^2.0.0",
+    "lodash": "^4.15.0",
+    "lru-cache": "^2.6.3",
+    "memoize-promise": "^0.2.2",
+    "memory-streams": "^0.1.0",
+    "minimatch": "^3.0.3",
+    "minimist": "^1.1.1",
+    "mkdirp": "^0.5.1",
+    "multimatch": "^2.1.0",
+    "ncp": "^2.0.0",
+    "node-core-module-names": "^1.1.0",
+    "normalize.less": "^1.0.0",
+    "ora": "^0.3.0",
+    "parse-json": "^3.0.0",
+    "pascal-case": "^1.1.0",
+    "path-exists": "^2.0.0",
+    "patternplate-transforms-core": "^0.1.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "remark": "^8.0.0",
+    "resolve": "^1.1.7",
+    "rimraf": "^2.5.1",
+    "sander": "^0.6.0",
+    "stream-to-string": "^1.1.0",
+    "string-to-stream": "^1.1.0",
+    "throat": "^2.0.2",
+    "try-require": "^1.2.1",
+    "unist-util-find": "^1.0.1",
+    "vfile": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-async-to-bluebird": "^1.1.0",
+    "babel-preset-es2015-node4": "^2.1.0",
+    "babel-preset-es2016-node4": "^6.0.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "chokidar-cli": "^0.3.0",
+    "commitizen": "^2.8.6",
+    "conventional-changelog-cli": "^1.2.0",
+    "conventional-changelog-lint": "^1.0.1",
+    "conventional-recommended-bump": "^0.1.1",
+    "cz-conventional-changelog-lint": "^0.1.3",
+    "eslint": "^2.11.1",
+    "eslint-config-xo": "^0.14.1",
+    "eslint-plugin-babel": "^3.2.0",
+    "husky": "^0.11.1",
+    "jsonlint-cli": "^1.0.1"
+  }
+}

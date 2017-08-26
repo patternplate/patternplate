@@ -1,0 +1,7 @@
+{
+	"name": "themes",
+	"displayName": "Themes",
+  "options": {
+    "hidden": true
+  }
+}

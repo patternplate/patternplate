@@ -1,0 +1,465 @@
+<svg
+	width="100"
+	height="100"
+	viewBox="0 0 100 100"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	>
+	<defs>
+		<style><![CDATA[
+			@keyframes boundary-top-stroke {
+				5% {
+					stroke-dashoffset: 53;
+				}
+				10% {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes boundary-left-stroke {
+				6% {
+					stroke-dashoffset: 72;
+				}
+				12.5% {
+					stroke-dashoffset: 0;
+				}
+				to {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes boundary-right-stroke {
+				7% {
+					stroke-dashoffset: -68;
+				}
+				14% {
+					stroke-dashoffset: 0;
+				}
+				57.5% {
+					stroke-dashoffset: 0;
+				}
+				59% {
+					stroke-dashoffset: 20;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 20;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 20;
+				}
+			}
+			@keyframes boundary-bottom-stroke {
+				14% {
+					stroke-dashoffset: -53;
+				}
+				20% {
+					stroke-dashoffset: 0;
+				}
+				57.5% {
+					stroke-dashoffset: 0;
+				}
+				59% {
+					stroke-dashoffset: 35;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 35;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 35;
+				}
+			}
+			@keyframes diagonal-right-stroke {
+				from {
+					stroke-dashoffset: -86;
+				}
+				20% {
+					stroke-dashoffset: -86;
+				}
+				25% {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes diagonal-left-stroke {
+				from {
+					stroke-dashoffset: -86;
+				}
+				27.5% {
+					stroke-dashoffset: -86;
+				}
+				32.5% {
+					stroke-dashoffset: 0;
+				}
+				57.5% {
+					stroke-dashoffset: 0;
+				}
+				59% {
+					stroke-dashoffset: 25;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 25;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 25;
+				}
+			}
+			@keyframes radius-stroke {
+				33% {
+					stroke-dashoffset: 50;
+				}
+				38% {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes stroke-fade {
+				37.5% {
+					stroke: rgb(44, 44, 44);
+					stroke-dashoffset: -302;
+				}
+				50% {
+					stroke: rgb(44, 44, 44);
+					stroke-dashoffset: 0;
+				}
+				85% {
+					stroke: rgb(44, 44, 44);
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					stroke: transparent;
+					stroke-dashoffset: 0;
+				}
+				to {
+					stroke: transparent;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes inner-horizontal-stroke {
+				45% {
+					stroke-dashoffset: -53;
+				}
+				52.5% {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes inner-vertical-stroke {
+				50% {
+					stroke-dashoffset: -70;
+				}
+				57.5% {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes rough-p-line-stroke {
+				66% {
+					stroke-dashoffset: -75;
+				}
+				75% {
+					stroke-dashoffset: 0;
+				}
+				87.5% {
+					opacity: 1;
+					stroke-dashoffset: 0;
+				}
+				to {
+					opacity: 0;
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes paint-stroke {
+				from {
+					stroke-dashoffset: 5265;
+				}
+				75% {
+					stroke-dashoffset: 5265;
+				}
+				90% {
+					stroke-dashoffset: 0;
+				}
+				to {
+					stroke-dashoffset: 0;
+				}
+			}
+			@keyframes scale-logo {
+				95% {
+					transform: scale(1);
+				}
+				96% {
+					transform: scale(1.05);
+				}
+				to {
+					transform: scale(0.01);
+				}
+			}
+			@keyframes remove-p {
+				95% {
+					fill: #000000;
+				}
+				to {
+					fill: #ffffff;
+				}
+			}
+			.construct, .background {
+				stroke: rgb(44, 44, 44);
+				stroke-width: 0.2;
+			}
+			.rough-construct {
+				stroke: rgb(44, 44, 44);
+				stroke-width: 0.1;
+			}
+			.fill-background {
+				/* runs from 5.85 to 6 */
+				fill: transparent;
+				animation: background-fill 6s both infinite;
+			}
+			.background {
+				fill: none;
+				/* document.querySelector('.background').getTotalLength(); */
+				stroke: rgb(44, 44, 44);
+				stroke-dasharray: 302;
+				stroke-dashoffset: -302;
+				animation: stroke-fade 6s both infinite;
+			}
+			.dot {
+				fill: #000;
+				stroke: none;
+			}
+			.lines {
+				fill: none;
+				stroke: #000;
+			}
+			.inner-horizontal {
+				/* line.x1 - line.x2 */
+				stroke-dasharray: 53;
+				stroke-dashoffset: -53;
+				animation: inner-horizontal-stroke 6s both infinite;
+			}
+			.inner-vertical {
+				/* line.y1 - line.y2 */
+				stroke-dasharray: 70;
+				stroke-dashoffset: -70;
+				animation: inner-vertical-stroke 6s both infinite;
+			}
+			.boundary-top {
+				/* line.x1 - line.x2 */
+				stroke-dasharray: 53;
+				stroke-dashoffset: 53;
+				animation: boundary-top-stroke 6s both infinite;
+			}
+			.boundary-right {
+				/* line.y1 - line.y2 */
+				stroke-dasharray: 68;
+				stroke-dashoffset: -68;
+				animation: boundary-right-stroke 6s both infinite;
+			}
+			.boundary-bottom {
+				/* line.x1 - line.x2 */
+				stroke-dasharray: 53;
+				stroke-dashoffset: -53;
+				animation: boundary-bottom-stroke 6s both infinite;
+			}
+			.boundary-left {
+				/* line.y1 - line.y2 */
+				stroke-dasharray: 72;
+				stroke-dashoffset: 72;
+				animation: boundary-left-stroke 6s both infinite;
+			}
+			.diagonal-right {
+				stroke-dasharray: 86;
+				stroke-dashoffset: -86;
+				animation: diagonal-right-stroke 6s both infinite;
+			}
+			.diagonal-left {
+				stroke-dasharray: 86;
+				stroke-dashoffset: 86;
+				animation: diagonal-left-stroke 6s both infinite;
+			}
+			.radius {
+				/* document.querySelector('.background').getTotalLength(); */
+				stroke-dasharray: 50;
+				stroke-dashoffset: 50;
+				animation: radius-stroke 6s both infinite;
+			}
+			.center {
+				fill: rgb(66, 165, 245);
+				stroke: rgb(66, 165, 245);
+				stroke: none;
+				transform-origin: center;
+			}
+			.rough-p line {
+				/* runs from 4.0s to 4.375s */
+				stroke: rgb(44, 44, 44);
+				stroke-width: 0.2;
+				stroke-dasharray: 75;
+				stroke-dashoffset: -75;
+				animation: rough-p-line-stroke 6s both infinite;
+			}
+			.p {
+				/* runs from 5.75 to 5.85 */
+				fill: transparent;
+				stroke-width: 0.3;
+				animation: p-fill 6s both infinite;
+			}
+			.p-fill path {
+				/* runs from 5.25s to 5.75s */
+				fill: none;
+				stroke: #fff;
+				stroke-linejoin: round;
+				stroke-width: 3;
+				stroke-dasharray: 130;
+				stroke-dashoffset: -130;
+				animation: p-fill-stroke 6s both infinite;
+			}
+			.paint {
+				fill: none;
+				stroke: rgb(66, 165, 245);
+				stroke-width: 7.5;
+				stroke-linejoin: round;
+				stroke-dasharray: 5265;
+				stroke-dashoffset: 5265;
+				animation: paint-stroke 6s both infinite;
+			}
+			.p-mask {
+				animation: remove-p 6s both infinite;
+			}
+			.logo {
+				transform-origin: 51% 49%;
+				animation: scale-logo 6s both infinite;
+			}
+		]]></style>
+		<symbol id="perimeter">
+			<path d="M2,50a48,48 0 1,0 96,0a48,48 0 1,0 -96,0"/>
+		</symbol>
+		<symbol id="zero-zero">
+			<rect x="28" y="18" width="12" height="12" />
+		</symbol>
+		<symbol id="one-zero">
+			<rect x="45" y="18" width="12" height="12" />
+		</symbol>
+		<symbol id="two-zero">
+			<rect x="62" y="18" width="12" height="12" />
+		</symbol>
+		<symbol id="zero-one">
+			<rect x="28" y="35" width="12" height="12" />
+		</symbol>
+		<symbol id="two-one">
+			<rect x="62" y="35" width="12" height="12" />
+		</symbol>
+		<symbol id="zero-two">
+			<rect x="28" y="52" width="12" height="12" />
+		</symbol>
+		<symbol id="one-two">
+			<rect x="45" y="52" width="12" height="12" />
+		</symbol>
+		<symbol id="two-two">
+			<rect x="62" y="52" width="12" height="12" />
+		</symbol>
+		<symbol id="zero-three">
+			<rect x="28" y="69" width="12" height="12" />
+		</symbol>
+		<symbol id="p">
+			<use xlink:href="#zero-zero" />
+			<use xlink:href="#one-zero" />
+			<use xlink:href="#two-zero" />
+			<use xlink:href="#zero-one" />
+			<use xlink:href="#two-one" />
+			<use xlink:href="#zero-two" />
+			<use xlink:href="#one-two" />
+			<use xlink:href="#two-two" />
+			<use xlink:href="#zero-three" />
+		</symbol>
+		<mask id="paint-mask">
+			<use fill="#ffffff" xlink:href="#perimeter" />
+			<use fill="#000000" xlink:href="#p" class="p-mask" />
+		</mask>
+	</defs>
+	<g class="logo blueprint">
+		<use
+			class="background"
+			xlink:href="#perimeter"
+			/>
+		<path
+			class="paint"
+			mask="url(#paint-mask)"
+			d="m0.37517,15.25012l14.12478,-13.25012l-13.24995,16.99994l17.49994,-16.99994l-17.99994,20.74992l24.74991,-21.24992l-23.24992,22.49992l24.49992,-19.74993l-26.24991,27.7499l35.24988,-30.74989l-34.74988,36.99987l40.74986,-37.24987l-40.99986,45.74984l46.74984,-44.99984l-45.99985,50.49982l35.99988,-35.49987l-37.74987,41.99985l53.99982,-56.9998l-13.74996,17.99994l-39.49986,42.99985l28.9999,-26.99991l-28.2499,30.4999l59.24979,-65.49978l-60.74979,72.49975l30.7499,-32.74989l34.24988,-38.74986l-63.49978,75.74974l67.99976,-76.24974l-42.24985,51.49982l45.49984,-50.49983l-71.24975,80.99973l75.24974,-80.99973l-75.49974,88.4997l26.9999,-34.74988l-26.49991,29.4999l80.99973,-83.99971l-82.49972,94.99967l90.74969,-95.74967l-90.49969,99.24966l43.99985,-45.49984l-40.24986,44.99984l89.74969,-97.49966l-86.4997,98.99966l90.24969,-99.74966l-83.49972,97.74966l84.99971,-92.74968l-78.99973,94.49968l78.99973,-85.74971l-65.49977,77.99973l57.4998,-59.74979l-62.49979,64.74978l64.74978,-71.49976l-53.49982,67.74977l55.99981,-59.9998l-60.99979,61.2498l61.99979,-56.24981l-56.49981,58.4998l56.24981,-54.74981l-52.49982,55.7498l50.99983,-50.24982l-31.4999,35.74987l32.49989,-33.99988l-47.99983,48.99983l49.49983,-37.99987l-43.49985,37.74987l43.49985,-44.49984l-36.99988,45.49984l37.74987,-36.24988l-31.74989,36.49988l32.49989,-31.49989l-26.74991,30.24989l26.74991,-23.49992l-20.49993,23.74992l20.74993,-18.99993l-13.24995,17.74994l14.24995,-11.74996l-11.49996,14.74995l10.99996,-7.99998l-3.74999,6.24998"
+			/>
+		<path class="center" d="M50.5,49.5a0.5,0.5 0 1,0 1,0a0.5,0.5 0 1,0 -1,0"/>
+		<g class="rough-p">
+			<line x1="25" y1="30" x2="75" y2="30"/>
+			<line x1="25" y1="52" x2="75" y2="52"/>
+			<line y2="69" x2="40" y1="69" x1="27"/>
+			<line y2="47" x2="40" y1="47" x1="27"/>
+			<line y2="35" x2="40" y1="35" x1="27"/>
+			<line y2="30" x2="45" y1="17" x1="45"/>
+			<line y2="31" x2="57" y1="17" x1="57"/>
+			<line y2="68" x2="62" y1="14" x1="62"/>
+			<line y2="64" x2="45" y1="51" x1="45"/>
+			<line y2="65" x2="57" y1="50" x1="57"/>
+			<line y2="35" x2="75" y1="35" x1="61"/>
+			<line y2="47" x2="74" y1="47" x1="61"/>
+		</g>
+		<g class="rough-construct">
+			<line class="lines diagonal-right" y2="85" x2="25" y1="16" x1="75"/>
+			<line class="lines diagonal-left" y2="84" x2="76" y1="15" x1="26"/>
+			<line class="lines radius" y2="49.5" x2="2" y1="49.5" x1="51"/>
+		</g>
+		<g class="construct">
+			<line class="lines boundary-top" y2="18" x2="78" y1="18" x1="25"/>
+			<line class="lines boundary-right" y2="84" x2="74" y1="16" x1="74"/>
+			<line class="lines boundary-bottom" y2="81" x2="77" y1="81" x1="24"/>
+			<line class="lines boundary-left" y2="86" x2="28" y1="14" x1="28"/>
+			<line class="lines inner-vertical" y2="82" x2="40" y1="12" x1="40"/>
+			<line class="lines inner-horizontal" y2="64" x2="77" y1="64" x1="24"/>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+concurrently -k\
+	"./scripts/build/scripts/index"
