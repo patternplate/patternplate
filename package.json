@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": "true",
   "license": "MIT",
+  "scripts": {
+    "start": "npx lerna run watch --stream --parallel",
+    "reinstall": "npx lerna clean --yes && npx lerna bootstrap",
+    "postinstall": "npx lerna bootstrap"
+  },
   "author": {
     "name": "Mario Nebl",
     "email": "mario.nebl@sinnerschrader.com"

@@ -1,0 +1,100 @@
+{
+  "name": "patternplate-transform-babel",
+  "version": "1.1.1",
+  "description": "patternplate transform applying babel",
+  "main": "distribution/index.js",
+  "files": [
+    "distribution"
+  ],
+  "scripts": {
+    "start": "npm run watch",
+    "clean": "rm -rf distribution",
+    "prepare": "mkdir -p distribution",
+    "build": "babel source -d distribution",
+    "test": "npm run build && npm run deps && xo source/**/*.js && ava",
+    "deps": "dependency-check . --missing && dependency-check . --no-dev --extra",
+    "watch": "babel source -d distribution -w",
+    "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
+    "push": "git push && git push --tags && hub release create \"v$npm_package_version\" --message=\"v$npm_package_version\n$(conventional-changelog -p angular)\" && npm publish",
+    "release": "npm version $(conventional-recommended-bump -p angular)",
+    "preversion": "npm run build",
+    "version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\" > .git/COMMITMSG.tmp",
+    "postversion": "git tag -d v$npm_package_version && git commit --amend -m \"chore(release): $npm_package_version\n$(conventional-changelog -p angular)\" && git tag -a v$npm_package_version -m \"$(conventional-changelog -p angular)\""
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "source": [
+      "source/**/*.js"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "babel": "inherit"
+  },
+  "babel": {
+    "presets": [
+      "es2015-node4",
+      "es2016-node4",
+      "stage-0"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
+  "xo": {
+    "esnext": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate-transform-babel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate-transform-babel#readme",
+  "keywords": [
+    "browserify",
+    "patternplate",
+    "transform",
+    "pattern"
+  ],
+  "author": {
+    "name": "SinnerSchrader Deutschland GmbH",
+    "email": "jobs@sinnerschrader.com"
+  },
+  "contributors": [
+    {
+      "name": "Mario Nebl",
+      "email": "mario.nebl@sinnerschrader.com"
+    }
+  ],
+  "license": "MIT",
+  "licenses": [
+    "MIT"
+  ],
+  "devDependencies": {
+    "ava": "0.19.0",
+    "babel-cli": "6.23.0",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-es2015-node4": "2.1.1",
+    "babel-preset-es2016-node4": "6.0.1",
+    "babel-preset-stage-0": "6.22.0",
+    "babel-register": "6.24.1",
+    "conventional-changelog-cli": "1.2.0",
+    "conventional-changelog-lint": "1.1.8",
+    "conventional-recommended-bump": "0.3.0",
+    "dependency-check": "2.8.0",
+    "parallelshell": "2.0.0",
+    "xo": "0.18.0"
+  },
+  "dependencies": {
+    "babel-core": "6.23.1",
+    "lodash": "4.17.4",
+    "md5": "2.2.1",
+    "precinct": "3.6.0"
+  }
+}
