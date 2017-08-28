@@ -1,0 +1,12 @@
+coverage
+test
+_test
+node_modules
+nodemon.json
+.coveralls.yml
+.editorconfig
+.gitignore
+.jscsrc
+.jsfmtrc
+.jshintrc
+.travis.yml

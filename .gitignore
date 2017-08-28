@@ -1,1 +1,23 @@
 node_modules
+*.log
+
+# boilerplate-server based apps
+/@patternplate/cli/application/
+/@patternplate/cli/binary/
+/@patternplate/cli/configuration/
+/@patternplate/cli/library/
+
+/@patternplate/client/application/
+/@patternplate/client/binary/
+/@patternplate/client/configuration/
+/@patternplate/client/library/
+
+/@patternplate/server/application/
+/@patternplate/server/binary/
+/@patternplate/server/configuration/
+/@patternplate/server/library/
+
+/packages/boilerplate-server/application/
+/packages/boilerplate-server/binary/
+/packages/boilerplate-server/configuration/
+/packages/boilerplate-server/library/
