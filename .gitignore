@@ -8,6 +8,7 @@ node_modules
 /@patternplate/cli/library/
 
 /@patternplate/client/application/
+/@patternplate/client/assets/
 /@patternplate/client/binary/
 /@patternplate/client/configuration/
 /@patternplate/client/library/
