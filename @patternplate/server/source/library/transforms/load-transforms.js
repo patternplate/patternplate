@@ -5,7 +5,6 @@ export default loadTransforms;
 
 async function loadTransforms(config = {}) {
 	const transformNames = selectTransformNames(config);
-  console.log({config});
 	const jobs = transformNames.map(name => loadTransform(name));
 	const loaded = await Promise.all(jobs);
 	return app => {
