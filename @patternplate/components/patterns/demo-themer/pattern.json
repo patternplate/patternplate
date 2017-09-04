@@ -1,11 +1,9 @@
 {
-	"name": "demo-themer",
-	"displayName": "Demo Themer",
-	"patterns": {
-		"themes": "themes"
-	},
-	"build": false,
-	"display": false,
+  "name": "demo-themer",
+  "displayName": "Demo Themer",
+  "patterns": {
+    "../themes": "themes"
+  },
   "options": {
     "hidden": true
   }

@@ -162,7 +162,7 @@ function main() {
 	buttonElement.addEventListener('click', clickHandler(0));
 }
 
-export default main;
+module.exports = main;
 ```
 
 ```js

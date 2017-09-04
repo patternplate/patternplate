@@ -2,9 +2,11 @@
   "name": "@patternplate/components",
   "version": "2.0.0",
   "description": "ui component library for patternplate-client",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "patternplate"
+    "start": "patternplate",
+    "build": "babel patterns -d lib --source-maps",
+    "watch": "babel patterns -d lib --source-maps -w"
   },
   "repository": {
     "type": "git",
@@ -26,8 +28,24 @@
     "node": ">= 4",
     "npm": ">= 3"
   },
+  "babel": {
+    "ignore": ["demo.js"],
+    "sourceMaps": true,
+    "presets": [
+      "react",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "4"
+          }
+        }
+      ]
+    ]
+  },
   "devDependencies": {
     "@patternplate/cli": "^2.0.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",

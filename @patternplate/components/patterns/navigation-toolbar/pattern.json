@@ -1,9 +1,9 @@
 {
-	"name": "navigation-toolbar",
-	"displayName": "Navigation Toolbar",
-	"version": "1.0.0",
-	"demoPatterns": {
-		"button": "button",
-		"demo-themer": "demo-themer"
-	}
+  "name": "navigation-toolbar",
+  "displayName": "Navigation Toolbar",
+  "version": "1.0.0",
+  "demoPatterns": {
+    "../button": "button",
+    "../demo-themer": "demo-themer"
+  }
 }

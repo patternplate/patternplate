@@ -1,11 +1,11 @@
 module.exports = {
 	formats: {
-		jsx: {
+		js: {
 			transforms: ['babel', 'react-to-markup']
 		}
 	},
 	mount: {
-		format: ['jsx'],
+		format: ['js'],
 		name: 'Components',
 		transforms: ['babel', 'react-mount', 'browserify']
 	}

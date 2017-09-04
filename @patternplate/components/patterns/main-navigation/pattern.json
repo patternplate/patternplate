@@ -1,14 +1,14 @@
 {
-	"name": "main-navigation",
-	"displayName": "Main Navigation",
-	"version": "1.0.0",
-	"patterns": {
-		"main-header": "main-header",
-		"navigation-toolbar": "navigation-toolbar",
-		"navigation-tree": "navigation-tree"
-	},
-	"demoPatterns": {
-		"demo-themer": "demo-themer",
-		"button": "button"
-	}
+  "name": "main-navigation",
+  "displayName": "Main Navigation",
+  "version": "1.0.0",
+  "patterns": {
+    "../main-header": "main-header",
+    "../navigation-toolbar": "navigation-toolbar",
+    "../navigation-tree": "navigation-tree"
+  },
+  "demoPatterns": {
+    "../demo-themer": "demo-themer",
+    "../button": "button"
+  }
 }

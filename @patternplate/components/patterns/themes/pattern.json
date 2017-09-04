@@ -1,7 +1,4 @@
 {
-	"name": "themes",
-	"displayName": "Themes",
-  "options": {
-    "hidden": true
-  }
+  "name": "themes",
+  "displayName": "Themes"
 }

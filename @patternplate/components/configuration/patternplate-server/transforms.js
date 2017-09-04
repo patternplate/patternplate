@@ -3,9 +3,16 @@ module.exports = {
     inFormat: 'jsx',
     outFormat: 'js',
     opts: {
-      presets: ['env', 'react'],
+      presets: [
+        ['env', {
+          targets: {
+            node: '4',
+            browsers: ['last 2 versions', 'IE 10']
+          }
+        }],
+        'react'
+      ],
       plugins: [
-        'transform-object-rest-spread'
       ]
     }
   },

@@ -1,8 +1,0 @@
-{
-	"name": "default-layout",
-	"displayName": "Default Layout",
-	"version": "1.0.0",
-  "options": {
-    "hidden": true
-  }
-}

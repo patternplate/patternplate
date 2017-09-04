@@ -1,8 +1,8 @@
 {
-	"name": "navigation-item",
-	"displayName": "Navigation Item",
-	"patterns": {
-		"icon": "icon",
-		"link": "link"
-	}
+  "name": "navigation-item",
+  "displayName": "Navigation Item",
+  "patterns": {
+    "../icon": "icon",
+    "../link": "link"
+  }
 }
