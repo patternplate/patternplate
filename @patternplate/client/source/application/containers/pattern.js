@@ -13,9 +13,19 @@ class PatternContainer extends React.Component {
 		this.props.onChange();
 	}
 
+	componentWillUnmount() {
+		clearTimeout(this.timeout);
+	}
+
 	componentWillReceiveProps(next) {
 		if (this.props.src !== next.src && next.src) {
-			this.props.onChange();
+			if (this.timeout) {
+				clearTimeout(this.timeout);
+			}
+			
+			this.timeout = setTimeout(() => {
+				this.props.onChange();
+			}, 250);
 		}
 	}
 
@@ -80,7 +90,7 @@ function mapState(state) {
 	return {
 		docs: selectDocs(state),
 		contents: state.demo.contents,
-		loading: state.demo.loading,
+		loading: state.demo.fetching,
 		opacity: state.opacity,
 		src: demo.selectSrc(state),
 		type: items.selectType(state)

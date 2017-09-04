@@ -12,6 +12,7 @@ node_modules
 /@patternplate/client/binary/
 /@patternplate/client/configuration/
 /@patternplate/client/library/
+/@patternplate/client/assets/script/index.bundle.js
 
 /@patternplate/server/application/
 /@patternplate/server/binary/

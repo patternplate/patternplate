@@ -149,6 +149,7 @@
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "react-side-effect": "^1.0.2",
+    "react-transition-group": "^2.2.0",
     "redux": "^3.5.2",
     "redux-actions": "^0.10.1",
     "redux-freeze": "^0.1.5",

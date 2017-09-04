@@ -1,6 +1,7 @@
 import React, {PropTypes as t} from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import tag from 'tag-hoc';
+import Transition from 'react-transition-group/Transition';
 
 import Markdown from '../common/markdown';
 import PatternDemo from './pattern-demo';
@@ -51,13 +52,55 @@ const StyledPatternDemo = styled.div`
 	margin: 0 auto;
 `;
 
+const StyledPatternLoader = styled.div`
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 3px;
+	&::before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 100%;
+		background: ${props => props.theme.active};
+		opacity: 1;
+		transition: transform 1s ease-in-out;
+		${props => {
+			switch(props.status) {
+				case 'entering':
+					return `
+						transform: translateX(-100%);
+					`;
+				case 'entered':
+					return `transform: translateX(-15%);`;
+				case 'exiting':
+					return `
+						transition: transform .3s ease-out;
+						transform: translateX(0);
+					`;
+				case 'exited':
+					return `
+						transform: translateX(-100%);
+						transition: opacity .3s .25s ease-out;
+					`;
+			}
+		}}
+	}
+`;
+
 export default class Pattern extends React.Component {
 	render() {
 		const {props} = this;
+
 		switch (props.type) {
 			case 'pattern':
 				return (
 					<StyledPattern checkers={props.opacity}>
+						<Transition in={props.loading} timeout={{enter: 1000, exit: 850}}>
+							{(status) => <StyledPatternLoader status={status}/>}
+						</Transition>
 						<StyledPatternDemo>
 							<PatternDemo
 								contents={props.contents}
