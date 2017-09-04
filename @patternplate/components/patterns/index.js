@@ -1,6 +1,5 @@
 module.exports = {
   Button: require('./button'),
-  DefaultLayout: require('./default-layout'),
   Icon: require('./icon'),
   Link: require('./link'),
   MainHeader: require('./main-header'),

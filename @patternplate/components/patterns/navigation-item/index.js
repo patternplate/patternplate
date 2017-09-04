@@ -47,6 +47,7 @@ class NavigationItem extends React.Component {
 			>
 				<StyledNavigationLink
 					active={props.active}
+					onClick={props.onClick}
 					href={props.href}
 					sticky={props.type === 'folder' && props.active}
 					type={props.type}

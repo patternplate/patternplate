@@ -3,12 +3,18 @@ import {createSelector} from 'reselect';
 import {flatten, sanitize} from './tree';
 
 const navigation = createSelector(
-	state => state.schema.meta,
-	state => state.config.hierarchy,
-	state => state.id,
-	state => state.hideEnabled,
-	(tree, config, id, hide) => sanitize(merge({}, tree), {hide, config, id, prefix: 'pattern'})
+  state => state.schema.meta,
+  state => state.config.hierarchy,
+  state => state.id,
+  state => state.hideEnabled,
+  state => state.routing.locationBeforeTransitions,
+  state => state.base,
+  (tree, config, id, hide, location, base) => {
+    const context = {base, hide, config, id, prefix: 'pattern', location};
+    return sanitize(merge({}, tree), context);
+  }
 );
 
 export default navigation;
+
 export const flat = createSelector(navigation, flatten);

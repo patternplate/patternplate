@@ -7,7 +7,7 @@ class Link extends React.Component {
 	}
 
 	handleClick(e) {
-		this.props.onClick(e, this.props.href);
+		this.props.onClick(e);
 	}
 
 	render() {

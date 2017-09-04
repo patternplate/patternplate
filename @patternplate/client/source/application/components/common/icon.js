@@ -1,7 +1,5 @@
 import React, {PropTypes as t} from 'react';
 import styled from 'styled-components';
-import {withRegistry} from './icon-registry';
-import {iconNames} from './icons';
 
 const SIZES = {
 	s: 15,
@@ -9,7 +7,7 @@ const SIZES = {
 	l: 50
 };
 
-export default withRegistry(Icon);
+export default Icon;
 
 function Icon(props) {
 	return (
@@ -18,12 +16,6 @@ function Icon(props) {
 		</StyledIcon>
 	);
 }
-
-Icon.propTypes = {
-	className: t.string,
-	size: t.oneOf(['s', 'm', 'l']),
-	symbol: t.oneOf(iconNames).isRequired
-};
 
 Icon.defaultProps = {
 	size: 'm',

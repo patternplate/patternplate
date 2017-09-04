@@ -54,14 +54,9 @@ function bundle() {
 	mkdir -p $(dirname $OUT) && \
 	$COMMAND $IN \
 		$FLAGS \
-		--debug \
 		-v \
 		$MINIFY \
-		-t [ \
-				babelify \
-					--presets [es2015 stage-0 react] \
-					--plugins [transform-decorators-legacy transform-react-remove-prop-types transform-react-router-optimize transform-runtime add-module-exports] \
-			] \
+		-t [ babelify ] \
 		-t brfs \
 		-t [envify] \
 		-o $OUT

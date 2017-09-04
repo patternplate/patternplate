@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-./scripts/build/scripts/bundle \
+./scripts/build/bundle \
 	"false" \
 	assets/script/vendors.bundle.js \
 	-r \

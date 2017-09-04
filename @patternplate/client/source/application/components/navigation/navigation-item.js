@@ -2,8 +2,7 @@ import color from 'color';
 import React, {PropTypes as types} from 'react';
 import tag from 'tag-hoc';
 import styled from 'styled-components';
-
-import Icon from '../common/icon';
+import {Icon} from '@patternplate/components';
 import Link from '../common/link';
 
 export default class NavigationItem extends React.Component {

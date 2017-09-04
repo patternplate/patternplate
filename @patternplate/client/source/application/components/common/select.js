@@ -1,7 +1,6 @@
 import React, {PropTypes as t} from 'react';
 import join from 'classnames';
-
-import Icon from './icon';
+import {Icon} from '@patternplate/components';
 
 export default Select;
 

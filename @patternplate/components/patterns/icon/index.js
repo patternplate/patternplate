@@ -74,6 +74,14 @@ const command = [
 	'M8.375 14.25h7.25v1.5h-7.25zm-2.875-6H7v1.5H5.5zm2.875 0h1.5v1.5h-1.5zm2.875 0h1.5v1.5h-1.5zm5.75 0h1.5v1.5H17zm-2.875 0h1.5v1.5h-1.5zm-4.313 3h1.5v1.5h-1.5zm2.876 0h1.5v1.5h-1.5zm-7.188 0h2.938v1.5H5.5zm10.078 0h2.938v1.5h-2.938zm-10.078 3H7v1.5H5.5zm11.516 0h1.5v1.5h-1.5z'
 ];
 
+const placeholder = [{
+	tagName: 'rect',
+	x: 0,
+	y: 0,
+	width: 24,
+	height: 24
+}];
+
 const icons = {
 	'arrow-double-left': () => arrowDoubleLeft,
 	'arrow-double-right': () => arrowDoubleRight,
@@ -86,9 +94,11 @@ const icons = {
 	'command': () => command,
 	'dark': () => dark,
 	'dependencies': () => dependencies,
-	'documentation': () => documentation,
+  'documentation': () => documentation,
+  'doc': () => documentation,
 	'ecospheres': () => ecospheres,
 	'environment': () => environment,
+	'placeholder': () => placeholder,
 	'folder-open': () => folderOpen,
 	'folder': () => folder,
 	'fullscreen': () => fullscreen,
@@ -169,7 +179,6 @@ const iconNames = Object.keys(icons);
 module.exports = withSideEffect(toState, onChange)(Icon);
 module.exports.symbols = iconNames;
 
-
 function toState(propsList) {
 	const list = propsList
 		.map(item => item.symbol)
@@ -231,13 +240,18 @@ function IconRegistry(props) {
 			{
 				props.symbols
 					.map(symbol => {
-						const paths = icons[symbol]() || [];
+						const creator = typeof icons[symbol] === 'function'
+							? icons[symbol]
+							: icons.placeholder;
+
+						const paths = creator();
 						return <Symbol key={symbol} id={symbol} definition={paths} />;
 					})
 			}
 		</StyledRegistry>
 	);
 }
+
 IconRegistry.defaultProps = {
 	symbols: []
 };

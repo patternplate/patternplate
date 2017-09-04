@@ -1,7 +1,7 @@
 import React, {PropTypes as t} from 'react';
 import styled from 'styled-components';
+import {Icon} from '@patternplate/components';
 
-import Icon from './common/icon';
 import ToggleButton from './common/toggle-button';
 
 export default Info;

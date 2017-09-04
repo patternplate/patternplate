@@ -1,8 +1,6 @@
 import React, {Component, PropTypes as types} from 'react';
 import classnames from 'classnames';
-import pure from 'pure-render-decorator';
 
-@pure
 class Headline extends Component {
 	displayName = 'Headline';
 

@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-babel source --ignore source/assets --out-dir ./ "$@"

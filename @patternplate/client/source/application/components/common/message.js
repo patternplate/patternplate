@@ -1,23 +1,10 @@
 import React, {Component, PropTypes as t} from 'react';
 import {Link} from 'react-router';
 import join from 'classnames';
-import autobind from 'autobind-decorator';
-import pure from 'pure-render-decorator';
 import {noop} from 'lodash';
+import {Icon} from '@patternplate/components';
 
-import Icon from '../common/icon';
-
-@pure
-@autobind
 export default class Message extends Component {
-	static propTypes = {
-		base: t.string.isRequired,
-		id: t.string.isRequired,
-		onTimeRequest: t.func.isRequired,
-		onDismiss: t.func.isRequired,
-		onRetry: t.func.isRequired
-	};
-
 	static defaultProps = {
 		onTimeRequest: noop,
 		onDismiss: noop,

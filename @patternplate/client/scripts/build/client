@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-./scripts/build/scripts/bundle \
+./scripts/build/bundle \
 	source/assets/script/index.js \
 	assets/script/index.bundle.js \
 	-x \

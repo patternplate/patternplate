@@ -1,7 +1,8 @@
 import React, {PropTypes as t} from 'react';
 import styled from 'styled-components';
+import {Icon} from '@patternplate/components';
 
-import Icon from '../icon';
+// import Icon from '../icon';
 import Link from '../link';
 import Text from '../../text';
 

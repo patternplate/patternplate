@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../common/icon';
+import {Icon} from '@patternplate/components';
 import Indicator from '../../containers/indicator';
 import ToggleSearch from '../../containers/toggle-search';
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 
-concurrently -k\
-	"./scripts/watch/scripts/index"
+concurrently -k \
+	"./scripts/watch/server" \
+	"./scripts/watch/client" \
+	"./scripts/watch/vendors"

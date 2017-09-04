@@ -19,7 +19,7 @@ export function createPromiseThunkAction(name, rawCreator) {
 				dispatch(delayedAction(payload, ident, getState));
 			}, 1000);
 			try {
-				const result = await creator(payload, dispatch, getState);
+				const result = await Promise.resolve(creator(payload, dispatch, getState));
 				global.clearTimeout(delayedTimer);
 				dispatch(successAction(result));
 				return result;

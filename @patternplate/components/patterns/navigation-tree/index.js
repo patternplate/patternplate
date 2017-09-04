@@ -28,6 +28,7 @@ function NavigationTree(props) {
 							}
 						})}*/
 						name={item.manifest.displayName}
+            onClick={props.onItemClick}
 						onScrollRequest={props.onScrollRequest}
 						prefix={props.prefix}
 						symbol={icon}
@@ -40,6 +41,7 @@ function NavigationTree(props) {
 									active={props.active}
 									data={item.children}
 									id={item.id}
+                  onClick={props.onItemClick}
 									onScrollRequest={props.onScrollRequest}
 									prefix={item.prefix}
 								/>

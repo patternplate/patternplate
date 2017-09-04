@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-npm run build:scripts:client -- --watch

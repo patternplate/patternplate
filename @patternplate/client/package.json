@@ -7,19 +7,13 @@
     "start": "node binary/patternplate-client",
     "console": "node binary/patternplate-client-console",
     "build": "scripty",
-    "build:styles": "scripty",
-    "build:scripts": "scripty",
-    "build:scripts:server": "scripty",
-    "build:scripts:client": "scripty",
-    "build:scripts:vendors": "scripty",
-    "build:scripts:lowlight": "scripty",
+    "build:server": "scripty",
+    "build:client": "scripty",
+    "build:vendors": "scripty",
     "watch": "scripty",
-    "watch:styles": "scripty",
-    "watch:scripts": "scripty",
-    "watch:scripts:server": "scripty",
-    "watch:scripts:client": "scripty",
-    "watch:scripts:vendors": "scripty",
-    "watch:scripts:lowlight": "scripty",
+    "watch:server": "scripty",
+    "watch:client": "scripty",
+    "watch:vendors": "scripty",
     "#hooks": "# automatic npm hooks",
     "prebuild": "npm run clean",
     "prewatch": "npm run clean",
@@ -32,34 +26,18 @@
     "patternplate-client-console": "binary/patternplate-client-console.js"
   },
   "babel": {
-    "env": {
-      "production": {
-        "plugins": [
-          "add-module-exports",
-          "add-react-display-name",
-          "transform-decorators-legacy",
-          "transform-react-remove-prop-types",
-          "transform-react-router-optimize",
-          "transform-runtime"
-        ],
-        "presets": [
-          "es2015",
-          "react",
-          "stage-0"
-        ]
-      }
-    },
     "presets": [
-      "es2015",
-      "react",
-      "stage-0"
+      ["env", {
+        "exclude": ["transform-regenerator", "transform-async-to-generator"]
+      }],
+      "react"
     ],
     "plugins": [
-      "add-module-exports",
-      "transform-decorators-legacy",
-      "transform-runtime"
-    ],
-    "sourceMaps": "inline"
+      "fast-async",
+      "transform-class-properties",
+      "transform-export-extensions",
+      "transform-object-rest-spread"
+    ]
   },
   "repository": {
     "type": "git",
@@ -101,11 +79,10 @@
     "npm": ">= 2.5.1"
   },
   "dependencies": {
+    "@patternplate/components": "^2.0.0",
     "@patternplate/server": "^2.0.0",
     "array-includes": "^3.0.2",
     "autobind-decorator": "^1.3.3",
-    "babel-polyfill": "^6.5.0",
-    "babel-runtime": "^6.6.1",
     "boilerplate-server": "^0.12.1",
     "btoa": "^1.1.2",
     "classnames": "^1.2.2",
@@ -182,17 +159,15 @@
     "xmldom": "^0.1.27"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-eslint": "^6.0.2",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-plugin-add-react-displayname": "0.0.4",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-react-remove-prop-types": "^0.2.10",
-    "babel-plugin-transform-react-router-optimize": "^1.0.1",
-    "babel-plugin-transform-runtime": "^6.7.5",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "babelify": "^7.3.0",
     "brfs": "^1.4.3",
     "browserify": "^13.1.0",
@@ -206,6 +181,7 @@
     "eslint-config-xo-react": "^0.5.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^4.3.0",
+    "fast-async": "^6.3.0",
     "in-publish": "^2.0.0",
     "insert-css": "^0.2.0",
     "jsonlint": "^1.6.2",

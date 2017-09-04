@@ -8,7 +8,7 @@ import router from '../application/server';
 import layout from '../application/layouts';
 import getIdByPathname from '../application/utils/get-id-by-pathname';
 import navigate from '../application/utils/navigate';
-import Icon from '../application/components/common/icon';
+import {Icon} from '@patternplate/components';
 
 const cwd = process.cwd();
 const resolve = id => resolveSync(id, {basedir: cwd});
@@ -44,7 +44,8 @@ export default async function renderPage(application, pageUrl) {
 
 	const {html, css} = await router(pageUrl, render);
 	const head = Helmet.rewind();
-	const icons = Icon.rewind();
+	// const icons = Icon.rewind();
+  console.log(Icon);
 
 	return layout({
 		attributes: head.htmlAttributes,
@@ -52,7 +53,7 @@ export default async function renderPage(application, pageUrl) {
 		css,
 		data: transfer,
 		html,
-		icons,
+		icons: '',
 		link: head.link,
 		meta: head.meta,
 		style: head.style,

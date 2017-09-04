@@ -2,8 +2,8 @@ import {values} from 'lodash';
 import React, {PropTypes as t} from 'react';
 import styled from 'styled-components';
 import tag from 'tag-hoc';
+import {Icon} from '@patternplate/components';
 
-import Icon from './common/icon';
 import {InnerInfoPane} from './info-pane';
 import Link from './common/link';
 import Markdown from './common/markdown';

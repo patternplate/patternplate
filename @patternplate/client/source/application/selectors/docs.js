@@ -7,8 +7,11 @@ const docs = createSelector(
 	state => state.schema.docs,
 	state => state.id,
 	state => state.hideEnabled,
-	(tree, id, hide) => {
-		const t = sanitize(merge({}, tree), {hide, id, prefix: 'doc'});
+  state => state.routing.locationBeforeTransitions,
+  state => state.base,
+	(tree, id, hide, location, base) => {
+    const context = {hide, id, prefix: 'doc', location, base};
+		const t = sanitize(merge({}, tree), context);
 
 		if (!t.children.some(i => i.id === 'root')) {
 			const doc = enrich({
@@ -18,7 +21,7 @@ const docs = createSelector(
 				manifest: tree.manifest,
 				path: ['/'],
 				type: 'doc'
-			}, {id, config: {}, prefix: '/'});
+			}, {id, config: {}, prefix: '/', location, base});
 
 			t.children.push(doc);
 		}

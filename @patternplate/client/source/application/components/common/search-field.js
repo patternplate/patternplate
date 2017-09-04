@@ -1,8 +1,7 @@
 import {debounce} from 'lodash';
 import React, {Component, PropTypes as types} from 'react';
 import styled from 'styled-components';
-
-import Icon from './icon';
+import {Icon} from '@patternplate/components';
 
 const StyledSearchField = styled.label`
 	display: flex;

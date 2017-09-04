@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import text from 'react-addons-text-content';
 import Code from './common/code';
 import Flag from './flag';
-import Icon from './common/icon';
+import {Icon} from '@patternplate/components';
 import Link from './common/link';
 import Text from './text';
 
