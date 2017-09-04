@@ -52,7 +52,9 @@ export default class NavigationItem extends React.Component {
 					type={props.type}
 					title={title}
 					>
-					<StyledIcon active={props.active} size="m" symbol={symbol}/>
+					{symbol &&
+						<StyledIcon active={props.active} size="m" symbol={symbol}/>
+					}
 					<StyledName>{props.name}</StyledName>
 					{props.meta &&
 						<StyledMeta active={props.active}>{props.meta}</StyledMeta>
@@ -84,11 +86,17 @@ const StyledIcon = styled(Icon)`
 	flex: 0 0 auto;
 	fill: ${props => props.theme.color};
 	${props => props.active && `fill: ${color(props.theme.active)}`};
-	margin: 5px 10px 5px 6px;
+	margin: 5px 0 5px 6px;
 `;
 
 const StyledName = styled.div`
+	display: flex;
+	align-items: center;
 	flex: 1 1 100%;
+	min-height: 25px;
+	margin: 5px 10px;
+	height: 27.5px;
+	width: 27.5px;
 `;
 
 const StyledMeta = styled.div`
@@ -99,7 +107,7 @@ const StyledMeta = styled.div`
 const StyledNavigationItem = styled.div`
 	width: 100%;
 	box-sizing: border-box;
-	border-left: ${props => props.type === 'folder' && `3px solid transparent`};
+	${props => props.type === 'folder' && `border-left: 3px solid transparent`};
 	margin-left: 1px;
 	${props => props.active && `border-color: ${color(props.theme.active).fade(0.6).toString()}`};
 `;
@@ -112,9 +120,9 @@ const StyledNavigationLink = styled(LinkTag)`
 	width: 100%;
 	align-items: center;
 	text-decoration: none;
-	font-size: 16px;
-	line-height: 20px;
+	font-size: 15px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-weight: 300;
 	${props => props.active && `
 		margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
 		padding-left: ${props.type === 'folder' ? 0 : '1px'};

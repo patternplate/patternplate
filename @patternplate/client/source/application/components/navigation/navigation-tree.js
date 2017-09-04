@@ -10,8 +10,8 @@ function NavigationTree(props) {
 			{props.children}
 			{(props.data || []).filter(item => typeof item.manifest === 'object').map(item => {
 				const hidden = (item.manifest.options || {}).hidden || false;
-				const icon = item.manifest.options.icon || item.type;
-				const iconActive = item.manifest.options.iconActive || icon;
+				const icon = item.type !== 'pattern' ? item.manifest.options.icon || item.type : null;
+				const iconActive = item.type !== 'pattern' ? item.manifest.options.iconActive || icon : null;
 
 				return (
 					<NavigationItem
