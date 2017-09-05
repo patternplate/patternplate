@@ -9,7 +9,6 @@
   "scripts": {
     "start": "binary/patternplate-server.js",
     "console": "binary/patternplate-server-console.js",
-    "commitmsg": "conventional-changelog-lint -e",
     "commit": "git-cz",
     "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
     "push": "git push && git push --tags && hub release create \"v$(cat .git/RELEASE_VERSION.tmp)\" --message=\"v$(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && npm publish && rm .git/RELEASE_VERSION.tmp && rm .git/COMMITMSG.tmp",
@@ -133,11 +132,8 @@
     "conventional-changelog-cli": "^1.2.0",
     "conventional-changelog-lint": "^1.0.1",
     "conventional-recommended-bump": "^0.1.1",
-    "cz-conventional-changelog-lint": "^0.1.3",
     "eslint": "^2.11.1",
     "eslint-config-xo": "^0.14.1",
-    "eslint-plugin-babel": "^3.2.0",
-    "husky": "^0.11.1",
-    "jsonlint-cli": "^1.0.1"
+    "eslint-plugin-babel": "^3.2.0"
   }
 }
