@@ -35,15 +35,20 @@ class Navigation extends React.Component {
 
   render() {
     const {props} = this;
-    const toolbar = React.Children.toArray(props.children).find(child => child.type === NavigationToolbar);
+    const children = React.Children.toArray(props.children);
+    const toolbar = children.find(child => child.type === NavigationToolbar);
+    const header = children.find(child => child.type === NavigationHeader);
 
     return (
       <StyledNavigation onKeyDown={this.handleKeyDown}>
         <StyledNavigationTree innerRef={this.getRef}>
-          <StyledHeader
-            title={props.applicationTitle}
-            symbol="patternplate"
-          />
+          {header
+            ? header
+            : <StyledHeader
+                title={props.applicationTitle}
+                symbol="patternplate"
+                />
+          }
           <Documentation
             active={props.active}
             docs={props.docs}
@@ -70,10 +75,15 @@ class Navigation extends React.Component {
 
 module.exports = Navigation;
 module.exports.NavigationToolbar = NavigationToolbar;
+module.exports.NavigationHeader = NavigationHeader;
 
 Navigation.defaultProps = {
   tools: []
 };
+
+function NavigationHeader(props) {
+  return <div>{props.children}</div>
+}
 
 function getPadding(el) {
   const style = global.getComputedStyle(el, null);

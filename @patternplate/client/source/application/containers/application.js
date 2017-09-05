@@ -17,7 +17,8 @@ import Fullscreen from './trigger-fullscreen';
 import Indicator from './indicator';
 import InfoPane from './info-pane';
 import Message from './message';
-import Navigation, {NavigationToolbar} from './navigation';
+import Logo from './logo';
+import Navigation, {NavigationHeader, NavigationToolbar} from './navigation';
 import ToggleDoc from './toggle-doc';
 import ToggleInfoPane from './toggle-info-pane';
 import ToggleNavigation from './toggle-navigation';
@@ -65,6 +66,7 @@ function mapProps(state) {
     description: state.schema.description,
     infoEnabled: selectInfoEnabled(state),
     lightbox: state.lightbox,
+    logo: state.config.logo,
     navigationEnabled: state.navigationEnabled,
     searchEnabled: state.searchEnabled,
     theme: state.theme,
@@ -108,6 +110,11 @@ function Application(props) {
             {
               props.navigationEnabled &&
                 <Navigation>
+                  {props.logo &&
+                    <NavigationHeader>
+                      <Logo/>
+                    </NavigationHeader>
+                  }
                   <NavigationToolbar>
                     <div/>
                     <ToggleSearch/>
