@@ -9,38 +9,53 @@ import Pattern from '../components/pattern';
 import * as actions from '../actions';
 
 class PatternContainer extends React.Component {
-	componentDidMount() {
-		this.props.onChange();
-	}
+  constructor(...args) {
+    super(...args);
+    this.state = {srcdoc: false};
+  }
 
-	componentWillUnmount() {
-		clearTimeout(this.timeout);
-	}
+  componentDidMount() {
+    if (this.state.srcdoc) {
+      this.props.onChange();
+    }
+  }
 
-	componentWillReceiveProps(next) {
-		if (this.props.src !== next.src && next.src) {
-			if (this.timeout) {
-				clearTimeout(this.timeout);
-			}
-			
-			this.timeout = setTimeout(() => {
-				this.props.onChange();
-			}, 250);
-		}
-	}
+  componentWillMount() {
+    if (global.document) {
+      const el = document.createElement('iframe');
+      this.setState({srcdoc: 'srcdoc' in el});
+    }
+  }
 
-	render() {
-		const {props} = this;
-		return (
-			<Pattern
-				contents={props.contents}
-				docs={props.docs}
-				loading={props.loading}
-				opacity={props.opacity}
-				type={props.type}
-				/>
-		);
-	}
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
+  componentWillReceiveProps(next) {
+    if (this.state.srcdoc && this.props.src !== next.src && next.src) {
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+
+      this.timeout = setTimeout(() => {
+        this.props.onChange();
+      }, 250);
+    }
+  }
+
+  render() {
+    const {props} = this;
+    return (
+      <Pattern
+        src={props.src}
+        contents={this.state.srcdoc ? props.contents : null}
+        docs={props.docs}
+        loading={props.loading}
+        opacity={props.opacity}
+        type={props.type}
+        />
+    );
+  }
 }
 
 export default connect(mapState, mapDispatch)(PatternContainer);
@@ -75,30 +90,30 @@ Help us to make this message more helpful on [GitHub](https://github.com/sinners
 `;
 
 const selectDocs = createSelector(
-	selectItem,
-	items.selectType,
-	items.selectContents,
-	(pattern, type, contents) => {
-		if (type === 'not-found') {
-			return NOT_FOUND;
-		}
-		return contents || DEFAULT_CONTENTS;
-	}
+  selectItem,
+  items.selectType,
+  items.selectContents,
+  (pattern, type, contents) => {
+    if (type === 'not-found') {
+      return NOT_FOUND;
+    }
+    return contents || DEFAULT_CONTENTS;
+  }
 );
 
 function mapState(state) {
-	return {
-		docs: selectDocs(state),
-		contents: state.demo.contents,
-		loading: state.demo.fetching,
-		opacity: state.opacity,
-		src: demo.selectSrc(state),
-		type: items.selectType(state)
-	};
+  return {
+    docs: selectDocs(state),
+    contents: state.demo.contents,
+    loading: state.demo.fetching,
+    opacity: state.opacity,
+    src: demo.selectSrc(state),
+    type: items.selectType(state)
+  };
 }
 
 function mapDispatch(dispatch) {
-	return bindActionCreators({
-		onChange: actions.loadPatternDemo
-	}, dispatch);
+  return bindActionCreators({
+    onChange: actions.loadPatternDemo
+  }, dispatch);
 }
