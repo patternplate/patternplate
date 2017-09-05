@@ -1,4 +1,8 @@
 {
   "name": "link",
-  "displayName": "Link"
+  "displayName": "Link",
+  "version": "1.0.0",
+  "patterns": {
+    "../fonts": "fonts"
+  }
 }

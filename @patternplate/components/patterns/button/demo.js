@@ -1,11 +1,12 @@
 const React = require('react');
 const Button = require('Pattern');
+const styled = require('styled-components').default;
 const Themer = require('../demo-themer');
 
 module.exports = function ButtonDemo() {
   return (
     <Themer>
-      <div>
+      <StyledDemoBox>
         <Button
           symbol="reload"
           title="Reload"
@@ -32,7 +33,13 @@ module.exports = function ButtonDemo() {
           symbol="patternplate"
           title="Patternplate"
         />
-      </div>
+      </StyledDemoBox>
     </Themer>
   );
 }
+
+const StyledDemoBox = styled.div`
+  ${Button} {
+    margin: 10px 0 0 10px;
+  }
+`

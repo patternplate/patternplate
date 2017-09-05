@@ -214,7 +214,7 @@ const SIZES = {
 function Icon(props) {
 	return (
 		<StyledIcon className={props.className} size={props.size}>
-			<use xlinkHref={`#${props.symbol || 'placeholder'}`}/>
+			<use title={props.title} xlinkHref={`#${props.symbol || 'placeholder'}`}/>
 		</StyledIcon>
 	);
 }

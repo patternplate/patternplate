@@ -2,8 +2,11 @@ const React = require('react');
 const styled = require('styled-components').default;
 const tag = require('tag-hoc').default;
 
+import fonts from '../fonts';
 import Icon from '../icon';
 import Link from '../link';
+
+const FONTS = fonts();
 
 const buttonTypes = [
   'button',
@@ -26,7 +29,9 @@ function Button(props) {
       type={props.type}
     >
       {props.children &&
-        <span>{props.children}</span>
+        <StyledLabel>
+          {props.children}
+        </StyledLabel>
       }
       {
         props.symbol &&
@@ -46,8 +51,20 @@ function OuterElement(props) {
   if (props.type === 'link') {
     return <Link/>;
   }
-
 }
+
+const StyledLabel = styled.span`
+  font-family: ${FONTS.default};
+`;
+
+const FRAME = props => !props.frameless && `
+  padding: 4px;
+  border: 1px solid currentColor;
+`;
+
+const TRANSPARENCY = props => props.transparent && `
+  background: transparent;
+`;
 
 const StyledButton = styled(Button)`
   appearance: none;
@@ -63,13 +80,8 @@ const StyledButton = styled(Button)`
   font: inherit;
   box-sizing: border-box;
   vertical-align: top;
-  ${props => !props.frameless && `
-    padding: 4px;
-    border: 1px solid currentColor;
-  `}
-  ${props => props.transparent && `
-    background: transparent;
-  `}
+  ${FRAME}
+  ${TRANSPARENCY}
 `;
 
 const StyledIcon = styled(Icon)`

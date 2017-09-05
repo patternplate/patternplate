@@ -3,6 +3,7 @@
   "displayName": "Button",
   "version": "1.0.0",
   "patterns": {
+    "../fonts": "fonts",
     "../icon": "icon",
     "../link": "link"
   },

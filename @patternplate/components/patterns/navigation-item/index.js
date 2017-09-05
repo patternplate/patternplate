@@ -3,8 +3,11 @@ const tag = require('tag-hoc').default;
 const color = require('color');
 const styled = require('styled-components').default;
 
+const fonts = require('../fonts');
 const Icon = require('../icon');
 const Link = require('../link');
+
+const FONTS = fonts();
 
 class NavigationItem extends React.Component {
 	constructor(...args) {
@@ -103,7 +106,7 @@ const StyledNavigationLink = styled(LinkTag)`
 	text-decoration: none;
 	font-size: 16px;
 	line-height: 20px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: ${FONTS.default};
 	${props => props.active && `
 		margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
 		padding-left: ${props.type === 'folder' ? 0 : '1px'};

@@ -29,7 +29,9 @@
     "npm": ">= 3"
   },
   "babel": {
-    "ignore": ["demo.js"],
+    "ignore": [
+      "demo.js"
+    ],
     "sourceMaps": true,
     "presets": [
       "react",
@@ -51,6 +53,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "browserify": "^14.4.0",
+    "lorem-ipsum": "^1.0.4",
     "patternplate-transform-babel": "^1.1.1",
     "patternplate-transform-browserify": "^1.2.2",
     "patternplate-transform-react-mount": "^1.1.0",

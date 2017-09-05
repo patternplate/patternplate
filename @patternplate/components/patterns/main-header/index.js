@@ -1,6 +1,9 @@
 const React = require('react');
 const styled = require('styled-components').default;
+const fonts = require('../fonts');
 const Icon = require('../icon');
+
+const FONTS = fonts();
 
 module.exports = MainHeader;
 
@@ -16,9 +19,9 @@ function MainHeader(props) {
 		>
 			{icon}
 			{props.title &&
-				<span>
+				<StyledTitle>
 					{props.title}
-				</span>
+				</StyledTitle>
 			}
 		</StyledMainHeader>
 	);
@@ -44,4 +47,8 @@ const StyledHeaderLogo = styled(Icon)`
 	${props => props.title && `
 		margin-right: 5px;
 	`}
+`;
+
+const StyledTitle = styled.span`
+  font-family: ${FONTS.default};
 `;
