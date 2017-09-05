@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import {styled} from '@patternplate/components';
 
 import Markdown from './common/markdown';
 

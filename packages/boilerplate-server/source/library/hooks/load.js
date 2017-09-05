@@ -4,7 +4,11 @@ import requireAll from 'require-all';
 import hookFactory from './default';
 
 export default function loadHooks(application, path, modules = false) {
-	const rawAppHooks = requireAll(path);
+	const rawAppHooks = requireAll({
+		dirname: path,
+		filter: /^([^.].*)\.js(on)?$/,
+		resolve: mod => mod.default || mod
+	});
 	const enabledHooks = selectEnabledHooks(application);
 
 	const appHooks = Object.entries(rawAppHooks)

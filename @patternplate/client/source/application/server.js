@@ -3,7 +3,7 @@ import {renderToString} from 'react-dom/server';
 import {createMemoryHistory, match, RouterContext} from 'react-router';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
-import {ServerStyleSheet} from 'styled-components';
+import {ServerStyleSheet} from '@patternplate/components';
 
 import routes from './routes';
 import configureStore from './store';
@@ -29,7 +29,7 @@ export default function (location, data) {
 				</Provider>
 			);
 			const html = renderToString(context);
-			const css = sheet.getStyleElement();
+      const css = sheet.getStyleElement();
 			resolve({html, css});
 		});
 	});

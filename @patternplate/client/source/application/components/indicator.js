@@ -1,5 +1,5 @@
-import React, {PropTypes as types} from 'react';
-import styled, {injectGlobal} from 'styled-components';
+import React from 'react';
+import {styled, css, injectGlobal, keyframes} from '@patternplate/components';
 import Text from './text';
 
 export default Indicator;
@@ -15,12 +15,6 @@ function Indicator(props) {
 		</StyledIndicator>
 	);
 }
-
-Indicator.propTypes = {
-	onClick: types.func,
-	status: types.oneOf(['', 'error', 'loading', 'loaded']).isRequired,
-	shortcut: types.object.isRequired
-};
 
 const StyledDot = styled.div`
 	position: relative;
@@ -69,25 +63,21 @@ function getGlow(props) {
 	`;
 }
 
+const out = keyframes`
+	to {
+		opacity: 0;
+	}
+`;
+
 function getOut(props) {
 	if (props.status !== 'loaded') {
 		return;
 	}
 
-	/* eslint-disable no-unused-expressions */
-	injectGlobal`
-			@keyframes out {
-				to {
-					opacity: 0;
-				}
-			}
-		`;
-	/* eslint-enable */
-
-	return `
-			animation: out 1s .15s;
-			animation-fill-mode: forwards;
-		`;
+	return css`
+		animation: ${out} 1s .15s;
+		animation-fill-mode: forwards;
+	`;
 }
 
 function getLabel(props) {
@@ -103,33 +93,27 @@ function getLabel(props) {
 	}
 }
 
+const pulse = keyframes`
+  from {
+    opacity: .6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.75);
+  }
+  to {
+    opacity: .6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+
 function getPulse(props) {
 	if (props.status !== 'loading') {
 		return;
 	}
 
-	/* eslint-disable no-unused-expressions */
-	injectGlobal`
-			@keyframes pulse {
-				from {
-					opacity: .6;
-					transform: translate(-50%, -50%) scale(1);
-				}
-				50% {
-					opacity: 0;
-					transform: translate(-50%, -50%) scale(.75);
-				}
-				to {
-					opacity: .6;
-					transform: translate(-50%, -50%) scale(1);
-				}
-			}
-		`;
-	/* eslint-enable */
-
-	return `
-			animation: pulse 1s infinite;
-		`;
+	return css`animation: ${pulse} 1s infinite;`;
 }
 
 function isValid(status) {

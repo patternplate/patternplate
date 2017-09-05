@@ -4,7 +4,8 @@ import requireAll from 'require-all';
 function loadConfiguration(dirname, filter = /(.*).(js|json)$/, env = 'development') {
 	const rawConfiguration = requireAll({
 		dirname,
-		filter
+		filter,
+		resolve: mod => mod.default || mod
 	});
 
 	rawConfiguration.environments = rawConfiguration.environments || {};

@@ -1,5 +1,5 @@
-import React, {PropTypes as t} from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import {styled} from '@patternplate/components';
 import Markdown from '../containers/markdown';
 
 export default function Documentation(props) {
@@ -11,11 +11,6 @@ export default function Documentation(props) {
 		</ScrollBox>
 	);
 }
-
-Documentation.propTypes = {
-	doc: t.string.isRequired,
-	type: t.string.isRequired
-};
 
 const ScrollBox = styled.div`
 	height: 100%;

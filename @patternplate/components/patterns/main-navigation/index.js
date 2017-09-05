@@ -34,7 +34,9 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const { props } = this;
+    const {props} = this;
+    const toolbar = React.Children.toArray(props.children).find(child => child.type === NavigationToolbar);
+
     return (
       <StyledNavigation onKeyDown={this.handleKeyDown}>
         <StyledNavigationTree innerRef={this.getRef}>
@@ -56,17 +58,18 @@ class Navigation extends React.Component {
             prefix="/pattern"
           />
         </StyledNavigationTree>
-        <StyledNavigationToolbar>
-          <NavigationToolbar>
-            {this.props.tools}
-          </NavigationToolbar>
-        </StyledNavigationToolbar>
+        {toolbar &&
+          <StyledNavigationToolbar>
+            {toolbar}
+          </StyledNavigationToolbar>
+        }
       </StyledNavigation>
     );
   }
 }
 
 module.exports = Navigation;
+module.exports.NavigationToolbar = NavigationToolbar;
 
 Navigation.defaultProps = {
   tools: []

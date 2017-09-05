@@ -9,7 +9,11 @@ export default {
 	modes: ['server'],
 
 	start: async function startMiddlewareHook(application) {
-		const coreMiddlewares = requireAll(resolve(application.runtime.base, application.configuration.paths.middlewares));
+		const coreMiddlewares = requireAll({
+			dirname: resolve(application.runtime.base, application.configuration.paths.middlewares),
+			filter: /^([^.].*)\.js(on)?$/,
+			resolve: mod => mod.default || mod
+		});
 		const userMiddlewares = {};
 		this.configuration.path = Array.isArray(this.configuration.path) ? this.configuration.path : [this.configuration.path];
 
@@ -20,7 +24,11 @@ export default {
 
 		for (const middlewarePath of middlewarePaths) {
 			if (await exists(middlewarePath)) {
-				Object.assign(userMiddlewares, requireAll(middlewarePath));
+				Object.assign(userMiddlewares, requireAll({
+					dirname: middlewarePath,
+					filter: /^([^.].*)\.js(on)?$/,
+					resolve: mod => mod.default || mod
+				}));
 			}
 		}
 

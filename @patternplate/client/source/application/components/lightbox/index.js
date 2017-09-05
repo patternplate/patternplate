@@ -1,4 +1,4 @@
-import React, {PropTypes as t} from 'react';
+import React from 'react';
 
 export default Lightbox;
 
@@ -25,9 +25,3 @@ function Lightbox(props) {
 	);
 }
 
-Lightbox.propTypes = {
-	title: t.string.isRequired,
-	backdrop: t.bool.isRequired,
-	children: t.any,
-	buttons: t.arrayOf(t.element)
-};

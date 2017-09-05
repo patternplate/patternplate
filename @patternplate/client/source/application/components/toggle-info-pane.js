@@ -1,6 +1,5 @@
-import React, {PropTypes as t} from 'react';
-import styled from 'styled-components';
-import {Icon} from '@patternplate/components';
+import React from 'react';
+import {styled, Icon} from '@patternplate/components';
 
 import ToggleButton from './common/toggle-button';
 
@@ -16,11 +15,6 @@ function Info(props) {
 		</StyledToggleButton>
 	);
 }
-
-Info.propTypes = {
-	enabled: t.bool,
-	shortcut: t.any
-};
 
 const StyledIcon = styled(Icon)`
 	fill: ${props => props.theme.tint};

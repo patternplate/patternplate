@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import {styled} from '@patternplate/components';
 
 export default styled.hr`
 	height: 0.25em;

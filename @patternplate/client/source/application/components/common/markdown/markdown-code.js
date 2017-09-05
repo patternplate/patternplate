@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import {styled} from '@patternplate/components';
 import Code from '../code';
 
 export default styled(Code)`

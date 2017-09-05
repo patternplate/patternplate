@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 
 export default class ClickOutside extends Component {
-	static propTypes = {
-		className: PropTypes.string,
-		onClickOutside: PropTypes.func.isRequired
-	};
-
 	constructor(props) {
 		super(props);
 		this.getContainer = this.getContainer.bind(this);

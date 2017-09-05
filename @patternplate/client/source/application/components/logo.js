@@ -1,5 +1,5 @@
-import React, {PropTypes as t} from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import {styled} from '@patternplate/components';
 import * as svg from '../utils/svg';
 
 class Logo extends React.Component {
@@ -28,7 +28,3 @@ export default styled(Logo)`
 	fill: ${props => props.theme.color};
 `;
 
-Logo.propTypes = {
-	className: t.string,
-	source: t.string
-};

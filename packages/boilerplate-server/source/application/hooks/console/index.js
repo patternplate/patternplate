@@ -22,7 +22,11 @@ export default {
 			}
 		}
 
-		let tasks = existingtaskPaths.map( ( tasksPath ) => requireAll( tasksPath ) )
+		let tasks = existingtaskPaths.map( ( tasksPath ) => requireAll({
+			dirname: tasksPath,
+			filter: /^([^.].*)\.js(on)?$/,
+			resolve: mod => mod.default || mod
+		}))
 			.reduce( ( results, task ) => Object.assign( results, task ), {} );
 
 			// load module tasks

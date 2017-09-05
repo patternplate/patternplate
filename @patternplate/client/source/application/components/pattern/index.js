@@ -1,5 +1,5 @@
-import React, {PropTypes as t} from 'react';
-import styled, {keyframes} from 'styled-components';
+import React from 'react';
+import {styled, keyframes} from '@patternplate/components';
 import tag from 'tag-hoc';
 import Transition from 'react-transition-group/Transition';
 
@@ -122,15 +122,6 @@ export default class Pattern extends React.Component {
 		}
 	}
 }
-
-Pattern.propTypes = {
-	demoSrc: t.string,
-	id: t.string.isRequired,
-	opacity: t.bool.isRequired,
-	pattern: t.any.isRequired,
-	type: t.string.isRequired,
-	contents: t.string
-};
 
 function grad(fill) {
 	return `linear-gradient(45deg, ${fill} 25%, transparent 25%, transparent 75%, ${fill} 75%, ${fill})`;

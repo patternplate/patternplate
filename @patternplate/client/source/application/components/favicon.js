@@ -1,6 +1,6 @@
-import React, {PropTypes as t} from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
+import {styled} from '@patternplate/components';
 import * as svg from '../utils/svg';
 
 class FavIcon extends React.Component {
@@ -52,7 +52,3 @@ export default styled(FavIcon)`
 	fill: ${props => props.theme.color};
 `;
 
-FavIcon.propTypes = {
-	className: t.string,
-	source: t.string
-};

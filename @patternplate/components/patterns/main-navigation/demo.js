@@ -1,6 +1,7 @@
 const React = require('react');
 const styled = require('styled-components').default;
-const Pattern = require('Pattern');
+const MainNavigation = require('Pattern');
+const {NavigationToolbar} = require('Pattern');
 const Themer = require('../demo-themer');
 const Button = require('../button');
 
@@ -152,34 +153,31 @@ const docs = {
   ]
 };
 
-const Dummy = styled.div`
-	width: 30px;
-	height: 30px;
-	background-color: #ccc;
-`;
-
-const tools = ['react', 'search', 'reload'];
-const toolComponents = tools.map(
-  (item, index) => (
-    <Button
-      key={index}
-      type="link"
-      symbol={item}
-      frameless
-      transparent
-    />
-  )
-);
-
 module.exports = function MainNavigationDemo() {
   return (
     <Themer>
-      <Pattern
+      <MainNavigation
         docs={docs}
         navigation={navigation}
-        tools={toolComponents}
         applicationTitle="Patternplate"
-      />
+        >
+        <NavigationToolbar>
+          <ToolbarButton item="react"/>
+          <ToolbarButton item="search"/>
+          <ToolbarButton item="reloads"/>
+        </NavigationToolbar>
+      </MainNavigation>
     </Themer>
+  );
+}
+
+function ToolbarButton(props) {
+  return (
+    <Button
+      type="link"
+      symbol={props.item}
+      frameless
+      transparent
+      />
   );
 }

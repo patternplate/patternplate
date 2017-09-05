@@ -8,5 +8,12 @@ module.exports = {
   NavigationToolbar: require('./navigation-toolbar'),
   NavigationTree: require('./navigation-tree'),
   PatternView: require('./pattern-view'),
+  styled: require('styled-components').default,
+  ServerStyleSheet: require('styled-components').ServerStyleSheet,
+  StyleSheetManager: require('styled-components').StyleSheetManager,
+  ThemeProvider: require('styled-components').ThemeProvider,
+  injectGlobal: require('styled-components').injectGlobal,
+  keyframes: require('styled-components').keyframes,
+  css: require('styled-components').css,
   themes: require('./themes')
 };

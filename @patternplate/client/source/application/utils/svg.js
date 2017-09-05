@@ -1,6 +1,6 @@
 import b from 'btoa';
 import {createElement as h} from 'react';
-import styled from 'styled-components';
+import {styled} from '@patternplate/components';
 import {DOMParser, XMLSerializer} from 'xmldom';
 
 const parser = new DOMParser();

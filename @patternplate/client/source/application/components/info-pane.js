@@ -1,10 +1,9 @@
-import React, {PropTypes as t} from 'react';
+import React from 'react';
 import semver from 'semver';
-import styled from 'styled-components';
+import {Icon, styled} from '@patternplate/components';
 import text from 'react-addons-text-content';
 import Code from './common/code';
 import Flag from './flag';
-import {Icon} from '@patternplate/components';
 import Link from './common/link';
 import Text from './text';
 
@@ -130,14 +129,6 @@ class SearchTrigger extends React.Component {
 	}
 }
 
-SearchTrigger.propTypes = {
-	children: t.any,
-	className: t.string.isRequired,
-	field: t.string.isRequired,
-	onClick: t.func,
-	search: t.string.isRequired,
-	title: t.string.isRequired
-};
 
 const StyledVersion = styled(Version)`
 	&:link, &:visited {
@@ -341,28 +332,6 @@ function InnerInfoPane(props) {
 	);
 }
 
-InnerInfoPane.propTypes = {
-	className: t.string,
-	demoDependents: t.array.isRequired,
-	demoDependentsEnabled: t.bool.isRequired,
-	demoDependencies: t.array.isRequired,
-	demoDependenciesEnabled: t.bool.isRequired,
-	dependents: t.array.isRequired,
-	dependentsEnabled: t.bool.isRequired,
-	dependencies: t.array.isRequired,
-	dependenciesEnabled: t.bool.isRequired,
-	flag: t.string.isRequired,
-	icon: t.string.isRequired,
-	id: t.string.isRequired,
-	manifest: t.string.isRequired,
-	manifestEnabled: t.bool.isRequired,
-	name: t.string.isRequired,
-	standalone: t.bool.isRequired,
-	style: t.string,
-	tags: t.array.isRequired,
-	version: t.string.isRequired
-};
-
 const StyledSelectContainer = styled.div`
 	position: relative;
 	&::after {
@@ -413,12 +382,6 @@ function Version(props) {
 	);
 }
 
-Version.propTypes = {
-	className: t.string.isRequired,
-	search: t.string.isRequired,
-	children: t.string.isRequired
-};
-
 function Tag(props) {
 	return (
 		<SearchTrigger className={props.className} search={props.tag} field="tags">
@@ -426,11 +389,6 @@ function Tag(props) {
 		</SearchTrigger>
 	);
 }
-
-Tag.propTypes = {
-	className: t.string.isRequired,
-	tag: t.string.isRequired
-};
 
 const StyledArrow = styled(Text)`
 	font-size: .8em;
@@ -453,13 +411,6 @@ function ToggleHead(props) {
 	);
 }
 
-ToggleHead.propTypes = {
-	name: t.string.isRequired,
-	enabled: t.string.isRequired,
-	className: t.string.isRequired,
-	children: t.string.isRequired
-};
-
 const StyledPatternList = styled.div`
 	width: 100%;
 `;
@@ -471,10 +422,6 @@ function PatternList(props) {
 		</StyledPatternList>
 	);
 }
-
-PatternList.propTypes = {
-	children: t.any
-};
 
 const StyledPatternItem = styled(Link)`
 	display: block;
@@ -490,10 +437,6 @@ function PatternItem(props) {
 		</StyledPatternItem>
 	);
 }
-
-PatternItem.propTypes = {
-	pattern: t.any
-};
 
 const StyledToggle = styled.div`
 	position: relative;
@@ -516,13 +459,6 @@ function Toggle(props) {
 		</StyledToggle>
 	);
 }
-
-Toggle.propTypes = {
-	children: t.any,
-	enabled: t.bool,
-	head: t.any,
-	name: t.string
-};
 
 function has(val) {
 	return Array.isArray(val) && val.length > 0;

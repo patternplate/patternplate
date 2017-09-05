@@ -37,7 +37,13 @@ export default {
 		);
 
 		const userRoutes = routePaths.reduce((registry, entry) => entry.exists ?
-				merge(registry, requireAll(entry.path)) :
+				merge(registry, requireAll({
+					dirname: entry.path,
+					filter: /^([^.].*)\.js(on)?$/,
+					resolve(mod) {
+						return mod.default || mod;
+					}
+				})) :
 				registry
 			, {});
 
@@ -48,7 +54,8 @@ export default {
 				const routeModuleName = this.configuration.enabled[routeName].enabled;
 
 				try {
-					result[routeName] = require(routeModuleName);
+					const mod = require(routeModuleName);
+					result[routeName] = mod.default || mod;
 					this.log.debug(`Required module route '${routeName}' from module '${routeModuleName}'`);
 				} catch (err) {
 					this.log.warn(`Could not require module route '${routeName}' from module '${routeModuleName}'`);
@@ -68,7 +75,7 @@ export default {
 				throw new Error(`'${routeName}' is no valid route factory`);
 			}
 
-			if (routeConfig === false || routeConfig && routeConfig.enabled === false) {
+			if (routeConfig === false || (routeConfig && routeConfig.enabled === false)) {
 				this.log.debug(`'${routeName}' is explicitly disabled.`);
 				return;
 			}
@@ -79,11 +86,11 @@ export default {
 			}
 
 			const methods = routeConfig.methods || ['GET', 'POST', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'];
+
 			const fn = routeFactoryFunction(application, routeConfig);
 
 			if (typeof fn !== 'function') {
-				this.log.warn(`${routeName} factory returned no valid route for ${routeConfig.path}`);
-				return;
+				throw new Error(`'${routeName}' factory returned no valid route for ${routeConfig.path}`);
 			}
 
 			this.log.debug(`Mounting ${routeName} on ${routeConfig.path}`);
