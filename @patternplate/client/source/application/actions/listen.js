@@ -30,7 +30,7 @@ export default createPromiseThunkAction('LISTEN', (payload, dispatch, getState) 
     const file = payload.file || '';
 
     if (file.startsWith('patterns')) {
-      dispatch(await loadSchema());
+      dispatch(await Promise.resolve(loadSchema()));
     }
   });
 

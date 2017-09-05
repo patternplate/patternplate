@@ -45,6 +45,7 @@ class PatternContainer extends React.Component {
 
   render() {
     const {props} = this;
+
     return (
       <Pattern
         src={props.src}
