@@ -1,4 +1,5 @@
 const React = require('react');
+const styled = require('styled-components').default;
 const {ThemeProvider} = require('styled-components');
 const getThemes = require('../themes');
 
@@ -8,13 +9,18 @@ module.exports = Themer;
 
 function Themer(props) {
 	return (
-		<div>
+		<StyledThemer>
 			<ThemeProvider key="dark" theme={themes.dark}>
 				{props.children}
 			</ThemeProvider>
 			<ThemeProvider key="light" theme={themes.light}>
 				{props.children}
 			</ThemeProvider>
-		</div>
+		</StyledThemer>
 	);
 }
+
+const StyledThemer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
