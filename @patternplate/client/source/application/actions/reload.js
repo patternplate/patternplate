@@ -1,12 +1,12 @@
-import {loadSchema} from './';
+import {loadPatternDemo, loadSchema} from './';
 
 export default reload;
 
 function reload() {
 	return async dispatch => {
 		const actions = [
-			async () => dispatch(await loadSchema()),
-			// loadPattern({reloadTime: Date.now()})
+			async () => dispatch(await Promise.resolve(loadSchema())),
+		  loadPatternDemo({reloadTime: Date.now()})
 		];
 
 		await Promise.all(actions.map(dispatch));
