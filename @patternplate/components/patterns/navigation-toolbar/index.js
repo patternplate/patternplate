@@ -20,5 +20,6 @@ const StyledNavigationToolbar = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	height: 40px;
-	padding: 10px 15px;
+  padding: 10px 15px;
+  background-color: ${props => props.theme.backgroundSecondary};
 `;

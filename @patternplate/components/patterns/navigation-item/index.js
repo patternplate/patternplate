@@ -104,9 +104,10 @@ const StyledNavigationLink = styled(LinkTag)`
 	width: 100%;
 	align-items: center;
 	text-decoration: none;
-	font-size: 16px;
+	font-size: ${props => props.theme.fontSize};
 	line-height: 20px;
-	font-family: ${FONTS.default};
+  font-family: ${FONTS.default};
+  font-weight: ${props => props.theme.fontWeight};
 	${props => props.active && `
 		margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
 		padding-left: ${props.type === 'folder' ? 0 : '1px'};

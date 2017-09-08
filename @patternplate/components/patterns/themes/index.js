@@ -1,10 +1,13 @@
 const color = require('color');
 const {merge} = require('lodash');
 
+
 module.exports = function getThemes(passed) {
-  const bgDark = 'rgba(39, 39, 39, 1)';
-  const bgLight = 'rgba(255, 255, 255, 1)';
-  const main = passed || 'rgba(66, 165, 245, 1)';
+  const mainColorTone = passed ? color(passed) : color.hsl(210, 100, 100);
+
+  const bgDark = mainColorTone.desaturate(0.5).darken(0.9).string();
+  const bgLight = 'hsl(255, 0%, 100%)';
+  const main = mainColorTone.darken(0.4).string();
 
   const common = {
     active: main,
@@ -19,13 +22,15 @@ module.exports = function getThemes(passed) {
   const dark = merge({}, common, {
     name: 'dark',
     background: bgDark,
-    backgroundSecondary: 'rgba(21, 23, 24, 1)',
+    backgroundSecondary: 'hsl(210, 50%, 15%)',
     backgroundTertiary: 'rgba(32, 37, 40, 1)',
-    border: 'rgba(64, 64, 64, 1)',
-    color: 'rgba(238, 238, 238, 1)',
+    border: mainColorTone.desaturate(0.5).darken(0.85).string(),
+    color: 'hsl(255, 0%, 95%)',
     colorNegated: 'rgba(68, 68, 68, 1)',
     recess: 'rgba(153, 153, 153, 1)',
-    tint: mix(common.dark, common.active, 0.075).toString()
+    tint: mix(common.dark, common.active, 0.075).toString(),
+    fontWeight: '100',
+    fontSize: '14px'
   });
 
   const light = merge({}, common, {

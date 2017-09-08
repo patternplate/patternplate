@@ -30,11 +30,12 @@ function MainHeader(props) {
 const StyledMainHeader = styled.div`
 	width: 100%;
 	height: auto;
-	color: ${props => props.theme.color};
+  color: ${props => props.theme.color};
+  background-color: ${props => props.theme.backgroundSecondary};
 	${props => !props.image && `
 		display: flex;
 		padding: 10px 15px;
-		background: ${props.theme.active};
+		color: ${props.theme.active};
 		align-items: center;
 		justify-content: center;
 	`}

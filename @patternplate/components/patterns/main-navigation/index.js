@@ -104,7 +104,7 @@ const StyledNavigation = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  background: ${props => props.theme.tint}
+  background-color: ${props => props.theme.background}
 `;
 
 const PASSAGE_HEIGHT = 50;

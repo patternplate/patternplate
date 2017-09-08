@@ -1,7 +1,7 @@
 const React = require('react');
 const styled = require('styled-components').default;
 const MainNavigation = require('Pattern');
-const {NavigationToolbar} = require('Pattern');
+const { NavigationToolbar } = require('Pattern');
 const Themer = require('../demo-themer');
 const Button = require('../button');
 
@@ -14,9 +14,11 @@ const navigation = {
       manifest: {
         version: '1.0.0',
         flag: 'alpha',
-        options: {},
+        options: {
+          icon: 'atoms'
+        },
         name: 'atoms',
-        displayName: 'atoms'
+        displayName: 'Atoms'
       },
       id: 'atoms',
       path: [
@@ -61,9 +63,11 @@ const navigation = {
       manifest: {
         version: '1.0.0',
         flag: 'alpha',
-        options: {},
+        options: {
+          icon: 'molecules'
+        },
         name: 'molecules',
-        displayName: 'molecules'
+        displayName: 'Molecules'
       },
       id: 'molecules',
       path: [
@@ -79,9 +83,11 @@ const navigation = {
       manifest: {
         version: '1.0.0',
         flag: 'alpha',
-        options: {},
+        options: {
+          icon: 'organisms'
+        },
         name: 'organisms',
-        displayName: 'organisms'
+        displayName: 'Organisms'
       },
       id: 'organisms',
       path: [
@@ -99,7 +105,7 @@ const navigation = {
         flag: 'alpha',
         options: {},
         name: 'pages',
-        displayName: 'pages'
+        displayName: 'Pages'
       },
       id: 'pages',
       path: [
@@ -117,7 +123,7 @@ const navigation = {
         flag: 'alpha',
         options: {},
         name: 'templates',
-        displayName: 'templates'
+        displayName: 'Templates'
       },
       id: 'templates',
       path: [
@@ -160,11 +166,11 @@ module.exports = function MainNavigationDemo() {
         docs={docs}
         navigation={navigation}
         applicationTitle="Patternplate"
-        >
+      >
         <NavigationToolbar>
-          <ToolbarButton item="react"/>
-          <ToolbarButton item="search"/>
-          <ToolbarButton item="reloads"/>
+          <ToolbarButton item="react" />
+          <ToolbarButton item="search" />
+          <ToolbarButton item="reload" />
         </NavigationToolbar>
       </MainNavigation>
     </Themer>
@@ -178,6 +184,6 @@ function ToolbarButton(props) {
       symbol={props.item}
       frameless
       transparent
-      />
+    />
   );
 }
