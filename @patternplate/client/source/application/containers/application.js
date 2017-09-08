@@ -4,11 +4,10 @@ import tag from 'tag-hoc';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {createSelector} from 'reselect';
-import {styled, ThemeProvider, injectGlobal} from '@patternplate/components';
+import {styled, ThemeProvider, injectGlobal, themes} from '@patternplate/components';
 
 import * as actions from '../actions';
 import * as item from '../selectors/item';
-import themes from '../themes';
 
 import CodePane from './code-pane';
 import DocPane from './doc-pane';
