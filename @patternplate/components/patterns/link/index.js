@@ -1,42 +1,42 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const fonts = require('../fonts');
+import React from 'react';
+import styled from 'styled-components';
+import fonts from '../fonts';
 
 const FONTS = fonts();
 
-class Link extends React.Component {
+export default class Link extends React.Component {
   constructor(...args) {
     super(...args);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
-    this.props.onClick(e);
+    this.props.onClick(e, this.props.href);
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
-      <StyledAnchor
+      <a
         target={props.external ? '_blank' : null}
         rel={props.external ? 'noopener noreferrer' : null}
         className={props.className}
         href={props.href}
         onClick={this.handleClick}
+        onMouseOver={props.onHover}
         title={props.title}
         data-id={props['data-id']}
-           >
+      >
         {props.children}
-      </StyledAnchor>
+      </a>
     );
   }
 }
 
-module.exports = Link;
-
 Link.defaultProps = {
   external: false,
-  onClick: () => {}
+  onClick: () => { },
+  onHover: () => { }
 };
 
 const StyledAnchor = styled.a`

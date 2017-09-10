@@ -206,9 +206,9 @@ function getRegistryMountPoint() {
 }
 
 const SIZES = {
-	s: 15,
-	m: 30,
-	l: 50
+	s: 14,
+	m: 22,
+	l: 38
 };
 
 function Icon(props) {

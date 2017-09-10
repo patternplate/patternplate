@@ -10,7 +10,7 @@ module.exports = MainHeader;
 function MainHeader(props) {
 	const icon = props.image ?
 		props.image :
-		<StyledHeaderLogo symbol="patternplate"/>;
+		<StyledHeaderLogo symbol="patternplate" size="l"/>;
 
 	return (
 		<StyledMainHeader

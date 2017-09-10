@@ -1,10 +1,8 @@
-const React = require('react');
-const Pattern = require('Pattern');
+import React from 'react';
+import Link from 'Pattern';
 
-module.exports = LinkDemo;
-
-function LinkDemo() {
+export default function () {
   return (
-    <Pattern href="/">Standard link</Pattern>
+    <Link href="/">Standard link</Link>
   );
 }

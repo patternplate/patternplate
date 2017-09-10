@@ -22,4 +22,5 @@ const StyledNavigationToolbar = styled.div`
 	height: 40px;
   padding: 10px 15px;
   background-color: ${props => props.theme.backgroundSecondary};
+  box-sizing: ${props => props.theme.boxSizing};
 `;
