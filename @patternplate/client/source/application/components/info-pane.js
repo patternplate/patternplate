@@ -23,13 +23,13 @@ const StyledInfoPane = styled.div`
 	border-right-width: ${props => props.hermit ? 0 : 1}px;
 	overflow: scroll;
 	overflow-x: hidden;
-	background: ${props => props.theme.tint};
+	background: ${props => props.theme.background};
 `;
 
 const StyledInnerPane = styled.div`
 	position: relative;
 	z-index: 1;
-	background: ${props => props.theme.tint};
+	background: ${props => props.theme.background};
 `;
 
 const StyledName = styled.div`
@@ -183,7 +183,7 @@ const StyledToggleBody = styled.div`
 	width: 100%;
 	padding: 5px 15px 5px 20px;
 	box-sizing: border-box;
-	background: ${props => props.theme.tint};
+	background: ${props => props.theme.background};
 `;
 
 const StyledCode = styled(Code)`

@@ -19,7 +19,7 @@ function Fullscreen(props) {
 }
 
 const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.tint};
+  fill: ${props => props.theme.background};
 `;
 
 const StyledLink = styled(Link)`

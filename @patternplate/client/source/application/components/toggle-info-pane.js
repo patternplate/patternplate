@@ -17,7 +17,7 @@ function Info(props) {
 }
 
 const StyledIcon = styled(Icon)`
-	fill: ${props => props.theme.tint};
+	fill: ${props => props.theme.background};
 `;
 
 const StyledToggleButton = styled(ToggleButton)`

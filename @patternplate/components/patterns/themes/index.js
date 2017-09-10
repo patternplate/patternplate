@@ -16,7 +16,10 @@ module.exports = function getThemes(passed) {
     info: 'rgba(80, 179, 221, 1)', // rc
     success: 'rgba(74, 165, 74, 1)', // stable
     dark: 'rgba(15, 15, 15, 1)',
-    light: 'rgba(220, 220, 220, 1)'
+    light: 'rgba(220, 220, 220, 1)',
+    fontWeight: '100',
+    fontSize: '14px',
+    boxSizing: 'border-box'
   };
 
   const dark = merge({}, common, {
@@ -27,10 +30,7 @@ module.exports = function getThemes(passed) {
     border: mainColorTone.desaturate(0.5).darken(0.85).string(),
     color: 'hsl(255, 0%, 95%)',
     colorNegated: 'rgba(68, 68, 68, 1)',
-    recess: 'rgba(153, 153, 153, 1)',
-    tint: mix(common.dark, common.active, 0.075).toString(),
-    fontWeight: '100',
-    fontSize: '14px'
+    recess: 'rgba(153, 153, 153, 1)'
   });
 
   const light = merge({}, common, {
@@ -42,7 +42,7 @@ module.exports = function getThemes(passed) {
     color: 'rgba(68, 68, 68, 1)',
     colorNegated: 'rgba(238, 238, 238, 1)',
     recess: 'rgba(106, 115, 125, 1)',
-    tint: mix(common.light, common.active, 0.075).toString()
+    fontWeight: 'initial'
   });
 
   return {

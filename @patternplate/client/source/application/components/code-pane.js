@@ -33,7 +33,7 @@ const StyledCodePane = styled.div`
 		bottom: 0;
 		left: 0;
 		border-radius: ${props => props.hermit ? `${BORDER_RADIUS}px` : `0 ${BORDER_RADIUS}px ${BORDER_RADIUS}px 0`};
-		background: ${props => props.theme.tint};
+		background: ${props => props.theme.background};
 	}
 `;
 

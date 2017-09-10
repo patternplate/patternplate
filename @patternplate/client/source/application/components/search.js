@@ -498,7 +498,7 @@ function withTint(props) {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: ${props.theme.tint};
+			background: ${props.theme.background};
 			opacity: 0.975;
 		}
 	`;
