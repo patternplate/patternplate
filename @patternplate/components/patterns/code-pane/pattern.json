@@ -1,0 +1,11 @@
+{
+  "name": "code-pane",
+  "displayName": "Code pane",
+  "version": "1.0.0",
+  "patterns": {
+    "../code": "code"
+  },
+  "demoPatterns": {
+    "../demo-themer": "demo-themer"
+  }
+}
