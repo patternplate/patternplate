@@ -29,30 +29,49 @@ const navigation = {
       children: [
         {
           contents: '',
-          name: 'icon',
+          name: 'nested',
           active: true,
           manifest: {
-            version: '1.0.0',
-            flag: 'alpha',
             options: {},
-            name: 'icon',
-            displayName: 'Icon'
+            name: 'nested',
+            displayName: 'Nested'
           },
-          id: 'atoms/icon',
+          id: 'atoms/nested',
           path: [
             'atoms',
-            'icon'
+            'nested'
           ],
-          href: '/atoms/icon',
-          type: 'pattern',
-          dependents: [
-            'molecules/button',
-            'molecules/main-logo',
-            'molecules/navigation-item'
-          ],
-          envs: [
-            'dark',
-            'index'
+          type: 'folder',
+          href: '/atoms/nested',
+          children: [
+            {
+              contents: '',
+              name: 'icon',
+              active: false,
+              manifest: {
+                version: '1.0.0',
+                flag: 'alpha',
+                options: {},
+                name: 'icon',
+                displayName: 'Icon'
+              },
+              id: 'atoms/nested/icon',
+              path: [
+                'atoms',
+                'icon'
+              ],
+              href: '/atoms/nested/icon',
+              type: 'pattern',
+              dependents: [
+                'molecules/button',
+                'molecules/main-logo',
+                'molecules/navigation-item'
+              ],
+              envs: [
+                'dark',
+                'index'
+              ]
+            }
           ]
         }
       ]
@@ -187,3 +206,7 @@ function ToolbarButton(props) {
     />
   );
 }
+
+const StyleDemoContainer = styled.div`
+  width: 320px;
+`;
