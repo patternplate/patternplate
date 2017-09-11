@@ -18,15 +18,14 @@ module.exports = function getThemes(passed) {
     dark: 'rgba(15, 15, 15, 1)',
     light: 'rgba(220, 220, 220, 1)',
     fontWeight: '100',
-    fontSize: '14px',
-    boxSizing: 'border-box'
+    fontSize: '14px'
   };
 
   const dark = merge({}, common, {
     name: 'dark',
     background: bgDark,
-    backgroundSecondary: 'hsl(210, 50%, 15%)',
-    backgroundTertiary: 'rgba(32, 37, 40, 1)',
+    backgroundSecondary: mainColorTone.desaturate(0.5).darken(0.85).string(),
+    backgroundTertiary: mainColorTone.desaturate(0.5).darken(0.8).string(),
     border: mainColorTone.desaturate(0.5).darken(0.85).string(),
     color: 'hsl(255, 0%, 95%)',
     colorNegated: 'rgba(68, 68, 68, 1)',

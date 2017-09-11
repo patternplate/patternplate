@@ -34,7 +34,7 @@ function Theme(props) {
       <StyledName>{props.name}</StyledName>
       <StyledGrid>
         {
-          entries(omit(props.theme, ['name']))
+          entries(omit(props.theme, ['name', 'fontWeight', 'fontSize']))
             .map(entry => (
               <Tile key={entry.join('-')} color={entry[1]} name={entry[0]}/>
             ))
