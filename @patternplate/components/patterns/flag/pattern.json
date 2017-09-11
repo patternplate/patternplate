@@ -1,0 +1,11 @@
+{
+  "name": "flag",
+  "displayName": "Flag",
+  "version": "1.0.0",
+  "demoPatterns": {
+    "../demo-themer": "demo-themer"
+  },
+  "patterns": {
+    "../fonts": "fonts"
+  }
+}
