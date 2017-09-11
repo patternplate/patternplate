@@ -28,5 +28,6 @@ node_modules
 /packages/boilerplate-server/library/
 
 /packages/patternplate-transform-babel/distribution
+/packages/patternplate-transform-react-mount/index.js
 /packages/patternplate-transform-react-to-markup/distribution
 /packages/patternplate-transform-styled-components/index.js
