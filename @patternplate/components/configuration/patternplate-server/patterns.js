@@ -1,7 +1,7 @@
 module.exports = {
 	formats: {
 		js: {
-			transforms: ['babel', 'react-to-markup']
+			transforms: ['babel', 'styled-components', 'react-to-markup']
 		}
 	},
 	mount: {

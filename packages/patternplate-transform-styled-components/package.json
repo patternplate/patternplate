@@ -7,10 +7,9 @@
   ],
   "scripts": {
     "start": "npm test -- --watch",
-    "pretest": "npm run deps && npm run lint",
+    "pretest": "npm run deps",
     "build": "babel source.js -o index.js",
-    "watch": "npm run build -- --watch",
-    "lint": "xo",
+    "watch": "babel source.js -o index.js -w",
     "predeps": "npm run build",
     "deps": "dependency-check . && dependency-check . --extra --no-dev"
   },
@@ -46,21 +45,6 @@
     ],
     "babel": "inherit"
   },
-  "xo": {
-    "parser": "babel-eslint",
-    "esnext": true,
-    "extends": [
-      "plugin:flowtype/recommended"
-    ],
-    "plugins": [
-      "flow-check",
-      "flowtype"
-    ],
-    "rules": {
-      "flow-check/check": "error",
-      "flowtype/require-valid-file-annotation": "error"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marionebl/patternplate-transform-styled-components.git"
@@ -83,25 +67,17 @@
   "devDependencies": {
     "ava": "0.18.2",
     "babel-cli": "6.24.0",
-    "babel-eslint": "7.1.1",
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-transform-flow-comments": "6.22.0",
     "babel-polyfill": "6.23.0",
     "babel-preset-env": "1.2.2",
     "babel-register": "6.24.0",
-    "eslint-plugin-flow-check": "1.0.3",
-    "eslint-plugin-flowtype": "2.30.3",
     "flow-bin": "0.42.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "resolve": "1.3.2",
     "resolve-from": "2.0.0",
-    "styled-components": "2.0.0-7",
-    "unexpected": "10.26.3",
-    "xo": "0.17.1"
-  },
-  "dependencies": {
-    "require-uncached": "1.0.3",
-    "resolve-from": "2.0.0"
+    "styled-components": "^2.1.2",
+    "unexpected": "10.26.3"
   }
 }

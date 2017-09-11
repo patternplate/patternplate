@@ -28,5 +28,9 @@ module.exports = {
   'react-to-markup': {
     inFormat: 'js',
     outFormat: 'html'
+  },
+  'styled-components': {
+    inFormat: 'html',
+    outFormat: 'html'
   }
 };

@@ -8,6 +8,8 @@ export default (file, options = {}, application) => {
 	const renderFunction = getRenderFunction(isStatic, application);
 	const component = getComponent(file);
 
+  file.meta.component = component;
+
 	try {
 		const original = console.error;
 
@@ -19,11 +21,9 @@ export default (file, options = {}, application) => {
 			original(...args);
 		};
 
-		const result = typeof component === 'function' ?
-			renderFunction(React.createElement(component)) :
-			'';
+		const result = getResult(file, {component, renderFunction});
 
-		const post = file.pattern.post || [];
+    const post = file.pattern.post || [];
 		post.forEach(p => p());
 
 		const buffer = options.automount ?
@@ -49,3 +49,12 @@ export default (file, options = {}, application) => {
 		throw err;
 	}
 };
+
+function getResult(file, {component, renderFunction}) {
+  if (typeof component !== 'function') {
+    return '';
+  }
+  return file.wrap
+    ? file.wrap(renderFunction, React.createElement(component))
+    : renderFunction(React.createElement(component))
+}

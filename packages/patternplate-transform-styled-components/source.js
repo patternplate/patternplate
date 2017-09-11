@@ -1,58 +1,29 @@
 // @flow
-import requireUncached from 'require-uncached';
-import resolveFrom from 'resolve-from';
+import {ServerStyleSheet} from 'styled-components';
 
 export default styledComponentsTransformFactory;
 
-type MetaResource = {|
-	id: string;
-	content: string[];
-	type: string;
-	reference: boolean;
-	pattern: string;
-|};
+function styledComponentsTransformFactory(app) {
+	return async function (file) {
+    file.wrap = (render, comp) => {
+      const sheet = new ServerStyleSheet();
+      const html = render(sheet.collectStyles(comp));
+      const css = sheet.getStyleElement();
 
-/** A patternplate File object with attaced meta data */
-type File = {
-	buffer: Buffer;
-	path: string;
-	pattern: {
-		id: string;
-		post?: Function[];
-	};
-	dependencies?: FileDependencies; // eslint-disable-line no-use-before-define
-	meta?: {
-		css?: MetaResource[]
-	};
-};
+      app.resources = app.resources.filter(r => r.id !== `styled-components/${file.pattern.id}`);
 
-/** Map of dependencies available to a file */
-type FileDependencies = {
-	[localName: string]: File;
-};
+      app.resources.push({
+        id: `styled-components/${file.pattern.id}`,
+        pattern: file.pattern.id,
+        type: 'css',
+        reference: false,
+        wrap: false,
+        content: css
+      });
 
-function styledComponentsTransformFactory(application: Object): Function {
-	return async function (file: File): Promise<File> {
-		file.pattern.post = (file.pattern.post || []).concat(getCSS(file, application));
-		return file;
-	};
-}
+      return html;
+    }
 
-function getCSS(file, app) {
-	return (): void => {
-		const styledPath = resolveFrom(process.cwd(), 'styled-components');
-		const styled = requireUncached(styledPath);
-		const sheet = new styled.ServerStyleSheet();
-
-		app.resources = app.resources.filter(r => r.id !== `styled-components/${file.pattern.id}`);
-
-		app.resources.push({
-			id: `styled-components/${file.pattern.id}`,
-			pattern: file.pattern.id,
-			type: 'css',
-			reference: false,
-			wrap: false,
-			content: sheet.getStyleTags()
-		});
+    return file;
 	};
 }

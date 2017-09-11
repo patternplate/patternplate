@@ -8,18 +8,9 @@
   "scripts": {
     "start": "npm run watch",
     "build": "babel source.js -o index.js",
-    "lint": "xo",
-    "pretest": "npm run build && npm run lint",
+    "pretest": "npm run build",
     "test": "ava",
-    "watch": "npm run test -- --watch",
-    "commit": "git-cz",
-    "commitmsg": "conventional-changelog-lint -e",
-    "changelog": "conventional-changelog --preset angular --infile changelog.md --same-file --output-unreleased",
-    "push": "git push && git push --tags && hub release create \"v$(cat .git/RELEASE_VERSION.tmp)\" --message=\"v$(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && npm publish && rm .git/RELEASE_VERSION.tmp && rm .git/COMMITMSG.tmp",
-    "release": "npm version $(conventional-recommended-bump -p angular)",
-    "preversion": "npm run build && npm test",
-    "version": "npm run changelog && git add . && echo \"$(conventional-changelog -p angular)\" > .git/COMMITMSG.tmp",
-    "postversion": "echo $(git log -1 --pretty=%B HEAD^..HEAD) > .git/RELEASE_VERSION.tmp && git tag -d v$(cat .git/RELEASE_VERSION.tmp) && git commit --amend -m \"chore(release): $(cat .git/RELEASE_VERSION.tmp)\n$(cat .git/COMMITMSG.tmp)\" && git tag -a v$(cat .git/RELEASE_VERSION.tmp) -m \"$(cat .git/COMMITMSG.tmp)\""
+    "watch": "babel source.js -o index.js -w"
   },
   "ava": {
     "babel": "inherit",
@@ -35,11 +26,6 @@
     "plugins": [
       "add-module-exports"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog-lint"
-    }
   },
   "repository": {
     "type": "git",
@@ -74,12 +60,6 @@
     "babel-preset-es2015-node4": "2.1.0",
     "babel-preset-stage-0": "6.16.0",
     "babel-register": "6.18.0",
-    "conventional-changelog-cli": "1.1.1",
-    "conventional-changelog-lint": "0.1.7",
-    "conventional-recommended-bump": "0.1.0",
-    "cz-conventional-changelog": "1.1.5",
-    "cz-conventional-changelog-lint": "0.1.3",
-    "husky": "0.10.2",
     "jsdom": "9.8.3",
     "lodash": "4.17.1",
     "parallelshell": "2.0.0",
@@ -89,7 +69,6 @@
     "simulant": "0.2.2",
     "unexpected": "10.19.0",
     "unexpected-dom": "3.1.0",
-    "unexpected-react": "3.3.0",
-    "xo": "0.18.0"
+    "unexpected-react": "3.3.0"
   }
 }
