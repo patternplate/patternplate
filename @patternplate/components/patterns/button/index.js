@@ -2,9 +2,9 @@ const React = require('react');
 const styled = require('styled-components').default;
 const tag = require('tag-hoc').default;
 
-import fonts from '../fonts';
-import Icon from '../icon';
-import Link from '../link';
+const fonts = require('../fonts');
+const Icon = require('../icon');
+const Link = require('../link');
 
 const FONTS = fonts();
 

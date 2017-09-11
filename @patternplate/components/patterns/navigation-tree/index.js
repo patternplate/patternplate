@@ -1,6 +1,6 @@
 const React = require('react');
 const NavigationItem = require('../navigation-item');
-// import Flag from 'flag';
+// const Flag = require('flag');
 
 module.exports = NavigationTree;
 
