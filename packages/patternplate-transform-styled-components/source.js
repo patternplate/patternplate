@@ -8,7 +8,7 @@ function styledComponentsTransformFactory(app) {
     file.wrap = (render, comp) => {
       const sheet = new ServerStyleSheet();
       const html = render(sheet.collectStyles(comp));
-      const css = sheet.getStyleElement();
+      const css = sheet.getStyleTags();
 
       app.resources = app.resources.filter(r => r.id !== `styled-components/${file.pattern.id}`);
 

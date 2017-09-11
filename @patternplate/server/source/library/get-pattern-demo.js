@@ -214,10 +214,11 @@ function Demo(props) {
         {props.styleRefs
           .filter(isRelative)
           .map(style => <link rel="stylesheet" href={style.uri || style.id}/>)}
-        {(props.content.style || [])
-          .map(style => style.wrap === false ? style.content : `<style>${style.content}</style>`)}
         </head>
       <body>
+        <div style={{display: 'none'}} dangerouslySetInnerHTML={{__html: (props.content.style || [])
+          .map(style => style.wrap === false ? style.content : `<style>${style.content}</style>`)
+          .join('\n')}}/>
         {(props.content.markup || []).map(markup => <div dangerouslySetInnerHTML={{__html: markup.content}}/>)}
         {props.scriptRefs
           .filter(isAbsolute)
