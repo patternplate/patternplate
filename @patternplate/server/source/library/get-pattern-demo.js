@@ -214,8 +214,9 @@ function Demo(props) {
         {props.styleRefs
           .filter(isRelative)
           .map(style => <link rel="stylesheet" href={style.uri || style.id}/>)}
-        {props.content.style.map(style => style.content)}
-      </head>
+        {(props.content.style || [])
+          .map(style => style.wrap === false ? style.content : `<style>${style.content}</style>`)}
+        </head>
       <body>
         {(props.content.markup || []).map(markup => <div dangerouslySetInnerHTML={{__html: markup.content}}/>)}
         {props.scriptRefs
