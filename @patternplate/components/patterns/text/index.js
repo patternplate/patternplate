@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import tag from 'tag-hoc';
+const React = require('react');
+const styled = require('styled-components').default;
+const tag = require('tag-hoc');
 
-import fonts from '../fonts';
+const fonts = require('../fonts');
 
 const FONTS = fonts();
 
-export default Text;
+module.exports = Text;
 
 function Text(props) {
   return (
