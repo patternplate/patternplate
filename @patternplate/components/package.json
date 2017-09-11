@@ -66,6 +66,7 @@
     "highlight.js": "^9.12.0",
     "lowlight": "^1.9.1",
     "react": "15.6.1",
+    "react-addons-text-content": "0.0.4",
     "react-dom": "15.6.1",
     "react-side-effect": "1.0.2",
     "styled-components": "2.1.2",
