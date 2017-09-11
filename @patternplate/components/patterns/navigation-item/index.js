@@ -103,7 +103,6 @@ const StyledNavigationItem = styled.div`
 const LinkTag = tag(['active', 'type'])(Link);
 
 const StyledNavigationLink = styled(LinkTag)`
-<<<<<<< HEAD
 	box-sizing: border-box;
 	display: flex;
 	width: 100%;
@@ -123,24 +122,4 @@ const StyledNavigationLink = styled(LinkTag)`
 		color: ${props => props.theme.color};
 		${props => props.active && `color: ${color(props.theme.active)}`};
 	}
-=======
-  box-sizing: border-box;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  text-decoration: none;
-  font-size: 16px;
-  line-height: 20px;
-  font-family: ${FONTS.default};
-  ${props => props.active && `
-    margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
-    padding-left: ${props.type === 'folder' ? 0 : '1px'};
-    border-left: 3px solid ${props.theme.active};
-  `};
-  :link,
-  :visited {
-    color: ${props => props.theme.color};
-    ${props => props.active && `color: ${color(props.theme.active)}`};
-  }
->>>>>>> style: remove icons for patterns
 `;
