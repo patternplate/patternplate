@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import fonts from '../fonts';
+const React = require('react');
+const styled = require('styled-components').default;
+const fonts = require('../fonts');
 
 const FONTS = fonts();
 
-export default class Link extends React.Component {
+class Link extends React.Component {
   constructor(...args) {
     super(...args);
     this.handleClick = this.handleClick.bind(this);
@@ -32,6 +32,8 @@ export default class Link extends React.Component {
     );
   }
 }
+
+module.exports = Link;
 
 Link.defaultProps = {
   external: false,
