@@ -1,4 +1,0 @@
-{
-  "validate": "http://json.schemastore.org/package",
-  "ignore": ["node_modules/**/*"]
-}
