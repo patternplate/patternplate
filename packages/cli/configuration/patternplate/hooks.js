@@ -1,11 +1,11 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 const hooks = {
-	'path': ['application/hooks', 'application/patternplate/hooks']
+  path: ['application/hooks', 'application/patternplate/hooks']
 };
 
 exports.default = hooks;
-module.exports = exports['default'];
+module.exports = exports.default;

@@ -10,8 +10,6 @@ var Link = require('../link');
 
 var FONTS = fonts();
 
-var buttonTypes = ['button', 'submit', 'link'];
-
 function Button(props) {
   var OuterElement = props.type === 'link' ? tag(['external', 'type'])(Link) : tag(['external'])('button');
 
@@ -30,9 +28,7 @@ function Button(props) {
       null,
       props.children
     ),
-    props.symbol && React.createElement(StyledIcon, {
-      symbol: props.symbol
-    })
+    props.symbol && React.createElement(StyledIcon, { symbol: props.symbol })
   );
 }
 
@@ -40,15 +36,7 @@ Button.defaultProps = {
   type: 'button'
 };
 
-function OuterElement(props) {
-  if (props.type === 'link') {
-    return React.createElement(Link, null);
-  }
-}
-
-var StyledLabel = styled.span`
-  font-family: ${FONTS.default};
-`;
+var StyledLabel = styled.span`font-family: ${FONTS.default};`;
 
 var FRAME = function FRAME(props) {
   return !props.frameless && `
@@ -81,8 +69,7 @@ var StyledButton = styled(Button)`
   font: inherit;
   box-sizing: border-box;
   vertical-align: top;
-  ${FRAME}
-  ${TRANSPARENCY}
+  ${FRAME} ${TRANSPARENCY};
 `;
 
 var StyledIcon = styled(Icon)`

@@ -10,20 +10,13 @@ function SearchButton(props) {
     <StyledLink
       title={`Enable search ${props.shortcut.toString()}`}
       query={{'search-enabled': !props.enabled}}
-      >
-      <StyledIcon
-        base={props.base}
-        symbol="search"
-        />
+    >
+      <StyledIcon base={props.base} symbol="search" />
       Search
     </StyledLink>
   );
 }
 
-const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.color};
-`;
+const StyledIcon = styled(Icon)`fill: ${props => props.theme.color};`;
 
-const StyledLink = styled(Link)`
-  font-size: 0;
-`;
+const StyledLink = styled(Link)`font-size: 0;`;

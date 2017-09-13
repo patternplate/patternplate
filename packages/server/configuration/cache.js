@@ -1,9 +1,9 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.default = {
-	read: true
+  read: true
 };
-module.exports = exports["default"];
+module.exports = exports.default;

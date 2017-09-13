@@ -22,16 +22,19 @@ function mapProps(state) {
 }
 
 function mapDispatch(dispatch) {
-  return bindActionCreators({
-    onItemClick(e) {
-      e.preventDefault();
+  return bindActionCreators(
+    {
+      onItemClick(e) {
+        e.preventDefault();
 
-      if (!e.currentTarget.href) {
-        return {type: 'noop'};
+        if (!e.currentTarget.href) {
+          return {type: 'noop'};
+        }
+
+        const parsed = url.parse(e.currentTarget.href);
+        return push(`${parsed.pathname}?${parsed.query}`);
       }
-
-      const parsed = url.parse(e.currentTarget.href);
-      return push(`${parsed.pathname}?${parsed.query}`);
-    }
-  }, dispatch);
+    },
+    dispatch
+  );
 }

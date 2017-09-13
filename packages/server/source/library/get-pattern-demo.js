@@ -14,7 +14,9 @@ async function getPatternDemo(application, id, filters, environment, options) {
   const getFile = getPatternSource(application);
   filters.outFormats = ['html'];
 
-  const [pattern] = await getPatternRetriever(application)(id, filters, environment, ['read'], {
+  const [pattern] = await getPatternRetriever(
+    application
+  )(id, filters, environment, ['read'], {
     automount: options.mount
   });
 
@@ -41,7 +43,8 @@ async function getPatternDemo(application, id, filters, environment, options) {
   }
 
   const render = getRenderer(formats, automount);
-  const resources = (application.resources || []).filter(({pattern: p}) => p === null || p === pattern.id);
+  const resources = (application.resources || [])
+    .filter(({pattern: p}) => p === null || p === pattern.id);
   return render(content.body, pattern, resources);
 }
 
@@ -68,16 +71,30 @@ function getRenderer(formats, component = false) {
     const styleReference = getUriByFormat(result, styleFormat, '/demo');
 
     const markupContent = [{content}];
-    const styleContent = resources.filter(r => r.type === 'css' && !r.reference);
-    const scriptContent = resources.filter(r => r.type === 'js' && !r.reference);
+    const styleContent = resources.filter(
+      r => r.type === 'css' && !r.reference
+    );
+    const scriptContent = resources.filter(
+      r => r.type === 'js' && !r.reference
+    );
 
-    const scripts = component ? [] : [{uri: getUriByFormat(result, scriptFormat, '/demo')}];
+    const scripts = component
+      ? []
+      : [{uri: getUriByFormat(result, scriptFormat, '/demo')}];
     const styles = [{id: styleReference}].filter(i => i.id);
 
-    const markupReferences = uniqBy(resources.filter(r => r.type === 'html' && r.reference), 'id');
-    const styleReferences = uniqBy([...styles, ...resources.filter(r => r.type === 'css' && r.reference)], 'id');
-    const scriptReferences = uniqBy([...resources.filter(r => r.type === 'js' && r.reference), ...scripts], 'id')
-      .filter(s => component || !String(s.id).startsWith('react-mount'));
+    const markupReferences = uniqBy(
+      resources.filter(r => r.type === 'html' && r.reference),
+      'id'
+    );
+    const styleReferences = uniqBy(
+      [...styles, ...resources.filter(r => r.type === 'css' && r.reference)],
+      'id'
+    );
+    const scriptReferences = uniqBy(
+      [...resources.filter(r => r.type === 'js' && r.reference), ...scripts],
+      'id'
+    ).filter(s => component || !String(s.id).startsWith('react-mount'));
 
     return layout({
       title: result.id,
@@ -124,7 +141,7 @@ function getUriByFormat(pattern, format = '', base = '') {
 
 function getFormat(formats, transforms, type) {
   const entries = Object.entries(formats);
-  // try to get a format with matching outFormat
+  // Try to get a format with matching outFormat
   // markup => html
   // style => css
   // script => js
@@ -179,7 +196,7 @@ function layout(props) {
       title={props.title}
       styleRefs={styleRefs}
       scriptRefs={scriptRefs}
-      />
+    />
   );
 
   return `<!doctype html>\n${renderToStaticMarkup(demo)}`;
@@ -206,27 +223,48 @@ function Demo(props) {
     <html>
       <head>
         <title>{props.title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-        <link rel="icon" href="data:;base64,iVBORw0KGgo="/>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no"
+        />
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
         {props.styleRefs
           .filter(isAbsolute)
-          .map(style => <link rel="stylesheet" href={url.resolve(`/api/resource/`, style.id)}/>)}
+          .map(style => (
+            <link
+              rel="stylesheet"
+              href={url.resolve(`/api/resource/`, style.id)}
+            />
+          ))}
         {props.styleRefs
           .filter(isRelative)
-          .map(style => <link rel="stylesheet" href={style.uri || style.id}/>)}
-        </head>
+          .map(style => <link rel="stylesheet" href={style.uri || style.id} />)}
+      </head>
       <body>
-        <div style={{display: 'none'}} dangerouslySetInnerHTML={{__html: (props.content.style || [])
-          .map(style => style.wrap === false ? style.content : `<style>${style.content}</style>`)
-          .join('\n')}}/>
-        {(props.content.markup || []).map(markup => <div dangerouslySetInnerHTML={{__html: markup.content}}/>)}
+        <div
+          style={{display: 'none'}}
+          dangerouslySetInnerHTML={{
+            __html: (props.content.style || [])
+              .map(
+                style =>
+                  style.wrap === false
+                    ? style.content
+                    : `<style>${style.content}</style>`
+              )
+              .join('\n')
+          }}
+        />
+        {(props.content.markup || [])
+          .map(markup => (
+            <div dangerouslySetInnerHTML={{__html: markup.content}} />
+          ))}
         {props.scriptRefs
           .filter(isAbsolute)
-          .map(script => <script src={`/api/resource/${script.id}.js`}/>)}
+          .map(script => <script src={`/api/resource/${script.id}.js`} />)}
         {props.scriptRefs
           .filter(isRelative)
           .filter(script => Boolean(script.uri || script.id))
-          .map(script => <script src={script.uri || script.id}></script>)}
+          .map(script => <script src={script.uri || script.id} />)}
       </body>
     </html>
   );

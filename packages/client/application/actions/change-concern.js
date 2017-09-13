@@ -5,47 +5,47 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.type = undefined;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+const _extends = Object.assign || function (target) { for (let i = 1; i < arguments.length; i++) { const source = arguments[i]; for (const key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _path = require('path');
+const _path = require('path');
 
-var _path2 = _interopRequireDefault(_path);
+const _path2 = _interopRequireDefault(_path);
 
-var _urlQuery = require('../utils/url-query');
+const _urlQuery = require('../utils/url-query');
 
-var _urlQuery2 = _interopRequireDefault(_urlQuery);
+const _urlQuery2 = _interopRequireDefault(_urlQuery);
 
-var _ = require('./');
+const _ = require('./');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = changeConcern;
-var type = exports.type = 'CHANGE_CONCERN';
+const type = exports.type = 'CHANGE_CONCERN';
 
 function changeConcern(concern) {
   return function (dispatch, getState) {
-    var state = getState();
-    var location = state.routing.locationBeforeTransitions;
-    var parsed = _urlQuery2.default.parse(location.query.source);
-    var previous = parsed.pathname;
-    var ext = _path2.default.extname(previous);
+    const state = getState();
+    const location = state.routing.locationBeforeTransitions;
+    const parsed = _urlQuery2.default.parse(location.query.source);
+    const previous = parsed.pathname;
+    const ext = _path2.default.extname(previous);
 
-    var hasDemo = state.pattern.files.some(function (file) {
+    const hasDemo = state.pattern.files.some((file) => {
       return file.concern === 'demo' && file.type === ext.slice(1);
     });
 
-    var type = concern === 'index' && hasDemo ? 'source' : parsed.query.type;
+    const type = concern === 'index' && hasDemo ? 'source' : parsed.query.type;
 
-    var source = _urlQuery2.default.format({
+    const source = _urlQuery2.default.format({
       pathname: _path2.default.dirname(previous) + '/' + concern + ext,
       query: _extends({}, parsed.query, {
-        type: type
+        type
       })
     });
 
     dispatch((0, _.patchLocation)({
       query: {
-        source: source
+        source
       }
     }));
   };

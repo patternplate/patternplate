@@ -11,9 +11,9 @@ import getReadmeData from './get-readme-data';
 const templatePath = path.resolve(__dirname, '..', '..', 'init-template');
 
 const defaults = {
-	manifestPath: 'package.json',
-	manifest: {},
-	patternPath: 'patterns'
+  manifestPath: 'package.json',
+  manifest: {},
+  patternPath: 'patterns'
 };
 
 /**
@@ -33,62 +33,63 @@ const defaults = {
  * @params options.patternPath=patterns string
  */
 async function init(directory = '.', options) {
-	const spinner = ora().start();
-	const settings = merge({}, defaults, options);
-	const cwd = path.resolve(process.cwd(), directory);
-	const resolve = (...args) => path.resolve(...[cwd, ...args]);
+  const spinner = ora().start();
+  const settings = merge({}, defaults, options);
+  const cwd = path.resolve(process.cwd(), directory);
+  const resolve = (...args) => path.resolve(...[cwd, ...args]);
 
-	const manifestPath = resolve(settings.manifestPath);
-	const name = path.basename(cwd);
+  const manifestPath = resolve(settings.manifestPath);
+  const name = path.basename(cwd);
 
-	// Add a name based on directory if manifest does not exists
-	// Allow overriding of manifest fields in any case
-	const manifest = await exists(manifestPath) ?
-		settings.manifest :
-		merge({}, settings.manifest, {name});
+  // Add a name based on directory if manifest does not exists
+  // Allow overriding of manifest fields in any case
+  const manifest = (await exists(manifestPath))
+    ? settings.manifest
+    : merge({}, settings.manifest, {name});
 
-	// Read / create manifest data
-	const data = await getManifestData(manifestPath, {
-		...manifest,
-		name: settings.name || name
-	});
+  // Read / create manifest data
+  const data = await getManifestData(manifestPath, {
+    ...manifest,
+    name: settings.name || name
+  });
 
-	const readmeTarget = resolve(settings.patternPath, 'readme.md');
+  const readmeTarget = resolve(settings.patternPath, 'readme.md');
 
-	spinner.text = ` Initializing project ${data.name} at ${cwd}`;
+  spinner.text = ` Initializing project ${data.name} at ${cwd}`;
 
-	// copy init/template to $CWD
-	// replace ${} expressions in the process
-	await sander.copydir(templatePath).to(cwd);
+  // Copy init/template to $CWD
+  // replace ${} expressions in the process
+  await sander.copydir(templatePath).to(cwd);
 
-	// Create/extend existing manifest
-	await sander.writeFile(manifestPath, JSON.stringify(data, null, '  '));
+  // Create/extend existing manifest
+  await sander.writeFile(manifestPath, JSON.stringify(data, null, '  '));
 
-	// Use name in this precedence
-	// explicit --name
-	// name based on dirname
-	// name found in data
-	const readmeData = await getReadmeData({
-		name: settings.name || name || data.name
-	});
+  // Use name in this precedence
+  // explicit --name
+  // name based on dirname
+  // name found in data
+  const readmeData = await getReadmeData({
+    name: settings.name || name || data.name
+  });
 
-	// Write pattern readme
-	await sander.writeFile(readmeTarget, readmeData);
+  // Write pattern readme
+  await sander.writeFile(readmeTarget, readmeData);
 
-	// Be nice and instructional
-	spinner.text = ` Initialized project ${data.name} at ${cwd}`;
-	spinner.succeed();
+  // Be nice and instructional
+  spinner.text = ` Initialized project ${data.name} at ${cwd}`;
+  spinner.succeed();
 
-	const instructions = [
-		process.cwd() !== cwd && `cd ${directory}`,
-		'npm install',
-		data.scripts.start === 'patternplate' ?
-			'npm start -- --open' : './node_modules/.bin/patternplate start --open'
-	].filter(Boolean);
+  const instructions = [
+    process.cwd() !== cwd && `cd ${directory}`,
+    'npm install',
+    data.scripts.start === 'patternplate'
+      ? 'npm start -- --open'
+      : './node_modules/.bin/patternplate start --open'
+  ].filter(Boolean);
 
-	const sep = defaultShell.includes('fish') ? '; and ' : ' && ';
-	console.log(`🚀  Start and open patternplate:`);
-	console.log(`\n   ${instructions.join(sep)}`);
+  const sep = defaultShell.includes('fish') ? '; and ' : ' && ';
+  console.log(`🚀  Start and open patternplate:`);
+  console.log(`\n   ${instructions.join(sep)}`);
 }
 
 export default init;

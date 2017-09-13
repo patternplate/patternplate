@@ -1,55 +1,55 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.default = highlight;
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _core = require('lowlight/lib/core');
+const _core = require('lowlight/lib/core');
 
-var _core2 = _interopRequireDefault(_core);
+const _core2 = _interopRequireDefault(_core);
 
-var _css = require('highlight.js/lib/languages/css.js');
+const _css = require('highlight.js/lib/languages/css.js');
 
-var _css2 = _interopRequireDefault(_css);
+const _css2 = _interopRequireDefault(_css);
 
-var _less = require('highlight.js/lib/languages/less.js');
+const _less = require('highlight.js/lib/languages/less.js');
 
-var _less2 = _interopRequireDefault(_less);
+const _less2 = _interopRequireDefault(_less);
 
-var _scss = require('highlight.js/lib/languages/scss.js');
+const _scss = require('highlight.js/lib/languages/scss.js');
 
-var _scss2 = _interopRequireDefault(_scss);
+const _scss2 = _interopRequireDefault(_scss);
 
-var _stylus = require('highlight.js/lib/languages/stylus.js');
+const _stylus = require('highlight.js/lib/languages/stylus.js');
 
-var _stylus2 = _interopRequireDefault(_stylus);
+const _stylus2 = _interopRequireDefault(_stylus);
 
-var _javascript = require('highlight.js/lib/languages/javascript.js');
+const _javascript = require('highlight.js/lib/languages/javascript.js');
 
-var _javascript2 = _interopRequireDefault(_javascript);
+const _javascript2 = _interopRequireDefault(_javascript);
 
-var _typescript = require('highlight.js/lib/languages/typescript.js');
+const _typescript = require('highlight.js/lib/languages/typescript.js');
 
-var _typescript2 = _interopRequireDefault(_typescript);
+const _typescript2 = _interopRequireDefault(_typescript);
 
-var _json = require('highlight.js/lib/languages/json.js');
+const _json = require('highlight.js/lib/languages/json.js');
 
-var _json2 = _interopRequireDefault(_json);
+const _json2 = _interopRequireDefault(_json);
 
-var _xml = require('highlight.js/lib/languages/xml.js');
+const _xml = require('highlight.js/lib/languages/xml.js');
 
-var _xml2 = _interopRequireDefault(_xml);
+const _xml2 = _interopRequireDefault(_xml);
 
-var _markdown = require('highlight.js/lib/languages/markdown.js');
+const _markdown = require('highlight.js/lib/languages/markdown.js');
 
-var _markdown2 = _interopRequireDefault(_markdown);
+const _markdown2 = _interopRequireDefault(_markdown);
 
-var _bash = require('highlight.js/lib/languages/bash.js');
+const _bash = require('highlight.js/lib/languages/bash.js');
 
-var _bash2 = _interopRequireDefault(_bash);
+const _bash2 = _interopRequireDefault(_bash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -76,17 +76,17 @@ _core2.default.registerLanguage('markdown', _markdown2.default);
 
 // (s)hell(ish)s
 _core2.default.registerLanguage('bash', _bash2.default);
-// low.registerLanguage('shell', bash);
+// Low.registerLanguage('shell', bash);
 
-var languages = ['css', 'less', 'scss', 'stylus', 'js', 'javascript', 'jsx', 'ts', 'tsx', 'typescript', 'json', 'html', 'xml', 'md', 'markdown', 'bash'];
+const languages = ['css', 'less', 'scss', 'stylus', 'js', 'javascript', 'jsx', 'ts', 'tsx', 'typescript', 'json', 'html', 'xml', 'md', 'markdown', 'bash'];
 
 function highlight(language, source) {
-	if (!(0, _lodash.includes)(languages, language)) {
-		return source;
-	}
+  if (!(0, _lodash.includes)(languages, language)) {
+    return source;
+  }
 
-	var _low$highlight = _core2.default.highlight(language, source),
-	    children = _low$highlight.value;
+  let _low$highlight = _core2.default.highlight(language, source),
+      children = _low$highlight.value;
 
-	return children;
+  return children;
 }

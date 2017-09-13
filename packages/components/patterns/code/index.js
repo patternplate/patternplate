@@ -4,7 +4,7 @@ const {includes} = require('lodash');
 const low = require('lowlight/lib/core');
 const toh = require('hast-to-hyperscript');
 
-// highlight.js modules
+// Highlight.js modules
 const css = require('highlight.js/lib/languages/css.js');
 const less = require('highlight.js/lib/languages/less.js');
 const scss = require('highlight.js/lib/languages/scss.js');
@@ -26,11 +26,7 @@ module.exports.toElements = toElements;
 function Code(props) {
   const source = highlightCode(props.language, props.children);
 
-  const code = (
-    <StyledCode className={props.className}>
-      {source}
-    </StyledCode>
-  );
+  const code = <StyledCode className={props.className}>{source}</StyledCode>;
 
   return props.block ? <pre>{code}</pre> : code;
 }
@@ -71,7 +67,8 @@ const StyledCode = styled.code`
   overflow-x: auto;
   padding: 0.5em;
   color: ${themed('mono1')};
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace;
 
   .hljs-comment,
   .hljs-quote {
@@ -154,7 +151,7 @@ function highlightCode(language, source = '') {
   return toElements(hast);
 }
 
-// highlight configuration
+// Highlight configuration
 
 // CSS and friends
 low.registerLanguage('css', css);
@@ -179,31 +176,45 @@ low.registerLanguage('markdown', md);
 
 // (s)hell(ish)s
 low.registerLanguage('bash', bash);
-// low.registerLanguage('shell', bash);
+// Low.registerLanguage('shell', bash);
 
 const languages = [
-	'css', 'less', 'scss', 'stylus', 'js', 'javascript', 'jsx', 'ts', 'tsx',
-	'typescript', 'json', 'html', 'xml', 'md', 'markdown', 'bash'
+  'css',
+  'less',
+  'scss',
+  'stylus',
+  'js',
+  'javascript',
+  'jsx',
+  'ts',
+  'tsx',
+  'typescript',
+  'json',
+  'html',
+  'xml',
+  'md',
+  'markdown',
+  'bash'
 ];
 
 function highlight(language, source) {
-	if (!includes(languages, language)) {
-		return source;
-	}
-	const {value: children} = low.highlight(language, source);
-	return children;
+  if (!includes(languages, language)) {
+    return source;
+  }
+  const {value: children} = low.highlight(language, source);
+  return children;
 }
 
 function toElements(children) {
-	if (!Array.isArray(children)) {
-		return children;
-	}
+  if (!Array.isArray(children)) {
+    return children;
+  }
 
-	const root = toh(React.createElement, {
-		type: 'element',
-		tagName: 'div',
-		children
-	});
+  const root = toh(React.createElement, {
+    type: 'element',
+    tagName: 'div',
+    children
+  });
 
-	return root.props.children;
+  return root.props.children;
 }

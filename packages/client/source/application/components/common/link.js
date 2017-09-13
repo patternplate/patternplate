@@ -26,7 +26,7 @@ class LinkComponent extends React.Component {
         onMouseOver={props.onHover}
         title={props.title}
         data-id={props['data-id']}
-        >
+      >
         {props.children}
       </a>
     );
@@ -41,11 +41,16 @@ function mapProps(state, own) {
   const query = own.query || location.query;
 
   return {
-    href: own.external ? own.href : url.format({
-      pathname: typeof parsed.pathname === 'string' ? url.resolve(state.base, parsed.pathname) : location.pathname,
-      query: {...location.query, ...parsed.query, ...query},
-      hash: own.hash
-    }),
+    href: own.external
+      ? own.href
+      : url.format({
+          pathname:
+            typeof parsed.pathname === 'string'
+              ? url.resolve(state.base, parsed.pathname)
+              : location.pathname,
+          query: {...location.query, ...parsed.query, ...query},
+          hash: own.hash
+        }),
     children: own.children,
     className: own.className,
     onClick: own.onClick,
@@ -54,16 +59,19 @@ function mapProps(state, own) {
 }
 
 function mapDispatch(dispatch, own) {
-  return bindActionCreators({
-    onClick(e, href) {
-      if (own.onClick) {
-        own.onClick(e);
+  return bindActionCreators(
+    {
+      onClick(e, href) {
+        if (own.onClick) {
+          own.onClick(e);
+        }
+        if (!own.external) {
+          e.preventDefault();
+          return push(href);
+        }
+        return {type: 'noop', payload: {}};
       }
-      if (!own.external) {
-        e.preventDefault();
-        return push(href);
-      }
-      return {type: 'noop', payload: {}};
-    }
-  }, dispatch);
+    },
+    dispatch
+  );
 }

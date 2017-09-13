@@ -8,14 +8,12 @@ export default Opacity;
 function Opacity(props) {
   return (
     <StyledToggleButton enabled={props.enabled} shortcut={props.shortcut}>
-      <StyledIcon symbol="opacity"/> {props.shortcut.toString()}
+      <StyledIcon symbol="opacity" /> {props.shortcut.toString()}
     </StyledToggleButton>
   );
 }
 
-const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.background};
-`;
+const StyledIcon = styled(Icon)`fill: ${props => props.theme.background};`;
 
 const StyledToggleButton = styled(ToggleButton)`
   font-size: 0;

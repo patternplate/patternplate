@@ -54,7 +54,7 @@ class PatternContainer extends React.Component {
         opacity={props.opacity}
         src={props.src}
         type={props.type}
-        />
+      />
     );
   }
 }
@@ -110,12 +110,15 @@ function mapState(state) {
     loading: state.demo.fetching,
     opacity: state.opacity,
     src: demo.selectSrc(state),
-    type: items.selectType(state),
+    type: items.selectType(state)
   };
 }
 
 function mapDispatch(dispatch) {
-  return bindActionCreators({
-    onChange: actions.loadPatternDemo
-  }, dispatch);
+  return bindActionCreators(
+    {
+      onChange: actions.loadPatternDemo
+    },
+    dispatch
+  );
 }

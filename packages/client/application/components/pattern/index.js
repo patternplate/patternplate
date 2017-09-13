@@ -4,39 +4,39 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  height: 100%;\n  width: 100%;\n  &::before {\n    content: \'\';\n    display: ', ';\n    position: absolute;\n    z-index: 1;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    background: ', ';\n    background-size: 16px 16px;\n    background-position: 0 0, 8px 8px;\n  }\n'], ['\n  box-sizing: border-box;\n  height: 100%;\n  width: 100%;\n  &::before {\n    content: \'\';\n    display: ', ';\n    position: absolute;\n    z-index: 1;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    background: ', ';\n    background-size: 16px 16px;\n    background-position: 0 0, 8px 8px;\n  }\n']),
+let _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  height: 100%;\n  width: 100%;\n  &::before {\n    content: \'\';\n    display: ', ';\n    position: absolute;\n    z-index: 1;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    background: ', ';\n    background-size: 16px 16px;\n    background-position: 0 0, 8px 8px;\n  }\n'], ['\n  box-sizing: border-box;\n  height: 100%;\n  width: 100%;\n  &::before {\n    content: \'\';\n    display: ', ';\n    position: absolute;\n    z-index: 1;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    background: ', ';\n    background-size: 16px 16px;\n    background-position: 0 0, 8px 8px;\n  }\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n  height: 100%;\n  width: 100%;\n'], ['\n  height: 100%;\n  width: 100%;\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n  width: 100%;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 30px;\n  box-sizing: border-box;\n'], ['\n  width: 100%;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 30px;\n  box-sizing: border-box;\n']),
     _templateObject4 = _taggedTemplateLiteral(['\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  height: 100%;\n  max-width: 1240px;\n  margin: 0 auto;\n'], ['\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  height: 100%;\n  max-width: 1240px;\n  margin: 0 auto;\n']),
-    _templateObject5 = _taggedTemplateLiteral(['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::after {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: ', ';\n    ', '\n  }\n'], ['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::after {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: ', ';\n    ', '\n  }\n']);
+    _templateObject5 = _taggedTemplateLiteral(['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::after {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: ', ';\n    ', ';\n  }\n'], ['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::after {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: ', ';\n    ', ';\n  }\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _tagHoc = require('tag-hoc');
+const _tagHoc = require('tag-hoc');
 
-var _tagHoc2 = _interopRequireDefault(_tagHoc);
+const _tagHoc2 = _interopRequireDefault(_tagHoc);
 
-var _Transition = require('react-transition-group/Transition');
+const _Transition = require('react-transition-group/Transition');
 
-var _Transition2 = _interopRequireDefault(_Transition);
+const _Transition2 = _interopRequireDefault(_Transition);
 
-var _markdown = require('../common/markdown');
+const _markdown = require('../common/markdown');
 
-var _markdown2 = _interopRequireDefault(_markdown);
+const _markdown2 = _interopRequireDefault(_markdown);
 
-var _patternDemo = require('./pattern-demo');
+const _patternDemo = require('./pattern-demo');
 
-var _patternDemo2 = _interopRequireDefault(_patternDemo);
+const _patternDemo2 = _interopRequireDefault(_patternDemo);
 
-var _search = require('../../containers/search');
+const _search = require('../../containers/search');
 
-var _search2 = _interopRequireDefault(_search);
+const _search2 = _interopRequireDefault(_search);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48,32 +48,32 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var VISIBILITY = function VISIBILITY(props) {
+const VISIBILITY = function VISIBILITY(props) {
   return props.checkers ? 'block' : 'none';
 };
 
-var StyledPattern = (0, _components.styled)((0, _tagHoc2.default)(['checkers'])('div'))(_templateObject, VISIBILITY, function (props) {
+const StyledPattern = (0, _components.styled)((0, _tagHoc2.default)(['checkers'])('div'))(_templateObject, VISIBILITY, (props) => {
   return checkers(props);
 });
 
-var StyledPatternFolder = _components.styled.div(_templateObject2);
+const StyledPatternFolder = _components.styled.div(_templateObject2);
 
-var StyledPatternDoc = _components.styled.div(_templateObject3);
+const StyledPatternDoc = _components.styled.div(_templateObject3);
 
-var StyledPatternDemo = _components.styled.div(_templateObject4);
+const StyledPatternDemo = _components.styled.div(_templateObject4);
 
-var StyledPatternLoader = _components.styled.div(_templateObject5, function (props) {
+const StyledPatternLoader = _components.styled.div(_templateObject5, (props) => {
   return props.error ? props.theme.error : props.theme.active;
-}, function (props) {
+}, (props) => {
   return props.error ? 'none' : 'transform 1s ease-in-out';
-}, function (props) {
+}, (props) => {
   switch (props.status) {
     case 'entering':
       return '\n            transform: translateX(-100%);\n          ';
     case 'entered':
-      return '' + function (props) {
+      return String((props) => {
         return props.error ? '' : 'transform: translateX(-15%);';
-      };
+      });
     case 'exiting':
       return '\n            transition: transform .3s ease-out;\n            transform: translateX(0);\n          ';
     case 'exited':
@@ -81,7 +81,7 @@ var StyledPatternLoader = _components.styled.div(_templateObject5, function (pro
   }
 });
 
-var Pattern = function (_React$Component) {
+const Pattern = function (_React$Component) {
   _inherits(Pattern, _React$Component);
 
   function Pattern() {
@@ -93,7 +93,7 @@ var Pattern = function (_React$Component) {
   _createClass(Pattern, [{
     key: 'render',
     value: function render() {
-      var props = this.props;
+      const props = this.props;
 
 
       switch (props.type) {
@@ -103,9 +103,12 @@ var Pattern = function (_React$Component) {
             { checkers: props.opacity },
             _react2.default.createElement(
               _Transition2.default,
-              { 'in': props.loading || props.error, timeout: { enter: 1000, exit: 850 } },
-              function (status) {
-                return _react2.default.createElement(StyledPatternLoader, { status: status, error: props.error });
+              {
+                'in': props.loading || props.error,
+                timeout: { enter: 1000, exit: 850 }
+              },
+              (status) => {
+                return _react2.default.createElement(StyledPatternLoader, { status, error: props.error });
               }
             ),
             _react2.default.createElement(
@@ -145,6 +148,6 @@ function grad(fill) {
 }
 
 function checkers(props) {
-  var fill = props.theme.border;
+  const fill = props.theme.border;
   return '\n    ' + grad(fill) + ',\n    ' + grad(fill) + ';\n  ';
 }

@@ -1,37 +1,37 @@
 'use strict';
 
-var React = require('react');
-var styled = require('styled-components').default;
+const React = require('react');
+const styled = require('styled-components').default;
 
-var _require = require('lodash'),
+let _require = require('lodash'),
     includes = _require.includes;
 
-var low = require('lowlight/lib/core');
-var toh = require('hast-to-hyperscript');
+const low = require('lowlight/lib/core');
+const toh = require('hast-to-hyperscript');
 
-// highlight.js modules
-var css = require('highlight.js/lib/languages/css.js');
-var less = require('highlight.js/lib/languages/less.js');
-var scss = require('highlight.js/lib/languages/scss.js');
-var stylus = require('highlight.js/lib/languages/stylus.js');
+// Highlight.js modules
+const css = require('highlight.js/lib/languages/css.js');
+const less = require('highlight.js/lib/languages/less.js');
+const scss = require('highlight.js/lib/languages/scss.js');
+const stylus = require('highlight.js/lib/languages/stylus.js');
 
-var js = require('highlight.js/lib/languages/javascript.js');
-var ts = require('highlight.js/lib/languages/typescript.js');
-var json = require('highlight.js/lib/languages/json.js');
+const js = require('highlight.js/lib/languages/javascript.js');
+const ts = require('highlight.js/lib/languages/typescript.js');
+const json = require('highlight.js/lib/languages/json.js');
 
-var xml = require('highlight.js/lib/languages/xml.js');
-var md = require('highlight.js/lib/languages/markdown.js');
+const xml = require('highlight.js/lib/languages/xml.js');
+const md = require('highlight.js/lib/languages/markdown.js');
 
-var bash = require('highlight.js/lib/languages/bash.js');
+const bash = require('highlight.js/lib/languages/bash.js');
 
 module.exports = Code;
 module.exports.highlight = highlight;
 module.exports.toElements = toElements;
 
 function Code(props) {
-  var source = highlightCode(props.language, props.children);
+  const source = highlightCode(props.language, props.children);
 
-  var code = React.createElement(
+  const code = React.createElement(
     StyledCode,
     { className: props.className },
     source
@@ -44,7 +44,7 @@ function Code(props) {
   ) : code;
 }
 
-var themes = {
+const themes = {
   dark: {
     mono1: '#abb2bf',
     mono2: '#818896',
@@ -73,7 +73,7 @@ var themes = {
   }
 };
 
-var themed = function themed(key) {
+const themed = function themed(key) {
   return function (props) {
     return themes[props.theme.name][key];
   };
@@ -84,7 +84,8 @@ var StyledCode = styled.code`
   overflow-x: auto;
   padding: 0.5em;
   color: ${themed('mono1')};
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace;
 
   .hljs-comment,
   .hljs-quote {
@@ -157,7 +158,7 @@ var StyledCode = styled.code`
 `;
 
 function highlightCode(language) {
-  var source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  const source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   if (!language) {
     return source;
@@ -165,11 +166,11 @@ function highlightCode(language) {
   if (!source) {
     return source;
   }
-  var hast = highlight(language, source);
+  const hast = highlight(language, source);
   return toElements(hast);
 }
 
-// highlight configuration
+// Highlight configuration
 
 // CSS and friends
 low.registerLanguage('css', css);
@@ -194,16 +195,16 @@ low.registerLanguage('markdown', md);
 
 // (s)hell(ish)s
 low.registerLanguage('bash', bash);
-// low.registerLanguage('shell', bash);
+// Low.registerLanguage('shell', bash);
 
-var languages = ['css', 'less', 'scss', 'stylus', 'js', 'javascript', 'jsx', 'ts', 'tsx', 'typescript', 'json', 'html', 'xml', 'md', 'markdown', 'bash'];
+const languages = ['css', 'less', 'scss', 'stylus', 'js', 'javascript', 'jsx', 'ts', 'tsx', 'typescript', 'json', 'html', 'xml', 'md', 'markdown', 'bash'];
 
 function highlight(language, source) {
   if (!includes(languages, language)) {
     return source;
   }
 
-  var _low$highlight = low.highlight(language, source),
+  let _low$highlight = low.highlight(language, source),
       children = _low$highlight.value;
 
   return children;
@@ -214,7 +215,7 @@ function toElements(children) {
     return children;
   }
 
-  var root = toh(React.createElement, {
+  const root = toh(React.createElement, {
     type: 'element',
     tagName: 'div',
     children
@@ -222,4 +223,4 @@ function toElements(children) {
 
   return root.props.children;
 }
-//# sourceMappingURL=index.js.map
+// # sourceMappingURL=index.js.map

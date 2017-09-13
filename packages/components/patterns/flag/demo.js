@@ -7,15 +7,15 @@ module.exports = FlagDemo;
 
 function FlagDemo() {
   return (
-    <DemoThemer>
-      <FlagDemoContainer>
-        <Flag>alpha</Flag>
-        <Flag>beta</Flag>
-        <Flag>rc</Flag>
-        <Flag>stable</Flag>
-        <Flag>deprecated</Flag>
-      </FlagDemoContainer>
-    </DemoThemer>
+	<DemoThemer>
+		<FlagDemoContainer>
+			<Flag>alpha</Flag>
+			<Flag>beta</Flag>
+			<Flag>rc</Flag>
+			<Flag>stable</Flag>
+			<Flag>deprecated</Flag>
+		</FlagDemoContainer>
+	</DemoThemer>
   );
 }
 

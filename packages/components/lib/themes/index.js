@@ -14,10 +14,10 @@ module.exports = function getThemes(passed) {
 
   var common = {
     active: main,
-    error: 'rgba(205, 63, 69, 1)', // errors, alpha, deprecated
-    warning: 'rgba(255, 189, 46, 1)', // warnings, beta
-    info: 'rgba(80, 179, 221, 1)', // rc
-    success: 'rgba(74, 165, 74, 1)', // stable
+    error: 'rgba(205, 63, 69, 1)', // Errors, alpha, deprecated
+    warning: 'rgba(255, 189, 46, 1)', // Warnings, beta
+    info: 'rgba(80, 179, 221, 1)', // Rc
+    success: 'rgba(74, 165, 74, 1)', // Stable
     dark: 'rgba(15, 15, 15, 1)',
     light: 'rgba(220, 220, 220, 1)',
     fontWeight: '100',
@@ -52,8 +52,4 @@ module.exports = function getThemes(passed) {
     light
   };
 };
-
-function mix(a, b, factor) {
-  return color(a).mix(color(b), factor);
-}
 //# sourceMappingURL=index.js.map

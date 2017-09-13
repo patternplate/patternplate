@@ -5,48 +5,53 @@ import Text from './text';
 export default Indicator;
 
 function Indicator(props) {
-	return (
-		<StyledIndicator
-			onClick={props.onClick}
-			title={isValid(props.status) ? `Force sync ${props.shortcut.toString()}` : ''}
-			>
-			<StyledLabel size="s" status={props.status}>{getLabel(props)}</StyledLabel>
-			<StyledDot status={props.status}/>
-		</StyledIndicator>
-	);
+  return (
+    <StyledIndicator
+      onClick={props.onClick}
+      title={
+        isValid(props.status) ? `Force sync ${props.shortcut.toString()}` : ''
+      }
+    >
+      <StyledLabel size="s" status={props.status}>
+        {getLabel(props)}
+      </StyledLabel>
+      <StyledDot status={props.status} />
+    </StyledIndicator>
+  );
 }
 
 const StyledDot = styled.div`
-	position: relative;
-	flex-grow: 0;
-	flex-shrink: 0;
-	height: 7.5px;
-	width: 7.5px;
-	margin-right: 5px;
-	border-radius: 50%;
-	background: ${props => props.status === 'error' ? 'rgb(205, 63, 69)' : props.theme.active};
-	transition: background .4s ease-in-out, opacity .5s ease-in;
-	opacity: ${props => props.status ? 1 : 0};
-	cursor: ${props => props.status ? 'pointer' : ''};
-	${props => getGlow(props)}
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 7.5px;
+  width: 7.5px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: ${props =>
+    props.status === 'error' ? 'rgb(205, 63, 69)' : props.theme.active};
+  transition: background 0.4s ease-in-out, opacity 0.5s ease-in;
+  opacity: ${props => (props.status ? 1 : 0)};
+  cursor: ${props => (props.status ? 'pointer' : '')};
+  ${props => getGlow(props)};
 `;
 
 const StyledIndicator = styled.div`
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
 `;
 
 const StyledLabel = styled(Text)`
-	position: absolute;
-	right: 20px;
-	color: ${props => props.theme.color};
-	${props => getOut(props)}
+  position: absolute;
+  right: 20px;
+  color: ${props => props.theme.color};
+  ${props => getOut(props)};
 `;
 
 function getGlow(props) {
-	return `
+  return `
 		&::before {
 			content: '';
 			position: absolute;
@@ -70,27 +75,27 @@ const out = keyframes`
 `;
 
 function getOut(props) {
-	if (props.status !== 'loaded') {
-		return;
-	}
+  if (props.status !== 'loaded') {
+    return;
+  }
 
-	return css`
-		animation: ${out} 1s .15s;
-		animation-fill-mode: forwards;
-	`;
+  return css`
+    animation: ${out} 1s 0.15s;
+    animation-fill-mode: forwards;
+  `;
 }
 
 function getLabel(props) {
-	switch (props.status) {
-		case 'error':
-			return 'offline';
-		case 'loaded':
-			return 'synced';
-		case 'loading':
-			return 'syncing';
-		default:
-			return '';
-	}
+  switch (props.status) {
+    case 'error':
+      return 'offline';
+    case 'loaded':
+      return 'synced';
+    case 'loading':
+      return 'syncing';
+    default:
+      return '';
+  }
 }
 
 const pulse = keyframes`
@@ -109,13 +114,15 @@ const pulse = keyframes`
 `;
 
 function getPulse(props) {
-	if (props.status !== 'loading') {
-		return;
-	}
+  if (props.status !== 'loading') {
+    return;
+  }
 
-	return css`animation: ${pulse} 1s infinite;`;
+  return css`
+    animation: ${pulse} 1s infinite;
+  `;
 }
 
 function isValid(status) {
-	return ['loading', 'loaded'].includes(status);
+  return ['loading', 'loaded'].includes(status);
 }

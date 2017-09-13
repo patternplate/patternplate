@@ -11,13 +11,13 @@ class Headline extends Component {
 
   render() {
     const TagName = `h${this.props.order}`;
-    const className = classnames('h', `h${this.props.display || this.props.order}`, this.props.className);
-
-    return (
-      <TagName className={className}>
-        {this.props.children}
-      </TagName>
+    const className = classnames(
+      'h',
+      `h${this.props.display || this.props.order}`,
+      this.props.className
     );
+
+    return <TagName className={className}>{this.props.children}</TagName>;
   }
 }
 

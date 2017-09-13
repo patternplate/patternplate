@@ -1,11 +1,11 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 const routes = {
-	'path': ['application/routes', 'application/patternplate/routes']
+  path: ['application/routes', 'application/patternplate/routes']
 };
 
 exports.default = routes;
-module.exports = exports['default'];
+module.exports = exports.default;

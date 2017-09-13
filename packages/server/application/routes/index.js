@@ -4,14 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-let watch = (() => {
-  var _ref2 = _asyncToGenerator(function* (context, application) {
+const watch = (() => {
+  const _ref2 = _asyncToGenerator(function* (context, application) {
     const stream = new _stream.PassThrough();
     const send = function send(type, data) {
       return stream.write(sse(type, data));
     };
 
-    const heartbeat = setInterval(function () {
+    const heartbeat = setInterval(() => {
       send('heartbeat', Date.now());
     }, 1000);
 
@@ -23,7 +23,7 @@ let watch = (() => {
     context.type = 'text/event-stream';
     context.req.on('close', end);
     context.req.on('finish', end);
-    context.req.on('error', function (error) {
+    context.req.on('error', (error) => {
       console.error(error);
       end();
     });
@@ -32,11 +32,11 @@ let watch = (() => {
       let previous = yield (0, _getPatternTree.getPatternTree)('./patterns');
 
       application.watcher.on('all', (() => {
-        var _ref3 = _asyncToGenerator(function* (type, file) {
-          send('change', { type: type, file: file });
+        const _ref3 = _asyncToGenerator(function* (type, file) {
+          send('change', { type, file });
           const patterns = yield (0, _getPatternTree.getPatternTree)('./patterns');
-          (yield affected(file, patterns, previous)).forEach(function (pattern) {
-            return send('reload', { pattern: pattern });
+          (yield affected(file, patterns, previous)).forEach((pattern) => {
+            return send('reload', { pattern });
           });
           previous = patterns;
         });
@@ -57,29 +57,29 @@ let watch = (() => {
 
 exports.default = indexRouteFactory;
 
-var _path = require('path');
+const _path = require('path');
 
-var _path2 = _interopRequireDefault(_path);
+const _path2 = _interopRequireDefault(_path);
 
 var _stream = require('stream');
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _getSchema = require('../../library/get-schema');
+const _getSchema = require('../../library/get-schema');
 
-var _getSchema2 = _interopRequireDefault(_getSchema);
+const _getSchema2 = _interopRequireDefault(_getSchema);
 
 var _getPatternTree = require('../../library/utilities/get-pattern-tree');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; }  return Array.from(arr);  }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { const gen = fn.apply(this, arguments); return new Promise((resolve, reject) => { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then((value) => { step("next", value); }, (err) => { step("throw", err); }); } } return step("next"); }); }; }
 
 function indexRouteFactory(application) {
   return (() => {
-    var _ref = _asyncToGenerator(function* () {
+    const _ref = _asyncToGenerator(function* () {
       switch (this.accepts('json', 'text/event-stream')) {
         case 'text/event-stream':
           {
@@ -90,7 +90,7 @@ function indexRouteFactory(application) {
         default:
           this.type = 'json';
           this.body = yield (0, _getSchema2.default)(application.parent, application.client, application);
-          return;
+
       }
     });
 
@@ -144,7 +144,7 @@ function deps(pattern, patterns, key) {
 }
 
 function find(tree, id) {
-  let depth = arguments.length <= 2 || arguments[2] === undefined ? 1 : arguments[2];
+  const depth = arguments.length <= 2 || arguments[2] === undefined ? 1 : arguments[2];
 
   if (!tree || !id) {
     return;
@@ -164,4 +164,4 @@ function find(tree, id) {
 function strip(b) {
   return _path2.default.basename(b, _path2.default.extname(b));
 }
-module.exports = exports['default'];
+module.exports = exports.default;

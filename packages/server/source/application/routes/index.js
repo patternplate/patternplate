@@ -14,8 +14,12 @@ export default function indexRouteFactory(application) {
       case 'json':
       default:
         this.type = 'json';
-        this.body = await getSchema(application.parent, application.client, application);
-        return;
+        this.body = await getSchema(
+          application.parent,
+          application.client,
+          application
+        );
+        
     }
   };
 }
@@ -47,7 +51,9 @@ async function watch(context, application) {
     application.watcher.on('all', async (type, file) => {
       send('change', {type, file});
       const patterns = await getPatternTree('./patterns');
-      (await affected(file, patterns, previous)).forEach(pattern => send('reload', {pattern}));
+      (await affected(file, patterns, previous)).forEach(pattern =>
+        send('reload', {pattern})
+      );
       previous = patterns;
     });
   }
@@ -67,7 +73,12 @@ function affected(file, patterns, previous) {
     return [];
   }
 
-  const guess = path.dirname(file.split(path.sep).slice(1).join('/'));
+  const guess = path.dirname(
+    file
+      .split(path.sep)
+      .slice(1)
+      .join('/')
+  );
 
   const match = find(patterns, guess);
   const prev = find(previous, guess);
@@ -76,7 +87,10 @@ function affected(file, patterns, previous) {
     return [];
   }
 
-  if (basename === 'pattern.json' && isEqual(prev.manifest.patterns, match.manifest.patterns)) {
+  if (
+    basename === 'pattern.json' &&
+    isEqual(prev.manifest.patterns, match.manifest.patterns)
+  ) {
     return [];
   }
 
@@ -93,11 +107,10 @@ function affected(file, patterns, previous) {
 }
 
 function deps(pattern, patterns, key) {
-  return pattern[key]
-    .reduce((d, p) => {
-      const match = find(patterns, p);
-      return [...d, p, ...deps(match, patterns, key)];
-    }, []);
+  return pattern[key].reduce((d, p) => {
+    const match = find(patterns, p);
+    return [...d, p, ...deps(match, patterns, key)];
+  }, []);
 }
 
 function find(tree, id, depth = 1) {
@@ -107,7 +120,9 @@ function find(tree, id, depth = 1) {
 
   const frags = id.split('/').filter(Boolean);
   const sub = frags.slice(0, depth).map(strip);
-  const match = tree.children.find(child => child.path.every((s, i) => sub[i] === strip(s)));
+  const match = tree.children.find(child =>
+    child.path.every((s, i) => sub[i] === strip(s))
+  );
 
   if (match && depth < frags.length) {
     return find(match, id, depth + 1);

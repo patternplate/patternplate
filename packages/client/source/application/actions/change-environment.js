@@ -5,9 +5,11 @@ export const type = 'CHANGE_ENVIRONMENT';
 
 function changeEnvironment(environment) {
   return dispatch => {
-    dispatch(patchLocation({
-      query: {environment}
-    }));
+    dispatch(
+      patchLocation({
+        query: {environment}
+      })
+    );
   };
 }
 

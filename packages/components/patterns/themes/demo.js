@@ -9,10 +9,10 @@ module.exports = ThemesDemo;
 function ThemesDemo() {
   const themes = getThemes();
   return (
-    <div>
-      <Theme name="Light" theme={themes.light}/>
-      <Theme name="Dark" theme={themes.dark}/>
-    </div>
+	<div>
+		<Theme name="Light" theme={themes.light}/>
+		<Theme name="Dark" theme={themes.dark}/>
+	</div>
   );
 }
 
@@ -30,22 +30,22 @@ const StyledGrid = styled.div`
 
 function Theme(props) {
   return (
-    <div>
-      <StyledName>{props.name}</StyledName>
-      <StyledGrid>
-        {
-          entries(omit(props.theme, ['name', 'fontWeight', 'fontSize']))
-            .map(entry => (
-              <Tile key={entry.join('-')} color={entry[1]} name={entry[0]}/>
-            ))
-        }
-      </StyledGrid>
-    </div>
+	<div>
+		<StyledName>{props.name}</StyledName>
+		<StyledGrid>
+			{entries(
+          omit(props.theme, ['name', 'fontWeight', 'fontSize'])
+        ).map(entry => (
+	<Tile key={entry.join('-')} color={entry[1]} name={entry[0]}/>
+        ))}
+		</StyledGrid>
+	</div>
   );
 }
 
 const BACKGROUND = props => props.color;
-const COLOR = props => color(props.color).dark() ? 'rgb(250, 250, 250)' : 'rgb(10, 10, 10)';
+const COLOR = props =>
+  color(props.color).dark() ? 'rgb(250, 250, 250)' : 'rgb(10, 10, 10)';
 
 const StyledTile = styled.div`
   display: flex;
@@ -60,9 +60,5 @@ const StyledTile = styled.div`
 `;
 
 function Tile(props) {
-  return (
-    <StyledTile color={props.color}>
-      {props.name}
-    </StyledTile>
-  );
+  return <StyledTile color={props.color}>{props.name}</StyledTile>;
 }

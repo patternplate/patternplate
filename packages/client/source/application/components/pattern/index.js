@@ -7,7 +7,7 @@ import Markdown from '../common/markdown';
 import PatternDemo from './pattern-demo';
 import Search from '../../containers/search';
 
-const VISIBILITY = props => props.checkers ? 'block' : 'none';
+const VISIBILITY = props => (props.checkers ? 'block' : 'none');
 
 const StyledPattern = styled(tag(['checkers'])('div'))`
   box-sizing: border-box;
@@ -67,17 +67,19 @@ const StyledPatternLoader = styled.div`
     display: block;
     width: 100%;
     height: 100%;
-    background: ${props => props.error ? props.theme.error : props.theme.active};
+    background: ${props =>
+      props.error ? props.theme.error : props.theme.active};
     opacity: 1;
-    transition: ${props => props.error ? 'none' : 'transform 1s ease-in-out'};
+    transition: ${props => (props.error ? 'none' : 'transform 1s ease-in-out')};
     ${props => {
-      switch(props.status) {
+      switch (props.status) {
         case 'entering':
           return `
             transform: translateX(-100%);
           `;
         case 'entered':
-          return `${props => props.error ? '' : 'transform: translateX(-15%);'}`;
+          return `${props =>
+            props.error ? '' : 'transform: translateX(-15%);'}`;
         case 'exiting':
           return `
             transition: transform .3s ease-out;
@@ -89,7 +91,7 @@ const StyledPatternLoader = styled.div`
             transition: opacity .3s .25s ease-out;
           `;
       }
-    }}
+    }};
   }
 `;
 
@@ -101,15 +103,20 @@ export default class Pattern extends React.Component {
       case 'pattern':
         return (
           <StyledPattern checkers={props.opacity}>
-            <Transition in={props.loading || props.error} timeout={{enter: 1000, exit: 850}}>
-              {(status) => <StyledPatternLoader status={status} error={props.error}/>}
+            <Transition
+              in={props.loading || props.error}
+              timeout={{enter: 1000, exit: 850}}
+            >
+              {status => (
+                <StyledPatternLoader status={status} error={props.error} />
+              )}
             </Transition>
             <StyledPatternDemo>
               <PatternDemo
                 src={props.src}
                 contents={props.contents}
                 loading={props.loading}
-                />
+              />
             </StyledPatternDemo>
           </StyledPattern>
         );
@@ -118,8 +125,8 @@ export default class Pattern extends React.Component {
         return (
           <StyledPatternFolder>
             <StyledPatternDoc>
-              <Search inline/>
-              <Markdown source={props.docs}/>
+              <Search inline />
+              <Markdown source={props.docs} />
             </StyledPatternDoc>
           </StyledPatternFolder>
         );

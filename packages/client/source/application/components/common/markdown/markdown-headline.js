@@ -1,7 +1,7 @@
 import React from 'react';
 import {Icon, styled} from '@patternplate/components';
 
-// import Icon from '../icon';
+// Import Icon from '../icon';
 import Link from '../link';
 import Text from '../../text';
 
@@ -52,17 +52,24 @@ export default styled(MarkdownHeadline)`
 `;
 
 function MarkdownHeadline(props) {
-  const children = Array.isArray(props.children) ? props.children.join('') : props.children;
-  const id = encodeURIComponent((children || '').split(' ').join('-').toLowerCase());
+  const children = Array.isArray(props.children)
+    ? props.children.join('')
+    : props.children;
+  const id = encodeURIComponent(
+    (children || '')
+      .split(' ')
+      .join('-')
+      .toLowerCase()
+  );
 
   return (
     <Text is={props.is} className={props.className} id={id}>
       {props.children}
-      {props.linkable &&
+      {props.linkable && (
         <MarkdownHeadlineLink name={children} id={id}>
-          <Icon size="s" symbol="anchor"/>
+          <Icon size="s" symbol="anchor" />
         </MarkdownHeadlineLink>
-      }
+      )}
     </Text>
   );
 }
@@ -70,7 +77,7 @@ function MarkdownHeadline(props) {
 function MarkdownHeadlineLink(props) {
   return (
     <StyledLink title={`Link to "${props.name}"`} hash={props.id}>
-      <ThemedIcon symbol="anchor" size="s"/>
+      <ThemedIcon symbol="anchor" size="s" />
       Link to id
     </StyledLink>
   );

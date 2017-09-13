@@ -1,3 +1,3 @@
 export default {
-	'path': './application/tasks'
+  path: './application/tasks'
 };

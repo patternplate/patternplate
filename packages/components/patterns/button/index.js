@@ -8,38 +8,24 @@ const Link = require('../link');
 
 const FONTS = fonts();
 
-const buttonTypes = [
-  'button',
-  'submit',
-  'link'
-];
-
 function Button(props) {
-  const OuterElement = props.type === 'link'
-    ? tag(['external', 'type'])(Link)
-    : tag(['external'])('button');
+  const OuterElement =
+    props.type === 'link'
+      ? tag(['external', 'type'])(Link)
+      : tag(['external'])('button');
 
   return (
-    <OuterElement
-      className={props.className}
-      title={props.title}
-      onClick={props.onClick}
-      external={props.external}
-      href={props.href}
-      type={props.type}
-    >
-      {props.children &&
-        <StyledLabel>
-          {props.children}
-        </StyledLabel>
-      }
-      {
-        props.symbol &&
-          <StyledIcon
-            symbol={props.symbol}
-          />
-      }
-    </OuterElement>
+	<OuterElement
+		className={props.className}
+		title={props.title}
+		onClick={props.onClick}
+		external={props.external}
+		href={props.href}
+		type={props.type}
+	>
+		{props.children && <StyledLabel>{props.children}</StyledLabel>}
+		{props.symbol && <StyledIcon symbol={props.symbol}/>}
+	</OuterElement>
   );
 }
 
@@ -47,22 +33,18 @@ Button.defaultProps = {
   type: 'button'
 };
 
-function OuterElement(props) {
-  if (props.type === 'link') {
-    return <Link/>;
-  }
-}
+const StyledLabel = styled.span`font-family: ${FONTS.default};`;
 
-const StyledLabel = styled.span`
-  font-family: ${FONTS.default};
-`;
-
-const FRAME = props => !props.frameless && `
+const FRAME = props =>
+  !props.frameless &&
+  `
   padding: 4px;
   border: 1px solid currentColor;
 `;
 
-const TRANSPARENCY = props => props.transparent && `
+const TRANSPARENCY = props =>
+  props.transparent &&
+  `
   background: transparent;
 `;
 
@@ -80,8 +62,7 @@ const StyledButton = styled(Button)`
   font: inherit;
   box-sizing: border-box;
   vertical-align: top;
-  ${FRAME}
-  ${TRANSPARENCY}
+  ${FRAME} ${TRANSPARENCY};
 `;
 
 const StyledIcon = styled(Icon)`

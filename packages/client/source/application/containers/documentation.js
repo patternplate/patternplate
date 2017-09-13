@@ -7,8 +7,8 @@ import themes from '../themes';
 export default connect(mapState)(Documentation);
 
 const selectNotFound = createSelector(
-	state => state.routing.locationBeforeTransitions.pathname,
-	url => `
+  state => state.routing.locationBeforeTransitions.pathname,
+  url => `
 # Documentation not found
 
 > Pretty sure these aren't the hypertext documents you are looking for.
@@ -54,44 +54,41 @@ Help us to make this message more helpful on [GitHub](https://github.com/sinners
 `;
 
 const selectDoc = createSelector(
-	selectItem,
-	selectNoDocs,
-	selectNotFound,
-	(match, noDocs, notFound) => {
-		if (match && match.contents) {
-			return match.contents;
-		}
+  selectItem,
+  selectNoDocs,
+  selectNotFound,
+  (match, noDocs, notFound) => {
+    if (match && match.contents) {
+      return match.contents;
+    }
 
-		if (match && !match.contents) {
-			return noDocs;
-		}
+    if (match && !match.contents) {
+      return noDocs;
+    }
 
-		return notFound;
-	}
+    return notFound;
+  }
 );
 
-const selectType = createSelector(
-	selectItem,
-	match => {
-		if (match && match.contents) {
-			return 'doc';
-		}
-		if (match && !match.contents) {
-			return 'fallback';
-		}
-		return 'not-found';
-	}
-);
+const selectType = createSelector(selectItem, match => {
+  if (match && match.contents) {
+    return 'doc';
+  }
+  if (match && !match.contents) {
+    return 'fallback';
+  }
+  return 'not-found';
+});
 
 const selectThemes = createSelector(
-	state => state.config.color,
-	color => themes(color)
+  state => state.config.color,
+  color => themes(color)
 );
 
 function mapState(state) {
-	return {
-		doc: selectDoc(state),
-		themes: selectThemes(state),
-		type: selectType(state)
-	};
+  return {
+    doc: selectDoc(state),
+    themes: selectThemes(state),
+    type: selectType(state)
+  };
 }

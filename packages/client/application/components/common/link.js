@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+const _extends = Object.assign || function (target) { for (let i = 1; i < arguments.length; i++) { const source = arguments[i]; for (const key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _url = require('url');
+const _url = require('url');
 
-var _url2 = _interopRequireDefault(_url);
+const _url2 = _interopRequireDefault(_url);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = require('react-redux');
+const _reactRedux = require('react-redux');
 
-var _reactRouterRedux = require('react-router-redux');
+const _reactRouterRedux = require('react-router-redux');
 
-var _redux = require('redux');
+const _redux = require('redux');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,11 +30,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var LinkComponent = function (_React$Component) {
+const LinkComponent = function (_React$Component) {
   _inherits(LinkComponent, _React$Component);
 
   function LinkComponent() {
-    var _ref;
+    let _ref;
 
     _classCallCheck(this, LinkComponent);
 
@@ -42,7 +42,7 @@ var LinkComponent = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    var _this = _possibleConstructorReturn(this, (_ref = LinkComponent.__proto__ || Object.getPrototypeOf(LinkComponent)).call.apply(_ref, [this].concat(args)));
+    const _this = _possibleConstructorReturn(this, (_ref = LinkComponent.__proto__ || Object.getPrototypeOf(LinkComponent)).call.apply(_ref, [this].concat(args)));
 
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
@@ -56,7 +56,7 @@ var LinkComponent = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
+      const props = this.props;
 
       return _react2.default.createElement(
         'a',
@@ -82,9 +82,9 @@ exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(LinkComponent)
 
 
 function mapProps(state, own) {
-  var location = state.routing.locationBeforeTransitions;
-  var parsed = own.href ? _url2.default.parse(own.href) : location;
-  var query = own.query || location.query;
+  const location = state.routing.locationBeforeTransitions;
+  const parsed = own.href ? _url2.default.parse(own.href) : location;
+  const query = own.query || location.query;
 
   return {
     href: own.external ? own.href : _url2.default.format({

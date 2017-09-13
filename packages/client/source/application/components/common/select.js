@@ -13,25 +13,19 @@ function Select(props) {
         className="select__native"
         onChange={props.onChange}
         value={props.value.value}
-        >
-        {
-          props.options.map(({value, name}) => {
-            return <option key={value} value={value}>{name}</option>;
-          })
-        }
+      >
+        {props.options.map(({value, name}) => {
+          return (
+            <option key={value} value={value}>
+              {name}
+            </option>
+          );
+        })}
       </select>
-      <span className="select__label">
-        {props.label}
-      </span>
+      <span className="select__label">{props.label}</span>
       <div className="select__body">
-        <span className="select__value">
-          {props.value.name}
-        </span>
-        <Icon
-          base={props.base}
-          className="select__icon"
-          symbol="arrow-right"
-          />
+        <span className="select__value">{props.value.name}</span>
+        <Icon base={props.base} className="select__icon" symbol="arrow-right" />
       </div>
     </label>
   );

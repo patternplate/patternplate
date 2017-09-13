@@ -1,17 +1,17 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n\tbackground: ', ';\n\tbox-sizing: border-box;\n\twidth: 100%;\n\tpadding: 10px 20px;\n'], ['\n\tbackground: ', ';\n\tbox-sizing: border-box;\n\twidth: 100%;\n\tpadding: 10px 20px;\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n\tcolor: #fff;\n'], ['\n\tcolor: #fff;\n']);
+let _templateObject = _taggedTemplateLiteral(['\n  background: ', ';\n  box-sizing: border-box;\n  width: 100%;\n  padding: 10px 20px;\n'], ['\n  background: ', ';\n  box-sizing: border-box;\n  width: 100%;\n  padding: 10px 20px;\n']),
+    _templateObject2 = _taggedTemplateLiteral(['color: #fff;'], ['color: #fff;']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21,19 +21,19 @@ exports.default = Message;
 
 
 function Message(props) {
-	return _react2.default.createElement(
-		StyledMessage,
-		null,
-		_react2.default.createElement(
-			StyledMessageContent,
-			null,
-			props.message
-		)
-	);
+  return _react2.default.createElement(
+    StyledMessage,
+    null,
+    _react2.default.createElement(
+      StyledMessageContent,
+      null,
+      props.message
+    )
+  );
 }
 
-var StyledMessage = _components.styled.div(_templateObject, function (props) {
-	return props.theme.error;
+var StyledMessage = _components.styled.div(_templateObject, (props) => {
+  return props.theme.error;
 });
 
 var StyledMessageContent = _components.styled.pre(_templateObject2);

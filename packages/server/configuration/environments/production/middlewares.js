@@ -1,20 +1,20 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 const middlewares = {
-	path: ['application/middlewares'],
-	enabled: {
-		basicauth: {
-			enabled: true,
-			credentials: {
-				name: process.env.PATTERNPLATE_SERVER_BASIC_AUTH_LOGIN || process.env.BOILERPLATE_SERVER_BASIC_AUTH_LOGIN || process.env.NODE_BASIC_AUTH_LOGIN || 'patternplate-server',
-				pass: process.env.PATTERNPLATE_SERVER_BASIC_AUTH_PASS || process.env.BOILERPLATE_SERVER_BASIC_AUTH_PASS || process.env.NODE_BASIC_AUTH_PASS || 'patternplate-server'
-			}
-		}
-	}
+  path: ['application/middlewares'],
+  enabled: {
+    basicauth: {
+      enabled: true,
+      credentials: {
+        name: process.env.PATTERNPLATE_SERVER_BASIC_AUTH_LOGIN || process.env.BOILERPLATE_SERVER_BASIC_AUTH_LOGIN || process.env.NODE_BASIC_AUTH_LOGIN || 'patternplate-server',
+        pass: process.env.PATTERNPLATE_SERVER_BASIC_AUTH_PASS || process.env.BOILERPLATE_SERVER_BASIC_AUTH_PASS || process.env.NODE_BASIC_AUTH_PASS || 'patternplate-server'
+      }
+    }
+  }
 };
 
 exports.default = middlewares;
-module.exports = exports['default'];
+module.exports = exports.default;

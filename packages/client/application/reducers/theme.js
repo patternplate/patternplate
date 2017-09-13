@@ -1,19 +1,19 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _reduxActions = require('redux-actions');
+const _reduxActions = require('redux-actions');
 
-var defaultValue = 'light';
+const defaultValue = 'light';
 
-var locationChangeHandler = function locationChangeHandler(_, _ref) {
-	var payload = _ref.payload;
+const locationChangeHandler = function locationChangeHandler(_, _ref) {
+  const payload = _ref.payload;
 
-	return payload.query.theme || defaultValue;
+  return payload.query.theme || defaultValue;
 };
 
 exports.default = (0, _reduxActions.handleActions)({
-	'@@router/LOCATION_CHANGE': locationChangeHandler
+  '@@router/LOCATION_CHANGE': locationChangeHandler
 }, defaultValue);

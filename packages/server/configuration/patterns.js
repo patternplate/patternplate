@@ -1,10 +1,10 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.default = {
-	path: './patterns',
-	formats: {}
+  path: './patterns',
+  formats: {}
 };
-module.exports = exports['default'];
+module.exports = exports.default;

@@ -8,19 +8,19 @@ import * as demo from '../selectors/demo';
 export default connect(mapState)(skippable(Message));
 
 const selectMessage = createSelector(
-	state => state.messages,
-	demo.selectSrc,
-	(messages, src) => messages[src]
+  state => state.messages,
+  demo.selectSrc,
+  (messages, src) => messages[src]
 );
 
 const selectActive = createSelector(
-	selectMessage,
-	message => typeof message === 'string'
+  selectMessage,
+  message => typeof message === 'string'
 );
 
 function mapState(state) {
-	return {
-		active: selectActive(state),
-		message: selectMessage(state)
-	};
+  return {
+    active: selectActive(state),
+    message: selectMessage(state)
+  };
 }

@@ -8,63 +8,62 @@ global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
 
 function getFile(extender) {
-	const file = {
-		path: 'mocks/index.js'
-	};
-	return merge({}, file, extender);
+  const file = {
+    path: 'mocks/index.js'
+  };
+  return merge({}, file, extender);
 }
 
 export function run(source) {
-	const script = new vm.Script(source);
-	const exports = {};
-	const sandbox = {
-		console,
-		document: jsdom('<body><div data-mountpoint></div></body>'),
-		exports,
-		module: {exports},
-		require,
-		global,
-		window: global
-	};
+  const script = new vm.Script(source);
+  const exports = {};
+  const sandbox = {
+    console,
+    document: jsdom('<body><div data-mountpoint></div></body>'),
+    exports,
+    module: {exports},
+    require,
+    global,
+    window: global
+  };
 
-	script.runInNewContext(sandbox);
-	return sandbox.document;
+  script.runInNewContext(sandbox);
+  return sandbox.document;
 }
 
 export const application = {
-	cache: {
-		get() {
-			return false;
-		},
-		set() {
-		}
-	},
-	configuration: {
-		transforms: {
-			browserify: {}
-		}
-	}
+  cache: {
+    get() {
+      return false;
+    },
+    set() {}
+  },
+  configuration: {
+    transforms: {
+      browserify: {}
+    }
+  }
 };
 
 export const emptyFile = getFile({
-	buffer: '',
-	path: 'empty.js',
-	dependencies: {}
+  buffer: '',
+  path: 'empty.js',
+  dependencies: {}
 });
 
 export const basicFile = getFile({
-	buffer: Buffer.from(`
+  buffer: Buffer.from(`
 		var React = require('react');
 		module.exports = function Basic() {
 			return React.createElement('div', {id: 'basic'}, ['basic']);
 		};
 	`),
-	path: 'basic/index.js',
-	dependencies: {}
+  path: 'basic/index.js',
+  dependencies: {}
 });
 
 export const componentDidMountFile = getFile({
-	buffer: Buffer.from(`
+  buffer: Buffer.from(`
 		var React = require('react');
 		module.exports = React.createClass({
 			getInitialState() {
@@ -81,12 +80,12 @@ export const componentDidMountFile = getFile({
 			}
 		});
 	`),
-	path: 'component-did-mount/index.js',
-	dependencies: {}
+  path: 'component-did-mount/index.js',
+  dependencies: {}
 });
 
 export const clickFile = getFile({
-	buffer: Buffer.from(`
+  buffer: Buffer.from(`
 		var React = require('react');
 		module.exports = React.createClass({
 			getInitialState() {
@@ -107,6 +106,6 @@ export const clickFile = getFile({
 			}
 		});
 	`),
-	path: 'component-did-mount/index.js',
-	dependencies: {}
+  path: 'component-did-mount/index.js',
+  dependencies: {}
 });

@@ -11,11 +11,10 @@ module.exports = {
   NavigationItem: require('./main-navigation'),
   NavigationToolbar: require('./navigation-toolbar'),
   NavigationTree: require('./navigation-tree'),
-  PatternView: require('./pattern-view'),
   ServerStyleSheet: require('styled-components').ServerStyleSheet,
   styled: require('styled-components').default,
   StyleSheetManager: require('styled-components').StyleSheetManager,
   Symbol: require('./icon').Symbol,
   ThemeProvider: require('styled-components').ThemeProvider,
-  themes: require('./themes'),
+  themes: require('./themes')
 };

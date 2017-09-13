@@ -4,22 +4,18 @@ import {styled} from '@patternplate/components';
 export default Message;
 
 function Message(props) {
-	return (
-		<StyledMessage>
-			<StyledMessageContent>
-				{props.message}
-			</StyledMessageContent>
-		</StyledMessage>
-	);
+  return (
+    <StyledMessage>
+      <StyledMessageContent>{props.message}</StyledMessageContent>
+    </StyledMessage>
+  );
 }
 
 const StyledMessage = styled.div`
-	background: ${props => props.theme.error};
-	box-sizing: border-box;
-	width: 100%;
-	padding: 10px 20px;
+  background: ${props => props.theme.error};
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 20px;
 `;
 
-const StyledMessageContent = styled.pre`
-	color: #fff;
-`;
+const StyledMessageContent = styled.pre`color: #fff;`;

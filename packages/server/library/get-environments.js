@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _getEnvironments = require('./utilities/get-environments');
+const _getEnvironments = require('./utilities/get-environments');
 
-var _getEnvironments2 = _interopRequireDefault(_getEnvironments);
+const _getEnvironments2 = _interopRequireDefault(_getEnvironments);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _getEnvironments2.default;
-module.exports = exports['default'];
+module.exports = exports.default;

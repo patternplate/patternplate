@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _babelCore = require('babel-core');
@@ -18,15 +18,15 @@ exports.default = applyTransform;
 
 
 function applyTransform(file, opts) {
-	const source = typeof file.buffer === 'string' ? file.buffer : file.buffer.toString('utf-8');
+  const source = typeof file.buffer === 'string' ? file.buffer : file.buffer.toString('utf-8');
 
-	const id = (0, _md2.default)(source);
+  const id = (0, _md2.default)(source);
 
-	const buffer = stash[id] || (0, _babelCore.transform)(source, opts).code;
-	stash[id] = buffer;
+  const buffer = stash[id] || (0, _babelCore.transform)(source, opts).code;
+  stash[id] = buffer;
 
-	return {
-		buffer: buffer
-	};
+  return {
+    buffer: buffer
+  };
 }
 module.exports = exports['default'];

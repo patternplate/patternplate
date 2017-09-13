@@ -15,6 +15,7 @@
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
     "dev": "babel source -d distribution -w"
   },
+  "xo": false,
   "ava": {
     "require": [
       "babel-register"

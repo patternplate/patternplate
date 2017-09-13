@@ -1,13 +1,13 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 const middlewares = {
-	enabled: {
-		jsonerror: false
-	}
+  enabled: {
+    jsonerror: false
+  }
 };
 
 exports.default = middlewares;
-module.exports = exports["default"];
+module.exports = exports.default;

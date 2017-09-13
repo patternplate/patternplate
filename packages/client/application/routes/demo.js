@@ -1,34 +1,34 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+const _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+const _slicedToArray = function () { function sliceIterator(arr, i) { const _arr = []; let _n = true; let _d = false; let _e; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i.return) _i.return(); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); }  throw new TypeError("Invalid attempt to destructure non-iterable instance");  }; }();
 
 exports.default = patternRouteFactory;
 
-var _path = require('path');
+const _path = require('path');
 
-var _path2 = _interopRequireDefault(_path);
+const _path2 = _interopRequireDefault(_path);
 
-var _stripAnsi = require('strip-ansi');
+const _stripAnsi = require('strip-ansi');
 
-var _stripAnsi2 = _interopRequireDefault(_stripAnsi);
+const _stripAnsi2 = _interopRequireDefault(_stripAnsi);
 
-var _urlQuery = require('../utils/url-query');
+const _urlQuery = require('../utils/url-query');
 
-var _urlQuery2 = _interopRequireDefault(_urlQuery);
+const _urlQuery2 = _interopRequireDefault(_urlQuery);
 
-var _getPatternDemo = require('@patternplate/server/library/get-pattern-demo');
+const _getPatternDemo = require('@patternplate/server/library/get-pattern-demo');
 
-var _getPatternDemo2 = _interopRequireDefault(_getPatternDemo);
+const _getPatternDemo2 = _interopRequireDefault(_getPatternDemo);
 
-var _getPatternFile = require('@patternplate/server/library/get-pattern-file');
+const _getPatternFile = require('@patternplate/server/library/get-pattern-file');
 
-var _getPatternFile2 = _interopRequireDefault(_getPatternFile);
+const _getPatternFile2 = _interopRequireDefault(_getPatternFile);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74,13 +74,13 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       function resolution(p, r, how) {
         try {
-          var x = how ? how(r) : r;
+          const x = how ? how(r) : r;
           if (p === x) return p.reject(new TypeError("Promise resolution loop"));
 
           if (isThenable(x)) {
-            x.then(function (y) {
+            x.then((y) => {
               resolution(p, y);
-            }, function (e) {
+            }, (e) => {
               p.reject(e);
             });
           } else {
@@ -108,12 +108,12 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       }
 
       function then(res, rej) {
-        var chain = new Chained();
+        const chain = new Chained();
 
         try {
-          this._resolver(function (value) {
+          this._resolver((value) => {
             return isThenable(value) ? value.then(res, rej) : resolution(chain, value, res);
-          }, function (ex) {
+          }, (ex) => {
             resolution(chain, ex, rej);
           });
         } catch (ex) {
@@ -147,8 +147,8 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
         setTimeout(f, 0);
       };
 
-      var soon = function () {
-        var fq = [],
+      const soon = function () {
+        let fq = [],
             fqStart = 0,
             bufferSize = 1024;
 
@@ -175,10 +175,10 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       function Zousan(func) {
         if (func) {
-          var me = this;
-          func(function (arg) {
+          const me = this;
+          func((arg) => {
             me.resolve(arg);
-          }, function (arg) {
+          }, (arg) => {
             me.reject(arg);
           });
         }
@@ -188,19 +188,19 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
         resolve: function resolve(value) {
           if (this.state !== undefined) return;
           if (value === this) return this.reject(new TypeError("Attempt to resolve promise with self"));
-          var me = this;
+          const me = this;
 
           if (value && (typeof value === "function" || (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === "object")) {
             try {
               var first = 0;
-              var then = value.then;
+              const then = value.then;
 
               if (typeof then === "function") {
-                then.call(value, function (ra) {
+                then.call(value, (ra) => {
                   if (!first++) {
                     me.resolve(ra);
                   }
-                }, function (rr) {
+                }, (rr) => {
                   if (!first++) {
                     me.reject(rr);
                   }
@@ -215,8 +215,8 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
           this.state = STATE_FULFILLED;
           this.v = value;
-          if (me.c) soon(function () {
-            for (var n = 0, l = me.c.length; n < l; n++) {
+          if (me.c) soon(() => {
+            for (let n = 0, l = me.c.length; n < l; n++) {
               STATE_FULFILLED(me.c[n], value);
             }
           });
@@ -225,27 +225,27 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
           if (this.state !== undefined) return;
           this.state = STATE_REJECTED;
           this.v = reason;
-          var clients = this.c;
-          if (clients) soon(function () {
-            for (var n = 0, l = clients.length; n < l; n++) {
+          const clients = this.c;
+          if (clients) soon(() => {
+            for (let n = 0, l = clients.length; n < l; n++) {
               STATE_REJECTED(clients[n], reason);
             }
           });
         },
         then: function then(onF, onR) {
-          var p = new Zousan();
-          var client = {
+          const p = new Zousan();
+          const client = {
             y: onF,
             n: onR,
-            p: p
+            p
           };
 
           if (this.state === undefined) {
             if (this.c) this.c.push(client);else this.c = [client];
           } else {
-            var s = this.state,
+            let s = this.state,
                 a = this.v;
-            soon(function () {
+            soon(() => {
               s(client, a);
             });
           }
@@ -257,7 +257,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       function STATE_FULFILLED(c, arg) {
         if (typeof c.y === "function") {
           try {
-            var yret = c.y.call(undefined, arg);
+            const yret = c.y.call(undefined, arg);
             c.p.resolve(yret);
           } catch (err) {
             c.p.reject(err);
@@ -268,7 +268,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       function STATE_REJECTED(c, reason) {
         if (typeof c.n === "function") {
           try {
-            var yret = c.n.call(undefined, reason);
+            const yret = c.n.call(undefined, reason);
             c.p.resolve(yret);
           } catch (err) {
             c.p.reject(err);
@@ -278,14 +278,14 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       Zousan.resolve = function (val) {
         if (val && val instanceof Zousan) return val;
-        var z = new Zousan();
+        const z = new Zousan();
         z.resolve(val);
         return z;
       };
 
       Zousan.reject = function (err) {
         if (err && err instanceof Zousan) return err;
-        var z = new Zousan();
+        const z = new Zousan();
         z.reject(err);
         return z;
       };
@@ -295,7 +295,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
     })();
   }
 
-  var resolver = this;
+  const resolver = this;
 
   switch (catcher) {
     case true:
@@ -325,11 +325,11 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
 function withErrorHandling(fn) {
   return function () {
-    var $args = arguments;return new Promise(function ($return, $error) {
-      var result;
-      var $Try_3_Post = function () {
+    const $args = arguments;return new Promise(function ($return, $error) {
+      let result;
+      const $Try_3_Post = function () {
         return $return();
-      }.$asyncbind(this, $error);var $Try_3_Catch = function (error) {
+      }.$asyncbind(this, $error);const $Try_3_Catch = function (error) {
         return $return([error]);
       }.$asyncbind(this, $error);
       try {
@@ -345,9 +345,9 @@ function withErrorHandling(fn) {
 }
 
 function getPatternId(raw) {
-  var parsed = _path2.default.parse(raw);
-  var extension = getPatternExtension(raw);
-  var base = _path2.default.basename(raw, _path2.default.extname(raw));
+  const parsed = _path2.default.parse(raw);
+  const extension = getPatternExtension(raw);
+  const base = _path2.default.basename(raw, _path2.default.extname(raw));
 
   if (base === 'index' && extension !== 'json') {
     return _path2.default.dirname(raw);
@@ -360,13 +360,13 @@ function getPatternExtension(raw) {
   return _path2.default.extname(raw).slice(1) || 'html';
 }
 
-var getPatternDemoOrError = withErrorHandling(_getPatternDemo2.default);
-var getPatternFileOrError = withErrorHandling(_getPatternFile2.default);
+const getPatternDemoOrError = withErrorHandling(_getPatternDemo2.default);
+const getPatternFileOrError = withErrorHandling(_getPatternFile2.default);
 
 function patternRouteFactory(application) {
   return function patternRoute() {
     return new Promise(function ($return, $error) {
-      var server, parsed, id, extension, type, errorType, _parsed$query$environ, environment, filters, _ref, _ref2, _error, demo, err, _ref3, _ref4, error, file, _err;
+      let server, parsed, id, extension, type, errorType, _parsed$query$environ, environment, filters, _ref, _ref2, _error, demo, err, _ref3, _ref4, error, file, _err;
 
       server = application.parent.server;
       parsed = _urlQuery2.default.parse(this.params.id);

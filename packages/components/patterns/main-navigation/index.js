@@ -21,7 +21,8 @@ class Navigation extends React.Component {
     const pad = getPadding(this.ref);
 
     if (item.bottom > list.bottom - pad('bottom')) {
-      this.ref.scrollTop = e.target.offsetTop - list.height + pad('bottom') + item.height;
+      this.ref.scrollTop =
+        e.target.offsetTop - list.height + pad('bottom') + item.height;
     }
 
     if (item.top < list.top + pad('top')) {
@@ -40,35 +41,34 @@ class Navigation extends React.Component {
     const header = children.find(child => child.type === NavigationHeader);
 
     return (
-      <StyledNavigation onKeyDown={this.handleKeyDown}>
-        <StyledNavigationTree innerRef={this.getRef}>
-          {header
-            ? header
-            : <StyledHeader
-                title={props.applicationTitle}
-                symbol="patternplate"
-                />
-          }
-          <Documentation
-            active={props.active}
-            docs={props.docs}
-            onItemClick={props.onItemClick}
-            onScrollRequest={this.handleScrollRequest}
-          />
-          <NavigationTree
-            active={props.active}
-            data={props.navigation.children}
-            onItemClick={props.onItemClick}
-            onScrollRequest={this.handleScrollRequest}
-            prefix="/pattern"
-          />
-        </StyledNavigationTree>
-        {toolbar &&
-          <StyledNavigationToolbar>
-            {toolbar}
-          </StyledNavigationToolbar>
-        }
-      </StyledNavigation>
+	<StyledNavigation onKeyDown={this.handleKeyDown}>
+		<StyledNavigationTree innerRef={this.getRef}>
+			{header ? (
+            header
+          ) : (
+	<StyledHeader
+		title={props.applicationTitle}
+		symbol="patternplate"
+	/>
+          )}
+			<Documentation
+				active={props.active}
+				docs={props.docs}
+				onItemClick={props.onItemClick}
+				onScrollRequest={this.handleScrollRequest}
+			/>
+			<NavigationTree
+				active={props.active}
+				data={props.navigation.children}
+				onItemClick={props.onItemClick}
+				onScrollRequest={this.handleScrollRequest}
+				prefix="/pattern"
+			/>
+		</StyledNavigationTree>
+		{toolbar && (
+		<StyledNavigationToolbar>{toolbar}</StyledNavigationToolbar>
+        )}
+	</StyledNavigation>
     );
   }
 }
@@ -82,18 +82,16 @@ Navigation.defaultProps = {
 };
 
 function NavigationHeader(props) {
-  return <div>{props.children}</div>
+  return <div>{props.children}</div>;
 }
 
 function getPadding(el) {
   const style = global.getComputedStyle(el, null);
-  return direction => parseInt(
-    style.getPropertyValue(`padding-${direction}`),
-    10
-  );
+  return direction =>
+    parseInt(style.getPropertyValue(`padding-${direction}`), 10);
 }
 
-const StyledHeader = styled(Header) `
+const StyledHeader = styled(Header)`
   box-sizing: border-box;
   margin-bottom: 10px;
 `;
@@ -104,7 +102,7 @@ const StyledNavigation = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  background-color: ${props => props.theme.background}
+  background-color: ${props => props.theme.background};
 `;
 
 const PASSAGE_HEIGHT = 50;
@@ -118,13 +116,13 @@ const StyledNavigationTree = styled.div`
   -webkit-overflow-scroll: touch;
   mask-image: linear-gradient(
     to top,
-    rgba(0,0,0,0),
-    rgba(0,0,0,1) ${PASSAGE_HEIGHT}px
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) ${PASSAGE_HEIGHT}px
   );
   -webkit-mask-image: linear-gradient(
     to top,
-    rgba(0,0,0,0),
-    rgba(0,0,0,1) ${PASSAGE_HEIGHT}px
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) ${PASSAGE_HEIGHT}px
   );
 `;
 
@@ -135,18 +133,18 @@ const StyledNavigationToolbar = styled.div`
 
 function Documentation(props) {
   return (
-    <StyledDocumentationTree
-      active={props.active}
-      className="docs-navigation"
-      data={props.docs.children}
-      onItemClick={props.onItemClick}
-      onScrollRequest={props.onScrollRequest}
-      prefix="/doc"
-    />
+	<StyledDocumentationTree
+		active={props.active}
+		className="docs-navigation"
+		data={props.docs.children}
+		onItemClick={props.onItemClick}
+		onScrollRequest={props.onScrollRequest}
+		prefix="/doc"
+	/>
   );
 }
 
-const StyledDocumentationTree = styled(NavigationTree) `
+const StyledDocumentationTree = styled(NavigationTree)`
   margin-bottom: 5px;
   border-bottom: 1px solid ${props => props.theme.border};
   padding-bottom: 5px;

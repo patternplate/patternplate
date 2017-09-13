@@ -142,7 +142,7 @@ var StyledNavigation = styled.div`
   position: relative;
   background-color: ${function (props) {
   return props.theme.background;
-}}
+}};
 `;
 
 var PASSAGE_HEIGHT = 50;
@@ -156,13 +156,13 @@ var StyledNavigationTree = styled.div`
   -webkit-overflow-scroll: touch;
   mask-image: linear-gradient(
     to top,
-    rgba(0,0,0,0),
-    rgba(0,0,0,1) ${PASSAGE_HEIGHT}px
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) ${PASSAGE_HEIGHT}px
   );
   -webkit-mask-image: linear-gradient(
     to top,
-    rgba(0,0,0,0),
-    rgba(0,0,0,1) ${PASSAGE_HEIGHT}px
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) ${PASSAGE_HEIGHT}px
   );
 `;
 

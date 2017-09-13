@@ -7,9 +7,9 @@ import * as item from '../selectors/item';
 export default connect(mapProps)(skippable(mountable(DocPane)));
 
 function mapProps(state) {
-	return {
-		active: Boolean(item.selectContents(state)),
-		env: item.selectEnv(state),
-		doc: item.selectContents(state)
-	};
+  return {
+    active: Boolean(item.selectContents(state)),
+    env: item.selectEnv(state),
+    doc: item.selectContents(state)
+  };
 }

@@ -1,59 +1,53 @@
-import 'dom4';
+require('dom4'); // eslint-disable-line import/no-unassigned-import
 
-import url from 'url';
-import fetch from 'isomorphic-fetch';
-import platform from 'platform';
-import {merge} from 'lodash';
-import router from '../../application/client';
+const url = require('url');
+const fetch = require('isomorphic-fetch');
+const platform = require('platform');
+const router = require('../../application/client');
+const {merge} = require('lodash');
 
 const {document} = global;
 
-main()
-	.catch(err => {
-		console.error(err);
-	});
+main().catch(err => {
+  console.error(err);
+});
 
 async function main() {
-	const slot = document.query('[data-application]');
-	const vault = document.query('[data-application-state]');
-	const data = await getData(vault);
+  const slot = document.query('[data-application]');
+  const vault = document.query('[data-application-state]');
+  const data = await getData(vault);
 
-	router(data, slot);
+  router(data, slot);
 }
 
 async function getData(vault) {
-	const data = JSON.parse(vault.textContent);
-	const schema = await getStateData(data.base);
+  const data = JSON.parse(vault.textContent);
+  const schema = await getStateData(data.base);
 
-	return merge(
-		data,
-		getPlatformData(),
-		getWindowData(),
-		{
-			schema,
-			navigation: schema.meta
-		}
-	);
+  return merge(data, getPlatformData(), getWindowData(), {
+    schema,
+    navigation: schema.meta
+  });
 }
 
 async function getStateData(base) {
-	return (await fetch(url.resolve(base, '/api'))).json();
+  return (await fetch(url.resolve(base, '/api'))).json();
 }
 
 function getPlatformData() {
-	return {
-		clientRuntimeName: platform.name,
-		clientRuntimeVersion: platform.version,
-		clientOsName: platform.os.name,
-		clientOsVersion: platform.os.version
-	};
+  return {
+    clientRuntimeName: platform.name,
+    clientRuntimeVersion: platform.version,
+    clientOsName: platform.os.name,
+    clientOsVersion: platform.os.version
+  };
 }
 
 function getWindowData() {
-	return {
-		window: {
-			width: global.innerWidth,
-			height: global.innerHeight
-		}
-	};
+  return {
+    window: {
+      width: global.innerWidth,
+      height: global.innerHeight
+    }
+  };
 }

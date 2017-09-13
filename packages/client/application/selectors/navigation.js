@@ -5,28 +5,28 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.flat = undefined;
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _reselect = require('reselect');
+const _reselect = require('reselect');
 
-var _tree = require('./tree');
+const _tree = require('./tree');
 
-var navigation = (0, _reselect.createSelector)(function (state) {
+const navigation = (0, _reselect.createSelector)((state) => {
   return state.schema.meta;
-}, function (state) {
+}, (state) => {
   return state.config.hierarchy;
-}, function (state) {
+}, (state) => {
   return state.id;
-}, function (state) {
+}, (state) => {
   return state.hideEnabled;
-}, function (state) {
+}, (state) => {
   return state.routing.locationBeforeTransitions;
-}, function (state) {
+}, (state) => {
   return state.base;
-}, function (tree, config, id, hide, location, base) {
-  var context = { base: base, hide: hide, config: config, id: id, prefix: 'pattern', location: location };
+}, (tree, config, id, hide, location, base) => {
+  const context = { base, hide, config, id, prefix: 'pattern', location };
   return (0, _tree.sanitize)((0, _lodash.merge)({}, tree), context);
 });
 
 exports.default = navigation;
-var flat = exports.flat = (0, _reselect.createSelector)(navigation, _tree.flatten);
+const flat = exports.flat = (0, _reselect.createSelector)(navigation, _tree.flatten);

@@ -7,17 +7,15 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store';
 
-export default function (data, el) {
-	const store = configureStore(browserHistory, data);
-	const history = syncHistoryWithStore(browserHistory, store);
+export default function(data, el) {
+  const store = configureStore(browserHistory, data);
+  const history = syncHistoryWithStore(browserHistory, store);
 
-	const router = (
-		<Provider store={store}>
-			<Router history={history}>
-				{routes(store)}
-			</Router>
-		</Provider>
-	);
+  const router = (
+    <Provider store={store}>
+      <Router history={history}>{routes(store)}</Router>
+    </Provider>
+  );
 
-	return render(router, el);
+  return render(router, el);
 }

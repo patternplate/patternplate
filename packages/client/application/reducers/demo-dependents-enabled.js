@@ -1,17 +1,17 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _reduxActions = require('redux-actions');
+const _reduxActions = require('redux-actions');
 
-var defaultValue = false;
+const defaultValue = false;
 
 function onLocationChange(_, action) {
-	return action.payload.query['demo-dependents-enabled'] === 'true';
+  return action.payload.query['demo-dependents-enabled'] === 'true';
 }
 
 exports.default = (0, _reduxActions.handleActions)({
-	'@@router/LOCATION_CHANGE': onLocationChange
+  '@@router/LOCATION_CHANGE': onLocationChange
 }, defaultValue);

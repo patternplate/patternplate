@@ -30,108 +30,108 @@ module.exports.InnerInfoPane = InnerInfoPane;
 var BORDER_RADIUS = 10;
 
 var StyledInfoPane = styled.div`
-	position: relative;
-	width: 300px;
-	min-height: 300px;
-	height: 100%;
-	box-sizing: border-box;
-	border-radius: ${function (props) {
+  position: relative;
+  width: 300px;
+  min-height: 300px;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: ${function (props) {
   return props.hermit ? `${BORDER_RADIUS}px` : `${BORDER_RADIUS}px 0 0 ${BORDER_RADIUS}px`;
 }};
-	border-right: 1px solid ${function (props) {
+  border-right: 1px solid ${function (props) {
   return props.theme.border;
 }};
-	border-right-width: ${function (props) {
+  border-right-width: ${function (props) {
   return props.hermit ? 0 : 1;
 }}px;
-	overflow: scroll;
-	overflow-x: hidden;
-	background: ${function (props) {
+  overflow: scroll;
+  overflow-x: hidden;
+  background: ${function (props) {
   return props.theme.background;
 }};
 `;
 
 var StyledInnerPane = styled.div`
-	position: relative;
-	z-index: 1;
-	background: ${function (props) {
+  position: relative;
+  z-index: 1;
+  background: ${function (props) {
   return props.theme.background;
 }};
 `;
 
 var StyledName = styled.div`
-	position: relative;
-	z-index: 1;
-	display: flex;
-	flex: 0 0 auto;
-	align-items: center;
-	margin-bottom: 10px;
-	padding: 10px 15px 0 15px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 15px 0 15px;
 `;
 
 var StyledToolbar = styled.div`
-	display: flex;
-	position: relative;
-	z-index: 1;
-	align-items: center;
-	padding: 0 15px 10px 15px;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  padding: 0 15px 10px 15px;
 `;
 
 var StyledDisplayName = styled(Text)`
-	flex: 1 0 auto;
-	color: ${function (props) {
+  flex: 1 0 auto;
+  color: ${function (props) {
   return props.theme.color;
 }};
-	margin-right: 10px;
+  margin-right: 10px;
 `;
 
 var StyledId = styled(Text)`
-	flex: 0 1 auto;
-	color: ${function (props) {
+  flex: 0 1 auto;
+  color: ${function (props) {
   return props.theme.recess;
 }};
-	text-align: right;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 var StyledIcon = styled(Icon)`
-	flex: 0 0 auto;
-	fill: ${function (props) {
+  flex: 0 0 auto;
+  fill: ${function (props) {
   return props.theme.color;
 }};
-	margin-right: 5px;
+  margin-right: 5px;
 `;
 
 var StyledData = styled.table`
-	position: relative;
-	z-index: 1;
-	flex: 0 0 auto;
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
 `;
 
 var StyledDataCell = styled.td`
-	box-sizing: border-box;
-	height: 30px;
-	padding: 4px 6px;
-	border-top: 1px solid ${function (props) {
+  box-sizing: border-box;
+  height: 30px;
+  padding: 4px 6px;
+  border-top: 1px solid ${function (props) {
   return props.theme.border;
 }};
-	&:first-child {
-		padding-left: 20px;
-	}
-	&:last-child {
-		text-align: right;
-		padding-right: 15px;
-	}
+  &:first-child {
+    padding-left: 20px;
+  }
+  &:last-child {
+    text-align: right;
+    padding-right: 15px;
+  }
 `;
 
 var StyledKey = styled(Text)`
-	font-weight: bold;
-	color: ${function (props) {
+  font-weight: bold;
+  color: ${function (props) {
   return props.theme.color;
 }};
 `;
@@ -174,7 +174,10 @@ var SearchTrigger = function (_React$Component) {
         {
           className: props.className,
           onClick: this.handleClick,
-          query: { 'search-enabled': true, 'search': `${props.field}=${props.search}` },
+          query: {
+            'search-enabled': true,
+            search: `${props.field}=${props.search}`
+          },
           title: `Search other patterns with ${props.field} "${props.search}"`
         },
         props.children
@@ -186,9 +189,10 @@ var SearchTrigger = function (_React$Component) {
 }(React.Component);
 
 var StyledVersion = styled(Version)`
-	&:link, &:visited {
-		text-decoration: none;
-		color: ${function (props) {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: ${function (props) {
   var v = text(props.children);
   if (!semver.valid(v)) {
     return props.theme.error;
@@ -200,62 +204,62 @@ var StyledVersion = styled(Version)`
     return props.theme.color;
   }
   return props.theme.success;
-}}
-	}
+}};
+  }
 `;
 
 var StyledTag = styled(Tag)`
-	display: inline-block;
-	padding: 2px 4px;
-	margin-top: 1.5px;
-	margin-bottom: 1.5px;
-	border: 1px solid ${function (props) {
+  display: inline-block;
+  padding: 2px 4px;
+  margin-top: 1.5px;
+  margin-bottom: 1.5px;
+  border: 1px solid ${function (props) {
   return props.theme.color;
 }};
-	border-radius: 3px;
-	&:link, &:visited, &:active {
-		text-decoration: none;
-		color: ${function (props) {
+  border-radius: 3px;
+  &:link,
+  &:visited,
+  &:active {
+    text-decoration: none;
+    color: ${function (props) {
   return props.theme.color;
 }};
-	}
-	&:nth-child(2n) {
-		margin-left: 3px;
-	}
+  }
+  &:nth-child(2n) {
+    margin-left: 3px;
+  }
 `;
 
 var StyledToggleHead = styled(ToggleHead)`
-	display: flex;
-	align-items: center;
-	height: 30px;
-	font-weight: bold;
-	color: ${function (props) {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-weight: bold;
+  color: ${function (props) {
   return props.theme.color;
 }};
-	padding: 3px 15px 3px 20px;
-	box-sizing: border-box;
-	border-top: 1px solid ${function (props) {
+  padding: 3px 15px 3px 20px;
+  box-sizing: border-box;
+  border-top: 1px solid ${function (props) {
   return props.theme.border;
 }};
 `;
 
 var StyledToggleBody = styled.div`
-	display: flex;
-	color: ${function (props) {
+  display: flex;
+  color: ${function (props) {
   return props.theme.color;
 }};
-	box-sizing: border-box;
-	width: 100%;
-	padding: 5px 15px 5px 20px;
-	box-sizing: border-box;
-	background: ${function (props) {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px 15px 5px 20px;
+  box-sizing: border-box;
+  background: ${function (props) {
   return props.theme.background;
 }};
 `;
 
-var StyledCode = styled(Code)`
-	width: 100%;
-`;
+var StyledCode = styled(Code)`width: 100%;`;
 
 function InfoPane(props) {
   var className = props.className;
@@ -414,7 +418,11 @@ function InnerInfoPane(props) {
           React.createElement(
             StyledDataCell,
             null,
-            React.createElement('input', { type: 'checkbox', checked: props.mount, onChange: props.onMountChange })
+            React.createElement('input', {
+              type: 'checkbox',
+              checked: props.mount,
+              onChange: props.onMountChange
+            })
           )
         )
       )
@@ -492,36 +500,36 @@ function InnerInfoPane(props) {
 }
 
 var StyledSelectContainer = styled.div`
-	position: relative;
-	&::after {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		z-index: 1;
-		content: '▼';
-		font-size: 0.8em;
-		color: ${function (props) {
+  position: relative;
+  &::after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+    content: '▼';
+    font-size: 0.8em;
+    color: ${function (props) {
   return props.theme.color;
 }};
-		transform: translateY(-50%);
-	}
+    transform: translateY(-50%);
+  }
 `;
 
 var StyledSelect = styled.select`
-	position: relative;
-	z-index: 2;
-	appearance: none;
-	color: ${function (props) {
+  position: relative;
+  z-index: 2;
+  appearance: none;
+  color: ${function (props) {
   return props.theme.color;
 }};
-	background: transparent;
-	font-size: 16px;
-	border: none;
-	border-radius: none;
-	padding-right: 20px;
-	&:focus {
-		outline: none;
-	}
+  background: transparent;
+  font-size: 16px;
+  border: none;
+  border-radius: none;
+  padding-right: 20px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 function Select(props) {
@@ -530,10 +538,7 @@ function Select(props) {
     { className: props.className },
     React.createElement(
       StyledSelect,
-      {
-        onChange: props.onChange,
-        value: props.value
-      },
+      { onChange: props.onChange, value: props.value },
       props.children
     )
   );
@@ -542,7 +547,11 @@ function Select(props) {
 function Version(props) {
   return React.createElement(
     SearchTrigger,
-    { className: props.className, search: props.search, field: 'version' },
+    {
+      className: props.className,
+      search: props.search,
+      field: 'version'
+    },
     React.createElement(
       Text,
       null,
@@ -564,23 +573,26 @@ function Tag(props) {
 }
 
 var StyledArrow = styled(Text)`
-	font-size: .8em;
-	transform: ${function (props) {
+  font-size: 0.8em;
+  transform: ${function (props) {
   return props.rotated ? `rotate(0deg)` : `rotate(-90deg)`;
 }};
 `;
 
 var StyledHead = styled(Link)`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
 `;
 
 function ToggleHead(props) {
   return React.createElement(
     StyledHead,
-    { query: { [`${props.name}-enabled`]: !props.enabled }, className: props.className },
+    {
+      query: { [`${props.name}-enabled`]: !props.enabled },
+      className: props.className
+    },
     React.createElement(
       Text,
       null,
@@ -594,9 +606,7 @@ function ToggleHead(props) {
   );
 }
 
-var StyledPatternList = styled.div`
-	width: 100%;
-`;
+var StyledPatternList = styled.div`width: 100%;`;
 
 function PatternList(props) {
   return React.createElement(
@@ -607,18 +617,21 @@ function PatternList(props) {
 }
 
 var StyledPatternItem = styled(Link)`
-	display: block;
-	color: ${function (props) {
+  display: block;
+  color: ${function (props) {
   return props.theme.color;
 }};
-	text-decoration: none;
-	padding: 3px 0;
+  text-decoration: none;
+  padding: 3px 0;
 `;
 
 function PatternItem(props) {
   return React.createElement(
     StyledPatternItem,
-    { href: `pattern/${props.pattern.id}`, 'data-id': props.pattern.id },
+    {
+      href: `pattern/${props.pattern.id}`,
+      'data-id': props.pattern.id
+    },
     React.createElement(
       Text,
       null,
@@ -628,10 +641,10 @@ function PatternItem(props) {
 }
 
 var StyledToggle = styled.div`
-	position: relative;
-	z-index: 1;
-	flex: 1 1 auto;
-	min-height: 30px;
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-height: 30px;
 `;
 
 function Toggle(props) {

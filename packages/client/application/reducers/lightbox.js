@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _reduxActions = require('redux-actions');
+const _reduxActions = require('redux-actions');
 
-var defaultValue = '';
+const defaultValue = '';
 
 function onLightboxLocationChange(_, action) {
 	return action.payload.query.lightbox;

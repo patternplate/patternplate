@@ -8,14 +8,12 @@ export default Hamburger;
 function Hamburger(props) {
   return (
     <StyledToggleButton enabled={props.enabled} shortcut={props.shortcut}>
-      <StyledIcon symbol="hamburger"/> {props.shortcut.toString()}
+      <StyledIcon symbol="hamburger" /> {props.shortcut.toString()}
     </StyledToggleButton>
   );
 }
 
-const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.background};
-`;
+const StyledIcon = styled(Icon)`fill: ${props => props.theme.background};`;
 
 const StyledToggleButton = styled(ToggleButton)`
   font-size: 0;

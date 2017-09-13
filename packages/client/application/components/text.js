@@ -4,17 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n\tfont-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";\n'], ['\n\tfont-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";\n']);
+const _templateObject = _taggedTemplateLiteral(['\n  font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial,\n    sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';\n'], ['\n  font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial,\n    sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _tagHoc = require('tag-hoc');
+const _tagHoc = require('tag-hoc');
 
-var _tagHoc2 = _interopRequireDefault(_tagHoc);
+const _tagHoc2 = _interopRequireDefault(_tagHoc);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,10 +26,7 @@ exports.default = Text;
 function Text(props) {
   return _react2.default.createElement(
     StyledText,
-    {
-      is: props.is,
-      className: props.className
-    },
+    { is: props.is, className: props.className },
     props.children
   );
 }

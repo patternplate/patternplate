@@ -1,5 +1,5 @@
-import { debounce } from 'lodash';
-import React, { Component } from 'react';
+import {debounce} from 'lodash';
+import React, {Component} from 'react';
 import {styled, Icon} from '@patternplate/components';
 
 const StyledSearchField = styled.label`
@@ -9,7 +9,7 @@ const StyledSearchField = styled.label`
   padding: 10px 15px;
 `;
 
-const StyledIcon = styled(Icon) `
+const StyledIcon = styled(Icon)`
   flex-grow: 0;
   flex-shrink: 0;
   fill: ${props => props.theme.color};
@@ -42,30 +42,30 @@ const StyledInputContainer = styled.div`
   margin-left: 10px;
 `;
 
-const StyledInputSuggestion = styled(p => <StyledInput {...p} readOnly />) `
+const StyledInputSuggestion = styled(p => <StyledInput {...p} readOnly />)`
   position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
-  opacity: .3;
+  opacity: 0.3;
 `;
 
 export default class SearchField extends Component {
   static defaultProps = {
-    blur: () => { },
-    onChange: () => { },
-    onFocus: () => { },
-    onUp: () => { },
-    onDown: () => { },
-    onBlur: () => { },
-    onStop: () => { }
+    blur: () => {},
+    onChange: () => {},
+    onFocus: () => {},
+    onUp: () => {},
+    onDown: () => {},
+    onBlur: () => {},
+    onStop: () => {}
   };
 
   constructor(...args) {
     super(...args);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleStop = debounce(this.props.onStop, 300, { trailing: true });
+    this.handleStop = debounce(this.props.onStop, 300, {trailing: true});
     this.timer = null;
   }
 
@@ -76,25 +76,25 @@ export default class SearchField extends Component {
   }
 
   handleKeyDown(e) {
-    const { target } = e;
+    const {target} = e;
     const hasValue = target.value.length > 0;
     const atEnd = hasValue && target.selectionStart === target.value.length;
 
     if (e.which !== 27) {
       e.stopPropagation();
     }
-    if ((e.which === 27) && hasValue) {
+    if (e.which === 27 && hasValue) {
       e.preventDefault();
       this.props.onClear();
     }
     if (e.which === 38) {
       this.props.onUp(e);
     }
-    if ((e.which === 39) && atEnd && this.props.suggestion) {
+    if (e.which === 39 && atEnd && this.props.suggestion) {
       e.preventDefault();
       this.props.onComplete(this.props.suggestion);
     }
-    if ((e.which === 40) && atEnd) {
+    if (e.which === 40 && atEnd) {
       e.preventDefault();
       this.props.onDown(e);
     }
@@ -107,9 +107,7 @@ export default class SearchField extends Component {
       <StyledSearchField>
         <StyledIcon symbol="search" />
         <StyledInputContainer>
-          <StyledInputSuggestion
-            value={props.suggestion || ''}
-          />
+          <StyledInputSuggestion value={props.suggestion || ''} />
           <StyledInput
             autoFocus={props.autoFocus}
             name={props.name}

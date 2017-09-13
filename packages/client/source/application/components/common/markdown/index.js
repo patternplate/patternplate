@@ -46,34 +46,31 @@ export default class Markdown extends React.Component {
 
     return (
       <StyledMarkdown className={props.className}>
-        {
-          this.state.source &&
-            remark()
-              .use(reactRenderer, {
-                sanitize: false,
-                remarkReactComponents: {
-                  a: MarkdownLink,
-                  blockquote: MarkdownBlockQuote,
-                  code: MarkdownCode,
-                  h1: is('h1')(Headline),
-                  h2: is('h2')(Headline),
-                  h3: is('h3')(Headline),
-                  h4: is('h4')(Headline),
-                  h5: is('h5')(Headline),
-                  h6: is('h6')(Headline),
-                  hr: MarkdownHr,
-                  img: MarkdownImage,
-                  li: MarkdownItem,
-                  p: MarkdownCopy,
-                  pre: MarkdownCodeBlock,
-                  ul: is('ul')(MarkdownList),
-                  ol: is('ol')(MarkdownList)
-                }
-              })
-              .use(emoji)
-              .processSync(frontmatter(this.state.source).body)
-              .contents
-        }
+        {this.state.source &&
+          remark()
+            .use(reactRenderer, {
+              sanitize: false,
+              remarkReactComponents: {
+                a: MarkdownLink,
+                blockquote: MarkdownBlockQuote,
+                code: MarkdownCode,
+                h1: is('h1')(Headline),
+                h2: is('h2')(Headline),
+                h3: is('h3')(Headline),
+                h4: is('h4')(Headline),
+                h5: is('h5')(Headline),
+                h6: is('h6')(Headline),
+                hr: MarkdownHr,
+                img: MarkdownImage,
+                li: MarkdownItem,
+                p: MarkdownCopy,
+                pre: MarkdownCodeBlock,
+                ul: is('ul')(MarkdownList),
+                ol: is('ol')(MarkdownList)
+              }
+            })
+            .use(emoji)
+            .processSync(frontmatter(this.state.source).body).contents}
       </StyledMarkdown>
     );
   }
@@ -89,7 +86,8 @@ const StyledMarkdown = styled.div`
     border-spacing: 0;
     border-collapse: collapse;
     font-size: 18px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
   & tr {
     color: ${props => props.theme.color};
@@ -97,7 +95,7 @@ const StyledMarkdown = styled.div`
     background: transparent;
   }
   & tr:nth-child(2n) {
-    background: ${props => props.theme.backgroundTertiary}
+    background: ${props => props.theme.backgroundTertiary};
   }
   & th {
     padding: 6px 13px;
@@ -111,9 +109,9 @@ const StyledMarkdown = styled.div`
 `;
 
 function is(is) {
-  return Component => props => <Component is={is} {...props}/>;
+  return Component => props => <Component is={is} {...props} />;
 }
 
 function prop(name, value) {
-  return Component => props => <Component {...props} {...{[name]: value}}/>;
+  return Component => props => <Component {...props} {...{[name]: value}} />;
 }

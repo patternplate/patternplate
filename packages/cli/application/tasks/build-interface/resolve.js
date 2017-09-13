@@ -1,17 +1,17 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _resolve = require('resolve');
+const _resolve = require('resolve');
 
 exports.default = resolve;
 
 
 function resolve(id) {
-	return (0, _resolve.sync)(id, {
-		basedir: process.cwd()
-	});
+  return (0, _resolve.sync)(id, {
+    basedir: process.cwd()
+  });
 }
-module.exports = exports['default'];
+module.exports = exports.default;

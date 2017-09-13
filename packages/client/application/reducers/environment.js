@@ -1,17 +1,17 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _reduxActions = require('redux-actions');
+const _reduxActions = require('redux-actions');
 
-var defaultValue = 'index';
+const defaultValue = 'index';
 
 function onEnvironmentLocationChange(_, action) {
-	return action.payload.query.environment || defaultValue;
+  return action.payload.query.environment || defaultValue;
 }
 
 exports.default = (0, _reduxActions.handleActions)({
-	'@@router/LOCATION_CHANGE': onEnvironmentLocationChange
+  '@@router/LOCATION_CHANGE': onEnvironmentLocationChange
 }, defaultValue);

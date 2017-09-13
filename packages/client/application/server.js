@@ -1,37 +1,37 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 exports.default = function (location, data) {
-	var sheet = new _components.ServerStyleSheet();
-	var memoryHistory = (0, _reactRouter.createMemoryHistory)(location);
-	var store = (0, _store2.default)(memoryHistory, data);
-	var history = (0, _reactRouterRedux.syncHistoryWithStore)(memoryHistory, store);
+  const sheet = new _components.ServerStyleSheet();
+  const memoryHistory = (0, _reactRouter.createMemoryHistory)(location);
+  const store = (0, _store2.default)(memoryHistory, data);
+  const history = (0, _reactRouterRedux.syncHistoryWithStore)(memoryHistory, store);
 
-	return new Promise(function (resolve, reject) {
-		(0, _reactRouter.match)({
-			history: history,
-			routes: (0, _routes2.default)(store),
-			location: location
-		}, function (error, redirect, props) {
-			if (error) {
-				return reject(error);
-			}
-			var context = sheet.collectStyles(_react2.default.createElement(
-				_reactRedux.Provider,
-				{ store: store },
-				_react2.default.createElement(_reactRouter.RouterContext, props)
-			));
-			var html = (0, _server.renderToString)(context);
-			var css = sheet.getStyleElement();
-			resolve({ html: html, css: css });
-		});
-	});
+  return new Promise((resolve, reject) => {
+    (0, _reactRouter.match)({
+      history,
+      routes: (0, _routes2.default)(store),
+      location
+    }, (error, redirect, props) => {
+      if (error) {
+        return reject(error);
+      }
+      const context = sheet.collectStyles(_react2.default.createElement(
+        _reactRedux.Provider,
+        { store },
+        _react2.default.createElement(_reactRouter.RouterContext, props)
+      ));
+      const html = (0, _server.renderToString)(context);
+      const css = sheet.getStyleElement();
+      resolve({ html, css });
+    });
+  });
 };
 
-var _react = require('react');
+const _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -45,11 +45,11 @@ var _reactRouterRedux = require('react-router-redux');
 
 var _components = require('@patternplate/components');
 
-var _routes = require('./routes');
+const _routes = require('./routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _store = require('./store');
+const _store = require('./store');
 
 var _store2 = _interopRequireDefault(_store);
 

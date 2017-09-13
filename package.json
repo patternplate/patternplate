@@ -1,7 +1,7 @@
 {
   "name": "patternplate",
   "version": "1.0.0",
-  "private": "true",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "npx lerna run watch --stream --parallel",
@@ -37,8 +37,60 @@
     "type": "git",
     "url": "sinnerschrader/patternplate"
   },
+  "xo": {
+    "esnext": true,
+    "extends": [
+      "prettier",
+      "xo-react"
+    ],
+    "plugins": [
+      "patternplate"
+    ],
+    "rules": {
+      "ava/no-ignored-test-files": [
+        0
+      ],
+      "ava/no-async-fn-without-await": [
+        0
+      ],
+      "import/prefer-default-export": [0],
+      "import/order": [0],
+      "func-names": [0],
+      "no-return-await": [
+        0
+      ],
+      "react/forbid-component-props": [
+        0
+      ],
+      "react/jsx-indent": [0],
+      "react/jsx-indent-props": [0],
+      "react/prop-types": [
+        0
+      ]
+    },
+    "ignores": [
+      "distribution/**/*",
+      "packages/**/application/**",
+      "packages/**/binary/**",
+      "packages/**/library/**",
+      "packages/**/lib/**",
+      "**/*.bundle.js"
+    ]
+  },
+  "lint-staged": [
+    "npx prettier --write --single-quote --no-bracket-spacing",
+    "npx xo --fix",
+    "git add"
+  ],
   "devDependencies": {
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-config-xo-react": "^0.13.0",
+    "eslint-plugin-patternplate": "^1.0.1",
+    "eslint-plugin-react": "^7.3.0",
     "lerna": "^2.1.0",
+    "lint-staged": "^4.1.3",
+    "prettier": "^1.6.1",
+    "xo": "^0.18.2",
     "yarn": "^1.0.1"
   },
   "engines": {

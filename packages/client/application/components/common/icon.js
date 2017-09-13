@@ -4,19 +4,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  width: ', 'px;\n  height: ', 'px;\n  justify-content: center;\n  align-items: center;\n'], ['\n  display: flex;\n  width: ', 'px;\n  height: ', 'px;\n  justify-content: center;\n  align-items: center;\n']);
+const _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  width: ', 'px;\n  height: ', 'px;\n  justify-content: center;\n  align-items: center;\n'], ['\n  display: flex;\n  width: ', 'px;\n  height: ', 'px;\n  justify-content: center;\n  align-items: center;\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var SIZES = {
+const SIZES = {
   s: 15,
   m: 30,
   l: 50
@@ -38,8 +38,8 @@ Icon.defaultProps = {
   symbol: 'placeholder'
 };
 
-var StyledIcon = _components.styled.svg(_templateObject, function (props) {
+var StyledIcon = _components.styled.svg(_templateObject, (props) => {
   return SIZES[props.size];
-}, function (props) {
+}, (props) => {
   return SIZES[props.size];
 });

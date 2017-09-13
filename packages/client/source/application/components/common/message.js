@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, {Component} from 'react';
+import {Link} from 'react-router';
 import join from 'classnames';
-import { noop } from 'lodash';
-import { Icon } from '@patternplate/components';
+import {noop} from 'lodash';
+import {Icon} from '@patternplate/components';
 
 export default class Message extends Component {
   static defaultProps = {
@@ -20,20 +20,14 @@ export default class Message extends Component {
   }
 
   render() {
-    const { props } = this;
+    const {props} = this;
     const className = join('message', `message--${props.type}`);
     return (
       <div className={className}>
         <div className="message__header">
-          {
-            props.title &&
-            <div className="message__title">
-              {props.title}
-            </div>
-          }
+          {props.title && <div className="message__title">{props.title}</div>}
           <div className="message__action">
-            {
-              props.retry &&
+            {props.retry && (
               <button
                 onClick={this.handleRetryClick}
                 type="button"
@@ -41,8 +35,8 @@ export default class Message extends Component {
                 title={`Retry loading ${props.pattern} [ctrl+r]`}
               >
                 Retry
-								</button>
-            }
+              </button>
+            )}
             <button
               onClick={this.handleDismissClick}
               type="button"
@@ -50,17 +44,14 @@ export default class Message extends Component {
               title={`Dismiss message [esc]`}
             >
               Dismiss
-						</button>
+            </button>
           </div>
         </div>
         <div className="message__body">
-          <pre className="message__preformatted">
-            {props.body}
-          </pre>
+          <pre className="message__preformatted">{props.body}</pre>
         </div>
         <div className="message__meta">
-          {
-            props.pattern &&
+          {props.pattern && (
             <Link
               to={{
                 pathname: `${props.base}pattern/${props.pattern}`,
@@ -71,22 +62,19 @@ export default class Message extends Component {
               <Icon base={props.base} symbol="pattern" />
               {props.pattern}
             </Link>
-          }
-          {
-            props.file &&
+          )}
+          {props.file && (
             <div className="message__field">
               <Icon base={props.base} symbol="documentation" />
               {props.file.slice(-50)}
             </div>
-          }
-          {
-						/* props.timestamp &&
+          )}
+          {/* props.timestamp &&
 							<div className="message__field">
 								<Icon symbol="globals"/>
 								{ago(new Date(props.timestamp))}
 								{props.time - props.timestamp}
-							</div> */
-          }
+							</div> */}
         </div>
       </div>
     );

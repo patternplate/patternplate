@@ -1,3 +1,3 @@
 export default {
-	'autoPort': false
+  autoPort: false
 };

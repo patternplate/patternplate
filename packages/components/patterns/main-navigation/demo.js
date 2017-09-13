@@ -1,7 +1,6 @@
 const React = require('react');
-const styled = require('styled-components').default;
 const MainNavigation = require('Pattern');
-const { NavigationToolbar } = require('Pattern');
+const {NavigationToolbar} = require('Pattern');
 const Themer = require('../demo-themer');
 const Button = require('../button');
 
@@ -21,9 +20,7 @@ const navigation = {
         displayName: 'Atoms'
       },
       id: 'atoms',
-      path: [
-        'atoms'
-      ],
+      path: ['atoms'],
       href: '/atoms',
       type: 'folder',
       children: [
@@ -37,10 +34,7 @@ const navigation = {
             displayName: 'Nested'
           },
           id: 'atoms/nested',
-          path: [
-            'atoms',
-            'nested'
-          ],
+          path: ['atoms', 'nested'],
           type: 'folder',
           href: '/atoms/nested',
           children: [
@@ -56,10 +50,7 @@ const navigation = {
                 displayName: 'Icon'
               },
               id: 'atoms/nested/icon',
-              path: [
-                'atoms',
-                'icon'
-              ],
+              path: ['atoms', 'icon'],
               href: '/atoms/nested/icon',
               type: 'pattern',
               dependents: [
@@ -67,10 +58,7 @@ const navigation = {
                 'molecules/main-logo',
                 'molecules/navigation-item'
               ],
-              envs: [
-                'dark',
-                'index'
-              ]
+              envs: ['dark', 'index']
             }
           ]
         }
@@ -89,9 +77,7 @@ const navigation = {
         displayName: 'Molecules'
       },
       id: 'molecules',
-      path: [
-        'molecules'
-      ],
+      path: ['molecules'],
       href: '/molecules',
       type: 'folder',
       children: []
@@ -109,9 +95,7 @@ const navigation = {
         displayName: 'Organisms'
       },
       id: 'organisms',
-      path: [
-        'organisms'
-      ],
+      path: ['organisms'],
       href: '/organisms',
       type: 'folder',
       children: []
@@ -127,9 +111,7 @@ const navigation = {
         displayName: 'Pages'
       },
       id: 'pages',
-      path: [
-        'pages'
-      ],
+      path: ['pages'],
       href: '/pages',
       type: 'folder',
       children: []
@@ -145,9 +127,7 @@ const navigation = {
         displayName: 'Templates'
       },
       id: 'templates',
-      path: [
-        'templates'
-      ],
+      path: ['templates'],
       href: '/templates',
       type: 'folder',
       children: []
@@ -170,9 +150,7 @@ const docs = {
         displayName: 'Documentation'
       },
       id: 'documentation',
-      path: [
-        'documentation'
-      ],
+      path: ['documentation'],
       href: '/documentation'
     }
   ]
@@ -180,33 +158,22 @@ const docs = {
 
 module.exports = function MainNavigationDemo() {
   return (
-    <Themer>
-      <MainNavigation
-        docs={docs}
-        navigation={navigation}
-        applicationTitle="Patternplate"
-      >
-        <NavigationToolbar>
-          <ToolbarButton item="react" />
-          <ToolbarButton item="search" />
-          <ToolbarButton item="reload" />
-        </NavigationToolbar>
-      </MainNavigation>
-    </Themer>
+	<Themer>
+		<MainNavigation
+			docs={docs}
+			navigation={navigation}
+			applicationTitle="Patternplate"
+		>
+			<NavigationToolbar>
+				<ToolbarButton item="react"/>
+				<ToolbarButton item="search"/>
+				<ToolbarButton item="reload"/>
+			</NavigationToolbar>
+		</MainNavigation>
+	</Themer>
   );
-}
+};
 
 function ToolbarButton(props) {
-  return (
-    <Button
-      type="link"
-      symbol={props.item}
-      frameless
-      transparent
-    />
-  );
+  return <Button type="link" symbol={props.item} frameless transparent/>;
 }
-
-const StyleDemoContainer = styled.div`
-  width: 320px;
-`;

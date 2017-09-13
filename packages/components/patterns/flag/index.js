@@ -8,37 +8,37 @@ const FONTS = fonts();
 module.exports = Flag;
 
 function Flag(props) {
-	return <StyledText className={props.className}>{props.children}</StyledText>;
+  return <StyledText className={props.className}>{props.children}</StyledText>;
 }
 
 const StyledText = styled.span`
-	display: inline-block;
-	padding: 2px 4px;
-	border: 1px solid ${props => props.theme.border};
+  display: inline-block;
+  padding: 2px 4px;
+  border: 1px solid ${props => props.theme.border};
   border-radius: 3px;
   font-family: ${FONTS.default};
-	${props => {
-		const color = getFlagColor(text(props.children), props.theme);
-		return `
+  ${props => {
+    const color = getFlagColor(text(props.children), props.theme);
+    return `
 			border-color: ${color};
 			color: ${color};
 		`;
-	}}
+  }};
 `;
 
 function getFlagColor(flag, theme) {
-	switch (flag) {
-		case 'alpha':
-			return theme.error;
-		case 'beta':
-			return theme.warning;
-		case 'rc':
-			return theme.info;
-		case 'stable':
-			return theme.success;
-		case 'deprecated':
-			return theme.error;
-		default:
-			return theme.error;
-	}
+  switch (flag) {
+    case 'alpha':
+      return theme.error;
+    case 'beta':
+      return theme.warning;
+    case 'rc':
+      return theme.info;
+    case 'stable':
+      return theme.success;
+    case 'deprecated':
+      return theme.error;
+    default:
+      return theme.error;
+  }
 }

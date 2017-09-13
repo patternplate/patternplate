@@ -7,31 +7,31 @@ import ora from 'ora';
 import patternplate from '../';
 
 async function start(options) {
-	const mode = 'console';
-	const settings = {...options, mode};
-	const {_: [, command]} = settings;
+  const mode = 'console';
+  const settings = {...options, mode};
+  const {_: [, command]} = settings;
 
-	const spinner = ora('Starting').start();
-	const application = await patternplate(settings);
-	spinner.stop();
+  const spinner = ora('Starting').start();
+  const application = await patternplate(settings);
+  spinner.stop();
 
-	await application.server.run(command, settings);
+  await application.server.run(command, settings);
 }
 
 const args = minimist(process.argv.slice(1));
 
 start(args)
-	.then(() => {
-		process.exit(0);
-	})
-	.catch(err => {
-		setTimeout(() => {
-			throw err;
-		});
-	});
+  .then(() => {
+    process.exit(0);
+  })
+  .catch(err => {
+    setTimeout(() => {
+      throw err;
+    });
+  });
 
 // Catch unhandled rejections globally
 process.on('unhandledRejection', (reason, promise) => {
-	console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
-	throw reason;
+  console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+  throw reason;
 });

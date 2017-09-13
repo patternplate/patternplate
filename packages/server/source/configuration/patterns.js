@@ -1,4 +1,4 @@
 export default {
-	path: './patterns',
-	formats: {}
+  path: './patterns',
+  formats: {}
 };

@@ -45,7 +45,7 @@ export function trap() {
 export async function nodeish(fn, ...args) {
 	try {
 		return [null, await fn(...args)];
-	} catch (error) {
-		return [error];
+	} catch (err) {
+		return [err];
 	}
 }

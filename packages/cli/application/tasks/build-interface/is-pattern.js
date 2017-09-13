@@ -1,14 +1,14 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.default = isPattern;
 
 
 function isPattern(_ref) {
-	let type = _ref.type;
+  const type = _ref.type;
 
-	return type === 'pattern';
+  return type === 'pattern';
 }
-module.exports = exports['default'];
+module.exports = exports.default;

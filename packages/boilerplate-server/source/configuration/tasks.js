@@ -1,5 +1,5 @@
 export default {
-	'test': {
-		'message': 'Hello, i am the test task'
-	}
+  test: {
+    message: 'Hello, i am the test task'
+  }
 };

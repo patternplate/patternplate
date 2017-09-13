@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n    html,\n    body {\n      height: 100%;\n      overflow: hidden;\n    }\n    body {\n      margin: 0;\n      height: 100%;\n    }\n    [data-application] {\n      height: 100%;\n    }\n  '], ['\n    html,\n    body {\n      height: 100%;\n      overflow: hidden;\n    }\n    body {\n      margin: 0;\n      height: 100%;\n    }\n    [data-application] {\n      height: 100%;\n    }\n  ']),
+let _templateObject = _taggedTemplateLiteral(['\n    html,\n    body {\n      height: 100%;\n      overflow: hidden;\n    }\n    body {\n      margin: 0;\n      height: 100%;\n    }\n    [data-application] {\n      height: 100%;\n    }\n  '], ['\n    html,\n    body {\n      height: 100%;\n      overflow: hidden;\n    }\n    body {\n      margin: 0;\n      height: 100%;\n    }\n    [data-application] {\n      height: 100%;\n    }\n  ']),
     _templateObject2 = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: flex;\n  width: 100%;\n  height: 100%;\n  background: ', ';\n'], ['\n  box-sizing: border-box;\n  display: flex;\n  width: 100%;\n  height: 100%;\n  background: ', ';\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n  position: relative;\n  z-index: 2;\n  height: 100%;\n  width: ', 'px;\n  flex: 0 0 ', 'px;\n'], ['\n  position: relative;\n  z-index: 2;\n  height: 100%;\n  width: ', 'px;\n  flex: 0 0 ', 'px;\n']),
     _templateObject4 = _taggedTemplateLiteral(['\n  position: absolute;\n  box-sizing: border-box;\n  z-index: 3;\n  padding: 15px;\n  width: 100%;\n'], ['\n  position: absolute;\n  box-sizing: border-box;\n  z-index: 3;\n  padding: 15px;\n  width: 100%;\n']),
@@ -19,99 +19,99 @@ var _templateObject = _taggedTemplateLiteral(['\n    html,\n    body {\n      he
     _templateObject13 = _taggedTemplateLiteral(['\n  flex: 0 0 auto;\n  box-sizing: border-box;\n  pointer-events: all;\n'], ['\n  flex: 0 0 auto;\n  box-sizing: border-box;\n  pointer-events: all;\n']),
     _templateObject14 = _taggedTemplateLiteral(['\n  flex: 1 1 auto;\n  box-sizing: border-box;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  pointer-events: all;\n'], ['\n  flex: 1 1 auto;\n  box-sizing: border-box;\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  pointer-events: all;\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _reactHelmet = require('react-helmet');
+const _reactHelmet = require('react-helmet');
 
-var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
+const _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _tagHoc = require('tag-hoc');
+const _tagHoc = require('tag-hoc');
 
-var _tagHoc2 = _interopRequireDefault(_tagHoc);
+const _tagHoc2 = _interopRequireDefault(_tagHoc);
 
-var _reactRedux = require('react-redux');
+const _reactRedux = require('react-redux');
 
-var _redux = require('redux');
+const _redux = require('redux');
 
-var _reselect = require('reselect');
+const _reselect = require('reselect');
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _actions = require('../actions');
+const _actions = require('../actions');
 
-var actions = _interopRequireWildcard(_actions);
+const actions = _interopRequireWildcard(_actions);
 
-var _item = require('../selectors/item');
+const _item = require('../selectors/item');
 
-var item = _interopRequireWildcard(_item);
+const item = _interopRequireWildcard(_item);
 
-var _codePane = require('./code-pane');
+const _codePane = require('./code-pane');
 
-var _codePane2 = _interopRequireDefault(_codePane);
+const _codePane2 = _interopRequireDefault(_codePane);
 
-var _docPane = require('./doc-pane');
+const _docPane = require('./doc-pane');
 
-var _docPane2 = _interopRequireDefault(_docPane);
+const _docPane2 = _interopRequireDefault(_docPane);
 
-var _favicon = require('./favicon');
+const _favicon = require('./favicon');
 
-var _favicon2 = _interopRequireDefault(_favicon);
+const _favicon2 = _interopRequireDefault(_favicon);
 
-var _triggerFullscreen = require('./trigger-fullscreen');
+const _triggerFullscreen = require('./trigger-fullscreen');
 
-var _triggerFullscreen2 = _interopRequireDefault(_triggerFullscreen);
+const _triggerFullscreen2 = _interopRequireDefault(_triggerFullscreen);
 
-var _indicator = require('./indicator');
+const _indicator = require('./indicator');
 
-var _indicator2 = _interopRequireDefault(_indicator);
+const _indicator2 = _interopRequireDefault(_indicator);
 
-var _infoPane = require('./info-pane');
+const _infoPane = require('./info-pane');
 
-var _infoPane2 = _interopRequireDefault(_infoPane);
+const _infoPane2 = _interopRequireDefault(_infoPane);
 
-var _message = require('./message');
+const _message = require('./message');
 
-var _message2 = _interopRequireDefault(_message);
+const _message2 = _interopRequireDefault(_message);
 
-var _logo = require('./logo');
+const _logo = require('./logo');
 
-var _logo2 = _interopRequireDefault(_logo);
+const _logo2 = _interopRequireDefault(_logo);
 
-var _navigation = require('./navigation');
+const _navigation = require('./navigation');
 
-var _navigation2 = _interopRequireDefault(_navigation);
+const _navigation2 = _interopRequireDefault(_navigation);
 
-var _toggleDoc = require('./toggle-doc');
+const _toggleDoc = require('./toggle-doc');
 
-var _toggleDoc2 = _interopRequireDefault(_toggleDoc);
+const _toggleDoc2 = _interopRequireDefault(_toggleDoc);
 
-var _toggleInfoPane = require('./toggle-info-pane');
+const _toggleInfoPane = require('./toggle-info-pane');
 
-var _toggleInfoPane2 = _interopRequireDefault(_toggleInfoPane);
+const _toggleInfoPane2 = _interopRequireDefault(_toggleInfoPane);
 
-var _toggleNavigation = require('./toggle-navigation');
+const _toggleNavigation = require('./toggle-navigation');
 
-var _toggleNavigation2 = _interopRequireDefault(_toggleNavigation);
+const _toggleNavigation2 = _interopRequireDefault(_toggleNavigation);
 
-var _toggleOpacity = require('./toggle-opacity');
+const _toggleOpacity = require('./toggle-opacity');
 
-var _toggleOpacity2 = _interopRequireDefault(_toggleOpacity);
+const _toggleOpacity2 = _interopRequireDefault(_toggleOpacity);
 
-var _toggleSearch = require('./toggle-search');
+const _toggleSearch = require('./toggle-search');
 
-var _toggleSearch2 = _interopRequireDefault(_toggleSearch);
+const _toggleSearch2 = _interopRequireDefault(_toggleSearch);
 
-var _toggleCode = require('./toggle-code');
+const _toggleCode = require('./toggle-code');
 
-var _toggleCode2 = _interopRequireDefault(_toggleCode);
+const _toggleCode2 = _interopRequireDefault(_toggleCode);
 
-var _search = require('./search');
+const _search = require('./search');
 
-var _search2 = _interopRequireDefault(_search);
+const _search2 = _interopRequireDefault(_search);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; }  const newObj = {}; if (obj != null) { for (const key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj;  }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -120,31 +120,31 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Application);
 
 
-var selectThemes = (0, _reselect.createSelector)(function (state) {
+const selectThemes = (0, _reselect.createSelector)((state) => {
   return state.config.color;
-}, function (color) {
+}, (color) => {
   return (0, _components.themes)(color);
 });
 
-var selectIsPattern = (0, _reselect.createSelector)(item.selectType, function (type) {
+const selectIsPattern = (0, _reselect.createSelector)(item.selectType, (type) => {
   return type === 'pattern';
 });
 
-var selectCodeEnabled = (0, _reselect.createSelector)(selectIsPattern, function (state) {
+const selectCodeEnabled = (0, _reselect.createSelector)(selectIsPattern, (state) => {
   return state.codeEnabled;
-}, function (isPattern, enabled) {
+}, (isPattern, enabled) => {
   return isPattern && enabled;
 });
 
-var selectDocEnabled = (0, _reselect.createSelector)(selectIsPattern, item.selectContents, function (state) {
+const selectDocEnabled = (0, _reselect.createSelector)(selectIsPattern, item.selectContents, (state) => {
   return state.docEnabled;
-}, function (isPattern, contents, docEnabled) {
+}, (isPattern, contents, docEnabled) => {
   return isPattern && Boolean(contents) && docEnabled;
 });
 
-var selectInfoEnabled = (0, _reselect.createSelector)(selectIsPattern, function (state) {
+const selectInfoEnabled = (0, _reselect.createSelector)(selectIsPattern, (state) => {
   return state.infoEnabled;
-}, function (isPattern, enabled) {
+}, (isPattern, enabled) => {
   return isPattern && enabled;
 });
 
@@ -253,7 +253,10 @@ function Application(props) {
               ),
               props.infoEnabled && (props.codeEnabled || props.docEnabled) && _react2.default.createElement(
                 StyledPane,
-                { hermit: !props.infoEnabled, infoEnabled: props.infoEnabled },
+                {
+                  hermit: !props.infoEnabled,
+                  infoEnabled: props.infoEnabled
+                },
                 props.codeEnabled && !props.docEnabled && _react2.default.createElement(_codePane2.default, { hermit: !props.infoEnabled }),
                 props.docEnabled && _react2.default.createElement(_docPane2.default, { hermit: !props.infoEnabled })
               )
@@ -301,17 +304,17 @@ function Application(props) {
   );
 }
 
-var WIDTH = 300;
-var NAVIGATION_WIDTH = function NAVIGATION_WIDTH(props) {
+const WIDTH = 300;
+const NAVIGATION_WIDTH = function NAVIGATION_WIDTH(props) {
   return props.enabled ? WIDTH : 0;
 };
-var TOOLBAR_HEIGHT = 60;
-var ORIENTATION = function ORIENTATION(props) {
-  var direction = props.orient === 'right' ? 'left' : 'right';
+const TOOLBAR_HEIGHT = 60;
+const ORIENTATION = function ORIENTATION(props) {
+  const direction = props.orient === 'right' ? 'left' : 'right';
   return 'margin-' + direction + ': auto';
 };
 
-var StyledApplication = _components.styled.div(_templateObject2, function (props) {
+var StyledApplication = _components.styled.div(_templateObject2, (props) => {
   return props.theme.background;
 });
 

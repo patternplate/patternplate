@@ -25,7 +25,10 @@ function getPatternId(raw) {
     return path.dirname(raw);
   }
 
-  return `${path.dirname(raw)}/${path.basename(parsed.base, path.extname(parsed.base))}`;
+  return `${path.dirname(raw)}/${path.basename(
+    parsed.base,
+    path.extname(parsed.base)
+  )}`;
 }
 
 function getPatternExtension(raw) {
@@ -51,17 +54,21 @@ export default function patternRouteFactory(application) {
     };
 
     if (type === 'html' && extension === 'html') {
-      const [error, demo] = await getPatternDemoOrError(server, id, filters, environment, {
-        mount: this.query.mount !== 'false'
-      }, `/${this.request.url}`);
+      const [error, demo] = await getPatternDemoOrError(
+        server,
+        id,
+        filters,
+        environment,
+        {
+          mount: this.query.mount !== 'false'
+        },
+        `/${this.request.url}`
+      );
 
       if (error) {
         console.log(error);
         this.status = 500;
-        this.body = [
-          error.message,
-          stripAnsi(error.codeFrame)
-        ].join('\n');
+        this.body = [error.message, stripAnsi(error.codeFrame)].join('\n');
         return;
       }
 
@@ -77,7 +84,13 @@ export default function patternRouteFactory(application) {
       return;
     }
 
-    const [error, file] = await getPatternFileOrError(application.parent.server, id, filters, extension, environment);
+    const [error, file] = await getPatternFileOrError(
+      application.parent.server,
+      id,
+      filters,
+      extension,
+      environment
+    );
 
     if (error) {
       error.expose = true;
@@ -87,7 +100,9 @@ export default function patternRouteFactory(application) {
 
     if (file === null) {
       this.type = errorType;
-      const err = new Error(`Could not find file {index,demo}.${extension} for ${id}.`);
+      const err = new Error(
+        `Could not find file {index,demo}.${extension} for ${id}.`
+      );
       err.file = __filename;
       this.throw(404, err);
     }

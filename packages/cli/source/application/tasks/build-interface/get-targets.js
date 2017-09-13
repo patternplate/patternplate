@@ -1,15 +1,15 @@
 import path from 'path';
 import serverRequire from './server-require';
 
-// const urlQuery = serverRequire('utilities/url-query');
+// Const urlQuery = serverRequire('utilities/url-query');
 
 export default getTargets;
 
 function getTargets(base, baseName, set) {
-	const short = path.resolve(base, baseName);
-	const long = urlQuery.format({
-		pathname: short,
-		query: {environment: set.env}
-	});
-	return set.env === 'index' ? [short, long] : [long];
+  const short = path.resolve(base, baseName);
+  const long = urlQuery.format({
+    pathname: short,
+    query: {environment: set.env}
+  });
+  return set.env === 'index' ? [short, long] : [long];
 }

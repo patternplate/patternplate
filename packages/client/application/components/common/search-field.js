@@ -4,23 +4,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+const _extends = Object.assign || function (target) { for (let i = 1; i < arguments.length; i++) { const source = arguments[i]; for (const key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 60px;\n  padding: 10px 15px;\n'], ['\n  display: flex;\n  align-items: center;\n  height: 60px;\n  padding: 10px 15px;\n']),
+let _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 60px;\n  padding: 10px 15px;\n'], ['\n  display: flex;\n  align-items: center;\n  height: 60px;\n  padding: 10px 15px;\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n  flex-grow: 0;\n  flex-shrink: 0;\n  fill: ', ';\n'], ['\n  flex-grow: 0;\n  flex-shrink: 0;\n  fill: ', ';\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  border: 0;\n  border-radius: 0;\n  background: transparent;\n  font-size: 16px;\n  color: ', ';\n  padding: 0;\n  appearance: none;\n  border-radius: 0;\n  border: none;\n  :focus {\n    outline: none;\n  }\n'], ['\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  border: 0;\n  border-radius: 0;\n  background: transparent;\n  font-size: 16px;\n  color: ', ';\n  padding: 0;\n  appearance: none;\n  border-radius: 0;\n  border: none;\n  :focus {\n    outline: none;\n  }\n']),
     _templateObject4 = _taggedTemplateLiteral(['\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex-grow: 1;\n  flex-shrink: 0;\n  margin-left: 10px;\n'], ['\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex-grow: 1;\n  flex-shrink: 0;\n  margin-left: 10px;\n']),
-    _templateObject5 = _taggedTemplateLiteral(['\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  opacity: .3;\n'], ['\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  opacity: .3;\n']);
+    _templateObject5 = _taggedTemplateLiteral(['\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  opacity: 0.3;\n'], ['\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  opacity: 0.3;\n']);
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,27 +32,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var StyledSearchField = _components.styled.label(_templateObject);
+const StyledSearchField = _components.styled.label(_templateObject);
 
-var StyledIcon = (0, _components.styled)(_components.Icon)(_templateObject2, function (props) {
+const StyledIcon = (0, _components.styled)(_components.Icon)(_templateObject2, (props) => {
   return props.theme.color;
 });
 
-var StyledInput = _components.styled.input(_templateObject3, function (props) {
+const StyledInput = _components.styled.input(_templateObject3, (props) => {
   return props.theme.color;
 });
 
-var StyledInputContainer = _components.styled.div(_templateObject4);
+const StyledInputContainer = _components.styled.div(_templateObject4);
 
-var StyledInputSuggestion = (0, _components.styled)(function (p) {
+const StyledInputSuggestion = (0, _components.styled)((p) => {
   return _react2.default.createElement(StyledInput, _extends({}, p, { readOnly: true }));
 })(_templateObject5);
 
-var SearchField = function (_Component) {
+const SearchField = function (_Component) {
   _inherits(SearchField, _Component);
 
   function SearchField() {
-    var _ref;
+    let _ref;
 
     _classCallCheck(this, SearchField);
 
@@ -60,7 +60,7 @@ var SearchField = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    var _this = _possibleConstructorReturn(this, (_ref = SearchField.__proto__ || Object.getPrototypeOf(SearchField)).call.apply(_ref, [this].concat(args)));
+    const _this = _possibleConstructorReturn(this, (_ref = SearchField.__proto__ || Object.getPrototypeOf(SearchField)).call.apply(_ref, [this].concat(args)));
 
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleKeyDown = _this.handleKeyDown.bind(_this);
@@ -79,10 +79,10 @@ var SearchField = function (_Component) {
   }, {
     key: 'handleKeyDown',
     value: function handleKeyDown(e) {
-      var target = e.target;
+      const target = e.target;
 
-      var hasValue = target.value.length > 0;
-      var atEnd = hasValue && target.selectionStart === target.value.length;
+      const hasValue = target.value.length > 0;
+      const atEnd = hasValue && target.selectionStart === target.value.length;
 
       if (e.which !== 27) {
         e.stopPropagation();
@@ -106,7 +106,7 @@ var SearchField = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
+      const props = this.props;
 
       return _react2.default.createElement(
         StyledSearchField,
@@ -115,9 +115,7 @@ var SearchField = function (_Component) {
         _react2.default.createElement(
           StyledInputContainer,
           null,
-          _react2.default.createElement(StyledInputSuggestion, {
-            value: props.suggestion || ''
-          }),
+          _react2.default.createElement(StyledInputSuggestion, { value: props.suggestion || '' }),
           _react2.default.createElement(StyledInput, {
             autoFocus: props.autoFocus,
             name: props.name,

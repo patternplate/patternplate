@@ -1,20 +1,20 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n\tmargin: 0 0 16px 0;\n\tpadding-left: 36px;\n'], ['\n\tmargin: 0 0 16px 0;\n\tpadding-left: 36px;\n']);
+const _templateObject = _taggedTemplateLiteral(['\n  margin: 0 0 16px 0;\n  padding-left: 36px;\n'], ['\n  margin: 0 0 16px 0;\n  padding-left: 36px;\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _tagHoc = require('tag-hoc');
+const _tagHoc = require('tag-hoc');
 
-var _tagHoc2 = _interopRequireDefault(_tagHoc);
+const _tagHoc2 = _interopRequireDefault(_tagHoc);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

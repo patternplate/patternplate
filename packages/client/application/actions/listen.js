@@ -1,24 +1,24 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+const _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _url = require('url');
+const _url = require('url');
 
-var _url2 = _interopRequireDefault(_url);
+const _url2 = _interopRequireDefault(_url);
 
-var _promiseThunkAction = require('./promise-thunk-action');
+const _promiseThunkAction = require('./promise-thunk-action');
 
-var _loadPatternDemo = require('./load-pattern-demo');
+const _loadPatternDemo = require('./load-pattern-demo');
 
-var _loadPatternDemo2 = _interopRequireDefault(_loadPatternDemo);
+const _loadPatternDemo2 = _interopRequireDefault(_loadPatternDemo);
 
-var _loadSchema = require('./load-schema');
+const _loadSchema = require('./load-schema');
 
-var _loadSchema2 = _interopRequireDefault(_loadSchema);
+const _loadSchema2 = _interopRequireDefault(_loadSchema);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64,13 +64,13 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       function resolution(p, r, how) {
         try {
-          var x = how ? how(r) : r;
+          const x = how ? how(r) : r;
           if (p === x) return p.reject(new TypeError("Promise resolution loop"));
 
           if (isThenable(x)) {
-            x.then(function (y) {
+            x.then((y) => {
               resolution(p, y);
-            }, function (e) {
+            }, (e) => {
               p.reject(e);
             });
           } else {
@@ -98,12 +98,12 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       }
 
       function then(res, rej) {
-        var chain = new Chained();
+        const chain = new Chained();
 
         try {
-          this._resolver(function (value) {
+          this._resolver((value) => {
             return isThenable(value) ? value.then(res, rej) : resolution(chain, value, res);
-          }, function (ex) {
+          }, (ex) => {
             resolution(chain, ex, rej);
           });
         } catch (ex) {
@@ -137,8 +137,8 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
         setTimeout(f, 0);
       };
 
-      var soon = function () {
-        var fq = [],
+      const soon = function () {
+        let fq = [],
             fqStart = 0,
             bufferSize = 1024;
 
@@ -165,10 +165,10 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       function Zousan(func) {
         if (func) {
-          var me = this;
-          func(function (arg) {
+          const me = this;
+          func((arg) => {
             me.resolve(arg);
-          }, function (arg) {
+          }, (arg) => {
             me.reject(arg);
           });
         }
@@ -178,19 +178,19 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
         resolve: function resolve(value) {
           if (this.state !== undefined) return;
           if (value === this) return this.reject(new TypeError("Attempt to resolve promise with self"));
-          var me = this;
+          const me = this;
 
           if (value && (typeof value === "function" || (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === "object")) {
             try {
               var first = 0;
-              var then = value.then;
+              const then = value.then;
 
               if (typeof then === "function") {
-                then.call(value, function (ra) {
+                then.call(value, (ra) => {
                   if (!first++) {
                     me.resolve(ra);
                   }
-                }, function (rr) {
+                }, (rr) => {
                   if (!first++) {
                     me.reject(rr);
                   }
@@ -205,8 +205,8 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
           this.state = STATE_FULFILLED;
           this.v = value;
-          if (me.c) soon(function () {
-            for (var n = 0, l = me.c.length; n < l; n++) {
+          if (me.c) soon(() => {
+            for (let n = 0, l = me.c.length; n < l; n++) {
               STATE_FULFILLED(me.c[n], value);
             }
           });
@@ -215,27 +215,27 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
           if (this.state !== undefined) return;
           this.state = STATE_REJECTED;
           this.v = reason;
-          var clients = this.c;
-          if (clients) soon(function () {
-            for (var n = 0, l = clients.length; n < l; n++) {
+          const clients = this.c;
+          if (clients) soon(() => {
+            for (let n = 0, l = clients.length; n < l; n++) {
               STATE_REJECTED(clients[n], reason);
             }
           });
         },
         then: function then(onF, onR) {
-          var p = new Zousan();
-          var client = {
+          const p = new Zousan();
+          const client = {
             y: onF,
             n: onR,
-            p: p
+            p
           };
 
           if (this.state === undefined) {
             if (this.c) this.c.push(client);else this.c = [client];
           } else {
-            var s = this.state,
+            let s = this.state,
                 a = this.v;
-            soon(function () {
+            soon(() => {
               s(client, a);
             });
           }
@@ -247,7 +247,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       function STATE_FULFILLED(c, arg) {
         if (typeof c.y === "function") {
           try {
-            var yret = c.y.call(undefined, arg);
+            const yret = c.y.call(undefined, arg);
             c.p.resolve(yret);
           } catch (err) {
             c.p.reject(err);
@@ -258,7 +258,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       function STATE_REJECTED(c, reason) {
         if (typeof c.n === "function") {
           try {
-            var yret = c.n.call(undefined, reason);
+            const yret = c.n.call(undefined, reason);
             c.p.resolve(yret);
           } catch (err) {
             c.p.reject(err);
@@ -268,14 +268,14 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       Zousan.resolve = function (val) {
         if (val && val instanceof Zousan) return val;
-        var z = new Zousan();
+        const z = new Zousan();
         z.resolve(val);
         return z;
       };
 
       Zousan.reject = function (err) {
         if (err && err instanceof Zousan) return err;
-        var z = new Zousan();
+        const z = new Zousan();
         z.reject(err);
         return z;
       };
@@ -285,7 +285,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
     })();
   }
 
-  var resolver = this;
+  const resolver = this;
 
   switch (catcher) {
     case true:
@@ -313,15 +313,15 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
   }
 };
 
-exports.default = (0, _promiseThunkAction.createPromiseThunkAction)('LISTEN', function (payload, dispatch, getState) {
+exports.default = (0, _promiseThunkAction.createPromiseThunkAction)('LISTEN', (payload, dispatch, getState) => {
   if (!global.EventSource) {
     return;
   }
 
-  var s = getState();
-  var source = new global.EventSource(_url2.default.resolve(s.base, payload.url));
+  const s = getState();
+  const source = new global.EventSource(_url2.default.resolve(s.base, payload.url));
 
-  source.addEventListener('error', function (error) {
+  source.addEventListener('error', (error) => {
     dispatch({
       type: 'ERROR_HEARTBEAT',
       payload: error
@@ -340,7 +340,7 @@ exports.default = (0, _promiseThunkAction.createPromiseThunkAction)('LISTEN', fu
 
   source.addEventListener('change', function (event) {
     return new Promise(function ($return, $error) {
-      var payload, file;
+      let payload, file;
 
       payload = JSON.parse(event.data);
       file = payload.file || '';
@@ -360,9 +360,9 @@ exports.default = (0, _promiseThunkAction.createPromiseThunkAction)('LISTEN', fu
     }.$asyncbind(this));
   });
 
-  source.addEventListener('reload', function (event) {
-    var payload = JSON.parse(event.data);
-    var state = getState();
+  source.addEventListener('reload', (event) => {
+    const payload = JSON.parse(event.data);
+    const state = getState();
 
     if (state.id === 'pattern/' + payload.pattern) {
       dispatch((0, _loadPatternDemo2.default)({ reloadTime: Date.now() }));

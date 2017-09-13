@@ -23,6 +23,7 @@
     "patternplate-client": "binary/patternplate-client.js",
     "patternplate-client-console": "binary/patternplate-client-console.js"
   },
+  "xo": false,
   "babel": {
     "presets": [
       ["env", {

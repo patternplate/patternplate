@@ -16,6 +16,7 @@
     "start": "node binary/boilerplate-server.js",
     "dev": "npm run babel -- --watch"
   },
+  "xo": false,
   "babel": {
     "presets": [
       "es2015-node4",
@@ -25,9 +26,6 @@
     "plugins": [
       "add-module-exports"
     ]
-  },
-  "xo": {
-    "esnext": true
   },
   "repository": {
     "type": "git",

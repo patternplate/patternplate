@@ -81,88 +81,88 @@ var icons = {
   'arrow-right': function arrowRight() {
     return _arrowRight;
   },
-  'atoms': function atoms() {
+  atoms: function atoms() {
     return _atoms;
   },
   'checkers-inverted': function checkersInverted() {
     return _checkers(true);
   },
-  'checkers': function checkers() {
+  checkers: function checkers() {
     return _checkers();
   },
-  'code': function code() {
+  code: function code() {
     return _code;
   },
-  'command': function command() {
+  command: function command() {
     return _command;
   },
-  'dark': function dark() {
+  dark: function dark() {
     return _dark;
   },
-  'dependencies': function dependencies() {
+  dependencies: function dependencies() {
     return _dependencies;
   },
-  'documentation': function documentation() {
+  documentation: function documentation() {
     return _documentation;
   },
-  'doc': function doc() {
+  doc: function doc() {
     return _documentation;
   },
-  'ecospheres': function ecospheres() {
+  ecospheres: function ecospheres() {
     return _ecospheres;
   },
-  'environment': function environment() {
+  environment: function environment() {
     return _environment;
   },
-  'placeholder': function placeholder() {
+  placeholder: function placeholder() {
     return _placeholder;
   },
   'folder-open': function folderOpen() {
     return _folderOpen;
   },
-  'folder': function folder() {
+  folder: function folder() {
     return _folder;
   },
-  'fullscreen': function fullscreen() {
+  fullscreen: function fullscreen() {
     return _fullscreen;
   },
-  'globals': function globals() {
+  globals: function globals() {
     return _globals;
   },
-  'home': function home() {
+  home: function home() {
     return _home;
   },
-  'issue': function issue() {
+  issue: function issue() {
     return _issue;
   },
-  'light': function light() {
+  light: function light() {
     return _light;
   },
-  'molecules': function molecules() {
+  molecules: function molecules() {
     return _molecules;
   },
-  'organisms': function organisms() {
+  organisms: function organisms() {
     return _organisms;
   },
-  'pattern': function pattern() {
+  pattern: function pattern() {
     return _pattern;
   },
-  'patternplate': function patternplate() {
+  patternplate: function patternplate() {
     return _patternplate;
   },
-  'polymers': function polymers() {
+  polymers: function polymers() {
     return _polymers;
   },
-  'react': function react() {
+  react: function react() {
     return _react;
   },
-  'reload': function reload() {
+  reload: function reload() {
     return _reload;
   },
-  'rulers': function rulers() {
+  rulers: function rulers() {
     return _rulers;
   },
-  'search': function search() {
+  search: function search() {
     return _search;
   }
 };
@@ -277,7 +277,10 @@ function Icon(props) {
   return React.createElement(
     StyledIcon,
     { className: props.className, size: props.size },
-    React.createElement('use', { title: props.title, xlinkHref: `#${props.symbol || 'placeholder'}` })
+    React.createElement('use', {
+      title: props.title,
+      xlinkHref: `#${props.symbol || 'placeholder'}`
+    })
   );
 }
 

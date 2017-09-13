@@ -9,11 +9,7 @@ export default Code;
 function Code(props) {
   const source = highlightCode(props.language, props.children);
 
-  const code = (
-    <StyledCode className={props.className}>
-      {source}
-    </StyledCode>
-  );
+  const code = <StyledCode className={props.className}>{source}</StyledCode>;
 
   return props.block ? <pre>{code}</pre> : code;
 }
@@ -54,7 +50,8 @@ const StyledCode = styled.code`
   overflow-x: auto;
   padding: 0.5em;
   color: ${themed('mono1')};
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace;
 
   .hljs-comment,
   .hljs-quote {

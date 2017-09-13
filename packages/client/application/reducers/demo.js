@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = demo;
-var DEFAULT = {
+const DEFAULT = {
   error: null,
   fetching: false,
   id: null,
@@ -12,8 +12,8 @@ var DEFAULT = {
 };
 
 function demo() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT;
-  var action = arguments[1];
+  const state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT;
+  const action = arguments[1];
 
   switch (action.type) {
     case 'LOAD_PATTERN_DEMO_START':

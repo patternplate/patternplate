@@ -4,7 +4,12 @@ import tag from 'tag-hoc';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {createSelector} from 'reselect';
-import {styled, ThemeProvider, injectGlobal, themes} from '@patternplate/components';
+import {
+  styled,
+  ThemeProvider,
+  injectGlobal,
+  themes
+} from '@patternplate/components';
 
 import * as actions from '../actions';
 import * as item from '../selectors/item';
@@ -48,7 +53,8 @@ const selectDocEnabled = createSelector(
   selectIsPattern,
   item.selectContents,
   state => state.docEnabled,
-  (isPattern, contents, docEnabled) => isPattern && Boolean(contents) && docEnabled
+  (isPattern, contents, docEnabled) =>
+    isPattern && Boolean(contents) && docEnabled
 );
 
 const selectInfoEnabled = createSelector(
@@ -56,7 +62,6 @@ const selectInfoEnabled = createSelector(
   state => state.infoEnabled,
   (isPattern, enabled) => isPattern && enabled
 );
-
 
 function mapProps(state) {
   return {
@@ -75,10 +80,13 @@ function mapProps(state) {
 }
 
 function mapDispatch(dispatch) {
-  return bindActionCreators({
-    onLoad: () => actions.listen({url: 'api'}),
-    onResize: actions.windowResize
-  }, dispatch);
+  return bindActionCreators(
+    {
+      onLoad: () => actions.listen({url: 'api'}),
+      onResize: actions.windowResize
+    },
+    dispatch
+  );
 }
 
 function Application(props) {
@@ -102,62 +110,66 @@ function Application(props) {
   return (
     <ThemeProvider theme={props.themes[props.theme]}>
       <StyledApplication>
-        <Helmet meta={meta(props)} title={props.title}/>
-        <Favicon/>
+        <Helmet meta={meta(props)} title={props.title} />
+        <Favicon />
         <ThemeProvider theme={props.themes.dark}>
           <StyledNavigationBox enabled={props.navigationEnabled}>
-            {
-              props.navigationEnabled &&
-                <Navigation>
-                  {props.logo &&
-                    <NavigationHeader>
-                      <Logo/>
-                    </NavigationHeader>
-                  }
-                  <NavigationToolbar>
-                    <div/>
-                    <ToggleSearch/>
-                    <Indicator/>
-                  </NavigationToolbar>
-                </Navigation>
-            }
+            {props.navigationEnabled && (
+              <Navigation>
+                {props.logo && (
+                  <NavigationHeader>
+                    <Logo />
+                  </NavigationHeader>
+                )}
+                <NavigationToolbar>
+                  <div />
+                  <ToggleSearch />
+                  <Indicator />
+                </NavigationToolbar>
+              </Navigation>
+            )}
           </StyledNavigationBox>
         </ThemeProvider>
         <StyledContentContainer>
           <StyledContent navigationEnabled={props.navigationEnabled}>
             <StyledMessageBox>
-              <Message/>
+              <Message />
             </StyledMessageBox>
             {props.children}
-            {props.searchEnabled &&
+            {props.searchEnabled && (
               <ThemeProvider theme={props.themes.dark}>
                 <StyledSearchBox>
                   <StyledSearchFrame>
-                    <Search/>
+                    <Search />
                   </StyledSearchFrame>
                 </StyledSearchBox>
               </ThemeProvider>
-            }
+            )}
             <ThemeProvider theme={props.themes.dark}>
               <StyledFloatingBox>
-                {props.infoEnabled &&
+                {props.infoEnabled && (
                   <StyledInfoPane>
                     <InfoPane hermit={!(props.codeEnabled || props.docEnabled)}>
-                      <ToggleSource/>
-                      <ToggleDoc/>
+                      <ToggleSource />
+                      <ToggleDoc />
                     </InfoPane>
                   </StyledInfoPane>
-                }
-                {props.infoEnabled && (props.codeEnabled || props.docEnabled) &&
-                  <StyledPane hermit={!props.infoEnabled} infoEnabled={props.infoEnabled}>
-                    {(props.codeEnabled && !props.docEnabled) &&
-                      <CodePane hermit={!props.infoEnabled}/>
-                    }
-                    {props.docEnabled &&
-                      <DocPane hermit={!props.infoEnabled}/>
-                    }
+                )}
+                {props.infoEnabled &&
+                (props.codeEnabled || props.docEnabled) && (
+                  <StyledPane
+                    hermit={!props.infoEnabled}
+                    infoEnabled={props.infoEnabled}
+                  >
+                    {props.codeEnabled &&
+                    !props.docEnabled && (
+                      <CodePane hermit={!props.infoEnabled} />
+                    )}
+                    {props.docEnabled && (
+                      <DocPane hermit={!props.infoEnabled} />
+                    )}
                   </StyledPane>
-                }
+                )}
               </StyledFloatingBox>
             </ThemeProvider>
           </StyledContent>
@@ -165,18 +177,18 @@ function Application(props) {
             <StyledControlsBox enabled={props.navigationEnabled}>
               <StyledControlsArea orient="left">
                 <StyledControlsItem>
-                  <ToggleNavigation/>
+                  <ToggleNavigation />
                 </StyledControlsItem>
                 <StyledControlsItem>
-                  <ToggleInfoPane/>
+                  <ToggleInfoPane />
                 </StyledControlsItem>
               </StyledControlsArea>
               <StyledControlsArea orient="right">
                 <StyledControlsItem>
-                  <ToggleOpacity/>
+                  <ToggleOpacity />
                 </StyledControlsItem>
                 <StyledControlsItem>
-                  <Fullscreen/>
+                  <Fullscreen />
                 </StyledControlsItem>
               </StyledControlsArea>
             </StyledControlsBox>
@@ -188,7 +200,7 @@ function Application(props) {
 }
 
 const WIDTH = 300;
-const NAVIGATION_WIDTH = props => props.enabled ? WIDTH : 0;
+const NAVIGATION_WIDTH = props => (props.enabled ? WIDTH : 0);
 const TOOLBAR_HEIGHT = 60;
 const ORIENTATION = props => {
   const direction = props.orient === 'right' ? 'left' : 'right';

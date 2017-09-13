@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
 module.exports = function PatternView() {
   return React.createElement(
@@ -9,4 +9,4 @@ module.exports = function PatternView() {
     '!'
   );
 };
-//# sourceMappingURL=index.js.map
+// # sourceMappingURL=index.js.map

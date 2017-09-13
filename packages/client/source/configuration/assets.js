@@ -1,8 +1,8 @@
 const assets = {
-	'browserify': {
-		'extensions': ['.jsx', '.js', '.json'],
-		'insertGlobals': true
-	}
+  browserify: {
+    extensions: ['.jsx', '.js', '.json'],
+    insertGlobals: true
+  }
 };
 
 export default assets;

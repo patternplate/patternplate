@@ -4,76 +4,76 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n\twidth: 100%;\n\theight: 100%;\n\tborder-radius: 10px;\n\toverflow: hidden;\n\tpointer-events: all;\n\toverflow: hidden;\n\tmargin: ', ';\n\topacity: ', ';\n'], ['\n\twidth: 100%;\n\theight: 100%;\n\tborder-radius: 10px;\n\toverflow: hidden;\n\tpointer-events: all;\n\toverflow: hidden;\n\tmargin: ', ';\n\topacity: ', ';\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\tz-index: 2;\n\twidth: 100%;\n\tmax-height: ', ';\n\t', '\n'], ['\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\tz-index: 2;\n\twidth: 100%;\n\tmax-height: ', ';\n\t', '\n']),
-    _templateObject3 = _taggedTemplateLiteral(['\n\tposition: relative;\n\tz-index: 1;\n\tflex: 0 0 auto;\n'], ['\n\tposition: relative;\n\tz-index: 1;\n\tflex: 0 0 auto;\n']),
-    _templateObject4 = _taggedTemplateLiteral(['\n\tposition: relative;\n\tz-index: 1;\n\tflex: 1 1 auto;\n\tdisplay: flex;\n\tflex-direction: row;\n\tmax-height: calc(', ' - ', ' - ', '); /* ensure firefox scrolls result list */\n\t/* overflow: hidden; position: sticky breaks when doing this*/\n'], ['\n\tposition: relative;\n\tz-index: 1;\n\tflex: 1 1 auto;\n\tdisplay: flex;\n\tflex-direction: row;\n\tmax-height: calc(', ' - ', ' - ', '); /* ensure firefox scrolls result list */\n\t/* overflow: hidden; position: sticky breaks when doing this*/\n']),
-    _templateObject5 = _taggedTemplateLiteral(['\n\tflex: 1 1 60%;\n\toverflow: scroll;\n\t-webkit-touch-scroll: auto;\n'], ['\n\tflex: 1 1 60%;\n\toverflow: scroll;\n\t-webkit-touch-scroll: auto;\n']),
-    _templateObject6 = _taggedTemplateLiteral(['\n\tflex: 1 0 40%;\n\toverflow: scroll;\n\t-webkit-touch-scroll: auto;\n\tborder-right: 1px solid ', ';\n'], ['\n\tflex: 1 0 40%;\n\toverflow: scroll;\n\t-webkit-touch-scroll: auto;\n\tborder-right: 1px solid ', ';\n']),
-    _templateObject7 = _taggedTemplateLiteral(['\n\tbox-sizing: border-box;\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\tz-index: 1;\n\ttop: 0;\n\tmargin: 0;\n\tfont-size: 14px;\n\tpadding: 3px 15px;\n\tborder-width: 1px 0;\n\tborder-style: solid;\n\tborder-color: ', ';\n\tcolor: ', ';\n\tbackground: ', ';\n'], ['\n\tbox-sizing: border-box;\n\tposition: -webkit-sticky;\n\tposition: sticky;\n\tz-index: 1;\n\ttop: 0;\n\tmargin: 0;\n\tfont-size: 14px;\n\tpadding: 3px 15px;\n\tborder-width: 1px 0;\n\tborder-style: solid;\n\tborder-color: ', ';\n\tcolor: ', ';\n\tbackground: ', ';\n']),
-    _templateObject8 = _taggedTemplateLiteral(['\n\tflex: 0 0 auto;\n\tfill: ', ';\n\tmargin-right: 10px;\n'], ['\n\tflex: 0 0 auto;\n\tfill: ', ';\n\tmargin-right: 10px;\n']),
-    _templateObject9 = _taggedTemplateLiteral(['\n\tposition: absolute;\n\tright: 15px;\n\ttop: 50%;\n\ttransform: translateY(-50%);\n\ttext-decoration: none;\n\tcolor: ', ';\n\topacity: 0;\n\t&:hover {\n\t\tcolor: ', ';\n\t\ttext-decoration: underline;\n\t}\n'], ['\n\tposition: absolute;\n\tright: 15px;\n\ttop: 50%;\n\ttransform: translateY(-50%);\n\ttext-decoration: none;\n\tcolor: ', ';\n\topacity: 0;\n\t&:hover {\n\t\tcolor: ', ';\n\t\ttext-decoration: underline;\n\t}\n']),
-    _templateObject10 = _taggedTemplateLiteral(['\n\tdisplay: flex;\n\talign-items: center;\n\twidth: 100%;\n\tpadding: 10px 15px;\n\tline-height: 20px;\n\tcolor: ', ';\n\ttext-decoration: none;\n'], ['\n\tdisplay: flex;\n\talign-items: center;\n\twidth: 100%;\n\tpadding: 10px 15px;\n\tline-height: 20px;\n\tcolor: ', ';\n\ttext-decoration: none;\n']),
-    _templateObject11 = _taggedTemplateLiteral(['\n\tposition: relative;\n\tbox-sizing: border-box;\n\tdisplay: flex;\n\talign-items: center;\n\t&:hover ', ' {\n\t\tmask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 75px, rgba(0, 0, 0, 1) 125px);\n\t\t-webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 75px, rgba(0, 0, 0, 1) 125px);\n\t}\n\t&:hover ', ' {\n\t\topacity: 1;\n\t}\n'], ['\n\tposition: relative;\n\tbox-sizing: border-box;\n\tdisplay: flex;\n\talign-items: center;\n\t&:hover ', ' {\n\t\tmask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 75px, rgba(0, 0, 0, 1) 125px);\n\t\t-webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 75px, rgba(0, 0, 0, 1) 125px);\n\t}\n\t&:hover ', ' {\n\t\topacity: 1;\n\t}\n']),
-    _templateObject12 = _taggedTemplateLiteral(['\n\tdisplay: none;\n'], ['\n\tdisplay: none;\n']),
-    _templateObject13 = _taggedTemplateLiteral(['\n\tfont-size: 0;\n\tline-height: 0;\n'], ['\n\tfont-size: 0;\n\tline-height: 0;\n']),
-    _templateObject14 = _taggedTemplateLiteral(['\n\tfill: ', ';\n'], ['\n\tfill: ', ';\n']),
-    _templateObject15 = _taggedTemplateLiteral(['\n\twidth: 80%;\n\tmargin: 0 auto;\n'], ['\n\twidth: 80%;\n\tmargin: 0 auto;\n']),
-    _templateObject16 = _taggedTemplateLiteral(['\n\tdisplay: flex;\n\talign-items: center;\n\theight: 30px;\n\tposition: relative;\n\tbox-sizing: border-box;\n\twidth: 100%;\n\tpadding: 0 15px;\n\tborder: 1px solid ', ';\n\tcolor: ', ';\n\t', '\n'], ['\n\tdisplay: flex;\n\talign-items: center;\n\theight: 30px;\n\tposition: relative;\n\tbox-sizing: border-box;\n\twidth: 100%;\n\tpadding: 0 15px;\n\tborder: 1px solid ', ';\n\tcolor: ', ';\n\t', '\n']),
-    _templateObject17 = _taggedTemplateLiteral(['\n\tdisplay: flex;\n\toverflow: scroll;\n\t-webkit-overflow-scrolling: touch;\n\twidth: 100%;\n\tposition: relative;\n\tz-index: 1;\n\t::-webkit-scrollbar {\n\t\tdisplay: none;\n\t}\n'], ['\n\tdisplay: flex;\n\toverflow: scroll;\n\t-webkit-overflow-scrolling: touch;\n\twidth: 100%;\n\tposition: relative;\n\tz-index: 1;\n\t::-webkit-scrollbar {\n\t\tdisplay: none;\n\t}\n']),
-    _templateObject18 = _taggedTemplateLiteral(['\n\tpadding: 0 10px;\n\tcolor: ', ';\n\t&:first-child {\n\t\tpadding-left: 0;\n\t}\n'], ['\n\tpadding: 0 10px;\n\tcolor: ', ';\n\t&:first-child {\n\t\tpadding-left: 0;\n\t}\n']),
-    _templateObject19 = _taggedTemplateLiteral(['\n\tpadding-right: 20px;\n\tfont-weight: bold;\n\tcolor: ', ';\n\tposition: relative;\n\tz-index: 1;\n'], ['\n\tpadding-right: 20px;\n\tfont-weight: bold;\n\tcolor: ', ';\n\tposition: relative;\n\tz-index: 1;\n']),
-    _templateObject20 = _taggedTemplateLiteral(['\n\twhite-space: nowrap;\n\t&:link, &:active, &:visited, &:hover {\n\t\tcolor: ', ';\n\t\ttext-decoration: none;\n\t}\n'], ['\n\twhite-space: nowrap;\n\t&:link, &:active, &:visited, &:hover {\n\t\tcolor: ', ';\n\t\ttext-decoration: none;\n\t}\n']);
+let _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  height: 100%;\n  border-radius: 10px;\n  overflow: hidden;\n  pointer-events: all;\n  overflow: hidden;\n  margin: ', ';\n  opacity: ', ';\n'], ['\n  width: 100%;\n  height: 100%;\n  border-radius: 10px;\n  overflow: hidden;\n  pointer-events: all;\n  overflow: hidden;\n  margin: ', ';\n  opacity: ', ';\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  max-height: ', ';\n  ', ';\n'], ['\n  display: flex;\n  flex-direction: column;\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  max-height: ', ';\n  ', ';\n']),
+    _templateObject3 = _taggedTemplateLiteral(['\n  position: relative;\n  z-index: 1;\n  flex: 0 0 auto;\n'], ['\n  position: relative;\n  z-index: 1;\n  flex: 0 0 auto;\n']),
+    _templateObject4 = _taggedTemplateLiteral(['\n  position: relative;\n  z-index: 1;\n  flex: 1 1 auto;\n  display: flex;\n  flex-direction: row;\n  max-height: calc(\n    ', ' - ', ' - ', '\n  ); /* ensure firefox scrolls result list */\n  /* overflow: hidden; position: sticky breaks when doing this*/\n'], ['\n  position: relative;\n  z-index: 1;\n  flex: 1 1 auto;\n  display: flex;\n  flex-direction: row;\n  max-height: calc(\n    ', ' - ', ' - ', '\n  ); /* ensure firefox scrolls result list */\n  /* overflow: hidden; position: sticky breaks when doing this*/\n']),
+    _templateObject5 = _taggedTemplateLiteral(['\n  flex: 1 1 60%;\n  overflow: scroll;\n  -webkit-touch-scroll: auto;\n'], ['\n  flex: 1 1 60%;\n  overflow: scroll;\n  -webkit-touch-scroll: auto;\n']),
+    _templateObject6 = _taggedTemplateLiteral(['\n  flex: 1 0 40%;\n  overflow: scroll;\n  -webkit-touch-scroll: auto;\n  border-right: 1px solid ', ';\n'], ['\n  flex: 1 0 40%;\n  overflow: scroll;\n  -webkit-touch-scroll: auto;\n  border-right: 1px solid ', ';\n']),
+    _templateObject7 = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 1;\n  top: 0;\n  margin: 0;\n  font-size: 14px;\n  padding: 3px 15px;\n  border-width: 1px 0;\n  border-style: solid;\n  border-color: ', ';\n  color: ', ';\n  background: ', ';\n'], ['\n  box-sizing: border-box;\n  position: -webkit-sticky;\n  position: sticky;\n  z-index: 1;\n  top: 0;\n  margin: 0;\n  font-size: 14px;\n  padding: 3px 15px;\n  border-width: 1px 0;\n  border-style: solid;\n  border-color: ', ';\n  color: ', ';\n  background: ', ';\n']),
+    _templateObject8 = _taggedTemplateLiteral(['\n  flex: 0 0 auto;\n  fill: ', ';\n  margin-right: 10px;\n'], ['\n  flex: 0 0 auto;\n  fill: ', ';\n  margin-right: 10px;\n']),
+    _templateObject9 = _taggedTemplateLiteral(['\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  text-decoration: none;\n  color: ', ';\n  opacity: 0;\n  &:hover {\n    color: ', ';\n    text-decoration: underline;\n  }\n'], ['\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  transform: translateY(-50%);\n  text-decoration: none;\n  color: ', ';\n  opacity: 0;\n  &:hover {\n    color: ', ';\n    text-decoration: underline;\n  }\n']),
+    _templateObject10 = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  width: 100%;\n  padding: 10px 15px;\n  line-height: 20px;\n  color: ', ';\n  text-decoration: none;\n'], ['\n  display: flex;\n  align-items: center;\n  width: 100%;\n  padding: 10px 15px;\n  line-height: 20px;\n  color: ', ';\n  text-decoration: none;\n']),
+    _templateObject11 = _taggedTemplateLiteral(['\n  position: relative;\n  box-sizing: border-box;\n  display: flex;\n  align-items: center;\n  &:hover ', ' {\n    mask-image: linear-gradient(\n      to left,\n      rgba(0, 0, 0, 0) 75px,\n      rgba(0, 0, 0, 1) 125px\n    );\n    -webkit-mask-image: linear-gradient(\n      to left,\n      rgba(0, 0, 0, 0) 75px,\n      rgba(0, 0, 0, 1) 125px\n    );\n  }\n  &:hover ', ' {\n    opacity: 1;\n  }\n'], ['\n  position: relative;\n  box-sizing: border-box;\n  display: flex;\n  align-items: center;\n  &:hover ', ' {\n    mask-image: linear-gradient(\n      to left,\n      rgba(0, 0, 0, 0) 75px,\n      rgba(0, 0, 0, 1) 125px\n    );\n    -webkit-mask-image: linear-gradient(\n      to left,\n      rgba(0, 0, 0, 0) 75px,\n      rgba(0, 0, 0, 1) 125px\n    );\n  }\n  &:hover ', ' {\n    opacity: 1;\n  }\n']),
+    _templateObject12 = _taggedTemplateLiteral(['display: none;'], ['display: none;']),
+    _templateObject13 = _taggedTemplateLiteral(['\n  font-size: 0;\n  line-height: 0;\n'], ['\n  font-size: 0;\n  line-height: 0;\n']),
+    _templateObject14 = _taggedTemplateLiteral(['fill: ', ';'], ['fill: ', ';']),
+    _templateObject15 = _taggedTemplateLiteral(['\n  width: 80%;\n  margin: 0 auto;\n'], ['\n  width: 80%;\n  margin: 0 auto;\n']),
+    _templateObject16 = _taggedTemplateLiteral(['\n  display: flex;\n  align-items: center;\n  height: 30px;\n  position: relative;\n  box-sizing: border-box;\n  width: 100%;\n  padding: 0 15px;\n  border: 1px solid ', ';\n  color: ', ';\n  ', ';\n'], ['\n  display: flex;\n  align-items: center;\n  height: 30px;\n  position: relative;\n  box-sizing: border-box;\n  width: 100%;\n  padding: 0 15px;\n  border: 1px solid ', ';\n  color: ', ';\n  ', ';\n']),
+    _templateObject17 = _taggedTemplateLiteral(['\n  display: flex;\n  overflow: scroll;\n  -webkit-overflow-scrolling: touch;\n  width: 100%;\n  position: relative;\n  z-index: 1;\n  ::-webkit-scrollbar {\n    display: none;\n  }\n'], ['\n  display: flex;\n  overflow: scroll;\n  -webkit-overflow-scrolling: touch;\n  width: 100%;\n  position: relative;\n  z-index: 1;\n  ::-webkit-scrollbar {\n    display: none;\n  }\n']),
+    _templateObject18 = _taggedTemplateLiteral(['\n  padding: 0 10px;\n  color: ', ';\n  &:first-child {\n    padding-left: 0;\n  }\n'], ['\n  padding: 0 10px;\n  color: ', ';\n  &:first-child {\n    padding-left: 0;\n  }\n']),
+    _templateObject19 = _taggedTemplateLiteral(['\n  padding-right: 20px;\n  font-weight: bold;\n  color: ', ';\n  position: relative;\n  z-index: 1;\n'], ['\n  padding-right: 20px;\n  font-weight: bold;\n  color: ', ';\n  position: relative;\n  z-index: 1;\n']),
+    _templateObject20 = _taggedTemplateLiteral(['\n  white-space: nowrap;\n  &:link,\n  &:active,\n  &:visited,\n  &:hover {\n    color: ', ';\n    text-decoration: none;\n  }\n'], ['\n  white-space: nowrap;\n  &:link,\n  &:active,\n  &:visited,\n  &:hover {\n    color: ', ';\n    text-decoration: none;\n  }\n']);
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _tagHoc = require('tag-hoc');
+const _tagHoc = require('tag-hoc');
 
-var _tagHoc2 = _interopRequireDefault(_tagHoc);
+const _tagHoc2 = _interopRequireDefault(_tagHoc);
 
-var _infoPane = require('./info-pane');
+const _infoPane = require('./info-pane');
 
-var _link = require('./common/link');
+const _link = require('./common/link');
 
-var _link2 = _interopRequireDefault(_link);
+const _link2 = _interopRequireDefault(_link);
 
-var _markdown = require('./common/markdown');
+const _markdown = require('./common/markdown');
 
-var _markdown2 = _interopRequireDefault(_markdown);
+const _markdown2 = _interopRequireDefault(_markdown);
 
-var _outside = require('./outside');
+const _outside = require('./outside');
 
-var _outside2 = _interopRequireDefault(_outside);
+const _outside2 = _interopRequireDefault(_outside);
 
-var _searchField = require('./common/search-field');
+const _searchField = require('./common/search-field');
 
-var _searchField2 = _interopRequireDefault(_searchField);
+const _searchField2 = _interopRequireDefault(_searchField);
 
-var _text = require('./text');
+const _text = require('./text');
 
-var _text2 = _interopRequireDefault(_text);
+const _text2 = _interopRequireDefault(_text);
 
-var _withToggleStates = require('../connectors/with-toggle-states');
+const _withToggleStates = require('../connectors/with-toggle-states');
 
-var _withToggleStates2 = _interopRequireDefault(_withToggleStates);
+const _withToggleStates2 = _interopRequireDefault(_withToggleStates);
 
-var _passThrough = require('../containers/pass-through');
+const _passThrough = require('../containers/pass-through');
 
-var _passThrough2 = _interopRequireDefault(_passThrough);
+const _passThrough2 = _interopRequireDefault(_passThrough);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; }  return Array.from(arr);  }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -81,15 +81,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var InfoPane = (0, _withToggleStates2.default)(_infoPane.InnerInfoPane);
+const InfoPane = (0, _withToggleStates2.default)(_infoPane.InnerInfoPane);
 
-var NOOP = function NOOP() {};
+const NOOP = function NOOP() {};
 
-var Search = function (_React$Component) {
+const Search = function (_React$Component) {
   _inherits(Search, _React$Component);
 
   function Search() {
-    var _ref;
+    let _ref;
 
     _classCallCheck(this, Search);
 
@@ -97,7 +97,7 @@ var Search = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    var _this = _possibleConstructorReturn(this, (_ref = Search.__proto__ || Object.getPrototypeOf(Search)).call.apply(_ref, [this].concat(args)));
+    const _this = _possibleConstructorReturn(this, (_ref = Search.__proto__ || Object.getPrototypeOf(Search)).call.apply(_ref, [this].concat(args)));
 
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.handleUp = _this.handleUp.bind(_this);
@@ -114,8 +114,8 @@ var Search = function (_React$Component) {
       if (!this.list) {
         return;
       }
-      var l = this.list.getBoundingClientRect();
-      var i = e.target.getBoundingClientRect();
+      const l = this.list.getBoundingClientRect();
+      const i = e.target.getBoundingClientRect();
 
       if (i.bottom > l.bottom) {
         this.list.scrollTop = e.target.offsetTop - l.height + i.height;
@@ -140,8 +140,8 @@ var Search = function (_React$Component) {
   }, {
     key: 'handleActivate',
     value: function handleActivate(e) {
-      var id = e.target.getAttribute('data-id');
-      var index = [].concat(_toConsumableArray(this.props.docs), _toConsumableArray(this.props.components)).findIndex(function (i) {
+      const id = e.target.getAttribute('data-id');
+      const index = [].concat(_toConsumableArray(this.props.docs), _toConsumableArray(this.props.components)).findIndex((i) => {
         return i.id === id;
       });
 
@@ -162,7 +162,7 @@ var Search = function (_React$Component) {
     key: 'handleDown',
     value: function handleDown(e) {
       e.stopPropagation();
-      var available = this.props.components.length + this.props.docs.length - 2;
+      const available = this.props.components.length + this.props.docs.length - 2;
 
       if (this.props.activeItem && available >= this.props.activeItem.index) {
         this.props.onDown();
@@ -180,12 +180,12 @@ var Search = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      const _this2 = this;
 
-      var props = this.props;
+      const props = this.props;
 
-      var withComponents = props.components.length > 0;
-      var withDocs = props.docs.length > 0;
+      const withComponents = props.components.length > 0;
+      const withDocs = props.docs.length > 0;
 
       return _react2.default.createElement(
         StyledFormBox,
@@ -226,7 +226,7 @@ var Search = function (_React$Component) {
                 clears: String(props.value).length > 0
               })
             ),
-            _react2.default.createElement(_passThrough2.default, { query: { 'search-enabled': true, 'search': null } }),
+            _react2.default.createElement(_passThrough2.default, { query: { 'search-enabled': true, search: null } }),
             _react2.default.createElement(HiddenSubmit, null),
             _react2.default.createElement(SearchLegend, { name: props.legend.name, items: props.legend.items })
           ),
@@ -243,7 +243,7 @@ var Search = function (_React$Component) {
                 props.docs.length,
                 ')'
               ),
-              props.docs.map(function (d) {
+              props.docs.map((d) => {
                 return _react2.default.createElement(Result, {
                   active: (props.activeItem || {}).id === d.id,
                   id: d.id,
@@ -258,12 +258,14 @@ var Search = function (_React$Component) {
               }),
               withComponents > 0 && _react2.default.createElement(
                 StyledResultHeading,
-                { navigationEnabled: props.navigationEnabled },
+                {
+                  navigationEnabled: props.navigationEnabled
+                },
                 'Components (',
                 props.components.length,
                 ')'
               ),
-              props.components.map(function (d) {
+              props.components.map((d) => {
                 return _react2.default.createElement(Result, {
                   active: (props.activeItem || {}).id === d.id,
                   id: d.id,
@@ -277,9 +279,7 @@ var Search = function (_React$Component) {
                 });
               })
             ),
-            (withComponents || withDocs) && _react2.default.createElement(ResultPreview, {
-              item: props.activeItem
-            })
+            (withComponents || withDocs) && _react2.default.createElement(ResultPreview, { item: props.activeItem })
           )
         )
       );
@@ -292,17 +292,17 @@ var Search = function (_React$Component) {
 exports.default = Search;
 
 
-var SEARCH_HEIGHT = '60vh';
-var SEARCH_FIELD_HEIGHT = '80px';
-var SEARCH_LEGEND_HEIGHT = '30px';
+const SEARCH_HEIGHT = '60vh';
+const SEARCH_FIELD_HEIGHT = '80px';
+const SEARCH_LEGEND_HEIGHT = '30px';
 
-var StyledFormBox = (0, _components.styled)(_outside2.default)(_templateObject, function (props) {
+var StyledFormBox = (0, _components.styled)(_outside2.default)(_templateObject, (props) => {
   return props.inline ? 'calc(12.5vh - 30px) 0 60px 0' : 'none';
-}, function (props) {
+}, (props) => {
   return props.inline && props.enabled ? '0' : '1';
 });
 
-var StyledForm = _components.styled.form(_templateObject2, SEARCH_HEIGHT, function (props) {
+var StyledForm = _components.styled.form(_templateObject2, SEARCH_HEIGHT, (props) => {
   return withTint(props);
 });
 
@@ -310,43 +310,43 @@ var StyledSearchFieldBox = _components.styled.div(_templateObject3);
 
 var StyledResults = _components.styled.div(_templateObject4, SEARCH_HEIGHT, SEARCH_FIELD_HEIGHT, SEARCH_LEGEND_HEIGHT);
 
-var StyledResultPreview = _components.styled.div(_templateObject5);
+const StyledResultPreview = _components.styled.div(_templateObject5);
 
-var StyledResultList = _components.styled.div(_templateObject6, function (props) {
+var StyledResultList = _components.styled.div(_templateObject6, (props) => {
   return props.theme.border;
 });
 
-var StyledResultHeading = (0, _components.styled)(_text2.default)(_templateObject7, function (props) {
+var StyledResultHeading = (0, _components.styled)(_text2.default)(_templateObject7, (props) => {
   return props.theme.border;
-}, function (props) {
+}, (props) => {
   return props.theme.color;
-}, function (props) {
+}, (props) => {
   return props.theme.background;
 });
 
-var StyledIcon = (0, _components.styled)((0, _tagHoc2.default)(['active'])(_components.Icon))(_templateObject8, function (props) {
+const StyledIcon = (0, _components.styled)((0, _tagHoc2.default)(['active'])(_components.Icon))(_templateObject8, (props) => {
   return props.active ? props.theme.active : props.theme.color;
 });
 
-var Linkable = (0, _tagHoc2.default)(['active'])(_link2.default);
+const Linkable = (0, _tagHoc2.default)(['active'])(_link2.default);
 
-var StyledPreviewLink = (0, _components.styled)(Linkable)(_templateObject9, function (props) {
+const StyledPreviewLink = (0, _components.styled)(Linkable)(_templateObject9, (props) => {
   return props.theme.border;
-}, function (props) {
+}, (props) => {
   return props.theme.color;
 });
 
-var StyledResultLink = (0, _components.styled)(Linkable)(_templateObject10, function (props) {
+const StyledResultLink = (0, _components.styled)(Linkable)(_templateObject10, (props) => {
   return props.active ? props.theme.active : props.theme.color;
 });
 
-var StyledResult = _components.styled.div(_templateObject11, StyledResultLink, StyledPreviewLink);
+const StyledResult = _components.styled.div(_templateObject11, StyledResultLink, StyledPreviewLink);
 
 var Result = function (_React$Component2) {
   _inherits(Result, _React$Component2);
 
   function Result() {
-    var _ref2;
+    let _ref2;
 
     _classCallCheck(this, Result);
 
@@ -354,7 +354,7 @@ var Result = function (_React$Component2) {
       args[_key2] = arguments[_key2];
     }
 
-    var _this3 = _possibleConstructorReturn(this, (_ref2 = Result.__proto__ || Object.getPrototypeOf(Result)).call.apply(_ref2, [this].concat(args)));
+    const _this3 = _possibleConstructorReturn(this, (_ref2 = Result.__proto__ || Object.getPrototypeOf(Result)).call.apply(_ref2, [this].concat(args)));
 
     _this3.getRef = _this3.getRef.bind(_this3);
     return _this3;
@@ -375,7 +375,7 @@ var Result = function (_React$Component2) {
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
+      const props = this.props;
 
       return _react2.default.createElement(
         StyledResult,
@@ -387,7 +387,11 @@ var Result = function (_React$Component2) {
         },
         _react2.default.createElement(
           StyledResultLink,
-          { active: props.active, href: '/' + props.type + '/' + props.id, query: { 'search-enabled': false } },
+          {
+            active: props.active,
+            href: '/' + props.type + '/' + props.id,
+            query: { 'search-enabled': false }
+          },
           _react2.default.createElement(StyledIcon, { active: props.active, size: 'm', symbol: props.icon }),
           _react2.default.createElement(
             _text2.default,
@@ -397,7 +401,10 @@ var Result = function (_React$Component2) {
         ),
         _react2.default.createElement(
           StyledPreviewLink,
-          { active: props.active, query: { 'search-preview': props.index } },
+          {
+            active: props.active,
+            query: { 'search-preview': props.index }
+          },
           _react2.default.createElement(
             _text2.default,
             { active: props.active, size: 's' },
@@ -415,33 +422,33 @@ Result.defaultProps = {
   onScrollRequest: function onScrollRequest() {}
 };
 
-var Submit = function Submit(props) {
+const Submit = function Submit(props) {
   return _react2.default.createElement('input', { className: props.className, type: 'submit' });
 };
 var HiddenSubmit = (0, _components.styled)(Submit)(_templateObject12);
 
-var StyledClose = (0, _components.styled)(_link2.default)(_templateObject13);
+const StyledClose = (0, _components.styled)(_link2.default)(_templateObject13);
 
-var StyledCloseIcon = (0, _components.styled)(_components.Icon)(_templateObject14, function (props) {
+const StyledCloseIcon = (0, _components.styled)(_components.Icon)(_templateObject14, (props) => {
   return props.theme.color;
 });
 
 function Close(props) {
-  var verb = props.clears ? 'Clear' : 'Close';
-  var query = props.clears ? { search: null } : { 'search-enabled': null };
-  var symbol = props.clears ? 'return' : 'close';
+  const verb = props.clears ? 'Clear' : 'Close';
+  const query = props.clears ? { search: null } : { 'search-enabled': null };
+  const symbol = props.clears ? 'return' : 'close';
   return _react2.default.createElement(
     StyledClose,
     {
-      query: query,
+      query,
       title: verb + ' search ' + props.shortcut.toString()
     },
-    _react2.default.createElement(StyledCloseIcon, { size: 's', symbol: symbol }),
+    _react2.default.createElement(StyledCloseIcon, { size: 's', symbol }),
     verb
   );
 }
 
-var StyledMarkdown = (0, _components.styled)(_markdown2.default)(_templateObject15);
+const StyledMarkdown = (0, _components.styled)(_markdown2.default)(_templateObject15);
 
 function ResultPreview(props) {
   if (!props.item) {
@@ -476,25 +483,25 @@ function ResultPreview(props) {
   }
 }
 
-var StyledSearchLegend = _components.styled.div(_templateObject16, function (props) {
+const StyledSearchLegend = _components.styled.div(_templateObject16, (props) => {
   return props.theme.border;
-}, function (props) {
+}, (props) => {
   return props.theme.color;
-}, function (props) {
+}, (props) => {
   return withTint(props);
 });
 
-var StyledSearchLegendBox = _components.styled.div(_templateObject17);
+const StyledSearchLegendBox = _components.styled.div(_templateObject17);
 
-var StyledField = (0, _components.styled)(_text2.default)(_templateObject18, function (props) {
+const StyledField = (0, _components.styled)(_text2.default)(_templateObject18, (props) => {
   return props.theme.color;
 });
 
-var StyledLegendName = (0, _components.styled)(StyledField)(_templateObject19, function (props) {
+const StyledLegendName = (0, _components.styled)(StyledField)(_templateObject19, (props) => {
   return props.theme.color;
 });
 
-var StyledFieldLink = (0, _components.styled)(_link2.default)(_templateObject20, function (props) {
+const StyledFieldLink = (0, _components.styled)(_link2.default)(_templateObject20, (props) => {
   return props.theme.color;
 });
 
@@ -510,7 +517,7 @@ function SearchLegend(props) {
     _react2.default.createElement(
       StyledSearchLegendBox,
       null,
-      (props.items || []).map(function (l) {
+      (props.items || []).map((l) => {
         switch (l.type) {
           case 'field':
           default:
@@ -519,7 +526,10 @@ function SearchLegend(props) {
               { key: l.key },
               _react2.default.createElement(
                 StyledFieldLink,
-                { title: l.description, query: { search: '' + l.value } },
+                {
+                  title: l.description,
+                  query: { search: String(l.value) }
+                },
                 l.key
               )
             );

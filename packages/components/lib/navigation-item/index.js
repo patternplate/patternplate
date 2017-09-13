@@ -129,7 +129,7 @@ var StyledName = styled.div`
 `;
 
 var StyledMeta = styled.div`
-  flex: 1 0  auto;
+  flex: 1 0 auto;
   margin: 0 ${function (props) {
   return props.active ? 6 : 10;
 }}px 0 auto;
@@ -150,34 +150,34 @@ var StyledNavigationItem = styled.div`
 var LinkTag = tag(['active', 'type'])(Link);
 
 var StyledNavigationLink = styled(LinkTag)`
-	box-sizing: border-box;
-	display: flex;
-	width: 100%;
-	align-items: center;
-	text-decoration: none;
-	font-size: ${function (props) {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+  font-size: ${function (props) {
   return props.theme.fontSize;
 }};
-	line-height: 20px;
+  line-height: 20px;
   font-family: ${FONTS.default};
   font-weight: ${function (props) {
   return props.theme.fontWeight;
 }};
-	${function (props) {
+  ${function (props) {
   return props.active && `
 		margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
 		padding-left: ${props.type === 'folder' ? 0 : '1px'};
 		border-left: 3px solid ${props.theme.active};
 	`;
 }};
-	:link,
-	:visited {
-		color: ${function (props) {
+  :link,
+  :visited {
+    color: ${function (props) {
   return props.theme.color;
 }};
-		${function (props) {
+    ${function (props) {
   return props.active && `color: ${color(props.theme.active)}`;
 }};
-	}
+  }
 `;
 //# sourceMappingURL=index.js.map

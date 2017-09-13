@@ -6,16 +6,17 @@ const stash = {};
 export default applyTransform;
 
 function applyTransform(file, opts) {
-	const source = typeof file.buffer === 'string' ?
-		file.buffer :
-		file.buffer.toString('utf-8');
+  const source =
+    typeof file.buffer === 'string'
+      ? file.buffer
+      : file.buffer.toString('utf-8');
 
-	const id = md5(source);
+  const id = md5(source);
 
-	const buffer = stash[id] || transform(source, opts).code;
-	stash[id] = buffer;
+  const buffer = stash[id] || transform(source, opts).code;
+  stash[id] = buffer;
 
-	return {
-		buffer
-	};
+  return {
+    buffer
+  };
 }

@@ -5,22 +5,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.type = undefined;
 
-var _reactRouterRedux = require('react-router-redux');
+const _reactRouterRedux = require('react-router-redux');
 
-var _item = require('../selectors/item');
+const _item = require('../selectors/item');
 
-var _item2 = _interopRequireDefault(_item);
+const _item2 = _interopRequireDefault(_item);
 
-var _pool = require('../selectors/pool');
+const _pool = require('../selectors/pool');
 
-var _pool2 = _interopRequireDefault(_pool);
+const _pool2 = _interopRequireDefault(_pool);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = arrow;
-var type = exports.type = 'ARROW';
+const type = exports.type = 'ARROW';
 
-var OFFSETS = {
+const OFFSETS = {
   up: -1,
   down: 1,
   default: 0
@@ -28,7 +28,7 @@ var OFFSETS = {
 
 function arrow(payload) {
   return function (dispatch, getState) {
-    var state = getState();
+    const state = getState();
 
     // Is handled locally
     if (state.searchEnabled) {
@@ -42,10 +42,10 @@ function arrow(payload) {
     switch (payload) {
       case 'left':
         {
-          var i = (0, _item2.default)(state);
-          var p = (0, _pool2.default)(state);
-          var id = i.path.slice(0, i.path.length - 1).join('/');
-          var next = p.find(function (i) {
+          const i = (0, _item2.default)(state);
+          const p = (0, _pool2.default)(state);
+          const id = i.path.slice(0, i.path.length - 1).join('/');
+          const next = p.find((i) => {
             return i.id === id;
           });
           return next && next.href && go(dispatch)(next.href);
@@ -54,8 +54,8 @@ function arrow(payload) {
       case 'down':
       default:
         {
-          var offset = payload in OFFSETS ? OFFSETS[payload] : OFFSETS.default;
-          var _next = jump((0, _pool2.default)(state), (0, _item2.default)(state), offset);
+          const offset = payload in OFFSETS ? OFFSETS[payload] : OFFSETS.default;
+          const _next = jump((0, _pool2.default)(state), (0, _item2.default)(state), offset);
           return _next && go(dispatch)(_next);
         }
     }
@@ -77,8 +77,8 @@ function jump(pool, start, offset) {
     return start;
   }
 
-  var result = start.href;
-  var index = pool.indexOf(start);
+  let result = start.href;
+  let index = pool.indexOf(start);
 
   while (result === start.href) {
     index += offset;

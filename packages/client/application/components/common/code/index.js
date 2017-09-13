@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  color: ', ';\n  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;\n\n  .hljs-comment,\n  .hljs-quote {\n    color: ', ';\n    font-style: italic;\n  }\n\n  .hljs-doctag,\n  .hljs-keyword,\n  .hljs-formula {\n    color: ', ';\n  }\n\n  .hljs-section,\n  .hljs-name,\n  .hljs-selector-tag,\n  .hljs-deletion,\n  .hljs-subst {\n    color: ', ';\n  }\n\n  .hljs-literal {\n    color: ', ';\n  }\n\n  .hljs-string,\n  .hljs-regexp,\n  .hljs-addition,\n  .hljs-attribute,\n  .hljs-meta-string {\n    color: ', ';\n  }\n\n  .hljs-built_in,\n  .hljs-class .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-attr,\n  .hljs-variable,\n  .hljs-template-variable,\n  .hljs-type,\n  .hljs-selector-class,\n  .hljs-selector-attr,\n  .hljs-selector-pseudo,\n  .hljs-number {\n    color: ', ';\n  }\n\n  .hljs-symbol,\n  .hljs-bullet,\n  .hljs-link,\n  .hljs-meta,\n  .hljs-selector-id,\n  .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-emphasis {\n    font-style: italic;\n  }\n\n  .hljs-strong {\n    font-weight: bold;\n  }\n\n  .hljs-link {\n    text-decoration: underline;\n  }\n'], ['\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  color: ', ';\n  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;\n\n  .hljs-comment,\n  .hljs-quote {\n    color: ', ';\n    font-style: italic;\n  }\n\n  .hljs-doctag,\n  .hljs-keyword,\n  .hljs-formula {\n    color: ', ';\n  }\n\n  .hljs-section,\n  .hljs-name,\n  .hljs-selector-tag,\n  .hljs-deletion,\n  .hljs-subst {\n    color: ', ';\n  }\n\n  .hljs-literal {\n    color: ', ';\n  }\n\n  .hljs-string,\n  .hljs-regexp,\n  .hljs-addition,\n  .hljs-attribute,\n  .hljs-meta-string {\n    color: ', ';\n  }\n\n  .hljs-built_in,\n  .hljs-class .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-attr,\n  .hljs-variable,\n  .hljs-template-variable,\n  .hljs-type,\n  .hljs-selector-class,\n  .hljs-selector-attr,\n  .hljs-selector-pseudo,\n  .hljs-number {\n    color: ', ';\n  }\n\n  .hljs-symbol,\n  .hljs-bullet,\n  .hljs-link,\n  .hljs-meta,\n  .hljs-selector-id,\n  .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-emphasis {\n    font-style: italic;\n  }\n\n  .hljs-strong {\n    font-weight: bold;\n  }\n\n  .hljs-link {\n    text-decoration: underline;\n  }\n']);
+const _templateObject = _taggedTemplateLiteral(['\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  color: ', ';\n  font-family: \'SFMono-Regular\', Consolas, \'Liberation Mono\', Menlo, Courier,\n    monospace;\n\n  .hljs-comment,\n  .hljs-quote {\n    color: ', ';\n    font-style: italic;\n  }\n\n  .hljs-doctag,\n  .hljs-keyword,\n  .hljs-formula {\n    color: ', ';\n  }\n\n  .hljs-section,\n  .hljs-name,\n  .hljs-selector-tag,\n  .hljs-deletion,\n  .hljs-subst {\n    color: ', ';\n  }\n\n  .hljs-literal {\n    color: ', ';\n  }\n\n  .hljs-string,\n  .hljs-regexp,\n  .hljs-addition,\n  .hljs-attribute,\n  .hljs-meta-string {\n    color: ', ';\n  }\n\n  .hljs-built_in,\n  .hljs-class .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-attr,\n  .hljs-variable,\n  .hljs-template-variable,\n  .hljs-type,\n  .hljs-selector-class,\n  .hljs-selector-attr,\n  .hljs-selector-pseudo,\n  .hljs-number {\n    color: ', ';\n  }\n\n  .hljs-symbol,\n  .hljs-bullet,\n  .hljs-link,\n  .hljs-meta,\n  .hljs-selector-id,\n  .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-emphasis {\n    font-style: italic;\n  }\n\n  .hljs-strong {\n    font-weight: bold;\n  }\n\n  .hljs-link {\n    text-decoration: underline;\n  }\n'], ['\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  color: ', ';\n  font-family: \'SFMono-Regular\', Consolas, \'Liberation Mono\', Menlo, Courier,\n    monospace;\n\n  .hljs-comment,\n  .hljs-quote {\n    color: ', ';\n    font-style: italic;\n  }\n\n  .hljs-doctag,\n  .hljs-keyword,\n  .hljs-formula {\n    color: ', ';\n  }\n\n  .hljs-section,\n  .hljs-name,\n  .hljs-selector-tag,\n  .hljs-deletion,\n  .hljs-subst {\n    color: ', ';\n  }\n\n  .hljs-literal {\n    color: ', ';\n  }\n\n  .hljs-string,\n  .hljs-regexp,\n  .hljs-addition,\n  .hljs-attribute,\n  .hljs-meta-string {\n    color: ', ';\n  }\n\n  .hljs-built_in,\n  .hljs-class .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-attr,\n  .hljs-variable,\n  .hljs-template-variable,\n  .hljs-type,\n  .hljs-selector-class,\n  .hljs-selector-attr,\n  .hljs-selector-pseudo,\n  .hljs-number {\n    color: ', ';\n  }\n\n  .hljs-symbol,\n  .hljs-bullet,\n  .hljs-link,\n  .hljs-meta,\n  .hljs-selector-id,\n  .hljs-title {\n    color: ', ';\n  }\n\n  .hljs-emphasis {\n    font-style: italic;\n  }\n\n  .hljs-strong {\n    font-weight: bold;\n  }\n\n  .hljs-link {\n    text-decoration: underline;\n  }\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _highlight = require('./highlight');
+const _highlight = require('./highlight');
 
-var _highlight2 = _interopRequireDefault(_highlight);
+const _highlight2 = _interopRequireDefault(_highlight);
 
-var _toElements = require('./to-elements');
+const _toElements = require('./to-elements');
 
-var _toElements2 = _interopRequireDefault(_toElements);
+const _toElements2 = _interopRequireDefault(_toElements);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28,9 +28,9 @@ exports.default = Code;
 
 
 function Code(props) {
-  var source = highlightCode(props.language, props.children);
+  const source = highlightCode(props.language, props.children);
 
-  var code = _react2.default.createElement(
+  const code = _react2.default.createElement(
     StyledCode,
     { className: props.className },
     source
@@ -43,7 +43,7 @@ function Code(props) {
   ) : code;
 }
 
-var themes = {
+const themes = {
   dark: {
     mono1: '#abb2bf',
     mono2: '#818896',
@@ -72,7 +72,7 @@ var themes = {
   }
 };
 
-var themed = function themed(key) {
+const themed = function themed(key) {
   return function (props) {
     return themes[props.theme.name][key];
   };
@@ -81,7 +81,7 @@ var themed = function themed(key) {
 var StyledCode = _components.styled.code(_templateObject, themed('mono1'), themed('mono3'), themed('hue3'), themed('hue5'), themed('hue1'), themed('hue4'), themed('hue62'), themed('hue6'), themed('hue2'));
 
 function highlightCode(language) {
-  var source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  const source = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
   if (!language) {
     return source;
@@ -89,6 +89,6 @@ function highlightCode(language) {
   if (!source) {
     return source;
   }
-  var hast = (0, _highlight2.default)(language, source);
+  const hast = (0, _highlight2.default)(language, source);
   return (0, _toElements2.default)(hast);
 }

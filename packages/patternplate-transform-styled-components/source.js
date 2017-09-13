@@ -6,7 +6,7 @@ export default styledComponentsTransformFactory;
 function styledComponentsTransformFactory(app) {
   const importing = importFrom(process.cwd(), 'styled-components');
 
-  return async function (file) {
+  return async function(file) {
     const {ServerStyleSheet} = await importing;
 
     file.wrap = (render, comp) => {
@@ -14,7 +14,9 @@ function styledComponentsTransformFactory(app) {
       const html = render(sheet.collectStyles(comp));
       const css = sheet.getStyleTags();
 
-      app.resources = app.resources.filter(r => r.id !== `styled-components/${file.pattern.id}`);
+      app.resources = app.resources.filter(
+        r => r.id !== `styled-components/${file.pattern.id}`
+      );
 
       app.resources.push({
         id: `styled-components/${file.pattern.id}`,
@@ -26,8 +28,8 @@ function styledComponentsTransformFactory(app) {
       });
 
       return html;
-    }
+    };
 
     return file;
-	};
+  };
 }

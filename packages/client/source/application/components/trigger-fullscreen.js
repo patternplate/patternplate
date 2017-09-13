@@ -11,16 +11,14 @@ function Fullscreen(props) {
       external
       title={`Open pattern demo for "${props.id}" in a new tab`}
       href={props.href}
-      >
-      <StyledIcon symbol="fullscreen"/>
+    >
+      <StyledIcon symbol="fullscreen" />
       Open pattern demo for "${props.id}" in a new tab
     </StyledLink>
   );
 }
 
-const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.background};
-`;
+const StyledIcon = styled(Icon)`fill: ${props => props.theme.background};`;
 
 const StyledLink = styled(Link)`
   font-size: 0;

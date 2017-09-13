@@ -1,12 +1,12 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n\tmax-width: 100%;\n\theight: auto;\n'], ['\n\tmax-width: 100%;\n\theight: auto;\n']);
+const _templateObject = _taggedTemplateLiteral(['\n  max-width: 100%;\n  height: auto;\n'], ['\n  max-width: 100%;\n  height: auto;\n']);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 

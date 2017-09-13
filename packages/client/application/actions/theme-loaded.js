@@ -4,6 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _reduxActions = require('redux-actions');
+const _reduxActions = require('redux-actions');
 
 exports.default = (0, _reduxActions.createAction)('THEME_LOADED');

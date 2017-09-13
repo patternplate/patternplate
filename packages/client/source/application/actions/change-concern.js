@@ -17,9 +17,7 @@ function changeConcern(concern) {
       return file.concern === 'demo' && file.type === ext.slice(1);
     });
 
-    const type = concern === 'index' && hasDemo ?
-      'source' :
-      parsed.query.type;
+    const type = concern === 'index' && hasDemo ? 'source' : parsed.query.type;
 
     const source = urlQuery.format({
       pathname: `${path.dirname(previous)}/${concern}${ext}`,
@@ -29,11 +27,13 @@ function changeConcern(concern) {
       }
     });
 
-    dispatch(patchLocation({
-      query: {
-        source
-      }
-    }));
+    dispatch(
+      patchLocation({
+        query: {
+          source
+        }
+      })
+    );
   };
 }
 

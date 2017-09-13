@@ -10,17 +10,11 @@ const StyledDemo = styled.iframe`
 class PatternDemo extends React.Component {
   render() {
     const {props} = this;
-    return (
-      props.contents
-        ? <StyledDemo
-            srcDoc={props.contents}
-            seamless
-            />
-        : <StyledDemo
-            src={props.src}
-            seamless
-            />
-      );
+    return props.contents ? (
+      <StyledDemo srcDoc={props.contents} seamless />
+    ) : (
+      <StyledDemo src={props.src} seamless />
+    );
   }
 }
 

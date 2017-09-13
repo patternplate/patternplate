@@ -2,7 +2,7 @@
 
 var React = require('react');
 var NavigationItem = require('../navigation-item');
-// const Flag = require('flag');
+// Const Flag = require('flag');
 
 module.exports = NavigationTree;
 
@@ -26,13 +26,13 @@ function NavigationTree(props) {
           hidden: hidden,
           href: item.href,
           id: item.id /*
-                      meta={item.warnings.map(warning => {
+                      Meta={item.warnings.map(warning => {
                       switch (warning.type) {
                       case 'flag':
                       default:
-                      return <Flag key={warning.value} title={warning.message}>{warning.value}</Flag>;
+                        return <Flag key={warning.value} title={warning.message}>{warning.value}</Flag>;
                       }
-                      })}*/
+                      })} */
           , name: item.manifest.displayName,
           onClick: props.onItemClick,
           onScrollRequest: props.onScrollRequest,

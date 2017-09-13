@@ -13,6 +13,7 @@
     "predeps": "npm run build",
     "deps": "dependency-check . && dependency-check . --extra --no-dev"
   },
+  "xo": false,
   "babel": {
     "presets": [
       [

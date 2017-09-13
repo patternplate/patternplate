@@ -5,8 +5,8 @@ import Favicon from '../components/favicon';
 export default connect(mapState)(Favicon);
 
 function mapState(state) {
-	return {
+  return {
     error: state.demo.error,
-		source: state.config.favicon
-	};
+    source: state.config.favicon
+  };
 }

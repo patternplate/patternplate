@@ -1,20 +1,22 @@
 const color = require('color');
 const {merge} = require('lodash');
 
-
 module.exports = function getThemes(passed) {
   const mainColorTone = passed ? color(passed) : color.hsl(210, 100, 100);
 
-  const bgDark = mainColorTone.desaturate(0.5).darken(0.9).string();
+  const bgDark = mainColorTone
+    .desaturate(0.5)
+    .darken(0.9)
+    .string();
   const bgLight = 'hsl(255, 0%, 100%)';
   const main = mainColorTone.darken(0.4).string();
 
   const common = {
     active: main,
-    error: 'rgba(205, 63, 69, 1)', // errors, alpha, deprecated
-    warning: 'rgba(255, 189, 46, 1)', // warnings, beta
-    info: 'rgba(80, 179, 221, 1)', // rc
-    success: 'rgba(74, 165, 74, 1)', // stable
+    error: 'rgba(205, 63, 69, 1)', // Errors, alpha, deprecated
+    warning: 'rgba(255, 189, 46, 1)', // Warnings, beta
+    info: 'rgba(80, 179, 221, 1)', // Rc
+    success: 'rgba(74, 165, 74, 1)', // Stable
     dark: 'rgba(15, 15, 15, 1)',
     light: 'rgba(220, 220, 220, 1)',
     fontWeight: '100',
@@ -24,9 +26,18 @@ module.exports = function getThemes(passed) {
   const dark = merge({}, common, {
     name: 'dark',
     background: bgDark,
-    backgroundSecondary: mainColorTone.desaturate(0.5).darken(0.85).string(),
-    backgroundTertiary: mainColorTone.desaturate(0.5).darken(0.8).string(),
-    border: mainColorTone.desaturate(0.5).darken(0.85).string(),
+    backgroundSecondary: mainColorTone
+      .desaturate(0.5)
+      .darken(0.85)
+      .string(),
+    backgroundTertiary: mainColorTone
+      .desaturate(0.5)
+      .darken(0.8)
+      .string(),
+    border: mainColorTone
+      .desaturate(0.5)
+      .darken(0.85)
+      .string(),
     color: 'hsl(255, 0%, 95%)',
     colorNegated: 'rgba(68, 68, 68, 1)',
     recess: 'rgba(153, 153, 153, 1)'
@@ -48,9 +59,4 @@ module.exports = function getThemes(passed) {
     dark,
     light
   };
-}
-
-function mix(a, b, factor) {
-  return color(a)
-    .mix(color(b), factor);
-}
+};

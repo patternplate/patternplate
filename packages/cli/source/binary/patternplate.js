@@ -9,15 +9,16 @@ import patternplate from '../';
 import patternplateInit from '../library/init/index.js';
 
 const defaults = {
-	'open': null,
-	'log.level': 'info',
-	'log.colorize': null,
-	'log.timestamp': null,
-	'log.showLevel': null,
-	'server.autoPort': null
+  open: null,
+  'log.level': 'info',
+  'log.colorize': null,
+  'log.timestamp': null,
+  'log.showLevel': null,
+  'server.autoPort': null
 };
 
-const cli = meow(`
+const cli = meow(
+  `
 	Usage
 	$ patternplate [command=start] [options]
 
@@ -59,85 +60,86 @@ const cli = meow(`
 
 	  # Execute patternplate and server in development, client in production mode
 	  $ patternplate start --env=development --patternplate-client.env=production
-	`, {
-		boolean: [
-			'log.colorize',
-			'log.timestamp',
-			'log.showLevel',
-			'server.autoPort'
-		],
-		default: defaults
-	});
+	`,
+  {
+    boolean: [
+      'log.colorize',
+      'log.timestamp',
+      'log.showLevel',
+      'server.autoPort'
+    ],
+    default: defaults
+  }
+);
 
 async function main(command = 'start', options = {}, input = []) {
-	if (command === 'help') {
-		cli.showHelp(0);
-		return;
-	}
+  if (command === 'help') {
+    cli.showHelp(0);
+    return;
+  }
 
-	options.log.showLevel = options.log['show-level'];
-	options.server.autoPort = options.server['auto-port'];
+  options.log.showLevel = options.log['show-level'];
+  options.server.autoPort = options.server['auto-port'];
 
-	const normalized = omitBy(options, isNull);
-	normalized.log = omitBy(normalized.log, isNull);
-	normalized.server = omitBy(normalized.server, isNull);
+  const normalized = omitBy(options, isNull);
+  normalized.log = omitBy(normalized.log, isNull);
+  normalized.server = omitBy(normalized.server, isNull);
 
-	const mode = command === 'console' ? 'console' : 'server';
-	const settings = {...normalized, mode};
+  const mode = command === 'console' ? 'console' : 'server';
+  const settings = {...normalized, mode};
 
-	if (command === 'init') {
-		const [, path] = input;
-		await patternplateInit(path, settings);
-		return {mode: 'console'};
-	}
+  if (command === 'init') {
+    const [, path] = input;
+    await patternplateInit(path, settings);
+    return {mode: 'console'};
+  }
 
-	const spinner = ora('Starting').start();
-	const application = await patternplate(settings);
-	spinner.stop();
+  const spinner = ora('Starting').start();
+  const application = await patternplate(settings);
+  spinner.stop();
 
-	if (mode === 'console') {
-		const [, consoleCommand] = input;
-		await application.server.run(consoleCommand, settings);
-		return {mode: 'console'};
-	}
+  if (mode === 'console') {
+    const [, consoleCommand] = input;
+    await application.server.run(consoleCommand, settings);
+    return {mode: 'console'};
+  }
 
-	await application.start();
+  await application.start();
 
-	if (settings.open) {
-		const {host, port} = application.configuration.server;
-		const address = `http://${host}:${port}`;
-		const explicit = typeof settings.open === 'string';
-		const openOptions = explicit ? {app: settings.open} : {};
-		const browserName = explicit ? settings.open : 'default browser';
-		application.log.info(`Opening ${browserName} at ${address}`);
+  if (settings.open) {
+    const {host, port} = application.configuration.server;
+    const address = `http://${host}:${port}`;
+    const explicit = typeof settings.open === 'string';
+    const openOptions = explicit ? {app: settings.open} : {};
+    const browserName = explicit ? settings.open : 'default browser';
+    application.log.info(`Opening ${browserName} at ${address}`);
 
-		opn(address, openOptions)
-			.catch(error => {
-				application.log.error(error);
-				console.log(error.stack);
-			});
-	}
+    opn(address, openOptions).catch(error => {
+      application.log.error(error);
+      console.log(error.stack);
+    });
+  }
 
-	return {mode: 'server'};
+  return {mode: 'server'};
 }
 
 const {input, flags} = cli;
 const [command] = input;
 
 main(command, flags, input)
-	.then(i => {
-		if (i.mode === 'console') {
-			process.exit(0);
-		}
-	})
-	.catch(error => {
-		if (error.patternplate) {
-			console.log(cli.help);
-			console.error(error.message);
-			process.exit(1);
-		}
+  .then(i => {
+    if (i.mode === 'console') {
+      process.exit(0);
+    }
+  })
+  .catch(error => {
+    if (error.patternplate) {
+      console.log(cli.help);
+      console.error(error.message);
+      process.exit(1);
+    }
 
-		setTimeout(() => {
-			throw error;
-		});
-	});
+    setTimeout(() => {
+      throw error;
+    });
+  });

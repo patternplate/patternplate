@@ -38,17 +38,31 @@ low.registerLanguage('markdown', md);
 
 // (s)hell(ish)s
 low.registerLanguage('bash', bash);
-// low.registerLanguage('shell', bash);
+// Low.registerLanguage('shell', bash);
 
 const languages = [
-	'css', 'less', 'scss', 'stylus', 'js', 'javascript', 'jsx', 'ts', 'tsx',
-	'typescript', 'json', 'html', 'xml', 'md', 'markdown', 'bash'
+  'css',
+  'less',
+  'scss',
+  'stylus',
+  'js',
+  'javascript',
+  'jsx',
+  'ts',
+  'tsx',
+  'typescript',
+  'json',
+  'html',
+  'xml',
+  'md',
+  'markdown',
+  'bash'
 ];
 
 export default function highlight(language, source) {
-	if (!includes(languages, language)) {
-		return source;
-	}
-	const {value: children} = low.highlight(language, source);
-	return children;
+  if (!includes(languages, language)) {
+    return source;
+  }
+  const {value: children} = low.highlight(language, source);
+  return children;
 }

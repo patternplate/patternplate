@@ -4,8 +4,8 @@ const Themer = require('../demo-themer');
 
 module.exports = function MainHeaderDemo() {
   return (
-    <Themer>
-      <Pattern title="Patternplate!"/>
-    </Themer>
+	<Themer>
+		<Pattern title="Patternplate!"/>
+	</Themer>
   );
-}
+};

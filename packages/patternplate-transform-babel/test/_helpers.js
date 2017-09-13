@@ -2,7 +2,7 @@
 import {merge} from 'lodash/fp';
 
 export const getFile = merge({
-	buffer: new Buffer(''),
+	buffer: Buffer.from(''),
 	path: 'mocks/index.js',
 	dependencies: {}
 });

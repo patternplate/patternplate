@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _boilerplateServer = require('boilerplate-server');
+const _boilerplateServer = require('boilerplate-server');
 
-var _boilerplateServer2 = _interopRequireDefault(_boilerplateServer);
+const _boilerplateServer2 = _interopRequireDefault(_boilerplateServer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

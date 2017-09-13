@@ -4,21 +4,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
+const _reactRouter = require('react-router');
 
-var _classnames = require('classnames');
+const _classnames = require('classnames');
 
-var _classnames2 = _interopRequireDefault(_classnames);
+const _classnames2 = _interopRequireDefault(_classnames);
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28,7 +28,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Message = function (_Component) {
+const Message = function (_Component) {
   _inherits(Message, _Component);
 
   function Message() {
@@ -50,12 +50,12 @@ var Message = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
+      const props = this.props;
 
-      var className = (0, _classnames2.default)('message', 'message--' + props.type);
+      const className = (0, _classnames2.default)('message', 'message--' + props.type);
       return _react2.default.createElement(
         'div',
-        { className: className },
+        { className },
         _react2.default.createElement(
           'div',
           { className: 'message__header' },

@@ -14,9 +14,7 @@ const data = [
       displayName: 'atoms'
     },
     id: 'atoms',
-    path: [
-      'atoms'
-    ],
+    path: ['atoms'],
     href: '/atoms',
     type: 'folder',
     children: [
@@ -31,10 +29,7 @@ const data = [
           displayName: 'Icon'
         },
         id: 'atoms/icon',
-        path: [
-          'atoms',
-          'icon'
-        ],
+        path: ['atoms', 'icon'],
         href: '/atoms/icon',
         type: 'pattern',
         dependents: [
@@ -42,10 +37,7 @@ const data = [
           'molecules/main-logo',
           'molecules/navigation-item'
         ],
-        envs: [
-          'dark',
-          'index'
-        ]
+        envs: ['dark', 'index']
       }
     ]
   },
@@ -60,9 +52,7 @@ const data = [
       displayName: 'molecules'
     },
     id: 'molecules',
-    path: [
-      'molecules'
-    ],
+    path: ['molecules'],
     href: '/molecules',
     type: 'folder',
     children: []
@@ -78,9 +68,7 @@ const data = [
       displayName: 'organisms'
     },
     id: 'organisms',
-    path: [
-      'organisms'
-    ],
+    path: ['organisms'],
     href: '/organisms',
     type: 'folder',
     children: []
@@ -96,9 +84,7 @@ const data = [
       displayName: 'pages'
     },
     id: 'pages',
-    path: [
-      'pages'
-    ],
+    path: ['pages'],
     href: '/pages',
     type: 'folder',
     children: []
@@ -114,9 +100,7 @@ const data = [
       displayName: 'templates'
     },
     id: 'templates',
-    path: [
-      'templates'
-    ],
+    path: ['templates'],
     href: '/templates',
     type: 'folder',
     children: []
@@ -125,17 +109,10 @@ const data = [
 
 module.exports = function NavigationTreeDemo() {
   return (
-    <StyledDemoContainer>
-      <Pattern
-        data={data}
-        id=""
-        active="atoms"
-        prefix=""
-      />
-    </StyledDemoContainer>
+	<StyledDemoContainer>
+		<Pattern data={data} id="" active="atoms" prefix=""/>
+	</StyledDemoContainer>
   );
-}
+};
 
-const StyledDemoContainer = styled.div`
-  max-width: 320px;
-`;
+const StyledDemoContainer = styled.div`max-width: 320px;`;

@@ -1,40 +1,40 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+const _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _url = require('url');
+const _url = require('url');
 
-var _url2 = _interopRequireDefault(_url);
+const _url2 = _interopRequireDefault(_url);
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _reactHelmet = require('react-helmet');
+const _reactHelmet = require('react-helmet');
 
-var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
+const _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _resolve = require('resolve');
+const _resolve = require('resolve');
 
-var _server = require('../application/server');
+const _server = require('../application/server');
 
-var _server2 = _interopRequireDefault(_server);
+const _server2 = _interopRequireDefault(_server);
 
-var _layouts = require('../application/layouts');
+const _layouts = require('../application/layouts');
 
-var _layouts2 = _interopRequireDefault(_layouts);
+const _layouts2 = _interopRequireDefault(_layouts);
 
-var _getIdByPathname = require('../application/utils/get-id-by-pathname');
+const _getIdByPathname = require('../application/utils/get-id-by-pathname');
 
-var _getIdByPathname2 = _interopRequireDefault(_getIdByPathname);
+const _getIdByPathname2 = _interopRequireDefault(_getIdByPathname);
 
-var _navigate = require('../application/utils/navigate');
+const _navigate = require('../application/utils/navigate');
 
-var _navigate2 = _interopRequireDefault(_navigate);
+const _navigate2 = _interopRequireDefault(_navigate);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -80,13 +80,13 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       function resolution(p, r, how) {
         try {
-          var x = how ? how(r) : r;
+          const x = how ? how(r) : r;
           if (p === x) return p.reject(new TypeError("Promise resolution loop"));
 
           if (isThenable(x)) {
-            x.then(function (y) {
+            x.then((y) => {
               resolution(p, y);
-            }, function (e) {
+            }, (e) => {
               p.reject(e);
             });
           } else {
@@ -114,12 +114,12 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       }
 
       function then(res, rej) {
-        var chain = new Chained();
+        const chain = new Chained();
 
         try {
-          this._resolver(function (value) {
+          this._resolver((value) => {
             return isThenable(value) ? value.then(res, rej) : resolution(chain, value, res);
-          }, function (ex) {
+          }, (ex) => {
             resolution(chain, ex, rej);
           });
         } catch (ex) {
@@ -153,8 +153,8 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
         setTimeout(f, 0);
       };
 
-      var soon = function () {
-        var fq = [],
+      const soon = function () {
+        let fq = [],
             fqStart = 0,
             bufferSize = 1024;
 
@@ -181,10 +181,10 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       function Zousan(func) {
         if (func) {
-          var me = this;
-          func(function (arg) {
+          const me = this;
+          func((arg) => {
             me.resolve(arg);
-          }, function (arg) {
+          }, (arg) => {
             me.reject(arg);
           });
         }
@@ -194,19 +194,19 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
         resolve: function resolve(value) {
           if (this.state !== undefined) return;
           if (value === this) return this.reject(new TypeError("Attempt to resolve promise with self"));
-          var me = this;
+          const me = this;
 
           if (value && (typeof value === "function" || (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === "object")) {
             try {
               var first = 0;
-              var then = value.then;
+              const then = value.then;
 
               if (typeof then === "function") {
-                then.call(value, function (ra) {
+                then.call(value, (ra) => {
                   if (!first++) {
                     me.resolve(ra);
                   }
-                }, function (rr) {
+                }, (rr) => {
                   if (!first++) {
                     me.reject(rr);
                   }
@@ -221,8 +221,8 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
           this.state = STATE_FULFILLED;
           this.v = value;
-          if (me.c) soon(function () {
-            for (var n = 0, l = me.c.length; n < l; n++) {
+          if (me.c) soon(() => {
+            for (let n = 0, l = me.c.length; n < l; n++) {
               STATE_FULFILLED(me.c[n], value);
             }
           });
@@ -231,27 +231,27 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
           if (this.state !== undefined) return;
           this.state = STATE_REJECTED;
           this.v = reason;
-          var clients = this.c;
-          if (clients) soon(function () {
-            for (var n = 0, l = clients.length; n < l; n++) {
+          const clients = this.c;
+          if (clients) soon(() => {
+            for (let n = 0, l = clients.length; n < l; n++) {
               STATE_REJECTED(clients[n], reason);
             }
           });
         },
         then: function then(onF, onR) {
-          var p = new Zousan();
-          var client = {
+          const p = new Zousan();
+          const client = {
             y: onF,
             n: onR,
-            p: p
+            p
           };
 
           if (this.state === undefined) {
             if (this.c) this.c.push(client);else this.c = [client];
           } else {
-            var s = this.state,
+            let s = this.state,
                 a = this.v;
-            soon(function () {
+            soon(() => {
               s(client, a);
             });
           }
@@ -263,7 +263,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       function STATE_FULFILLED(c, arg) {
         if (typeof c.y === "function") {
           try {
-            var yret = c.y.call(undefined, arg);
+            const yret = c.y.call(undefined, arg);
             c.p.resolve(yret);
           } catch (err) {
             c.p.reject(err);
@@ -274,7 +274,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
       function STATE_REJECTED(c, reason) {
         if (typeof c.n === "function") {
           try {
-            var yret = c.n.call(undefined, reason);
+            const yret = c.n.call(undefined, reason);
             c.p.resolve(yret);
           } catch (err) {
             c.p.reject(err);
@@ -284,14 +284,14 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
 
       Zousan.resolve = function (val) {
         if (val && val instanceof Zousan) return val;
-        var z = new Zousan();
+        const z = new Zousan();
         z.resolve(val);
         return z;
       };
 
       Zousan.reject = function (err) {
         if (err && err instanceof Zousan) return err;
-        var z = new Zousan();
+        const z = new Zousan();
         z.reject(err);
         return z;
       };
@@ -301,7 +301,7 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
     })();
   }
 
-  var resolver = this;
+  const resolver = this;
 
   switch (catcher) {
     case true:
@@ -329,16 +329,16 @@ Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
   }
 };
 
-var cwd = process.cwd();
-var resolve = function resolve(id) {
+const cwd = process.cwd();
+const resolve = function resolve(id) {
   return (0, _resolve.sync)(id, { basedir: cwd });
 };
 
-var getSchema = require('@patternplate/server/library/get-schema');
+const getSchema = require('@patternplate/server/library/get-schema');
 
 exports.default = function renderPage(application, pageUrl) {
   return new Promise(function ($return, $error) {
-    var app, client, server, parsed, depth, base, id, config, schema, pattern, render, transfer, _ref, html, css, head, icons;
+    let app, client, server, parsed, depth, base, id, config, schema, pattern, render, transfer, _ref, html, css, head, icons;
 
     app = application.parent;
     client = application;
@@ -353,17 +353,17 @@ exports.default = function renderPage(application, pageUrl) {
       pattern = (0, _navigate2.default)(id, schema.meta) || {};
 
       render = {
-        base: base,
-        config: config,
-        pattern: pattern,
-        schema: schema,
+        base,
+        config,
+        pattern,
+        schema,
         startBase: base
       };
 
       transfer = {
-        base: base,
-        config: config,
-        pattern: { id: id },
+        base,
+        config,
+        pattern: { id },
         startBase: base
       };
 
@@ -375,11 +375,11 @@ exports.default = function renderPage(application, pageUrl) {
 
         return $return((0, _layouts2.default)({
           attributes: head.htmlAttributes,
-          base: base,
-          css: css,
+          base,
+          css,
           data: transfer,
-          html: html,
-          icons: icons,
+          html,
+          icons,
           link: head.link,
           meta: head.meta,
           style: head.style,

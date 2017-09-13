@@ -12,7 +12,7 @@ export default Icon;
 function Icon(props) {
   return (
     <StyledIcon className={props.className} size={props.size}>
-      <use xlinkHref={`#${props.symbol || 'placeholder'}`}/>
+      <use xlinkHref={`#${props.symbol || 'placeholder'}`} />
     </StyledIcon>
   );
 }

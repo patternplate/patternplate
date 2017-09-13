@@ -4,10 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _reduxActions = require('redux-actions');
+const _reduxActions = require('redux-actions');
 
-exports.default = (0, _reduxActions.createAction)('WINDOW_RESIZE', function (_ref) {
-  var width = _ref.width,
+exports.default = (0, _reduxActions.createAction)('WINDOW_RESIZE', (_ref) => {
+  let width = _ref.width,
       height = _ref.height;
-  return { width: width, height: height };
+  return {
+    width,
+    height
+  };
 });

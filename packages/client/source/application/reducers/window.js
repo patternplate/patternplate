@@ -3,18 +3,21 @@ import {handleActions} from 'redux-actions';
 import {windowResize} from '../actions';
 
 const defaultValue = {
-	height: 0,
-	width: 0
+  height: 0,
+  width: 0
 };
 
-export default handleActions({
-	[windowResize]: onWindowResize
-}, defaultValue);
+export default handleActions(
+  {
+    [windowResize]: onWindowResize
+  },
+  defaultValue
+);
 
 function onWindowResize(state, {payload}) {
-	const next = {width: payload.width, height: payload.height};
-	if (!isEqual(next, state)) {
-		return next;
-	}
-	return state;
+  const next = {width: payload.width, height: payload.height};
+  if (!isEqual(next, state)) {
+    return next;
+  }
+  return state;
 }

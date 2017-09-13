@@ -1,38 +1,38 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.default = withToggle;
 
-var _assert = require('assert');
+const _assert = require('assert');
 
-var _assert2 = _interopRequireDefault(_assert);
+const _assert2 = _interopRequireDefault(_assert);
 
-var _reactRedux = require('react-redux');
+const _reactRedux = require('react-redux');
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
-var _shortcuts = require('../shortcuts');
+const _shortcuts = require('../shortcuts');
 
-var _shortcuts2 = _interopRequireDefault(_shortcuts);
+const _shortcuts2 = _interopRequireDefault(_shortcuts);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var s = (0, _lodash.values)((0, _shortcuts2.default)());
+const s = (0, _lodash.values)((0, _shortcuts2.default)());
 
 function withToggle(action) {
-	var shortcut = s.find(function (i) {
-		return i.key === action.key;
-	});
+  const shortcut = s.find((i) => {
+    return i.key === action.key;
+  });
 
-	(0, _assert2.default)(shortcut, action + ' passed to withToggle has no matching shortcut found for ' + action.key);
+  (0, _assert2.default)(shortcut, action + ' passed to withToggle has no matching shortcut found for ' + action.key);
 
-	return function (Component) {
-		var mapProps = function mapProps(state) {
-			var enabled = state[action.property];
-			return { enabled: enabled, shortcut: shortcut };
-		};
-		return (0, _reactRedux.connect)(mapProps)(Component);
-	};
+  return function (Component) {
+    const mapProps = function mapProps(state) {
+      const enabled = state[action.property];
+      return { enabled, shortcut };
+    };
+    return (0, _reactRedux.connect)(mapProps)(Component);
+  };
 }

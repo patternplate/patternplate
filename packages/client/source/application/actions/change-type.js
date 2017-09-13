@@ -7,7 +7,11 @@ export default changeType;
 export const type = 'CHANGE_TYPE';
 
 function changeType(input) {
-  assert.equal(typeof input, 'string', 'input for changeType action must be of type string');
+  assert.equal(
+    typeof input,
+    'string',
+    'input for changeType action must be of type string'
+  );
 
   return (dispatch, getState) => {
     const location = getState().routing.locationBeforeTransitions;

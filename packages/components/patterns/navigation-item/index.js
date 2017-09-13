@@ -42,32 +42,30 @@ class NavigationItem extends React.Component {
     const symbol = props.active ? props.symbolActive : props.symbol;
 
     return (
-      <StyledNavigationItem
-        active={props.active}
-        className={props.className}
-        innerRef={this.getRef}
-        type={props.type}
-      >
-        <StyledNavigationLink
-          active={props.active}
-          onClick={props.onClick}
-          href={props.href}
-          sticky={props.type === 'folder' && props.active}
-          type={props.type}
-          title={title}
-        >
-          {symbol &&
-            <StyledIcon active={props.active} size="m" symbol={symbol}/>
-          }
-          <StyledName>{props.name}</StyledName>
-          {props.meta &&
-            <StyledMeta active={props.active}>{props.meta}</StyledMeta>
-          }
-        </StyledNavigationLink>
-        {
-          props.active && props.children
-        }
-      </StyledNavigationItem>
+	<StyledNavigationItem
+		active={props.active}
+		className={props.className}
+		innerRef={this.getRef}
+		type={props.type}
+	>
+		<StyledNavigationLink
+			active={props.active}
+			onClick={props.onClick}
+			href={props.href}
+			sticky={props.type === 'folder' && props.active}
+			type={props.type}
+			title={title}
+		>
+			{symbol && (
+			<StyledIcon active={props.active} size="m" symbol={symbol}/>
+          )}
+			<StyledName>{props.name}</StyledName>
+			{props.meta && (
+			<StyledMeta active={props.active}>{props.meta}</StyledMeta>
+          )}
+		</StyledNavigationLink>
+		{props.active && props.children}
+	</StyledNavigationItem>
     );
   }
 }
@@ -88,8 +86,8 @@ const StyledName = styled.div`
 `;
 
 const StyledMeta = styled.div`
-  flex: 1 0  auto;
-  margin: 0 ${props => props.active ? 6 : 10}px 0 auto;
+  flex: 1 0 auto;
+  margin: 0 ${props => (props.active ? 6 : 10)}px 0 auto;
 `;
 
 const StyledNavigationItem = styled.div`
@@ -97,29 +95,35 @@ const StyledNavigationItem = styled.div`
   box-sizing: border-box;
   border-left: ${props => props.type === 'folder' && `3px solid transparent`};
   margin-left: 1px;
-  ${props => props.active && `border-color: ${color(props.theme.active).fade(0.6).toString()}`};
+  ${props =>
+    props.active &&
+    `border-color: ${color(props.theme.active)
+      .fade(0.6)
+      .toString()}`};
 `;
 
 const LinkTag = tag(['active', 'type'])(Link);
 
 const StyledNavigationLink = styled(LinkTag)`
-	box-sizing: border-box;
-	display: flex;
-	width: 100%;
-	align-items: center;
-	text-decoration: none;
-	font-size: ${props => props.theme.fontSize};
-	line-height: 20px;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+  font-size: ${props => props.theme.fontSize};
+  line-height: 20px;
   font-family: ${FONTS.default};
   font-weight: ${props => props.theme.fontWeight};
-	${props => props.active && `
+  ${props =>
+    props.active &&
+    `
 		margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
 		padding-left: ${props.type === 'folder' ? 0 : '1px'};
 		border-left: 3px solid ${props.theme.active};
 	`};
-	:link,
-	:visited {
-		color: ${props => props.theme.color};
-		${props => props.active && `color: ${color(props.theme.active)}`};
-	}
+  :link,
+  :visited {
+    color: ${props => props.theme.color};
+    ${props => props.active && `color: ${color(props.theme.active)}`};
+  }
 `;

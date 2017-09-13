@@ -12,12 +12,8 @@ function ToggleDoc(props) {
       enabled={props.enabled}
       shortcut={props.shortcut}
       title={title(props)}
-      >
-      <StyledIcon
-        active={props.active}
-        enabled={props.enabled}
-        symbol="doc"
-        />
+    >
+      <StyledIcon active={props.active} enabled={props.enabled} symbol="doc" />
       {props.shortcut.toString()}
     </StyledToggleButton>
   );
@@ -27,7 +23,7 @@ function title(props) {
   return props.active ? null : 'No documentation available.';
 }
 
-const CURSOR = props => props.active ? 'pointer' : 'not-allowed';
+const CURSOR = props => (props.active ? 'pointer' : 'not-allowed');
 
 const COLOR = props => {
   if (props.active) {
@@ -36,9 +32,7 @@ const COLOR = props => {
   return props.theme.border;
 };
 
-const StyledIcon = styled(Icon)`
-  fill: ${COLOR};
-`;
+const StyledIcon = styled(Icon)`fill: ${COLOR};`;
 
 const StyledToggleButton = styled(ToggleButton)`
   font-size: 0;

@@ -8,9 +8,9 @@ import {skippable} from '../behaviours';
 const SkippableFullscreen = withActiveForPattern(skippable(Fullscreen));
 
 const mapProps = state => {
-	return {
-		href: demo.selectSrc(state)
-	};
+  return {
+    href: demo.selectSrc(state)
+  };
 };
 
 export default connect(mapProps)(withId(SkippableFullscreen));

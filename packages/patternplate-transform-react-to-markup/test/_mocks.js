@@ -5,22 +5,22 @@ export const application = {
 };
 
 export const exportFile = getFile({
-	buffer: new Buffer('module.exports = function() { return null; }'),
+	buffer: Buffer.from('module.exports = function() { return null; }'),
 	path: 'empty/index.jsx'
 });
 
 export const defaultExportFile = getFile({
-	buffer: new Buffer('module.exports.default = function() { return null; }'),
+	buffer: Buffer.from('module.exports.default = function() { return null; }'),
 	path: 'empty/index.jsx'
 });
 
 export const dependency = getFile({
-	buffer: new Buffer('var React = require("react"); module.exports.default = function() {return React.createElement(\'div\')}'),
+	buffer: Buffer.from('var React = require("react"); module.exports.default = function() {return React.createElement(\'div\')}'),
 	path: 'dependency/index.jsx'
 });
 
 export const depending = getFile({
-	buffer: new Buffer('var React = require("react"); const dependency = require("dependency"); module.exports.default = dependency'),
+	buffer: Buffer.from('var React = require("react"); const dependency = require("dependency"); module.exports.default = dependency'),
 	path: 'empty/index.jsx',
 	dependencies: {
 		dependency
@@ -28,22 +28,22 @@ export const depending = getFile({
 });
 
 export const empty = getFile({
-	buffer: new Buffer(''),
+	buffer: Buffer.from(''),
 	path: 'empty/index.jsx'
 });
 
 export const nonDefaultExporting = getFile({
-	buffer: new Buffer('exports.example = function() {}'),
+	buffer: Buffer.from('exports.example = function() {}'),
 	path: 'non-default-exporting/index.jsx'
 });
 
 export const simple = getFile({
-	buffer: new Buffer('var React = require("react"); module.exports.default = function() {return React.createElement("div")}'),
+	buffer: Buffer.from('var React = require("react"); module.exports.default = function() {return React.createElement("div")}'),
 	path: 'simple/index.jsx'
 });
 
 export const spreadOverride = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require("react");
 		module.exports.default = function() {
 			var props = {
@@ -58,7 +58,7 @@ export const spreadOverride = getFile({
 });
 
 export const faultyProps = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require("react");
 		module.exports.default = function() {
 			var props = {
@@ -76,7 +76,7 @@ export const faultyProps = getFile({
 });
 
 export const loggingComponent = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		console.error("foo");
 		console.warn("foo");
 		console.log("foo");
@@ -94,7 +94,7 @@ export const loggingComponent = getFile({
 });
 
 export const missinDependencies = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require("react");
 		var dependency = require("dependency");
 
@@ -106,7 +106,7 @@ export const missinDependencies = getFile({
 });
 
 export const faultyComponent = getFile({
-	buffer: new Buffer(`
+	buffer: Buffer.from(`
 		var React = require("react");
 
 		module.exports.default = function() {

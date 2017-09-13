@@ -1,15 +1,15 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _lodash = require('lodash');
+const _lodash = require('lodash');
 
 exports.default = selectTransformNames;
 
 
 function selectTransformNames(config) {
-	return Object.keys((0, _lodash.omit)(config, ['path', 'options']));
+  return Object.keys((0, _lodash.omit)(config, ['path', 'options']));
 }
-module.exports = exports['default'];
+module.exports = exports.default;

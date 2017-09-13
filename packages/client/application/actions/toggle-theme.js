@@ -1,24 +1,24 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.type = undefined;
 
-var _ = require('./');
+const _ = require('./');
 
 exports.default = toggleTheme;
-var type = exports.type = 'TOGGLE_THEME';
+const type = exports.type = 'TOGGLE_THEME';
 
 function toggleTheme(forced) {
-	return function (dispatch, getState) {
-		var theme = forced ? forced : getState().theme === 'dark' ? 'light' : 'dark';
-		dispatch((0, _.patchLocation)({
-			query: {
-				theme: theme
-			}
-		}));
-	};
+  return function (dispatch, getState) {
+    const theme = forced ? forced : getState().theme === 'dark' ? 'light' : 'dark';
+    dispatch((0, _.patchLocation)({
+      query: {
+        theme
+      }
+    }));
+  };
 }
 
 toggleTheme.type = type;

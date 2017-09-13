@@ -1,11 +1,11 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 const server = {
-	port: 1337
+  port: 1337
 };
 
 exports.default = server;
-module.exports = exports["default"];
+module.exports = exports.default;

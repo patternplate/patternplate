@@ -4,15 +4,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: none;\n'], ['\n  display: none;\n']);
+const _templateObject = _taggedTemplateLiteral(['display: none;'], ['display: none;']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _server = require('react-dom/server');
+const _server = require('react-dom/server');
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,7 +27,7 @@ function layout(props) {
 }
 
 function Layout(props) {
-  var attributes = props.attributes.toComponent();
+  const attributes = props.attributes.toComponent();
   return _react2.default.createElement(
     'html',
     attributes,
@@ -51,8 +51,8 @@ function Layout(props) {
       _react2.default.createElement(Content, { content: props.html }),
       _react2.default.createElement(State, { data: props.data }),
       _react2.default.createElement('script', { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes' }),
-      props.scripts.map(function (src) {
-        return _react2.default.createElement('script', { key: src, src: src });
+      props.scripts.map((src) => {
+        return _react2.default.createElement('script', { key: src, src });
       })
     )
   );
@@ -71,8 +71,8 @@ function Content(props) {
 }
 
 function State(props) {
-  var value = JSON.stringify(props.data);
-  return _react2.default.createElement(StyledState, { 'data-application-state': true, value: value, readOnly: true });
+  const value = JSON.stringify(props.data);
+  return _react2.default.createElement(StyledState, { 'data-application-state': true, value, readOnly: true });
 }
 
 var StyledState = _components.styled.textarea(_templateObject);

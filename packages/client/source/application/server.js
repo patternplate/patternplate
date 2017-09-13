@@ -8,29 +8,32 @@ import {ServerStyleSheet} from '@patternplate/components';
 import routes from './routes';
 import configureStore from './store';
 
-export default function (location, data) {
-	const sheet = new ServerStyleSheet();
-	const memoryHistory = createMemoryHistory(location);
-	const store = configureStore(memoryHistory, data);
-	const history = syncHistoryWithStore(memoryHistory, store);
+export default function(location, data) {
+  const sheet = new ServerStyleSheet();
+  const memoryHistory = createMemoryHistory(location);
+  const store = configureStore(memoryHistory, data);
+  const history = syncHistoryWithStore(memoryHistory, store);
 
-	return new Promise((resolve, reject) => {
-		match({
-			history,
-			routes: routes(store),
-			location
-		}, (error, redirect, props) => {
-			if (error) {
-				return reject(error);
-			}
-			const context = sheet.collectStyles(
-				<Provider store={store}>
-					<RouterContext {...props}/>
-				</Provider>
-			);
-			const html = renderToString(context);
-      const css = sheet.getStyleElement();
-			resolve({html, css});
-		});
-	});
+  return new Promise((resolve, reject) => {
+    match(
+      {
+        history,
+        routes: routes(store),
+        location
+      },
+      (error, redirect, props) => {
+        if (error) {
+          return reject(error);
+        }
+        const context = sheet.collectStyles(
+          <Provider store={store}>
+            <RouterContext {...props} />
+          </Provider>
+        );
+        const html = renderToString(context);
+        const css = sheet.getStyleElement();
+        resolve({html, css});
+      }
+    );
+  });
 }

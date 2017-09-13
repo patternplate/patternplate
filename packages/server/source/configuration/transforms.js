@@ -1,4 +1,3 @@
-/* eslint-disable */
-export default {
-	path: []
+module.exports = {
+  path: []
 };

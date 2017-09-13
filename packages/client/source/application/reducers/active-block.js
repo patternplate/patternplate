@@ -4,20 +4,23 @@ import markBlock from '../actions/mark-block';
 const defaultValue = null;
 
 const markBlockHandler = (state, {payload}) => {
-	const {active, id} = payload;
+  const {active, id} = payload;
 
-	if (active) {
-		return id;
-	}
+  if (active) {
+    return id;
+  }
 
-	return defaultValue;
+  return defaultValue;
 };
 
 const locationChangeHandler = () => {
-	return defaultValue;
+  return defaultValue;
 };
 
-export default handleActions({
-	[markBlock]: markBlockHandler,
-	'@@router/LOCATION_CHANGE': locationChangeHandler
-}, defaultValue);
+export default handleActions(
+  {
+    [markBlock]: markBlockHandler,
+    '@@router/LOCATION_CHANGE': locationChangeHandler
+  },
+  defaultValue
+);

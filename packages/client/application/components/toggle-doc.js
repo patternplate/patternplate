@@ -4,18 +4,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  fill: ', ';\n'], ['\n  fill: ', ';\n']),
+let _templateObject = _taggedTemplateLiteral(['fill: ', ';'], ['fill: ', ';']),
     _templateObject2 = _taggedTemplateLiteral(['\n  font-size: 0;\n  line-height: 0;\n  cursor: ', ';\n'], ['\n  font-size: 0;\n  line-height: 0;\n  cursor: ', ';\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _toggleButton = require('./common/toggle-button');
+const _toggleButton = require('./common/toggle-button');
 
-var _toggleButton2 = _interopRequireDefault(_toggleButton);
+const _toggleButton2 = _interopRequireDefault(_toggleButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,11 +33,7 @@ function ToggleDoc(props) {
       shortcut: props.shortcut,
       title: title(props)
     },
-    _react2.default.createElement(StyledIcon, {
-      active: props.active,
-      enabled: props.enabled,
-      symbol: 'doc'
-    }),
+    _react2.default.createElement(StyledIcon, { active: props.active, enabled: props.enabled, symbol: 'doc' }),
     props.shortcut.toString()
   );
 }
@@ -46,11 +42,11 @@ function title(props) {
   return props.active ? null : 'No documentation available.';
 }
 
-var CURSOR = function CURSOR(props) {
+const CURSOR = function CURSOR(props) {
   return props.active ? 'pointer' : 'not-allowed';
 };
 
-var COLOR = function COLOR(props) {
+const COLOR = function COLOR(props) {
   if (props.active) {
     return props.enabled ? props.theme.active : props.theme.color;
   }

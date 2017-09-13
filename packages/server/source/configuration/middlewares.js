@@ -1,7 +1,7 @@
 const middlewares = {
-	enabled: {
-		jsonerror: false
-	}
+  enabled: {
+    jsonerror: false
+  }
 };
 
 export default middlewares;

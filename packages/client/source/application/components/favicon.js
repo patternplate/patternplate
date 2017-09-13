@@ -1,7 +1,13 @@
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import Helmet from 'react-helmet';
-import {styled, themes, Icon, Symbol, IconDefinitions} from '@patternplate/components';
+import {
+  styled,
+  themes,
+  Icon,
+  Symbol,
+  IconDefinitions
+} from '@patternplate/components';
 import * as svg from '../utils/svg';
 
 const THEMES = themes();
@@ -20,7 +26,8 @@ class FavIcon extends React.Component {
     const [purged] = svg.purge([svg.parse(this.props.source)]);
     const source = svg.stringify(purged);
 
-    svg.png(source)
+    svg
+      .png(source)
       .then(href => this.setState({href}))
       .catch(err => {
         console.error(err);
@@ -29,10 +36,18 @@ class FavIcon extends React.Component {
   }
 
   render() {
-    return <Helmet link={[
-      {rel: 'icon', href: this.state.href, type: 'image/png'},
-      {rel: 'icon', href: svg.btoa(getSource(this.props)), type: 'image/svg+xml'}
-    ]}/>;
+    return (
+      <Helmet
+        link={[
+          {rel: 'icon', href: this.state.href, type: 'image/png'},
+          {
+            rel: 'icon',
+            href: svg.btoa(getSource(this.props)),
+            type: 'image/svg+xml'
+          }
+        ]}
+      />
+    );
   }
 }
 
@@ -52,7 +67,7 @@ function getSource(props) {
           definition={IconDefinitions.patternplate}
           emit={true}
           style={{fill: getFill(props)}}
-          />
+        />
       </svg>
     );
   }

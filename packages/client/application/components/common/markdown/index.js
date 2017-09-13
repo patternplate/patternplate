@@ -4,77 +4,77 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+const _extends = Object.assign || function (target) { for (let i = 1; i < arguments.length; i++) { const source = arguments[i]; for (const key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+const _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { const descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n  & table {\n    text-align: left;\n    display: block;\n    width: 100%;\n    overflow: auto;\n    margin: 0 0 16px 0;\n    border-spacing: 0;\n    border-collapse: collapse;\n    font-size: 18px;\n    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";\n  }\n  & tr {\n    color: ', ';\n    border-top: 1px solid ', ';\n    background: transparent;\n  }\n  & tr:nth-child(2n) {\n    background: ', '\n  }\n  & th {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n    font-weight: 600;\n  }\n  & td {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n  }\n'], ['\n  & table {\n    text-align: left;\n    display: block;\n    width: 100%;\n    overflow: auto;\n    margin: 0 0 16px 0;\n    border-spacing: 0;\n    border-collapse: collapse;\n    font-size: 18px;\n    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";\n  }\n  & tr {\n    color: ', ';\n    border-top: 1px solid ', ';\n    background: transparent;\n  }\n  & tr:nth-child(2n) {\n    background: ', '\n  }\n  & th {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n    font-weight: 600;\n  }\n  & td {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n  }\n']);
+const _templateObject = _taggedTemplateLiteral(['\n  & table {\n    text-align: left;\n    display: block;\n    width: 100%;\n    overflow: auto;\n    margin: 0 0 16px 0;\n    border-spacing: 0;\n    border-collapse: collapse;\n    font-size: 18px;\n    font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial,\n      sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';\n  }\n  & tr {\n    color: ', ';\n    border-top: 1px solid ', ';\n    background: transparent;\n  }\n  & tr:nth-child(2n) {\n    background: ', ';\n  }\n  & th {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n    font-weight: 600;\n  }\n  & td {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n  }\n'], ['\n  & table {\n    text-align: left;\n    display: block;\n    width: 100%;\n    overflow: auto;\n    margin: 0 0 16px 0;\n    border-spacing: 0;\n    border-collapse: collapse;\n    font-size: 18px;\n    font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial,\n      sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\';\n  }\n  & tr {\n    color: ', ';\n    border-top: 1px solid ', ';\n    background: transparent;\n  }\n  & tr:nth-child(2n) {\n    background: ', ';\n  }\n  & th {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n    font-weight: 600;\n  }\n  & td {\n    padding: 6px 13px;\n    border: 1px solid ', ';\n  }\n']);
 
-var _frontMatter = require('front-matter');
+const _frontMatter = require('front-matter');
 
-var _frontMatter2 = _interopRequireDefault(_frontMatter);
+const _frontMatter2 = _interopRequireDefault(_frontMatter);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _remark = require('remark');
+const _remark = require('remark');
 
-var _remark2 = _interopRequireDefault(_remark);
+const _remark2 = _interopRequireDefault(_remark);
 
-var _remarkGemojiToEmoji = require('remark-gemoji-to-emoji');
+const _remarkGemojiToEmoji = require('remark-gemoji-to-emoji');
 
-var _remarkGemojiToEmoji2 = _interopRequireDefault(_remarkGemojiToEmoji);
+const _remarkGemojiToEmoji2 = _interopRequireDefault(_remarkGemojiToEmoji);
 
-var _remarkReact = require('remark-react');
+const _remarkReact = require('remark-react');
 
-var _remarkReact2 = _interopRequireDefault(_remarkReact);
+const _remarkReact2 = _interopRequireDefault(_remarkReact);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _markdownBlockquote = require('./markdown-blockquote');
+const _markdownBlockquote = require('./markdown-blockquote');
 
-var _markdownBlockquote2 = _interopRequireDefault(_markdownBlockquote);
+const _markdownBlockquote2 = _interopRequireDefault(_markdownBlockquote);
 
-var _markdownCode = require('./markdown-code');
+const _markdownCode = require('./markdown-code');
 
-var _markdownCode2 = _interopRequireDefault(_markdownCode);
+const _markdownCode2 = _interopRequireDefault(_markdownCode);
 
-var _markdownCodeBlock = require('./markdown-code-block');
+const _markdownCodeBlock = require('./markdown-code-block');
 
-var _markdownCodeBlock2 = _interopRequireDefault(_markdownCodeBlock);
+const _markdownCodeBlock2 = _interopRequireDefault(_markdownCodeBlock);
 
-var _markdownCopy = require('./markdown-copy');
+const _markdownCopy = require('./markdown-copy');
 
-var _markdownCopy2 = _interopRequireDefault(_markdownCopy);
+const _markdownCopy2 = _interopRequireDefault(_markdownCopy);
 
-var _markdownHeadline = require('./markdown-headline');
+const _markdownHeadline = require('./markdown-headline');
 
-var _markdownHeadline2 = _interopRequireDefault(_markdownHeadline);
+const _markdownHeadline2 = _interopRequireDefault(_markdownHeadline);
 
-var _markdownHr = require('./markdown-hr');
+const _markdownHr = require('./markdown-hr');
 
-var _markdownHr2 = _interopRequireDefault(_markdownHr);
+const _markdownHr2 = _interopRequireDefault(_markdownHr);
 
-var _markdownImage = require('./markdown-image');
+const _markdownImage = require('./markdown-image');
 
-var _markdownImage2 = _interopRequireDefault(_markdownImage);
+const _markdownImage2 = _interopRequireDefault(_markdownImage);
 
-var _markdownItem = require('./markdown-item');
+const _markdownItem = require('./markdown-item');
 
-var _markdownItem2 = _interopRequireDefault(_markdownItem);
+const _markdownItem2 = _interopRequireDefault(_markdownItem);
 
-var _markdownList = require('./markdown-list');
+const _markdownList = require('./markdown-list');
 
-var _markdownList2 = _interopRequireDefault(_markdownList);
+const _markdownList2 = _interopRequireDefault(_markdownList);
 
-var _markdownLink = require('./markdown-link');
+const _markdownLink = require('./markdown-link');
 
-var _markdownLink2 = _interopRequireDefault(_markdownLink);
+const _markdownLink2 = _interopRequireDefault(_markdownLink);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -84,13 +84,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Markdown = function (_React$Component) {
+const Markdown = function (_React$Component) {
   _inherits(Markdown, _React$Component);
 
   function Markdown(props, context) {
     _classCallCheck(this, Markdown);
 
-    var _this = _possibleConstructorReturn(this, (Markdown.__proto__ || Object.getPrototypeOf(Markdown)).call(this, props, context));
+    const _this = _possibleConstructorReturn(this, (Markdown.__proto__ || Object.getPrototypeOf(Markdown)).call(this, props, context));
 
     _this.state = props;
     return _this;
@@ -104,7 +104,7 @@ var Markdown = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(next) {
-      var _this2 = this;
+      const _this2 = this;
 
       if (next.source === this.props.source) {
         return;
@@ -116,16 +116,16 @@ var Markdown = function (_React$Component) {
         source: ''
       });
 
-      setTimeout(function () {
+      setTimeout(() => {
         return _this2.setState(next);
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
+      const props = this.props;
 
-      var Headline = prop('linkable', props.linkable)(_markdownHeadline2.default);
+      const Headline = prop('linkable', props.linkable)(_markdownHeadline2.default);
 
       return _react2.default.createElement(
         StyledMarkdown,
@@ -161,22 +161,22 @@ var Markdown = function (_React$Component) {
 exports.default = Markdown;
 
 
-var StyledMarkdown = _components.styled.div(_templateObject, function (props) {
+var StyledMarkdown = _components.styled.div(_templateObject, (props) => {
   return props.theme.color;
-}, function (props) {
+}, (props) => {
   return props.theme.border;
-}, function (props) {
+}, (props) => {
   return props.theme.backgroundTertiary;
-}, function (props) {
+}, (props) => {
   return props.theme.border;
-}, function (props) {
+}, (props) => {
   return props.theme.border;
 });
 
 function is(is) {
   return function (Component) {
     return function (props) {
-      return _react2.default.createElement(Component, _extends({ is: is }, props));
+      return _react2.default.createElement(Component, _extends({ is }, props));
     };
   };
 }

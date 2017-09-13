@@ -18,25 +18,26 @@ export function flatten(tree) {
    * in all tree and pool representations of patterns,
    * docs and folders
    */
-  const init = [{
-    contents: tree.contents,
-    demoDependencies: tree.demoDependencies,
-    demoDependents: tree.demoDependents,
-    dependencies: tree.dependencies,
-    dependents: tree.dependents,
-    envs: tree.envs,
-    href: tree.href,
-    id: tree.id,
-    manifest: tree.manifest,
-    name: tree.name,
-    path: tree.path,
-    type: tree.type
-  }];
+  const init = [
+    {
+      contents: tree.contents,
+      demoDependencies: tree.demoDependencies,
+      demoDependents: tree.demoDependents,
+      dependencies: tree.dependencies,
+      dependents: tree.dependents,
+      envs: tree.envs,
+      href: tree.href,
+      id: tree.id,
+      manifest: tree.manifest,
+      name: tree.name,
+      path: tree.path,
+      type: tree.type
+    }
+  ];
 
-  return (tree.children || [])
-    .reduce((reg, child) => {
-      return [...reg, ...flatten(child)];
-    }, init);
+  return (tree.children || []).reduce((reg, child) => {
+    return [...reg, ...flatten(child)];
+  }, init);
 }
 
 export function sanitize(tree, context) {
@@ -46,11 +47,21 @@ export function sanitize(tree, context) {
   tree.children = tree.children
     .filter(filter)
     .map(child => {
-      const enriched = enrich(child, {base, location, hide, id, config, prefix});
-      return enriched.children ? sanitize(enriched, {base, location, hide, id, config, prefix}) : enriched;
+      const enriched = enrich(child, {
+        base,
+        location,
+        hide,
+        id,
+        config,
+        prefix
+      });
+      return enriched.children
+        ? sanitize(enriched, {base, location, hide, id, config, prefix})
+        : enriched;
     })
     .sort((a, b) => {
-      const order = (a.manifest.options.order || 0) - (b.manifest.options.order || 0);
+      const order =
+        (a.manifest.options.order || 0) - (b.manifest.options.order || 0);
       const weight = (WEIGHTS[a.type] || 0) - (WEIGHTS[b.type] || 0);
       const comp = a.manifest.displayName.localeCompare(b.manifest.displayName);
 
@@ -63,7 +74,7 @@ export function sanitize(tree, context) {
       }
 
       return comp;
-  });
+    });
 
   return enrich(tree, {base, location, id, config, prefix});
 }
@@ -73,14 +84,18 @@ export function enrich(child, context) {
   const p = prefix.split('/');
   const fragments = id.split('/').filter((f, i) => p[i] !== f);
 
-  child.active = child.id === 'root'
-    ? id === '/'
-    : (child.path || ['/']).every((f, i) => fragments[i] === f);
+  child.active =
+    child.id === 'root'
+      ? id === '/'
+      : (child.path || ['/']).every((f, i) => fragments[i] === f);
 
   const parsed = url.parse(child.href || path.join(prefix, child.id));
 
   child.href = url.format({
-    pathname: typeof parsed.pathname === 'string' ? url.resolve(context.base, parsed.pathname) : location.pathname,
+    pathname:
+      typeof parsed.pathname === 'string'
+        ? url.resolve(context.base, parsed.pathname)
+        : location.pathname,
     query: {...context.location.query, ...parsed.query}
   });
 
@@ -93,16 +108,25 @@ export function enrich(child, context) {
     child.manifest.options.icon = o.icon || child.manifest.options.icon;
   }
 
-  if (child.manifest && child.type === 'pattern' && (child.manifest.flag === 'alpha' || child.manifest.flag === 'deprecated')) {
+  if (
+    child.manifest &&
+    child.type === 'pattern' &&
+    (child.manifest.flag === 'alpha' || child.manifest.flag === 'deprecated')
+  ) {
     child.warnings.push({
       type: 'flag',
       value: child.manifest.flag,
-      message: `${child.manifest.displayName} is flagged as ${child.manifest.flag}.`
+      message: `${child.manifest.displayName} is flagged as ${child.manifest
+        .flag}.`
     });
   }
 
   // If there is no special content in a folder show the first child
-  if (child.children && child.children.length > 0 && (!child.contents || !frontmatter(child.contents).body)) {
+  if (
+    child.children &&
+    child.children.length > 0 &&
+    (!child.contents || !frontmatter(child.contents).body)
+  ) {
     child.href = child.children[0].href;
   }
 

@@ -8,9 +8,9 @@ const entry = process.argv[1];
 const raw = args._;
 
 const options = {
-	...args,
-	command: raw.slice(1).join(' '),
-	entry: basename(entry, extname(entry))
+  ...args,
+  command: raw.slice(1).join(' '),
+  entry: basename(entry, extname(entry))
 };
 
 /**
@@ -19,9 +19,9 @@ const options = {
  * @private
  */
 function handleSuccess(instance) {
-	if (instance && instance.log) {
-		// instance.log.info(`[application] ${options.entry} executed sucessfully.`);
-	}
+  if (instance && instance.log) {
+    // Instance.log.info(`[application] ${options.entry} executed sucessfully.`);
+  }
 }
 
 /**
@@ -30,12 +30,12 @@ function handleSuccess(instance) {
  * @private
  */
 function handleError(error) {
-	console.log(`${options.entry} failed.`);
-	console.trace(error);
+  console.log(`${options.entry} failed.`);
+  console.trace(error);
 
-	setTimeout(() => {
-		throw error;
-	});
+  setTimeout(() => {
+    throw error;
+  });
 }
 
 /**
@@ -46,6 +46,6 @@ function handleError(error) {
  * @private
  */
 export default (procedure, configuration = {}) =>
-	procedure(merge({}, options, configuration))
-		.then(handleSuccess)
-		.catch(handleError);
+  procedure(merge({}, options, configuration))
+    .then(handleSuccess)
+    .catch(handleError);

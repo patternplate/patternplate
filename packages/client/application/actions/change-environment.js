@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.type = undefined;
 
-var _ = require('./');
+const _ = require('./');
 
 exports.default = changeEnvironment;
-var type = exports.type = 'CHANGE_ENVIRONMENT';
+const type = exports.type = 'CHANGE_ENVIRONMENT';
 
 function changeEnvironment(environment) {
   return function (dispatch) {
     dispatch((0, _.patchLocation)({
-      query: { environment: environment }
+      query: { environment }
     }));
   };
 }

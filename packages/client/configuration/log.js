@@ -1,10 +1,10 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
-var log = {
-	level: 'info'
+const log = {
+  level: 'info'
 };
 
 exports.default = log;

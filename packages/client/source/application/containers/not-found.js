@@ -2,18 +2,18 @@ import {connect} from 'react-redux';
 import Documentation from '../components/documentation';
 
 export default connect(state => {
-	return {
-		base: state.base,
-		id: state.id,
-		docs: {
-			contents: selectNotFound(state)
-		}
-	};
+  return {
+    base: state.base,
+    id: state.id,
+    docs: {
+      contents: selectNotFound(state)
+    }
+  };
 })(Documentation);
 
 function selectNotFound(state) {
-	const url = state.routing.locationBeforeTransitions.pathname;
-	return `
+  const url = state.routing.locationBeforeTransitions.pathname;
+  return `
 # Nothing found
 
 > Pretty sure these aren't the hypertext documents you are looking for.

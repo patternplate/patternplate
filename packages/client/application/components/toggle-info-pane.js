@@ -1,21 +1,21 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n\tfill: ', ';\n'], ['\n\tfill: ', ';\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n\tfont-size: 0;\n\tline-height: 0;\n'], ['\n\tfont-size: 0;\n\tline-height: 0;\n']);
+let _templateObject = _taggedTemplateLiteral(['fill: ', ';'], ['fill: ', ';']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  font-size: 0;\n  line-height: 0;\n'], ['\n  font-size: 0;\n  line-height: 0;\n']);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _toggleButton = require('./common/toggle-button');
+const _toggleButton = require('./common/toggle-button');
 
-var _toggleButton2 = _interopRequireDefault(_toggleButton);
+const _toggleButton2 = _interopRequireDefault(_toggleButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25,20 +25,17 @@ exports.default = Info;
 
 
 function Info(props) {
-	return _react2.default.createElement(
-		StyledToggleButton,
-		{
-			enabled: props.enabled,
-			shortcut: props.shortcut
-		},
-		_react2.default.createElement(StyledIcon, { symbol: 'info' }),
-		' ',
-		props.shortcut.toString()
-	);
+  return _react2.default.createElement(
+    StyledToggleButton,
+    { enabled: props.enabled, shortcut: props.shortcut },
+    _react2.default.createElement(StyledIcon, { symbol: 'info' }),
+    ' ',
+    props.shortcut.toString()
+  );
 }
 
-var StyledIcon = (0, _components.styled)(_components.Icon)(_templateObject, function (props) {
-	return props.theme.background;
+var StyledIcon = (0, _components.styled)(_components.Icon)(_templateObject, (props) => {
+  return props.theme.background;
 });
 
 var StyledToggleButton = (0, _components.styled)(_toggleButton2.default)(_templateObject2);

@@ -12,6 +12,7 @@
     "test": "ava",
     "dev": "babel source.js -o index.js -w"
   },
+  "xo": false,
   "ava": {
     "babel": "inherit",
     "require": [

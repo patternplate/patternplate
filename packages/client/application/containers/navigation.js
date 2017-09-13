@@ -5,35 +5,35 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.NavigationToolbar = exports.NavigationHeader = undefined;
 
-var _url = require('url');
+const _url = require('url');
 
-var _url2 = _interopRequireDefault(_url);
+const _url2 = _interopRequireDefault(_url);
 
-var _react = require('react');
+const _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+const _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = require('react-redux');
+const _reactRedux = require('react-redux');
 
-var _reactRouterRedux = require('react-router-redux');
+const _reactRouterRedux = require('react-router-redux');
 
-var _redux = require('redux');
+const _redux = require('redux');
 
-var _components = require('@patternplate/components');
+const _components = require('@patternplate/components');
 
-var _navigation = require('../selectors/navigation');
+const _navigation = require('../selectors/navigation');
 
-var _navigation2 = _interopRequireDefault(_navigation);
+const _navigation2 = _interopRequireDefault(_navigation);
 
-var _docs = require('../selectors/docs');
+const _docs = require('../selectors/docs');
 
-var _docs2 = _interopRequireDefault(_docs);
+const _docs2 = _interopRequireDefault(_docs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(_components.MainNavigation);
-var NavigationHeader = exports.NavigationHeader = _components.MainNavigation.NavigationHeader;
-var NavigationToolbar = exports.NavigationToolbar = _components.MainNavigation.NavigationToolbar;
+const NavigationHeader = exports.NavigationHeader = _components.MainNavigation.NavigationHeader;
+const NavigationToolbar = exports.NavigationToolbar = _components.MainNavigation.NavigationToolbar;
 
 function mapProps(state) {
   return {
@@ -52,7 +52,7 @@ function mapDispatch(dispatch) {
         return { type: 'noop' };
       }
 
-      var parsed = _url2.default.parse(e.currentTarget.href);
+      const parsed = _url2.default.parse(e.currentTarget.href);
       return (0, _reactRouterRedux.push)(parsed.pathname + '?' + parsed.query);
     }
   }, dispatch);

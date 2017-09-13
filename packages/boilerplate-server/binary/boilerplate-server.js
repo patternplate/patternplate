@@ -2,16 +2,16 @@
 'use strict';
 
 let main = (() => {
-	var _ref = _asyncToGenerator(function* () {
-		let options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var _ref = _asyncToGenerator(function* () {
+    let options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-		const application = yield (0, _library2.default)(options);
-		return yield application.start();
-	});
+    const application = yield (0, _library2.default)(options);
+    return yield application.start();
+  });
 
-	return function main() {
-		return _ref.apply(this, arguments);
-	};
+  return function main() {
+    return _ref.apply(this, arguments);
+  };
 })();
 
 require('babel-polyfill');
@@ -32,7 +32,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 // Catch unhandled rejections globally
 process.on('unhandledRejection', (reason, promise) => {
-	console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
-	throw reason;
+  console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+  throw reason;
 });
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NvdXJjZS9iaW5hcnkvYm9pbGVycGxhdGUtc2VydmVyLmpzIl0sIm5hbWVzIjpbIm9wdGlvbnMiLCJhcHBsaWNhdGlvbiIsInN0YXJ0IiwibWFpbiIsIm1vZGUiLCJwcm9jZXNzIiwib24iLCJyZWFzb24iLCJwcm9taXNlIiwiY29uc29sZSIsImxvZyJdLCJtYXBwaW5ncyI6Ijs7OzhCQUtBLGFBQWtDO0FBQUEsTUFBZEEsT0FBYyx5REFBSixFQUFJOztBQUNqQyxRQUFNQyxjQUFjLE1BQU0sdUJBQVlELE9BQVosQ0FBMUI7QUFDQSxTQUFPLE1BQU1DLFlBQVlDLEtBQVosRUFBYjtBQUNBLEU7O2lCQUhjQyxJOzs7OztBQUpmOztBQUNBOzs7O0FBQ0E7Ozs7Ozs7O0FBT0EsdUJBQVFBLElBQVIsRUFBYyxFQUFDQyxNQUFNLFFBQVAsRUFBZDs7QUFFQTtBQUNBQyxRQUFRQyxFQUFSLENBQVcsb0JBQVgsRUFBaUMsQ0FBQ0MsTUFBRCxFQUFTQyxPQUFULEtBQXFCO0FBQ3JEQyxTQUFRQyxHQUFSLENBQVksa0NBQVosRUFBZ0RGLE9BQWhELEVBQXlELFdBQXpELEVBQXNFRCxNQUF0RTtBQUNBLE9BQU1BLE1BQU47QUFDQSxDQUhEIiwiZmlsZSI6ImJvaWxlcnBsYXRlLXNlcnZlci5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0ICdiYWJlbC1wb2x5ZmlsbCc7XG5pbXBvcnQgYm9pbGVycGxhdGUgZnJvbSAnLi4vbGlicmFyeSc7XG5pbXBvcnQgZXhlY3V0ZSBmcm9tICcuLi9saWJyYXJ5L3V0aWxpdGllcy9leGVjdXRlJztcblxuYXN5bmMgZnVuY3Rpb24gbWFpbihvcHRpb25zID0ge30pIHtcblx0Y29uc3QgYXBwbGljYXRpb24gPSBhd2FpdCBib2lsZXJwbGF0ZShvcHRpb25zKTtcblx0cmV0dXJuIGF3YWl0IGFwcGxpY2F0aW9uLnN0YXJ0KCk7XG59XG5cbmV4ZWN1dGUobWFpbiwge21vZGU6ICdzZXJ2ZXInfSk7XG5cbi8vIENhdGNoIHVuaGFuZGxlZCByZWplY3Rpb25zIGdsb2JhbGx5XG5wcm9jZXNzLm9uKCd1bmhhbmRsZWRSZWplY3Rpb24nLCAocmVhc29uLCBwcm9taXNlKSA9PiB7XG5cdGNvbnNvbGUubG9nKCdVbmhhbmRsZWQgUmVqZWN0aW9uIGF0OiBQcm9taXNlICcsIHByb21pc2UsICcgcmVhc29uOiAnLCByZWFzb24pO1xuXHR0aHJvdyByZWFzb247XG59KTtcbiJdfQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NvdXJjZS9iaW5hcnkvYm9pbGVycGxhdGUtc2VydmVyLmpzIl0sIm5hbWVzIjpbIm9wdGlvbnMiLCJhcHBsaWNhdGlvbiIsInN0YXJ0IiwibWFpbiIsIm1vZGUiLCJwcm9jZXNzIiwib24iLCJyZWFzb24iLCJwcm9taXNlIiwiY29uc29sZSIsImxvZyJdLCJtYXBwaW5ncyI6Ijs7OytCQUtBLGFBQWtDO0FBQUEsUUFBZEEsT0FBYyx5REFBSixFQUFJOztBQUNoQyxVQUFNQyxjQUFjLE1BQU0sdUJBQVlELE9BQVosQ0FBMUI7QUFDQSxXQUFPLE1BQU1DLFlBQVlDLEtBQVosRUFBYjtBQUNELEc7O2tCQUhjQyxJOzs7OztBQUpmOztBQUNBOzs7O0FBQ0E7Ozs7Ozs7O0FBT0EsdUJBQVFBLElBQVIsRUFBYyxFQUFDQyxNQUFNLFFBQVAsRUFBZDs7QUFFQTtBQUNBQyxRQUFRQyxFQUFSLENBQVcsb0JBQVgsRUFBaUMsQ0FBQ0MsTUFBRCxFQUFTQyxPQUFULEtBQXFCO0FBQ3BEQyxVQUFRQyxHQUFSLENBQVksa0NBQVosRUFBZ0RGLE9BQWhELEVBQXlELFdBQXpELEVBQXNFRCxNQUF0RTtBQUNBLFFBQU1BLE1BQU47QUFDRCxDQUhEIiwiZmlsZSI6ImJvaWxlcnBsYXRlLXNlcnZlci5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0ICdiYWJlbC1wb2x5ZmlsbCc7XG5pbXBvcnQgYm9pbGVycGxhdGUgZnJvbSAnLi4vbGlicmFyeSc7XG5pbXBvcnQgZXhlY3V0ZSBmcm9tICcuLi9saWJyYXJ5L3V0aWxpdGllcy9leGVjdXRlJztcblxuYXN5bmMgZnVuY3Rpb24gbWFpbihvcHRpb25zID0ge30pIHtcbiAgY29uc3QgYXBwbGljYXRpb24gPSBhd2FpdCBib2lsZXJwbGF0ZShvcHRpb25zKTtcbiAgcmV0dXJuIGF3YWl0IGFwcGxpY2F0aW9uLnN0YXJ0KCk7XG59XG5cbmV4ZWN1dGUobWFpbiwge21vZGU6ICdzZXJ2ZXInfSk7XG5cbi8vIENhdGNoIHVuaGFuZGxlZCByZWplY3Rpb25zIGdsb2JhbGx5XG5wcm9jZXNzLm9uKCd1bmhhbmRsZWRSZWplY3Rpb24nLCAocmVhc29uLCBwcm9taXNlKSA9PiB7XG4gIGNvbnNvbGUubG9nKCdVbmhhbmRsZWQgUmVqZWN0aW9uIGF0OiBQcm9taXNlICcsIHByb21pc2UsICcgcmVhc29uOiAnLCByZWFzb24pO1xuICB0aHJvdyByZWFzb247XG59KTtcbiJdfQ==

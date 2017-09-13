@@ -4,16 +4,19 @@ import * as actions from '../actions';
 import Indicator from '../components/indicator';
 
 function mapProps(state) {
-	return {
-		status: state.connection,
-		shortcut: state.shortcuts.reload
-	};
+  return {
+    status: state.connection,
+    shortcut: state.shortcuts.reload
+  };
 }
 
 function mapDispatch(dispatch) {
-	return bindActionCreators({
-		onClick: actions.reload
-	}, dispatch);
+  return bindActionCreators(
+    {
+      onClick: actions.reload
+    },
+    dispatch
+  );
 }
 
 export default connect(mapProps, mapDispatch)(Indicator);
