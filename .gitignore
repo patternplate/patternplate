@@ -2,25 +2,27 @@ node_modules
 *.log
 
 # boilerplate-server based apps
-/@patternplate/cli/application/
-/@patternplate/cli/binary/
-/@patternplate/cli/configuration/
-/@patternplate/cli/library/
+/packages/**/yarn.lock
 
-/@patternplate/client/application/
-/@patternplate/client/assets/
-/@patternplate/client/binary/
-/@patternplate/client/configuration/
-/@patternplate/client/library/
-/@patternplate/client/assets/script/index.bundle.js
+/packages/cli/application/
+/packages/cli/binary/
+/packages/cli/configuration/
+/packages/cli/library/
 
-/@patternplate/components/lib/
-/@patternplate/components/build/
+/packages/client/application/
+/packages/client/assets/
+/packages/client/binary/
+/packages/client/configuration/
+/packages/client/library/
+/packages/client/assets/script/index.bundle.js
 
-/@patternplate/server/application/
-/@patternplate/server/binary/
-/@patternplate/server/configuration/
-/@patternplate/server/library/
+/packages/components/lib/
+/packages/components/build/
+
+/packages/server/application/
+/packages/server/binary/
+/packages/server/configuration/
+/packages/server/library/
 
 /packages/boilerplate-server/application/
 /packages/boilerplate-server/binary/
