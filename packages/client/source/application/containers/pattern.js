@@ -50,6 +50,7 @@ class PatternContainer extends React.Component {
         contents={this.state.srcdoc ? props.contents : null}
         docs={props.docs}
         error={props.error}
+        displayName={props.displayName}
         loading={props.loading}
         opacity={props.opacity}
         src={props.src}
@@ -105,6 +106,7 @@ const selectDocs = createSelector(
 function mapState(state) {
   return {
     contents: state.demo.contents,
+    displayName: items.selectName(state),
     docs: selectDocs(state),
     error: state.demo.error,
     loading: state.demo.fetching,

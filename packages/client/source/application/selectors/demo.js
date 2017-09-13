@@ -14,9 +14,8 @@ export const selectSrc = createSelector(
   selectItem,
   state => state.base,
   selectEnv,
-  state => state.pattern,
   state => state.mountEnabled,
-  (item, base, env, pattern, mount) => {
+  (item, base, env, mount) => {
     if (!item) {
       return null;
     }
@@ -28,11 +27,7 @@ export const selectSrc = createSelector(
       }
     });
 
-    const query = queryString.stringify({
-      reloadTime: pattern.reloadTime,
-      mount
-    });
-
+    const query = queryString.stringify({mount});
     return `${pathname}?${query}`;
   }
 );

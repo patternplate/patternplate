@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import {styled, keyframes} from '@patternplate/components';
 import tag from 'tag-hoc';
 import Transition from 'react-transition-group/Transition';
@@ -103,6 +104,7 @@ export default class Pattern extends React.Component {
       case 'pattern':
         return (
           <StyledPattern checkers={props.opacity}>
+            <Helmet title={[getPrefix(props), props.displayName].filter(Boolean).join(': ')} />
             <Transition
               in={props.loading || props.error}
               timeout={{enter: 1000, exit: 850}}
@@ -144,4 +146,14 @@ function checkers(props) {
     ${grad(fill)},
     ${grad(fill)};
   `;
+}
+
+function getPrefix(props) {
+  if (props.loading) {
+    return 'Load';
+  }
+  if (props.error) {
+    return 'Error';
+  }
+  return '';
 }
