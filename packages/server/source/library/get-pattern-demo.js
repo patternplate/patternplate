@@ -2,6 +2,7 @@ import url from 'url';
 import {merge, uniqBy} from 'lodash';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
+import {DOMParser} from 'xmldom';
 
 import getPatternRetriever from './utilities/get-pattern-retriever';
 import urlQuery from './utilities/url-query';
@@ -239,21 +240,11 @@ function Demo(props) {
         {props.styleRefs
           .filter(isRelative)
           .map(style => <link rel="stylesheet" href={style.uri || style.id} />)}
+        {(props.content.style || []).map(style => style.wrap === false
+          ? getStyle(style.content)
+          : `<style>${style.content}</style>`)}
       </head>
       <body>
-        <div
-          style={{display: 'none'}}
-          dangerouslySetInnerHTML={{
-            __html: (props.content.style || [])
-              .map(
-                style =>
-                  style.wrap === false
-                    ? style.content
-                    : `<style>${style.content}</style>`
-              )
-              .join('\n')
-          }}
-        />
         {(props.content.markup || [])
           .map(markup => (
             <div dangerouslySetInnerHTML={{__html: markup.content}} />
@@ -268,4 +259,28 @@ function Demo(props) {
       </body>
     </html>
   );
+}
+
+const parser = new DOMParser();
+
+function getStyle(style) {
+  const parsed = parser.parseFromString(style);
+  const nodes = [...parsed.childNodes].filter(n => n.nodeName.toLowerCase() === 'style');
+
+  return nodes.map(n => {
+    const children = [...n.childNodes]
+      .filter(c => c.nodeType === 3)
+      .map(c => c.data);
+
+    const attributes = [...n.attributes]
+      .reduce((attributes, {name, value}) => {
+        attributes[name] = value;
+        return attributes;
+      }, {})
+
+    attributes.key = JSON.stringify(attributes);
+    attributes.dangerouslySetInnerHTML = {__html: children.join('\n')};
+
+    return React.createElement('style', attributes);
+  });
 }

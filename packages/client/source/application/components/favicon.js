@@ -19,20 +19,23 @@ class FavIcon extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof this.props.source !== 'string') {
-      return;
-    }
-
-    const [purged] = svg.purge([svg.parse(this.props.source)]);
-    const source = svg.stringify(purged);
-
     svg
-      .png(source)
+      .png(getSource(this.props))
       .then(href => this.setState({href}))
       .catch(err => {
         console.error(err);
         this.setState({href: null});
       });
+  }
+
+  componentWillReceiveProps(next) {
+    svg
+    .png(getSource(next))
+    .then(href => this.setState({href}))
+    .catch(err => {
+      console.error(err);
+      this.setState({href: null});
+    });
   }
 
   render() {
@@ -62,7 +65,7 @@ export default styled(FavIcon)`
 function getSource(props) {
   if (!props.source) {
     return renderToStaticMarkup(
-      <svg viewBox="0 0 24 24">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <Symbol
           definition={IconDefinitions.patternplate}
           emit={true}

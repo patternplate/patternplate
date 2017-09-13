@@ -3,7 +3,7 @@ require('dom4'); // eslint-disable-line import/no-unassigned-import
 const url = require('url');
 const fetch = require('isomorphic-fetch');
 const platform = require('platform');
-const router = require('../../application/client');
+const router = require('../../application/client').default;
 const {merge} = require('lodash');
 
 const {document} = global;

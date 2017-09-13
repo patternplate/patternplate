@@ -9,7 +9,7 @@ function styledComponentsTransformFactory(app) {
   return async function(file) {
     const {ServerStyleSheet} = await importing;
 
-    file.wrap = (render, comp) => {
+    file.wrap = async (render, comp) => {
       const sheet = new ServerStyleSheet();
       const html = render(sheet.collectStyles(comp));
       const css = sheet.getStyleTags();

@@ -11,15 +11,13 @@ module.exports = {
           }
         }],
         'react'
-      ],
-      plugins: [
       ]
     }
   },
   'browserify': {
     inFormat: 'js',
     outFormat: 'js',
-    vendors: ['react', 'react-dom', 'styled-components']
+    vendors: ['react', 'react-dom']
   },
   'react-mount': {
     inFormat: 'js',

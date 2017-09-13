@@ -57,6 +57,8 @@ export function png(source) {
     img.onerror = err => reject(err);
 
     img.src = btoa(source);
+    console.log(btoa(source));
+    document.body.appendChild(img);
   });
 }
 

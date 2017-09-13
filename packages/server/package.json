@@ -118,7 +118,8 @@
     "throat": "^2.0.2",
     "try-require": "^1.2.1",
     "unist-util-find": "^1.0.1",
-    "vfile": "^2.2.0"
+    "vfile": "^2.2.0",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",

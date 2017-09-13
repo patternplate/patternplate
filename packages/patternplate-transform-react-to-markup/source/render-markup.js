@@ -3,7 +3,7 @@ import React from 'react';
 import getComponent from './get-component';
 import getRenderFunction from './get-render-function';
 
-export default (file, options = {}, application) => {
+export default async (file, options = {}, application) => {
   const isStatic = options.static !== false && options.automount !== true;
   const renderFunction = getRenderFunction(isStatic, application);
   const component = getComponent(file);
@@ -21,14 +21,14 @@ export default (file, options = {}, application) => {
       original(...args);
     };
 
-    const result = getResult(file, {component, renderFunction});
+    const buffer = await getResult(file, {
+      automount: options.automount,
+      component,
+      renderFunction
+    });
 
     const post = file.pattern.post || [];
     post.forEach(p => p());
-
-    const buffer = options.automount
-      ? `<div data-mountpoint>${result}</div>`
-      : result;
 
     return {
       buffer
@@ -47,11 +47,16 @@ export default (file, options = {}, application) => {
   }
 };
 
-function getResult(file, {component, renderFunction}) {
+async function getResult(file, {automount, component, renderFunction}) {
   if (typeof component !== 'function') {
     return '';
   }
+
+  const result = automount ?
+    React.createElement('div', {'data-mountpoint': true}, [React.createElement(component)]) :
+    React.createElement(component)
+
   return file.wrap
-    ? file.wrap(renderFunction, React.createElement(component))
-    : renderFunction(React.createElement(component));
+    ? await file.wrap(renderFunction, result)
+    : renderFunction(result);
 }
