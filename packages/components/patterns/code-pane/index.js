@@ -13,7 +13,7 @@ function CodePane(props) {
 					{props.source}
 				</Code>
 			</StyledScrollbox>
-		</StyledCodePane
+		</StyledCodePane>
 	);
 }
 
