@@ -7,10 +7,12 @@ const StyledDemo = styled.iframe`
   border: 0;
 `;
 
+const SUPPORTS = check();
+
 class PatternDemo extends React.Component {
   render() {
     const {props} = this;
-    return props.contents ? (
+    return SUPPORTS ? (
       <StyledDemo srcDoc={props.contents} seamless />
     ) : (
       <StyledDemo src={props.src} seamless />
@@ -19,3 +21,10 @@ class PatternDemo extends React.Component {
 }
 
 export default PatternDemo;
+
+function check() {
+  if (!global.document) {
+    return false;
+  }
+  return 'srcdoc' in document.createElement('iframe');
+}
