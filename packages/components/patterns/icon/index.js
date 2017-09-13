@@ -28,132 +28,132 @@ const rulers = 'M21 7H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8a1 1 0 0
 const search = 'M8.65 14.248c-.376-.46-.697-.962-.955-1.496-.335-.695-.56-1.44-.668-2.205-.11-.787-.096-1.59.044-2.373.13-.726.37-1.432.71-2.09.75-1.448 1.96-2.636 3.43-3.343.64-.3 1.32-.52 2.02-.64.35-.05.69-.08 1.04-.09h.29c.35.01.7.03 1.04.09.7.11 1.39.32 2.03.62 1.53.717 2.8 1.95 3.55 3.466.32.63.54 1.31.67 2.006.14.78.16 1.584.05 2.37-.106.76-.332 1.51-.667 2.204-.393.81-.933 1.55-1.586 2.174-.675.643-1.472 1.16-2.34 1.515-.895.365-1.862.553-2.832.553s-1.933-.186-2.83-.553c-.684-.28-1.325-.66-1.9-1.13-2.09 2.21-4.294 4.307-6.437 6.464-.09.08-.186.15-.3.187-.1.034-.205.046-.31.035-.072-.01-.145-.03-.213-.058-.308-.13-.497-.455-.454-.79.02-.15.088-.28.184-.395 2.09-2.23 4.3-4.343 6.46-6.506zM14.377 3.5c-.28.006-.56.027-.836.07-.56.085-1.1.25-1.62.49-1.16.542-2.13 1.457-2.74 2.58-.28.518-.48 1.075-.6 1.65-.13.65-.15 1.318-.07 1.974.08.612.25 1.21.52 1.77.31.655.73 1.253 1.25 1.758.54.523 1.17.945 1.86 1.236.715.302 1.486.462 2.26.472.777.01 1.554-.13 2.277-.416.695-.275 1.34-.682 1.885-1.192.53-.492.97-1.08 1.29-1.726.276-.55.464-1.144.557-1.753.1-.63.09-1.273-.01-1.9-.094-.56-.266-1.103-.51-1.613-.58-1.197-1.555-2.185-2.744-2.776-.505-.252-1.047-.43-1.603-.53-.273-.05-.55-.077-.83-.09-.1-.003-.204-.004-.31-.004z';
 
 const atoms = [
-	'M12 3c-1.39 0-2.7.324-3.874.886.355.357.608.807.75 1.305.952-.436 2.008-.69 3.124-.69 4.135 0 7.5 3.367 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.363-7.5-7.5c0-1.114.252-2.17.69-3.123-.497-.14-.947-.395-1.304-.75C3.324 9.3 3 10.612 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9-4.03-9-9-9',
-	'M13.5 12c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5.672 1.5 1.5 1.5 1.5-.672 1.5-1.5M6 7.5c.828 0 1.5-.672 1.5-1.5S6.828 4.5 6 4.5 4.5 5.172 4.5 6 5.172 7.5 6 7.5'
+  'M12 3c-1.39 0-2.7.324-3.874.886.355.357.608.807.75 1.305.952-.436 2.008-.69 3.124-.69 4.135 0 7.5 3.367 7.5 7.5s-3.365 7.5-7.5 7.5-7.5-3.363-7.5-7.5c0-1.114.252-2.17.69-3.123-.497-.14-.947-.395-1.304-.75C3.324 9.3 3 10.612 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9-4.03-9-9-9',
+  'M13.5 12c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5.672 1.5 1.5 1.5 1.5-.672 1.5-1.5M6 7.5c.828 0 1.5-.672 1.5-1.5S6.828 4.5 6 4.5 4.5 5.172 4.5 6 5.172 7.5 6 7.5'
 ];
 
 const arrowDoubleLeft = [
-	'M7.452 13.233c-.14-.148-.258-.31-.344-.494-.215-.465-.215-1.01 0-1.475.085-.184.203-.346.343-.494l3.543-3.544 1.06 1.06c-1.183 1.186-2.46 2.285-3.55 3.558-.058.075-.073.175-.033.262.013.03.033.054.056.078l3.527 3.527-1.06 1.06-3.54-3.54z',
-	'M12.452 13.233c-.14-.148-.258-.31-.344-.494-.215-.465-.215-1.01 0-1.475.085-.184.203-.346.343-.494l3.543-3.544 1.06 1.06c-1.183 1.186-2.46 2.285-3.55 3.558-.058.075-.073.175-.033.262.013.03.033.054.056.078l3.527 3.527-1.06 1.06-3.54-3.54z'
+  'M7.452 13.233c-.14-.148-.258-.31-.344-.494-.215-.465-.215-1.01 0-1.475.085-.184.203-.346.343-.494l3.543-3.544 1.06 1.06c-1.183 1.186-2.46 2.285-3.55 3.558-.058.075-.073.175-.033.262.013.03.033.054.056.078l3.527 3.527-1.06 1.06-3.54-3.54z',
+  'M12.452 13.233c-.14-.148-.258-.31-.344-.494-.215-.465-.215-1.01 0-1.475.085-.184.203-.346.343-.494l3.543-3.544 1.06 1.06c-1.183 1.186-2.46 2.285-3.55 3.558-.058.075-.073.175-.033.262.013.03.033.054.056.078l3.527 3.527-1.06 1.06-3.54-3.54z'
 ];
 
 const arrowDoubleRight = [
-	'M16.548 10.767c.14.147.258.31.344.494.215.464.215 1.01 0 1.474-.085.185-.203.347-.343.494l-3.543 3.546-1.06-1.06c1.183-1.186 2.46-2.285 3.55-3.558.058-.075.073-.176.033-.262-.013-.03-.033-.055-.056-.08L11.947 8.29l1.06-1.06 3.54 3.54z',
-	'M11.548 10.767c.14.147.258.31.344.494.215.464.215 1.01 0 1.474-.085.185-.203.347-.343.494l-3.543 3.546-1.06-1.06c1.183-1.186 2.46-2.285 3.55-3.558.058-.075.073-.176.033-.262-.013-.03-.033-.055-.056-.08L6.947 8.29l1.06-1.06 3.54 3.54z'
+  'M16.548 10.767c.14.147.258.31.344.494.215.464.215 1.01 0 1.474-.085.185-.203.347-.343.494l-3.543 3.546-1.06-1.06c1.183-1.186 2.46-2.285 3.55-3.558.058-.075.073-.176.033-.262-.013-.03-.033-.055-.056-.08L11.947 8.29l1.06-1.06 3.54 3.54z',
+  'M11.548 10.767c.14.147.258.31.344.494.215.464.215 1.01 0 1.474-.085.185-.203.347-.343.494l-3.543 3.546-1.06-1.06c1.183-1.186 2.46-2.285 3.55-3.558.058-.075.073-.176.033-.262-.013-.03-.033-.055-.056-.08L6.947 8.29l1.06-1.06 3.54 3.54z'
 ];
 
 const folderOpen = [{
-	d: 'M20 18H4V9h5v3h11v6zM10.5 7.5v-3h-8v14c0 .552.448 1 1 1h17c.552 0 1-.448 1-1v-11h-11z'
+  d: 'M20 18H4V9h5v3h11v6zM10.5 7.5v-3h-8v14c0 .552.448 1 1 1h17c.552 0 1-.448 1-1v-11h-11z'
 }];
 
 const documentation = [
-	'M18.375 16.625h-9v-13h9v13zm-10.5-14.5v15c0 .552.447 1 1 1h11v-16h-12z',
-	'M14.125 20.375h-8.25c-.137 0-.25-.112-.25-.25V6.875h1.25v-1.5h-2.75v14.75c0 .965.786 1.75 1.75 1.75h9.75v-2.75h-1.5v1.25z',
-	{
-		tagName: 'circle',
-		cx: 14,
-		cy: 6.5,
-		r: 1.5
-	},
-	'M14.75 9h.75v1.5h-.75v3H16V15h-4v-1.5h1.25v-3h-.75V9h.75v-.004h1.5V9z'
+  'M18.375 16.625h-9v-13h9v13zm-10.5-14.5v15c0 .552.447 1 1 1h11v-16h-12z',
+  'M14.125 20.375h-8.25c-.137 0-.25-.112-.25-.25V6.875h1.25v-1.5h-2.75v14.75c0 .965.786 1.75 1.75 1.75h9.75v-2.75h-1.5v1.25z',
+  {
+    tagName: 'circle',
+    cx: 14,
+    cy: 6.5,
+    r: 1.5
+  },
+  'M14.75 9h.75v1.5h-.75v3H16V15h-4v-1.5h1.25v-3h-.75V9h.75v-.004h1.5V9z'
 ];
 
 const issue = [
-	'M19.98 10.99l-2.647-5.295c-.385-.77-1.158-1.248-2.02-1.248h-6.63c-.858 0-1.633.48-2.018 1.248L4.018 10.99c-.156.313-.238.66-.238 1.01s.082.697.237 1.01l2.648 5.295c.385.77 1.16 1.248 2.02 1.248h6.63c.86 0 1.633-.48 2.018-1.247l2.647-5.296c.156-.312.24-.66.24-1.01s-.083-.697-.24-1.01zm-1.34 1.35l-2.648 5.295c-.127.256-.39.418-.677.418h-6.63c-.287 0-.55-.162-.677-.418L5.36 12.34c-.053-.11-.08-.225-.08-.34 0-.116.026-.23.08-.338l2.647-5.297c.128-.256.39-.418.677-.418h6.63c.287 0 .55.162.677.418l2.65 5.297c.053.106.08.222.08.338 0 .115-.027.23-.08.34z',
-	{
-		tagName: 'circle',
-		cx: 12,
-		cy: 15,
-		r: 1.5
-	},
-	'M11.25 7.474h1.5v4.5h-1.5z'
+  'M19.98 10.99l-2.647-5.295c-.385-.77-1.158-1.248-2.02-1.248h-6.63c-.858 0-1.633.48-2.018 1.248L4.018 10.99c-.156.313-.238.66-.238 1.01s.082.697.237 1.01l2.648 5.295c.385.77 1.16 1.248 2.02 1.248h6.63c.86 0 1.633-.48 2.018-1.247l2.647-5.296c.156-.312.24-.66.24-1.01s-.083-.697-.24-1.01zm-1.34 1.35l-2.648 5.295c-.127.256-.39.418-.677.418h-6.63c-.287 0-.55-.162-.677-.418L5.36 12.34c-.053-.11-.08-.225-.08-.34 0-.116.026-.23.08-.338l2.647-5.297c.128-.256.39-.418.677-.418h6.63c.287 0 .55.162.677.418l2.65 5.297c.053.106.08.222.08.338 0 .115-.027.23-.08.34z',
+  {
+    tagName: 'circle',
+    cx: 12,
+    cy: 15,
+    r: 1.5
+  },
+  'M11.25 7.474h1.5v4.5h-1.5z'
 ];
 
 const command = [
-	'M20.5 5.5h-17c-.55 0-1 .45-1 1v11c0 .552.45 1 1 1h17c.552 0 1-.448 1-1v-11c0-.55-.448-1-1-1zM20 17H4V7h16v10z',
-	'M8.375 14.25h7.25v1.5h-7.25zm-2.875-6H7v1.5H5.5zm2.875 0h1.5v1.5h-1.5zm2.875 0h1.5v1.5h-1.5zm5.75 0h1.5v1.5H17zm-2.875 0h1.5v1.5h-1.5zm-4.313 3h1.5v1.5h-1.5zm2.876 0h1.5v1.5h-1.5zm-7.188 0h2.938v1.5H5.5zm10.078 0h2.938v1.5h-2.938zm-10.078 3H7v1.5H5.5zm11.516 0h1.5v1.5h-1.5z'
+  'M20.5 5.5h-17c-.55 0-1 .45-1 1v11c0 .552.45 1 1 1h17c.552 0 1-.448 1-1v-11c0-.55-.448-1-1-1zM20 17H4V7h16v10z',
+  'M8.375 14.25h7.25v1.5h-7.25zm-2.875-6H7v1.5H5.5zm2.875 0h1.5v1.5h-1.5zm2.875 0h1.5v1.5h-1.5zm5.75 0h1.5v1.5H17zm-2.875 0h1.5v1.5h-1.5zm-4.313 3h1.5v1.5h-1.5zm2.876 0h1.5v1.5h-1.5zm-7.188 0h2.938v1.5H5.5zm10.078 0h2.938v1.5h-2.938zm-10.078 3H7v1.5H5.5zm11.516 0h1.5v1.5h-1.5z'
 ];
 
 const placeholder = [{
-	tagName: 'rect',
-	x: 0,
-	y: 0,
-	width: 24,
-	height: 24
+  tagName: 'rect',
+  x: 0,
+  y: 0,
+  width: 24,
+  height: 24
 }];
 
 const icons = {
-	'arrow-double-left': () => arrowDoubleLeft,
-	'arrow-double-right': () => arrowDoubleRight,
-	'arrow-left': () => arrowLeft,
-	'arrow-right': () => arrowRight,
-	'atoms': () => atoms,
-	'checkers-inverted': () => checkers(true),
-	'checkers': () => checkers(),
-	'code': () => code,
-	'command': () => command,
-	'dark': () => dark,
-	'dependencies': () => dependencies,
+  'arrow-double-left': () => arrowDoubleLeft,
+  'arrow-double-right': () => arrowDoubleRight,
+  'arrow-left': () => arrowLeft,
+  'arrow-right': () => arrowRight,
+  'atoms': () => atoms,
+  'checkers-inverted': () => checkers(true),
+  'checkers': () => checkers(),
+  'code': () => code,
+  'command': () => command,
+  'dark': () => dark,
+  'dependencies': () => dependencies,
   'documentation': () => documentation,
   'doc': () => documentation,
-	'ecospheres': () => ecospheres,
-	'environment': () => environment,
-	'placeholder': () => placeholder,
-	'folder-open': () => folderOpen,
-	'folder': () => folder,
-	'fullscreen': () => fullscreen,
-	'globals': () => globals,
-	'home': () => home,
-	'issue': () => issue,
-	'light': () => light,
-	'molecules': () => molecules,
-	'organisms': () => organisms,
-	'pattern': () => pattern,
-	'patternplate': () => patternplate,
-	'polymers': () => polymers,
-	'react': () => react,
-	'reload': () => reload,
-	'rulers': () => rulers,
-	'search': () => search
+  'ecospheres': () => ecospheres,
+  'environment': () => environment,
+  'placeholder': () => placeholder,
+  'folder-open': () => folderOpen,
+  'folder': () => folder,
+  'fullscreen': () => fullscreen,
+  'globals': () => globals,
+  'home': () => home,
+  'issue': () => issue,
+  'light': () => light,
+  'molecules': () => molecules,
+  'organisms': () => organisms,
+  'pattern': () => pattern,
+  'patternplate': () => patternplate,
+  'polymers': () => polymers,
+  'react': () => react,
+  'reload': () => reload,
+  'rulers': () => rulers,
+  'search': () => search
 };
 
 function checkers(inverted) {
-	const length = 20;
-	const count = 5;
-	const dim = length / count;
-	const offset = (24 - length) / 2;
-	const field = (count * count) / 2;
+  const length = 20;
+  const count = 5;
+  const dim = length / count;
+  const offset = (24 - length) / 2;
+  const field = (count * count) / 2;
 
-	const fields = range(count * count)
-		.map((_, i) => {
-			const x = i % count;
-			const y = (i - x) / count;
+  const fields = range(count * count)
+    .map((_, i) => {
+      const x = i % count;
+      const y = (i - x) / count;
 
-			const filled = y % 2 === 0 ?
-				x % 2 === 0 :
-				x % 2 !== 0;
+      const filled = y % 2 === 0 ?
+        x % 2 === 0 :
+        x % 2 !== 0;
 
-			if (!filled) {
-				return null;
-			}
+      if (!filled) {
+        return null;
+      }
 
-			const product = (y + 1) * (x + 1);
-			const inArea = inverted ? true : product <= field;
+      const product = (y + 1) * (x + 1);
+      const inArea = inverted ? true : product <= field;
 
-			if (!inArea) {
-				return null;
-			}
+      if (!inArea) {
+        return null;
+      }
 
-			return rect({
-				x: offset + (x * dim),
-				y: offset + (y * dim),
-				width: dim,
-				height: dim
-			});
-		})
-		.filter(Boolean);
+      return rect({
+        x: offset + (x * dim),
+        y: offset + (y * dim),
+        width: dim,
+        height: dim
+      });
+    })
+    .filter(Boolean);
 
-	return joinPaths(fields);
+  return joinPaths(fields);
 }
 
 function rect(props) {
@@ -163,129 +163,145 @@ function rect(props) {
 }
 
 function range(count) {
-	return Array(count)
-		.fill(true);
+  return Array(count)
+    .fill(true);
 }
 
 function joinPaths(paths) {
-	const d = paths.map(path => path.d).join('');
-	return [{
-		d
-	}];
+  const d = paths.map(path => path.d).join('');
+  return [{
+    d
+  }];
 }
 
 const iconNames = Object.keys(icons);
 
+/**
+ * Export ALL THE THINGS
+ */
 module.exports = withSideEffect(toState, onChange)(Icon);
+
 module.exports.symbols = iconNames;
 
+module.exports.Symbol = Symbol;
+
+module.exports.definitions = {
+  patternplate
+};
+/**
+ * Export ALL THE THINGS
+ */
+
 function toState(propsList) {
-	const list = propsList
-		.map(item => item.symbol)
-		.sort();
-	const symbols = uniq(list);
-	return <IconRegistry symbols={symbols} />;
+  const list = propsList
+    .map(item => item.symbol)
+    .sort();
+  const symbols = uniq(list);
+  return <IconRegistry symbols={symbols} />;
 }
 
 function onChange(registry) {
-	const element = getRegistryMountPoint();
-	ReactDOM.render(registry, element);
+  const element = getRegistryMountPoint();
+  ReactDOM.render(registry, element);
 }
 
 function getRegistryMountPoint() {
-	const {document} = global;
-	const found = document.querySelector('[data-icon-registry]');
-	if (found) {
-		return found;
-	}
+  const {document} = global;
+  const found = document.querySelector('[data-icon-registry]');
+  if (found) {
+    return found;
+  }
 
-	const created = document.createElement('div');
-	created.setAttribute('data-icon-registry', true);
-	document.body.appendChild(created);
-	return created;
+  const created = document.createElement('div');
+  created.setAttribute('data-icon-registry', true);
+  document.body.appendChild(created);
+  return created;
 }
 
 const SIZES = {
-	s: 14,
-	m: 22,
-	l: 38
+  s: 14,
+  m: 22,
+  l: 38
 };
 
 function Icon(props) {
-	return (
-		<StyledIcon className={props.className} size={props.size}>
-			<use title={props.title} xlinkHref={`#${props.symbol || 'placeholder'}`}/>
-		</StyledIcon>
-	);
+  return (
+    <StyledIcon className={props.className} size={props.size}>
+      <use title={props.title} xlinkHref={`#${props.symbol || 'placeholder'}`}/>
+    </StyledIcon>
+  );
 }
 
 Icon.defaultProps = {
-	size: 'm',
-	symbol: 'placeholder'
+  size: 'm',
+  symbol: 'placeholder'
 };
 
 const StyledIcon = styled.svg`
-	display: flex;
-	width: ${props => SIZES[props.size]}px;
-	height: ${props => SIZES[props.size]}px;
-	justify-content: center;
-	align-items: center;
-	color: inherit;
-	fill: currentColor;
+  display: flex;
+  width: ${props => SIZES[props.size]}px;
+  height: ${props => SIZES[props.size]}px;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  fill: currentColor;
 `;
 
 function IconRegistry(props) {
-	return (
-		<StyledRegistry>
-			{
-				props.symbols
-					.map(symbol => {
-						const creator = typeof icons[symbol] === 'function'
-							? icons[symbol]
-							: icons.placeholder;
+  return (
+    <StyledRegistry>
+      {
+        props.symbols
+          .map(symbol => {
+            const creator = typeof icons[symbol] === 'function'
+              ? icons[symbol]
+              : icons.placeholder;
 
-						const paths = creator();
-						return <Symbol key={symbol} id={symbol} definition={paths} />;
-					})
-			}
-		</StyledRegistry>
-	);
+            const paths = creator();
+            return <Symbol key={symbol} id={symbol} definition={paths} />;
+          })
+      }
+    </StyledRegistry>
+  );
 }
 
 IconRegistry.defaultProps = {
-	symbols: []
+  symbols: []
 };
 
 const StyledRegistry = styled.svg`
-	position: fixed;
-	height: 0;
-	width: 0;
-	overflow: hidden;
-	padding: 0;
-	visibility: hidden;
+  position: fixed;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+  visibility: hidden;
 `;
 
 function Symbol(props) {
-	const paths = Array.isArray(props.definition) ?
-		props.definition :
-		[props.definition];
+  const paths = Array.isArray(props.definition) ?
+    props.definition :
+    [props.definition];
 
-	return (
-		<symbol
-			id={props.id}
-			viewBox="0 0 24 24"
-		>
-			{
-				paths.map(path => <Path key={path} definition={path}/>)
-			}
-		</symbol>
-	);
+  if (props.emit) {
+    return (
+      <g style={props.style}>
+        {paths.map(p => <Path key={p} definition={p}/>)}
+      </g>
+    );
+  }
+
+  return (
+    <symbol className={props.className} id={props.id} viewBox="0 0 24 24">
+     {paths.map(p => <Path key={p} definition={p}/>)}
+    </symbol>
+  );
 }
 
 function Path(props) {
-	const {definition} = props;
-	const def = typeof definition === 'string' ? {d: definition} : definition;
+  const {definition} = props;
+  const def = typeof definition === 'string' ? {d: definition} : definition;
   const p = omit(def, ['tagName'])
   const Component = def.tagName || 'path';
-	return <Component {...p}/>;
+  return <Component {...p}/>;
 }

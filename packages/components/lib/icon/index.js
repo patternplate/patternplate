@@ -41,299 +41,319 @@ var _arrowDoubleLeft = ['M7.452 13.233c-.14-.148-.258-.31-.344-.494-.215-.465-.2
 var _arrowDoubleRight = ['M16.548 10.767c.14.147.258.31.344.494.215.464.215 1.01 0 1.474-.085.185-.203.347-.343.494l-3.543 3.546-1.06-1.06c1.183-1.186 2.46-2.285 3.55-3.558.058-.075.073-.176.033-.262-.013-.03-.033-.055-.056-.08L11.947 8.29l1.06-1.06 3.54 3.54z', 'M11.548 10.767c.14.147.258.31.344.494.215.464.215 1.01 0 1.474-.085.185-.203.347-.343.494l-3.543 3.546-1.06-1.06c1.183-1.186 2.46-2.285 3.55-3.558.058-.075.073-.176.033-.262-.013-.03-.033-.055-.056-.08L6.947 8.29l1.06-1.06 3.54 3.54z'];
 
 var _folderOpen = [{
-	d: 'M20 18H4V9h5v3h11v6zM10.5 7.5v-3h-8v14c0 .552.448 1 1 1h17c.552 0 1-.448 1-1v-11h-11z'
+  d: 'M20 18H4V9h5v3h11v6zM10.5 7.5v-3h-8v14c0 .552.448 1 1 1h17c.552 0 1-.448 1-1v-11h-11z'
 }];
 
 var _documentation = ['M18.375 16.625h-9v-13h9v13zm-10.5-14.5v15c0 .552.447 1 1 1h11v-16h-12z', 'M14.125 20.375h-8.25c-.137 0-.25-.112-.25-.25V6.875h1.25v-1.5h-2.75v14.75c0 .965.786 1.75 1.75 1.75h9.75v-2.75h-1.5v1.25z', {
-	tagName: 'circle',
-	cx: 14,
-	cy: 6.5,
-	r: 1.5
+  tagName: 'circle',
+  cx: 14,
+  cy: 6.5,
+  r: 1.5
 }, 'M14.75 9h.75v1.5h-.75v3H16V15h-4v-1.5h1.25v-3h-.75V9h.75v-.004h1.5V9z'];
 
 var _issue = ['M19.98 10.99l-2.647-5.295c-.385-.77-1.158-1.248-2.02-1.248h-6.63c-.858 0-1.633.48-2.018 1.248L4.018 10.99c-.156.313-.238.66-.238 1.01s.082.697.237 1.01l2.648 5.295c.385.77 1.16 1.248 2.02 1.248h6.63c.86 0 1.633-.48 2.018-1.247l2.647-5.296c.156-.312.24-.66.24-1.01s-.083-.697-.24-1.01zm-1.34 1.35l-2.648 5.295c-.127.256-.39.418-.677.418h-6.63c-.287 0-.55-.162-.677-.418L5.36 12.34c-.053-.11-.08-.225-.08-.34 0-.116.026-.23.08-.338l2.647-5.297c.128-.256.39-.418.677-.418h6.63c.287 0 .55.162.677.418l2.65 5.297c.053.106.08.222.08.338 0 .115-.027.23-.08.34z', {
-	tagName: 'circle',
-	cx: 12,
-	cy: 15,
-	r: 1.5
+  tagName: 'circle',
+  cx: 12,
+  cy: 15,
+  r: 1.5
 }, 'M11.25 7.474h1.5v4.5h-1.5z'];
 
 var _command = ['M20.5 5.5h-17c-.55 0-1 .45-1 1v11c0 .552.45 1 1 1h17c.552 0 1-.448 1-1v-11c0-.55-.448-1-1-1zM20 17H4V7h16v10z', 'M8.375 14.25h7.25v1.5h-7.25zm-2.875-6H7v1.5H5.5zm2.875 0h1.5v1.5h-1.5zm2.875 0h1.5v1.5h-1.5zm5.75 0h1.5v1.5H17zm-2.875 0h1.5v1.5h-1.5zm-4.313 3h1.5v1.5h-1.5zm2.876 0h1.5v1.5h-1.5zm-7.188 0h2.938v1.5H5.5zm10.078 0h2.938v1.5h-2.938zm-10.078 3H7v1.5H5.5zm11.516 0h1.5v1.5h-1.5z'];
 
 var _placeholder = [{
-	tagName: 'rect',
-	x: 0,
-	y: 0,
-	width: 24,
-	height: 24
+  tagName: 'rect',
+  x: 0,
+  y: 0,
+  width: 24,
+  height: 24
 }];
 
 var icons = {
-	'arrow-double-left': function arrowDoubleLeft() {
-		return _arrowDoubleLeft;
-	},
-	'arrow-double-right': function arrowDoubleRight() {
-		return _arrowDoubleRight;
-	},
-	'arrow-left': function arrowLeft() {
-		return _arrowLeft;
-	},
-	'arrow-right': function arrowRight() {
-		return _arrowRight;
-	},
-	'atoms': function atoms() {
-		return _atoms;
-	},
-	'checkers-inverted': function checkersInverted() {
-		return _checkers(true);
-	},
-	'checkers': function checkers() {
-		return _checkers();
-	},
-	'code': function code() {
-		return _code;
-	},
-	'command': function command() {
-		return _command;
-	},
-	'dark': function dark() {
-		return _dark;
-	},
-	'dependencies': function dependencies() {
-		return _dependencies;
-	},
-	'documentation': function documentation() {
-		return _documentation;
-	},
-	'doc': function doc() {
-		return _documentation;
-	},
-	'ecospheres': function ecospheres() {
-		return _ecospheres;
-	},
-	'environment': function environment() {
-		return _environment;
-	},
-	'placeholder': function placeholder() {
-		return _placeholder;
-	},
-	'folder-open': function folderOpen() {
-		return _folderOpen;
-	},
-	'folder': function folder() {
-		return _folder;
-	},
-	'fullscreen': function fullscreen() {
-		return _fullscreen;
-	},
-	'globals': function globals() {
-		return _globals;
-	},
-	'home': function home() {
-		return _home;
-	},
-	'issue': function issue() {
-		return _issue;
-	},
-	'light': function light() {
-		return _light;
-	},
-	'molecules': function molecules() {
-		return _molecules;
-	},
-	'organisms': function organisms() {
-		return _organisms;
-	},
-	'pattern': function pattern() {
-		return _pattern;
-	},
-	'patternplate': function patternplate() {
-		return _patternplate;
-	},
-	'polymers': function polymers() {
-		return _polymers;
-	},
-	'react': function react() {
-		return _react;
-	},
-	'reload': function reload() {
-		return _reload;
-	},
-	'rulers': function rulers() {
-		return _rulers;
-	},
-	'search': function search() {
-		return _search;
-	}
+  'arrow-double-left': function arrowDoubleLeft() {
+    return _arrowDoubleLeft;
+  },
+  'arrow-double-right': function arrowDoubleRight() {
+    return _arrowDoubleRight;
+  },
+  'arrow-left': function arrowLeft() {
+    return _arrowLeft;
+  },
+  'arrow-right': function arrowRight() {
+    return _arrowRight;
+  },
+  'atoms': function atoms() {
+    return _atoms;
+  },
+  'checkers-inverted': function checkersInverted() {
+    return _checkers(true);
+  },
+  'checkers': function checkers() {
+    return _checkers();
+  },
+  'code': function code() {
+    return _code;
+  },
+  'command': function command() {
+    return _command;
+  },
+  'dark': function dark() {
+    return _dark;
+  },
+  'dependencies': function dependencies() {
+    return _dependencies;
+  },
+  'documentation': function documentation() {
+    return _documentation;
+  },
+  'doc': function doc() {
+    return _documentation;
+  },
+  'ecospheres': function ecospheres() {
+    return _ecospheres;
+  },
+  'environment': function environment() {
+    return _environment;
+  },
+  'placeholder': function placeholder() {
+    return _placeholder;
+  },
+  'folder-open': function folderOpen() {
+    return _folderOpen;
+  },
+  'folder': function folder() {
+    return _folder;
+  },
+  'fullscreen': function fullscreen() {
+    return _fullscreen;
+  },
+  'globals': function globals() {
+    return _globals;
+  },
+  'home': function home() {
+    return _home;
+  },
+  'issue': function issue() {
+    return _issue;
+  },
+  'light': function light() {
+    return _light;
+  },
+  'molecules': function molecules() {
+    return _molecules;
+  },
+  'organisms': function organisms() {
+    return _organisms;
+  },
+  'pattern': function pattern() {
+    return _pattern;
+  },
+  'patternplate': function patternplate() {
+    return _patternplate;
+  },
+  'polymers': function polymers() {
+    return _polymers;
+  },
+  'react': function react() {
+    return _react;
+  },
+  'reload': function reload() {
+    return _reload;
+  },
+  'rulers': function rulers() {
+    return _rulers;
+  },
+  'search': function search() {
+    return _search;
+  }
 };
 
 function _checkers(inverted) {
-	var length = 20;
-	var count = 5;
-	var dim = length / count;
-	var offset = (24 - length) / 2;
-	var field = count * count / 2;
+  var length = 20;
+  var count = 5;
+  var dim = length / count;
+  var offset = (24 - length) / 2;
+  var field = count * count / 2;
 
-	var fields = range(count * count).map(function (_, i) {
-		var x = i % count;
-		var y = (i - x) / count;
+  var fields = range(count * count).map(function (_, i) {
+    var x = i % count;
+    var y = (i - x) / count;
 
-		var filled = y % 2 === 0 ? x % 2 === 0 : x % 2 !== 0;
+    var filled = y % 2 === 0 ? x % 2 === 0 : x % 2 !== 0;
 
-		if (!filled) {
-			return null;
-		}
+    if (!filled) {
+      return null;
+    }
 
-		var product = (y + 1) * (x + 1);
-		var inArea = inverted ? true : product <= field;
+    var product = (y + 1) * (x + 1);
+    var inArea = inverted ? true : product <= field;
 
-		if (!inArea) {
-			return null;
-		}
+    if (!inArea) {
+      return null;
+    }
 
-		return rect({
-			x: offset + x * dim,
-			y: offset + y * dim,
-			width: dim,
-			height: dim
-		});
-	}).filter(Boolean);
+    return rect({
+      x: offset + x * dim,
+      y: offset + y * dim,
+      width: dim,
+      height: dim
+    });
+  }).filter(Boolean);
 
-	return joinPaths(fields);
+  return joinPaths(fields);
 }
 
 function rect(props) {
-	var p = omit(props, ['width', 'height', 'x', 'y']);
-	var d = `M${props.x},${props.y}h${props.width}v${props.height}h-${props.width}z`;
-	return merge({}, p, { d });
+  var p = omit(props, ['width', 'height', 'x', 'y']);
+  var d = `M${props.x},${props.y}h${props.width}v${props.height}h-${props.width}z`;
+  return merge({}, p, { d });
 }
 
 function range(count) {
-	return Array(count).fill(true);
+  return Array(count).fill(true);
 }
 
 function joinPaths(paths) {
-	var d = paths.map(function (path) {
-		return path.d;
-	}).join('');
-	return [{
-		d
-	}];
+  var d = paths.map(function (path) {
+    return path.d;
+  }).join('');
+  return [{
+    d
+  }];
 }
 
 var iconNames = Object.keys(icons);
 
+/**
+ * Export ALL THE THINGS
+ */
 module.exports = withSideEffect(toState, onChange)(Icon);
+
 module.exports.symbols = iconNames;
 
+module.exports.Symbol = Symbol;
+
+module.exports.definitions = {
+  patternplate: _patternplate
+};
+/**
+ * Export ALL THE THINGS
+ */
+
 function toState(propsList) {
-	var list = propsList.map(function (item) {
-		return item.symbol;
-	}).sort();
-	var symbols = uniq(list);
-	return React.createElement(IconRegistry, { symbols: symbols });
+  var list = propsList.map(function (item) {
+    return item.symbol;
+  }).sort();
+  var symbols = uniq(list);
+  return React.createElement(IconRegistry, { symbols: symbols });
 }
 
 function onChange(registry) {
-	var element = getRegistryMountPoint();
-	ReactDOM.render(registry, element);
+  var element = getRegistryMountPoint();
+  ReactDOM.render(registry, element);
 }
 
 function getRegistryMountPoint() {
-	var _global = global,
-	    document = _global.document;
+  var _global = global,
+      document = _global.document;
 
-	var found = document.querySelector('[data-icon-registry]');
-	if (found) {
-		return found;
-	}
+  var found = document.querySelector('[data-icon-registry]');
+  if (found) {
+    return found;
+  }
 
-	var created = document.createElement('div');
-	created.setAttribute('data-icon-registry', true);
-	document.body.appendChild(created);
-	return created;
+  var created = document.createElement('div');
+  created.setAttribute('data-icon-registry', true);
+  document.body.appendChild(created);
+  return created;
 }
 
 var SIZES = {
-	s: 14,
-	m: 22,
-	l: 38
+  s: 14,
+  m: 22,
+  l: 38
 };
 
 function Icon(props) {
-	return React.createElement(
-		StyledIcon,
-		{ className: props.className, size: props.size },
-		React.createElement('use', { title: props.title, xlinkHref: `#${props.symbol || 'placeholder'}` })
-	);
+  return React.createElement(
+    StyledIcon,
+    { className: props.className, size: props.size },
+    React.createElement('use', { title: props.title, xlinkHref: `#${props.symbol || 'placeholder'}` })
+  );
 }
 
 Icon.defaultProps = {
-	size: 'm',
-	symbol: 'placeholder'
+  size: 'm',
+  symbol: 'placeholder'
 };
 
 var StyledIcon = styled.svg`
-	display: flex;
-	width: ${function (props) {
-	return SIZES[props.size];
+  display: flex;
+  width: ${function (props) {
+  return SIZES[props.size];
 }}px;
-	height: ${function (props) {
-	return SIZES[props.size];
+  height: ${function (props) {
+  return SIZES[props.size];
 }}px;
-	justify-content: center;
-	align-items: center;
-	color: inherit;
-	fill: currentColor;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  fill: currentColor;
 `;
 
 function IconRegistry(props) {
-	return React.createElement(
-		StyledRegistry,
-		null,
-		props.symbols.map(function (symbol) {
-			var creator = typeof icons[symbol] === 'function' ? icons[symbol] : icons.placeholder;
+  return React.createElement(
+    StyledRegistry,
+    null,
+    props.symbols.map(function (symbol) {
+      var creator = typeof icons[symbol] === 'function' ? icons[symbol] : icons.placeholder;
 
-			var paths = creator();
-			return React.createElement(Symbol, { key: symbol, id: symbol, definition: paths });
-		})
-	);
+      var paths = creator();
+      return React.createElement(Symbol, { key: symbol, id: symbol, definition: paths });
+    })
+  );
 }
 
 IconRegistry.defaultProps = {
-	symbols: []
+  symbols: []
 };
 
 var StyledRegistry = styled.svg`
-	position: fixed;
-	height: 0;
-	width: 0;
-	overflow: hidden;
-	padding: 0;
-	visibility: hidden;
+  position: fixed;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+  visibility: hidden;
 `;
 
 function Symbol(props) {
-	var paths = Array.isArray(props.definition) ? props.definition : [props.definition];
+  var paths = Array.isArray(props.definition) ? props.definition : [props.definition];
 
-	return React.createElement(
-		'symbol',
-		{
-			id: props.id,
-			viewBox: '0 0 24 24'
-		},
-		paths.map(function (path) {
-			return React.createElement(Path, { key: path, definition: path });
-		})
-	);
+  if (props.emit) {
+    return React.createElement(
+      'g',
+      { style: props.style },
+      paths.map(function (p) {
+        return React.createElement(Path, { key: p, definition: p });
+      })
+    );
+  }
+
+  return React.createElement(
+    'symbol',
+    { className: props.className, id: props.id, viewBox: '0 0 24 24' },
+    paths.map(function (p) {
+      return React.createElement(Path, { key: p, definition: p });
+    })
+  );
 }
 
 function Path(props) {
-	var definition = props.definition;
+  var definition = props.definition;
 
-	var def = typeof definition === 'string' ? { d: definition } : definition;
-	var p = omit(def, ['tagName']);
-	var Component = def.tagName || 'path';
-	return React.createElement(Component, p);
+  var def = typeof definition === 'string' ? { d: definition } : definition;
+  var p = omit(def, ['tagName']);
+  var Component = def.tagName || 'path';
+  return React.createElement(Component, p);
 }
 //# sourceMappingURL=index.js.map

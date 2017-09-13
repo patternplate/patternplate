@@ -10,7 +10,7 @@ var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  he
     _templateObject2 = _taggedTemplateLiteral(['\n  height: 100%;\n  width: 100%;\n'], ['\n  height: 100%;\n  width: 100%;\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n  width: 100%;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 30px;\n  box-sizing: border-box;\n'], ['\n  width: 100%;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 30px;\n  box-sizing: border-box;\n']),
     _templateObject4 = _taggedTemplateLiteral(['\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  height: 100%;\n  max-width: 1240px;\n  margin: 0 auto;\n'], ['\n  position: relative;\n  z-index: 2;\n  width: 100%;\n  height: 100%;\n  max-width: 1240px;\n  margin: 0 auto;\n']),
-    _templateObject5 = _taggedTemplateLiteral(['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::before {\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: transform 1s ease-in-out;\n    ', '\n  }\n'], ['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::before {\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: transform 1s ease-in-out;\n    ', '\n  }\n']);
+    _templateObject5 = _taggedTemplateLiteral(['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::after {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: ', ';\n    ', '\n  }\n'], ['\n  position: absolute;\n  z-index: 3;\n  top: 0;\n  right: 0;\n  left: 0;\n  height: 3px;\n  &::after {\n    position: absolute;\n    top: 0;\n    z-index: 2;\n    content: \'\';\n    display: block;\n    width: 100%;\n    height: 100%;\n    background: ', ';\n    opacity: 1;\n    transition: ', ';\n    ', '\n  }\n']);
 
 var _react = require('react');
 
@@ -63,13 +63,17 @@ var StyledPatternDoc = _components.styled.div(_templateObject3);
 var StyledPatternDemo = _components.styled.div(_templateObject4);
 
 var StyledPatternLoader = _components.styled.div(_templateObject5, function (props) {
-  return props.theme.active;
+  return props.error ? props.theme.error : props.theme.active;
+}, function (props) {
+  return props.error ? 'none' : 'transform 1s ease-in-out';
 }, function (props) {
   switch (props.status) {
     case 'entering':
       return '\n            transform: translateX(-100%);\n          ';
     case 'entered':
-      return 'transform: translateX(-15%);';
+      return '' + function (props) {
+        return props.error ? '' : 'transform: translateX(-15%);';
+      };
     case 'exiting':
       return '\n            transition: transform .3s ease-out;\n            transform: translateX(0);\n          ';
     case 'exited':
@@ -99,9 +103,9 @@ var Pattern = function (_React$Component) {
             { checkers: props.opacity },
             _react2.default.createElement(
               _Transition2.default,
-              { 'in': props.loading, timeout: { enter: 1000, exit: 850 } },
+              { 'in': props.loading || props.error, timeout: { enter: 1000, exit: 850 } },
               function (status) {
-                return _react2.default.createElement(StyledPatternLoader, { status: status });
+                return _react2.default.createElement(StyledPatternLoader, { status: status, error: props.error });
               }
             ),
             _react2.default.createElement(

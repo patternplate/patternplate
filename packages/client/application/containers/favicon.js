@@ -17,6 +17,7 @@ exports.default = (0, _reactRedux.connect)(mapState)(_favicon2.default);
 
 function mapState(state) {
 	return {
+		error: state.demo.error,
 		source: state.config.favicon
 	};
 }

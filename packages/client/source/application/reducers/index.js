@@ -13,13 +13,11 @@ import environment from './environment';
 import fetching from './fetching';
 import id from './id';
 import infoEnabled from './info-enabled';
-import lightbox from './lightbox';
 import manifestEnabled from './manifest-enabled';
 import messages from './messages';
 import mountEnabled from './mount-enabled';
 import navigationEnabled from './navigation-enabled';
 import opacity from './opacity';
-import pattern from './pattern';
 import search from './search';
 import searchEnabled from './search-enabled';
 import searchPreview from './search-preview';
@@ -51,13 +49,11 @@ export default {
 	hideEnabled,
 	id,
 	infoEnabled,
-	lightbox,
 	manifestEnabled,
 	messages,
 	mountEnabled,
 	navigationEnabled,
 	opacity,
-	pattern,
 	schema,
 	search,
 	searchEnabled,
@@ -70,6 +66,5 @@ export default {
 };
 
 export const dependencies = {
-	connection: getDependencies(connection),
-	pattern: getDependencies(pattern)
+	connection: getDependencies(connection)
 };

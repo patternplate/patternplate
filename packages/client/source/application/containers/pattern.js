@@ -45,14 +45,14 @@ class PatternContainer extends React.Component {
 
   render() {
     const {props} = this;
-
     return (
       <Pattern
-        src={props.src}
         contents={this.state.srcdoc ? props.contents : null}
         docs={props.docs}
+        error={props.error}
         loading={props.loading}
         opacity={props.opacity}
+        src={props.src}
         type={props.type}
         />
     );
@@ -104,12 +104,13 @@ const selectDocs = createSelector(
 
 function mapState(state) {
   return {
-    docs: selectDocs(state),
     contents: state.demo.contents,
+    docs: selectDocs(state),
+    error: state.demo.error,
     loading: state.demo.fetching,
     opacity: state.opacity,
     src: demo.selectSrc(state),
-    type: items.selectType(state)
+    type: items.selectType(state),
   };
 }
 

@@ -214,7 +214,7 @@ const StyledNavigationBox = styled(tag(['enabled'])('div'))`
 const StyledMessageBox = styled.div`
   position: absolute;
   box-sizing: border-box;
-  z-index: 2;
+  z-index: 3;
   padding: 15px;
   width: 100%;
 `;

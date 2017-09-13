@@ -59,14 +59,17 @@ const StyledPatternLoader = styled.div`
   right: 0;
   left: 0;
   height: 3px;
-  &::before {
+  &::after {
+    position: absolute;
+    top: 0;
+    z-index: 2;
     content: '';
     display: block;
     width: 100%;
     height: 100%;
-    background: ${props => props.theme.active};
+    background: ${props => props.error ? props.theme.error : props.theme.active};
     opacity: 1;
-    transition: transform 1s ease-in-out;
+    transition: ${props => props.error ? 'none' : 'transform 1s ease-in-out'};
     ${props => {
       switch(props.status) {
         case 'entering':
@@ -74,7 +77,7 @@ const StyledPatternLoader = styled.div`
             transform: translateX(-100%);
           `;
         case 'entered':
-          return `transform: translateX(-15%);`;
+          return `${props => props.error ? '' : 'transform: translateX(-15%);'}`;
         case 'exiting':
           return `
             transition: transform .3s ease-out;
@@ -98,8 +101,8 @@ export default class Pattern extends React.Component {
       case 'pattern':
         return (
           <StyledPattern checkers={props.opacity}>
-            <Transition in={props.loading} timeout={{enter: 1000, exit: 850}}>
-              {(status) => <StyledPatternLoader status={status}/>}
+            <Transition in={props.loading || props.error} timeout={{enter: 1000, exit: 850}}>
+              {(status) => <StyledPatternLoader status={status} error={props.error}/>}
             </Transition>
             <StyledPatternDemo>
               <PatternDemo

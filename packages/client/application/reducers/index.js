@@ -65,10 +65,6 @@ var _infoEnabled = require('./info-enabled');
 
 var _infoEnabled2 = _interopRequireDefault(_infoEnabled);
 
-var _lightbox = require('./lightbox');
-
-var _lightbox2 = _interopRequireDefault(_lightbox);
-
 var _manifestEnabled = require('./manifest-enabled');
 
 var _manifestEnabled2 = _interopRequireDefault(_manifestEnabled);
@@ -88,10 +84,6 @@ var _navigationEnabled2 = _interopRequireDefault(_navigationEnabled);
 var _opacity = require('./opacity');
 
 var _opacity2 = _interopRequireDefault(_opacity);
-
-var _pattern = require('./pattern');
-
-var _pattern2 = _interopRequireDefault(_pattern);
 
 var _search = require('./search');
 
@@ -158,13 +150,11 @@ exports.default = {
 	hideEnabled: _hideEnabled2.default,
 	id: _id2.default,
 	infoEnabled: _infoEnabled2.default,
-	lightbox: _lightbox2.default,
 	manifestEnabled: _manifestEnabled2.default,
 	messages: _messages2.default,
 	mountEnabled: _mountEnabled2.default,
 	navigationEnabled: _navigationEnabled2.default,
 	opacity: _opacity2.default,
-	pattern: _pattern2.default,
 	schema: _schema2.default,
 	search: _search2.default,
 	searchEnabled: _searchEnabled2.default,
@@ -176,6 +166,5 @@ exports.default = {
 	window: _window2.default
 };
 var dependencies = exports.dependencies = {
-	connection: getDependencies(_connection2.default),
-	pattern: getDependencies(_pattern2.default)
+	connection: getDependencies(_connection2.default)
 };

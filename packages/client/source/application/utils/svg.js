@@ -41,7 +41,7 @@ export function btoa(source) {
 
 export function parse(source) {
 	const doc = parser.parseFromString(source, 'image/svg+xml');
-	const parsed = [...doc.childNodes].find(node => node.tagName === 'svg');
+  const parsed = [...doc.childNodes].find(node => node.tagName === 'svg');
 	parsed.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 	return parsed;
 }

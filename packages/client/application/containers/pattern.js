@@ -100,13 +100,13 @@ var PatternContainer = function (_React$Component) {
     value: function render() {
       var props = this.props;
 
-
       return _react2.default.createElement(_pattern2.default, {
-        src: props.src,
         contents: this.state.srcdoc ? props.contents : null,
         docs: props.docs,
+        error: props.error,
         loading: props.loading,
         opacity: props.opacity,
+        src: props.src,
         type: props.type
       });
     }
@@ -131,8 +131,9 @@ var selectDocs = (0, _reselect.createSelector)(items.default, items.selectType, 
 
 function mapState(state) {
   return {
-    docs: selectDocs(state),
     contents: state.demo.contents,
+    docs: selectDocs(state),
+    error: state.demo.error,
     loading: state.demo.fetching,
     opacity: state.opacity,
     src: demo.selectSrc(state),
