@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npx lerna run watch --stream --parallel",
-    "reinstall": "npx lerna clean --yes && npx lerna bootstrap",
-    "postinstall": "npx lerna bootstrap"
+    "reinstall": "npx lerna clean --yes && npx lerna bootstrap"
   },
   "author": {
     "name": "Mario Nebl",
@@ -40,7 +39,7 @@
   },
   "devDependencies": {
     "lerna": "^2.1.0",
-    "yarn": "^0.27.5"
+    "yarn": "^1.0.1"
   },
   "engines": {
     "node": ">= 4",

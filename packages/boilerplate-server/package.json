@@ -14,7 +14,7 @@
     "console": "node binary/boilerplate-console.js",
     "pre-publish": "npm run build && npm publish",
     "start": "node binary/boilerplate-server.js",
-    "watch": "npm run babel -- --watch"
+    "dev": "npm run babel -- --watch"
   },
   "babel": {
     "presets": [

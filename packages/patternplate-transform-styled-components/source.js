@@ -1,10 +1,14 @@
 // @flow
-import {ServerStyleSheet} from 'styled-components';
+import importFrom from 'import-from';
 
 export default styledComponentsTransformFactory;
 
 function styledComponentsTransformFactory(app) {
-	return async function (file) {
+  const importing = importFrom(process.cwd(), 'styled-components');
+
+  return async function (file) {
+    const {ServerStyleSheet} = await importing;
+
     file.wrap = (render, comp) => {
       const sheet = new ServerStyleSheet();
       const html = render(sheet.collectStyles(comp));

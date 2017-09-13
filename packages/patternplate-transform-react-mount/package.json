@@ -10,7 +10,7 @@
     "build": "babel source.js -o index.js",
     "pretest": "npm run build",
     "test": "ava",
-    "watch": "babel source.js -o index.js -w"
+    "dev": "babel source.js -o index.js -w"
   },
   "ava": {
     "babel": "inherit",

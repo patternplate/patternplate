@@ -1,0 +1,392 @@
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _url = require('url');
+
+var _url2 = _interopRequireDefault(_url);
+
+var _lodash = require('lodash');
+
+var _reactHelmet = require('react-helmet');
+
+var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
+
+var _resolve = require('resolve');
+
+var _server = require('../application/server');
+
+var _server2 = _interopRequireDefault(_server);
+
+var _layouts = require('../application/layouts');
+
+var _layouts2 = _interopRequireDefault(_layouts);
+
+var _getIdByPathname = require('../application/utils/get-id-by-pathname');
+
+var _getIdByPathname2 = _interopRequireDefault(_getIdByPathname);
+
+var _navigate = require('../application/utils/navigate');
+
+var _navigate2 = _interopRequireDefault(_navigate);
+
+var _components = require('@patternplate/components');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
+  "use strict";
+
+  if (!Function.prototype.$asyncbind) {
+    Object.defineProperty(Function.prototype, "$asyncbind", {
+      value: $asyncbind,
+      enumerable: false,
+      configurable: true,
+      writable: true
+    });
+  }
+
+  if (!$asyncbind.trampoline) {
+    $asyncbind.trampoline = function trampoline(t, x, s, e, u) {
+      return function b(q) {
+        while (q) {
+          if (q.then) {
+            q = q.then(b, e);
+            return u ? undefined : q;
+          }
+
+          try {
+            if (q.pop) {
+              if (q.length) return q.pop() ? x.call(t) : q;
+              q = s;
+            } else q = q.call(t);
+          } catch (r) {
+            return e(r);
+          }
+        }
+      };
+    };
+  }
+
+  if (!$asyncbind.LazyThenable) {
+    $asyncbind.LazyThenable = function () {
+      function isThenable(obj) {
+        return obj && obj instanceof Object && typeof obj.then === "function";
+      }
+
+      function resolution(p, r, how) {
+        try {
+          var x = how ? how(r) : r;
+          if (p === x) return p.reject(new TypeError("Promise resolution loop"));
+
+          if (isThenable(x)) {
+            x.then(function (y) {
+              resolution(p, y);
+            }, function (e) {
+              p.reject(e);
+            });
+          } else {
+            p.resolve(x);
+          }
+        } catch (ex) {
+          p.reject(ex);
+        }
+      }
+
+      function Chained() {}
+
+      ;
+      Chained.prototype = {
+        resolve: _unchained,
+        reject: _unchained,
+        then: thenChain
+      };
+
+      function _unchained(v) {}
+
+      function thenChain(res, rej) {
+        this.resolve = res;
+        this.reject = rej;
+      }
+
+      function then(res, rej) {
+        var chain = new Chained();
+
+        try {
+          this._resolver(function (value) {
+            return isThenable(value) ? value.then(res, rej) : resolution(chain, value, res);
+          }, function (ex) {
+            resolution(chain, ex, rej);
+          });
+        } catch (ex) {
+          resolution(chain, ex, rej);
+        }
+
+        return chain;
+      }
+
+      function Thenable(resolver) {
+        this._resolver = resolver;
+        this.then = then;
+      }
+
+      ;
+
+      Thenable.resolve = function (v) {
+        return Thenable.isThenable(v) ? v : {
+          then: function then(resolve) {
+            return resolve(v);
+          }
+        };
+      };
+
+      Thenable.isThenable = isThenable;
+      return Thenable;
+    }();
+
+    $asyncbind.EagerThenable = $asyncbind.Thenable = ($asyncbind.EagerThenableFactory = function (tick) {
+      tick = tick || (typeof process === 'undefined' ? 'undefined' : _typeof(process)) === "object" && process.nextTick || typeof setImmediate === "function" && setImmediate || function (f) {
+        setTimeout(f, 0);
+      };
+
+      var soon = function () {
+        var fq = [],
+            fqStart = 0,
+            bufferSize = 1024;
+
+        function callQueue() {
+          while (fq.length - fqStart) {
+            try {
+              fq[fqStart]();
+            } catch (ex) {}
+
+            fq[fqStart++] = undefined;
+
+            if (fqStart === bufferSize) {
+              fq.splice(0, bufferSize);
+              fqStart = 0;
+            }
+          }
+        }
+
+        return function (fn) {
+          fq.push(fn);
+          if (fq.length - fqStart === 1) tick(callQueue);
+        };
+      }();
+
+      function Zousan(func) {
+        if (func) {
+          var me = this;
+          func(function (arg) {
+            me.resolve(arg);
+          }, function (arg) {
+            me.reject(arg);
+          });
+        }
+      }
+
+      Zousan.prototype = {
+        resolve: function resolve(value) {
+          if (this.state !== undefined) return;
+          if (value === this) return this.reject(new TypeError("Attempt to resolve promise with self"));
+          var me = this;
+
+          if (value && (typeof value === "function" || (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === "object")) {
+            try {
+              var first = 0;
+              var then = value.then;
+
+              if (typeof then === "function") {
+                then.call(value, function (ra) {
+                  if (!first++) {
+                    me.resolve(ra);
+                  }
+                }, function (rr) {
+                  if (!first++) {
+                    me.reject(rr);
+                  }
+                });
+                return;
+              }
+            } catch (e) {
+              if (!first) this.reject(e);
+              return;
+            }
+          }
+
+          this.state = STATE_FULFILLED;
+          this.v = value;
+          if (me.c) soon(function () {
+            for (var n = 0, l = me.c.length; n < l; n++) {
+              STATE_FULFILLED(me.c[n], value);
+            }
+          });
+        },
+        reject: function reject(reason) {
+          if (this.state !== undefined) return;
+          this.state = STATE_REJECTED;
+          this.v = reason;
+          var clients = this.c;
+          if (clients) soon(function () {
+            for (var n = 0, l = clients.length; n < l; n++) {
+              STATE_REJECTED(clients[n], reason);
+            }
+          });
+        },
+        then: function then(onF, onR) {
+          var p = new Zousan();
+          var client = {
+            y: onF,
+            n: onR,
+            p: p
+          };
+
+          if (this.state === undefined) {
+            if (this.c) this.c.push(client);else this.c = [client];
+          } else {
+            var s = this.state,
+                a = this.v;
+            soon(function () {
+              s(client, a);
+            });
+          }
+
+          return p;
+        }
+      };
+
+      function STATE_FULFILLED(c, arg) {
+        if (typeof c.y === "function") {
+          try {
+            var yret = c.y.call(undefined, arg);
+            c.p.resolve(yret);
+          } catch (err) {
+            c.p.reject(err);
+          }
+        } else c.p.resolve(arg);
+      }
+
+      function STATE_REJECTED(c, reason) {
+        if (typeof c.n === "function") {
+          try {
+            var yret = c.n.call(undefined, reason);
+            c.p.resolve(yret);
+          } catch (err) {
+            c.p.reject(err);
+          }
+        } else c.p.reject(reason);
+      }
+
+      Zousan.resolve = function (val) {
+        if (val && val instanceof Zousan) return val;
+        var z = new Zousan();
+        z.resolve(val);
+        return z;
+      };
+
+      Zousan.reject = function (err) {
+        if (err && err instanceof Zousan) return err;
+        var z = new Zousan();
+        z.reject(err);
+        return z;
+      };
+
+      Zousan.version = "2.3.3-nodent";
+      return Zousan;
+    })();
+  }
+
+  var resolver = this;
+
+  switch (catcher) {
+    case true:
+      return new $asyncbind.Thenable(boundThen);
+
+    case 0:
+      return new $asyncbind.LazyThenable(boundThen);
+
+    case undefined:
+      boundThen.then = boundThen;
+      return boundThen;
+
+    default:
+      return function () {
+        try {
+          return resolver.apply(self, arguments);
+        } catch (ex) {
+          return catcher(ex);
+        }
+      };
+  }
+
+  function boundThen() {
+    return resolver.apply(self, arguments);
+  }
+};
+
+var cwd = process.cwd();
+var resolve = function resolve(id) {
+  return (0, _resolve.sync)(id, { basedir: cwd });
+};
+
+var getSchema = require('@patternplate/server/library/get-schema');
+
+exports.default = function renderPage(application, pageUrl) {
+  return new Promise(function ($return, $error) {
+    var app, client, server, parsed, depth, base, id, config, schema, pattern, render, transfer, _ref, html, css, head, icons;
+
+    app = application.parent;
+    client = application;
+    server = app.server;
+    parsed = _url2.default.parse(pageUrl);
+    depth = parsed.pathname.split('/').filter(Boolean).length;
+    base = depth > 0 ? (0, _lodash.fill)(Array(depth), '..').join('/') : '.';
+    id = (0, _getIdByPathname2.default)(parsed.pathname);
+    config = application.configuration.ui;
+    return getSchema(app, client, server).then(function ($await_1) {
+      schema = $await_1;
+      pattern = (0, _navigate2.default)(id, schema.meta) || {};
+
+      render = {
+        base: base,
+        config: config,
+        pattern: pattern,
+        schema: schema,
+        startBase: base
+      };
+
+      transfer = {
+        base: base,
+        config: config,
+        pattern: { id: id },
+        startBase: base
+      };
+
+      return (0, _server2.default)(pageUrl, render).then(function ($await_2) {
+        _ref = $await_2, html = _ref.html, css = _ref.css;
+
+        head = _reactHelmet2.default.rewind();
+        icons = _components.Icon.rewind();
+
+        return $return((0, _layouts2.default)({
+          attributes: head.htmlAttributes,
+          base: base,
+          css: css,
+          data: transfer,
+          html: html,
+          icons: icons,
+          link: head.link,
+          meta: head.meta,
+          style: head.style,
+          title: head.title,
+          scripts: [base + '/script/vendors.bundle.js', base + '/script/index.bundle.js']
+        }));
+      }.$asyncbind(this, $error), $error);
+    }.$asyncbind(this, $error), $error);
+  }.$asyncbind(this));
+};

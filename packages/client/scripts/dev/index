@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+concurrently -k \
+	"./scripts/dev/server" \
+	"./scripts/dev/client" \
+	"./scripts/dev/vendors"

@@ -1,7 +1,5 @@
 {
   "lerna": "2.1.0",
-  "packages": [
-    "@patternplate/*",
-    "packages/*"
-  ]
+  "npmClient": "yarn",
+  "workspaces": true
 }

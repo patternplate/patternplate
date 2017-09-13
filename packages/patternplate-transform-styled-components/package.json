@@ -9,7 +9,7 @@
     "start": "npm test -- --watch",
     "pretest": "npm run deps",
     "build": "babel source.js -o index.js",
-    "watch": "babel source.js -o index.js -w",
+    "dev": "babel source.js -o index.js -w",
     "predeps": "npm run build",
     "deps": "dependency-check . && dependency-check . --extra --no-dev"
   },
@@ -28,8 +28,7 @@
       ]
     ],
     "plugins": [
-      "add-module-exports",
-      "transform-flow-comments"
+      "add-module-exports"
     ]
   },
   "ava": {
@@ -79,5 +78,8 @@
     "resolve-from": "2.0.0",
     "styled-components": "^2.1.2",
     "unexpected": "10.26.3"
+  },
+  "dependencies": {
+    "import-from": "^2.1.0"
   }
 }

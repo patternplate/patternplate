@@ -13,7 +13,7 @@
     "build": "babel source -d distribution",
     "test": "npm run build && npm run deps && xo source/**/*.js && ava",
     "deps": "dependency-check . --missing && dependency-check . --no-dev --extra",
-    "watch": "babel source -d distribution -w"
+    "dev": "babel source -d distribution -w"
   },
   "ava": {
     "files": [

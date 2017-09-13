@@ -13,7 +13,7 @@
     "pretest": "npm run build && npm run deps",
     "test": "ava",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
-    "watch": "babel source -d distribution -w"
+    "dev": "babel source -d distribution -w"
   },
   "ava": {
     "require": [
