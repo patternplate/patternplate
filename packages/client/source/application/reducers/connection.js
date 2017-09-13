@@ -8,7 +8,7 @@ export default handleDependentActions(
     FETCHING: (...args) => handle(...args),
     ERROR_HEARTBEAT: () => {
       BEATS = [];
-      return 'error';
+      return 'offline';
     }
   },
   {

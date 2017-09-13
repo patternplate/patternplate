@@ -29,7 +29,7 @@ const StyledDot = styled.div`
   margin-right: 5px;
   border-radius: 50%;
   background: ${props =>
-    props.status === 'error' ? 'rgb(205, 63, 69)' : props.theme.active};
+    props.status === 'error' || props.status === 'offline' ? 'rgb(205, 63, 69)' : props.theme.active};
   transition: background 0.4s ease-in-out, opacity 0.5s ease-in;
   opacity: ${props => (props.status ? 1 : 0)};
   cursor: ${props => (props.status ? 'pointer' : '')};
@@ -88,6 +88,8 @@ function getOut(props) {
 function getLabel(props) {
   switch (props.status) {
     case 'error':
+      return 'error';
+    case 'offline':
       return 'offline';
     case 'loaded':
       return 'synced';

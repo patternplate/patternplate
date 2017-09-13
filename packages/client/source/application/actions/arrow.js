@@ -61,6 +61,11 @@ function jump(pool, start, offset) {
 
   while (result === start.href) {
     index += offset;
+
+    if (!pool[index]) {
+      break;
+    }
+
     result = pool[index].href;
 
     if (offset < 0 && index === 0) {

@@ -3,9 +3,11 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import Indicator from '../components/indicator';
 
+export default connect(mapProps, mapDispatch)(Indicator);
+
 function mapProps(state) {
   return {
-    status: state.connection,
+    status: selectStatus(state),
     shortcut: state.shortcuts.reload
   };
 }
@@ -19,4 +21,9 @@ function mapDispatch(dispatch) {
   );
 }
 
-export default connect(mapProps, mapDispatch)(Indicator);
+function selectStatus(state) {
+  if (state.demo.error) {
+    return 'error';
+  }
+  return state.connection;
+}
