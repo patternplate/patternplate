@@ -17,7 +17,7 @@ module.exports = {
   'browserify': {
     inFormat: 'js',
     outFormat: 'js',
-    vendors: ['react', 'react-dom']
+    vendors: ['react', 'react-dom', 'vis']
   },
   'react-mount': {
     inFormat: 'js',

@@ -1,0 +1,8 @@
+{
+  "name": "network",
+  "displayName": "Network",
+  "version": "1.0.0",
+  "patterns": {
+    "../themes": "themes"
+  }
+}
