@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npx lerna run watch --stream --parallel",
-    "reinstall": "npx lerna clean --yes && npx lerna bootstrap"
+    "reinstall": "npx lerna clean --yes && npx lerna bootstrap",
+    "postinstall": "ln -sf ../../../cli/binary/patternplate.js ./packages/components/node_modules/.bin/patternplate"
   },
   "author": {
     "name": "Mario Nebl",
