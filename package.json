@@ -98,6 +98,7 @@
     "npm": ">= 3"
   },
   "workspaces": [
-    "@patternplate/*"
+    "@patternplate/*",
+    "packages/*"
   ]
 }
