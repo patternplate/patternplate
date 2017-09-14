@@ -337,6 +337,12 @@ const selectOptions = createSelector(
   }
 );
 
+const selectOptionsHit = createSelector(
+  selectParsedQuery,
+  selectOptions,
+  (query, ops) => ops.some(o => o.value === query.raw)
+);
+
 export const selectLegend = createSelector(
   selectParsedValue,
   selectParsedQuery,
@@ -345,14 +351,8 @@ export const selectLegend = createSelector(
   selectOps,
   selectOpsHit,
   selectOptions,
+  selectOptionsHit,
   (parsedValue, parsed, fields, fieldHit, ops, opsHit, options, optionsHit) => {
-    if (parsedValue && parsedValue.values) {
-      return {
-        name: '',
-        items: []
-      };
-    }
-
     if (!fieldHit) {
       return {
         name: 'Fields',
@@ -374,7 +374,10 @@ export const selectLegend = createSelector(
       };
     }
 
-    return {};
+    return {
+      name: '',
+      items: []
+    };
   }
 );
 
