@@ -11,6 +11,7 @@ module.exports = {
   NavigationItem: require('./main-navigation'),
   NavigationToolbar: require('./navigation-toolbar'),
   NavigationTree: require('./navigation-tree'),
+  Network: require('./network'),
   ServerStyleSheet: require('styled-components').ServerStyleSheet,
   styled: require('styled-components').default,
   StyleSheetManager: require('styled-components').StyleSheetManager,
