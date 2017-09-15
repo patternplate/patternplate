@@ -179,11 +179,21 @@ module.exports = class NetworkDemo extends React.Component {
   constructor(...args) {
     super(...args);
     this.handleSelect = this.handleSelect.bind(this);
-    this.state = {active: null};
+    this.handleHover = this.handleHover.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.state = {active: null, detailed: null};
   }
 
   handleSelect(active) {
-    this.setState({active});
+    this.setState(Object.assign(this.state, {active}));
+  }
+
+  handleHover(id) {
+    this.setState(Object.assign(this.state, {detailed: id}));
+  }
+
+  handleBlur() {
+    this.setState(Object.assign(this.state, {detailed: null}));
   }
 
   render() {
@@ -191,11 +201,14 @@ module.exports = class NetworkDemo extends React.Component {
       <div style={{height: '100vh'}}>
         <Network
           active={this.state.active}
+          detailed={this.state.detailed}
           nodes={NODES}
           edges={LINKS}
           width={500}
           height={500}
           onSelect={this.handleSelect}
+          onHover={this.handleHover}
+          onBlur={this.handleBlur}
           />
       </div>
     );

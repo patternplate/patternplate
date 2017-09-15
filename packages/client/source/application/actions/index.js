@@ -1,3 +1,4 @@
+export activateNode from './activate-node';
 export applyState from './apply-state';
 export arrow from './arrow';
 export changeConcern from './change-concern';
@@ -31,6 +32,7 @@ export toggleKeyboardShortcuts from './toggle-keyboard-shortcuts';
 export toggleManifest from './toggle-manifest';
 export toggleMount from './toggle-mount';
 export toggleNavigation from './toggle-navigation';
+export toggleNetwork from './toggle-network';
 export toggleOpacity from './toggle-opacity';
 export toggleRulers from './toggle-rulers';
 export toggleSearch from './toggle-search';

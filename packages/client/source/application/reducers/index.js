@@ -1,4 +1,5 @@
 import activeBlock from './active-block';
+import activeNode from './active-node';
 import base from './base';
 import codeEnabled from './code-enabled';
 import connection from './connection';
@@ -17,6 +18,7 @@ import manifestEnabled from './manifest-enabled';
 import messages from './messages';
 import mountEnabled from './mount-enabled';
 import navigationEnabled from './navigation-enabled';
+import networkEnabled from './network-enabled';
 import opacity from './opacity';
 import search from './search';
 import searchEnabled from './search-enabled';
@@ -33,6 +35,7 @@ const getDependencies = (reducer = {}) => reducer.dependencies || [];
 
 export default {
   activeBlock,
+  activeNode,
   base,
   codeEnabled,
   config: ident,
@@ -53,6 +56,7 @@ export default {
   messages,
   mountEnabled,
   navigationEnabled,
+  networkEnabled,
   opacity,
   schema,
   search,

@@ -78,6 +78,12 @@ function createShortcuts() {
     action: actions.toggleNavigation
   });
 
+  bind.toggleNetwork = new Shortcut({
+    character: 'd',
+    description: props => `${props.enabled ? 'Hide' : 'Show'} dependency network`,
+    action: actions.toggleNetwork
+  });
+
   const reload = () => actions.reload({reloadTime: Date.now()});
   reload.type = actions.reload.type;
   reload.key = actions.reload.key;

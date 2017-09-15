@@ -12,6 +12,7 @@ function closeAllTheThings() {
           issue: null,
           lightbox: null,
           'menu-enabled': null,
+          'network-enabled': null,
           'search-enabled': null,
           source: null,
           'source-expanded': null

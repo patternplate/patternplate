@@ -26,9 +26,15 @@
   "xo": false,
   "babel": {
     "presets": [
-      ["env", {
-        "exclude": ["transform-regenerator", "transform-async-to-generator"]
-      }],
+      [
+        "env",
+        {
+          "exclude": [
+            "transform-regenerator",
+            "transform-async-to-generator"
+          ]
+        }
+      ],
       "react"
     ],
     "plugins": [
@@ -154,6 +160,7 @@
     "unist-util-find-after": "^2.0.1",
     "unist-util-find-before": "^2.0.1",
     "unist-util-select": "^1.5.0",
+    "vis": "^4.20.1",
     "web-animations-js": "^2.2.2",
     "xmldom": "^0.1.27"
   },

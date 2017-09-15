@@ -1,3 +1,4 @@
+const color = require('color');
 const React = require('react');
 const styled = require('styled-components').default;
 const vis = require('vis');
@@ -9,7 +10,7 @@ const OPTIONS = {
   interaction: {
     dragNodes: true,
     selectable: true,
-    hover: false,
+    hover: true,
     hoverConnectedEdges: false,
     selectConnectedEdges: false
   },
@@ -31,6 +32,10 @@ const OPTIONS = {
     enabled: false
   },
   nodes: {
+    font: {
+      color: THEMES.dark.light
+    },
+    chosen: false,
     shape: 'dot',
     color: THEMES.dark.light,
     fixed: {
@@ -41,10 +46,7 @@ const OPTIONS = {
       min: 10,
       max: 30,
       label: {
-        min: 8,
-        max: 30,
-        drawThreshold: 12,
-        maxVisible: 20
+        enabled: false
       }
     }
   }
@@ -54,11 +56,25 @@ module.exports = class Network extends React.Component {
   constructor(...args) {
     super(...args);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleHover = this.handleHover.bind(this);
     this.getRef = this.getRef.bind(this);
   }
 
   getRef(ref) {
     this.ref = ref;
+  }
+
+  handleBlur(e) {
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(e.node);
+    }
+  }
+
+  handleHover(e) {
+    if (typeof this.props.onHover === 'function') {
+      this.props.onHover(e.node);
+    }
   }
 
   handleSelect(...args) {
@@ -84,6 +100,9 @@ module.exports = class Network extends React.Component {
       this.handleSelect(null);
     });
 
+    this.network.on('hoverNode', id => this.handleHover(id));
+    this.network.on('blurNode', id => this.handleBlur(id));
+
     update(this.network, this.props);
   }
 
@@ -99,43 +118,97 @@ module.exports = class Network extends React.Component {
   }
 }
 
+function selectRelated(node, edges, active) {
+  if (node.id === active) {
+    return true;
+  }
+  if (edges.some(e => e.from === active && e.to === node.id)) {
+    return true;
+  }
+  if (edges.some(e => e.to === active && e.from === node.id)) {
+    return true;
+  }
+  return false;
+}
+
+function getStatusColors(status) {
+  switch(status) {
+    case 'active':
+      return THEMES.dark.active;
+    case 'dependency':
+      return color(THEMES.dark.active)
+        .desaturate(0.75)
+        .darken(0.25)
+        .toString();
+    case 'dependent':
+      return color(THEMES.dark.active)
+        .desaturate(0.75)
+        .lighten(0.25)
+        .toString();
+    case 'unrelated':
+    default:
+      return THEMES.dark.light;
+  }
+}
+
+function selectEdgeColor(edge, active) {
+  if (edge.from === active) {
+    return getStatusColors('dependency');
+  }
+
+  if (edge.to === active) {
+    return getStatusColors('dependent');
+  }
+
+  return getStatusColors('unrelated');
+}
+
+function selectNodeColor(node, edges, active) {
+  const related = selectRelated(node, edges, active);
+  if (!related) {
+    return getStatusColors('unrelated')
+  }
+  if (node.id === active) {
+    return getStatusColors('active')
+  }
+  if (edges.some(e => e.from === active && e.to === node.id)) {
+    return getStatusColors('dependency')
+  }
+  if (edges.some(e => e.to === active && e.from === node.id)) {
+    return getStatusColors('dependent')
+  }
+}
+
 function update(network, props) {
   const nodes = props.nodes.get();
   const edges = props.edges.get();
 
-  const names = [
-    props.active,
-    ...network.getConnectedNodes(props.active)
-  ];
+  const un = nodes.map(n => {
+    const detailed = n.id === props.detailed;
+    const related = selectRelated(n, edges, props.active);
+    const color = selectNodeColor(n, edges, props.active);
 
-  const un = nodes
-    .map(n => {
-      if (names.includes(n.id)) {
-        n.color = THEMES.dark.active;
-        n.label = n.label || n._label;
-        n._label = undefined;
-      } else {
-        n._label = n._label || n.label;
-        n.label = undefined;
-        n.color = THEMES.dark.light;
-      }
-      return n;
-    });
+    n.color = color;
+
+    n.font = {
+      background: '#fff',
+      color
+    };
+
+    if (related || detailed) {
+      n.label = n.label || n._label;
+      n._label = undefined;
+    } else {
+      n._label = n._label || n.label;
+      n.label = undefined;
+    }
+
+    return n;
+  });
 
   const ue = edges
     .map(e => {
-      if (e.from === props.active) {
-        e.color = THEMES.dark.active;
-      }
-
-      if (e.to === props.active) {
-        e.color = THEMES.dark.info;
-      }
-
-      if (e.from !== props.active && e.to !== props.active) {
-        e.color = THEMES.dark.light;
-      }
-
+      e.color = selectEdgeColor(e, props.active);
       return e;
     });
 

@@ -23,9 +23,11 @@ import InfoPane from './info-pane';
 import Message from './message';
 import Logo from './logo';
 import Navigation, {NavigationHeader, NavigationToolbar} from './navigation';
+import Network from './network';
 import ToggleDoc from './toggle-doc';
 import ToggleInfoPane from './toggle-info-pane';
 import ToggleNavigation from './toggle-navigation';
+import ToggleNetwork from './toggle-network';
 import ToggleOpacity from './toggle-opacity';
 import ToggleSearch from './toggle-search';
 import ToggleSource from './toggle-code';
@@ -70,6 +72,7 @@ function mapProps(state) {
     description: state.schema.description,
     infoEnabled: selectInfoEnabled(state),
     lightbox: state.lightbox,
+    networkEnabled: state.networkEnabled,
     logo: state.config.logo,
     navigationEnabled: state.navigationEnabled,
     searchEnabled: state.searchEnabled,
@@ -122,7 +125,7 @@ function Application(props) {
                   </NavigationHeader>
                 )}
                 <NavigationToolbar>
-                  <div />
+                  <ToggleNetwork />
                   <ToggleSearch />
                   <Indicator />
                 </NavigationToolbar>
@@ -194,6 +197,14 @@ function Application(props) {
             </StyledControlsBox>
           </ThemeProvider>
         </StyledContentContainer>
+        {props.networkEnabled &&
+          <StyledNetworkContainer>
+            <Network/>
+            <FixedNetworkToggleContainer>
+              <ToggleNetwork/>
+            </FixedNetworkToggleContainer>
+          </StyledNetworkContainer>
+        }
       </StyledApplication>
     </ThemeProvider>
   );
@@ -213,6 +224,23 @@ const StyledApplication = styled.div`
   width: 100%;
   height: 100%;
   background: ${props => props.theme.background};
+`;
+
+const StyledNetworkContainer = styled.div`
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: ${props => props.theme.background};
+`;
+
+const FixedNetworkToggleContainer = styled.div`
+  position: fixed;
+  z-index: 4;
+  left: 15px;
+  bottom: 0;
 `;
 
 const StyledNavigationBox = styled(tag(['enabled'])('div'))`
