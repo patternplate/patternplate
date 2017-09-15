@@ -1,3 +1,4 @@
+import React from 'react';
 import {Network} from '@patternplate/components';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
@@ -7,7 +8,33 @@ import * as actions from '../actions';
 import {selectId} from '../selectors/item';
 import {flatten} from '../selectors/tree';
 
-export default connect(mapProps, mapDispatch)(Network);
+class NetworkContainer extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {detailed: null};
+    this.handleHover = this.handleHover.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+  }
+
+  handleHover(id) {
+    this.setState({detailed: id});
+  }
+
+  handleBlur() {
+    this.setState({detailed: null});
+  }
+
+  render() {
+    return <Network
+      {...this.props}
+      detailed={this.state.detailed}
+      onHover={this.handleHover}
+      onBlur={this.handleBlur}
+      />;
+  }
+}
+
+export default connect(mapProps, mapDispatch)(NetworkContainer);
 
 const selectFlattened = createSelector(
   state => state.navigation,

@@ -14,22 +14,13 @@ const OPTIONS = {
     hoverConnectedEdges: false,
     selectConnectedEdges: false
   },
-  physics: false,
   edges: {
-    arrows: {
-      to: {
-        enabled: true,
-        scaleFactor: 0.9
-      }
-    },
     color: THEMES.dark.light,
     chosen: false,
     smooth: {
-      type: 'continuous'
+      type: 'continuous',
+      forceDirection: 'none'
     }
-  },
-  manipulation: {
-    enabled: false
   },
   nodes: {
     font: {
@@ -38,10 +29,6 @@ const OPTIONS = {
     chosen: false,
     shape: 'dot',
     color: THEMES.dark.light,
-    fixed: {
-      x: true,
-      y: true
-    },
     scaling: {
       min: 10,
       max: 30,
@@ -104,6 +91,14 @@ module.exports = class Network extends React.Component {
     this.network.on('blurNode', id => this.handleBlur(id));
 
     update(this.network, this.props);
+
+    setTimeout(() => {
+      this.network.setOptions({
+        physics: {
+          enabled: false
+        }
+      });
+    });
   }
 
   componentWillUpdate(next) {
