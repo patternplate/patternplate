@@ -7,7 +7,7 @@ function increment(line) {
 
 export default async function getReadmeData(context = {}) {
 	const readmePath = path.resolve(__dirname, '../../documentation/first-steps.md');
-	const readmeSource = await sander.readFile(readmePath, 'utf-8');
+	const readmeSource = await sander.readFile(readmePath, { encoding: 'utf-8' });
 
 	const readmeLines = readmeSource
 		.split('\n')
