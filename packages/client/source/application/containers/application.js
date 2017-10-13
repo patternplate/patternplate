@@ -98,7 +98,6 @@ function Application(props) {
     html,
     body {
       height: 100%;
-      overflow: hidden;
     }
     body {
       margin: 0;
