@@ -1,5 +1,5 @@
 import React from 'react';
-import {styled, css, injectGlobal, keyframes} from '@patternplate/components';
+import {styled, css, keyframes} from '@patternplate/components';
 import Text from './text';
 
 export default Indicator;

@@ -13,8 +13,8 @@ main().catch(err => {
 });
 
 async function main() {
-  const slot = document.query('[data-application]');
-  const vault = document.query('[data-application-state]');
+  const slot = document.query('[data-application-el="patternplate"]');
+  const vault = document.query('[data-application-state="patternplate"]');
   const data = await getData(vault);
 
   router(data, slot);

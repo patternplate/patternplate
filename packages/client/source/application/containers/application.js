@@ -7,7 +7,6 @@ import {createSelector} from 'reselect';
 import {
   styled,
   ThemeProvider,
-  injectGlobal,
   themes
 } from '@patternplate/components';
 
@@ -93,22 +92,6 @@ function mapDispatch(dispatch) {
 }
 
 function Application(props) {
-  /* eslint-disable no-unused-expressions */
-  injectGlobal`
-    html,
-    body {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      height: 100%;
-    }
-    [data-application] {
-      height: 100%;
-    }
-  `;
-  /* eslint-enable */
-
   return (
     <ThemeProvider theme={props.themes[props.theme]}>
       <StyledApplication>

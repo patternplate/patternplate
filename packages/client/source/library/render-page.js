@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import {sync as resolveSync} from 'resolve';
 
 import router from '../application/server';
-import layout from '../application/layouts';
+import layout, {Layout} from '../application/layouts';
 import getIdByPathname from '../application/utils/get-id-by-pathname';
 import navigate from '../application/utils/navigate';
 import {Icon} from '@patternplate/components';
@@ -55,7 +55,6 @@ export default async function renderPage(application, pageUrl) {
     icons,
     link: head.link,
     meta: head.meta,
-    style: head.style,
     title: head.title,
     scripts: [
       `${base}/script/vendors.bundle.js`,

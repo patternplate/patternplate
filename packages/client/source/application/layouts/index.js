@@ -1,35 +1,55 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import {renderToStaticMarkup as render} from 'react-dom/server';
-import {styled} from '@patternplate/components';
+import {styled, ServerStyleSheet} from '@patternplate/components';
 
 export default layout;
 
 function layout(props) {
-  return `<!doctype html>${render(<Layout {...props} />)}`;
+  const layoutSheet = new ServerStyleSheet();
+  layoutSheet.collectStyles(render(<Layout />));
+  const layoutCSS = layoutSheet.getStyleElement();
+
+  return `<!doctype html>${render(<Layout {...props} layoutCSS={layoutCSS} />)}`;
 }
 
 function Layout(props) {
-  const attributes = props.attributes.toComponent();
+  const attributes = props.attributes
+    ? props.attributes.toComponent()
+    : {};
+
+  const scripts = Array.isArray(props.scripts)
+    ? props.scripts
+    : [];
+
   return (
-    <html {...attributes}>
+    <StyledDocument {...attributes}>
       <head>
-        {props.title.toComponent()}
-        {props.meta.toComponent()}
-        {props.link.toComponent()}
-        {props.style.toComponent()}
+        {props.title && props.title.toComponent()}
+        {props.meta && props.meta.toComponent()}
+        {props.link && props.link.toComponent()}
+        {props.layoutCSS}
         {props.css}
       </head>
-      <body data-base={props.base}>
+      <StyledBody data-base={props.base}>
         <IconRegistry>{props.icons}</IconRegistry>
-        <Content content={props.html} />
-        <State data={props.data} />
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes" />
-        {props.scripts.map(src => <script key={src} src={src} />)}
-      </body>
-    </html>
+        <Content data-application-el="patternplate" content={props.html} />
+        <State data-application-state="patternplate" data={props.data} />
+        {scripts.map(src => <script key={src} src={src} />)}
+      </StyledBody>
+    </StyledDocument>
   );
 }
+
+const StyledDocument = styled('html')`
+  height: 100%;
+  overflow: hidden;
+`;
+
+const StyledBody = styled('body')`
+  margin: 0;
+  height: 100%;
+`;
 
 function IconRegistry(props) {
   return (
@@ -41,13 +61,17 @@ function IconRegistry(props) {
 
 function Content(props) {
   return (
-    <div data-application dangerouslySetInnerHTML={{__html: props.content}} />
+    <StyledContent data-application-el={props['data-application-el']} dangerouslySetInnerHTML={{__html: props.content}} />
   );
 }
 
+const StyledContent = styled.div`
+  height: 100%;
+`;
+
 function State(props) {
   const value = JSON.stringify(props.data);
-  return <StyledState data-application-state value={value} readOnly />;
+  return <StyledState data-application-state={props['data-application-state']} value={value} readOnly />;
 }
 
 const StyledState = styled.textarea`display: none;`;
