@@ -3,13 +3,28 @@ const {merge} = require('lodash');
 
 module.exports = function getThemes(passed) {
   const mainColorTone = passed ? color(passed) : color.hsl(210, 100, 100);
+  const grayBaseTone = color.hsl(0, 0, 100);
 
-  const bgDark = mainColorTone
-    .desaturate(0.5)
-    .darken(0.9)
-    .string();
-  const bgLight = 'hsl(255, 0%, 100%)';
-  const main = mainColorTone.darken(0.4).string();
+  const colorGroups = {
+    lightBlue: {
+      300: mainColorTone.darken(0.3),
+      600: mainColorTone.darken(0.4)
+    },
+    marine: {
+      500: mainColorTone.desaturate(0.5).darken(0.5),
+      700: mainColorTone.desaturate(0.5).darken(0.8),
+      800: mainColorTone.desaturate(0.5).darken(0.85),
+      900: mainColorTone.desaturate(0.5).darken(0.9)
+    },
+    gray: {
+      50: grayBaseTone.darken(0.05),
+      100: grayBaseTone.darken(0.15),
+      400: grayBaseTone.darken(0.4),
+      700: grayBaseTone.darken(.735)
+    }
+  }
+
+  const main = colorGroups.lightBlue[600].string();
 
   const common = {
     active: main,
@@ -25,27 +40,18 @@ module.exports = function getThemes(passed) {
 
   const dark = merge({}, common, {
     name: 'dark',
-    background: bgDark,
-    backgroundSecondary: mainColorTone
-      .desaturate(0.5)
-      .darken(0.85)
-      .string(),
-    backgroundTertiary: mainColorTone
-      .desaturate(0.5)
-      .darken(0.8)
-      .string(),
-    border: mainColorTone
-      .desaturate(0.5)
-      .darken(0.85)
-      .string(),
-    color: 'hsl(255, 0%, 95%)',
-    colorNegated: 'rgba(68, 68, 68, 1)',
-    recess: 'rgba(153, 153, 153, 1)'
+    background: colorGroups.marine[900].string(),
+    backgroundSecondary: colorGroups.marine[800].string(),
+    backgroundTertiary: colorGroups.marine[700].string(),
+    border: colorGroups.marine[800].string(),
+    color: colorGroups.gray[50].string(),
+    colorNegated: colorGroups.gray[700].string(),
+    recess: colorGroups.gray[400].string()
   });
 
   const light = merge({}, common, {
     name: 'light',
-    background: bgLight,
+    background: 'hsl(255, 0%, 100%)',
     backgroundSecondary: 'rgba(246, 248, 250, 1)',
     backgroundTertiary: 'rgba(246, 248, 250, 1)',
     border: 'rgba(228, 228, 228, 1)',
@@ -57,6 +63,7 @@ module.exports = function getThemes(passed) {
 
   return {
     dark,
-    light
+    light,
+    colorGroups
   };
 };

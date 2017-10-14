@@ -70,6 +70,7 @@
     "lowlight": "^1.9.1",
     "react": "^15.6.1",
     "react-addons-text-content": "^0.0.4",
+    "react-clipboard.js": "^1.1.2",
     "react-dom": "^15.6.1",
     "react-side-effect": "^1.0.2",
     "react-vis": "^1.7.5",
