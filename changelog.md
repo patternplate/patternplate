@@ -1,3 +1,13 @@
+<a name="1.7.4"></a>
+## [1.7.4](https://github.com/sinnerschrader/patternplate/compare/v1.7.3...v1.7.4) (2017-10-15)
+
+
+### Bug Fixes
+
+* fix wrong encoding argument to sander.readFile ([0854293](https://github.com/sinnerschrader/patternplate/commit/0854293))
+
+
+
 <a name="1.7.3"></a>
 ## [1.7.3](https://github.com/sinnerschrader/patternplate/compare/v1.7.2...v1.7.3) (2017-05-19)
 

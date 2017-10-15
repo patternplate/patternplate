@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "Create, show and deliver component libraries",
   "main": "library/",
   "bin": {
