@@ -79,6 +79,9 @@
       "react/jsx-indent-props": [
         0
       ],
+      "react/jsx-tag-spacing": [
+        0
+      ],
       "react/prop-types": [
         0
       ]

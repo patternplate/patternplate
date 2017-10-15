@@ -1,6 +1,6 @@
 const React = require("react");
 const NavigationItem = require("../navigation-item");
-const Flag = require('../flag');
+const Flag = require("../flag");
 
 module.exports = NavigationTree;
 
@@ -21,10 +21,10 @@ function NavigationTree(props) {
               active={item.active}
               hidden={hidden}
               href={item.href}
-              id={
-                item.id
-              }
-              meta={(item.warnings || []).map(warning => <Meta warning={warning}/>)}
+              id={item.id}
+              meta={(item.warnings || []).map(warning => (
+                <NavigationMeta key={warning.value} warning={warning} />
+              ))}
               name={item.manifest.displayName}
               onClick={props.onItemClick}
               onScrollRequest={props.onScrollRequest}
@@ -52,9 +52,9 @@ function NavigationTree(props) {
 
 function NavigationMeta(props) {
   switch (props.warning.type) {
-    case 'flag':
+    case "flag":
     default:
-      return <Flag key={props.warning.value} title={props.warning.message}>{props.warning.value}</Flag>;
+      return <Flag title={props.warning.message}>{props.warning.value}</Flag>;
   }
 }
 
