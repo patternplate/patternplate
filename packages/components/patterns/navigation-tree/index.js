@@ -1,6 +1,6 @@
 const React = require("react");
 const NavigationItem = require("../navigation-item");
-// Const Flag = require('flag');
+const Flag = require('../flag');
 
 module.exports = NavigationTree;
 
@@ -23,14 +23,8 @@ function NavigationTree(props) {
               href={item.href}
               id={
                 item.id
-              } /*
-            Meta={item.warnings.map(warning => {
-              switch (warning.type) {
-                case 'flag':
-                default:
-                  return <Flag key={warning.value} title={warning.message}>{warning.value}</Flag>;
               }
-            })} */
+              meta={item.warnings.map(warning => <Meta warning={warning}/>)}
               name={item.manifest.displayName}
               onClick={props.onItemClick}
               onScrollRequest={props.onScrollRequest}
@@ -54,6 +48,14 @@ function NavigationTree(props) {
         })}
     </div>
   );
+}
+
+function NavigationMeta(props) {
+  switch (props.warning.type) {
+    case 'flag':
+    default:
+      return <Flag key={props.warning.value} title={props.warning.message}>{props.warning.value}</Flag>;
+  }
 }
 
 function selectActiveSymbol(props, item) {

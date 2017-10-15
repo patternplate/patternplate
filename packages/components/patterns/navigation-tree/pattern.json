@@ -2,6 +2,7 @@
   "name": "navigation-tree",
   "displayName": "Navigation Tree",
   "patterns": {
+    "../flag": "flag",
     "../navigation-item": "navigation-item"
   }
 }
