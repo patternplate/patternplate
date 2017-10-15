@@ -79,7 +79,7 @@
     ]
   },
   "lint-staged": [
-    "npx prettier --write --single-quote --no-bracket-spacing",
+    "npx prettier --write",
     "npx xo --fix",
     "git add"
   ],
