@@ -1,6 +1,5 @@
 import React from "react";
-import { styled } from "@patternplate/components";
-import Link from "./link";
+import { Link, styled } from "@patternplate/components";
 
 export default ToggleButton;
 

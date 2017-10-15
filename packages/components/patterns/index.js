@@ -19,5 +19,6 @@ module.exports = {
   StyleSheetManager: require("styled-components").StyleSheetManager,
   Symbol: require("./icon").Symbol,
   ThemeProvider: require("styled-components").ThemeProvider,
+  Text: require("./text"),
   themes: require("./themes")
 };

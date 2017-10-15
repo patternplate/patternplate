@@ -68,7 +68,6 @@ class InfoPaneDemo extends React.Component {
           mount={this.state.mount}
           name="Test pane"
           onMountChange={this.handleMountChange}
-          onToggle={this.handleToggle}
           standalone
           version="1.0.0"
         />

@@ -1,8 +1,7 @@
 import React from "react";
-import { Icon, styled } from "@patternplate/components";
+import { Icon, Link, styled } from "@patternplate/components";
 
 // Import Icon from '../icon';
-import Link from "../link";
 import Text from "../../text";
 
 const SIZES = {
@@ -14,25 +13,21 @@ const SIZES = {
   h6: 18
 };
 
-const StyledLink = styled(Link)`
+const ThemedIcon = styled(Icon)`
   position: absolute;
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0;
-  line-height: 0;
   padding-right: 10px;
-  color: ${props => props.theme.color};
-  display: none;
-  &:hover {
-    display: block;
-  }
+  fill: ${props => props.theme.color};
+  opacity: 0;
 `;
 
-const ThemedIcon = styled(Icon)`
-  fill: ${props => props.theme.color};
-  &:hover {
-    fill: ${props => props.theme.active};
+const StyledLink = styled(Link)`
+  color: ${props => props.theme.color};
+  text-decoration: none;
+  &:hover ${ThemedIcon} {
+    opacity: 1;
   }
 `;
 
@@ -43,12 +38,6 @@ export default styled(MarkdownHeadline)`
   margin: 60px 0 16px 0;
   font-weight: 300;
   line-height: 1.25;
-  &:hover ${StyledLink} {
-    display: block;
-  }
-  &:first-child {
-    margin-top: 0;
-  }
 `;
 
 function MarkdownHeadline(props) {
@@ -64,11 +53,12 @@ function MarkdownHeadline(props) {
 
   return (
     <Text is={props.is} className={props.className} id={id}>
-      {props.children}
-      {props.linkable && (
+      {props.linkable ? (
         <MarkdownHeadlineLink name={children} id={id}>
-          <Icon size="s" symbol="anchor" />
+          {props.children}
         </MarkdownHeadlineLink>
+      ) : (
+        props.children
       )}
     </Text>
   );
@@ -78,7 +68,7 @@ function MarkdownHeadlineLink(props) {
   return (
     <StyledLink title={`Link to "${props.name}"`} hash={props.id}>
       <ThemedIcon symbol="anchor" size="s" />
-      Link to id
+      {props.children}
     </StyledLink>
   );
 }

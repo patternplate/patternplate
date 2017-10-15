@@ -1,7 +1,5 @@
 import React from "react";
-import { styled, Icon } from "@patternplate/components";
-
-import Link from "./common/link";
+import { styled, Link, Icon } from "@patternplate/components";
 
 export default SearchButton;
 

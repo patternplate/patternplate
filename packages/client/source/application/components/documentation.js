@@ -6,7 +6,7 @@ export default function Documentation(props) {
   return (
     <ScrollBox>
       <StyledDocumentation>
-        <Markdown source={props.doc} />
+        <Markdown linkable source={props.doc} />
       </StyledDocumentation>
     </ScrollBox>
   );

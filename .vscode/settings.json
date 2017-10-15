@@ -1,4 +1,4 @@
 {
-  "xo.enable": false,
+  "xo.enable": true,
   "eslint.enable": false
 }

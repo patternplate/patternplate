@@ -50,17 +50,7 @@ const StyledInputSuggestion = styled(p => <StyledInput {...p} readOnly />)`
   opacity: 0.3;
 `;
 
-export default class SearchField extends Component {
-  static defaultProps = {
-    blur: () => {},
-    onChange: () => {},
-    onFocus: () => {},
-    onUp: () => {},
-    onDown: () => {},
-    onBlur: () => {},
-    onStop: () => {}
-  };
-
+class SearchField extends Component {
   constructor(...args) {
     super(...args);
     this.handleChange = this.handleChange.bind(this);
@@ -127,3 +117,15 @@ export default class SearchField extends Component {
     );
   }
 }
+
+SearchField.defaultProps = {
+  blur: () => {},
+  onChange: () => {},
+  onFocus: () => {},
+  onUp: () => {},
+  onDown: () => {},
+  onBlur: () => {},
+  onStop: () => {}
+};
+
+export default SearchField;

@@ -105,37 +105,19 @@ const StyledKey = styled(Text)`
   color: ${props => props.theme.color};
 `;
 
-class SearchTrigger extends React.Component {
-  constructor(...args) {
-    super(...args);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e, href) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (typeof this.props.onClick === "function") {
-      this.props.onClick(e, href);
-    }
-  }
-
-  render() {
-    const { props } = this;
-    return (
-      <Link
-        className={props.className}
-        onClick={this.handleClick}
-        query={{
-          "search-enabled": true,
-          search: `${props.field}=${props.search}`
-        }}
-        title={`Search other patterns with ${props.field} "${props.search}"`}
-      >
-        {props.children}
-      </Link>
-    );
-  }
+function SearchTrigger(props) {
+  return (
+    <Link
+      className={props.className}
+      query={{
+        "search-enabled": true,
+        search: `${props.field}=${props.search}`
+      }}
+      title={`Search other patterns with ${props.field} "${props.search}"`}
+    >
+      {props.children}
+    </Link>
+  );
 }
 
 const VERSION_COLOR = props => {
@@ -295,7 +277,6 @@ function InnerInfoPane(props) {
           head={`Dependencies (${props.dependencies.length})`}
           enabled={props.dependenciesEnabled}
           name="dependencies"
-          onClick={props.onToggle}
         >
           <PatternList>
             {props.dependencies.map(d => (
@@ -309,7 +290,6 @@ function InnerInfoPane(props) {
           head={`Dependents (${props.dependents.length})`}
           enabled={props.dependentsEnabled}
           name="dependents"
-          onClick={props.onToggle}
         >
           <PatternList>
             {props.dependents.map(d => <PatternItem key={d.id} pattern={d} />)}
@@ -321,7 +301,6 @@ function InnerInfoPane(props) {
           head={`Demo Dependencies (${props.demoDependencies.length})`}
           enabled={props.demoDependenciesEnabled}
           name="demo-dependencies"
-          onClick={props.onToggle}
         >
           <PatternList>
             {props.demoDependencies.map(d => (
@@ -335,7 +314,6 @@ function InnerInfoPane(props) {
           head={`Demo Dependents (${props.demoDependents.length})`}
           enabled={props.demoDependentsEnabled}
           name="demo-dependents"
-          onClick={props.onToggle}
         >
           <PatternList>
             {props.demoDependents.map(d => (
@@ -344,12 +322,7 @@ function InnerInfoPane(props) {
           </PatternList>
         </Toggle>
       )}
-      <Toggle
-        head="Manifest"
-        enabled={props.manifestEnabled}
-        name="manifest"
-        onClick={props.onToggle}
-      >
+      <Toggle head="Manifest" enabled={props.manifestEnabled} name="manifest">
         <StyledCode block language="json">
           {props.manifest}
         </StyledCode>
@@ -433,8 +406,6 @@ const StyledHead = styled(Link)`
   text-decoration: none;
 `;
 
-const noop = () => {};
-
 function ToggleHead(props) {
   const query = { [`${props.name}-enabled`]: !props.enabled };
   return (
@@ -442,13 +413,6 @@ function ToggleHead(props) {
       query={query}
       className={props.className}
       title={`${props.enabled ? "Hide" : "Show"} ${props.name}`}
-      onClick={
-        props.onClick
-          ? () => {
-              props.onClick(query);
-            }
-          : noop
-      }
     >
       <Text>{props.children}</Text>
       <StyledArrow rotated={props.enabled}>▼</StyledArrow>
@@ -492,11 +456,7 @@ const StyledToggle = styled.div`
 function Toggle(props) {
   return (
     <StyledToggle>
-      <StyledToggleHead
-        name={props.name}
-        enabled={props.enabled}
-        onClick={props.onClick}
-      >
+      <StyledToggleHead name={props.name} enabled={props.enabled}>
         {props.head}
       </StyledToggleHead>
       {props.enabled && <StyledToggleBody>{props.children}</StyledToggleBody>}

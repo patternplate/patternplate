@@ -3,6 +3,7 @@ import React, { Component } from "react";
 export default class ClickOutside extends Component {
   constructor(props) {
     super(props);
+    this.handle = this.handle.bind(this);
     this.getContainer = this.getContainer.bind(this);
   }
 
@@ -26,11 +27,11 @@ export default class ClickOutside extends Component {
     global.document.removeEventListener("click", this.handle, true);
   }
 
-  handle = e => {
-    const { onClickOutside } = this.props;
+  handle(e) {
+    const { props } = this;
     const el = this.container;
     if (!el.contains(e.target)) {
-      onClickOutside(e);
+      props.onClickOutside(e);
     }
-  };
+  }
 }
