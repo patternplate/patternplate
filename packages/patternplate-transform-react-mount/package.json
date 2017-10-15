@@ -10,7 +10,7 @@
     "build": "babel source.js -o index.js",
     "pretest": "npm run build",
     "test": "ava",
-    "dev": "babel source.js -o index.js -w"
+    "watch": "babel source.js -o index.js -w"
   },
   "xo": false,
   "ava": {
@@ -63,10 +63,10 @@
     "babel-register": "6.18.0",
     "jsdom": "9.8.3",
     "lodash": "4.17.1",
-    "parallelshell": "2.0.0",
     "react": "15.3.2",
     "react-addons-test-utils": "15.3.2",
     "react-dom": "15.3.2",
+    "rimraf": "^2.6.2",
     "simulant": "0.2.2",
     "unexpected": "10.19.0",
     "unexpected-dom": "3.1.0",

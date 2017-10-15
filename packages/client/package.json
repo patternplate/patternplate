@@ -14,10 +14,8 @@
     "dev:server": "scripty",
     "dev:client": "scripty",
     "dev:vendors": "scripty",
-    "#hooks": "# automatic npm hooks",
-    "prepublish": "not-in-install && npm run build --production || echo ''",
-    "#utils": "# utilities used by other scripts",
-    "clean": "rm -rf application configuration binary library assets"
+    "clean": "rimraf application configuration binary library assets",
+    "watch": "npx yarn run dev"
   },
   "bin": {
     "patternplate-client": "binary/patternplate-client.js",

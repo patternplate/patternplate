@@ -13,7 +13,7 @@
     "pretest": "npm run build && npm run deps",
     "test": "ava",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
-    "dev": "babel source -d distribution -w"
+    "watch": "babel source -d distribution -w"
   },
   "xo": false,
   "ava": {
@@ -68,9 +68,9 @@
     "babel-preset-stage-0": "6.22.0",
     "babel-register": "6.18.0",
     "dependency-check": "2.6.0",
-    "parallelshell": "2.0.0",
     "react": "15.4.2",
     "react-dom": "15.4.1",
+    "rimraf": "^2.6.2",
     "unexpected": "10.26.3"
   },
   "peerDependencies": {

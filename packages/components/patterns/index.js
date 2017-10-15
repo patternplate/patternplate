@@ -3,6 +3,7 @@ module.exports = {
   css: require("styled-components").css,
   Icon: require("./icon"),
   IconDefinitions: require("./icon").definitions,
+  InnerInfoPane: require("./info-pane").InnerInfoPane,
   InfoPane: require("./info-pane"),
   injectGlobal: require("styled-components").injectGlobal,
   keyframes: require("styled-components").keyframes,

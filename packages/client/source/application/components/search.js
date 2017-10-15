@@ -1,9 +1,8 @@
 import { values } from "lodash";
 import React from "react";
-import { Icon, styled } from "@patternplate/components";
+import { InnerInfoPane, Icon, styled } from "@patternplate/components";
 import tag from "tag-hoc";
 
-import { InnerInfoPane } from "./info-pane";
 import Link from "./common/link";
 import Markdown from "./common/markdown";
 import Outside from "./outside";

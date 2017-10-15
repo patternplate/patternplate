@@ -13,7 +13,7 @@
     "build": "babel source -d distribution",
     "test": "npm run build && npm run deps && xo source/**/*.js && ava",
     "deps": "dependency-check . --missing && dependency-check . --no-dev --extra",
-    "dev": "babel source -d distribution -w"
+    "watch": "babel source -d distribution -w"
   },
   "xo": false,
   "ava": {
@@ -74,7 +74,7 @@
     "babel-preset-stage-0": "6.22.0",
     "babel-register": "6.24.1",
     "dependency-check": "2.8.0",
-    "parallelshell": "2.0.0"
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "babel-core": "6.23.1",

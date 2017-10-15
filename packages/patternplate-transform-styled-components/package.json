@@ -6,12 +6,10 @@
     "index.js"
   ],
   "scripts": {
-    "start": "npm test -- --watch",
-    "pretest": "npm run deps",
     "build": "babel source.js -o index.js",
-    "dev": "babel source.js -o index.js -w",
-    "predeps": "npm run build",
-    "deps": "dependency-check . && dependency-check . --extra --no-dev"
+    "deps": "dependency-check . && dependency-check . --extra --no-dev",
+    "start": "npm test -- --watch",
+    "watch": "babel source.js -o index.js -w"
   },
   "xo": false,
   "babel": {

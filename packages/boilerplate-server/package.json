@@ -10,11 +10,10 @@
   "scripts": {
     "babel": "npm run clean && babel source --out-dir ./ --source-maps inline",
     "build": "npm run babel",
-    "clean": "rm -rf application binary configuration library",
+    "clean": "rimraf application binary configuration library",
     "console": "node binary/boilerplate-console.js",
-    "pre-publish": "npm run build && npm publish",
     "start": "node binary/boilerplate-server.js",
-    "dev": "npm run babel -- --watch"
+    "watch": "npm run babel -- --watch"
   },
   "xo": false,
   "babel": {
@@ -75,7 +74,6 @@
     "babel-preset-es2015-node4": "^2.1.0",
     "babel-preset-es2016-node4": "^6.0.1",
     "babel-preset-stage-0": "^6.5.0",
-    "eslint": "^3.4.0",
-    "xo": "^0.16.0"
+    "rimraf": "^2.6.2"
   }
 }
