@@ -1,8 +1,8 @@
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {InfoPane} from '@patternplate/components';
 
 import * as actions from '../actions';
-import InfoPane from '../components/info-pane';
 import * as item from '../selectors/item';
 import withToggleStates from '../connectors/with-toggle-states';
 
