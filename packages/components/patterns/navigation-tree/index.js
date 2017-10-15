@@ -24,7 +24,7 @@ function NavigationTree(props) {
               id={
                 item.id
               }
-              meta={item.warnings.map(warning => <Meta warning={warning}/>)}
+              meta={(item.warnings || []).map(warning => <Meta warning={warning}/>)}
               name={item.manifest.displayName}
               onClick={props.onItemClick}
               onScrollRequest={props.onScrollRequest}
