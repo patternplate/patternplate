@@ -1,4 +1,4 @@
-import {pick} from 'lodash';
+import { pick } from "lodash";
 
 export default function flatPick(hash, recurse, fields = [], depth = 1) {
   return Object.entries(hash[recurse] || {}).reduce((flatPicked, entry) => {

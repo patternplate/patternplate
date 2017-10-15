@@ -1,10 +1,10 @@
-import precinct from 'precinct';
-import {uniqBy} from 'lodash/fp';
-import md5 from 'md5';
-import applyTransform from './apply-transform';
-import flatten from './flatten';
+import precinct from "precinct";
+import { uniqBy } from "lodash/fp";
+import md5 from "md5";
+import applyTransform from "./apply-transform";
+import flatten from "./flatten";
 
-const uniqByPath = uniqBy('path');
+const uniqByPath = uniqBy("path");
 const stash = {};
 
 export default createBabelTransform;
@@ -27,9 +27,9 @@ async function babelTransform(file, _, configuration) {
 function walk(file, apply) {
   const pool = uniqByPath(flatten(file.dependencies));
   const source =
-    typeof file.buffer === 'string'
+    typeof file.buffer === "string"
       ? file.buffer
-      : file.buffer.toString('utf-8');
+      : file.buffer.toString("utf-8");
 
   const id = md5(source);
   stash[id] = stash[id] || precinct(source);

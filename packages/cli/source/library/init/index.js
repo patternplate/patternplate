@@ -1,19 +1,19 @@
-import path from 'path';
-import defaultShell from 'default-shell';
-import exists from 'path-exists';
-import {merge} from 'lodash';
-import ora from 'ora';
-import * as sander from 'sander';
+import path from "path";
+import defaultShell from "default-shell";
+import exists from "path-exists";
+import { merge } from "lodash";
+import ora from "ora";
+import * as sander from "sander";
 
-import getManifestData from './get-manifest-data';
-import getReadmeData from './get-readme-data';
+import getManifestData from "./get-manifest-data";
+import getReadmeData from "./get-readme-data";
 
-const templatePath = path.resolve(__dirname, '..', '..', 'init-template');
+const templatePath = path.resolve(__dirname, "..", "..", "init-template");
 
 const defaults = {
-  manifestPath: 'package.json',
+  manifestPath: "package.json",
   manifest: {},
-  patternPath: 'patterns'
+  patternPath: "patterns"
 };
 
 /**
@@ -32,7 +32,7 @@ const defaults = {
  * @params options.manifest={} object
  * @params options.patternPath=patterns string
  */
-async function init(directory = '.', options) {
+async function init(directory = ".", options) {
   const spinner = ora().start();
   const settings = merge({}, defaults, options);
   const cwd = path.resolve(process.cwd(), directory);
@@ -45,7 +45,7 @@ async function init(directory = '.', options) {
   // Allow overriding of manifest fields in any case
   const manifest = (await exists(manifestPath))
     ? settings.manifest
-    : merge({}, settings.manifest, {name});
+    : merge({}, settings.manifest, { name });
 
   // Read / create manifest data
   const data = await getManifestData(manifestPath, {
@@ -53,7 +53,7 @@ async function init(directory = '.', options) {
     name: settings.name || name
   });
 
-  const readmeTarget = resolve(settings.patternPath, 'readme.md');
+  const readmeTarget = resolve(settings.patternPath, "readme.md");
 
   spinner.text = ` Initializing project ${data.name} at ${cwd}`;
 
@@ -62,7 +62,7 @@ async function init(directory = '.', options) {
   await sander.copydir(templatePath).to(cwd);
 
   // Create/extend existing manifest
-  await sander.writeFile(manifestPath, JSON.stringify(data, null, '  '));
+  await sander.writeFile(manifestPath, JSON.stringify(data, null, "  "));
 
   // Use name in this precedence
   // explicit --name
@@ -81,13 +81,13 @@ async function init(directory = '.', options) {
 
   const instructions = [
     process.cwd() !== cwd && `cd ${directory}`,
-    'npm install',
-    data.scripts.start === 'patternplate'
-      ? 'npm start -- --open'
-      : './node_modules/.bin/patternplate start --open'
+    "npm install",
+    data.scripts.start === "patternplate"
+      ? "npm start -- --open"
+      : "./node_modules/.bin/patternplate start --open"
   ].filter(Boolean);
 
-  const sep = defaultShell.includes('fish') ? '; and ' : ' && ';
+  const sep = defaultShell.includes("fish") ? "; and " : " && ";
   console.log(`🚀  Start and open patternplate:`);
   console.log(`\n   ${instructions.join(sep)}`);
 }

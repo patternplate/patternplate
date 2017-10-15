@@ -1,17 +1,17 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {createSelector} from 'reselect';
-import * as demo from '../selectors/demo';
-import selectItem, * as items from '../selectors/item';
-import Pattern from '../components/pattern';
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { createSelector } from "reselect";
+import * as demo from "../selectors/demo";
+import selectItem, * as items from "../selectors/item";
+import Pattern from "../components/pattern";
 
-import * as actions from '../actions';
+import * as actions from "../actions";
 
 class PatternContainer extends React.Component {
   constructor(...args) {
     super(...args);
-    this.state = {srcdoc: false};
+    this.state = { srcdoc: false };
   }
 
   componentDidMount() {
@@ -22,8 +22,8 @@ class PatternContainer extends React.Component {
 
   componentWillMount() {
     if (global.document) {
-      const el = document.createElement('iframe');
-      this.setState({srcdoc: 'srcdoc' in el});
+      const el = document.createElement("iframe");
+      this.setState({ srcdoc: "srcdoc" in el });
     }
   }
 
@@ -44,7 +44,7 @@ class PatternContainer extends React.Component {
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
       <Pattern
         contents={this.state.srcdoc ? props.contents : null}
@@ -96,7 +96,7 @@ const selectDocs = createSelector(
   items.selectType,
   items.selectContents,
   (pattern, type, contents) => {
-    if (type === 'not-found') {
+    if (type === "not-found") {
       return NOT_FOUND;
     }
     return contents || DEFAULT_CONTENTS;

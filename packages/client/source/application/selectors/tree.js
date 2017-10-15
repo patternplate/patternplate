@@ -1,6 +1,6 @@
-import path from 'path';
-import url from 'url';
-import frontmatter from 'front-matter';
+import path from "path";
+import url from "url";
+import frontmatter from "front-matter";
 
 const WEIGHTS = {
   folder: 0,
@@ -41,7 +41,7 @@ export function flatten(tree) {
 }
 
 export function sanitize(tree, context) {
-  const {hide, id, config = {}, prefix, base, location} = context;
+  const { hide, id, config = {}, prefix, base, location } = context;
   const filter = hide ? child => !child.manifest.options.hidden : i => i;
 
   tree.children = tree.children
@@ -56,7 +56,7 @@ export function sanitize(tree, context) {
         prefix
       });
       return enriched.children
-        ? sanitize(enriched, {base, location, hide, id, config, prefix})
+        ? sanitize(enriched, { base, location, hide, id, config, prefix })
         : enriched;
     })
     .sort((a, b) => {
@@ -76,27 +76,27 @@ export function sanitize(tree, context) {
       return comp;
     });
 
-  return enrich(tree, {base, location, id, config, prefix});
+  return enrich(tree, { base, location, id, config, prefix });
 }
 
 export function enrich(child, context) {
-  const {id, config, prefix} = context;
-  const p = prefix.split('/');
-  const fragments = id.split('/').filter((f, i) => p[i] !== f);
+  const { id, config, prefix } = context;
+  const p = prefix.split("/");
+  const fragments = id.split("/").filter((f, i) => p[i] !== f);
 
   child.active =
-    child.id === 'root'
-      ? id === '/'
-      : (child.path || ['/']).every((f, i) => fragments[i] === f);
+    child.id === "root"
+      ? id === "/"
+      : (child.path || ["/"]).every((f, i) => fragments[i] === f);
 
   const parsed = url.parse(child.href || path.join(prefix, child.id));
 
   child.href = url.format({
     pathname:
-      typeof parsed.pathname === 'string'
+      typeof parsed.pathname === "string"
         ? url.resolve(context.base, parsed.pathname)
         : location.pathname,
-    query: {...context.location.query, ...parsed.query}
+    query: { ...context.location.query, ...parsed.query }
   });
 
   child.warnings = child.warnings || [];
@@ -110,11 +110,11 @@ export function enrich(child, context) {
 
   if (
     child.manifest &&
-    child.type === 'pattern' &&
-    (child.manifest.flag === 'alpha' || child.manifest.flag === 'deprecated')
+    child.type === "pattern" &&
+    (child.manifest.flag === "alpha" || child.manifest.flag === "deprecated")
   ) {
     child.warnings.push({
-      type: 'flag',
+      type: "flag",
       value: child.manifest.flag,
       message: `${child.manifest.displayName} is flagged as ${child.manifest
         .flag}.`

@@ -1,13 +1,13 @@
-import url from 'url';
-import React from 'react';
-import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
-import {bindActionCreators} from 'redux';
-import {MainNavigation} from '@patternplate/components';
-import {Link} from '@patternplate/components';
+import url from "url";
+import React from "react";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { bindActionCreators } from "redux";
+import { MainNavigation } from "@patternplate/components";
+import { Link } from "@patternplate/components";
 
-import selectNavigation from '../selectors/navigation';
-import selectDocs from '../selectors/docs';
+import selectNavigation from "../selectors/navigation";
+import selectDocs from "../selectors/docs";
 
 export default connect(mapProps, mapDispatch)(MainNavigation);
 export const NavigationHeader = MainNavigation.NavigationHeader;
@@ -28,7 +28,7 @@ function mapDispatch(dispatch) {
         e.preventDefault();
 
         if (!e.currentTarget.href) {
-          return {type: 'noop'};
+          return { type: "noop" };
         }
 
         const parsed = url.parse(e.currentTarget.href);

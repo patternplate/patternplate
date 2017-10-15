@@ -1,10 +1,10 @@
-import {merge} from 'lodash';
-import requireAll from 'require-all';
+import { merge } from "lodash";
+import requireAll from "require-all";
 
 function loadConfiguration(
   dirname,
   filter = /(.*).(js|json)$/,
-  env = 'development'
+  env = "development"
 ) {
   const rawConfiguration = requireAll({
     dirname,
@@ -15,7 +15,7 @@ function loadConfiguration(
   rawConfiguration.environments = rawConfiguration.environments || {};
   const envConfiguration = rawConfiguration.environments[env] || {};
 
-  return merge({}, rawConfiguration, envConfiguration, {environment: env});
+  return merge({}, rawConfiguration, envConfiguration, { environment: env });
 }
 
 export default loadConfiguration;

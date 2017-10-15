@@ -1,5 +1,5 @@
-import {styled} from '@patternplate/components';
-import Code from '../code';
+import { styled } from "@patternplate/components";
+import Code from "../code";
 
 export default styled(Code)`
   display: inline;

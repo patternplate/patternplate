@@ -1,7 +1,7 @@
-import {patchLocation} from './';
+import { patchLocation } from "./";
 
 export default resizeDemo;
-export const type = 'RESIZE_DEMO';
+export const type = "RESIZE_DEMO";
 
 function resizeDemo(payload) {
   return dispatch => {

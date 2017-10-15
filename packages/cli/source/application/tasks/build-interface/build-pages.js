@@ -1,26 +1,26 @@
-import path from 'path';
-import {max, padEnd} from 'lodash/fp';
-import {values} from 'lodash';
-import Observable from 'zen-observable';
+import path from "path";
+import { max, padEnd } from "lodash/fp";
+import { values } from "lodash";
+import Observable from "zen-observable";
 
-import build from './build';
-import clientRequire from './client-require';
-import writeEach from './write-each';
+import build from "./build";
+import clientRequire from "./client-require";
+import writeEach from "./write-each";
 // Const renderPage = clientRequire('render-page');
 
 export default buildPages;
 
 function buildPages(ids, target, context) {
   return new Observable(observer => {
-    const {app, rewriter} = context;
+    const { app, rewriter } = context;
     const idPad = padEnd(max(ids.map(id => id.id.length)));
-    const renderFilters = {flags: context.flags};
+    const renderFilters = { flags: context.flags };
 
     const pages = ids.reduce((pages, page) => {
       page.relative.forEach((_, index) => {
         const relative = page.relative.slice(0, index + 1);
-        const id = relative.join('/');
-        pages[id] = {id, name: `${id}/index.html`, relative: []};
+        const id = relative.join("/");
+        pages[id] = { id, name: `${id}/index.html`, relative: [] };
       });
 
       pages[page.id] = page;
@@ -30,7 +30,7 @@ function buildPages(ids, target, context) {
     build(values(pages), {
       async read(id, ids, count) {
         observer.next(
-          `${context.verbose ? 'Page files: ' : ''}${idPad(
+          `${context.verbose ? "Page files: " : ""}${idPad(
             id.id
           )} ${count}/${ids.length}`
         );
@@ -42,7 +42,7 @@ function buildPages(ids, target, context) {
       },
       done() {
         observer.next(
-          `${context.verbose ? 'Page files: ' : ''}${ids.length}/${ids.length}`
+          `${context.verbose ? "Page files: " : ""}${ids.length}/${ids.length}`
         );
         observer.complete();
       }

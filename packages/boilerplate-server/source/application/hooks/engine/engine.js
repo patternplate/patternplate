@@ -1,7 +1,7 @@
-import koa from 'koa';
-import {merge} from 'lodash';
+import koa from "koa";
+import { merge } from "lodash";
 
-import ports from '../../../library/utilities/ports';
+import ports from "../../../library/utilities/ports";
 
 function engineBlueprint() {
   const nameSpace = new WeakMap();
@@ -12,11 +12,11 @@ function engineBlueprint() {
       fuel.experimental = true;
 
       this.env = fuel.env;
-      nameSpace.set(this, {application, fuel, mounts: {}});
+      nameSpace.set(this, { application, fuel, mounts: {} });
     }
 
     async start(host, port) {
-      const {fuel, application} = nameSpace.get(this);
+      const { fuel, application } = nameSpace.get(this);
       const server = application.configuration.server;
       const env = application.configuration.environment;
 
@@ -27,7 +27,7 @@ function engineBlueprint() {
         application.log.debug(`Kicked off router ...`);
       }
 
-      if (application.runtime.env === 'development') {
+      if (application.runtime.env === "development") {
         if ((await ports.test(port, host)) !== true) {
           if (server.autoPort !== true) {
             throw new Error(
@@ -80,13 +80,13 @@ function engineBlueprint() {
         `Started ${env} server at http://${server.host}:${server.port}`
       );
 
-      nameSpace.set(this, {http});
+      nameSpace.set(this, { http });
       return application;
     }
 
     async stop() {
       return new Promise((resolve, reject) => {
-        const {http, application} = nameSpace.get(this);
+        const { http, application } = nameSpace.get(this);
 
         http.close(err => {
           if (err) {
@@ -97,14 +97,14 @@ function engineBlueprint() {
       });
     }
 
-    mount(mountable, path = '/') {
-      const {fuel, application} = nameSpace.get(this);
-      const fragments = path.split('/');
-      const hostFragments = application.runtime.prefix.split('/');
+    mount(mountable, path = "/") {
+      const { fuel, application } = nameSpace.get(this);
+      const fragments = path.split("/");
+      const hostFragments = application.runtime.prefix.split("/");
 
       application.log.debug(`Mounting ${mountable.name} on ${path}`);
 
-      if (path === '/') {
+      if (path === "/") {
         mountable.router.stack.routes.forEach(route => {
           const match = application.router.route(route.name);
           if (match) {
@@ -146,9 +146,9 @@ function engineBlueprint() {
           mountable.configuration.middlewares.enabled[middlewareName];
 
         mountableConfig =
-          typeof mountableConfig === 'undefined' ? config : mountableConfig;
+          typeof mountableConfig === "undefined" ? config : mountableConfig;
 
-        if (typeof config === 'object') {
+        if (typeof config === "object") {
           merge(mountableConfig, config);
         } else {
           mountableConfig = config;
@@ -164,10 +164,10 @@ function engineBlueprint() {
       const prefix = fragments
         .concat(hostFragments)
         .filter(Boolean)
-        .join('/');
+        .join("/");
       mountable.runtime.prefix = [`/${prefix}`];
 
-      application.subs.push({path, mountable});
+      application.subs.push({ path, mountable });
 
       mountable.configuration.server = {
         ...mountable.configuration.server,
@@ -196,7 +196,7 @@ function engineBlueprint() {
     }
 
     use(...args) {
-      const {fuel, application} = nameSpace.get(this);
+      const { fuel, application } = nameSpace.get(this);
       fuel.use(...args);
       return application;
     }

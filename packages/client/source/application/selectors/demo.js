@@ -1,13 +1,13 @@
-import queryString from 'query-string';
-import {createSelector} from 'reselect';
-import urlQuery from '../utils/url-query';
-import selectItem from './item';
+import queryString from "query-string";
+import { createSelector } from "reselect";
+import urlQuery from "../utils/url-query";
+import selectItem from "./item";
 
 const selectEnv = createSelector(
   state => state.environment,
   state => state.schema.envs,
   (env, envs) =>
-    Array.isArray(envs) ? envs.find(e => e.name === env) : {name: 'index'}
+    Array.isArray(envs) ? envs.find(e => e.name === env) : { name: "index" }
 );
 
 export const selectSrc = createSelector(
@@ -27,7 +27,7 @@ export const selectSrc = createSelector(
       }
     });
 
-    const query = queryString.stringify({mount});
+    const query = queryString.stringify({ mount });
     return `${pathname}?${query}`;
   }
 );

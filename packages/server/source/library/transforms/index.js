@@ -1,4 +1,4 @@
-import loadTransforms from './load-transforms';
+import loadTransforms from "./load-transforms";
 
 export default transforms;
 
@@ -9,4 +9,4 @@ async function transforms(application) {
   return initTransforms(application);
 }
 
-export {loadTransforms};
+export { loadTransforms };

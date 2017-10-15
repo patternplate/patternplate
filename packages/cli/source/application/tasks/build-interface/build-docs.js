@@ -1,8 +1,8 @@
-import path from 'path';
-import * as sander from 'sander';
+import path from "path";
+import * as sander from "sander";
 
-import clientRequire from './client-require';
-import serverRequire from './server-require';
+import clientRequire from "./client-require";
+import serverRequire from "./server-require";
 
 // Const renderPage = clientRequire('render-page');
 // const {getDocsTree} = serverRequire('get-docs');
@@ -10,14 +10,14 @@ import serverRequire from './server-require';
 export default buildDocs;
 
 async function buildDocs(base, target, context) {
-  const {app, rewriter} = context;
-  const renderFilters = {flags: context.flags};
+  const { app, rewriter } = context;
+  const renderFilters = { flags: context.flags };
   const docs = await getDocsTree(base);
   const write = adject(sander.writeFile, rewriter);
 
   return traverse(docs, async doc => {
-    const p = (await doc).path.join('/');
-    const t = path.resolve(target, 'doc', strip(p), 'index.html');
+    const p = (await doc).path.join("/");
+    const t = path.resolve(target, "doc", strip(p), "index.html");
     const page = await renderPage(app, `/doc/${strip(p)}`, renderFilters);
     return write(page, t);
   });

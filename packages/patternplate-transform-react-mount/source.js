@@ -22,7 +22,7 @@ const mountCode = `
 export default function(app) {
   return async file => {
     const source = Buffer.isBuffer(file.buffer)
-      ? file.buffer.toString('utf-8')
+      ? file.buffer.toString("utf-8")
       : file.buffer;
 
     const mounts = source.endsWith(mountCode);
@@ -31,18 +31,18 @@ export default function(app) {
       file.buffer = `${source}\n${mountCode}`;
     }
 
-    const {pattern = {}} = file;
-    const {post = []} = pattern;
+    const { pattern = {} } = file;
+    const { post = [] } = pattern;
     pattern.post = post.concat(publishResource(app, file));
     return file;
   };
 }
 
 function publishResource(app, file) {
-  const {pattern = {}} = file;
-  const {id} = pattern;
+  const { pattern = {} } = file;
+  const { id } = pattern;
   const isOverridden =
-    file.basename === 'index' && `demo${file.ext}` in file.pattern.files;
+    file.basename === "index" && `demo${file.ext}` in file.pattern.files;
 
   return result => {
     if (isOverridden) {
@@ -54,7 +54,7 @@ function publishResource(app, file) {
     app.resources.push({
       id: `react-mount/${id}`,
       pattern: id,
-      type: 'js',
+      type: "js",
       reference: true,
       content: result
     });

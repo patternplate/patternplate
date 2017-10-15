@@ -1,5 +1,5 @@
-import React from 'react';
-import toh from 'hast-to-hyperscript';
+import React from "react";
+import toh from "hast-to-hyperscript";
 
 export default toElements;
 

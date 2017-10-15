@@ -1,9 +1,9 @@
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import * as actions from '../actions';
-import Search from '../components/search';
-import * as found from '../selectors/found';
+import * as actions from "../actions";
+import Search from "../components/search";
+import * as found from "../selectors/found";
 
 function mapProps(state) {
   return {
@@ -22,16 +22,21 @@ function mapDispatch(dispatch) {
   return bindActionCreators(
     {
       onChange: e =>
-        actions.search({persist: false, perform: false, value: e.target.value}),
-      onClear: () => actions.search({persist: true, perform: true, value: ''}),
-      onClick: () => actions.toggleSearch({focus: true}),
-      onClickOutside: () => actions.toggleSearch({focus: false}),
+        actions.search({
+          persist: false,
+          perform: false,
+          value: e.target.value
+        }),
+      onClear: () =>
+        actions.search({ persist: true, perform: true, value: "" }),
+      onClick: () => actions.toggleSearch({ focus: true }),
+      onClickOutside: () => actions.toggleSearch({ focus: false }),
       onComplete: value =>
-        actions.search({persist: true, perform: true, value}),
-      onFocus: () => actions.toggleSearch({focus: true}),
-      onMount: () => actions.toggleSearch({sync: true}),
+        actions.search({ persist: true, perform: true, value }),
+      onFocus: () => actions.toggleSearch({ focus: true }),
+      onMount: () => actions.toggleSearch({ sync: true }),
       onNavigate: pathname =>
-        actions.patchLocation({pathname, query: {'search-enabled': false}}),
+        actions.patchLocation({ pathname, query: { "search-enabled": false } }),
       onSubmit: e => {
         e.preventDefault();
         return actions.search({
@@ -40,11 +45,11 @@ function mapDispatch(dispatch) {
           value: e.target.search.value
         });
       },
-      onUp: () => actions.searchPreview('up'),
-      onDown: () => actions.searchPreview('down'),
+      onUp: () => actions.searchPreview("up"),
+      onDown: () => actions.searchPreview("down"),
       onActivate: index => actions.searchPreview(index),
       onStop: e =>
-        actions.search({persist: true, perform: true, value: e.target.value})
+        actions.search({ persist: true, perform: true, value: e.target.value })
     },
     dispatch
   );

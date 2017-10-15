@@ -1,4 +1,4 @@
-import constructFileDependencies from './construct-file-dependencies';
+import constructFileDependencies from "./construct-file-dependencies";
 
 export default constructDemoFileDependencies;
 
@@ -15,7 +15,7 @@ function constructDemoFileDependencies(dependencies, search) {
   return Object.entries(dependencies).reduce((results, entry) => {
     const [dependencyName, dependencyPattern] = entry;
 
-    const {files} = dependencyPattern;
+    const { files } = dependencyPattern;
 
     if (!files) {
       return results;

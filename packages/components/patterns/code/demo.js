@@ -1,15 +1,15 @@
-const React = require('react');
-const Code = require('Pattern');
-const styled = require('styled-components').default;
-const Themer = require('../demo-themer');
+const React = require("react");
+const Code = require("Pattern");
+const styled = require("styled-components").default;
+const Themer = require("../demo-themer");
 
 module.exports = function CodeDemo() {
   return (
-	<Themer>
-		<StyledDemoBox>
-			<Code language="js">const foo = bar;</Code>
-		</StyledDemoBox>
-	</Themer>
+    <Themer>
+      <StyledDemoBox>
+        <Code language="js">const foo = bar;</Code>
+      </StyledDemoBox>
+    </Themer>
   );
 };
 

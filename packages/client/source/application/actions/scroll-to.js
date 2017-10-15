@@ -1,10 +1,10 @@
-import scrollparent from 'scrollparent';
+import scrollparent from "scrollparent";
 
 export default scrollTo;
-export const type = 'SCROLL_TO';
+export const type = "SCROLL_TO";
 
 function scrollTo(hash) {
-  const {document} = global;
+  const { document } = global;
   if (document) {
     const target = document.getElementById(hash);
     const parent = scrollparent(target);
@@ -13,7 +13,7 @@ function scrollTo(hash) {
 
   return dispatch => {
     dispatch({
-      type: 'SCROLLED_TO',
+      type: "SCROLLED_TO",
       payload: hash
     });
   };

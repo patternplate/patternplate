@@ -1,4 +1,4 @@
-import * as actions from '../actions';
-import toggle from './toggle';
+import * as actions from "../actions";
+import toggle from "./toggle";
 
-export default toggle(actions.toggleCode, {defaultValue: false});
+export default toggle(actions.toggleCode, { defaultValue: false });

@@ -1,8 +1,8 @@
-import {merge} from 'lodash';
-import {push} from 'react-router-redux';
+import { merge } from "lodash";
+import { push } from "react-router-redux";
 
 export default patchLocation;
-export const type = 'PATCH_LOCATION';
+export const type = "PATCH_LOCATION";
 
 function patchLocation(payload) {
   return (dispatch, getState) => {

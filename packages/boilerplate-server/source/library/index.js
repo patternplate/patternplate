@@ -1,6 +1,6 @@
-import {resolve} from 'path';
+import { resolve } from "path";
 
-import boot from './boot';
+import boot from "./boot";
 
 async function boilerplate(options = {}) {
   /* eslint-disable no-process-env */
@@ -9,12 +9,12 @@ async function boilerplate(options = {}) {
     {},
     {
       cwd: process.cwd(),
-      base: options.base || resolve(__dirname, '../'),
-      env: process.env.NODE_ENV || 'development',
-      name: options.name || 'boilerplate-server'
+      base: options.base || resolve(__dirname, "../"),
+      env: process.env.NODE_ENV || "development",
+      name: options.name || "boilerplate-server"
     },
     options,
-    {api: options}
+    { api: options }
   );
 
   return await boot(augmented);

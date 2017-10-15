@@ -1,5 +1,5 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
+import React from "react";
+import { styled } from "@patternplate/components";
 
 const StyledDemo = styled.iframe`
   width: 100%;
@@ -11,7 +11,7 @@ const SUPPORTS = check();
 
 class PatternDemo extends React.Component {
   render() {
-    const {props} = this;
+    const { props } = this;
     return SUPPORTS ? (
       <StyledDemo srcDoc={props.contents} seamless />
     ) : (
@@ -26,5 +26,5 @@ function check() {
   if (!global.document) {
     return false;
   }
-  return 'srcdoc' in document.createElement('iframe');
+  return "srcdoc" in document.createElement("iframe");
 }

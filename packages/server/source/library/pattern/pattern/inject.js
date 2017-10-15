@@ -1,16 +1,16 @@
-import path from 'path';
-import {find, merge, uniq} from 'lodash';
-import constructFileDependencies from './construct-file-dependencies';
+import path from "path";
+import { find, merge, uniq } from "lodash";
+import constructFileDependencies from "./construct-file-dependencies";
 
 export default inject;
 
 function inject(pattern, manifest, patterns) {
   // Construct manifest
   pattern.manifest = patterns.reduce((registry, pattern) => {
-    const {id} = pattern;
+    const { id } = pattern;
     return merge(registry, {
       patterns: {
-        [id.split('/').join('-')]: id
+        [id.split("/").join("-")]: id
       }
     });
   }, manifest);
@@ -21,11 +21,11 @@ function inject(pattern, manifest, patterns) {
   ).reduce((dependencies, patternEntry) => {
     const [localName, id] = patternEntry;
     return merge(dependencies, {
-      [localName]: find(patterns, {id})
+      [localName]: find(patterns, { id })
     });
   }, {});
 
-  const formats = uniq(Object.values(pattern.config.patterns.formats), 'name');
+  const formats = uniq(Object.values(pattern.config.patterns.formats), "name");
 
   // Construct files from dependencies
   pattern.files = formats.reduce((files, formatConfig) => {
@@ -36,7 +36,7 @@ function inject(pattern, manifest, patterns) {
       return files;
     }
 
-    const baseName = 'index';
+    const baseName = "index";
     const ext = `.${format}`;
     const name = `${baseName}${ext}`;
     const dependencies = constructFileDependencies(pattern.dependencies, [
@@ -44,13 +44,13 @@ function inject(pattern, manifest, patterns) {
     ]);
     const manifestPath = path.resolve(
       pattern.base,
-      '@environments',
+      "@environments",
       manifest.name,
       name
     );
-    const {importStatement} = formatConfig;
+    const { importStatement } = formatConfig;
 
-    if (typeof importStatement !== 'function') {
+    if (typeof importStatement !== "function") {
       throw new TypeError(
         `Missing config key "importStatement" for format ${format}`
       );
@@ -63,7 +63,7 @@ function inject(pattern, manifest, patterns) {
 
     const source = required
       .map(localName => importStatement(localName))
-      .join('\n');
+      .join("\n");
 
     const buffer = source;
 

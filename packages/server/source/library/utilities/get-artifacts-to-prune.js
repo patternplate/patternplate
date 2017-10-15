@@ -1,8 +1,8 @@
-import {extname, resolve} from 'path';
+import { extname, resolve } from "path";
 
-import {find} from 'lodash';
+import { find } from "lodash";
 
-import {resolvePathFormatString} from 'patternplate-transforms-core';
+import { resolvePathFormatString } from "patternplate-transforms-core";
 
 export default function getArtifactsToPrune(
   search,
@@ -11,7 +11,7 @@ export default function getArtifactsToPrune(
   config
 ) {
   return artifacts.reduce((results, artifact) => {
-    const pattern = find(patterns, {id: artifact.id});
+    const pattern = find(patterns, { id: artifact.id });
 
     // Prune all artifact files without a corresponding pattern
     if (!pattern) {

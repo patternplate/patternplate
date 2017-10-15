@@ -1,14 +1,14 @@
-import React from 'react';
-import {renderToStaticMarkup} from 'react-dom/server';
-import Helmet from 'react-helmet';
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import Helmet from "react-helmet";
 import {
   styled,
   themes,
   Icon,
   Symbol,
   IconDefinitions
-} from '@patternplate/components';
-import * as svg from '../utils/svg';
+} from "@patternplate/components";
+import * as svg from "../utils/svg";
 
 const THEMES = themes();
 
@@ -21,32 +21,32 @@ class FavIcon extends React.Component {
   componentDidMount() {
     svg
       .png(getSource(this.props))
-      .then(href => this.setState({href}))
+      .then(href => this.setState({ href }))
       .catch(err => {
         console.error(err);
-        this.setState({href: null});
+        this.setState({ href: null });
       });
   }
 
   componentWillReceiveProps(next) {
     svg
-    .png(getSource(next))
-    .then(href => this.setState({href}))
-    .catch(err => {
-      console.error(err);
-      this.setState({href: null});
-    });
+      .png(getSource(next))
+      .then(href => this.setState({ href }))
+      .catch(err => {
+        console.error(err);
+        this.setState({ href: null });
+      });
   }
 
   render() {
     return (
       <Helmet
         link={[
-          {rel: 'icon', href: this.state.href, type: 'image/png'},
+          { rel: "icon", href: this.state.href, type: "image/png" },
           {
-            rel: 'icon',
+            rel: "icon",
             href: svg.btoa(getSource(this.props)),
-            type: 'image/svg+xml'
+            type: "image/svg+xml"
           }
         ]}
       />
@@ -69,7 +69,7 @@ function getSource(props) {
         <Symbol
           definition={IconDefinitions.patternplate}
           emit={true}
-          style={{fill: getFill(props)}}
+          style={{ fill: getFill(props) }}
         />
       </svg>
     );

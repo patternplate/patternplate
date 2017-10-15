@@ -1,13 +1,13 @@
-import {createContext as Context} from 'vm';
+import { createContext as Context } from "vm";
 
-import {merge} from 'lodash';
-import {sync as resolve} from 'resolve';
+import { merge } from "lodash";
+import { sync as resolve } from "resolve";
 
 const cwd = process.cwd();
 
 function attemptResolve(id, options) {
   try {
-    return [null, resolve(id, merge({}, {basedir: cwd}, options))];
+    return [null, resolve(id, merge({}, { basedir: cwd }, options))];
   } catch (err) {
     const badResolveError =
       !err.message.includes(options.fileName) &&
@@ -44,9 +44,9 @@ function getSandboxedRequire(file, dependencies, run) {
 }
 
 export default (file, run) => {
-  const {env} = process;
+  const { env } = process;
 
-  const {dependencies} = file;
+  const { dependencies } = file;
 
   const sanboxedRequire = getSandboxedRequire(file, dependencies, run);
 

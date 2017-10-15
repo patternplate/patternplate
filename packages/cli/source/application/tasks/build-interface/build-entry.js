@@ -1,17 +1,17 @@
-import path from 'path';
-import * as sander from 'sander';
+import path from "path";
+import * as sander from "sander";
 
-import clientRequire from './client-require';
+import clientRequire from "./client-require";
 // Const renderPage = clientRequire('render-page');
 
 export default buildEntry;
 
 async function buildEntry(url, target, context) {
-  const {app, rewriter} = context;
-  const indexPath = path.resolve(target, 'index.html');
-  const htaccessPath = path.resolve(target, '.htaccess');
-  const notFoundPath = path.resolve(target, '404.html');
-  const renderFilters = {flags: context.flags};
+  const { app, rewriter } = context;
+  const indexPath = path.resolve(target, "index.html");
+  const htaccessPath = path.resolve(target, ".htaccess");
+  const notFoundPath = path.resolve(target, "404.html");
+  const renderFilters = { flags: context.flags };
 
   const index = await renderPage(app, url, renderFilters);
 
@@ -23,9 +23,8 @@ async function buildEntry(url, target, context) {
 
   const htaccess = `
 		ErrorDocument 404 404.html
-	`.replace(/\t/g, '');
+	`.replace(/\t/g, "");
 
   // Write a template .htaccess
   await sander.writeFile(htaccessPath, htaccess);
-  
 }

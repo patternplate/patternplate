@@ -1,5 +1,5 @@
-import {connect} from 'react-redux';
-import Documentation from '../components/documentation';
+import { connect } from "react-redux";
+import Documentation from "../components/documentation";
 
 export default connect(state => {
   return {

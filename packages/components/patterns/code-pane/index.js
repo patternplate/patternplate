@@ -1,19 +1,19 @@
-const React = require('react');
-const styled = require('styled-components').default;
+const React = require("react");
+const styled = require("styled-components").default;
 
-const Code = require('../code');
+const Code = require("../code");
 
 module.exports = CodePane;
 
 function CodePane(props) {
   return (
-	<StyledCodePane className={props.className} hermit={props.hermit}>
-		<StyledScrollbox>
-			<Code block language="html">
-				{props.source}
-			</Code>
-		</StyledScrollbox>
-	</StyledCodePane>
+    <StyledCodePane className={props.className} hermit={props.hermit}>
+      <StyledScrollbox>
+        <Code block language="html">
+          {props.source}
+        </Code>
+      </StyledScrollbox>
+    </StyledCodePane>
   );
 }
 
@@ -25,7 +25,7 @@ const StyledCodePane = styled.div`
   width: 100%;
   box-sizing: border-box;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: 1;
     top: 0;

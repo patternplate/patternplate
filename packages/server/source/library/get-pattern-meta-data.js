@@ -1,14 +1,14 @@
-import path from 'path';
-import {entries, omit, pick, uniqBy} from 'lodash';
-import getPatternData from './get-pattern-data';
+import path from "path";
+import { entries, omit, pick, uniqBy } from "lodash";
+import getPatternData from "./get-pattern-data";
 
 export default getPatternMetaData;
 
-async function getPatternMetaData(application, id, env = 'index') {
+async function getPatternMetaData(application, id, env = "index") {
   const data = await getPatternData(application, id, env);
-  const {transforms} = application.configuration;
-  const {formats} = application.configuration.patterns;
-  const {manifest} = data;
+  const { transforms } = application.configuration;
+  const { formats } = application.configuration.patterns;
+  const { manifest } = data;
 
   return {
     base: data.base,
@@ -16,11 +16,11 @@ async function getPatternMetaData(application, id, env = 'index') {
     dependents: manifest.dependentPatterns,
     display: manifest.display,
     environments: manifest.demoEnvironments,
-    files: selectPatternFiles(data, {transforms, formats}),
+    files: selectPatternFiles(data, { transforms, formats }),
     id: data.id,
     manifest: {
-      displayName: manifest.displayName || '',
-      flag: manifest.flag || '',
+      displayName: manifest.displayName || "",
+      flag: manifest.flag || "",
       name: manifest.name,
       version: manifest.version,
       tags: manifest.tags || [],
@@ -31,18 +31,18 @@ async function getPatternMetaData(application, id, env = 'index') {
 }
 
 function selectDependencies(data) {
-  const sanitized = omit(data.dependencies, ['Pattern']);
+  const sanitized = omit(data.dependencies, ["Pattern"]);
   return entries(sanitized).reduce((dependencies, entry) => {
     const [name, dependency] = entry;
-    dependencies[name] = pick(dependency, ['id', 'manifest']);
+    dependencies[name] = pick(dependency, ["id", "manifest"]);
     return dependencies;
   }, {});
 }
 
 function selectPatternFiles(data, config) {
-  const {files} = data;
+  const { files } = data;
   return data.outFormats.reduce((registry, outFormat) => {
-    const {name, type} = outFormat;
+    const { name, type } = outFormat;
 
     const candidates = Object.entries(config.formats)
       .filter(entry => entry[1].name === outFormat.name)
@@ -63,12 +63,12 @@ function selectPatternFiles(data, config) {
     }
 
     const concerns = [
-      demoFile ? 'demo' : null,
-      indexFile ? 'index' : null
+      demoFile ? "demo" : null,
+      indexFile ? "index" : null
     ].filter(Boolean);
 
     const items = concerns.map(concern => {
-      const id = [data.id, `${concern}${file.ext}`].join('/');
+      const id = [data.id, `${concern}${file.ext}`].join("/");
       return {
         concern,
         displayName: name,
@@ -81,18 +81,18 @@ function selectPatternFiles(data, config) {
       };
     });
 
-    return uniqBy([...registry, ...items], 'id');
+    return uniqBy([...registry, ...items], "id");
   }, []);
 }
 
 function selectTransforms(data, file) {
   const name = file.format;
-  const format = data.config.patterns.formats[name] || {transforms: []};
+  const format = data.config.patterns.formats[name] || { transforms: [] };
   return format.transforms;
 }
 
 function selectInFormat(data, file) {
   const entry = selectTransforms(data, file)[0];
-  const transform = data.config.transforms[entry] || {inFormat: file.format};
+  const transform = data.config.transforms[entry] || { inFormat: file.format };
   return transform.inFormat;
 }

@@ -1,18 +1,18 @@
-import {resolve} from 'path';
+import { resolve } from "path";
 
-import router from 'koa-router';
-import requireAll from 'require-all';
-import {merge} from 'lodash';
+import router from "koa-router";
+import requireAll from "require-all";
+import { merge } from "lodash";
 
-import {exists} from '../../../library/utilities/fs';
+import { exists } from "../../../library/utilities/fs";
 
 export default {
-  after: ['hooks:engine:start:after'],
+  after: ["hooks:engine:start:after"],
 
   async start(application) {
     application.router = router();
 
-    if (application.mode === 'console') {
+    if (application.mode === "console") {
       return application;
     }
 
@@ -35,7 +35,7 @@ export default {
             ),
           []
         )
-        .map(async (routePath) => {
+        .map(async routePath => {
           return {
             path: routePath,
             exists: await exists(routePath)
@@ -64,7 +64,7 @@ export default {
     const moduleRoutes = Object.keys(this.configuration.enabled)
       .filter(
         routeName =>
-          typeof this.configuration.enabled[routeName].enabled === 'string'
+          typeof this.configuration.enabled[routeName].enabled === "string"
       )
       .reduce((result, routeName) => {
         const routeModuleName = this.configuration.enabled[routeName].enabled;
@@ -91,7 +91,7 @@ export default {
       const routeFactoryFunction = routes[routeName];
       const routeConfig = this.configuration.enabled[routeName];
 
-      if (typeof routeFactoryFunction !== 'function') {
+      if (typeof routeFactoryFunction !== "function") {
         throw new TypeError(`'${routeName}' is no valid route factory`);
       }
 
@@ -103,23 +103,23 @@ export default {
         return;
       }
 
-      if (typeof routeConfig === 'undefined') {
+      if (typeof routeConfig === "undefined") {
         this.log.debug(`'${routeName}' is not configured, will not mount.`);
         return;
       }
 
       const methods = routeConfig.methods || [
-        'GET',
-        'POST',
-        'PATCH',
-        'DELETE',
-        'HEAD',
-        'OPTIONS'
+        "GET",
+        "POST",
+        "PATCH",
+        "DELETE",
+        "HEAD",
+        "OPTIONS"
       ];
 
       const fn = routeFactoryFunction(application, routeConfig);
 
-      if (typeof fn !== 'function') {
+      if (typeof fn !== "function") {
         throw new TypeError(
           `'${routeName}' factory returned no valid route for ${routeConfig.path}`
         );

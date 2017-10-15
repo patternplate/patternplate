@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import 'babel-polyfill';
-import minimist from 'minimist';
+import "babel-polyfill";
+import minimist from "minimist";
 
-import patternClient from '../';
+import patternClient from "../";
 
 function main(options = {}) {
   return patternClient(options);
@@ -18,7 +18,7 @@ main(args).catch(err => {
 });
 
 // Catch unhandled rejections globally
-process.on('unhandledRejection', (reason, promise) => {
-  console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled Rejection at: Promise ", promise, " reason: ", reason);
   throw reason;
 });

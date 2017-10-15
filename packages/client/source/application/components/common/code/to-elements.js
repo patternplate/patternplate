@@ -1,5 +1,5 @@
-import React from 'react';
-import toh from 'hast-to-hyperscript';
+import React from "react";
+import toh from "hast-to-hyperscript";
 
 export default toElements;
 
@@ -9,8 +9,8 @@ function toElements(children) {
   }
 
   const root = toh(React.createElement, {
-    type: 'element',
-    tagName: 'div',
+    type: "element",
+    tagName: "div",
     children
   });
 

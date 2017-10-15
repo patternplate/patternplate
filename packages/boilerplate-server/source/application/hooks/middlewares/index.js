@@ -1,12 +1,12 @@
-import {resolve} from 'path';
+import { resolve } from "path";
 
-import requireAll from 'require-all';
+import requireAll from "require-all";
 
-import {exists} from '../../../library/utilities/fs';
+import { exists } from "../../../library/utilities/fs";
 
 export default {
-  after: ['hooks:routes:start:after'],
-  modes: ['server'],
+  after: ["hooks:routes:start:after"],
+  modes: ["server"],
 
   start: async function startMiddlewareHook(application) {
     const coreMiddlewares = requireAll({
@@ -45,7 +45,7 @@ export default {
     const moduleMiddlewares = Object.keys(this.configuration.enabled)
       .filter(
         middlewareName =>
-          typeof this.configuration.enabled[middlewareName].enabled === 'string'
+          typeof this.configuration.enabled[middlewareName].enabled === "string"
       )
       .reduce((result, middlewareName) => {
         const middlewareModuleName = this.configuration.enabled[middlewareName]
@@ -79,12 +79,12 @@ export default {
       const middlewareFactoryFunction = middlewares[middlewareName];
       const middlewareConfig = this.configuration.enabled[middlewareName];
 
-      if (typeof middlewareFactoryFunction !== 'function') {
+      if (typeof middlewareFactoryFunction !== "function") {
         this.log.warn(`'${middlewareName}' is no valid middleware factory`);
         return;
       }
 
-      const isObject = typeof middlewareConfig === 'object';
+      const isObject = typeof middlewareConfig === "object";
 
       if (
         middlewareConfig === false ||
@@ -96,7 +96,7 @@ export default {
         return;
       }
 
-      if (typeof middlewareConfig === 'undefined') {
+      if (typeof middlewareConfig === "undefined") {
         this.log.debug(
           `Middleware '${middlewareName}' is not configured, will not mount.`
         );
@@ -105,7 +105,7 @@ export default {
 
       const fn = middlewareFactoryFunction(application, middlewareConfig);
 
-      if (typeof fn !== 'function') {
+      if (typeof fn !== "function") {
         this.log.warn(
           `'${middlewareName}' middleware factory does not produce valid middlewares, will not mount.`
         );

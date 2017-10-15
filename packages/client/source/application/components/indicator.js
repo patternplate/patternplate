@@ -1,6 +1,6 @@
-import React from 'react';
-import {styled, css, keyframes} from '@patternplate/components';
-import Text from './text';
+import React from "react";
+import { styled, css, keyframes } from "@patternplate/components";
+import Text from "./text";
 
 export default Indicator;
 
@@ -9,7 +9,7 @@ function Indicator(props) {
     <StyledIndicator
       onClick={props.onClick}
       title={
-        isValid(props.status) ? `Force sync ${props.shortcut.toString()}` : ''
+        isValid(props.status) ? `Force sync ${props.shortcut.toString()}` : ""
       }
     >
       <StyledLabel size="s" status={props.status}>
@@ -29,10 +29,12 @@ const StyledDot = styled.div`
   margin-right: 5px;
   border-radius: 50%;
   background: ${props =>
-    props.status === 'error' || props.status === 'offline' ? 'rgb(205, 63, 69)' : props.theme.active};
+    props.status === "error" || props.status === "offline"
+      ? "rgb(205, 63, 69)"
+      : props.theme.active};
   transition: background 0.4s ease-in-out, opacity 0.5s ease-in;
   opacity: ${props => (props.status ? 1 : 0)};
-  cursor: ${props => (props.status ? 'pointer' : '')};
+  cursor: ${props => (props.status ? "pointer" : "")};
   ${props => getGlow(props)};
 `;
 
@@ -75,7 +77,7 @@ const out = keyframes`
 `;
 
 function getOut(props) {
-  if (props.status !== 'loaded') {
+  if (props.status !== "loaded") {
     return;
   }
 
@@ -87,16 +89,16 @@ function getOut(props) {
 
 function getLabel(props) {
   switch (props.status) {
-    case 'error':
-      return 'error';
-    case 'offline':
-      return 'offline';
-    case 'loaded':
-      return 'synced';
-    case 'loading':
-      return 'syncing';
+    case "error":
+      return "error";
+    case "offline":
+      return "offline";
+    case "loaded":
+      return "synced";
+    case "loading":
+      return "syncing";
     default:
-      return '';
+      return "";
   }
 }
 
@@ -116,7 +118,7 @@ const pulse = keyframes`
 `;
 
 function getPulse(props) {
-  if (props.status !== 'loading') {
+  if (props.status !== "loading") {
     return;
   }
 
@@ -126,5 +128,5 @@ function getPulse(props) {
 }
 
 function isValid(status) {
-  return ['loading', 'loaded'].includes(status);
+  return ["loading", "loaded"].includes(status);
 }

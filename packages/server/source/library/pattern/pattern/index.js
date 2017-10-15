@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
-import path from 'path';
-import fauxCache from './faux-cache';
-import fauxLog from './faux-log';
-import inject from './inject';
-import read from './read';
-import readManifest from './read-manifest';
-import transform from './transform';
+import path from "path";
+import fauxCache from "./faux-cache";
+import fauxLog from "./faux-log";
+import inject from "./inject";
+import read from "./read";
+import readManifest from "./read-manifest";
+import transform from "./transform";
 
-const defaultFilters = {environments: [], inFormats: [], outFormats: []};
+const defaultFilters = { environments: [], inFormats: [], outFormats: [] };
 
 export class Pattern {
   constructor(
@@ -18,18 +18,18 @@ export class Pattern {
     filters = {},
     cache = null
   ) {
-    const id = patternPath.split(path.sep).join('/');
+    const id = patternPath.split(path.sep).join("/");
     this.options = config.options || {};
     this.base = base;
     this.cache = cache || fauxCache;
-    this.config = {parents: [], ...config};
+    this.config = { parents: [], ...config };
     this.dependencies = {};
     this.demoDependencies = {};
-    this.environments = {index: {manifest: {name: 'index'}}};
+    this.environments = { index: { manifest: { name: "index" } } };
     this.files = {};
-    this.filters = {...defaultFilters, ...filters};
+    this.filters = { ...defaultFilters, ...filters };
     this.id = id;
-    this.isEnvironment = id.includes('@environment');
+    this.isEnvironment = id.includes("@environment");
     this.log = config.log || fauxLog;
     this.manifest = {};
     this.path = path.resolve(base, id);

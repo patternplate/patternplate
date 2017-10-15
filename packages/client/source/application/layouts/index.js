@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
-import {renderToStaticMarkup as render} from 'react-dom/server';
-import {styled, ServerStyleSheet} from '@patternplate/components';
+import React from "react";
+import { renderToStaticMarkup as render } from "react-dom/server";
+import { styled, ServerStyleSheet } from "@patternplate/components";
 
 export default layout;
 
@@ -10,17 +10,15 @@ function layout(props) {
   layoutSheet.collectStyles(render(<Layout />));
   const layoutCSS = layoutSheet.getStyleElement();
 
-  return `<!doctype html>${render(<Layout {...props} layoutCSS={layoutCSS} />)}`;
+  return `<!doctype html>${render(
+    <Layout {...props} layoutCSS={layoutCSS} />
+  )}`;
 }
 
 function Layout(props) {
-  const attributes = props.attributes
-    ? props.attributes.toComponent()
-    : {};
+  const attributes = props.attributes ? props.attributes.toComponent() : {};
 
-  const scripts = Array.isArray(props.scripts)
-    ? props.scripts
-    : [];
+  const scripts = Array.isArray(props.scripts) ? props.scripts : [];
 
   return (
     <StyledDocument {...attributes}>
@@ -41,19 +39,19 @@ function Layout(props) {
   );
 }
 
-const StyledDocument = styled('html')`
+const StyledDocument = styled("html")`
   height: 100%;
   overflow: hidden;
 `;
 
-const StyledBody = styled('body')`
+const StyledBody = styled("body")`
   margin: 0;
   height: 100%;
 `;
 
 function IconRegistry(props) {
   return (
-    <div data-icon-registry style={{display: 'none'}}>
+    <div data-icon-registry style={{ display: "none" }}>
       {props.children}
     </div>
   );
@@ -61,7 +59,10 @@ function IconRegistry(props) {
 
 function Content(props) {
   return (
-    <StyledContent data-application-el={props['data-application-el']} dangerouslySetInnerHTML={{__html: props.content}} />
+    <StyledContent
+      data-application-el={props["data-application-el"]}
+      dangerouslySetInnerHTML={{ __html: props.content }}
+    />
   );
 }
 
@@ -71,7 +72,15 @@ const StyledContent = styled.div`
 
 function State(props) {
   const value = JSON.stringify(props.data);
-  return <StyledState data-application-state={props['data-application-state']} value={value} readOnly />;
+  return (
+    <StyledState
+      data-application-state={props["data-application-state"]}
+      value={value}
+      readOnly
+    />
+  );
 }
 
-const StyledState = styled.textarea`display: none;`;
+const StyledState = styled.textarea`
+  display: none;
+`;

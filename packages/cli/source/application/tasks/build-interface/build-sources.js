@@ -1,12 +1,12 @@
-import path from 'path';
-import {max, padEnd} from 'lodash/fp';
-import Observable from 'zen-observable';
+import path from "path";
+import { max, padEnd } from "lodash/fp";
+import Observable from "zen-observable";
 
-import build from './build';
-import getTargets from './get-targets';
-import getSourceSets from './get-source-sets';
-import writeEach from './write-each';
-import serverRequire from './server-require';
+import build from "./build";
+import getTargets from "./get-targets";
+import getSourceSets from "./get-source-sets";
+import writeEach from "./write-each";
+import serverRequire from "./server-require";
 
 // Const getPatternSource = serverRequire('get-pattern-source');
 // const urlQuery = serverRequire('utilities/url-query');
@@ -15,7 +15,7 @@ export default buildSources;
 
 function buildSources(datasets, target, context) {
   return new Observable(observer => {
-    const {app, rewriter} = context;
+    const { app, rewriter } = context;
     const sourceSets = getSourceSets(datasets);
     const getSource = getPatternSource(app);
 
@@ -26,7 +26,7 @@ function buildSources(datasets, target, context) {
     build(sourceSets, {
       async read(set, sets, count) {
         observer.next(
-          `${context.verbose ? 'Sources: ' : ''}${idPad(
+          `${context.verbose ? "Sources: " : ""}${idPad(
             `${set.type}:${set.file.id}`
           )} ${count}/${sets.length}`
         );
@@ -34,8 +34,8 @@ function buildSources(datasets, target, context) {
       },
       async write(source, set) {
         const typePath = urlQuery.format({
-          pathname: '',
-          query: {type: set.type}
+          pathname: "",
+          query: { type: set.type }
         });
         const baseName = path.basename(set.file.id);
         const dirName = path.dirname(set.file.id);
@@ -49,8 +49,8 @@ function buildSources(datasets, target, context) {
       done() {
         observer.next(
           `${context.verbose
-            ? 'Sources: '
-            : ''}${sourceSets.length}/${sourceSets.length}`
+            ? "Sources: "
+            : ""}${sourceSets.length}/${sourceSets.length}`
         );
         observer.complete();
       }

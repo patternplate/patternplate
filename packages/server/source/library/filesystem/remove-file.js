@@ -1,4 +1,4 @@
-import rimraf from 'rimraf';
+import rimraf from "rimraf";
 
 export default function rm(target) {
   return new Promise((resolve, reject) => {

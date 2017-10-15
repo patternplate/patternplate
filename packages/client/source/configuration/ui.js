@@ -1,37 +1,37 @@
 const ui = {
   hierarchy: {
     atoms: {
-      displayName: 'Atoms',
+      displayName: "Atoms",
       order: 1,
-      icon: 'atoms'
+      icon: "atoms"
     },
     molecules: {
-      displayName: 'Molecules',
+      displayName: "Molecules",
       order: 2,
-      icon: 'molecules'
+      icon: "molecules"
     },
     polymers: {
-      displayName: 'Polymers',
+      displayName: "Polymers",
       order: 3,
-      icon: 'polymers'
+      icon: "polymers"
     },
     organisms: {
-      displayName: 'Organisms',
+      displayName: "Organisms",
       order: 4,
-      icon: 'organisms'
+      icon: "organisms"
     },
     ecospheres: {
-      displayName: 'Ecospheres',
+      displayName: "Ecospheres",
       order: 5,
-      icon: 'ecospheres'
+      icon: "ecospheres"
     },
-    'atoms/special-atoms': {
-      displayName: 'Specialized Atoms'
+    "atoms/special-atoms": {
+      displayName: "Specialized Atoms"
     }
   },
-  resultOrder: ['Dependencies', 'Markup', 'Script', 'Style', 'Documentation'],
-  theme: 'light',
-  themeTarget: 'dark',
+  resultOrder: ["Dependencies", "Markup", "Script", "Style", "Documentation"],
+  theme: "light",
+  themeTarget: "dark",
   useFolderTable: true
 };
 

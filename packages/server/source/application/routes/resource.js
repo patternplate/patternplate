@@ -1,24 +1,24 @@
-import urlQuery from '../../library/utilities/url-query';
+import urlQuery from "../../library/utilities/url-query";
 
-const getComponent = require('../../library/get-component');
+const getComponent = require("../../library/get-component");
 
 export default application => {
   return async function resourceRoute() {
     const id = this.params.id;
     const ext = this.params.ext;
-    const type = id.split('/')[0];
+    const type = id.split("/")[0];
 
     if (!id || !ext) {
       return this.throw(404);
     }
 
-    if (type === 'react-mount' && ext === 'js') {
+    if (type === "react-mount" && ext === "js") {
       const parsed = urlQuery.parse(this.params.id);
       const id = parsed.pathname
-        .split('/')
+        .split("/")
         .slice(1)
-        .join('/');
-      const {environment = 'index'} = parsed.query;
+        .join("/");
+      const { environment = "index" } = parsed.query;
 
       const component = await getComponent(application, id, environment);
 
@@ -30,7 +30,7 @@ export default application => {
         this.throw(404);
       }
 
-      this.type = 'js';
+      this.type = "js";
       this.body = component.buffer;
       return;
     }

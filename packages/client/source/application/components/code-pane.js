@@ -1,7 +1,7 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
+import React from "react";
+import { styled } from "@patternplate/components";
 
-import Code from './common/code';
+import Code from "./common/code";
 
 export default CodePane;
 
@@ -25,7 +25,7 @@ const StyledCodePane = styled.div`
   width: 100%;
   box-sizing: border-box;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: 1;
     top: 0;

@@ -1,16 +1,16 @@
-import {values} from 'lodash';
-import React from 'react';
-import {Icon, styled} from '@patternplate/components';
-import tag from 'tag-hoc';
+import { values } from "lodash";
+import React from "react";
+import { Icon, styled } from "@patternplate/components";
+import tag from "tag-hoc";
 
-import {InnerInfoPane} from './info-pane';
-import Link from './common/link';
-import Markdown from './common/markdown';
-import Outside from './outside';
-import SearchField from './common/search-field';
-import Text from './text';
-import withToggleStates from '../connectors/with-toggle-states';
-import PassThrough from '../containers/pass-through';
+import { InnerInfoPane } from "./info-pane";
+import Link from "./common/link";
+import Markdown from "./common/markdown";
+import Outside from "./outside";
+import SearchField from "./common/search-field";
+import Text from "./text";
+import withToggleStates from "../connectors/with-toggle-states";
+import PassThrough from "../containers/pass-through";
 
 const InfoPane = withToggleStates(InnerInfoPane);
 
@@ -48,13 +48,13 @@ export default class Search extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof this.props.onMount === 'function') {
+    if (typeof this.props.onMount === "function") {
       this.props.onMount();
     }
   }
 
   handleActivate(e) {
-    const id = e.target.getAttribute('data-id');
+    const id = e.target.getAttribute("data-id");
     const index = [...this.props.docs, ...this.props.components].findIndex(
       i => i.id === id
     );
@@ -92,7 +92,7 @@ export default class Search extends React.Component {
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     const withComponents = props.components.length > 0;
     const withDocs = props.docs.length > 0;
 
@@ -111,7 +111,7 @@ export default class Search extends React.Component {
             <SearchField
               linkTo="/search"
               mark={props.inline ? null : true}
-              name={props.inline ? 'inline-search' : 'search'}
+              name={props.inline ? "inline-search" : "search"}
               onBlur={props.inline ? NOOP : props.onBlur}
               onChange={props.inline ? NOOP : props.onChange}
               onClear={props.inline ? NOOP : props.onClear}
@@ -123,7 +123,7 @@ export default class Search extends React.Component {
               placeholder="Search"
               suggestion={props.suggestion}
               title={`Search for patterns ${props.shortcuts.toggleSearch.toString()}`}
-              value={props.value || ''}
+              value={props.value || ""}
             >
               {props.enabled && (
                 <Close
@@ -132,7 +132,7 @@ export default class Search extends React.Component {
                 />
               )}
             </SearchField>
-            <PassThrough query={{'search-enabled': true, search: null}} />
+            <PassThrough query={{ "search-enabled": true, search: null }} />
             <HiddenSubmit />
             <SearchLegend name={props.legend.name} items={props.legend.items} />
           </StyledSearchFieldBox>
@@ -189,9 +189,9 @@ export default class Search extends React.Component {
   }
 }
 
-const SEARCH_HEIGHT = '60vh';
-const SEARCH_FIELD_HEIGHT = '80px';
-const SEARCH_LEGEND_HEIGHT = '30px';
+const SEARCH_HEIGHT = "60vh";
+const SEARCH_FIELD_HEIGHT = "80px";
+const SEARCH_LEGEND_HEIGHT = "30px";
 
 const StyledFormBox = styled(Outside)`
   width: 100%;
@@ -200,8 +200,8 @@ const StyledFormBox = styled(Outside)`
   overflow: hidden;
   pointer-events: all;
   overflow: hidden;
-  margin: ${props => (props.inline ? `calc(12.5vh - 30px) 0 60px 0` : 'none')};
-  opacity: ${props => (props.inline && props.enabled ? '0' : '1')};
+  margin: ${props => (props.inline ? `calc(12.5vh - 30px) 0 60px 0` : "none")};
+  opacity: ${props => (props.inline && props.enabled ? "0" : "1")};
 `;
 
 const StyledForm = styled.form`
@@ -261,13 +261,13 @@ const StyledResultHeading = styled(Text)`
   background: ${props => props.theme.background};
 `;
 
-const StyledIcon = styled(tag(['active'])(Icon))`
+const StyledIcon = styled(tag(["active"])(Icon))`
   flex: 0 0 auto;
   fill: ${props => (props.active ? props.theme.active : props.theme.color)};
   margin-right: 10px;
 `;
 
-const Linkable = tag(['active'])(Link);
+const Linkable = tag(["active"])(Link);
 
 const StyledPreviewLink = styled(Linkable)`
   position: absolute;
@@ -327,12 +327,12 @@ class Result extends React.Component {
 
   componentWillUpdate(next) {
     if (next.active && this.ref) {
-      this.props.onScrollRequest({target: this.ref});
+      this.props.onScrollRequest({ target: this.ref });
     }
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
       <StyledResult
         innerRef={this.getRef}
@@ -343,7 +343,7 @@ class Result extends React.Component {
         <StyledResultLink
           active={props.active}
           href={`/${props.type}/${props.id}`}
-          query={{'search-enabled': false}}
+          query={{ "search-enabled": false }}
         >
           <StyledIcon active={props.active} size="m" symbol={props.icon} />
           <Text active={props.active} size="l">
@@ -352,7 +352,7 @@ class Result extends React.Component {
         </StyledResultLink>
         <StyledPreviewLink
           active={props.active}
-          query={{'search-preview': props.index}}
+          query={{ "search-preview": props.index }}
         >
           <Text active={props.active} size="s">
             Preview
@@ -368,19 +368,23 @@ Result.defaultProps = {
 };
 
 const Submit = props => <input className={props.className} type="submit" />;
-const HiddenSubmit = styled(Submit)`display: none;`;
+const HiddenSubmit = styled(Submit)`
+  display: none;
+`;
 
 const StyledClose = styled(Link)`
   font-size: 0;
   line-height: 0;
 `;
 
-const StyledCloseIcon = styled(Icon)`fill: ${props => props.theme.color};`;
+const StyledCloseIcon = styled(Icon)`
+  fill: ${props => props.theme.color};
+`;
 
 function Close(props) {
-  const verb = props.clears ? `Clear` : 'Close';
-  const query = props.clears ? {search: null} : {'search-enabled': null};
-  const symbol = props.clears ? 'return' : 'close';
+  const verb = props.clears ? `Clear` : "Close";
+  const query = props.clears ? { search: null } : { "search-enabled": null };
+  const symbol = props.clears ? "return" : "close";
   return (
     <StyledClose
       query={query}
@@ -402,7 +406,7 @@ function ResultPreview(props) {
     return null;
   }
   switch (props.item.type) {
-    case 'doc':
+    case "doc":
       return (
         <StyledResultPreview>
           <StyledMarkdown source={props.item.contents} />
@@ -420,7 +424,7 @@ function ResultPreview(props) {
             flag={props.item.manifest.flag}
             icon={props.item.manifest.options.icon || props.item.type}
             id={props.item.id}
-            manifest={JSON.stringify(props.item.manifest, null, '  ')}
+            manifest={JSON.stringify(props.item.manifest, null, "  ")}
             name={props.item.manifest.displayName}
             tags={props.item.manifest.tags}
             version={props.item.manifest.version}
@@ -489,13 +493,13 @@ function SearchLegend(props) {
       <StyledSearchLegendBox>
         {(props.items || []).map(l => {
           switch (l.type) {
-            case 'field':
+            case "field":
             default:
               return (
                 <StyledField key={l.key}>
                   <StyledFieldLink
                     title={l.description}
-                    query={{search: `${l.value}`}}
+                    query={{ search: `${l.value}` }}
                   >
                     {l.key}
                   </StyledFieldLink>

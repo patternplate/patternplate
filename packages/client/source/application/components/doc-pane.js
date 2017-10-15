@@ -1,7 +1,7 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
+import React from "react";
+import { styled } from "@patternplate/components";
 
-import Markdown from './common/markdown';
+import Markdown from "./common/markdown";
 
 export default DocPane;
 
@@ -23,7 +23,7 @@ const StyledDocPane = styled.div`
   width: 100%;
   box-sizing: border-box;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: 1;
     top: 0;

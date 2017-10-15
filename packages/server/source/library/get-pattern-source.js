@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-import getPatternRetriever from './utilities/get-pattern-retriever';
+import getPatternRetriever from "./utilities/get-pattern-retriever";
 
 export default getPatternSource;
 
@@ -9,8 +9,8 @@ function getPatternSource(application) {
   const cwd = application.runtime.patterncwd;
 
   return async (pathname, type, environment, options) => {
-    if (type === 'source') {
-      const sourcePath = path.resolve(cwd, 'patterns', pathname);
+    if (type === "source") {
+      const sourcePath = path.resolve(cwd, "patterns", pathname);
       return {
         type: path.extname(sourcePath),
         body: fs.createReadStream(sourcePath)
@@ -60,7 +60,7 @@ function getPatternSource(application) {
       id,
       filters,
       environment,
-      ['read', 'transform'],
+      ["read", "transform"],
       options
     );
 
@@ -74,7 +74,7 @@ function getPatternSource(application) {
       const files = Object.keys(pattern.files || {});
       const error = new Error(
         `pattern ${id} has no file ${basename}. Available files: ${files.join(
-          ', '
+          ", "
         )}`
       );
       error.status = 404;

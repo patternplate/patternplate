@@ -1,9 +1,9 @@
-import React from 'react';
-import {Icon, styled} from '@patternplate/components';
+import React from "react";
+import { Icon, styled } from "@patternplate/components";
 
 // Import Icon from '../icon';
-import Link from '../link';
-import Text from '../../text';
+import Link from "../link";
+import Text from "../../text";
 
 const SIZES = {
   h1: 36,
@@ -53,12 +53,12 @@ export default styled(MarkdownHeadline)`
 
 function MarkdownHeadline(props) {
   const children = Array.isArray(props.children)
-    ? props.children.join('')
+    ? props.children.join("")
     : props.children;
   const id = encodeURIComponent(
-    (children || '')
-      .split(' ')
-      .join('-')
+    (children || "")
+      .split(" ")
+      .join("-")
       .toLowerCase()
   );
 

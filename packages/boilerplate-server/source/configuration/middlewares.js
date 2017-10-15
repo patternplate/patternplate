@@ -1,9 +1,9 @@
 const middlewares = {
-  path: './application/middlewares',
+  path: "./application/middlewares",
   enabled: {
     environment: true,
     log: true,
-    'response-time': true,
+    "response-time": true,
     revision: true,
     etags: true,
     basicauth: {
@@ -12,13 +12,13 @@ const middlewares = {
         name:
           process.env.BOILERPLATE_SERVER_BASIC_AUTH_LOGIN ||
           process.env.NODE_BASIC_AUTH_LOGIN ||
-          'boilerplate-server',
+          "boilerplate-server",
         pass:
           process.env.BOILERPLATE_SERVER_BASIC_AUTH_PASS ||
           process.env.NODE_BASIC_AUTH_PASS ||
-          'boilerplate-server'
+          "boilerplate-server"
       },
-      exclude: '/health'
+      exclude: "/health"
     }
   }
 };

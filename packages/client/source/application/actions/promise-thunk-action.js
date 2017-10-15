@@ -1,5 +1,5 @@
-import {createAction} from 'redux-actions';
-import handleDependentActions from './handle-dependent-actions';
+import { createAction } from "redux-actions";
+import handleDependentActions from "./handle-dependent-actions";
 
 const ident = i => i;
 const asyncIdent = async i => i;

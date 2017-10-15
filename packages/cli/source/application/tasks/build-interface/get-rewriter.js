@@ -1,19 +1,19 @@
-import path from 'path';
-import globby from 'globby';
+import path from "path";
+import globby from "globby";
 
 export default getRewriter;
 
 async function getRewriter(buildTargetPath) {
-  const staticPath = path.resolve(process.cwd(), 'static');
-  const statics = await globby(`${staticPath}/**/*`, {nodir: true});
+  const staticPath = path.resolve(process.cwd(), "static");
+  const statics = await globby(`${staticPath}/**/*`, { nodir: true });
 
   const rewriteables = statics.map(s => {
     const fragments = path.relative(process.cwd(), s).split(path.sep);
-    return ['/api', ...fragments].join('/');
+    return ["/api", ...fragments].join("/");
   });
 
   return (content, targetPath) => {
-    const source = (content || '').toString('utf-8');
+    const source = (content || "").toString("utf-8");
     return rewriteables.reduce((content, rewritable) => {
       if (!source.includes(rewritable)) {
         return source;
@@ -21,7 +21,7 @@ async function getRewriter(buildTargetPath) {
 
       // Convert rewritable url to path (os-sensitive)
       const rewritablePath = rewritable
-        .split('/')
+        .split("/")
         .filter(Boolean)
         .join(path.sep);
 
@@ -30,9 +30,9 @@ async function getRewriter(buildTargetPath) {
       const relative = path
         .relative(path.dirname(targetPath), assetPath)
         .split(path.sep)
-        .join('/');
+        .join("/");
 
-      const matcher = new RegExp(rewritable, 'g');
+      const matcher = new RegExp(rewritable, "g");
       return source.replace(matcher, relative);
     }, source);
   };

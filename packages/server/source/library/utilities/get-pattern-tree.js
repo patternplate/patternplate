@@ -1,36 +1,36 @@
-import path from 'path';
-import frontmatter from 'front-matter';
-import globby from 'globby';
-import {merge, partition} from 'lodash';
-import exists from 'path-exists';
-import remark from 'remark';
-import find from 'unist-util-find';
-import * as sander from 'sander';
-import throat from 'throat';
+import path from "path";
+import frontmatter from "front-matter";
+import globby from "globby";
+import { merge, partition } from "lodash";
+import exists from "path-exists";
+import remark from "remark";
+import find from "unist-util-find";
+import * as sander from "sander";
+import throat from "throat";
 
-import getEnvironments from './get-environments';
-import json from './load-json';
+import getEnvironments from "./get-environments";
+import json from "./load-json";
 
 const DEFAULT_MANIFEST = {
-  displayName: '',
-  version: '1.0.0',
+  displayName: "",
+  version: "1.0.0",
   build: true,
   display: true,
-  flag: 'alpha',
+  flag: "alpha",
   options: {},
   patterns: {}
 };
 
 export async function getPatterns(base) {
   const resolve = path.resolve.bind(null, base);
-  const cwd = resolve('.');
+  const cwd = resolve(".");
   const read = f => json(resolve(f));
 
   if (!await exists(cwd)) {
     return [];
   }
 
-  const files = await globby(`**/pattern.json`, {cwd});
+  const files = await globby(`**/pattern.json`, { cwd });
 
   const envs = (await getEnvironments(cwd))
     .filter(env => env.display)
@@ -39,10 +39,10 @@ export async function getPatterns(base) {
   const readings = await Promise.all(
     files
       .filter(file =>
-        ['@environments', '@docs'].every(i => !file.startsWith(i))
+        ["@environments", "@docs"].every(i => !file.startsWith(i))
       )
       .map(async file => {
-        const id = file.split(path.sep).join('/');
+        const id = file.split(path.sep).join("/");
         const [err, data] = await read(file);
 
         if (err) {
@@ -50,23 +50,25 @@ export async function getPatterns(base) {
         }
 
         data.displayName = data.displayName || data.name || null;
-        const manifest = {...DEFAULT_MANIFEST, ...data};
-        return {id, path: file, manifest, envs};
+        const manifest = { ...DEFAULT_MANIFEST, ...data };
+        return { id, path: file, manifest, envs };
       })
   );
 
   const [errors, patterns] = partition(readings, r => r instanceof Error);
 
   return patterns.map(pattern => {
-    pattern.dependencies = getDependencies(pattern, {key: 'patterns'});
-    pattern.demoDependencies = getDependencies(pattern, {key: 'demoPatterns'});
+    pattern.dependencies = getDependencies(pattern, { key: "patterns" });
+    pattern.demoDependencies = getDependencies(pattern, {
+      key: "demoPatterns"
+    });
     pattern.dependents = getDependents(pattern, {
       pool: patterns,
-      key: 'patterns'
+      key: "patterns"
     });
     pattern.demoDependents = getDependents(pattern, {
       pool: patterns,
-      key: 'demoPatterns'
+      key: "demoPatterns"
     });
     return pattern;
   });
@@ -84,21 +86,21 @@ function getDependents(pattern, config) {
   const id = path.dirname(pattern.id);
 
   return config.pool
-    .filter(item => getDependencies(item, {key: config.key}).includes(id))
+    .filter(item => getDependencies(item, { key: config.key }).includes(id))
     .filter(item => item.id !== id)
     .map(item => path.dirname(item.id));
 }
 
 async function treeFromPaths(files) {
   const tree = {
-    id: 'root',
+    id: "root",
     children: []
   };
 
   await Promise.all(
     files.map(
       throat(1, async file => {
-        const parts = file.path.split('/');
+        const parts = file.path.split("/");
         let level = tree;
 
         return await Promise.all(
@@ -120,13 +122,15 @@ async function treeFromPaths(files) {
                 return null;
               }
 
-              const fromPatterns = path.resolve.bind(null, './patterns');
-              const contents = await getDoc(fromPatterns(...itemPath), {type});
+              const fromPatterns = path.resolve.bind(null, "./patterns");
+              const contents = await getDoc(fromPatterns(...itemPath), {
+                type
+              });
 
               const ast = remark().parse(contents);
-              const first = find(ast, {type: 'heading', depth: 1});
+              const first = find(ast, { type: "heading", depth: 1 });
               const front =
-                typeof contents === 'string'
+                typeof contents === "string"
                   ? frontmatter(contents).attributes
                   : {};
               const manifest = merge({}, DEFAULT_MANIFEST, front);
@@ -136,15 +140,15 @@ async function treeFromPaths(files) {
               const item = {
                 contents,
                 name,
-                manifest: type === 'folder' ? manifest : file.manifest,
-                id: parts.slice(0, i + 1).join('/'),
+                manifest: type === "folder" ? manifest : file.manifest,
+                id: parts.slice(0, i + 1).join("/"),
                 path: itemPath,
                 type
               };
 
               level.children.push(item);
 
-              if (item.type === 'folder') {
+              if (item.type === "folder") {
                 item.children = [];
                 level = item;
               } else {
@@ -167,25 +171,25 @@ async function treeFromPaths(files) {
 }
 
 function getName(basename, manifest) {
-  if (basename === 'pattern.json') {
+  if (basename === "pattern.json") {
     return manifest.name;
   }
   return basename;
 }
 
 function getType(basename) {
-  if (basename === 'pattern.json') {
-    return 'pattern';
+  if (basename === "pattern.json") {
+    return "pattern";
   }
-  return 'folder';
+  return "folder";
 }
 
 async function getDoc(itemPath, context) {
-  const baseName = context.type === 'pattern' ? 'index.md' : 'readme.md';
+  const baseName = context.type === "pattern" ? "index.md" : "readme.md";
   const file = path.resolve(itemPath, baseName);
 
   if (!await exists(file)) {
-    return '';
+    return "";
   }
   return String(await sander.readFile(file));
 }

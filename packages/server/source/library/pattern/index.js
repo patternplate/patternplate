@@ -1,8 +1,8 @@
-import patternFactory, {Pattern} from './pattern';
-import normalizeFormats from './normalize-formats';
+import patternFactory, { Pattern } from "./pattern";
+import normalizeFormats from "./normalize-formats";
 
 export default pattern;
-export {normalizeFormats};
+export { normalizeFormats };
 
 function pattern(application) {
   const config = application.configuration.patterns || {};

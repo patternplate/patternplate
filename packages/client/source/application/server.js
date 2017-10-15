@@ -1,12 +1,12 @@
-import React from 'react';
-import {renderToString} from 'react-dom/server';
-import {createMemoryHistory, match, RouterContext} from 'react-router';
-import {Provider} from 'react-redux';
-import {syncHistoryWithStore} from 'react-router-redux';
-import {ServerStyleSheet} from '@patternplate/components';
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { createMemoryHistory, match, RouterContext } from "react-router";
+import { Provider } from "react-redux";
+import { syncHistoryWithStore } from "react-router-redux";
+import { ServerStyleSheet } from "@patternplate/components";
 
-import routes from './routes';
-import configureStore from './store';
+import routes from "./routes";
+import configureStore from "./store";
 
 export default function(location, data) {
   const sheet = new ServerStyleSheet();
@@ -32,7 +32,7 @@ export default function(location, data) {
         );
         const html = renderToString(context);
         const css = sheet.getStyleElement();
-        resolve({html, css});
+        resolve({ html, css });
       }
     );
   });

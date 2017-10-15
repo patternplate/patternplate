@@ -1,4 +1,4 @@
-import throat from 'throat';
+import throat from "throat";
 
 export default build;
 

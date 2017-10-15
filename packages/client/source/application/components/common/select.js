@@ -1,11 +1,11 @@
-import React from 'react';
-import join from 'classnames';
-import {Icon} from '@patternplate/components';
+import React from "react";
+import join from "classnames";
+import { Icon } from "@patternplate/components";
 
 export default Select;
 
 function Select(props) {
-  const className = join('select', props.className);
+  const className = join("select", props.className);
 
   return (
     <label className={className}>
@@ -14,7 +14,7 @@ function Select(props) {
         onChange={props.onChange}
         value={props.value.value}
       >
-        {props.options.map(({value, name}) => {
+        {props.options.map(({ value, name }) => {
           return (
             <option key={value} value={value}>
               {name}

@@ -1,6 +1,6 @@
-import path from 'path';
-import getPatternMetaData from '../../library/get-pattern-meta-data';
-import urlQuery from '../../library/utilities/url-query';
+import path from "path";
+import getPatternMetaData from "../../library/get-pattern-meta-data";
+import urlQuery from "../../library/utilities/url-query";
 
 function withErrorHandling(fn) {
   return async function(...args) {
@@ -26,7 +26,7 @@ function getPatternId(raw) {
   const extension = getPatternExtension(raw);
   const base = path.basename(raw, path.extname(raw));
 
-  if (base === 'index' && extension !== 'json') {
+  if (base === "index" && extension !== "json") {
     return path.dirname(raw);
   }
 
@@ -37,7 +37,7 @@ function getPatternId(raw) {
 }
 
 function getPatternExtension(raw) {
-  return path.extname(raw).slice(1) || 'html';
+  return path.extname(raw).slice(1) || "html";
 }
 
 const getPatternMetaDataOrError = withErrorHandling(getPatternMetaData);
@@ -46,13 +46,13 @@ export default function patternRouteFactory(application) {
   return async function patternRoute() {
     const extname = path.extname(this.path);
 
-    if (extname && extname !== '.json') {
+    if (extname && extname !== ".json") {
       this.throw(404);
     }
 
     const parsed = urlQuery.parse(this.params.id);
     const id = getPatternId(parsed.pathname);
-    const {environment = 'index'} = parsed.query;
+    const { environment = "index" } = parsed.query;
     const [error, data] = await getPatternMetaDataOrError(
       application,
       id,
@@ -63,7 +63,7 @@ export default function patternRouteFactory(application) {
       this.throw(error);
     }
 
-    this.type = 'json';
+    this.type = "json";
     this.body = data;
   };
 }

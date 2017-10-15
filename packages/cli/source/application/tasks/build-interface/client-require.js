@@ -1,4 +1,4 @@
-import deepRequire from './deep-require';
+import deepRequire from "./deep-require";
 
 export default clientRequire;
 

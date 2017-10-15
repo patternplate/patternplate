@@ -1,3 +1,3 @@
-import {createAction} from 'redux-actions';
+import { createAction } from "redux-actions";
 
-export default createAction('THEME_LOADED');
+export default createAction("THEME_LOADED");

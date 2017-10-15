@@ -1,6 +1,6 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
-import tag from 'tag-hoc';
+import React from "react";
+import { styled } from "@patternplate/components";
+import tag from "tag-hoc";
 
 export default Text;
 
@@ -12,7 +12,7 @@ function Text(props) {
   );
 }
 
-const StyledText = styled(tag(['size'])('div'))`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+const StyledText = styled(tag(["size"])("div"))`
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 `;

@@ -1,7 +1,7 @@
-import React from 'react';
-import text from 'react-addons-text-content';
-import {styled} from '@patternplate/components';
-import Text from './text';
+import React from "react";
+import text from "react-addons-text-content";
+import { styled } from "@patternplate/components";
+import Text from "./text";
 
 export default Flag;
 
@@ -25,15 +25,15 @@ const StyledText = styled(Text)`
 
 function getFlagColor(flag, theme) {
   switch (flag) {
-    case 'alpha':
+    case "alpha":
       return theme.error;
-    case 'beta':
+    case "beta":
       return theme.warning;
-    case 'rc':
+    case "rc":
       return theme.info;
-    case 'stable':
+    case "stable":
       return theme.success;
-    case 'deprecated':
+    case "deprecated":
       return theme.error;
     default:
       return theme.error;

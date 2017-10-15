@@ -1,12 +1,12 @@
-require('dom4'); // eslint-disable-line import/no-unassigned-import
+require("dom4"); // eslint-disable-line import/no-unassigned-import
 
-const url = require('url');
-const fetch = require('isomorphic-fetch');
-const platform = require('platform');
-const router = require('../../application/client').default;
-const {merge} = require('lodash');
+const url = require("url");
+const fetch = require("isomorphic-fetch");
+const platform = require("platform");
+const router = require("../../application/client").default;
+const { merge } = require("lodash");
 
-const {document} = global;
+const { document } = global;
 
 main().catch(err => {
   console.error(err);
@@ -31,7 +31,7 @@ async function getData(vault) {
 }
 
 async function getStateData(base) {
-  return (await fetch(url.resolve(base, '/api'))).json();
+  return (await fetch(url.resolve(base, "/api"))).json();
 }
 
 function getPlatformData() {

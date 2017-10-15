@@ -1,24 +1,24 @@
-import path from 'path';
-import globby from 'globby';
-import * as sander from 'sander';
-import getPatternManifests from '../../../library/utilities/get-pattern-manifests';
+import path from "path";
+import globby from "globby";
+import * as sander from "sander";
+import getPatternManifests from "../../../library/utilities/get-pattern-manifests";
 
 const DETECT = /(?:@import\s+|import(?:.+?)from\s+|require\()['"]([^'"]+)['"]\)?(?:;?)/g;
 const REWRITE = /(@import\s+|import(?:.+?)from\s+|require\()('|")([^'"]+)('|")(\)?)(;?)/;
 
 export default async function nodeify(application) {
-  const [errors, manifests] = await getPatternManifests('', './patterns', {
+  const [errors, manifests] = await getPatternManifests("", "./patterns", {
     cache: application.cache
   });
 
   if (errors) {
-    throw new Error(errors.map(e => e.message).join('\n'));
+    throw new Error(errors.map(e => e.message).join("\n"));
   }
 
   return await Promise.all(
     manifests.map(
       rewrite({
-        base: path.resolve('./patterns')
+        base: path.resolve("./patterns")
       })
     )
   );
@@ -37,12 +37,12 @@ function rewrite(options) {
     const manifestSource = JSON.stringify(
       translateManifest(manifest),
       null,
-      '  '
+      "  "
     );
-    const files = await globby(['index.*', 'demo.*', '!index.md'], {
+    const files = await globby(["index.*", "demo.*", "!index.md"], {
       cwd: base(manifest.id)
     });
-    await sander.writeFile(pattern('pattern.json'), manifestSource);
+    await sander.writeFile(pattern("pattern.json"), manifestSource);
 
     await Promise.all(
       files.map(async file => {

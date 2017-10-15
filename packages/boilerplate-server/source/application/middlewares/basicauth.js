@@ -1,4 +1,4 @@
-import auth from 'koa-basic-auth';
+import auth from "koa-basic-auth";
 
 function basicAuthMiddlewareFactory(application) {
   return function* basicAuthMiddleware(next) {
@@ -11,7 +11,7 @@ function basicAuthMiddlewareFactory(application) {
       let excluded = false;
 
       if (config.exclude) {
-        const matcher = new RegExp(config.exclude, 'g');
+        const matcher = new RegExp(config.exclude, "g");
         excluded = matcher.test(this.path);
       }
 
@@ -22,8 +22,8 @@ function basicAuthMiddlewareFactory(application) {
         } catch (error) {
           if (error.status === 401) {
             this.status = 401;
-            this.set('WWW-Authenticate', 'Basic');
-            this.body = 'Unauthorized';
+            this.set("WWW-Authenticate", "Basic");
+            this.body = "Unauthorized";
             // This.throw(401);
             return;
           }

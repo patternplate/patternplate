@@ -5,7 +5,7 @@ function getWrapper(expression) {
     };
   }
 
-  if (expression === '!IE') {
+  if (expression === "!IE") {
     return function noIEWrapper(input) {
       return `<!--[if !IE]> -->\n${input}\n<!-- <![endif]-->`;
     };

@@ -1,7 +1,7 @@
 const middlewares = {
   path: [
-    'application/middlewares',
-    'application/patternplate-client/middlewares'
+    "application/middlewares",
+    "application/patternplate-client/middlewares"
   ],
   enabled: {
     jsonerror: true,
@@ -12,12 +12,12 @@ const middlewares = {
           process.env.PATTERNPLATE_CLIENT_BASIC_AUTH_LOGIN ||
           process.env.BOILERPLATE_SERVER_BASIC_AUTH_LOGIN ||
           process.env.NODE_BASIC_AUTH_LOGIN ||
-          'patternplate-client',
+          "patternplate-client",
         pass:
           process.env.PATTERNPLATE_CLIENT_BASIC_AUTH_PASS ||
           process.env.BOILERPLATE_SERVER_BASIC_AUTH_PASS ||
           process.env.NODE_BASIC_AUTH_PASS ||
-          'patternplate-client'
+          "patternplate-client"
       }
     }
   }

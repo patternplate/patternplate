@@ -1,5 +1,5 @@
 const middlewares = {
-  path: ['application/middlewares'],
+  path: ["application/middlewares"],
   enabled: {
     basicauth: {
       enabled: true,
@@ -8,12 +8,12 @@ const middlewares = {
           process.env.PATTERNPLATE_SERVER_BASIC_AUTH_LOGIN ||
           process.env.BOILERPLATE_SERVER_BASIC_AUTH_LOGIN ||
           process.env.NODE_BASIC_AUTH_LOGIN ||
-          'patternplate-server',
+          "patternplate-server",
         pass:
           process.env.PATTERNPLATE_SERVER_BASIC_AUTH_PASS ||
           process.env.BOILERPLATE_SERVER_BASIC_AUTH_PASS ||
           process.env.NODE_BASIC_AUTH_PASS ||
-          'patternplate-server'
+          "patternplate-server"
       }
     }
   }

@@ -1,6 +1,6 @@
-import {createAction} from 'redux-actions';
+import { createAction } from "redux-actions";
 
-export default createAction('WINDOW_RESIZE', ({width, height}) => ({
+export default createAction("WINDOW_RESIZE", ({ width, height }) => ({
   width,
   height
 }));

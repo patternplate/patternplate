@@ -1,6 +1,6 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from "redux-actions";
 
-const defaultValue = 'index';
+const defaultValue = "index";
 
 function onEnvironmentLocationChange(_, action) {
   return action.payload.query.environment || defaultValue;
@@ -8,7 +8,7 @@ function onEnvironmentLocationChange(_, action) {
 
 export default handleActions(
   {
-    '@@router/LOCATION_CHANGE': onEnvironmentLocationChange
+    "@@router/LOCATION_CHANGE": onEnvironmentLocationChange
   },
   defaultValue
 );

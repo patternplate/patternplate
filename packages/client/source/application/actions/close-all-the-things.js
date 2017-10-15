@@ -1,7 +1,7 @@
-import {patchLocation, dismissAllMessages} from './';
+import { patchLocation, dismissAllMessages } from "./";
 
 export default closeAllTheThings;
-export const type = 'CLOSE_ALL_THE_THINGS';
+export const type = "CLOSE_ALL_THE_THINGS";
 
 function closeAllTheThings() {
   return dispatch => {
@@ -11,11 +11,11 @@ function closeAllTheThings() {
         query: {
           issue: null,
           lightbox: null,
-          'menu-enabled': null,
-          'network-enabled': null,
-          'search-enabled': null,
+          "menu-enabled": null,
+          "network-enabled": null,
+          "search-enabled": null,
           source: null,
-          'source-expanded': null
+          "source-expanded": null
         }
       })
     );

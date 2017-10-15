@@ -1,7 +1,7 @@
-import path from 'path';
-import {readdir, stat} from 'sander';
-import {flattenDeep} from 'lodash';
-import exists from 'path-exists';
+import path from "path";
+import { readdir, stat } from "sander";
+import { flattenDeep } from "lodash";
+import exists from "path-exists";
 
 export default readTree;
 

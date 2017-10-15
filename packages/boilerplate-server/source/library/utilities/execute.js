@@ -1,6 +1,6 @@
-import {basename, extname} from 'path';
-import {merge} from 'lodash';
-import minimist from 'minimist';
+import { basename, extname } from "path";
+import { merge } from "lodash";
+import minimist from "minimist";
 
 // Assemble augmented minimist options
 const args = minimist(process.argv.slice(1));
@@ -9,7 +9,7 @@ const raw = args._;
 
 const options = {
   ...args,
-  command: raw.slice(1).join(' '),
+  command: raw.slice(1).join(" "),
   entry: basename(entry, extname(entry))
 };
 

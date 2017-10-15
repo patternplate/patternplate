@@ -3,7 +3,7 @@ const level =
   process.env.BOILERPLATE_LOG_LEVEL ||
   process.env.NODE_LOG_LEVEL ||
   process.env.LOG_LEVEL ||
-  'info';
+  "info";
 
 const log = {
   level,
@@ -11,16 +11,16 @@ const log = {
   timestamp: !process.stdout.isTTY,
   showLevel: true,
   colors: {
-    trace: 'magenta',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'grey',
-    debug: 'blue',
-    info: 'green',
-    data: 'grey',
-    help: 'cyan',
-    warn: 'yellow',
-    error: 'red'
+    trace: "magenta",
+    input: "grey",
+    verbose: "cyan",
+    prompt: "grey",
+    debug: "blue",
+    info: "green",
+    data: "grey",
+    help: "cyan",
+    warn: "yellow",
+    error: "red"
   }
 };
 

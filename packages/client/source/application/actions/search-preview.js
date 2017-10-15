@@ -1,7 +1,7 @@
-import {patchLocation} from './';
+import { patchLocation } from "./";
 
 export default searchPreview;
-export const type = 'SEARCH_PREVIEW';
+export const type = "SEARCH_PREVIEW";
 
 const MOVEMENTS = {
   up: -1,
@@ -9,12 +9,12 @@ const MOVEMENTS = {
 };
 
 function searchPreview(payload) {
-  if (typeof payload === 'number') {
+  if (typeof payload === "number") {
     return dispatch => {
       dispatch(
         patchLocation({
           query: {
-            'search-preview': payload
+            "search-preview": payload
           }
         })
       );
@@ -28,7 +28,7 @@ function searchPreview(payload) {
     dispatch(
       patchLocation({
         query: {
-          'search-preview': state.searchPreview + delta
+          "search-preview": state.searchPreview + delta
         }
       })
     );

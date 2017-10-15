@@ -1,31 +1,35 @@
-import url from 'url';
-import {merge, uniqBy} from 'lodash';
-import React from 'react';
-import {renderToStaticMarkup} from 'react-dom/server';
-import {DOMParser} from 'xmldom';
+import url from "url";
+import { merge, uniqBy } from "lodash";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { DOMParser } from "xmldom";
 
-import getPatternRetriever from './utilities/get-pattern-retriever';
-import urlQuery from './utilities/url-query';
-import getPatternSource from './get-pattern-source';
-import getComponent from './get-component';
+import getPatternRetriever from "./utilities/get-pattern-retriever";
+import urlQuery from "./utilities/url-query";
+import getPatternSource from "./get-pattern-source";
+import getComponent from "./get-component";
 
 export default getPatternDemo;
 
 async function getPatternDemo(application, id, filters, environment, options) {
   const getFile = getPatternSource(application);
-  filters.outFormats = ['html'];
+  filters.outFormats = ["html"];
 
-  const [pattern] = await getPatternRetriever(
-    application
-  )(id, filters, environment, ['read'], {
-    automount: options.mount
-  });
+  const [pattern] = await getPatternRetriever(application)(
+    id,
+    filters,
+    environment,
+    ["read"],
+    {
+      automount: options.mount
+    }
+  );
 
   if (!pattern) {
     return null;
   }
 
-  const order = ['demo', 'index'];
+  const order = ["demo", "index"];
 
   const path = Object.values(pattern.files)
     .sort((a, b) => order.indexOf(a.basename) - order.indexOf(b.basename))
@@ -36,28 +40,33 @@ async function getPatternDemo(application, id, filters, environment, options) {
   }
 
   const automount = selectAutoMount(application, pattern, options.mount);
-  const content = await getFile(path, 'transformed', environment, {automount});
-  const {formats} = application.configuration.patterns;
+  const content = await getFile(path, "transformed", environment, {
+    automount
+  });
+  const { formats } = application.configuration.patterns;
 
   if (automount) {
     await getComponent(application, pattern.id, environment);
   }
 
   const render = getRenderer(formats, automount);
-  const resources = (application.resources || [])
-    .filter(({pattern: p}) => p === null || p === pattern.id);
+  const resources = (application.resources || []).filter(
+    ({ pattern: p }) => p === null || p === pattern.id
+  );
   return render(content.body, pattern, resources);
 }
 
 function selectAutoMount(a, p, forced) {
-  const transform = a.configuration.transforms['react-to-markup'] || {};
+  const transform = a.configuration.transforms["react-to-markup"] || {};
   const pattern = selectReactToMarkup(selectManifestOptions(p));
-  const settings = merge({}, transform.opts, pattern.opts, {automount: forced});
+  const settings = merge({}, transform.opts, pattern.opts, {
+    automount: forced
+  });
   return settings.automount || false;
 }
 
 function selectReactToMarkup(o) {
-  return o['react-to-markup'] || {};
+  return o["react-to-markup"] || {};
 }
 
 function selectManifestOptions(p) {
@@ -67,35 +76,35 @@ function selectManifestOptions(p) {
 function getRenderer(formats, component = false) {
   return (content, result, resources) => {
     const transforms = result.config.transforms;
-    const styleFormat = getFormat(formats, transforms, 'style');
-    const scriptFormat = getFormat(formats, transforms, 'script');
-    const styleReference = getUriByFormat(result, styleFormat, '/demo');
+    const styleFormat = getFormat(formats, transforms, "style");
+    const scriptFormat = getFormat(formats, transforms, "script");
+    const styleReference = getUriByFormat(result, styleFormat, "/demo");
 
-    const markupContent = [{content}];
+    const markupContent = [{ content }];
     const styleContent = resources.filter(
-      r => r.type === 'css' && !r.reference
+      r => r.type === "css" && !r.reference
     );
     const scriptContent = resources.filter(
-      r => r.type === 'js' && !r.reference
+      r => r.type === "js" && !r.reference
     );
 
     const scripts = component
       ? []
-      : [{uri: getUriByFormat(result, scriptFormat, '/demo')}];
-    const styles = [{id: styleReference}].filter(i => i.id);
+      : [{ uri: getUriByFormat(result, scriptFormat, "/demo") }];
+    const styles = [{ id: styleReference }].filter(i => i.id);
 
     const markupReferences = uniqBy(
-      resources.filter(r => r.type === 'html' && r.reference),
-      'id'
+      resources.filter(r => r.type === "html" && r.reference),
+      "id"
     );
     const styleReferences = uniqBy(
-      [...styles, ...resources.filter(r => r.type === 'css' && r.reference)],
-      'id'
+      [...styles, ...resources.filter(r => r.type === "css" && r.reference)],
+      "id"
     );
     const scriptReferences = uniqBy(
-      [...resources.filter(r => r.type === 'js' && r.reference), ...scripts],
-      'id'
-    ).filter(s => component || !String(s.id).startsWith('react-mount'));
+      [...resources.filter(r => r.type === "js" && r.reference), ...scripts],
+      "id"
+    ).filter(s => component || !String(s.id).startsWith("react-mount"));
 
     return layout({
       title: result.id,
@@ -114,12 +123,12 @@ function getRenderer(formats, component = false) {
 }
 
 const formatNames = {
-  markup: 'html',
-  style: 'css',
-  script: 'js'
+  markup: "html",
+  style: "css",
+  script: "js"
 };
 
-function getUriByFormat(pattern, format = '', base = '') {
+function getUriByFormat(pattern, format = "", base = "") {
   if (!format) {
     return null;
   }
@@ -132,7 +141,7 @@ function getUriByFormat(pattern, format = '', base = '') {
     return urlQuery.format({
       pathname: `${base}/${pattern.id}/index.${match.extension}`,
       query: {
-        environment: pattern.filters.environments[0] || 'index'
+        environment: pattern.filters.environments[0] || "index"
       }
     });
   }
@@ -208,15 +217,15 @@ function isAbsolute(reference) {
 }
 
 function isReference(reference) {
-  return 'id' in reference || 'uri' in reference;
+  return "id" in reference || "uri" in reference;
 }
 
 function isRelative(reference) {
-  return (reference.id || '').charAt(0) === '.' || hasUri(reference);
+  return (reference.id || "").charAt(0) === "." || hasUri(reference);
 }
 
 function hasUri(reference) {
-  return 'uri' in reference;
+  return "uri" in reference;
 }
 
 function Demo(props) {
@@ -240,15 +249,17 @@ function Demo(props) {
         {props.styleRefs
           .filter(isRelative)
           .map(style => <link rel="stylesheet" href={style.uri || style.id} />)}
-        {(props.content.style || []).map(style => style.wrap === false
-          ? getStyle(style.content)
-          : `<style>${style.content}</style>`)}
+        {(props.content.style || []).map(
+          style =>
+            style.wrap === false
+              ? getStyle(style.content)
+              : `<style>${style.content}</style>`
+        )}
       </head>
       <body>
-        {(props.content.markup || [])
-          .map(markup => (
-            <div dangerouslySetInnerHTML={{__html: markup.content}} />
-          ))}
+        {(props.content.markup || []).map(markup => (
+          <div dangerouslySetInnerHTML={{ __html: markup.content }} />
+        ))}
         {props.scriptRefs
           .filter(isAbsolute)
           .map(script => <script src={`/api/resource/${script.id}.js`} />)}
@@ -265,22 +276,25 @@ const parser = new DOMParser();
 
 function getStyle(style) {
   const parsed = parser.parseFromString(style);
-  const nodes = [...parsed.childNodes].filter(n => n.nodeName.toLowerCase() === 'style');
+  const nodes = [...parsed.childNodes].filter(
+    n => n.nodeName.toLowerCase() === "style"
+  );
 
   return nodes.map(n => {
     const children = [...n.childNodes]
       .filter(c => c.nodeType === 3)
       .map(c => c.data);
 
-    const attributes = [...n.attributes]
-      .reduce((attributes, {name, value}) => {
-        attributes[name] = value;
-        return attributes;
-      }, {})
+    const attributes = [
+      ...n.attributes
+    ].reduce((attributes, { name, value }) => {
+      attributes[name] = value;
+      return attributes;
+    }, {});
 
     attributes.key = JSON.stringify(attributes);
-    attributes.dangerouslySetInnerHTML = {__html: children.join('\n')};
+    attributes.dangerouslySetInnerHTML = { __html: children.join("\n") };
 
-    return React.createElement('style', attributes);
+    return React.createElement("style", attributes);
   });
 }

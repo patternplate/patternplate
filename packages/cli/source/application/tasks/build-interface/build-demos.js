@@ -1,12 +1,12 @@
-import path from 'path';
-import {max, padEnd} from 'lodash/fp';
-import Observable from 'zen-observable';
+import path from "path";
+import { max, padEnd } from "lodash/fp";
+import Observable from "zen-observable";
 
-import build from './build';
-import getEnvSets from './get-env-sets';
-import getTargets from './get-targets';
-import writeEach from './write-each';
-import serverRequire from './server-require';
+import build from "./build";
+import getEnvSets from "./get-env-sets";
+import getTargets from "./get-targets";
+import writeEach from "./write-each";
+import serverRequire from "./server-require";
 
 // Const getPatternDemo = serverRequire('get-pattern-demo');
 
@@ -14,7 +14,7 @@ export default buildDemos;
 
 function buildDemos(datasets, target, context) {
   return new Observable(observer => {
-    const {app, rewriter} = context;
+    const { app, rewriter } = context;
 
     const envs = getEnvSets(datasets);
     const idPad = padEnd(max(envs.map(env => env.id.length)));
@@ -22,14 +22,14 @@ function buildDemos(datasets, target, context) {
     build(envs, {
       async read(set, sets, count) {
         observer.next(
-          `${context.verbose ? 'Demos: ' : ''}${idPad(
+          `${context.verbose ? "Demos: " : ""}${idPad(
             set.id
           )} ${count}/${envs.length}`
         );
         return await getPatternDemo(
           app,
           set.id,
-          {environments: set.env},
+          { environments: set.env },
           set.env
         );
       },
@@ -40,7 +40,7 @@ function buildDemos(datasets, target, context) {
       },
       done() {
         observer.next(
-          `${context.verbose ? 'Demos: ' : ''}${envs.length}/${envs.length}`
+          `${context.verbose ? "Demos: " : ""}${envs.length}/${envs.length}`
         );
         observer.complete();
       }

@@ -1,3 +1,3 @@
-import {createAction} from 'redux-actions';
+import { createAction } from "redux-actions";
 
-export default createAction('MARK_BLOCK');
+export default createAction("MARK_BLOCK");

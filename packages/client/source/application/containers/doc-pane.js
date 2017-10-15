@@ -1,8 +1,8 @@
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
-import {mountable, skippable} from '../behaviours';
-import DocPane from '../components/doc-pane';
-import * as item from '../selectors/item';
+import { mountable, skippable } from "../behaviours";
+import DocPane from "../components/doc-pane";
+import * as item from "../selectors/item";
 
 export default connect(mapProps)(skippable(mountable(DocPane)));
 

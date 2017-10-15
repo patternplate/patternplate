@@ -1,10 +1,10 @@
-import {handleActions} from 'redux-actions';
-import markBlock from '../actions/mark-block';
+import { handleActions } from "redux-actions";
+import markBlock from "../actions/mark-block";
 
 const defaultValue = null;
 
-const markBlockHandler = (state, {payload}) => {
-  const {active, id} = payload;
+const markBlockHandler = (state, { payload }) => {
+  const { active, id } = payload;
 
   if (active) {
     return id;
@@ -20,7 +20,7 @@ const locationChangeHandler = () => {
 export default handleActions(
   {
     [markBlock]: markBlockHandler,
-    '@@router/LOCATION_CHANGE': locationChangeHandler
+    "@@router/LOCATION_CHANGE": locationChangeHandler
   },
   defaultValue
 );

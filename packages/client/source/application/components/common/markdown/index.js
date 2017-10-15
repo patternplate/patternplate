@@ -1,20 +1,20 @@
-import frontmatter from 'front-matter';
-import React from 'react';
-import remark from 'remark';
-import emoji from 'remark-gemoji-to-emoji';
-import reactRenderer from 'remark-react';
-import {styled} from '@patternplate/components';
+import frontmatter from "front-matter";
+import React from "react";
+import remark from "remark";
+import emoji from "remark-gemoji-to-emoji";
+import reactRenderer from "remark-react";
+import { styled } from "@patternplate/components";
 
-import MarkdownBlockQuote from './markdown-blockquote';
-import MarkdownCode from './markdown-code';
-import MarkdownCodeBlock from './markdown-code-block';
-import MarkdownCopy from './markdown-copy';
-import MarkdownHeadline from './markdown-headline';
-import MarkdownHr from './markdown-hr';
-import MarkdownImage from './markdown-image';
-import MarkdownItem from './markdown-item';
-import MarkdownList from './markdown-list';
-import MarkdownLink from './markdown-link';
+import MarkdownBlockQuote from "./markdown-blockquote";
+import MarkdownCode from "./markdown-code";
+import MarkdownCodeBlock from "./markdown-code-block";
+import MarkdownCopy from "./markdown-copy";
+import MarkdownHeadline from "./markdown-headline";
+import MarkdownHr from "./markdown-hr";
+import MarkdownImage from "./markdown-image";
+import MarkdownItem from "./markdown-item";
+import MarkdownList from "./markdown-list";
+import MarkdownLink from "./markdown-link";
 
 export default class Markdown extends React.Component {
   constructor(props, context) {
@@ -34,15 +34,15 @@ export default class Markdown extends React.Component {
     clearTimeout(this.timer);
 
     this.setState({
-      source: ''
+      source: ""
     });
 
     setTimeout(() => this.setState(next));
   }
 
   render() {
-    const {props} = this;
-    const Headline = prop('linkable', props.linkable)(MarkdownHeadline);
+    const { props } = this;
+    const Headline = prop("linkable", props.linkable)(MarkdownHeadline);
 
     return (
       <StyledMarkdown className={props.className}>
@@ -54,19 +54,19 @@ export default class Markdown extends React.Component {
                 a: MarkdownLink,
                 blockquote: MarkdownBlockQuote,
                 code: MarkdownCode,
-                h1: is('h1')(Headline),
-                h2: is('h2')(Headline),
-                h3: is('h3')(Headline),
-                h4: is('h4')(Headline),
-                h5: is('h5')(Headline),
-                h6: is('h6')(Headline),
+                h1: is("h1")(Headline),
+                h2: is("h2")(Headline),
+                h3: is("h3")(Headline),
+                h4: is("h4")(Headline),
+                h5: is("h5")(Headline),
+                h6: is("h6")(Headline),
                 hr: MarkdownHr,
                 img: MarkdownImage,
                 li: MarkdownItem,
                 p: MarkdownCopy,
                 pre: MarkdownCodeBlock,
-                ul: is('ul')(MarkdownList),
-                ol: is('ol')(MarkdownList)
+                ul: is("ul")(MarkdownList),
+                ol: is("ol")(MarkdownList)
               }
             })
             .use(emoji)
@@ -86,8 +86,8 @@ const StyledMarkdown = styled.div`
     border-spacing: 0;
     border-collapse: collapse;
     font-size: 18px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   & tr {
     color: ${props => props.theme.color};
@@ -113,5 +113,5 @@ function is(is) {
 }
 
 function prop(name, value) {
-  return Component => props => <Component {...props} {...{[name]: value}} />;
+  return Component => props => <Component {...props} {...{ [name]: value }} />;
 }

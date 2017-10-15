@@ -1,20 +1,20 @@
-import {flatten, intersection} from 'lodash';
-import semver from 'semver';
-import q from 'logic-query-parser';
+import { flatten, intersection } from "lodash";
+import semver from "semver";
+import q from "logic-query-parser";
 
 export function apply(fuse, pool) {
   const m = match(fuse, pool);
   return function perform(query) {
     switch (query.type) {
-      case 'and': {
+      case "and": {
         return intersection(...query.values.map(value => perform(value)));
       }
-      case 'or': {
+      case "or": {
         return flatten(query.values.map(value => perform(value)));
       }
-      case 'string':
+      case "string":
       default:
-        return m(query.value || '');
+        return m(query.value || "");
     }
   };
 }
@@ -35,7 +35,7 @@ export function parse(search) {
   try {
     return q.utils.binaryTreeToQueryJson(q.parse(search));
   } catch (err) {
-    return {type: 'and', values: []};
+    return { type: "and", values: [] };
   }
 }
 
@@ -49,17 +49,17 @@ export function parseTerm(term) {
     field,
     value,
     raw,
-    operators: [modifier, equality].join(''),
-    negated: negator === '!',
-    greater: modifier === '>',
-    lower: modifier === '<',
-    startsWith: equality === '=' && modifier === '^',
-    includes: equality === '=' && modifier === '~',
-    equals: equality === '=',
+    operators: [modifier, equality].join(""),
+    negated: negator === "!",
+    greater: modifier === ">",
+    lower: modifier === "<",
+    startsWith: equality === "=" && modifier === "^",
+    includes: equality === "=" && modifier === "~",
+    equals: equality === "=",
     valid: Boolean(
       field &&
         value &&
-        (typeof modifier === 'string' || typeof equality === 'string')
+        (typeof modifier === "string" || typeof equality === "string")
     )
   };
 }
@@ -68,7 +68,7 @@ function searchField(pool, options) {
   const tester = test(options.field, options.value, options);
 
   return pool
-    .filter(item => typeof item.manifest === 'object')
+    .filter(item => typeof item.manifest === "object")
     .filter(item => (options.negated ? !tester(item) : tester(item)))
     .map(i => i.id);
 }
@@ -83,18 +83,18 @@ function test(field, value, options) {
 
   return item => {
     switch (field) {
-      case 'depends':
+      case "depends":
         return depends(item);
-      case 'has':
+      case "has":
         return has(item);
-      case 'provides':
+      case "provides":
         return provides(item);
-      case 'tag':
-      case 'tags':
+      case "tag":
+      case "tags":
         return tags(item);
-      case 'version':
+      case "version":
         return version(item);
-      case 'flag':
+      case "flag":
         return flag(item);
       default:
         return item[field] === value || item.manifest[field] === value;
@@ -116,21 +116,21 @@ const index = item => FLAGS[flag(item)] || 0;
 const version = item => manifest(item).version;
 const tags = item => manifest(item).tags || [];
 const depends = item =>
-  (item.dependencies || []).filter(i => typeof i === 'string');
+  (item.dependencies || []).filter(i => typeof i === "string");
 const dependents = item =>
-  (item.dependents || []).filter(i => typeof i === 'string');
+  (item.dependents || []).filter(i => typeof i === "string");
 
 function matchHas(value) {
   return item => {
     switch (value) {
-      case 'dependencies':
+      case "dependencies":
         return (item.dependencies || []).length > 0;
-      case 'dependents':
+      case "dependents":
         return (item.dependents || []).length > 0;
-      case 'doc':
-      case 'docs':
+      case "doc":
+      case "docs":
         return Boolean(item.contents);
-      case 'tags':
+      case "tags":
         return (item.manifest.tags || []).length > 0;
       default:
         return false;

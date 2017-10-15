@@ -1,11 +1,11 @@
-import {Script} from 'vm';
-import {isEmpty, isPlainObject} from 'lodash';
-import {find} from 'lodash/fp';
+import { Script } from "vm";
+import { isEmpty, isPlainObject } from "lodash";
+import { find } from "lodash/fp";
 
 const findExport = find(isExport);
 
 export default (file, context) => {
-  const source = file.buffer.toString('utf-8');
+  const source = file.buffer.toString("utf-8");
   const script = new Script(source, {
     filename: file.path,
     lineOffset: 1,

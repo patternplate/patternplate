@@ -1,20 +1,20 @@
 #!/usr/bin/env node
-import 'babel-polyfill';
-import meow from 'meow';
-import opn from 'opn';
-import ora from 'ora';
-import {omitBy, isNull} from 'lodash';
+import "babel-polyfill";
+import meow from "meow";
+import opn from "opn";
+import ora from "ora";
+import { omitBy, isNull } from "lodash";
 
-import patternplate from '../';
-import patternplateInit from '../library/init/index.js';
+import patternplate from "../";
+import patternplateInit from "../library/init/index.js";
 
 const defaults = {
   open: null,
-  'log.level': 'info',
-  'log.colorize': null,
-  'log.timestamp': null,
-  'log.showLevel': null,
-  'server.autoPort': null
+  "log.level": "info",
+  "log.colorize": null,
+  "log.timestamp": null,
+  "log.showLevel": null,
+  "server.autoPort": null
 };
 
 const cli = meow(
@@ -63,55 +63,55 @@ const cli = meow(
 	`,
   {
     boolean: [
-      'log.colorize',
-      'log.timestamp',
-      'log.showLevel',
-      'server.autoPort'
+      "log.colorize",
+      "log.timestamp",
+      "log.showLevel",
+      "server.autoPort"
     ],
     default: defaults
   }
 );
 
-async function main(command = 'start', options = {}, input = []) {
-  if (command === 'help') {
+async function main(command = "start", options = {}, input = []) {
+  if (command === "help") {
     cli.showHelp(0);
     return;
   }
 
-  options.log.showLevel = options.log['show-level'];
-  options.server.autoPort = options.server['auto-port'];
+  options.log.showLevel = options.log["show-level"];
+  options.server.autoPort = options.server["auto-port"];
 
   const normalized = omitBy(options, isNull);
   normalized.log = omitBy(normalized.log, isNull);
   normalized.server = omitBy(normalized.server, isNull);
 
-  const mode = command === 'console' ? 'console' : 'server';
-  const settings = {...normalized, mode};
+  const mode = command === "console" ? "console" : "server";
+  const settings = { ...normalized, mode };
 
-  if (command === 'init') {
+  if (command === "init") {
     const [, path] = input;
     await patternplateInit(path, settings);
-    return {mode: 'console'};
+    return { mode: "console" };
   }
 
-  const spinner = ora('Starting').start();
+  const spinner = ora("Starting").start();
   const application = await patternplate(settings);
   spinner.stop();
 
-  if (mode === 'console') {
+  if (mode === "console") {
     const [, consoleCommand] = input;
     await application.server.run(consoleCommand, settings);
-    return {mode: 'console'};
+    return { mode: "console" };
   }
 
   await application.start();
 
   if (settings.open) {
-    const {host, port} = application.configuration.server;
+    const { host, port } = application.configuration.server;
     const address = `http://${host}:${port}`;
-    const explicit = typeof settings.open === 'string';
-    const openOptions = explicit ? {app: settings.open} : {};
-    const browserName = explicit ? settings.open : 'default browser';
+    const explicit = typeof settings.open === "string";
+    const openOptions = explicit ? { app: settings.open } : {};
+    const browserName = explicit ? settings.open : "default browser";
     application.log.info(`Opening ${browserName} at ${address}`);
 
     opn(address, openOptions).catch(error => {
@@ -120,15 +120,15 @@ async function main(command = 'start', options = {}, input = []) {
     });
   }
 
-  return {mode: 'server'};
+  return { mode: "server" };
 }
 
-const {input, flags} = cli;
+const { input, flags } = cli;
 const [command] = input;
 
 main(command, flags, input)
   .then(i => {
-    if (i.mode === 'console') {
+    if (i.mode === "console") {
       process.exit(0);
     }
   })

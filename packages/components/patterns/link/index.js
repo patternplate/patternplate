@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require("react");
 
 class Link extends React.Component {
   constructor(...args) {
@@ -11,20 +11,20 @@ class Link extends React.Component {
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
-  <a
-    target={props.external ? '_blank' : null}
-    rel={props.external ? 'noopener noreferrer' : null}
-    className={props.className}
-    href={props.href}
-    onClick={this.handleClick}
-    onMouseOver={props.onHover}
-    title={props.title}
-    data-id={props['data-id']}
-  >
-    {props.children}
-  </a>
+      <a
+        target={props.external ? "_blank" : null}
+        rel={props.external ? "noopener noreferrer" : null}
+        className={props.className}
+        href={props.href}
+        onClick={this.handleClick}
+        onMouseOver={props.onHover}
+        title={props.title}
+        data-id={props["data-id"]}
+      >
+        {props.children}
+      </a>
     );
   }
 }

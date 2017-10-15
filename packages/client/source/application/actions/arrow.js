@@ -1,9 +1,9 @@
-import {push} from 'react-router-redux';
-import selectItem from '../selectors/item';
-import selectPool from '../selectors/pool';
+import { push } from "react-router-redux";
+import selectItem from "../selectors/item";
+import selectPool from "../selectors/pool";
 
 export default arrow;
-export const type = 'ARROW';
+export const type = "ARROW";
 
 const OFFSETS = {
   up: -1,
@@ -25,15 +25,15 @@ function arrow(payload) {
     }
 
     switch (payload) {
-      case 'left': {
+      case "left": {
         const i = selectItem(state);
         const p = selectPool(state);
-        const id = i.path.slice(0, i.path.length - 1).join('/');
+        const id = i.path.slice(0, i.path.length - 1).join("/");
         const next = p.find(i => i.id === id);
         return next && next.href && go(dispatch)(next.href);
       }
-      case 'up':
-      case 'down':
+      case "up":
+      case "down":
       default: {
         const offset = payload in OFFSETS ? OFFSETS[payload] : OFFSETS.default;
         const next = jump(selectPool(state), selectItem(state), offset);
@@ -49,7 +49,7 @@ function go(dispatch) {
 
 function jump(pool, start, offset) {
   if (!start) {
-    return '';
+    return "";
   }
 
   if (offset === 0) {

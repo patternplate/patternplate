@@ -1,9 +1,9 @@
-import path from 'path';
-import stripAnsi from 'strip-ansi';
+import path from "path";
+import stripAnsi from "strip-ansi";
 
-import urlQuery from '../utils/url-query';
-import getPatternDemo from '@patternplate/server/library/get-pattern-demo';
-import getPatternFile from '@patternplate/server/library/get-pattern-file';
+import urlQuery from "../utils/url-query";
+import getPatternDemo from "@patternplate/server/library/get-pattern-demo";
+import getPatternFile from "@patternplate/server/library/get-pattern-file";
 
 function withErrorHandling(fn) {
   return async function(...args) {
@@ -21,7 +21,7 @@ function getPatternId(raw) {
   const extension = getPatternExtension(raw);
   const base = path.basename(raw, path.extname(raw));
 
-  if (base === 'index' && extension !== 'json') {
+  if (base === "index" && extension !== "json") {
     return path.dirname(raw);
   }
 
@@ -32,7 +32,7 @@ function getPatternId(raw) {
 }
 
 function getPatternExtension(raw) {
-  return path.extname(raw).slice(1) || 'html';
+  return path.extname(raw).slice(1) || "html";
 }
 
 const getPatternDemoOrError = withErrorHandling(getPatternDemo);
@@ -44,23 +44,23 @@ export default function patternRouteFactory(application) {
     const parsed = urlQuery.parse(this.params.id);
     const id = getPatternId(parsed.pathname);
     const extension = getPatternExtension(parsed.pathname);
-    const type = this.accepts('text', 'html', 'json') || extension;
-    const errorType = type === 'json' ? 'json' : 'html';
-    const {environment = 'index'} = parsed.query;
+    const type = this.accepts("text", "html", "json") || extension;
+    const errorType = type === "json" ? "json" : "html";
+    const { environment = "index" } = parsed.query;
 
     const filters = {
       outFormats: [extension],
       environments: [environment].filter(Boolean)
     };
 
-    if (type === 'html' && extension === 'html') {
+    if (type === "html" && extension === "html") {
       const [error, demo] = await getPatternDemoOrError(
         server,
         id,
         filters,
         environment,
         {
-          mount: this.query.mount !== 'false'
+          mount: this.query.mount !== "false"
         },
         `/${this.request.url}`
       );
@@ -68,7 +68,7 @@ export default function patternRouteFactory(application) {
       if (error) {
         console.log(error);
         this.status = 500;
-        this.body = [error.message, stripAnsi(error.codeFrame)].join('\n');
+        this.body = [error.message, stripAnsi(error.codeFrame)].join("\n");
         return;
       }
 
@@ -79,7 +79,7 @@ export default function patternRouteFactory(application) {
         return;
       }
 
-      this.type = 'html';
+      this.type = "html";
       this.body = demo;
       return;
     }

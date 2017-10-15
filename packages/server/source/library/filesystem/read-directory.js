@@ -1,5 +1,5 @@
-import path from 'path';
-import {readdir, stat} from 'sander';
+import path from "path";
+import { readdir, stat } from "sander";
 
 export default readDirectory;
 

@@ -1,11 +1,11 @@
-const React = require('react');
-const tag = require('tag-hoc').default;
-const color = require('color');
-const styled = require('styled-components').default;
+const React = require("react");
+const tag = require("tag-hoc").default;
+const color = require("color");
+const styled = require("styled-components").default;
 
-const fonts = require('../fonts');
-const Icon = require('../icon');
-const Link = require('../link');
+const fonts = require("../fonts");
+const Icon = require("../icon");
+const Link = require("../link");
 
 const FONTS = fonts();
 
@@ -22,50 +22,50 @@ class NavigationItem extends React.Component {
   componentDidMount() {
     if (this.props.active && this.ref) {
       setTimeout(() => {
-        this.props.onScrollRequest({target: this.ref, props: this.props});
+        this.props.onScrollRequest({ target: this.ref, props: this.props });
       });
     }
   }
 
   componentWillUpdate(next) {
-    if (this.props.type === 'folder') {
+    if (this.props.type === "folder") {
       return;
     }
     if (next.active && this.ref) {
-      this.props.onScrollRequest({target: this.ref, props: next});
+      this.props.onScrollRequest({ target: this.ref, props: next });
     }
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     const title = props.title || `Navigate to ${props.name} ${props.type}`;
     const symbol = props.active ? props.symbolActive : props.symbol;
 
     return (
-	<StyledNavigationItem
-		active={props.active}
-		className={props.className}
-		innerRef={this.getRef}
-		type={props.type}
-	>
-		<StyledNavigationLink
-			active={props.active}
-			onClick={props.onClick}
-			href={props.href}
-			sticky={props.type === 'folder' && props.active}
-			type={props.type}
-			title={title}
-		>
-			{symbol && (
-			<StyledIcon active={props.active} size="m" symbol={symbol}/>
+      <StyledNavigationItem
+        active={props.active}
+        className={props.className}
+        innerRef={this.getRef}
+        type={props.type}
+      >
+        <StyledNavigationLink
+          active={props.active}
+          onClick={props.onClick}
+          href={props.href}
+          sticky={props.type === "folder" && props.active}
+          type={props.type}
+          title={title}
+        >
+          {symbol && (
+            <StyledIcon active={props.active} size="m" symbol={symbol} />
           )}
-			<StyledName>{props.name}</StyledName>
-			{props.meta && (
-			<StyledMeta active={props.active}>{props.meta}</StyledMeta>
+          <StyledName>{props.name}</StyledName>
+          {props.meta && (
+            <StyledMeta active={props.active}>{props.meta}</StyledMeta>
           )}
-		</StyledNavigationLink>
-		{props.active && props.children}
-	</StyledNavigationItem>
+        </StyledNavigationLink>
+        {props.active && props.children}
+      </StyledNavigationItem>
     );
   }
 }
@@ -93,7 +93,7 @@ const StyledMeta = styled.div`
 const StyledNavigationItem = styled.div`
   width: 100%;
   box-sizing: border-box;
-  border-left: ${props => props.type === 'folder' && `3px solid transparent`};
+  border-left: ${props => props.type === "folder" && `3px solid transparent`};
   margin-left: 1px;
   ${props =>
     props.active &&
@@ -102,7 +102,7 @@ const StyledNavigationItem = styled.div`
       .toString()}`};
 `;
 
-const LinkTag = tag(['active', 'type'])(Link);
+const LinkTag = tag(["active", "type"])(Link);
 
 const StyledNavigationLink = styled(LinkTag)`
   box-sizing: border-box;
@@ -117,8 +117,8 @@ const StyledNavigationLink = styled(LinkTag)`
   ${props =>
     props.active &&
     `
-		margin-left: ${props.type === 'folder' ? '-3px' : '-4px'};
-		padding-left: ${props.type === 'folder' ? 0 : '1px'};
+		margin-left: ${props.type === "folder" ? "-3px" : "-4px"};
+		padding-left: ${props.type === "folder" ? 0 : "1px"};
 		border-left: 3px solid ${props.theme.active};
 	`};
   :link,

@@ -1,7 +1,7 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
+import React from "react";
+import { styled } from "@patternplate/components";
 
-import Text from '../../text';
+import Text from "../../text";
 
 export default styled(MarkdownItem)`
   font-size: 18px;

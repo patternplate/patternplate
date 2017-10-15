@@ -9,8 +9,8 @@ function getComponents(datasets, automount) {
         if (!options) {
           return false;
         }
-        const opts = options['react-to-markup']
-          ? options['react-to-markup'].opts
+        const opts = options["react-to-markup"]
+          ? options["react-to-markup"].opts
           : {};
         return opts.automount;
       });

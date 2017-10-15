@@ -1,23 +1,23 @@
 const routes = {
-  path: './application/routes',
+  path: "./application/routes",
   enabled: {
     index: {
       enabled: true,
-      method: 'GET',
-      path: '/'
+      method: "GET",
+      path: "/"
     },
     static: {
       enabled: true,
-      method: 'GET',
-      path: '/static/:path*',
+      method: "GET",
+      path: "/static/:path*",
       options: {
-        root: './static'
+        root: "./static"
       }
     },
     health: {
       enabled: true,
-      method: 'GET',
-      path: '/health/'
+      method: "GET",
+      path: "/health/"
     }
   }
 };

@@ -1,7 +1,7 @@
-import React from 'react';
-import textContent from 'react-addons-text-content';
-import {styled} from '@patternplate/components';
-import Code from '../code';
+import React from "react";
+import textContent from "react-addons-text-content";
+import { styled } from "@patternplate/components";
+import Code from "../code";
 
 export default styled(MarkdownCodeBlock)`
   background: ${props => props.theme.backgroundSecondary};
@@ -32,7 +32,7 @@ function getLanguage(children) {
     return null;
   }
   return className
-    .split(' ')
-    .map(n => n.replace('language-', ''))
-    .find(n => typeof n === 'string' && n.length > 0);
+    .split(" ")
+    .map(n => n.replace("language-", ""))
+    .find(n => typeof n === "string" && n.length > 0);
 }

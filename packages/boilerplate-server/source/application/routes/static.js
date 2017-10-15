@@ -1,5 +1,5 @@
-import {resolve} from 'path';
-import send from 'koa-send';
+import { resolve } from "path";
+import send from "koa-send";
 
 export default function staticRouteFactory(application, configuration) {
   const root = resolve(
@@ -21,7 +21,7 @@ export default function staticRouteFactory(application, configuration) {
     this.assert(this.params.path, 404);
 
     for (const root of roots) {
-      yield send(this, this.params.path, {root});
+      yield send(this, this.params.path, { root });
 
       if (this.status === 200) {
         application.log.debug(`Matched ${this.params.path} on ${root}`);

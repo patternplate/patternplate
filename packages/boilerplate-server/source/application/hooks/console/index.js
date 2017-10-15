@@ -1,11 +1,11 @@
-import {resolve} from 'path';
-import {exists} from '../../../library/utilities/fs';
+import { resolve } from "path";
+import { exists } from "../../../library/utilities/fs";
 
-import requireAll from 'require-all';
-import consoleFactory from './console';
+import requireAll from "require-all";
+import consoleFactory from "./console";
 
 export default {
-  after: ['hooks:log:start:after'],
+  after: ["hooks:log:start:after"],
 
   start: async function startConsoleHook(application) {
     const taskPaths = application.runtime.cwds
@@ -35,7 +35,7 @@ export default {
     // Load module tasks
     const moduleTasks = Object.keys(this.configuration)
       .filter(
-        taskName => typeof this.configuration[taskName].enabled === 'string'
+        taskName => typeof this.configuration[taskName].enabled === "string"
       )
       .reduce((result, taskName) => {
         const taskModuleName = this.configuration.enabled[taskName].enabled;
@@ -58,7 +58,7 @@ export default {
     Object.assign(tasks, moduleTasks);
     application.console = consoleFactory(
       application,
-      Object.assign({}, this.configuration, {tasks})
+      Object.assign({}, this.configuration, { tasks })
     );
     return this;
   }

@@ -1,12 +1,12 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
-import * as svg from '../utils/svg';
+import React from "react";
+import { styled } from "@patternplate/components";
+import * as svg from "../utils/svg";
 
 class Logo extends React.Component {
   render() {
-    const {props} = this;
+    const { props } = this;
 
-    if (typeof props.source !== 'string') {
+    if (typeof props.source !== "string") {
       return null;
     }
 

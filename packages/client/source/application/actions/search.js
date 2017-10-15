@@ -1,15 +1,15 @@
-import raf from 'raf';
-import {patchLocation} from './';
+import raf from "raf";
+import { patchLocation } from "./";
 
 export default search;
-export const type = 'SEARCH';
+export const type = "SEARCH";
 
 function search(payload) {
   return (dispatch, getState) => {
     const state = getState();
 
     dispatch({
-      type: 'SET_SEARCH',
+      type: "SET_SEARCH",
       payload: payload.value
     });
 
@@ -19,14 +19,14 @@ function search(payload) {
           patchLocation({
             query: {
               search: payload.value,
-              'search-preview':
+              "search-preview":
                 state.search === payload.value ? state.searchPreview : 0
             }
           })
         );
       } else if (payload.perform) {
         dispatch({
-          type: 'PERFORM_SEARCH',
+          type: "PERFORM_SEARCH",
           payload: payload.value
         });
       }

@@ -1,4 +1,4 @@
-import getHookDependencies from './get-hook-dependencies';
+import getHookDependencies from "./get-hook-dependencies";
 
 export default function getHookTree(registered) {
   return registered.reduce((registry, hook) => {

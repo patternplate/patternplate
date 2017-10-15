@@ -1,1 +1,1 @@
-export default from './utilities/get-environments';
+export default from "./utilities/get-environments";

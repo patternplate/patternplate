@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 export default class ClickOutside extends Component {
   constructor(props) {
@@ -19,15 +19,15 @@ export default class ClickOutside extends Component {
   }
 
   componentDidMount() {
-    global.document.addEventListener('click', this.handle, true);
+    global.document.addEventListener("click", this.handle, true);
   }
 
   componentWillUnmount() {
-    global.document.removeEventListener('click', this.handle, true);
+    global.document.removeEventListener("click", this.handle, true);
   }
 
   handle = e => {
-    const {onClickOutside} = this.props;
+    const { onClickOutside } = this.props;
     const el = this.container;
     if (!el.contains(e.target)) {
       onClickOutside(e);

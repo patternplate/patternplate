@@ -1,6 +1,6 @@
-import assert from 'assert';
-import {handleActions} from 'redux-actions';
-import {pick} from 'lodash';
+import assert from "assert";
+import { handleActions } from "redux-actions";
+import { pick } from "lodash";
 
 export default handleDependentActions;
 
@@ -19,7 +19,7 @@ function partialReduce(deps) {
 function handleDependentActions(actionHandlers, options) {
   assert.ok(
     Array.isArray(options.dependencies),
-    'options.dependencies must be an array'
+    "options.dependencies must be an array"
   );
 
   const handler = (...args) => {
@@ -32,9 +32,9 @@ function handleDependentActions(actionHandlers, options) {
       assert.ok(
         missing.length === 0,
         `dependencies for ${Object.keys(actionHandlers).join(
-          ', '
+          ", "
         )} must be present in state. missing: ${missing.join(
-          ','
+          ","
         )}. available: ${Object.keys(dependencies)}`
       );
     }

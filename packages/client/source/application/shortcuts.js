@@ -1,5 +1,5 @@
-import * as actions from './actions';
-import Shortcut from './utils/shortcut';
+import * as actions from "./actions";
+import Shortcut from "./utils/shortcut";
 
 export default createShortcuts;
 
@@ -11,130 +11,131 @@ function createShortcuts() {
   };
 
   bind.toggleConsole = new Shortcut({
-    character: 'c',
-    description: props => `${props.enabled ? 'Hide' : 'Show'} console`,
+    character: "c",
+    description: props => `${props.enabled ? "Hide" : "Show"} console`,
     action: actions.toggleConsole
   });
 
   bind.toggleDoc = new Shortcut({
-    character: 'd',
+    character: "d",
     description: () => `Open documentation for this pattern`,
     action: actions.toggleDoc
   });
 
   bind.openDocumentation = new Shortcut({
-    character: '7',
+    character: "7",
     description: () => `Navigate back to / route`,
     action: actions.openDocumentation
   });
 
   bind.openFullscreen = new Shortcut({
-    character: 'f',
+    character: "f",
     description: () => `Open fullscreen view`,
     action: actions.openFullscreen
   });
 
   bind.toggleHide = new Shortcut({
-    character: 'h',
-    description: props => `${props.enabled ? 'Show' : 'Hide'} hidden items`,
+    character: "h",
+    description: props => `${props.enabled ? "Show" : "Hide"} hidden items`,
     action: actions.toggleHide
   });
 
   bind.info = new Shortcut({
-    character: 'i',
-    description: props => `${props.enabled ? 'Hide' : 'Show'} pattern infos`,
+    character: "i",
+    description: props => `${props.enabled ? "Hide" : "Show"} pattern infos`,
     action: actions.toggleInfo
   });
 
   bind.toggleOpacity = new Shortcut({
-    character: 'o',
+    character: "o",
     description: props =>
-      `${props.enabled ? 'Hide' : 'Show'} opacity indicators`,
+      `${props.enabled ? "Hide" : "Show"} opacity indicators`,
     action: actions.toggleOpacity
   });
 
   bind.toggleShortcuts = new Shortcut({
-    character: 'k',
+    character: "k",
     description: props =>
-      `${props.enabled ? 'Hide' : 'Show'} keyboard shortcuts`,
+      `${props.enabled ? "Hide" : "Show"} keyboard shortcuts`,
     action: actions.toggleKeyboardShortcuts
   });
 
   bind.toggleRulers = new Shortcut({
-    character: 'l',
-    description: props => `${props.enabled ? 'Hide' : 'Show'} rulers`,
+    character: "l",
+    description: props => `${props.enabled ? "Hide" : "Show"} rulers`,
     action: actions.toggleRulers
   });
 
   bind.toggleCode = new Shortcut({
-    character: 'm',
-    description: props => `${props.enabled ? 'Hide' : 'Show'} pattern code`,
+    character: "m",
+    description: props => `${props.enabled ? "Hide" : "Show"} pattern code`,
     action: actions.toggleCode
   });
 
   bind.toggleNavigation = new Shortcut({
-    character: 'n',
-    description: props => `${props.enabled ? 'Hide' : 'Show'} navigation`,
+    character: "n",
+    description: props => `${props.enabled ? "Hide" : "Show"} navigation`,
     action: actions.toggleNavigation
   });
 
   bind.toggleNetwork = new Shortcut({
-    character: 'd',
-    description: props => `${props.enabled ? 'Hide' : 'Show'} dependency network`,
+    character: "d",
+    description: props =>
+      `${props.enabled ? "Hide" : "Show"} dependency network`,
     action: actions.toggleNetwork
   });
 
-  const reload = () => actions.reload({reloadTime: Date.now()});
+  const reload = () => actions.reload({ reloadTime: Date.now() });
   reload.type = actions.reload.type;
   reload.key = actions.reload.key;
   reload.property = actions.reload.property;
 
   bind.reload = new Shortcut({
-    character: 'r',
+    character: "r",
     description: () => `Force sync`,
     action: reload
   });
 
   bind.toggleSearch = new Shortcut({
-    character: 'space',
-    description: props => `${props.enabled ? 'Disable' : 'Enable'} search`,
+    character: "space",
+    description: props => `${props.enabled ? "Disable" : "Enable"} search`,
     action: actions.toggleSearch
   });
 
   bind.toggleTheme = new Shortcut({
-    character: 't',
-    description: 'Toggle active theme',
+    character: "t",
+    description: "Toggle active theme",
     action: actions.toggleTheme
   });
 
   bind.close = new Shortcut({
-    character: 'esc',
+    character: "esc",
     modifiers: [],
     action: actions.closeAllTheThings
   });
 
   bind.up = new Shortcut({
-    character: 'arrow-up',
+    character: "arrow-up",
     modifiers: [],
-    action: () => actions.arrow('up')
+    action: () => actions.arrow("up")
   });
 
   bind.right = new Shortcut({
-    character: 'arrow-right',
+    character: "arrow-right",
     modifiers: [],
-    action: () => actions.arrow('right')
+    action: () => actions.arrow("right")
   });
 
   bind.down = new Shortcut({
-    character: 'arrow-down',
+    character: "arrow-down",
     modifiers: [],
-    action: () => actions.arrow('down')
+    action: () => actions.arrow("down")
   });
 
   bind.left = new Shortcut({
-    character: 'arrow-left',
+    character: "arrow-left",
     modifiers: [],
-    action: () => actions.arrow('left')
+    action: () => actions.arrow("left")
   });
 
   return bind;

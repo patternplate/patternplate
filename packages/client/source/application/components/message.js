@@ -1,5 +1,5 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
+import React from "react";
+import { styled } from "@patternplate/components";
 
 export default Message;
 
@@ -18,4 +18,6 @@ const StyledMessage = styled.div`
   padding: 10px 20px;
 `;
 
-const StyledMessageContent = styled.pre`color: #fff;`;
+const StyledMessageContent = styled.pre`
+  color: #fff;
+`;

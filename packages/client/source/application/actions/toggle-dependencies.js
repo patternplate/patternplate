@@ -1,3 +1,3 @@
-import {toggle} from './toggle';
+import { toggle } from "./toggle";
 
-export default toggle('dependencies-enabled');
+export default toggle("dependencies-enabled");

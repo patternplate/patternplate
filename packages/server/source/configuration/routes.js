@@ -1,36 +1,36 @@
-import {resolve} from 'path';
+import { resolve } from "path";
 
 const routes = {
-  path: ['application/routes'],
+  path: ["application/routes"],
   enabled: {
     index: {
       enabled: true,
-      path: '/'
+      path: "/"
     },
     pattern: {
       enabled: true,
-      path: '/pattern/:id+',
+      path: "/pattern/:id+",
       options: {
-        key: 'patterns'
+        key: "patterns"
       }
     },
     resource: {
       enabled: true,
-      path: '/resource/:id+.:ext'
+      path: "/resource/:id+.:ext"
     },
     docs: {
       enabled: true,
-      path: '/docs/:id+'
+      path: "/docs/:id+"
     },
     file: {
       enabled: true,
-      path: '/file/:id+'
+      path: "/file/:id+"
     },
     static: {
       options: {
         root: [
-          resolve(__dirname, '../', 'static'),
-          resolve(process.cwd(), 'static')
+          resolve(__dirname, "../", "static"),
+          resolve(process.cwd(), "static")
         ]
       }
     }

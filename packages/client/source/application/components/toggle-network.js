@@ -1,7 +1,7 @@
-import React from 'react';
-import {styled, Icon} from '@patternplate/components';
+import React from "react";
+import { styled, Icon } from "@patternplate/components";
 
-import ToggleButton from './common/toggle-button';
+import ToggleButton from "./common/toggle-button";
 
 export default ToggleNetwork;
 
@@ -13,7 +13,9 @@ function ToggleNetwork(props) {
   );
 }
 
-const StyledIcon = styled(Icon)`fill: ${props => props.theme.color};`;
+const StyledIcon = styled(Icon)`
+  fill: ${props => props.theme.color};
+`;
 
 const StyledToggleButton = styled(ToggleButton)`
   font-size: 0;

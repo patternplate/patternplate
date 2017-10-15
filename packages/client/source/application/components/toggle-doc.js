@@ -1,7 +1,7 @@
-import React from 'react';
-import {Icon, styled} from '@patternplate/components';
+import React from "react";
+import { Icon, styled } from "@patternplate/components";
 
-import ToggleButton from './common/toggle-button';
+import ToggleButton from "./common/toggle-button";
 
 export default ToggleDoc;
 
@@ -20,10 +20,10 @@ function ToggleDoc(props) {
 }
 
 function title(props) {
-  return props.active ? null : 'No documentation available.';
+  return props.active ? null : "No documentation available.";
 }
 
-const CURSOR = props => (props.active ? 'pointer' : 'not-allowed');
+const CURSOR = props => (props.active ? "pointer" : "not-allowed");
 
 const COLOR = props => {
   if (props.active) {
@@ -32,7 +32,9 @@ const COLOR = props => {
   return props.theme.border;
 };
 
-const StyledIcon = styled(Icon)`fill: ${COLOR};`;
+const StyledIcon = styled(Icon)`
+  fill: ${COLOR};
+`;
 
 const StyledToggleButton = styled(ToggleButton)`
   font-size: 0;

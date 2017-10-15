@@ -1,8 +1,8 @@
-import path from 'path';
-import getPackageJSON from 'find-and-read-package-json';
-import {getDocsTree} from './get-docs';
-import getEnvironments from './utilities/get-environments';
-import {getPatternTree} from './utilities/get-pattern-tree';
+import path from "path";
+import getPackageJSON from "find-and-read-package-json";
+import { getDocsTree } from "./get-docs";
+import getEnvironments from "./utilities/get-environments";
+import { getPatternTree } from "./utilities/get-pattern-tree";
 
 const DEFAULT_SUB = {
   configuration: {
@@ -22,23 +22,23 @@ export default async function getSchema(
   server = DEFAULT_SUB
 ) {
   const {
-    configuration: {pkg: {name: appName, version: appVersion}}
+    configuration: { pkg: { name: appName, version: appVersion } }
   } = application;
 
   const {
     configuration: {
       environment,
-      pkg: {name: serverName, version: serverVersion},
-      server: {host, port}
+      pkg: { name: serverName, version: serverVersion },
+      server: { host, port }
     },
-    runtime: {patterncwd, cwd}
+    runtime: { patterncwd, cwd }
   } = server;
 
   const {
-    configuration: {pkg: {name: clientName, version: clientVersion}}
+    configuration: { pkg: { name: clientName, version: clientVersion } }
   } = client;
 
-  const base = path.resolve(patterncwd || cwd, 'patterns');
+  const base = path.resolve(patterncwd || cwd, "patterns");
   const pkg = await getPackageJSON(patterncwd || cwd);
 
   return Object.assign(

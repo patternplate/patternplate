@@ -1,5 +1,5 @@
-import fetch from 'isomorphic-fetch';
-import * as demo from '../selectors/demo';
+import fetch from "isomorphic-fetch";
+import * as demo from "../selectors/demo";
 
 export default () => {
   return async (dispatch, getState) => {
@@ -11,12 +11,12 @@ export default () => {
     }
 
     dispatch({
-      type: 'LOAD_PATTERN_DEMO_START',
-      payload: {id: uri}
+      type: "LOAD_PATTERN_DEMO_START",
+      payload: { id: uri }
     });
 
     const response = await fetch(uri, {
-      headers: {Accept: 'text/html'}
+      headers: { Accept: "text/html" }
     });
 
     // Bail if the src changed in the meantime
@@ -33,14 +33,14 @@ export default () => {
 
     if (response.status >= 400) {
       return dispatch({
-        type: 'LOAD_PATTERN_DEMO_ERROR',
-        payload: {id: uri, error: body}
+        type: "LOAD_PATTERN_DEMO_ERROR",
+        payload: { id: uri, error: body }
       });
     }
 
     dispatch({
-      type: 'LOAD_PATTERN_DEMO_SUCCESS',
-      payload: {id: uri, contents: body}
+      type: "LOAD_PATTERN_DEMO_SUCCESS",
+      payload: { id: uri, contents: body }
     });
   };
 };

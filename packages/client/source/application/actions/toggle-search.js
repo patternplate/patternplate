@@ -1,8 +1,8 @@
-import {patchLocation, search} from './';
+import { patchLocation, search } from "./";
 
 export default toggleSearch;
 
-export const type = 'TOGGLE_SEARCH_ENABLED';
+export const type = "TOGGLE_SEARCH_ENABLED";
 
 function toggleSearch(payload = {}) {
   return (dispatch, getState) => {
@@ -13,33 +13,33 @@ function toggleSearch(payload = {}) {
       return;
     }
 
-    const next = 'focus' in payload ? payload.focus : !state.searchEnabled;
+    const next = "focus" in payload ? payload.focus : !state.searchEnabled;
 
     if (!next) {
-      dispatch(search({persist: true, value: value()}));
+      dispatch(search({ persist: true, value: value() }));
     }
 
     dispatch(
-      patchLocation({query: {'search-enabled': next, 'search-preview': 0}})
+      patchLocation({ query: { "search-enabled": next, "search-preview": 0 } })
     );
   };
 }
 
 toggleSearch.type = type;
-toggleSearch.key = 'search-enabled';
-toggleSearch.property = 'searchEnabled';
+toggleSearch.key = "search-enabled";
+toggleSearch.property = "searchEnabled";
 
 function focus(next) {
   if (!next) {
     return;
   }
 
-  if (!('document' in global)) {
+  if (!("document" in global)) {
     return;
   }
 
   setTimeout(() => {
-    const el = global.document.query('input[data-search]');
+    const el = global.document.query("input[data-search]");
 
     if (!el) {
       return;
@@ -55,11 +55,11 @@ function focus(next) {
 }
 
 function value() {
-  if (!('document' in global)) {
+  if (!("document" in global)) {
     return;
   }
 
-  const el = global.document.query('input[data-search]');
+  const el = global.document.query("input[data-search]");
 
   if (!el) {
     return;

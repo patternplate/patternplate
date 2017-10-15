@@ -1,4 +1,4 @@
-import handleDependentActions from '../actions/handle-dependent-actions';
+import handleDependentActions from "../actions/handle-dependent-actions";
 
 let BEATS = [];
 
@@ -8,31 +8,31 @@ export default handleDependentActions(
     FETCHING: (...args) => handle(...args),
     ERROR_HEARTBEAT: () => {
       BEATS = [];
-      return 'offline';
+      return "offline";
     }
   },
   {
-    defaultValue: '',
-    dependencies: ['fetching']
+    defaultValue: "",
+    dependencies: ["fetching"]
   }
 );
 
-function handle(state = 'loading', action, {fetching}) {
+function handle(state = "loading", action, { fetching }) {
   if (fetching) {
-    return 'loading';
+    return "loading";
   }
 
   const count = beat(action.payload);
 
   if (count === 0) {
-    return '';
+    return "";
   }
 
   if (count === 3) {
-    return 'loaded';
+    return "loaded";
   }
 
-  return 'loading';
+  return "loading";
 }
 
 function beat(add) {

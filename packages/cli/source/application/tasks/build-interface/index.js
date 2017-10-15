@@ -1,47 +1,47 @@
-import path from 'path';
+import path from "path";
 
-import {merge} from 'lodash';
-import {get, max, padEnd} from 'lodash/fp';
-import Listr from 'listr';
-import isci from 'is-ci';
-import * as sander from 'sander';
+import { merge } from "lodash";
+import { get, max, padEnd } from "lodash/fp";
+import Listr from "listr";
+import isci from "is-ci";
+import * as sander from "sander";
 
-import buildComponents from './build-components';
-import buildData from './build-data';
-import buildDemoFiles from './build-demo-files';
-import buildDemos from './build-demos';
-import buildDocs from './build-docs';
-import buildEntry from './build-entry';
-import buildPages from './build-pages';
-import buildResources from './build-resources';
-import buildSources from './build-sources';
-import buildStatics from './build-statics';
-import getPatternDatasets from './get-pattern-datasets';
-import getRewriter from './get-rewriter';
-import serverRequire from './server-require';
-import trap from './trap';
+import buildComponents from "./build-components";
+import buildData from "./build-data";
+import buildDemoFiles from "./build-demo-files";
+import buildDemos from "./build-demos";
+import buildDocs from "./build-docs";
+import buildEntry from "./build-entry";
+import buildPages from "./build-pages";
+import buildResources from "./build-resources";
+import buildSources from "./build-sources";
+import buildStatics from "./build-statics";
+import getPatternDatasets from "./get-pattern-datasets";
+import getRewriter from "./get-rewriter";
+import serverRequire from "./server-require";
+import trap from "./trap";
 
 // Const getEnvironments = serverRequire('get-environments');
 // const getSchema = serverRequire('get-schema');
 
 const defaults = {
-  out: 'build/build-interface'
+  out: "build/build-interface"
 };
 
 const jobPrefixes = [
-  'read',
-  'render entry',
-  'write entry',
-  'entry',
-  'pages',
-  'data',
-  'demo',
-  'demo files',
-  'source'
+  "read",
+  "render entry",
+  "write entry",
+  "entry",
+  "pages",
+  "data",
+  "demo",
+  "demo files",
+  "source"
 ];
 
 const selectAutoMount = get(
-  'configuration.transforms.react-to-markup.opts.automount'
+  "configuration.transforms.react-to-markup.opts.automount"
 );
 const CWD = process.cwd();
 const cwd = path.resolve.bind(null, CWD);
@@ -55,13 +55,13 @@ export default buildInterface;
  */
 async function buildInterface(application, configuration) {
   const verbose =
-    typeof configuration.verbose === 'boolean' ? configuration.verbose : isci;
-  const renderer = verbose ? 'verbose' : 'default';
+    typeof configuration.verbose === "boolean" ? configuration.verbose : isci;
+  const renderer = verbose ? "verbose" : "default";
   const concurrent = Boolean(configuration.concurrent);
 
   const settings = merge({}, defaults, configuration);
   const targetPath = cwd(settings.out || settings.target);
-  const patternsPath = cwd('./patterns');
+  const patternsPath = cwd("./patterns");
 
   const app = application.parent;
   const client = application.parent.client;
@@ -89,25 +89,25 @@ async function buildInterface(application, configuration) {
     flags,
     verbose
   };
-  const clientContext = {app: client, rewriter, jobPad, flags, verbose};
+  const clientContext = { app: client, rewriter, jobPad, flags, verbose };
 
-  const apiTargetPath = path.resolve(targetPath, 'api');
-  const apiPatternTargetPath = path.resolve(apiTargetPath, 'pattern');
-  const apiResourceTargetPath = path.resolve(apiTargetPath, 'resource');
-  const patternTargetPath = path.resolve(targetPath, 'pattern');
-  const demoTargetPath = path.resolve(targetPath, 'demo');
+  const apiTargetPath = path.resolve(targetPath, "api");
+  const apiPatternTargetPath = path.resolve(apiTargetPath, "pattern");
+  const apiResourceTargetPath = path.resolve(apiTargetPath, "resource");
+  const patternTargetPath = path.resolve(targetPath, "pattern");
+  const demoTargetPath = path.resolve(targetPath, "demo");
 
   const dataStream = getPatternDatasets(app, client, server);
   const rawPatternData = [];
 
   const schema = await getSchema(app, client, server);
-  const sch = path.resolve(apiTargetPath, 'index.html');
+  const sch = path.resolve(apiTargetPath, "index.html");
   await sander.writeFile(sch, Buffer.from(JSON.stringify(schema)));
 
   const dataTask = new Listr(
     [
       {
-        title: 'Pattern data',
+        title: "Pattern data",
         task() {
           return dataStream
             .map(d => {
@@ -118,11 +118,11 @@ async function buildInterface(application, configuration) {
             })
             .map(d => d.message)
             .filter(Boolean)
-            .map(m => `${verbose ? 'Pattern data: ' : ''}${m}`);
+            .map(m => `${verbose ? "Pattern data: " : ""}${m}`);
         }
       }
     ],
-    {renderer}
+    { renderer }
   );
 
   await dataTask.run();
@@ -139,69 +139,69 @@ async function buildInterface(application, configuration) {
   const tasks = new Listr(
     [
       {
-        title: 'Entry files',
+        title: "Entry files",
         task() {
-          return buildEntry('/', targetPath, clientContext);
+          return buildEntry("/", targetPath, clientContext);
         }
       },
       {
-        title: 'Docs',
+        title: "Docs",
         task() {
           return buildDocs(patternsPath, targetPath, clientContext);
         }
       },
       {
-        title: 'Static files',
+        title: "Static files",
         task() {
           return buildStatics(
-            '@patternplate/client',
+            "@patternplate/client",
             targetPath,
             serverContext
           );
         }
       },
       {
-        title: 'Data',
+        title: "Data",
         task() {
           return buildData(patternData, apiPatternTargetPath, serverContext);
         }
       },
       {
-        title: 'Page files',
+        title: "Page files",
         task() {
           return buildPages(patternData, patternTargetPath, clientContext);
         }
       },
       {
-        title: 'Sources',
+        title: "Sources",
         task() {
           return buildSources(
             patternData,
-            path.resolve(targetPath, 'api', 'file'),
+            path.resolve(targetPath, "api", "file"),
             serverContext
           );
         }
       },
       {
-        title: 'Demo Files',
+        title: "Demo Files",
         task() {
           return buildDemoFiles(patternData, demoTargetPath, serverContext);
         }
       },
       {
-        title: 'Demos',
+        title: "Demos",
         task() {
           return buildDemos(patternData, demoTargetPath, serverContext);
         }
       },
       {
-        title: 'Automount components',
+        title: "Automount components",
         task() {
           return buildComponents(patternData, demoTargetPath, serverContext);
         }
       }
     ],
-    {concurrent, renderer}
+    { concurrent, renderer }
   );
 
   await tasks.run();
@@ -209,7 +209,7 @@ async function buildInterface(application, configuration) {
   const resourceTask = new Listr(
     [
       {
-        title: 'Pattern resources',
+        title: "Pattern resources",
         task() {
           return buildResources(
             application.resources,
@@ -219,7 +219,7 @@ async function buildInterface(application, configuration) {
         }
       }
     ],
-    {renderer}
+    { renderer }
   );
 
   await resourceTask.run();

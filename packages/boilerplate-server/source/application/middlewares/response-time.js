@@ -4,6 +4,6 @@ export default function responseTimeMiddlewareFactory() {
     yield next;
 
     const responseTime = new Date() - start;
-    this.set('X-Response-Time', `${responseTime}ms`);
+    this.set("X-Response-Time", `${responseTime}ms`);
   };
 }

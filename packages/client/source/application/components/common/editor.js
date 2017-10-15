@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 export default class Editor extends Component {
   render() {
-    const {props} = this;
+    const { props } = this;
 
     return (
       <textarea

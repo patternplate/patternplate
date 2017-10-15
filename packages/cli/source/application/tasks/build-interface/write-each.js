@@ -1,6 +1,6 @@
-import isStream from 'is-stream';
-import streamToString from 'stream-to-string';
-import * as sander from 'sander';
+import isStream from "is-stream";
+import streamToString from "stream-to-string";
+import * as sander from "sander";
 
 export default writeEach;
 const ident = i => i;

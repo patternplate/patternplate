@@ -1,10 +1,10 @@
-import ARSON from 'arson';
-import {memoize} from 'lodash';
+import ARSON from "arson";
+import { memoize } from "lodash";
 
 export default highlight;
 
 const startWorker = memoize(url => {
-  const {Worker} = global;
+  const { Worker } = global;
   return new Worker(url);
 });
 
@@ -19,15 +19,15 @@ function highlight(options) {
         return;
       }
 
-      if (data.payload.type === 'error') {
+      if (data.payload.type === "error") {
         return reject(data.payload.error);
       }
 
       resolve(data);
-      worker.removeEventListener('message', onWorkerMessage);
+      worker.removeEventListener("message", onWorkerMessage);
     };
 
-    worker.addEventListener('message', onWorkerMessage);
+    worker.addEventListener("message", onWorkerMessage);
     worker.postMessage(ARSON.stringify(options));
   });
 }

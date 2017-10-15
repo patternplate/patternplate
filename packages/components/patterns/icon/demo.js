@@ -1,24 +1,24 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const Icon = require('Pattern');
+const React = require("react");
+const styled = require("styled-components").default;
+const Icon = require("Pattern");
 
 module.exports = IconDemo;
 
 function DemoIcon(props) {
   return (
-	<StyledDemoIcon title={props.title}>
-		<Icon symbol={props.symbol}/>
-	</StyledDemoIcon>
+    <StyledDemoIcon title={props.title}>
+      <Icon symbol={props.symbol} />
+    </StyledDemoIcon>
   );
 }
 
 function IconDemo() {
   return (
-	<StyledIconDemo>
-		{Icon.symbols.map(symbol => (
-			<DemoIcon key={symbol} symbol={symbol} title={symbol}/>
+    <StyledIconDemo>
+      {Icon.symbols.map(symbol => (
+        <DemoIcon key={symbol} symbol={symbol} title={symbol} />
       ))}
-	</StyledIconDemo>
+    </StyledIconDemo>
   );
 }
 

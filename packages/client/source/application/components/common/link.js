@@ -1,8 +1,8 @@
-import url from 'url';
-import React from 'react';
-import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
-import {bindActionCreators} from 'redux';
+import url from "url";
+import React from "react";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { bindActionCreators } from "redux";
 
 class LinkComponent extends React.Component {
   constructor(...args) {
@@ -15,17 +15,17 @@ class LinkComponent extends React.Component {
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
       <a
-        target={props.external ? '_blank' : null}
-        rel={props.external ? 'noopener noreferrer' : null}
+        target={props.external ? "_blank" : null}
+        rel={props.external ? "noopener noreferrer" : null}
         className={props.className}
         href={props.href}
         onClick={this.handleClick}
         onMouseOver={props.onHover}
         title={props.title}
-        data-id={props['data-id']}
+        data-id={props["data-id"]}
       >
         {props.children}
       </a>
@@ -45,10 +45,10 @@ function mapProps(state, own) {
       ? own.href
       : url.format({
           pathname:
-            typeof parsed.pathname === 'string'
+            typeof parsed.pathname === "string"
               ? url.resolve(state.base, parsed.pathname)
               : location.pathname,
-          query: {...location.query, ...parsed.query, ...query},
+          query: { ...location.query, ...parsed.query, ...query },
           hash: own.hash
         }),
     children: own.children,
@@ -69,7 +69,7 @@ function mapDispatch(dispatch, own) {
           e.preventDefault();
           return push(href);
         }
-        return {type: 'noop', payload: {}};
+        return { type: "noop", payload: {} };
       }
     },
     dispatch

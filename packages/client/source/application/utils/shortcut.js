@@ -1,10 +1,10 @@
-import assert from 'assert';
+import assert from "assert";
 
 const CODES = {
-  'arrow-up': 38,
-  'arrow-right': 39,
-  'arrow-down': 40,
-  'arrow-left': 37,
+  "arrow-up": 38,
+  "arrow-right": 39,
+  "arrow-down": 40,
+  "arrow-left": 37,
   esc: 27,
   space: 32,
   c: 67,
@@ -23,14 +23,14 @@ const CODES = {
 };
 
 export default class Shortcut {
-  constructor({action, character, description, modifiers}) {
+  constructor({ action, character, description, modifiers }) {
     this.character = character;
     this.code = CODES[character];
     this.action = action;
     this.key = this.action.key;
-    this.active = 'document' in global;
+    this.active = "document" in global;
     this.description = description;
-    this.modifiers = modifiers || ['ctrlKey', 'altKey'];
+    this.modifiers = modifiers || ["ctrlKey", "altKey"];
     this.bind = this.bind.bind(this);
   }
 
@@ -38,7 +38,7 @@ export default class Shortcut {
     if (!this.active) {
       return;
     }
-    global.addEventListener('keydown', e => {
+    global.addEventListener("keydown", e => {
       if (!this.modifiers.every(m => e[m])) {
         return;
       }
@@ -56,8 +56,8 @@ export default class Shortcut {
 
   toString() {
     const keys = [...this.modifiers, this.character].map(c =>
-      c.replace('Key', '')
+      c.replace("Key", "")
     );
-    return `[${keys.join('+')}]`;
+    return `[${keys.join("+")}]`;
   }
 }

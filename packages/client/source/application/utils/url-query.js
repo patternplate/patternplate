@@ -1,6 +1,6 @@
-import path from 'path';
-import url from 'url';
-import {includes} from 'lodash';
+import path from "path";
+import url from "url";
+import { includes } from "lodash";
 
 function has(token) {
   return item => includes(item, token);
@@ -16,7 +16,7 @@ function not(fn) {
 
 function shove(input) {
   const index = input.length - 1;
-  if (input[index] === '/') {
+  if (input[index] === "/") {
     return input.slice(0, index);
   }
   return input;
@@ -24,33 +24,33 @@ function shove(input) {
 
 export function format(parsed = {}) {
   const query = Object.entries(parsed.query || {}).reduce(
-    (result, entry) => [...result, entry.join('--')],
+    (result, entry) => [...result, entry.join("--")],
     []
   );
 
-  const extension = path.extname(parsed.pathname || '');
+  const extension = path.extname(parsed.pathname || "");
 
   const before = extension
     ? path.dirname(parsed.pathname)
     : shove(parsed.pathname);
-  const after = extension ? path.basename(parsed.pathname) : '';
+  const after = extension ? path.basename(parsed.pathname) : "";
 
-  return [before, ...query, after].filter(Boolean).join('/');
+  return [before, ...query, after].filter(Boolean).join("/");
 }
 
-export function parse(urlPath = '') {
+export function parse(urlPath = "") {
   const parsed = url.parse(urlPath);
-  const raw = parsed.pathname || '';
+  const raw = parsed.pathname || "";
 
   const pathname = raw
-    .split('/')
-    .filter(not(has('--')))
-    .join('/');
+    .split("/")
+    .filter(not(has("--")))
+    .join("/");
 
   const query = raw
-    .split('/')
-    .filter(has('--'))
-    .map(div('--'))
+    .split("/")
+    .filter(has("--"))
+    .map(div("--"))
     .reduce((registry, entry) => {
       const [key, value] = entry;
       registry[key] = value;
@@ -63,4 +63,4 @@ export function parse(urlPath = '') {
   };
 }
 
-export default {parse, format};
+export default { parse, format };

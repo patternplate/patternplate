@@ -1,14 +1,14 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const semver = require('semver');
-const text = require('react-addons-text-content');
-const {omit} = require('lodash');
+const React = require("react");
+const styled = require("styled-components").default;
+const semver = require("semver");
+const text = require("react-addons-text-content");
+const { omit } = require("lodash");
 
-const Code = require('../code');
-const Link = require('../link');
-const Flag = require('../flag');
-const Icon = require('../icon');
-const Text = require('../text');
+const Code = require("../code");
+const Link = require("../link");
+const Flag = require("../flag");
+const Icon = require("../icon");
+const Text = require("../text");
 
 module.exports = InfoPane;
 module.exports.InnerInfoPane = InnerInfoPane;
@@ -115,46 +115,49 @@ class SearchTrigger extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    if (typeof this.props.onClick === 'function') {
+    if (typeof this.props.onClick === "function") {
       this.props.onClick(e, href);
     }
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
-	<Link
-		className={props.className}
-		onClick={this.handleClick}
-		query={{
-          'search-enabled': true,
+      <Link
+        className={props.className}
+        onClick={this.handleClick}
+        query={{
+          "search-enabled": true,
           search: `${props.field}=${props.search}`
         }}
-		title={`Search other patterns with ${props.field} "${props.search}"`}
-	>
-		{props.children}
-	</Link>
+        title={`Search other patterns with ${props.field} "${props.search}"`}
+      >
+        {props.children}
+      </Link>
     );
   }
 }
 
+const VERSION_COLOR = props => {
+  const v = text(props.children);
+  if (!semver.valid(v)) {
+    return props.theme.error;
+  }
+  if (semver.satisfies(v, "<=0.1")) {
+    return props.theme.error;
+  }
+  if (semver.satisfies(v, "> 0.1 < 1")) {
+    return props.theme.color;
+  }
+  return props.theme.success;
+};
+
 const StyledVersion = styled(Version)`
+  color: ${VERSION_COLOR};
   &:link,
   &:visited {
     text-decoration: none;
-    color: ${props => {
-      const v = text(props.children);
-      if (!semver.valid(v)) {
-        return props.theme.error;
-      }
-      if (semver.satisfies(v, '<=0.1')) {
-        return props.theme.error;
-      }
-      if (semver.satisfies(v, '> 0.1 < 1')) {
-        return props.theme.color;
-      }
-      return props.theme.success;
-    }};
+    color: ${VERSION_COLOR};
   }
 `;
 
@@ -185,6 +188,7 @@ const StyledToggleHead = styled(ToggleHead)`
   padding: 3px 15px 3px 20px;
   box-sizing: border-box;
   border-top: 1px solid ${props => props.theme.border};
+  cursor: pointer;
 `;
 
 const StyledToggleBody = styled.div`
@@ -197,153 +201,155 @@ const StyledToggleBody = styled.div`
   background: ${props => props.theme.background};
 `;
 
-const StyledCode = styled(Code)`width: 100%;`;
+const StyledCode = styled(Code)`
+  width: 100%;
+`;
 
 function InfoPane(props) {
-  const {className} = props;
-  const innerProps = omit(props, ['className']);
+  const { className } = props;
+  const innerProps = omit(props, ["className"]);
 
   return (
-	<StyledInfoPane className={className} hermit={props.hermit}>
-		<InnerInfoPane {...innerProps} standalone/>
-	</StyledInfoPane>
+    <StyledInfoPane className={className} hermit={props.hermit}>
+      <InnerInfoPane {...innerProps} standalone />
+    </StyledInfoPane>
   );
 }
 
 function InnerInfoPane(props) {
   return (
-	<StyledInnerPane standalone={props.standalone} className={props.className}>
-		<StyledName>
-			<StyledIcon symbol={props.icon}/>
-			<StyledDisplayName>{props.name}</StyledDisplayName>
-			<StyledId>{props.id}</StyledId>
-		</StyledName>
-		{props.children && <StyledToolbar>{props.children}</StyledToolbar>}
-		<StyledData>
-			<tbody>
-				<tr>
-					<StyledDataCell>
-						<StyledKey>Version</StyledKey>
-					</StyledDataCell>
-					<StyledDataCell>
-						<StyledVersion field="version" search={props.version}>
-							{props.version}
-						</StyledVersion>
-					</StyledDataCell>
-				</tr>
-				<tr>
-					<StyledDataCell>
-						<StyledKey>Flag</StyledKey>
-					</StyledDataCell>
-					<StyledDataCell>
-						<SearchTrigger field="flag" search={props.flag}>
-							<Flag>{props.flag}</Flag>
-						</SearchTrigger>
-					</StyledDataCell>
-				</tr>
-				{has(props.tags) && (
-				<tr>
-					<StyledDataCell>
-						<StyledKey>Tags</StyledKey>
-					</StyledDataCell>
-					<StyledDataCell>
-						{props.tags.map(t => <StyledTag key={t} tag={t}/>)}
-					</StyledDataCell>
-				</tr>
-          )}
-				{has(props.envs) &&
-          props.envs.length > 1 && (
+    <StyledInnerPane standalone={props.standalone} className={props.className}>
+      <StyledName>
+        <StyledIcon symbol={props.icon} />
+        <StyledDisplayName>{props.name}</StyledDisplayName>
+        <StyledId>{props.id}</StyledId>
+      </StyledName>
+      {props.children && <StyledToolbar>{props.children}</StyledToolbar>}
+      <StyledData>
+        <tbody>
+          <tr>
+            <StyledDataCell>
+              <StyledKey>Version</StyledKey>
+            </StyledDataCell>
+            <StyledDataCell>
+              <StyledVersion field="version" search={props.version}>
+                {props.version}
+              </StyledVersion>
+            </StyledDataCell>
+          </tr>
+          <tr>
+            <StyledDataCell>
+              <StyledKey>Flag</StyledKey>
+            </StyledDataCell>
+            <StyledDataCell>
+              <SearchTrigger field="flag" search={props.flag}>
+                <Flag>{props.flag}</Flag>
+              </SearchTrigger>
+            </StyledDataCell>
+          </tr>
+          {has(props.tags) && (
             <tr>
-	<StyledDataCell>
-		<StyledKey>Environment</StyledKey>
-	</StyledDataCell>
-	<StyledDataCell>
-		<Select
-			name="environment"
-			onChange={props.onEnvChange}
-			value={props.env.name}
-		>
-			{props.envs.map(e => (
-				<option key={e.name} value={e.name}>
-					{e.displayName}
-				</option>
-                  ))}
-		</Select>
-	</StyledDataCell>
+              <StyledDataCell>
+                <StyledKey>Tags</StyledKey>
+              </StyledDataCell>
+              <StyledDataCell>
+                {props.tags.map(t => <StyledTag key={t} tag={t} />)}
+              </StyledDataCell>
             </tr>
           )}
-				{
-					<tr>
-						<StyledDataCell>
-							<StyledKey>Mount</StyledKey>
-						</StyledDataCell>
-						<StyledDataCell>
-							<input
-								type="checkbox"
-								checked={props.mount}
-								onChange={props.onMountChange}
-							/>
-						</StyledDataCell>
-					</tr>
+          {has(props.envs) &&
+            props.envs.length > 1 && (
+              <tr>
+                <StyledDataCell>
+                  <StyledKey>Environment</StyledKey>
+                </StyledDataCell>
+                <StyledDataCell>
+                  <Select
+                    name="environment"
+                    onChange={props.onEnvChange}
+                    value={props.env.name}
+                  >
+                    {props.envs.map(e => (
+                      <option key={e.name} value={e.name}>
+                        {e.displayName}
+                      </option>
+                    ))}
+                  </Select>
+                </StyledDataCell>
+              </tr>
+            )}
+          {
+            <tr>
+              <StyledDataCell>
+                <StyledKey>Mount</StyledKey>
+              </StyledDataCell>
+              <StyledDataCell>
+                <input
+                  type="checkbox"
+                  checked={props.mount}
+                  onChange={props.onMountChange}
+                />
+              </StyledDataCell>
+            </tr>
           }
-			</tbody>
-		</StyledData>
-		{has(props.dependencies) && (
-		<Toggle
-			head={`Dependencies (${props.dependencies.length})`}
-			enabled={props.dependenciesEnabled}
-			name="dependencies"
-		>
-			<PatternList>
-				{props.dependencies.map(d => (
-					<PatternItem key={d.id} pattern={d}/>
+        </tbody>
+      </StyledData>
+      {has(props.dependencies) && (
+        <Toggle
+          head={`Dependencies (${props.dependencies.length})`}
+          enabled={props.dependenciesEnabled}
+          name="dependencies"
+        >
+          <PatternList>
+            {props.dependencies.map(d => (
+              <PatternItem key={d.id} pattern={d} />
             ))}
-			</PatternList>
-		</Toggle>
+          </PatternList>
+        </Toggle>
       )}
-		{has(props.dependents) && (
-		<Toggle
-			head={`Dependents (${props.dependents.length})`}
-			enabled={props.dependentsEnabled}
-			name="dependents"
-		>
-			<PatternList>
-				{props.dependents.map(d => <PatternItem key={d.id} pattern={d}/>)}
-			</PatternList>
-		</Toggle>
+      {has(props.dependents) && (
+        <Toggle
+          head={`Dependents (${props.dependents.length})`}
+          enabled={props.dependentsEnabled}
+          name="dependents"
+        >
+          <PatternList>
+            {props.dependents.map(d => <PatternItem key={d.id} pattern={d} />)}
+          </PatternList>
+        </Toggle>
       )}
-		{has(props.demoDependencies) && (
-		<Toggle
-			head={`Demo Dependencies (${props.demoDependencies.length})`}
-			enabled={props.demoDependenciesEnabled}
-			name="demo-dependencies"
-		>
-			<PatternList>
-				{props.demoDependencies.map(d => (
-					<PatternItem key={d.id} pattern={d}/>
+      {has(props.demoDependencies) && (
+        <Toggle
+          head={`Demo Dependencies (${props.demoDependencies.length})`}
+          enabled={props.demoDependenciesEnabled}
+          name="demo-dependencies"
+        >
+          <PatternList>
+            {props.demoDependencies.map(d => (
+              <PatternItem key={d.id} pattern={d} />
             ))}
-			</PatternList>
-		</Toggle>
+          </PatternList>
+        </Toggle>
       )}
-		{has(props.demoDependents) && (
-		<Toggle
-			head={`Demo Dependents (${props.demoDependents.length})`}
-			enabled={props.demoDependentsEnabled}
-			name="demo-dependents"
-		>
-			<PatternList>
-				{props.demoDependents.map(d => (
-					<PatternItem key={d.id} pattern={d}/>
+      {has(props.demoDependents) && (
+        <Toggle
+          head={`Demo Dependents (${props.demoDependents.length})`}
+          enabled={props.demoDependentsEnabled}
+          name="demo-dependents"
+        >
+          <PatternList>
+            {props.demoDependents.map(d => (
+              <PatternItem key={d.id} pattern={d} />
             ))}
-			</PatternList>
-		</Toggle>
+          </PatternList>
+        </Toggle>
       )}
-		<Toggle head="Manifest" enabled={props.manifestEnabled} name="manifest">
-			<StyledCode block language="json">
-				{props.manifest}
-			</StyledCode>
-		</Toggle>
-	</StyledInnerPane>
+      <Toggle head="Manifest" enabled={props.manifestEnabled} name="manifest">
+        <StyledCode block language="json">
+          {props.manifest}
+        </StyledCode>
+      </Toggle>
+    </StyledInnerPane>
   );
 }
 
@@ -354,7 +360,7 @@ const StyledSelectContainer = styled.div`
     right: 0;
     top: 50%;
     z-index: 1;
-    content: '▼';
+    content: "▼";
     font-size: 0.8em;
     color: ${props => props.theme.color};
     transform: translateY(-50%);
@@ -378,31 +384,31 @@ const StyledSelect = styled.select`
 
 function Select(props) {
   return (
-	<StyledSelectContainer className={props.className}>
-		<StyledSelect onChange={props.onChange} value={props.value}>
-			{props.children}
-		</StyledSelect>
-	</StyledSelectContainer>
+    <StyledSelectContainer className={props.className}>
+      <StyledSelect onChange={props.onChange} value={props.value}>
+        {props.children}
+      </StyledSelect>
+    </StyledSelectContainer>
   );
 }
 
 function Version(props) {
   return (
-	<SearchTrigger
-		className={props.className}
-		search={props.search}
-		field="version"
-	>
-		<Text>{props.search}</Text>
-	</SearchTrigger>
+    <SearchTrigger
+      className={props.className}
+      search={props.search}
+      field="version"
+    >
+      <Text>{props.search}</Text>
+    </SearchTrigger>
   );
 }
 
 function Tag(props) {
   return (
-	<SearchTrigger className={props.className} search={props.tag} field="tags">
-		<Text>{props.tag}</Text>
-	</SearchTrigger>
+    <SearchTrigger className={props.className} search={props.tag} field="tags">
+      <Text>{props.tag}</Text>
+    </SearchTrigger>
   );
 }
 
@@ -420,17 +426,19 @@ const StyledHead = styled(Link)`
 
 function ToggleHead(props) {
   return (
-	<StyledHead
-		query={{[`${props.name}-enabled`]: !props.enabled}}
-		className={props.className}
-	>
-		<Text>{props.children}</Text>
-		<StyledArrow rotated={props.enabled}>▼</StyledArrow>
-	</StyledHead>
+    <StyledHead
+      query={{ [`${props.name}-enabled`]: !props.enabled }}
+      className={props.className}
+    >
+      <Text>{props.children}</Text>
+      <StyledArrow rotated={props.enabled}>▼</StyledArrow>
+    </StyledHead>
   );
 }
 
-const StyledPatternList = styled.div`width: 100%;`;
+const StyledPatternList = styled.div`
+  width: 100%;
+`;
 
 function PatternList(props) {
   return <StyledPatternList>{props.children}</StyledPatternList>;
@@ -445,12 +453,12 @@ const StyledPatternItem = styled(Link)`
 
 function PatternItem(props) {
   return (
-	<StyledPatternItem
-		href={`pattern/${props.pattern.id}`}
-		data-id={props.pattern.id}
-	>
-		<Text>{props.pattern.manifest.displayName}</Text>
-	</StyledPatternItem>
+    <StyledPatternItem
+      href={`pattern/${props.pattern.id}`}
+      data-id={props.pattern.id}
+    >
+      <Text>{props.pattern.manifest.displayName}</Text>
+    </StyledPatternItem>
   );
 }
 
@@ -463,12 +471,12 @@ const StyledToggle = styled.div`
 
 function Toggle(props) {
   return (
-	<StyledToggle>
-		<StyledToggleHead name={props.name} enabled={props.enabled}>
-			{props.head}
-		</StyledToggleHead>
-		{props.enabled && <StyledToggleBody>{props.children}</StyledToggleBody>}
-	</StyledToggle>
+    <StyledToggle>
+      <StyledToggleHead name={props.name} enabled={props.enabled}>
+        {props.head}
+      </StyledToggleHead>
+      {props.enabled && <StyledToggleBody>{props.children}</StyledToggleBody>}
+    </StyledToggle>
   );
 }
 

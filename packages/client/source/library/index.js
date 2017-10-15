@@ -1,9 +1,9 @@
-import boilerplate from 'boilerplate-server';
-import findRoot from 'find-root';
+import boilerplate from "boilerplate-server";
+import findRoot from "find-root";
 
 async function server(opts) {
   const options = {
-    name: 'patternplate-client',
+    name: "patternplate-client",
     cwd: findRoot(__dirname),
     ...opts
   };

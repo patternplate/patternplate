@@ -1,11 +1,11 @@
-import {isObject} from 'lodash';
-import applyTransforms from './apply-transforms';
+import { isObject } from "lodash";
+import applyTransforms from "./apply-transforms";
 
 export default getTransform;
 
 function getTransform(transformFunctions, config) {
   return async file => {
-    const {patterns, log, transformConfigs} = config;
+    const { patterns, log, transformConfigs } = config;
     const format = patterns.formats[file.format];
 
     if (!isObject(format)) {

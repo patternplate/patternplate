@@ -1,6 +1,6 @@
-import {merge} from 'lodash';
-import {createSelector} from 'reselect';
-import {flatten, sanitize} from './tree';
+import { merge } from "lodash";
+import { createSelector } from "reselect";
+import { flatten, sanitize } from "./tree";
 
 const navigation = createSelector(
   state => state.schema.meta,
@@ -10,7 +10,7 @@ const navigation = createSelector(
   state => state.routing.locationBeforeTransitions,
   state => state.base,
   (tree, config, id, hide, location, base) => {
-    const context = {base, hide, config, id, prefix: 'pattern', location};
+    const context = { base, hide, config, id, prefix: "pattern", location };
     return sanitize(merge({}, tree), context);
   }
 );

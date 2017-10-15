@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
-import 'babel-polyfill';
-import minimist from 'minimist';
-import ora from 'ora';
+import "babel-polyfill";
+import minimist from "minimist";
+import ora from "ora";
 
-import patternplate from '../';
+import patternplate from "../";
 
 async function start(options) {
-  const mode = 'console';
-  const settings = {...options, mode};
-  const {_: [, command]} = settings;
+  const mode = "console";
+  const settings = { ...options, mode };
+  const { _: [, command] } = settings;
 
-  const spinner = ora('Starting').start();
+  const spinner = ora("Starting").start();
   const application = await patternplate(settings);
   spinner.stop();
 
@@ -31,7 +31,7 @@ start(args)
   });
 
 // Catch unhandled rejections globally
-process.on('unhandledRejection', (reason, promise) => {
-  console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled Rejection at: Promise ", promise, " reason: ", reason);
   throw reason;
 });

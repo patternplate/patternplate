@@ -1,9 +1,9 @@
-import path from 'path';
-import urlQuery from '../utils/url-query';
-import {patchLocation} from './';
+import path from "path";
+import urlQuery from "../utils/url-query";
+import { patchLocation } from "./";
 
 export default changeConcern;
-export const type = 'CHANGE_CONCERN';
+export const type = "CHANGE_CONCERN";
 
 function changeConcern(concern) {
   return (dispatch, getState) => {
@@ -14,10 +14,10 @@ function changeConcern(concern) {
     const ext = path.extname(previous);
 
     const hasDemo = state.pattern.files.some(file => {
-      return file.concern === 'demo' && file.type === ext.slice(1);
+      return file.concern === "demo" && file.type === ext.slice(1);
     });
 
-    const type = concern === 'index' && hasDemo ? 'source' : parsed.query.type;
+    const type = concern === "index" && hasDemo ? "source" : parsed.query.type;
 
     const source = urlQuery.format({
       pathname: `${path.dirname(previous)}/${concern}${ext}`,

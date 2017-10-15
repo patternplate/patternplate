@@ -1,5 +1,5 @@
-import conditional from 'koa-conditional-get';
-import etag from 'koa-etag';
+import conditional from "koa-conditional-get";
+import etag from "koa-etag";
 
 export default function startEtagsMiddleware(application) {
   application.engine.use(conditional());

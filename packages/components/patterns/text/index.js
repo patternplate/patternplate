@@ -1,7 +1,7 @@
-const React = require('react');
-const styled = require('styled-components').default;
+const React = require("react");
+const styled = require("styled-components").default;
 
-const fonts = require('../fonts');
+const fonts = require("../fonts");
 
 const FONTS = fonts();
 
@@ -9,10 +9,12 @@ module.exports = Text;
 
 function Text(props) {
   return (
-	<StyledText is={props.is} className={props.className}>
-		{props.children}
-	</StyledText>
+    <StyledText is={props.is} className={props.className}>
+      {props.children}
+    </StyledText>
   );
 }
 
-const StyledText = styled('div')`font-family: ${FONTS.default};`;
+const StyledText = styled("div")`
+  font-family: ${FONTS.default};
+`;

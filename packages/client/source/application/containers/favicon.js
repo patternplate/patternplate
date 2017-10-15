@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
-import Favicon from '../components/favicon';
+import Favicon from "../components/favicon";
 
 export default connect(mapState)(Favicon);
 

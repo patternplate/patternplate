@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
-import join from 'classnames';
-import {noop} from 'lodash';
-import {Icon} from '@patternplate/components';
+import React, { Component } from "react";
+import { Link } from "react-router";
+import join from "classnames";
+import { noop } from "lodash";
+import { Icon } from "@patternplate/components";
 
 export default class Message extends Component {
   static defaultProps = {
@@ -20,8 +20,8 @@ export default class Message extends Component {
   }
 
   render() {
-    const {props} = this;
-    const className = join('message', `message--${props.type}`);
+    const { props } = this;
+    const className = join("message", `message--${props.type}`);
     return (
       <div className={className}>
         <div className="message__header">

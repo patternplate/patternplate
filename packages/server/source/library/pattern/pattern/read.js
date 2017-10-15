@@ -1,17 +1,17 @@
-import path from 'path';
-import chalk from 'chalk';
-import {merge, uniq} from 'lodash';
-import {stat} from 'sander';
-import throat from 'throat';
-import constructDemoFileDependencies from './construct-demo-file-dependencies';
-import constructFileDependencies from './construct-file-dependencies';
-import getReadFile from '../../filesystem/read-file';
-import readDirectory from '../../filesystem/read-directory';
+import path from "path";
+import chalk from "chalk";
+import { merge, uniq } from "lodash";
+import { stat } from "sander";
+import throat from "throat";
+import constructDemoFileDependencies from "./construct-demo-file-dependencies";
+import constructFileDependencies from "./construct-file-dependencies";
+import getReadFile from "../../filesystem/read-file";
+import readDirectory from "../../filesystem/read-directory";
 
 export default read;
 
 async function read(pattern, subPath) {
-  const read = getReadFile({cache: pattern.cache});
+  const read = getReadFile({ cache: pattern.cache });
 
   const readStart = new Date();
   pattern.log.silly(`Reading files for ${pattern.id}`);
@@ -38,7 +38,7 @@ async function read(pattern, subPath) {
       const formatConfig = pattern.config.patterns.formats[format] || {
         transforms: []
       };
-      const {transforms: transformNames} = formatConfig;
+      const { transforms: transformNames } = formatConfig;
 
       if (!transformNames.length) {
         result.push(format);
@@ -98,7 +98,7 @@ async function read(pattern, subPath) {
   const baseNames =
     pattern.filters.baseNames && pattern.filters.baseNames.length > 0
       ? pattern.filters.baseNames
-      : ['index', 'demo'];
+      : ["index", "demo"];
 
   // Get the relevant pattern files
   const files = fileList.filter(file => {
@@ -111,7 +111,7 @@ async function read(pattern, subPath) {
   const out = files.map(file => {
     const inFileFormat = path.extname(file).slice(1);
     const formatConfig = pattern.config.patterns.formats[inFileFormat] || {};
-    const name = formatConfig.name || '';
+    const name = formatConfig.name || "";
     const transformNames = formatConfig.transforms || [];
     const lastTransform =
       pattern.config.transforms[transformNames[transformNames.length - 1]] ||
@@ -177,7 +177,7 @@ async function read(pattern, subPath) {
         const fileContents =
           isRoot || resolveDependencies
             ? await read(file)
-            : Buffer.from('', 'utf-8');
+            : Buffer.from("", "utf-8");
 
         if (isRoot === false && resolveDependencies) {
           pattern.log.silly(
@@ -191,7 +191,7 @@ async function read(pattern, subPath) {
           `index${fileExt}`
         ]);
 
-        if (fileRumpName === 'demo') {
+        if (fileRumpName === "demo") {
           const demoDependencies = constructDemoFileDependencies(
             pattern.demoDependencies,
             [`index${fileExt}`]
@@ -203,7 +203,7 @@ async function read(pattern, subPath) {
           if (overridden.length > 0) {
             throw new Error(
               `Found .demoPattern entries duplicating .pattern entries in ${pattern.id}'s manifest': ${overridden.join(
-                ', '
+                ", "
               )}. Remove them from .demoPatterns.`
             );
           }
@@ -234,12 +234,12 @@ async function read(pattern, subPath) {
 
   // Convert to consumable format
   pattern.files = fileData.reduce((results, data) => {
-    return {...results, [data.name]: data};
+    return { ...results, [data.name]: data };
   }, {});
 
   // Expose which file to use for rendering
   const basenames = matchingFiles.map(matchingFile => rump(matchingFile));
-  pattern.use = basenames.includes('demo') ? ['demo'] : ['index'];
+  pattern.use = basenames.includes("demo") ? ["demo"] : ["index"];
 
   // Read last-modified
   const readDuration = chalk.grey(`[${new Date() - readStart}ms]`);

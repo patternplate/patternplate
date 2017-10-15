@@ -1,15 +1,15 @@
-import vm from 'vm';
-import {jsdom} from 'jsdom';
-import {merge} from 'lodash';
+import vm from "vm";
+import { jsdom } from "jsdom";
+import { merge } from "lodash";
 
 // Provide an emulated DOM environment for React testing
-global.document = jsdom('<body></body>');
+global.document = jsdom("<body></body>");
 global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
 
 function getFile(extender) {
   const file = {
-    path: 'mocks/index.js'
+    path: "mocks/index.js"
   };
   return merge({}, file, extender);
 }
@@ -19,9 +19,9 @@ export function run(source) {
   const exports = {};
   const sandbox = {
     console,
-    document: jsdom('<body><div data-mountpoint></div></body>'),
+    document: jsdom("<body><div data-mountpoint></div></body>"),
     exports,
-    module: {exports},
+    module: { exports },
     require,
     global,
     window: global
@@ -46,8 +46,8 @@ export const application = {
 };
 
 export const emptyFile = getFile({
-  buffer: '',
-  path: 'empty.js',
+  buffer: "",
+  path: "empty.js",
   dependencies: {}
 });
 
@@ -58,7 +58,7 @@ export const basicFile = getFile({
 			return React.createElement('div', {id: 'basic'}, ['basic']);
 		};
 	`),
-  path: 'basic/index.js',
+  path: "basic/index.js",
   dependencies: {}
 });
 
@@ -80,7 +80,7 @@ export const componentDidMountFile = getFile({
 			}
 		});
 	`),
-  path: 'component-did-mount/index.js',
+  path: "component-did-mount/index.js",
   dependencies: {}
 });
 
@@ -106,6 +106,6 @@ export const clickFile = getFile({
 			}
 		});
 	`),
-  path: 'component-did-mount/index.js',
+  path: "component-did-mount/index.js",
   dependencies: {}
 });

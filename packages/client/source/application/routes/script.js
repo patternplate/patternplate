@@ -1,13 +1,13 @@
-import {createReadStream} from 'fs';
-import exists from 'path-exists';
-import {resolve} from 'path';
+import { createReadStream } from "fs";
+import exists from "path-exists";
+import { resolve } from "path";
 
 function scriptRouteFactory(application) {
   return async function scriptRoute() {
     const path = resolve(
       application.runtime.cwd,
-      'assets',
-      'script',
+      "assets",
+      "script",
       this.params.path
     );
 
@@ -15,7 +15,7 @@ function scriptRouteFactory(application) {
       return;
     }
 
-    this.type = 'js';
+    this.type = "js";
     this.body = createReadStream(path);
   };
 }

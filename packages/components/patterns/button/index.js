@@ -1,39 +1,41 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const tag = require('tag-hoc').default;
+const React = require("react");
+const styled = require("styled-components").default;
+const tag = require("tag-hoc").default;
 
-const fonts = require('../fonts');
-const Icon = require('../icon');
-const Link = require('../link');
+const fonts = require("../fonts");
+const Icon = require("../icon");
+const Link = require("../link");
 
 const FONTS = fonts();
 
 function Button(props) {
   const OuterElement =
-    props.type === 'link'
-      ? tag(['external', 'type'])(Link)
-      : tag(['external'])('button');
+    props.type === "link"
+      ? tag(["external", "type"])(Link)
+      : tag(["external"])("button");
 
   return (
-	<OuterElement
-		className={props.className}
-		title={props.title}
-		onClick={props.onClick}
-		external={props.external}
-		href={props.href}
-		type={props.type}
-	>
-		{props.children && <StyledLabel>{props.children}</StyledLabel>}
-		{props.symbol && <StyledIcon symbol={props.symbol}/>}
-	</OuterElement>
+    <OuterElement
+      className={props.className}
+      title={props.title}
+      onClick={props.onClick}
+      external={props.external}
+      href={props.href}
+      type={props.type}
+    >
+      {props.children && <StyledLabel>{props.children}</StyledLabel>}
+      {props.symbol && <StyledIcon symbol={props.symbol} />}
+    </OuterElement>
   );
 }
 
 Button.defaultProps = {
-  type: 'button'
+  type: "button"
 };
 
-const StyledLabel = styled.span`font-family: ${FONTS.default};`;
+const StyledLabel = styled.span`
+  font-family: ${FONTS.default};
+`;
 
 const FRAME = props =>
   !props.frameless &&

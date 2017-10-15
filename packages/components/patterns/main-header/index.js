@@ -1,7 +1,7 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const fonts = require('../fonts');
-const Icon = require('../icon');
+const React = require("react");
+const styled = require("styled-components").default;
+const fonts = require("../fonts");
+const Icon = require("../icon");
 
 const FONTS = fonts();
 
@@ -11,14 +11,14 @@ function MainHeader(props) {
   const icon = props.image ? (
     props.image
   ) : (
-	<StyledHeaderLogo symbol="patternplate" size="l"/>
+    <StyledHeaderLogo symbol="patternplate" size="l" />
   );
 
   return (
-	<StyledMainHeader className={props.className} title={props.title}>
-		{icon}
-		{props.title && <StyledTitle>{props.title}</StyledTitle>}
-	</StyledMainHeader>
+    <StyledMainHeader className={props.className} title={props.title}>
+      {icon}
+      {props.title && <StyledTitle>{props.title}</StyledTitle>}
+    </StyledMainHeader>
   );
 }
 
@@ -49,4 +49,6 @@ const StyledHeaderLogo = styled(Icon)`
 	`};
 `;
 
-const StyledTitle = styled.span`font-family: ${FONTS.default};`;
+const StyledTitle = styled.span`
+  font-family: ${FONTS.default};
+`;

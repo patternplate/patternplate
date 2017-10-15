@@ -1,6 +1,6 @@
-import {last, uniq} from 'lodash';
-import getTransform from './get-transform';
-import toString from './to-string';
+import { last, uniq } from "lodash";
+import getTransform from "./get-transform";
+import toString from "./to-string";
 
 export default transform;
 
@@ -48,7 +48,7 @@ async function transform(pattern) {
     transformResults.reduce((results, result) => {
       const demo = transformResults.find(transformResult => {
         return (
-          transformResult.basename === 'demo' &&
+          transformResult.basename === "demo" &&
           transformResult.format === result.format
         );
       });
@@ -66,7 +66,7 @@ async function transform(pattern) {
   // Reduce to format.name => result map
   pattern.results = sanitizedResults.reduce((results, transformResult) => {
     const format = formats[transformResult.format];
-    const isDemo = transformResult.baseName === 'demo';
+    const isDemo = transformResult.baseName === "demo";
 
     results[format.name] = {
       name: transformResult.name,

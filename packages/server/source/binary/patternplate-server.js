@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-'use strict';
+"use strict";
 
-import 'babel-polyfill';
-import minimist from 'minimist';
+import "babel-polyfill";
+import minimist from "minimist";
 
-import patternServer from '../';
+import patternServer from "../";
 
 async function main(options = {}) {
   let application;
@@ -33,7 +33,7 @@ main(args).catch(err => {
 });
 
 // Catch unhandled rejections globally
-process.on('unhandledRejection', (reason, promise) => {
-  console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled Rejection at: Promise ", promise, " reason: ", reason);
   throw reason;
 });

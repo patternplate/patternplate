@@ -1,6 +1,6 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
-import Markdown from '../containers/markdown';
+import React from "react";
+import { styled } from "@patternplate/components";
+import Markdown from "../containers/markdown";
 
 export default function Documentation(props) {
   return (

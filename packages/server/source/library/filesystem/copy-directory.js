@@ -1,7 +1,7 @@
-import {extname, resolve, relative} from 'path';
+import { extname, resolve, relative } from "path";
 
-import readTree from './read-tree';
-import copySafe from './copy-safe';
+import readTree from "./read-tree";
+import copySafe from "./copy-safe";
 
 export default async function copyDirectory(source, target) {
   const files = await readTree(source);

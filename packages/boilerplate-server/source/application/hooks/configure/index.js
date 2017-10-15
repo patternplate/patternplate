@@ -1,15 +1,15 @@
-import {dirname, resolve} from 'path';
-import {merge} from 'lodash';
-import findRoot from 'find-root';
-import exists from 'path-exists';
+import { dirname, resolve } from "path";
+import { merge } from "lodash";
+import findRoot from "find-root";
+import exists from "path-exists";
 
-import load from '../../../library/utilities/configuration';
+import load from "../../../library/utilities/configuration";
 
 export default {
-  after: ['application:before'],
+  after: ["application:before"],
 
   defaults: {
-    path: './configuration',
+    path: "./configuration",
     filter: /(.*).(js|json)$/
   },
 
@@ -30,15 +30,15 @@ export default {
     );
 
     // Load package.jsons
-    const corePkgPath = resolve(application.runtime.base, 'package.json');
-    const pkgPath = resolve(application.runtime.cwd, 'package.json');
+    const corePkgPath = resolve(application.runtime.base, "package.json");
+    const pkgPath = resolve(application.runtime.cwd, "package.json");
 
     const corePkg = require(corePkgPath);
     const userPkg = require(pkgPath);
     const pkg = merge({}, corePkg, userPkg);
 
     // Allow user to override core behaviour via cli and *rc files
-    merge(core, {pkg}, application.runtime.api);
+    merge(core, { pkg }, application.runtime.api);
 
     // Find all node modules on the way from here to the top
     let modulePaths = [dirname(module.filename)];
@@ -58,7 +58,7 @@ export default {
     for (const modulePath of modulePaths) {
       // eslint-disable-line prefer-const
       let moduleRoot = modulePath;
-      while ((await exists(resolve(moduleRoot, 'package.json'))) === false) {
+      while ((await exists(resolve(moduleRoot, "package.json"))) === false) {
         // eslint-disable-line babel/no-await-in-loop
         moduleRoot = dirname(moduleRoot);
       }
@@ -78,7 +78,7 @@ export default {
     let existingConfigPaths = [];
     for (const configPath of core.paths.configuration) {
       for (const cwd of application.runtime.cwds) {
-        for (const suffix of ['', userPkg.name]) {
+        for (const suffix of ["", userPkg.name]) {
           const userPath = resolve(cwd, configPath, suffix);
           if (await exists(userPath)) {
             // eslint-disable-line babel/no-await-in-loop
@@ -116,7 +116,7 @@ export default {
       user,
       application.runtime.api,
       (a, b) => {
-        if (Array.isArray(b) && typeof a === 'string') {
+        if (Array.isArray(b) && typeof a === "string") {
           return b;
         }
       }
@@ -126,8 +126,8 @@ export default {
       merge(application.configuration, user[application.name]);
     }
 
-    application.runtime.prefix = application.runtime.prefix || '/';
-    application.runtime.mode = application.runtime.mode || 'server';
+    application.runtime.prefix = application.runtime.prefix || "/";
+    application.runtime.mode = application.runtime.mode || "server";
     return this;
   }
 };

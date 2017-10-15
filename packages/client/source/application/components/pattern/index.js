@@ -1,21 +1,21 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import {styled, keyframes} from '@patternplate/components';
-import tag from 'tag-hoc';
-import Transition from 'react-transition-group/Transition';
+import React from "react";
+import Helmet from "react-helmet";
+import { styled, keyframes } from "@patternplate/components";
+import tag from "tag-hoc";
+import Transition from "react-transition-group/Transition";
 
-import Markdown from '../common/markdown';
-import PatternDemo from './pattern-demo';
-import Search from '../../containers/search';
+import Markdown from "../common/markdown";
+import PatternDemo from "./pattern-demo";
+import Search from "../../containers/search";
 
-const VISIBILITY = props => (props.checkers ? 'block' : 'none');
+const VISIBILITY = props => (props.checkers ? "block" : "none");
 
-const StyledPattern = styled(tag(['checkers'])('div'))`
+const StyledPattern = styled(tag(["checkers"])("div"))`
   box-sizing: border-box;
   height: 100%;
   width: 100%;
   &::before {
-    content: '';
+    content: "";
     display: ${VISIBILITY};
     position: absolute;
     z-index: 1;
@@ -64,29 +64,29 @@ const StyledPatternLoader = styled.div`
     position: absolute;
     top: 0;
     z-index: 2;
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 100%;
     background: ${props =>
       props.error ? props.theme.error : props.theme.active};
     opacity: 1;
-    transition: ${props => (props.error ? 'none' : 'transform 1s ease-in-out')};
+    transition: ${props => (props.error ? "none" : "transform 1s ease-in-out")};
     ${props => {
       switch (props.status) {
-        case 'entering':
+        case "entering":
           return `
             transform: translateX(-100%);
           `;
-        case 'entered':
+        case "entered":
           return `${props =>
-            props.error ? '' : 'transform: translateX(-15%);'}`;
-        case 'exiting':
+            props.error ? "" : "transform: translateX(-15%);"}`;
+        case "exiting":
           return `
             transition: transform .3s ease-out;
             transform: translateX(0);
           `;
-        case 'exited':
+        case "exited":
           return `
             transform: translateX(-100%);
             transition: opacity .3s .25s ease-out;
@@ -98,16 +98,20 @@ const StyledPatternLoader = styled.div`
 
 export default class Pattern extends React.Component {
   render() {
-    const {props} = this;
+    const { props } = this;
 
     switch (props.type) {
-      case 'pattern':
+      case "pattern":
         return (
           <StyledPattern checkers={props.opacity}>
-            <Helmet title={[getPrefix(props), props.displayName].filter(Boolean).join(': ')} />
+            <Helmet
+              title={[getPrefix(props), props.displayName]
+                .filter(Boolean)
+                .join(": ")}
+            />
             <Transition
               in={props.loading || props.error}
-              timeout={{enter: 1000, exit: 850}}
+              timeout={{ enter: 1000, exit: 850 }}
             >
               {status => (
                 <StyledPatternLoader status={status} error={props.error} />
@@ -122,7 +126,7 @@ export default class Pattern extends React.Component {
             </StyledPatternDemo>
           </StyledPattern>
         );
-      case 'not-found':
+      case "not-found":
       default:
         return (
           <StyledPatternFolder>
@@ -150,10 +154,10 @@ function checkers(props) {
 
 function getPrefix(props) {
   if (props.loading) {
-    return 'Load';
+    return "Load";
   }
   if (props.error) {
-    return 'Error';
+    return "Error";
   }
-  return '';
+  return "";
 }

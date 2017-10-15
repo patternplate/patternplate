@@ -1,6 +1,6 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from "redux-actions";
 
-const defaultValue = '';
+const defaultValue = "";
 
 function onSetSearchLocationChange(_, action) {
   return action.payload.query.search;
@@ -16,7 +16,7 @@ function onPerformSearch(_, action) {
 
 export default handleActions(
   {
-    '@@router/LOCATION_CHANGE': onSetSearchLocationChange,
+    "@@router/LOCATION_CHANGE": onSetSearchLocationChange,
     SET_SEARCH: onSetSearch,
     PERFORM_SEARCH: onPerformSearch
   },

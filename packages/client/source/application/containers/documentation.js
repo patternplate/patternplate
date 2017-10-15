@@ -1,8 +1,8 @@
-import {connect} from 'react-redux';
-import {createSelector} from 'reselect';
-import Documentation from '../components/documentation';
-import selectItem from '../selectors/item';
-import themes from '../themes';
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
+import Documentation from "../components/documentation";
+import selectItem from "../selectors/item";
+import themes from "../themes";
 
 export default connect(mapState)(Documentation);
 
@@ -72,12 +72,12 @@ const selectDoc = createSelector(
 
 const selectType = createSelector(selectItem, match => {
   if (match && match.contents) {
-    return 'doc';
+    return "doc";
   }
   if (match && !match.contents) {
-    return 'fallback';
+    return "fallback";
   }
-  return 'not-found';
+  return "not-found";
 });
 
 const selectThemes = createSelector(

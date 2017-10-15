@@ -1,22 +1,22 @@
-const color = require('color');
-const React = require('react');
-const Clipboard = require('react-clipboard.js');
-const Component = require('react').Component;
-const styled = require('styled-components').default;
-const css = require('styled-components').css;
-const { entries, omit, pick } = require('lodash');
-const getThemes = require('Pattern');
+const color = require("color");
+const React = require("react");
+const Clipboard = require("react-clipboard.js");
+const Component = require("react").Component;
+const styled = require("styled-components").default;
+const css = require("styled-components").css;
+const { entries, omit, pick } = require("lodash");
+const getThemes = require("Pattern");
 
 class ThemesDemo extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
-      colorFormat: 'hex'
+      colorFormat: "hex"
     };
 
     this.themes = getThemes();
-    this.handleChange = (e) => {
+    this.handleChange = e => {
       this.setState({ colorFormat: e.target.value });
     };
   }
@@ -25,8 +25,12 @@ class ThemesDemo extends Component {
     return (
       <StyledDemo>
         <StyledSection>
-          <label><span>Color format: </span>
-            <StyledSelect onChange={this.handleChange} defaultValue={this.state.colorFormat}>
+          <label>
+            <span>Color format: </span>
+            <StyledSelect
+              onChange={this.handleChange}
+              defaultValue={this.state.colorFormat}
+            >
               <option value="hex">HEX</option>
               <option value="rgb">RGB</option>
               <option value="hsl">HSL</option>
@@ -35,13 +39,25 @@ class ThemesDemo extends Component {
         </StyledSection>
 
         <StyledSection>
-          <Groups name="Color Groups" theme={this.themes.colorGroups} colorFormat={this.state.colorFormat} />
+          <Groups
+            name="Color Groups"
+            theme={this.themes.colorGroups}
+            colorFormat={this.state.colorFormat}
+          />
         </StyledSection>
         <StyledSection>
-          <Theme name="Dark" theme={this.themes.dark} colorFormat={this.state.colorFormat} />
+          <Theme
+            name="Dark"
+            theme={this.themes.dark}
+            colorFormat={this.state.colorFormat}
+          />
         </StyledSection>
         <StyledSection>
-          <Theme name="Light" theme={this.themes.light} colorFormat={this.state.colorFormat} />
+          <Theme
+            name="Light"
+            theme={this.themes.light}
+            colorFormat={this.state.colorFormat}
+          />
         </StyledSection>
       </StyledDemo>
     );
@@ -61,7 +77,7 @@ const StyledSelect = styled.select`
 
 const StyledSection = styled.div`
   margin-bottom: 2em;
-`
+`;
 
 const StyledName = styled.div`
   font-family: sans-serif;
@@ -76,20 +92,24 @@ const StyledGrid = styled.div`
 `;
 
 function Groups(props) {
-  const labelColors = pick(props.theme, ['error', 'warning', 'success', 'info']);
+  const labelColors = pick(props.theme, [
+    "error",
+    "warning",
+    "success",
+    "info"
+  ]);
   const groups = props.theme;
 
   let colorConverter;
 
-
   switch (props.colorFormat) {
-    case 'hsl':
+    case "hsl":
       colorConverter = colorValue => colorValue.string(1);
       break;
-    case 'rgb':
+    case "rgb":
       colorConverter = colorValue => colorValue.rgb().string(1);
       break;
-    case 'hex':
+    case "hex":
     default:
       colorConverter = colorValue => colorValue.hex();
       break;
@@ -103,7 +123,7 @@ function Groups(props) {
           <StyledTyleGroup>
             {entries(group[1]).map(value => (
               <Tile
-                key={value.join('-')}
+                key={value.join("-")}
                 color={colorConverter(value[1])}
                 name={`${group[0]} ${value[0]}`}
                 grouped
@@ -117,21 +137,33 @@ function Groups(props) {
 }
 
 function Theme(props) {
-  const labelColors = pick(props.theme, ['error', 'warning', 'success', 'info']);
-  const themeColors = omit(props.theme, ['name', 'fontWeight', 'fontSize'].concat(
-    Object.keys(labelColors)
-  ));
+  const labelColors = pick(props.theme, [
+    "error",
+    "warning",
+    "success",
+    "info"
+  ]);
+  const themeColors = omit(
+    props.theme,
+    ["name", "fontWeight", "fontSize"].concat(Object.keys(labelColors))
+  );
 
   let colorConverter;
 
   switch (props.colorFormat) {
-    case 'hsl':
-      colorConverter = colorString => color(colorString).hsl().string();
+    case "hsl":
+      colorConverter = colorString =>
+        color(colorString)
+          .hsl()
+          .string();
       break;
-    case 'rgb':
-      colorConverter = colorString => color(colorString).rgb().string();
+    case "rgb":
+      colorConverter = colorString =>
+        color(colorString)
+          .rgb()
+          .string();
       break;
-    case 'hex':
+    case "hex":
     default:
       colorConverter = colorString => color(colorString).hex();
       break;
@@ -143,7 +175,7 @@ function Theme(props) {
       <StyledGrid>
         {entries(labelColors).map(entry => (
           <Tile
-            key={entry.join('-')}
+            key={entry.join("-")}
             color={colorConverter(entry[1])}
             name={entry[0]}
           />
@@ -152,7 +184,7 @@ function Theme(props) {
       <StyledGrid>
         {entries(themeColors).map(entry => (
           <Tile
-            key={entry.join('-')}
+            key={entry.join("-")}
             color={colorConverter(entry[1])}
             name={entry[0]}
           />
@@ -163,9 +195,10 @@ function Theme(props) {
 }
 
 const BACKGROUND = props => props.color;
-const COLOR = props => color(props.color).luminosity() < .65 ?
-  'rgb(250, 250, 250)' :
-  'rgb(10, 10, 10)';
+const COLOR = props =>
+  color(props.color).luminosity() < 0.65
+    ? "rgb(250, 250, 250)"
+    : "rgb(10, 10, 10)";
 
 const StyledTile = styled.div`
   display: flex;
@@ -174,23 +207,25 @@ const StyledTile = styled.div`
   min-width: 200px;
   min-height: 200px;
   font-family: sans-serif;
-  ${props => !props.grouped && css`
-    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
-    margin-right: 1em;
-    margin-bottom: 1em;
-  `}
+  ${props =>
+    !props.grouped &&
+    css`
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+      margin-right: 1em;
+      margin-bottom: 1em;
+    `};
 `;
 
 const StyledTyleGroup = styled.div`
   display: flex;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
   margin-bottom: 1em;
 `;
 
 function Tile(props) {
   return (
     <StyledTile color={props.color} grouped={props.grouped}>
-      <ColorDot color={props.color} width={'100%'} height={'100%'} showValue />
+      <ColorDot color={props.color} width={"100%"} height={"100%"} showValue />
       <StyledColorName>{props.name}</StyledColorName>
     </StyledTile>
   );
@@ -202,18 +237,17 @@ class ColorDot extends Component {
 
     this.state = {
       copySucceeded: false
-    }
+    };
 
     this.resetCopyState = () => {
-      this.setState({ copySucceeded: false })
-    }
+      this.setState({ copySucceeded: false });
+    };
 
-    this.handleSuccess = (e) => {
-      this.setState({ copySucceeded: true })
+    this.handleSuccess = e => {
+      this.setState({ copySucceeded: true });
 
       setTimeout(this.resetCopyState, 1000);
-    }
-
+    };
   }
 
   render() {
@@ -240,25 +274,25 @@ const StyledColorName = styled.div`
   padding: 1em;
 `;
 
-const StyledColorDot = styled(Clipboard).attrs(
-  { component: 'div' }
-) `
+const StyledColorDot = styled(Clipboard).attrs({ component: "div" })`
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: flex-end;
   box-sizing: border-box;
-  width: ${props => props.width ? props.width : '40px'};
-  height: ${props => props.height ? props.height : '40px'};
+  width: ${props => (props.width ? props.width : "40px")};
+  height: ${props => (props.height ? props.height : "40px")};
   background-color: ${BACKGROUND};
   color: ${COLOR};
   padding: 1em;
 
   cursor: pointer;
-  ${props => props.rounded && css`
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
-  `}
+  ${props =>
+    props.rounded &&
+    css`
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+    `}
   &::after {
     content: attr(data-copy-succeeded-message);
     display: flex;
@@ -279,14 +313,16 @@ const StyledColorDot = styled(Clipboard).attrs(
     transition: .3s cubic-bezier(0.42, 0, 0.48, 2);
     transition-property: opacity, transform, border-radius;
   }
-  ${props => props.copySucceeded && css`
-    &::after {
-      border-radius: 0;
-      transform: scale(1);
-      opacity: 1;
-      visibility: visible;
-    }
-  `}
+  ${props =>
+    props.copySucceeded &&
+    css`
+      &::after {
+        border-radius: 0;
+        transform: scale(1);
+        opacity: 1;
+        visibility: visible;
+      }
+    `}
 `;
 
 const StyledColorValue = styled.div`

@@ -2,20 +2,20 @@ const nameSpace = new WeakMap();
 
 class TaskConsole {
   constructor(application, options) {
-    const {tasks} = options;
-    nameSpace.set(this, {application, options, tasks});
+    const { tasks } = options;
+    nameSpace.set(this, { application, options, tasks });
   }
 
   async run(taskName, options) {
-    const {application, tasks} = nameSpace.get(this);
+    const { application, tasks } = nameSpace.get(this);
 
-    if (typeof taskName !== 'string') {
-      throw new TypeError('Missing taskName parameter.');
+    if (typeof taskName !== "string") {
+      throw new TypeError("Missing taskName parameter.");
     }
 
     if (!tasks[taskName]) {
-      const taskNames = Object.keys(tasks).join(', ');
-      const taskTerm = taskNames.length > 1 ? 'task' : 'tasks';
+      const taskNames = Object.keys(tasks).join(", ");
+      const taskTerm = taskNames.length > 1 ? "task" : "tasks";
       const message = taskNames.length
         ? `Task "${taskName}" is not available. Available ${taskTerm}: ${taskNames}`
         : `No tasks available`;
@@ -23,7 +23,7 @@ class TaskConsole {
       throw new Error(message);
     }
 
-    if (tasks[taskName] && typeof tasks[taskName].index !== 'function') {
+    if (tasks[taskName] && typeof tasks[taskName].index !== "function") {
       throw new Error(`Task "${taskName}" is available but invalid.`);
     }
 

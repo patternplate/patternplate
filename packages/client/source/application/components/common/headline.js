@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import classnames from 'classnames';
+import React, { Component } from "react";
+import classnames from "classnames";
 
 class Headline extends Component {
-  displayName = 'Headline';
+  displayName = "Headline";
 
   static defaultProps = {
-    children: 'Headline',
+    children: "Headline",
     order: 1
   };
 
   render() {
     const TagName = `h${this.props.order}`;
     const className = classnames(
-      'h',
+      "h",
       `h${this.props.display || this.props.order}`,
       this.props.className
     );

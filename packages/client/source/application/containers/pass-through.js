@@ -1,6 +1,6 @@
-import {entries} from 'lodash';
-import React from 'react';
-import {connect} from 'react-redux';
+import { entries } from "lodash";
+import React from "react";
+import { connect } from "react-redux";
 
 export default connect(mapProps)(PassThrough);
 
@@ -15,8 +15,8 @@ function PassThrough(props) {
 }
 
 function mapProps(state, own) {
-  const {query} = state.routing.locationBeforeTransitions;
-  const q = {...query, ...(own.query || {})};
+  const { query } = state.routing.locationBeforeTransitions;
+  const q = { ...query, ...(own.query || {}) };
   const items = entries(q).filter(([, value]) => value !== null);
-  return {items};
+  return { items };
 }

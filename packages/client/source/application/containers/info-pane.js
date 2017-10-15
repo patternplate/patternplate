@@ -1,10 +1,10 @@
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {InfoPane} from '@patternplate/components';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { InfoPane } from "@patternplate/components";
 
-import * as actions from '../actions';
-import * as item from '../selectors/item';
-import withToggleStates from '../connectors/with-toggle-states';
+import * as actions from "../actions";
+import * as item from "../selectors/item";
+import withToggleStates from "../connectors/with-toggle-states";
 
 function mapProps(state) {
   return {
@@ -31,7 +31,7 @@ export function mapDispatch(dispatch) {
   return bindActionCreators(
     {
       onEnvChange: e => actions.changeEnvironment(e.target.value),
-      onMountChange: e => actions.toggleMount({forced: e.target.checked})
+      onMountChange: e => actions.toggleMount({ forced: e.target.checked })
     },
     dispatch
   );

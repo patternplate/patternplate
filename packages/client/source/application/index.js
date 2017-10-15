@@ -1,3 +1,3 @@
-import server from 'boilerplate-server';
+import server from "boilerplate-server";
 
 export default server;

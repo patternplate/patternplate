@@ -1,5 +1,5 @@
 export default {
-  path: ['application/hooks'],
+  path: ["application/hooks"],
   enabled: {
     patterns: true
   }

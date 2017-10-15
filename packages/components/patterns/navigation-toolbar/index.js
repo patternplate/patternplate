@@ -1,5 +1,5 @@
-const React = require('react');
-const styled = require('styled-components').default;
+const React = require("react");
+const styled = require("styled-components").default;
 
 module.exports = NavigationToolbar;
 
@@ -18,5 +18,5 @@ const StyledNavigationToolbar = styled.div`
   height: 40px;
   padding: 10px 15px;
   background-color: ${props => props.theme.backgroundSecondary};
-  box-sizing: 'border-box';
+  box-sizing: "border-box";
 `;

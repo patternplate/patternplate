@@ -1,7 +1,7 @@
-import {dirname} from 'path';
+import { dirname } from "path";
 
-import copyFile from './copy-file';
-import makeDirectory from './make-directory';
+import copyFile from "./copy-file";
+import makeDirectory from "./make-directory";
 
 export default async function copySafe(source, target) {
   await makeDirectory(dirname(target));

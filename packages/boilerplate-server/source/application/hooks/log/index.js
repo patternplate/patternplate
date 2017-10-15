@@ -1,7 +1,7 @@
-import startLogger from './logger';
+import startLogger from "./logger";
 
 export default {
-  after: ['hooks:user-hooks:start:after'],
+  after: ["hooks:user-hooks:start:after"],
 
   configure(application) {
     this.configuration = {
@@ -15,12 +15,12 @@ export default {
   },
 
   start(application) {
-    const logger = startLogger('', this.configuration);
+    const logger = startLogger("", this.configuration);
 
-    application.log.silly('Draining boot logger queue...');
+    application.log.silly("Draining boot logger queue...");
     application.log.drain(logger);
 
-    logger.silly('Deploying application logger...');
+    logger.silly("Deploying application logger...");
     application.log.deploy(logger);
 
     return this;

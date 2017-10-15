@@ -1,7 +1,7 @@
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import Markdown from '../components/common/markdown';
-import {scrollTo} from '../actions';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import Markdown from "../components/common/markdown";
+import { scrollTo } from "../actions";
 
 function mapProps(state) {
   const location = state.routing.locationBeforeTransitions;
@@ -14,7 +14,7 @@ function mapProps(state) {
 }
 
 export function mapDispatch(dispatch) {
-  return bindActionCreators({scrollTo}, dispatch);
+  return bindActionCreators({ scrollTo }, dispatch);
 }
 
 export default connect(mapProps, mapDispatch)(Markdown);

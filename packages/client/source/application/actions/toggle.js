@@ -1,13 +1,13 @@
-import {camelCase, snakeCase} from 'lodash';
-import {patchLocation} from './';
+import { camelCase, snakeCase } from "lodash";
+import { patchLocation } from "./";
 
 export function toggle(key) {
   const property = camelCase(key);
 
   const fn = (payload = {}) => {
     return (dispatch, getState) => {
-      const next = 'forced' in payload ? payload.forced : !getState()[property];
-      dispatch(patchLocation({query: {[key]: next}}));
+      const next = "forced" in payload ? payload.forced : !getState()[property];
+      dispatch(patchLocation({ query: { [key]: next } }));
     };
   };
 

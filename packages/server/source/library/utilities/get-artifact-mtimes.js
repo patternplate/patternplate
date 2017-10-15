@@ -1,16 +1,16 @@
-import {extname, dirname, relative, resolve, sep} from 'path';
-import {stat} from 'sander';
-import throat from 'throat';
-import {debuglog} from 'util';
+import { extname, dirname, relative, resolve, sep } from "path";
+import { stat } from "sander";
+import throat from "throat";
+import { debuglog } from "util";
 
-import readTree from '../filesystem/read-tree';
+import readTree from "../filesystem/read-tree";
 
 export default async function getArtifactMtimes(search, patterns, transforms) {
   const outFormats = Object.values(transforms)
     .map(t => t.outFormat)
     .reduce((o, t) => [...o, t], []);
 
-  const debug = debuglog('artifact-mtimes');
+  const debug = debuglog("artifact-mtimes");
   const distributionDirectory = resolve(process.cwd(), search);
 
   const types = Object.keys(patterns.formats).map(extension =>
@@ -35,11 +35,11 @@ export default async function getArtifactMtimes(search, patterns, transforms) {
     artifactPaths.map(
       throat(1, async path => {
         const relativeArtifactPath = relative(distributionDirectory, path);
-        const artifactId = dirname(relativeArtifactPath.split(sep).join('/'));
+        const artifactId = dirname(relativeArtifactPath.split(sep).join("/"));
         const patternId = artifactId
-          .split('/')
+          .split("/")
           .slice(1)
-          .join('/');
+          .join("/");
         const stats = await stat(path);
 
         return {
@@ -64,7 +64,7 @@ export default async function getArtifactMtimes(search, patterns, transforms) {
     item.artifacts.push(artifact.id);
     item.files.push(artifact.path);
     item.mtimes.push(artifact.mtime);
-    item.types.push(artifact.id.split('/')[0]);
+    item.types.push(artifact.id.split("/")[0]);
     registry[artifact.patternId] = item;
     return registry;
   }, {});
@@ -80,7 +80,7 @@ export default async function getArtifactMtimes(search, patterns, transforms) {
       .sort((a, b) => a.stamp - b.stamp);
 
     item.mtime = times[0].date;
-    debug('mtime for artifact %s is %s', item.id, item.mtime);
+    debug("mtime for artifact %s is %s", item.id, item.mtime);
     return item;
   });
 }

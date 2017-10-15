@@ -1,4 +1,4 @@
-import getComponents from './get-components';
+import getComponents from "./get-components";
 
 export default getMountIds;
 

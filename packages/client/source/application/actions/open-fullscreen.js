@@ -1,24 +1,24 @@
-import urlQuery from '../utils/url-query';
+import urlQuery from "../utils/url-query";
 
 export default openFullscreen;
-export const type = 'OPEN_FULLSCREEN';
+export const type = "OPEN_FULLSCREEN";
 
 function openFullscreen() {
   return (dispatch, getState) => {
-    const {base, id, environment} = getState();
-    if (id === '..' || !global.open) {
+    const { base, id, environment } = getState();
+    if (id === ".." || !global.open) {
       return;
     }
 
     const href = urlQuery.format({
       pathname: `${base}demo/${id}/index.html`,
-      query: {environment}
+      query: { environment }
     });
 
-    global.open(href, '_blank');
+    global.open(href, "_blank");
   };
 }
 
-openFullscreen.key = '';
-openFullscreen.property = '';
+openFullscreen.key = "";
+openFullscreen.property = "";
 openFullscreen.type = type;

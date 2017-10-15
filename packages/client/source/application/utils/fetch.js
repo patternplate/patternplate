@@ -1,11 +1,11 @@
-import 'isomorphic-fetch';
-import {merge} from 'lodash';
+import "isomorphic-fetch";
+import { merge } from "lodash";
 
 export default fetch;
 
 const defaultHeaders = {
-  headers: {accept: 'application/json'},
-  credentials: 'include'
+  headers: { accept: "application/json" },
+  credentials: "include"
 };
 
 function fetch(uri, userHeaders) {

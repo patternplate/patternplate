@@ -1,25 +1,24 @@
-import path from 'path';
-import {PassThrough} from 'stream';
-import {isEqual, values} from 'lodash';
-import getSchema from '../../library/get-schema';
-import {getPatternTree} from '../../library/utilities/get-pattern-tree';
+import path from "path";
+import { PassThrough } from "stream";
+import { isEqual, values } from "lodash";
+import getSchema from "../../library/get-schema";
+import { getPatternTree } from "../../library/utilities/get-pattern-tree";
 
 export default function indexRouteFactory(application) {
   return async function indexRoute() {
-    switch (this.accepts('json', 'text/event-stream')) {
-      case 'text/event-stream': {
+    switch (this.accepts("json", "text/event-stream")) {
+      case "text/event-stream": {
         this.body = await watch(this, application);
         return;
       }
-      case 'json':
+      case "json":
       default:
-        this.type = 'json';
+        this.type = "json";
         this.body = await getSchema(
           application.parent,
           application.client,
           application
         );
-        
     }
   };
 }
@@ -29,7 +28,7 @@ async function watch(context, application) {
   const send = (type, data) => stream.write(sse(type, data));
 
   const heartbeat = setInterval(() => {
-    send('heartbeat', Date.now());
+    send("heartbeat", Date.now());
   }, 1000);
 
   const end = () => {
@@ -37,22 +36,22 @@ async function watch(context, application) {
     context.res.end();
   };
 
-  context.type = 'text/event-stream';
-  context.req.on('close', end);
-  context.req.on('finish', end);
-  context.req.on('error', error => {
+  context.type = "text/event-stream";
+  context.req.on("close", end);
+  context.req.on("finish", end);
+  context.req.on("error", error => {
     console.error(error);
     end();
   });
 
   if (application.watcher) {
-    let previous = await getPatternTree('./patterns');
+    let previous = await getPatternTree("./patterns");
 
-    application.watcher.on('all', async (type, file) => {
-      send('change', {type, file});
-      const patterns = await getPatternTree('./patterns');
+    application.watcher.on("all", async (type, file) => {
+      send("change", { type, file });
+      const patterns = await getPatternTree("./patterns");
       (await affected(file, patterns, previous)).forEach(pattern =>
-        send('reload', {pattern})
+        send("reload", { pattern })
       );
       previous = patterns;
     });
@@ -69,7 +68,7 @@ function affected(file, patterns, previous) {
   const b = strip(file);
   const basename = path.basename(file);
 
-  if (!['demo', 'index'].includes(b) && basename !== 'pattern.json') {
+  if (!["demo", "index"].includes(b) && basename !== "pattern.json") {
     return [];
   }
 
@@ -77,7 +76,7 @@ function affected(file, patterns, previous) {
     file
       .split(path.sep)
       .slice(1)
-      .join('/')
+      .join("/")
   );
 
   const match = find(patterns, guess);
@@ -88,19 +87,19 @@ function affected(file, patterns, previous) {
   }
 
   if (
-    basename === 'pattern.json' &&
+    basename === "pattern.json" &&
     isEqual(prev.manifest.patterns, match.manifest.patterns)
   ) {
     return [];
   }
 
-  if (b === 'demo') {
+  if (b === "demo") {
     return [match.id];
   }
 
   const dependents = [
-    ...deps(match, patterns, 'dependents'),
-    ...deps(match, patterns, 'demoDependents')
+    ...deps(match, patterns, "dependents"),
+    ...deps(match, patterns, "demoDependents")
   ];
 
   return [match.id, ...dependents];
@@ -118,7 +117,7 @@ function find(tree, id, depth = 1) {
     return;
   }
 
-  const frags = id.split('/').filter(Boolean);
+  const frags = id.split("/").filter(Boolean);
   const sub = frags.slice(0, depth).map(strip);
   const match = tree.children.find(child =>
     child.path.every((s, i) => sub[i] === strip(s))

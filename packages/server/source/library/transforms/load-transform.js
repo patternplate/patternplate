@@ -1,4 +1,4 @@
-import resolvePackage from './resolve-package';
+import resolvePackage from "./resolve-package";
 
 export default loadTransform;
 

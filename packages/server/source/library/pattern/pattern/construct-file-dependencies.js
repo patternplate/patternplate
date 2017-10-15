@@ -12,7 +12,7 @@ function matchFileName(fileNames, search) {
 function constructFileDependencies(dependencies, search) {
   return Object.entries(dependencies).reduce((results, entry) => {
     const [dependencyName, dependencyPattern] = entry;
-    const {files} = dependencyPattern;
+    const { files } = dependencyPattern;
 
     if (!files) {
       return results;

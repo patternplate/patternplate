@@ -1,9 +1,9 @@
-import {createSelector} from 'reselect';
-import selectPool from './pool';
-import createRelationSelector from './relation';
+import { createSelector } from "reselect";
+import selectPool from "./pool";
+import createRelationSelector from "./relation";
 
 const REGISTRY = {
-  '/': 'doc/root'
+  "/": "doc/root"
 };
 
 const selectItem = createSelector(
@@ -27,25 +27,25 @@ const selectFilter = createSelector(state => state.hide, hide => filter(hide));
 
 const relation = key => createRelationSelector(key, selectItem, selectFilter);
 
-export const selectDemoDependencies = relation('demoDependencies');
-export const selectDemoDependents = relation('demoDependents');
-export const selectDependencies = relation('dependencies');
-export const selectDependents = relation('dependents');
+export const selectDemoDependencies = relation("demoDependencies");
+export const selectDemoDependents = relation("demoDependents");
+export const selectDependencies = relation("dependencies");
+export const selectDependents = relation("dependents");
 
 export const selectManifest = createSelector(
   selectItem,
-  item => (item ? JSON.stringify(item.manifest, null, '  ') : '')
+  item => (item ? JSON.stringify(item.manifest, null, "  ") : "")
 );
 
 export const selectType = createSelector(
   selectItem,
-  item => (item ? item.type : '')
+  item => (item ? item.type : "")
 );
 
 export const selectActive = createSelector(
   selectItem,
   state => state.searchEnabled,
-  (item, search) => !search && item !== null && typeof item !== 'undefined'
+  (item, search) => !search && item !== null && typeof item !== "undefined"
 );
 
 const selectOptions = createSelector(
@@ -55,7 +55,7 @@ const selectOptions = createSelector(
 
 const selectReactToMarkup = createSelector(
   selectOptions,
-  options => options['react-to-markup'] || {}
+  options => options["react-to-markup"] || {}
 );
 
 const selectReactToMarkupOpts = createSelector(
@@ -72,18 +72,18 @@ export const selectAutomount = createSelector(
       return enabled;
     }
 
-    return 'automount' in opts ? opts.automount : globalConfig;
+    return "automount" in opts ? opts.automount : globalConfig;
   }
 );
 
 export const selectIcon = createSelector(
   selectItem,
-  item => (item ? item.manifest.icon || item.type : '')
+  item => (item ? item.manifest.icon || item.type : "")
 );
 
 export const selectName = createSelector(
   selectItem,
-  item => (item ? item.manifest.displayName : '')
+  item => (item ? item.manifest.displayName : "")
 );
 
 export const selectTags = createSelector(
@@ -93,17 +93,17 @@ export const selectTags = createSelector(
 
 export const selectVersion = createSelector(
   selectItem,
-  item => (item ? item.manifest.version : '')
+  item => (item ? item.manifest.version : "")
 );
 
 export const selectFlag = createSelector(
   selectItem,
-  item => (item ? item.manifest.flag : '')
+  item => (item ? item.manifest.flag : "")
 );
 
 export const selectId = createSelector(
   selectItem,
-  item => (item ? item.id : '')
+  item => (item ? item.id : "")
 );
 
 export const selectEnv = createSelector(
@@ -140,5 +140,5 @@ export const selectContents = createSelector(selectItem, item => {
   if (!item) {
     return null;
   }
-  return typeof item.contents === 'string' ? item.contents : null;
+  return typeof item.contents === "string" ? item.contents : null;
 });

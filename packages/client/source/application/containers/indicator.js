@@ -1,7 +1,7 @@
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import * as actions from '../actions';
-import Indicator from '../components/indicator';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actions from "../actions";
+import Indicator from "../components/indicator";
 
 export default connect(mapProps, mapDispatch)(Indicator);
 
@@ -23,7 +23,7 @@ function mapDispatch(dispatch) {
 
 function selectStatus(state) {
   if (state.demo.error) {
-    return 'error';
+    return "error";
   }
   return state.connection;
 }

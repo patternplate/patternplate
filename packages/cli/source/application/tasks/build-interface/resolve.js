@@ -1,4 +1,4 @@
-import {sync} from 'resolve';
+import { sync } from "resolve";
 
 export default resolve;
 

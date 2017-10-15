@@ -1,5 +1,5 @@
 export default scrollDemo;
-export const type = 'SCROLL_DEMO';
+export const type = "SCROLL_DEMO";
 
 let loop;
 let frame;
@@ -12,13 +12,13 @@ function scrollDemo(payload) {
 
         if (state.scrollDemoX.x !== frame.x) {
           dispatch({
-            type: 'SCROLL_DEMO_X',
+            type: "SCROLL_DEMO_X",
             payload: frame.x
           });
         }
         if (state.scrollDemoY.y !== frame.y) {
           dispatch({
-            type: 'SCROLL_DEMO_Y',
+            type: "SCROLL_DEMO_Y",
             payload: frame.y
           });
         }

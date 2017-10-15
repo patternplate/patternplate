@@ -1,6 +1,6 @@
-import {debounce} from 'lodash';
-import React, {Component} from 'react';
-import {styled, Icon} from '@patternplate/components';
+import { debounce } from "lodash";
+import React, { Component } from "react";
+import { styled, Icon } from "@patternplate/components";
 
 const StyledSearchField = styled.label`
   display: flex;
@@ -65,7 +65,7 @@ export default class SearchField extends Component {
     super(...args);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleStop = debounce(this.props.onStop, 300, {trailing: true});
+    this.handleStop = debounce(this.props.onStop, 300, { trailing: true });
     this.timer = null;
   }
 
@@ -76,7 +76,7 @@ export default class SearchField extends Component {
   }
 
   handleKeyDown(e) {
-    const {target} = e;
+    const { target } = e;
     const hasValue = target.value.length > 0;
     const atEnd = hasValue && target.selectionStart === target.value.length;
 
@@ -107,7 +107,7 @@ export default class SearchField extends Component {
       <StyledSearchField>
         <StyledIcon symbol="search" />
         <StyledInputContainer>
-          <StyledInputSuggestion value={props.suggestion || ''} />
+          <StyledInputSuggestion value={props.suggestion || ""} />
           <StyledInput
             autoFocus={props.autoFocus}
             name={props.name}

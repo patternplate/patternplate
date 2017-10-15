@@ -1,5 +1,5 @@
-import getNavigationUrls from './get-navigation-urls';
-import serverRequire from './server-require';
+import getNavigationUrls from "./get-navigation-urls";
+import serverRequire from "./server-require";
 // Const getNavigation = serverRequire('get-navigation');
 export default getPatternIds;
 

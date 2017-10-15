@@ -1,39 +1,39 @@
-import assert from 'assert';
-import {debuglog} from 'util';
-import denodeify from 'denodeify';
+import assert from "assert";
+import { debuglog } from "util";
+import denodeify from "denodeify";
 
-import {resolve, join, dirname, extname, relative} from 'path';
+import { resolve, join, dirname, extname, relative } from "path";
 
-import {readFile as readFileNodeback} from 'fs';
+import { readFile as readFileNodeback } from "fs";
 
-import boxen from 'boxen';
-import {find, flatten, isEqual, omit, uniq} from 'lodash';
-import {padEnd} from 'lodash/fp';
+import boxen from "boxen";
+import { find, flatten, isEqual, omit, uniq } from "lodash";
+import { padEnd } from "lodash/fp";
 
-import throat from 'throat';
-import chalk from 'chalk';
-import exists from 'path-exists';
-import coreModuleNames from 'node-core-module-names';
-import {resolvePathFormatString} from 'patternplate-transforms-core';
-import ora from 'ora';
+import throat from "throat";
+import chalk from "chalk";
+import exists from "path-exists";
+import coreModuleNames from "node-core-module-names";
+import { resolvePathFormatString } from "patternplate-transforms-core";
+import ora from "ora";
 
-import {ok, wait, ready} from '../../../library/log/decorations';
-import {loadTransforms} from '../../../library/transforms';
-import {normalizeFormats} from '../../../library/pattern';
-import copyStatic from '../common/copy-static';
+import { ok, wait, ready } from "../../../library/log/decorations";
+import { loadTransforms } from "../../../library/transforms";
+import { normalizeFormats } from "../../../library/pattern";
+import copyStatic from "../common/copy-static";
 
-import getArtifactMtimes from '../../../library/utilities/get-artifact-mtimes';
-import getArtifactsToPrune from '../../../library/utilities/get-artifacts-to-prune';
-import getPackageString from './get-package-string';
-import getPatternMtimes from '../../../library/utilities/get-pattern-mtimes';
-import getPatterns from '../../../library/utilities/get-patterns';
-import getPatternsToBuild from '../../../library/utilities/get-patterns-to-build';
-import removeFile from '../../../library/filesystem/remove-file';
-import writeSafe from '../../../library/filesystem/write-safe';
+import getArtifactMtimes from "../../../library/utilities/get-artifact-mtimes";
+import getArtifactsToPrune from "../../../library/utilities/get-artifacts-to-prune";
+import getPackageString from "./get-package-string";
+import getPatternMtimes from "../../../library/utilities/get-pattern-mtimes";
+import getPatterns from "../../../library/utilities/get-patterns";
+import getPatternsToBuild from "../../../library/utilities/get-patterns-to-build";
+import removeFile from "../../../library/filesystem/remove-file";
+import writeSafe from "../../../library/filesystem/write-safe";
 
-const pkg = require(resolve(process.cwd(), 'package.json'));
+const pkg = require(resolve(process.cwd(), "package.json"));
 const readFile = denodeify(readFileNodeback);
-const pathFormatString = '%(outputName)s/%(patternId)s/index.%(extension)s';
+const pathFormatString = "%(outputName)s/%(patternId)s/index.%(extension)s";
 
 const where = `Configure it at configuration/patternplate-server/tasks.js.`;
 
@@ -47,37 +47,37 @@ const fallbackManifest = {
 
 async function exportAsCommonjs(application, settings) {
   assert(
-    typeof settings.patterns === 'object',
+    typeof settings.patterns === "object",
     `build-commonjs needs a valid patterns configuration. ${where} build-commonjs.patterns`
   );
   assert(
-    typeof settings.patterns.formats === 'object',
+    typeof settings.patterns.formats === "object",
     `build-commonjs needs a valid patterns.formats configuration. ${where} build-commonjs.patterns.formats`
   );
   assert(
-    typeof settings.transforms === 'object',
+    typeof settings.transforms === "object",
     `build-commonjs needs a valid transforms configuration. ${where} build-commonjs.transforms`
   );
 
   let spinner = ora().start();
-  const debug = debuglog('commonjs');
-  debug('calling commonjs with');
+  const debug = debuglog("commonjs");
+  debug("calling commonjs with");
   debug(settings);
 
   const cwd = application.runtime.patterncwd || application.runtime.cwd;
 
-  const patternRoot = resolve(cwd, 'patterns');
+  const patternRoot = resolve(cwd, "patterns");
   const commonjsRoot = resolve(
     cwd,
-    settings.out || join('build', 'build-commonjs')
+    settings.out || join("build", "build-commonjs")
   );
-  const manifestPath = resolve(commonjsRoot, 'package.json');
-  const filters = {...(settings.filters || {}), baseNames: ['index']};
+  const manifestPath = resolve(commonjsRoot, "package.json");
+  const filters = { ...(settings.filters || {}), baseNames: ["index"] };
 
   const warnings = [];
   const warn = application.log.warn;
   application.log.warn = (...args) => {
-    if (args.some(arg => arg.includes('Deprecation'))) {
+    if (args.some(arg => arg.includes("Deprecation"))) {
       warnings.push(args);
       return;
     }
@@ -98,7 +98,7 @@ async function exportAsCommonjs(application, settings) {
   const mtimesStart = new Date();
   application.log.debug(wait`Obtaining pattern modification times`);
 
-  const readingPatternMtimes = getPatternMtimes('./patterns', {
+  const readingPatternMtimes = getPatternMtimes("./patterns", {
     resolveDependencies: false,
     filters
   });
@@ -122,10 +122,10 @@ async function exportAsCommonjs(application, settings) {
   );
 
   // Check if package.json is in distribution
-  const hasManifest = await exists(resolve(commonjsRoot, 'package.json'));
+  const hasManifest = await exists(resolve(commonjsRoot, "package.json"));
 
   const previousPkgString = hasManifest
-    ? (await readFile(manifestPath)).toString('utf-8')
+    ? (await readFile(manifestPath)).toString("utf-8")
     : null;
 
   const pkgConfig = settings.pkg || {};
@@ -195,7 +195,7 @@ async function exportAsCommonjs(application, settings) {
   const pruning = Promise.all(
     artifactsToPrune.map(
       throat(1, async path => {
-        if (settings['dry-run']) {
+        if (settings["dry-run"]) {
           return Promise.resolve();
         }
         spinner.text = `prune ${padMaxPrune(
@@ -230,19 +230,19 @@ async function exportAsCommonjs(application, settings) {
         let changedFiles = [];
 
         // Enhance filters config to build only files that are modified
-        const artifact = find(artifactMtimes, {id: pattern.id});
+        const artifact = find(artifactMtimes, { id: pattern.id });
 
         if (artifact) {
           // Build up mtime registry for pattern files
           const filesMtimes = pattern.files.reduce((results, file, index) => {
-            return {...results, [file]: pattern.mtimes[index]};
+            return { ...results, [file]: pattern.mtimes[index] };
           }, {});
 
           // Build up registry for artifact files
           const artifactFilesMtimes = artifact.files.reduce(
             (results, file, index) => {
               const path = relative(commonjsRoot, file);
-              return {...results, [path]: artifact.mtimes[index]};
+              return { ...results, [path]: artifact.mtimes[index] };
             },
             {}
           );
@@ -276,7 +276,7 @@ async function exportAsCommonjs(application, settings) {
               const fileMtime = filesMtimes[file];
               const dirMtime = filesMtimes[dirname(file)];
               const metaMtime =
-                filesMtimes[join(dirname(file), 'pattern.json')];
+                filesMtimes[join(dirname(file), "pattern.json")];
 
               return (
                 fileMtime > targetFileMtime ||
@@ -289,7 +289,7 @@ async function exportAsCommonjs(application, settings) {
 
         if (artifact) {
           filters.in3 = changedFiles.map(file => extname(file).slice(1));
-          const formats = chalk.grey(`[${filters.inFormats.join(', ')}]`);
+          const formats = chalk.grey(`[${filters.inFormats.join(", ")}]`);
           application.log.debug(
             ok`Building ${filters.inFormats
               .length} files for ${pattern.id} ${formats} ${filterStart}`
@@ -300,7 +300,7 @@ async function exportAsCommonjs(application, settings) {
           );
         }
 
-        if (settings['dry-run']) {
+        if (settings["dry-run"]) {
           return Promise.resolve({});
         }
 
@@ -371,7 +371,7 @@ async function exportAsCommonjs(application, settings) {
   spinner.text = `${built.length}/${patternsToBuild.length} built`;
   spinner.succeed();
 
-  if (settings['dry-run']) {
+  if (settings["dry-run"]) {
     await building;
     spinner.text = `Dry-run executed successfully ${buildStart}`;
     spinner.succeed();
@@ -409,7 +409,7 @@ async function exportAsCommonjs(application, settings) {
   // Extract dependency information
   const dependencyLists = flatten(built).reduce(
     (registry, patternItem) => {
-      const {meta: {dependencies, devDependencies}} = patternItem;
+      const { meta: { dependencies, devDependencies } } = patternItem;
       return {
         dependencies: [...registry.dependencies, ...(dependencies || [])],
         devDependencies: [
@@ -431,7 +431,7 @@ async function exportAsCommonjs(application, settings) {
     (results, dependencyName) => {
       return {
         ...results,
-        [dependencyName]: deps[dependencyName] || devDeps[dependencyName] || '*'
+        [dependencyName]: deps[dependencyName] || devDeps[dependencyName] || "*"
       };
     },
     previousPkg.dependencies
@@ -441,7 +441,7 @@ async function exportAsCommonjs(application, settings) {
     (results, dependencyName) => {
       return {
         ...results,
-        [dependencyName]: deps[dependencyName] || devDeps[dependencyName] || '*'
+        [dependencyName]: deps[dependencyName] || devDeps[dependencyName] || "*"
       };
     },
     previousPkg.devDependencies
@@ -466,7 +466,7 @@ async function exportAsCommonjs(application, settings) {
       ppDependencies: pkg.dependencies,
       ppDevdependencies: pkg.devDependencies
     },
-    omit(pkg, ['dependencies', 'devDependencies', 'scripts', 'config', 'main']),
+    omit(pkg, ["dependencies", "devDependencies", "scripts", "config", "main"]),
     settings.pkg
   );
 
@@ -478,10 +478,10 @@ async function exportAsCommonjs(application, settings) {
     application.log.debug(ready`Wrote package.json ${pkgStart}`);
   }
 
-  const messages = uniq(warnings).map(warning => warning.join(' '));
+  const messages = uniq(warnings).map(warning => warning.join(" "));
 
   messages.forEach(message => {
-    console.log(boxen(message, {borderColor: 'yellow', padding: 1}));
+    console.log(boxen(message, { borderColor: "yellow", padding: 1 }));
   });
 }
 

@@ -1,1 +1,1 @@
-export copyStatic from './copy-static';
+export copyStatic from "./copy-static";

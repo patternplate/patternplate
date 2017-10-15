@@ -1,21 +1,21 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const DemoThemer = require('../demo-themer');
-const Flag = require('Pattern');
+const React = require("react");
+const styled = require("styled-components").default;
+const DemoThemer = require("../demo-themer");
+const Flag = require("Pattern");
 
 module.exports = FlagDemo;
 
 function FlagDemo() {
   return (
-	<DemoThemer>
-		<FlagDemoContainer>
-			<Flag>alpha</Flag>
-			<Flag>beta</Flag>
-			<Flag>rc</Flag>
-			<Flag>stable</Flag>
-			<Flag>deprecated</Flag>
-		</FlagDemoContainer>
-	</DemoThemer>
+    <DemoThemer>
+      <FlagDemoContainer>
+        <Flag>alpha</Flag>
+        <Flag>beta</Flag>
+        <Flag>rc</Flag>
+        <Flag>stable</Flag>
+        <Flag>deprecated</Flag>
+      </FlagDemoContainer>
+    </DemoThemer>
   );
 }
 

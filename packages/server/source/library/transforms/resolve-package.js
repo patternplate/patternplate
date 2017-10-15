@@ -1,4 +1,4 @@
-import r from 'resolve';
+import r from "resolve";
 
 export default resolvePackage;
 function resolvePackage(name, opts = {}) {

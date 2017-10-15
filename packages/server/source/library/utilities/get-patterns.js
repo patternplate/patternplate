@@ -1,20 +1,20 @@
-import {basename, dirname, resolve, relative} from 'path';
+import { basename, dirname, resolve, relative } from "path";
 
-import {debuglog, inspect} from 'util';
+import { debuglog, inspect } from "util";
 
-import chalk from 'chalk';
-import exists from 'path-exists';
-import {merge, omit, pick} from 'lodash';
-import throat from 'throat';
+import chalk from "chalk";
+import exists from "path-exists";
+import { merge, omit, pick } from "lodash";
+import throat from "throat";
 
-import getEnvironments, {DEFAULT_ENVIRONMENT} from './get-environments';
-import getDependentPatterns from './get-dependent-patterns';
-import getStaticCacheItem from './get-static-cache-item.js';
-import getMatchingEnvironments from './get-matching-environments';
-import readTree from '../filesystem/read-tree';
+import getEnvironments, { DEFAULT_ENVIRONMENT } from "./get-environments";
+import getDependentPatterns from "./get-dependent-patterns";
+import getStaticCacheItem from "./get-static-cache-item.js";
+import getMatchingEnvironments from "./get-matching-environments";
+import readTree from "../filesystem/read-tree";
 
-const envDebug = debuglog('environments');
-const debug = debuglog('get-patterns');
+const envDebug = debuglog("environments");
+const debug = debuglog("get-patterns");
 
 const defaults = {
   isEnvironment: false,
@@ -22,8 +22,8 @@ const defaults = {
   log() {}
 };
 
-async function getPatterns(options, cache, cmds = ['read', 'transform']) {
-  const settings = {...defaults, ...options};
+async function getPatterns(options, cache, cmds = ["read", "transform"]) {
+  const settings = { ...defaults, ...options };
 
   const {
     id,
@@ -37,7 +37,7 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
   } = settings;
 
   const path = resolve(base, id);
-  const staticCacheRoot = resolve(process.cwd(), '.cache');
+  const staticCacheRoot = resolve(process.cwd(), ".cache");
   config.log = log;
 
   // No patterns to find here
@@ -46,16 +46,16 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
     return [];
   }
 
-  const search = (await exists(resolve(path, 'pattern.json')))
-    ? resolve(path, 'pattern.json')
+  const search = (await exists(resolve(path, "pattern.json")))
+    ? resolve(path, "pattern.json")
     : path;
 
   // Get all pattern ids
   const paths = await readTree(search, options.cache);
 
   const patternIDs = paths
-    .filter(item => basename(item) === 'pattern.json')
-    .filter(item => (isEnvironment ? true : !item.includes('@environments')))
+    .filter(item => basename(item) === "pattern.json")
+    .filter(item => (isEnvironment ? true : !item.includes("@environments")))
     .map(item => dirname(item))
     .map(item => relative(options.base, item));
 
@@ -84,13 +84,13 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
         });
 
         const free =
-          typeof filters.environments === 'undefined' ||
+          typeof filters.environments === "undefined" ||
           filters.environments.length === 0;
 
         // Get environments that match this pattern
         const matchingEnvironments = free
           ? getMatchingEnvironments(patternID, userEnvironments)
-          : userEnvironments.filter(({name}) =>
+          : userEnvironments.filter(({ name }) =>
               filters.environments.includes(name)
             );
 
@@ -100,7 +100,7 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
         if (environmentNames.length > 0) {
           log.debug(
             `Applying environments ${chalk.bold(
-              environmentNames.join(', ')
+              environmentNames.join(", ")
             )} to ${chalk.bold(patternID)}`
           );
         }
@@ -109,7 +109,7 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
         // fall back to default environment if none is matching
         const environmentsConfig = matchingEnvironments.reduce(
           (results, environmentConfig) => {
-            const {environment} = environmentConfig;
+            const { environment } = environmentConfig;
             const misplacedKeys = omit(environment, Object.keys(config));
             const misplacedKeyNames = Object.keys(misplacedKeys);
 
@@ -117,14 +117,14 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
               log.warn(
                 [
                   `${chalk.yellow(
-                    '[⚠ Deprecation ⚠ ]'
+                    "[⚠ Deprecation ⚠ ]"
                   )} Found unexpected keys ${misplacedKeyNames} in environment`,
                   `${environmentConfig.name}.environment. Placing keys other than ${Object.keys(
                     config
                   )} in`,
                   `${environmentConfig.name}.environment is deprecated, move the keys to`,
                   `${environmentConfig.name}.environment.transforms`
-                ].join(' ')
+                ].join(" ")
               );
             }
 
@@ -141,8 +141,8 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
           DEFAULT_ENVIRONMENT
         );
 
-        envDebug('applying env config to pattern %s', patternID);
-        envDebug('%s', inspect(environmentsConfig, {depth: null}));
+        envDebug("applying env config to pattern %s", patternID);
+        envDebug("%s", inspect(environmentsConfig, { depth: null }));
 
         // Merge the determined environments config onto the pattern config
         const patternConfiguration = merge({}, config, environmentsConfig, {
@@ -172,27 +172,28 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
 
         // Inject information about available environments
         const availableEnvironments = userEnvironments.map(env =>
-          pick(env, ['name', 'displayName'])
+          pick(env, ["name", "displayName"])
         );
 
         // Select environments that should be displayed
         const demoEnvironments = userEnvironments
           .filter(env => env.display)
-          .map(env => pick(env, ['name', 'displayName']));
+          .map(env => pick(env, ["name", "displayName"]));
 
         pattern.manifest.availableEnvironments = availableEnvironments.length
           ? availableEnvironments
-          : [pick(DEFAULT_ENVIRONMENT, ['name', 'displayName'])];
+          : [pick(DEFAULT_ENVIRONMENT, ["name", "displayName"])];
 
         pattern.manifest.demoEnvironments = demoEnvironments.length
           ? demoEnvironments
-          : [pick(DEFAULT_ENVIRONMENT, ['name', 'displayName'])];
+          : [pick(DEFAULT_ENVIRONMENT, ["name", "displayName"])];
 
         // Determine dependening patterns
-        const [
-          errors,
-          depending
-        ] = await getDependentPatterns(patternID, base, {cache});
+        const [errors, depending] = await getDependentPatterns(
+          patternID,
+          base,
+          { cache }
+        );
 
         if (errors) {
           // Throw new Error(errors.map(e => e.message).join('\n'));
@@ -201,7 +202,7 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
         pattern.manifest.dependentPatterns = depending;
 
         // Exit if we do not have to read
-        if (!cmds.includes('read')) {
+        if (!cmds.includes("read")) {
           // Inject depending pattern information
           return pattern;
         }
@@ -218,7 +219,7 @@ async function getPatterns(options, cache, cmds = ['read', 'transform']) {
         );
 
         // Exit if we do not have to transform
-        if (!cmds.includes('transform')) {
+        if (!cmds.includes("transform")) {
           return pattern;
         }
 

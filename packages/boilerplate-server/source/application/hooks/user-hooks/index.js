@@ -1,14 +1,14 @@
-import {resolve} from 'path';
+import { resolve } from "path";
 
-import {exists} from '../../../library/utilities/fs';
+import { exists } from "../../../library/utilities/fs";
 
-import getHookTree from '../../../library/hooks/get-hook-tree';
-import load from '../../../library/hooks/load';
-import runHookTree from '../../../library/hooks/run-hook-tree';
+import getHookTree from "../../../library/hooks/get-hook-tree";
+import load from "../../../library/hooks/load";
+import runHookTree from "../../../library/hooks/run-hook-tree";
 
 export default {
-  configurationKey: 'hooks',
-  after: ['hooks:configure:start:after'],
+  configurationKey: "hooks",
+  after: ["hooks:configure:start:after"],
   async start(application) {
     const coreHookPath = resolve(
       application.runtime.base,

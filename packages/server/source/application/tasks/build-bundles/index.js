@@ -1,39 +1,39 @@
-import assert from 'assert';
-import path from 'path';
-import {debuglog} from 'util';
+import assert from "assert";
+import path from "path";
+import { debuglog } from "util";
 
-import boxen from 'boxen';
-import {merge, uniq} from 'lodash';
-import {padEnd, padStart} from 'lodash/fp';
-import minimatch from 'minimatch';
-import ora from 'ora';
-import throat from 'throat';
+import boxen from "boxen";
+import { merge, uniq } from "lodash";
+import { padEnd, padStart } from "lodash/fp";
+import minimatch from "minimatch";
+import ora from "ora";
+import throat from "throat";
 
-import {loadTransforms} from '../../../library/transforms';
-import {normalizeFormats} from '../../../library/pattern';
-import copyStatic from '../common/copy-static';
-import getEnvironments from '../../../library/utilities/get-environments';
-import getPatternMtimes from '../../../library/utilities/get-pattern-mtimes';
-import getPatterns from '../../../library/utilities/get-patterns';
-import writeSafe from '../../../library/filesystem/write-safe';
+import { loadTransforms } from "../../../library/transforms";
+import { normalizeFormats } from "../../../library/pattern";
+import copyStatic from "../common/copy-static";
+import getEnvironments from "../../../library/utilities/get-environments";
+import getPatternMtimes from "../../../library/utilities/get-pattern-mtimes";
+import getPatterns from "../../../library/utilities/get-patterns";
+import writeSafe from "../../../library/filesystem/write-safe";
 
 const where = `Configure it at configuration/patternplate-server/tasks.js.`;
 
 export default async (application, settings) => {
   if (!settings) {
-    throw new Error('build-bundles is not configured in .tasks');
+    throw new Error("build-bundles is not configured in .tasks");
   }
 
   assert(
-    typeof settings.patterns === 'object',
+    typeof settings.patterns === "object",
     `build-commonjs needs a valid patterns configuration. ${where} build-bundles.patterns`
   );
   assert(
-    typeof settings.patterns.formats === 'object',
+    typeof settings.patterns.formats === "object",
     `build-commonjs needs a valid patterns.formats configuration. ${where} build-bundles.patterns.formats`
   );
   assert(
-    typeof settings.transforms === 'object',
+    typeof settings.transforms === "object",
     `build-commonjs needs a valid transforms configuration. ${where} build-bundles.transforms`
   );
 
@@ -41,17 +41,17 @@ export default async (application, settings) => {
     ? env => settings.env.includes(env.name)
     : () => true;
 
-  const debug = debuglog('bundles');
+  const debug = debuglog("bundles");
   const spinner = ora().start();
 
-  debug('calling bundles with');
+  debug("calling bundles with");
   debug(settings);
 
   const cwd = process.cwd();
-  const base = path.resolve(cwd, 'patterns');
-  const buildBase = path.resolve(cwd, 'build', `build-bundles`);
+  const base = path.resolve(cwd, "patterns");
+  const buildBase = path.resolve(cwd, "build", `build-bundles`);
 
-  const {cache, log, transforms, pattern: {factory}} = application;
+  const { cache, log, transforms, pattern: { factory } } = application;
 
   // Override pattern config
   settings.patterns.formats = normalizeFormats(settings.patterns.formats);
@@ -66,7 +66,7 @@ export default async (application, settings) => {
   const warnings = [];
   const warn = application.log.warn;
   application.log.warn = (...args) => {
-    if (args.some(arg => arg.includes('Deprecation'))) {
+    if (args.some(arg => arg.includes("Deprecation"))) {
       warnings.push(args);
       return;
     }
@@ -74,13 +74,13 @@ export default async (application, settings) => {
   };
 
   // Get environments
-  const loadedEnvironments = await getEnvironments(base, {cache, log});
+  const loadedEnvironments = await getEnvironments(base, { cache, log });
 
   // Environments have to apply on all patterns
   const environments = loadedEnvironments
     .filter(filterEnvironments)
     .map(environment => {
-      environment.applyTo = '**/*';
+      environment.applyTo = "**/*";
       return environment;
     });
 
@@ -106,9 +106,14 @@ export default async (application, settings) => {
   await Promise.all(
     envs.map(
       throat(1, async environment => {
-        const {environment: envConfig, include, exclude, formats} = environment;
+        const {
+          environment: envConfig,
+          include,
+          exclude,
+          formats
+        } = environment;
         const includePatterns = include || [];
-        const excludePatterns = exclude || ['@'];
+        const excludePatterns = exclude || ["@"];
         const envSpinner = ora().start();
         const envr = `${envMaxPad(environment.name)} [env: ${envCountPad(
           envCount
@@ -116,11 +121,11 @@ export default async (application, settings) => {
 
         // Get patterns matching the include config
         const includedPatterns = availablePatterns.filter(available => {
-          const {id} = available;
+          const { id } = available;
           return (
             includePatterns.some(pattern => minimatch(id, pattern)) &&
             !excludePatterns
-              .concat('@environments/**/*')
+              .concat("@environments/**/*")
               .some(pattern => minimatch(id, pattern))
           );
         });
@@ -156,7 +161,7 @@ export default async (application, settings) => {
         const readPatterns = await Promise.all(
           includedPatterns.map(
             throat(1, async pattern => {
-              const {id} = pattern;
+              const { id } = pattern;
               envSpinner.text = `${envr}: read [patterns: ${readPad(
                 read
               )}/${includedPatterns.length}] ${pattern.id}`;
@@ -173,7 +178,7 @@ export default async (application, settings) => {
                   environment
                 },
                 cache,
-                ['read']
+                ["read"]
               );
 
               read += 1;
@@ -195,7 +200,7 @@ export default async (application, settings) => {
         envSpinner.text = `${envr}: read ✔`;
 
         // Add the built patterns as dependencies
-        const env = {name: environment.name, version: environment.version};
+        const env = { name: environment.name, version: environment.version };
         envSpinner.text = `${envr}: read ✔ | transform`;
         bundlePattern.inject(env, readPatterns);
 
@@ -237,9 +242,9 @@ export default async (application, settings) => {
   copySpinner.succeed();
   copySpinner.stop();
 
-  const messages = uniq(warnings).map(warning => warning.join(' '));
+  const messages = uniq(warnings).map(warning => warning.join(" "));
 
   messages.forEach(message => {
-    console.log(boxen(message, {borderColor: 'yellow', padding: 1}));
+    console.log(boxen(message, { borderColor: "yellow", padding: 1 }));
   });
 };

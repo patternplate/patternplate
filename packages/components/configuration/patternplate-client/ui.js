@@ -1,3 +1,3 @@
 module.exports = {
-	title: '@patternplate/components'
+  title: "@patternplate/components"
 };

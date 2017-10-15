@@ -1,4 +1,4 @@
-import {readFile} from 'sander';
+import { readFile } from "sander";
 
 const defaults = {
   cache: null
@@ -20,7 +20,7 @@ function cacheIo(fn, cache) {
 }
 
 export default options => {
-  const settings = {...defaults, ...options};
+  const settings = { ...defaults, ...options };
   const cache = settings.cache;
 
   const cacheFn = cache ? fn => cacheIo(fn, cache) : fn => fn;

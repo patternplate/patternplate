@@ -1,14 +1,14 @@
-import {resolve} from 'path';
+import { resolve } from "path";
 
-import getHookTree from './get-hook-tree';
-import load from './load';
-import runHookTree from './run-hook-tree';
+import getHookTree from "./get-hook-tree";
+import load from "./load";
+import runHookTree from "./run-hook-tree";
 
 export default async function(application) {
   // Load the system hooks
   const hooks = await load(
     application,
-    resolve(application.runtime.base, 'application', 'hooks')
+    resolve(application.runtime.base, "application", "hooks")
   );
 
   // Allow access to all the hooks

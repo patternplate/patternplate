@@ -1,11 +1,11 @@
-import Fuse from 'fuse.js';
-import Immutable from 'seamless-immutable';
-import {flatten, uniq, uniqBy, sortBy} from 'lodash';
-import {createSelector} from 'reselect';
-import semver from 'semver';
-import selectPool from './pool';
-import {apply, parse, parseTerm} from './search';
-import createRelationSelector from './relation';
+import Fuse from "fuse.js";
+import Immutable from "seamless-immutable";
+import { flatten, uniq, uniqBy, sortBy } from "lodash";
+import { createSelector } from "reselect";
+import semver from "semver";
+import selectPool from "./pool";
+import { apply, parse, parseTerm } from "./search";
+import createRelationSelector from "./relation";
 
 const FLAGS = {
   alpha: 0,
@@ -17,103 +17,103 @@ const FLAGS = {
 
 const FIELDS = [
   {
-    type: 'field',
-    key: 'depends',
-    value: 'depends',
-    description: 'patterns depending on id',
-    operators: ['=', '!=', '^=', '~=']
+    type: "field",
+    key: "depends",
+    value: "depends",
+    description: "patterns depending on id",
+    operators: ["=", "!=", "^=", "~="]
   },
   {
-    type: 'field',
-    key: 'has',
-    value: 'has',
-    description: 'pattern featuring data of [value]',
-    operators: ['=', '!=']
+    type: "field",
+    key: "has",
+    value: "has",
+    description: "pattern featuring data of [value]",
+    operators: ["=", "!="]
   },
   {
-    type: 'field',
-    key: 'provides',
-    value: 'provides',
-    description: 'patterns providing for id',
-    operators: ['=', '!=', '^=', '~=']
+    type: "field",
+    key: "provides",
+    value: "provides",
+    description: "patterns providing for id",
+    operators: ["=", "!=", "^=", "~="]
   },
   {
-    type: 'field',
-    key: 'tags',
-    value: 'tags',
-    description: 'pattern manifest .tags',
-    operators: ['=', '!=', '^=', '~=']
+    type: "field",
+    key: "tags",
+    value: "tags",
+    description: "pattern manifest .tags",
+    operators: ["=", "!=", "^=", "~="]
   },
   {
-    type: 'field',
-    key: 'version',
-    value: 'version',
-    description: 'semantic version of pattern',
-    operators: ['=', '!=', '>', '>=', '<', '<=', '^=', '~=']
+    type: "field",
+    key: "version",
+    value: "version",
+    description: "semantic version of pattern",
+    operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
   },
   {
-    type: 'field',
-    key: 'flag',
-    value: 'flag',
-    description: 'stability flag of pattern',
-    operators: ['=', '!=', '>', '>=', '<', '<=', '^=', '~=']
+    type: "field",
+    key: "flag",
+    value: "flag",
+    description: "stability flag of pattern",
+    operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
   }
 ];
 
 const OPERATORS = [
   {
-    type: 'op',
-    key: '=',
-    description: 'exact match'
+    type: "op",
+    key: "=",
+    description: "exact match"
   },
   {
-    type: 'op',
-    key: '!=',
-    description: 'negated match'
+    type: "op",
+    key: "!=",
+    description: "negated match"
   },
   {
-    type: 'op',
-    key: '>',
-    description: 'greater than'
+    type: "op",
+    key: ">",
+    description: "greater than"
   },
   {
-    type: 'op',
-    key: '>=',
-    description: 'greater than or equal'
+    type: "op",
+    key: ">=",
+    description: "greater than or equal"
   },
   {
-    type: 'op',
-    key: '<',
-    description: 'lesser than'
+    type: "op",
+    key: "<",
+    description: "lesser than"
   },
   {
-    type: 'op',
-    key: '<=',
-    description: 'lesser than or equal'
+    type: "op",
+    key: "<=",
+    description: "lesser than or equal"
   },
   {
-    type: 'op',
-    key: '^=',
-    description: 'starts with'
+    type: "op",
+    key: "^=",
+    description: "starts with"
   },
   {
-    type: 'op',
-    key: '~=',
-    description: 'contains'
+    type: "op",
+    key: "~=",
+    description: "contains"
   }
 ];
 
 const selectFuse = createSelector(selectPool, pool => {
   return new Fuse(pool, {
-    id: 'id',
+    id: "id",
     keys: [
-      'id',
-      'contents',
-      'mainfest.displayName',
-      'manifest.name',
-      'manifest.version',
-      'manifest.tags',
-      'manifest.flag'
+      "id",
+      "contents",
+      "mainfest.displayName",
+      "manifest.name",
+      "manifest.version",
+      "manifest.tags",
+      "manifest.flag"
     ]
   });
 });
@@ -123,7 +123,7 @@ const selectMatches = createSelector(
   selectFuse,
   selectPool,
   (search, fuse, pool) => {
-    if (typeof search !== 'string' || search.length < 3) {
+    if (typeof search !== "string" || search.length < 3) {
       return [];
     }
 
@@ -144,15 +144,15 @@ const selectLastQuery = createSelector(selectParsedValue, parsed =>
 
 function last(query) {
   switch (query.type) {
-    case 'string':
+    case "string":
       return query.value;
-    case 'and':
-    case 'or':
+    case "and":
+    case "or":
     default: {
       const q = query || {};
       const values = q.values || [];
       const cand = values[values.length - 1];
-      return cand ? last(cand) : '';
+      return cand ? last(cand) : "";
     }
   }
 }
@@ -212,21 +212,21 @@ export const selectFound = createSelector(
   selectMatches,
   (pool, matches) => {
     const sorted = uniqBy(
-      sortBy(matches.map(match => pool.find(p => p.id === match)), 'type'),
-      'id'
+      sortBy(matches.map(match => pool.find(p => p.id === match)), "type"),
+      "id"
     );
     return sorted
-      .filter(s => s.type !== 'folder')
-      .map((s, i) => Immutable.set(s, 'index', i));
+      .filter(s => s.type !== "folder")
+      .map((s, i) => Immutable.set(s, "index", i));
   }
 );
 
 export const selectPatterns = createSelector(selectFound, found =>
-  found.filter(f => f.type === 'pattern')
+  found.filter(f => f.type === "pattern")
 );
 
 const selectPatternPool = createSelector(selectPool, pool =>
-  pool.filter(f => f.type === 'pattern')
+  pool.filter(f => f.type === "pattern")
 );
 
 const selectOptions = createSelector(
@@ -240,61 +240,61 @@ const selectOptions = createSelector(
     }
 
     switch (field.key) {
-      case 'has':
+      case "has":
         return [
           {
-            type: 'quality',
-            key: 'docs',
-            value: [field.key, op.key, 'docs'].join(''),
-            description: 'patterns with documentation'
+            type: "quality",
+            key: "docs",
+            value: [field.key, op.key, "docs"].join(""),
+            description: "patterns with documentation"
           },
           {
-            type: 'quality',
-            key: 'dependencies',
-            value: [field.key, op.key, 'dependencies'].join(''),
-            description: 'patterns with dependencies'
+            type: "quality",
+            key: "dependencies",
+            value: [field.key, op.key, "dependencies"].join(""),
+            description: "patterns with dependencies"
           },
           {
-            type: 'quality',
-            key: 'dependents',
-            value: [field.key, op.key, 'dependents'].join(''),
-            description: 'patterns with dependents'
+            type: "quality",
+            key: "dependents",
+            value: [field.key, op.key, "dependents"].join(""),
+            description: "patterns with dependents"
           },
           {
-            type: 'quality',
-            key: 'tags',
-            value: [field.key, op.key, 'tags'].join(''),
-            description: 'patterns with tags'
+            type: "quality",
+            key: "tags",
+            value: [field.key, op.key, "tags"].join(""),
+            description: "patterns with tags"
           }
         ];
-      case 'depends':
-      case 'provides':
+      case "depends":
+      case "provides":
         return patterns
-          .filter(item => item.id.startsWith(parsed.value || ''))
+          .filter(item => item.id.startsWith(parsed.value || ""))
           .map(item => {
             return {
-              type: 'pattern',
+              type: "pattern",
               key: item.id,
-              value: [field.key, op.key, item.id].join(''),
+              value: [field.key, op.key, item.id].join(""),
               description: `${item.id}`
             };
           });
-      case 'tags':
+      case "tags":
         return uniq(flatten(patterns.map(item => item.manifest.tags)))
           .filter(Boolean)
           .map(tag => {
             return {
-              type: 'tag',
+              type: "tag",
               key: tag,
-              value: [field.key, op.key, tag].join(''),
+              value: [field.key, op.key, tag].join(""),
               description: tag
             };
           });
-      case 'version': {
+      case "version": {
         const versions = uniqBy(
           patterns
             .filter(item =>
-              item.manifest.version.startsWith(parsed.value || '')
+              item.manifest.version.startsWith(parsed.value || "")
             )
             .map(item => item.manifest.version)
         )
@@ -303,20 +303,20 @@ const selectOptions = createSelector(
 
         return versions.map(v => {
           return {
-            type: 'version',
+            type: "version",
             key: v,
-            value: [field.key, op.key, v].join(''),
+            value: [field.key, op.key, v].join(""),
             description: `${v}`
           };
         });
       }
-      case 'flag': {
+      case "flag": {
         const flags = uniqBy(
           patterns
-            .filter(item => item.manifest.flag.startsWith(parsed.value || ''))
+            .filter(item => item.manifest.flag.startsWith(parsed.value || ""))
             .map(item => item.manifest.flag)
         )
-          .filter(flag => typeof flag === 'string')
+          .filter(flag => typeof flag === "string")
           .sort((a, b) => {
             const delta = (FLAGS[a] || 0) - (FLAGS[b] || 0);
             return delta === 0 ? a.localeCompare(b) : delta;
@@ -324,9 +324,9 @@ const selectOptions = createSelector(
 
         return flags.map(f => {
           return {
-            type: 'flag',
+            type: "flag",
             key: f,
-            value: [field.key, op.key, f].join(''),
+            value: [field.key, op.key, f].join(""),
             description: `${f}`
           };
         });
@@ -355,14 +355,14 @@ export const selectLegend = createSelector(
   (parsedValue, parsed, fields, fieldHit, ops, opsHit, options, optionsHit) => {
     if (!fieldHit) {
       return {
-        name: 'Fields',
+        name: "Fields",
         items: fields
       };
     }
 
     if (!opsHit && !parsed.value) {
       return {
-        name: 'Operators',
+        name: "Operators",
         items: ops
       };
     }
@@ -375,14 +375,14 @@ export const selectLegend = createSelector(
     }
 
     return {
-      name: '',
+      name: "",
       items: []
     };
   }
 );
 
 export const selectDocs = createSelector(selectFound, found =>
-  found.filter(f => f.type === 'doc')
+  found.filter(f => f.type === "doc")
 );
 
 export const selectSuggestion = createSelector(
@@ -390,8 +390,8 @@ export const selectSuggestion = createSelector(
   selectPool,
   selectLegend,
   (search, pool, legend) => {
-    if (typeof search !== 'string' || search.length === 0) {
-      return '';
+    if (typeof search !== "string" || search.length === 0) {
+      return "";
     }
 
     const match = pool.find(m =>
@@ -404,7 +404,7 @@ export const selectSuggestion = createSelector(
       return (
         [match.id, match.name, match.manifest.displayName].find(
           k => k && k.startsWith(search)
-        ) || ''
+        ) || ""
       );
     }
 
@@ -428,10 +428,10 @@ export const selectActiveItem = createSelector(
     return item
       ? Immutable.merge(item, {
           index,
-          demoDependents: rel('demoDependents'),
-          demoDependencies: rel('demoDependencies'),
-          dependents: rel('dependents'),
-          dependencies: rel('dependencies')
+          demoDependents: rel("demoDependents"),
+          demoDependencies: rel("demoDependencies"),
+          dependents: rel("dependents"),
+          dependencies: rel("dependencies")
         })
       : item;
   }

@@ -1,15 +1,15 @@
-import path from 'path';
-import escapeHtml from 'escape-html';
-import exists from 'path-exists';
-import * as sander from 'sander';
-import vfile from 'vfile';
+import path from "path";
+import escapeHtml from "escape-html";
+import exists from "path-exists";
+import * as sander from "sander";
+import vfile from "vfile";
 
-const resolve = path.resolve.bind(null, 'patterns', '@docs');
+const resolve = path.resolve.bind(null, "patterns", "@docs");
 
 export default function docsRouteFactory() {
   return async function docsRoute() {
     const doc = await getDoc(this.params.id);
-    this.type = 'json';
+    this.type = "json";
 
     if (doc === null) {
       return this.throw(404);
@@ -34,7 +34,7 @@ async function getDoc(id) {
   }
 
   return vfile({
-    path: path.posix.relative('./patterns', resolve(id)),
+    path: path.posix.relative("./patterns", resolve(id)),
     contents: escapeHtml(await sander.readFile(file))
   });
 }

@@ -1,9 +1,9 @@
-import {connect} from 'react-redux';
-import {createSelector} from 'reselect';
-import {skippable} from '../behaviours';
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
+import { skippable } from "../behaviours";
 
-import Message from '../components/message';
-import * as demo from '../selectors/demo';
+import Message from "../components/message";
+import * as demo from "../selectors/demo";
 
 export default connect(mapState)(skippable(Message));
 
@@ -15,7 +15,7 @@ const selectMessage = createSelector(
 
 const selectActive = createSelector(
   selectMessage,
-  message => typeof message === 'string'
+  message => typeof message === "string"
 );
 
 function mapState(state) {

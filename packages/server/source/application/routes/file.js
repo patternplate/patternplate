@@ -1,13 +1,13 @@
-import path from 'path';
-import patternSource from '../../library/get-pattern-source';
-import urlQuery from '../../library/utilities/url-query';
+import path from "path";
+import patternSource from "../../library/get-pattern-source";
+import urlQuery from "../../library/utilities/url-query";
 
 export default function fileRouteFactory(application) {
   const getPatternSource = patternSource(application);
   return async function fileRoute() {
     const extname = path.extname(this.path);
     const format = extname.slice(1);
-    const {pathname, query} = urlQuery.parse(this.params.id);
+    const { pathname, query } = urlQuery.parse(this.params.id);
     const type = query.type;
     const environment = query.environment;
 
@@ -15,7 +15,7 @@ export default function fileRouteFactory(application) {
       this.throw(404);
     }
 
-    if (!type || !['source', 'transformed'].includes(type)) {
+    if (!type || !["source", "transformed"].includes(type)) {
       this.throw(404);
     }
 

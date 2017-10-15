@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import 'babel-polyfill';
-import minimist from 'minimist';
+import "babel-polyfill";
+import minimist from "minimist";
 
-import server from '../';
+import server from "../";
 
 async function start(options) {
-  const mode = 'console';
-  const settings = {...options, mode};
+  const mode = "console";
+  const settings = { ...options, mode };
   const [, command] = settings._;
 
   const application = await server(settings);
@@ -23,7 +23,7 @@ start(args).catch(err => {
 });
 
 // Catch unhandled rejections globally
-process.on('unhandledRejection', (reason, promise) => {
-  console.log('Unhandled Rejection at: Promise ', promise, ' reason: ', reason);
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled Rejection at: Promise ", promise, " reason: ", reason);
   throw reason;
 });

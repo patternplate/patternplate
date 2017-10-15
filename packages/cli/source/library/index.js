@@ -1,9 +1,9 @@
-import {merge, omit} from 'lodash';
-import findRoot from 'find-root';
+import { merge, omit } from "lodash";
+import findRoot from "find-root";
 
-import boilerplate from 'boilerplate-server';
-import patternplateServer from '@patternplate/server';
-import patternplateClient from '@patternplate/client';
+import boilerplate from "boilerplate-server";
+import patternplateServer from "@patternplate/server";
+import patternplateClient from "@patternplate/client";
 
 const defaults = {
   patternplateServer: {},
@@ -17,7 +17,7 @@ async function patternplate(args) {
   const patterncwd = process.cwd();
 
   const patternplateSpecifics = {
-    name: 'patternplate',
+    name: "patternplate",
     cwd: findRoot(__dirname)
   };
   const patternplateOptions = merge(
@@ -28,7 +28,7 @@ async function patternplate(args) {
   );
   const patternplate = await boilerplate(patternplateOptions);
 
-  const patternplateSeverSpecifics = {patterncwd};
+  const patternplateSeverSpecifics = { patterncwd };
   const patternplateServerOptions = merge(
     {},
     topLevel,
@@ -41,7 +41,7 @@ async function patternplate(args) {
   );
 
   const patternplateClientSpecifics = {
-    env: options.patternplateClient.env || 'production'
+    env: options.patternplateClient.env || "production"
   };
   const patternplateClientOptions = merge(
     {},
@@ -58,9 +58,9 @@ async function patternplate(args) {
     `Running in mode ${patternplateServerInstance.runtime.mode}...`
   );
 
-  if (patternplateServerInstance.runtime.mode === 'server') {
+  if (patternplateServerInstance.runtime.mode === "server") {
     patternplate.mount(patternplateClientInstance);
-    patternplate.mount(patternplateServerInstance, '/api');
+    patternplate.mount(patternplateServerInstance, "/api");
     patternplateClientInstance.configuration.client.path =
       patternplateServerInstance.runtime.prefix;
     patternplateClientInstance.log.debug(

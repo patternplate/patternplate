@@ -1,8 +1,8 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const NavigationTree = require('../navigation-tree');
-const NavigationToolbar = require('../navigation-toolbar');
-const Header = require('../main-header');
+const React = require("react");
+const styled = require("styled-components").default;
+const NavigationTree = require("../navigation-tree");
+const NavigationToolbar = require("../navigation-toolbar");
+const Header = require("../main-header");
 
 class Navigation extends React.Component {
   constructor(...args) {
@@ -20,13 +20,13 @@ class Navigation extends React.Component {
     const list = this.ref.getBoundingClientRect();
     const pad = getPadding(this.ref);
 
-    if (item.bottom > list.bottom - pad('bottom')) {
+    if (item.bottom > list.bottom - pad("bottom")) {
       this.ref.scrollTop =
-        e.target.offsetTop - list.height + pad('bottom') + item.height;
+        e.target.offsetTop - list.height + pad("bottom") + item.height;
     }
 
-    if (item.top < list.top + pad('top')) {
-      this.ref.scrollTop = e.target.offsetTop + pad('top');
+    if (item.top < list.top + pad("top")) {
+      this.ref.scrollTop = e.target.offsetTop + pad("top");
     }
   }
 
@@ -35,40 +35,40 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     const children = React.Children.toArray(props.children);
     const toolbar = children.find(child => child.type === NavigationToolbar);
     const header = children.find(child => child.type === NavigationHeader);
 
     return (
-	<StyledNavigation onKeyDown={this.handleKeyDown}>
-		<StyledNavigationTree innerRef={this.getRef}>
-			{header ? (
+      <StyledNavigation onKeyDown={this.handleKeyDown}>
+        <StyledNavigationTree innerRef={this.getRef}>
+          {header ? (
             header
           ) : (
-	<StyledHeader
-		title={props.applicationTitle}
-		symbol="patternplate"
-	/>
+            <StyledHeader
+              title={props.applicationTitle}
+              symbol="patternplate"
+            />
           )}
-			<Documentation
-				active={props.active}
-				docs={props.docs}
-				onItemClick={props.onItemClick}
-				onScrollRequest={this.handleScrollRequest}
-			/>
-			<NavigationTree
-				active={props.active}
-				data={props.navigation.children}
-				onItemClick={props.onItemClick}
-				onScrollRequest={this.handleScrollRequest}
-				prefix="/pattern"
-			/>
-		</StyledNavigationTree>
-		{toolbar && (
-		<StyledNavigationToolbar>{toolbar}</StyledNavigationToolbar>
+          <Documentation
+            active={props.active}
+            docs={props.docs}
+            onItemClick={props.onItemClick}
+            onScrollRequest={this.handleScrollRequest}
+          />
+          <NavigationTree
+            active={props.active}
+            data={props.navigation.children}
+            onItemClick={props.onItemClick}
+            onScrollRequest={this.handleScrollRequest}
+            prefix="/pattern"
+          />
+        </StyledNavigationTree>
+        {toolbar && (
+          <StyledNavigationToolbar>{toolbar}</StyledNavigationToolbar>
         )}
-	</StyledNavigation>
+      </StyledNavigation>
     );
   }
 }
@@ -133,14 +133,14 @@ const StyledNavigationToolbar = styled.div`
 
 function Documentation(props) {
   return (
-	<StyledDocumentationTree
-		active={props.active}
-		className="docs-navigation"
-		data={props.docs.children}
-		onItemClick={props.onItemClick}
-		onScrollRequest={props.onScrollRequest}
-		prefix="/doc"
-	/>
+    <StyledDocumentationTree
+      active={props.active}
+      className="docs-navigation"
+      data={props.docs.children}
+      onItemClick={props.onItemClick}
+      onScrollRequest={props.onScrollRequest}
+      prefix="/doc"
+    />
   );
 }
 

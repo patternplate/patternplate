@@ -1,15 +1,15 @@
-import path from 'path';
+import path from "path";
 
 export default applyTransforms;
 
 function applyTransforms(file, transformNames, options) {
-  const {transformConfigs, transformFunctions} = options;
+  const { transformConfigs, transformFunctions } = options;
 
   return transformNames.reduce(async (queue, name) => {
-    const config = {...transformConfigs[name], name};
+    const config = { ...transformConfigs[name], name };
 
     if (!(name in transformFunctions)) {
-      const available = Object.keys(transformFunctions).join(', ');
+      const available = Object.keys(transformFunctions).join(", ");
       const instructions = `Be sure to install "patternplate-transform-${name}" and configure it in ${process.cwd()}configuration/patternplate-server/transforms.js`;
       const message = `Transform "${name}" is not configured. Configured transforms: ${available}.\n${instructions}`;
       throw new Error(message);
@@ -34,7 +34,7 @@ function applyTransforms(file, transformNames, options) {
 
 async function applyTransform(fn, file, config) {
   try {
-    const copy = {...file, in: config.in, out: config.out};
+    const copy = { ...file, in: config.in, out: config.out };
     copy.in = config.inFormat;
     copy.out = config.outFormat;
     return await fn(copy, null, config);
@@ -52,7 +52,7 @@ function augmentTransformError(error, file, transformName) {
   error.message = [
     `${error.pattern}:${path.basename(error.file)} [${error.transform}]`,
     error.message
-  ].join('\n');
+  ].join("\n");
 
   return error;
 }

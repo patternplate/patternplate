@@ -1,8 +1,8 @@
-import {merge} from 'lodash';
+import { merge } from "lodash";
 
 const lifecycle = {
-  configure: ['hookWillConfigure', 'hookDidConfigure'],
-  start: ['hookWillStart', 'hookDidStart']
+  configure: ["hookWillConfigure", "hookDidConfigure"],
+  start: ["hookWillStart", "hookDidStart"]
 };
 
 class Hook {
@@ -10,11 +10,11 @@ class Hook {
   disabled = false;
   modes = [];
 
-  after = ['application:after'];
+  after = ["application:after"];
   defaults = {};
   configuration = {};
 
-  stageName = 'init';
+  stageName = "init";
 
   stages = {
     register: false,
@@ -27,9 +27,9 @@ class Hook {
 
     this.configurationKey = extender.configurationKey || name;
     this.wait =
-      typeof extender.wait === 'undefined' ? this.wait : extender.wait;
+      typeof extender.wait === "undefined" ? this.wait : extender.wait;
     this.disabled =
-      typeof extender.disabled === 'undefined'
+      typeof extender.disabled === "undefined"
         ? this.disabled
         : extender.disabled;
     this.log = application.log;
@@ -136,4 +136,4 @@ function hookFactory(...args) {
 }
 
 export default hookFactory;
-export {Hook};
+export { Hook };

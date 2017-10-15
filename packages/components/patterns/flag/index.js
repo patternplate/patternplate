@@ -1,7 +1,7 @@
-const React = require('react');
-const styled = require('styled-components').default;
-const text = require('react-addons-text-content');
-const fonts = require('../fonts');
+const React = require("react");
+const styled = require("styled-components").default;
+const text = require("react-addons-text-content");
+const fonts = require("../fonts");
 
 const FONTS = fonts();
 
@@ -28,15 +28,15 @@ const StyledText = styled.span`
 
 function getFlagColor(flag, theme) {
   switch (flag) {
-    case 'alpha':
+    case "alpha":
       return theme.error;
-    case 'beta':
+    case "beta":
       return theme.warning;
-    case 'rc':
+    case "rc":
       return theme.info;
-    case 'stable':
+    case "stable":
       return theme.success;
-    case 'deprecated':
+    case "deprecated":
       return theme.error;
     default:
       return theme.error;

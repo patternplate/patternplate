@@ -1,7 +1,7 @@
-import assert from 'assert';
-import {connect} from 'react-redux';
-import {values} from 'lodash';
-import shortcuts from '../shortcuts';
+import assert from "assert";
+import { connect } from "react-redux";
+import { values } from "lodash";
+import shortcuts from "../shortcuts";
 
 const s = values(shortcuts());
 
@@ -16,7 +16,7 @@ export default function withToggle(action) {
   return Component => {
     const mapProps = state => {
       const enabled = state[action.property];
-      return {enabled, shortcut};
+      return { enabled, shortcut };
     };
     return connect(mapProps)(Component);
   };

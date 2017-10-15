@@ -1,41 +1,41 @@
 const routes = {
-  path: ['application/routes', 'application/patternplate-client/routes'],
+  path: ["application/routes", "application/patternplate-client/routes"],
   enabled: {
     index: {
       enabled: true,
-      path: '/'
+      path: "/"
     },
     pattern: {
       enabled: true,
-      path: '/pattern/:path+'
+      path: "/pattern/:path+"
     },
     demo: {
       enabled: true,
-      path: '/demo/:id+'
+      path: "/demo/:id+"
     },
     docs: {
       enabled: true,
-      path: '/doc/:path+'
+      path: "/doc/:path+"
     },
     component: {
       enabled: true,
-      path: '/demo/:id+/component.js'
+      path: "/demo/:id+/component.js"
     },
     script: {
       enabled: true,
-      path: '/script/:path+'
+      path: "/script/:path+"
     },
     style: {
       enabled: true,
-      path: '/style/:path+'
+      path: "/style/:path+"
     },
     static: {
       enabled: true,
-      path: '/static/:path+'
+      path: "/static/:path+"
     },
     zcatch: {
       enabled: true,
-      path: '!(/api/)(.*)'
+      path: "!(/api/)(.*)"
     }
   }
 };

@@ -1,36 +1,32 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import tag from 'tag-hoc';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {createSelector} from 'reselect';
-import {
-  styled,
-  ThemeProvider,
-  themes
-} from '@patternplate/components';
+import React from "react";
+import Helmet from "react-helmet";
+import tag from "tag-hoc";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { createSelector } from "reselect";
+import { styled, ThemeProvider, themes } from "@patternplate/components";
 
-import * as actions from '../actions';
-import * as item from '../selectors/item';
+import * as actions from "../actions";
+import * as item from "../selectors/item";
 
-import CodePane from './code-pane';
-import DocPane from './doc-pane';
-import Favicon from './favicon';
-import Fullscreen from './trigger-fullscreen';
-import Indicator from './indicator';
-import InfoPane from './info-pane';
-import Message from './message';
-import Logo from './logo';
-import Navigation, {NavigationHeader, NavigationToolbar} from './navigation';
-import Network from './network';
-import ToggleDoc from './toggle-doc';
-import ToggleInfoPane from './toggle-info-pane';
-import ToggleNavigation from './toggle-navigation';
-import ToggleNetwork from './toggle-network';
-import ToggleOpacity from './toggle-opacity';
-import ToggleSearch from './toggle-search';
-import ToggleSource from './toggle-code';
-import Search from './search';
+import CodePane from "./code-pane";
+import DocPane from "./doc-pane";
+import Favicon from "./favicon";
+import Fullscreen from "./trigger-fullscreen";
+import Indicator from "./indicator";
+import InfoPane from "./info-pane";
+import Message from "./message";
+import Logo from "./logo";
+import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
+import Network from "./network";
+import ToggleDoc from "./toggle-doc";
+import ToggleInfoPane from "./toggle-info-pane";
+import ToggleNavigation from "./toggle-navigation";
+import ToggleNetwork from "./toggle-network";
+import ToggleOpacity from "./toggle-opacity";
+import ToggleSearch from "./toggle-search";
+import ToggleSource from "./toggle-code";
+import Search from "./search";
 
 export default connect(mapProps, mapDispatch)(Application);
 
@@ -41,7 +37,7 @@ const selectThemes = createSelector(
 
 const selectIsPattern = createSelector(
   item.selectType,
-  type => type === 'pattern'
+  type => type === "pattern"
 );
 
 const selectCodeEnabled = createSelector(
@@ -84,7 +80,7 @@ function mapProps(state) {
 function mapDispatch(dispatch) {
   return bindActionCreators(
     {
-      onLoad: () => actions.listen({url: 'api'}),
+      onLoad: () => actions.listen({ url: "api" }),
       onResize: actions.windowResize
     },
     dispatch
@@ -141,20 +137,20 @@ function Application(props) {
                   </StyledInfoPane>
                 )}
                 {props.infoEnabled &&
-                (props.codeEnabled || props.docEnabled) && (
-                  <StyledPane
-                    hermit={!props.infoEnabled}
-                    infoEnabled={props.infoEnabled}
-                  >
-                    {props.codeEnabled &&
-                    !props.docEnabled && (
-                      <CodePane hermit={!props.infoEnabled} />
-                    )}
-                    {props.docEnabled && (
-                      <DocPane hermit={!props.infoEnabled} />
-                    )}
-                  </StyledPane>
-                )}
+                  (props.codeEnabled || props.docEnabled) && (
+                    <StyledPane
+                      hermit={!props.infoEnabled}
+                      infoEnabled={props.infoEnabled}
+                    >
+                      {props.codeEnabled &&
+                        !props.docEnabled && (
+                          <CodePane hermit={!props.infoEnabled} />
+                        )}
+                      {props.docEnabled && (
+                        <DocPane hermit={!props.infoEnabled} />
+                      )}
+                    </StyledPane>
+                  )}
               </StyledFloatingBox>
             </ThemeProvider>
           </StyledContent>
@@ -179,14 +175,14 @@ function Application(props) {
             </StyledControlsBox>
           </ThemeProvider>
         </StyledContentContainer>
-        {props.networkEnabled &&
+        {props.networkEnabled && (
           <StyledNetworkContainer>
-            <Network/>
+            <Network />
             <FixedNetworkToggleContainer>
-              <ToggleNetwork/>
+              <ToggleNetwork />
             </FixedNetworkToggleContainer>
           </StyledNetworkContainer>
-        }
+        )}
       </StyledApplication>
     </ThemeProvider>
   );
@@ -196,7 +192,7 @@ const WIDTH = 300;
 const NAVIGATION_WIDTH = props => (props.enabled ? WIDTH : 0);
 const TOOLBAR_HEIGHT = 60;
 const ORIENTATION = props => {
-  const direction = props.orient === 'right' ? 'left' : 'right';
+  const direction = props.orient === "right" ? "left" : "right";
   return `margin-${direction}: auto`;
 };
 
@@ -225,7 +221,7 @@ const FixedNetworkToggleContainer = styled.div`
   bottom: 0;
 `;
 
-const StyledNavigationBox = styled(tag(['enabled'])('div'))`
+const StyledNavigationBox = styled(tag(["enabled"])("div"))`
   position: relative;
   z-index: 2;
   height: 100%;
@@ -327,7 +323,7 @@ const StyledPane = styled.div`
 
 function meta(props) {
   return [
-    {name: 'description', content: props.description},
-    {name: 'viewport', content: 'width=device-width, initial-scale=1'}
+    { name: "description", content: props.description },
+    { name: "viewport", content: "width=device-width, initial-scale=1" }
   ];
 }

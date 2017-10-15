@@ -1,8 +1,8 @@
-import React from 'react';
-import textContent from 'react-addons-text-content';
-import {styled} from '@patternplate/components';
+import React from "react";
+import textContent from "react-addons-text-content";
+import { styled } from "@patternplate/components";
 
-import Text from '../../text';
+import Text from "../../text";
 
 export default styled(MarkdownBlockquote)`
   margin: 0 0 16px 0;

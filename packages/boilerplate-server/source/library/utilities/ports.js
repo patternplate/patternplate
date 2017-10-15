@@ -1,4 +1,7 @@
-import {checkPortStatus as test, findAPortNotInUse as find} from 'portscanner';
+import {
+  checkPortStatus as test,
+  findAPortNotInUse as find
+} from "portscanner";
 
 class Ports {
   static test(...args) {
@@ -7,7 +10,7 @@ class Ports {
         ...[
           ...args,
           function cb(error, result) {
-            return resolve(result === 'closed');
+            return resolve(result === "closed");
           }
         ]
       );

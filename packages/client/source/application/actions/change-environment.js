@@ -1,13 +1,13 @@
-import {patchLocation} from './';
+import { patchLocation } from "./";
 
 export default changeEnvironment;
-export const type = 'CHANGE_ENVIRONMENT';
+export const type = "CHANGE_ENVIRONMENT";
 
 function changeEnvironment(environment) {
   return dispatch => {
     dispatch(
       patchLocation({
-        query: {environment}
+        query: { environment }
       })
     );
   };

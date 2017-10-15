@@ -1,9 +1,9 @@
-import {handleAction} from 'redux-actions';
+import { handleAction } from "redux-actions";
 
 export function getDepth(pathname) {
-  const fragments = pathname.split('/').filter(Boolean);
+  const fragments = pathname.split("/").filter(Boolean);
 
-  const fragmentIndex = ['pattern', 'doc']
+  const fragmentIndex = ["pattern", "doc"]
     .map(known => fragments.indexOf(known))
     .find(index => index !== -1);
 
@@ -12,11 +12,11 @@ export function getDepth(pathname) {
 }
 
 export default handleAction(
-  '@@router/LOCATION_CHANGE',
+  "@@router/LOCATION_CHANGE",
   {
-    next(_, {payload: {pathname}}) {
+    next(_, { payload: { pathname } }) {
       return getDepth(pathname);
     }
   },
-  '.'
+  "."
 );

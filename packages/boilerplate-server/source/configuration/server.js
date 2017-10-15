@@ -10,6 +10,6 @@ export default {
     process.env.BOILERPLATE_HOST ||
     process.env.NODE_HOST ||
     process.env.HOST ||
-    'localhost',
+    "localhost",
   autoPort: true
 };

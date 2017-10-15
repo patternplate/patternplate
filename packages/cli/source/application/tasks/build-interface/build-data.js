@@ -1,12 +1,12 @@
-import path from 'path';
-import {max, padEnd} from 'lodash/fp';
-import Observable from 'zen-observable';
+import path from "path";
+import { max, padEnd } from "lodash/fp";
+import Observable from "zen-observable";
 
-import build from './build';
-import getEnvSets from './get-env-sets';
-import getTargets from './get-targets';
-import writeEach from './write-each';
-import serverRequire from './server-require';
+import build from "./build";
+import getEnvSets from "./get-env-sets";
+import getTargets from "./get-targets";
+import writeEach from "./write-each";
+import serverRequire from "./server-require";
 
 // Const getPatternMetaData = serverRequire('get-pattern-meta-data');
 
@@ -14,14 +14,14 @@ export default buildData;
 
 function buildData(datasets, target, context) {
   return new Observable(observer => {
-    const {app} = context;
+    const { app } = context;
     const envSets = getEnvSets(datasets);
     const idPad = padEnd(max(envSets.map(e => e.id.length)));
 
     build(envSets, {
       async read(set, sets, count) {
         observer.next(
-          `${context.verbose ? 'Data: ' : ''}${idPad(
+          `${context.verbose ? "Data: " : ""}${idPad(
             set.id
           )} ${count}/${sets.length}`
         );
@@ -29,7 +29,7 @@ function buildData(datasets, target, context) {
       },
       async write(json, set, sets, count) {
         observer.next(
-          `${context.verbose ? 'Data: ' : ''}${idPad(
+          `${context.verbose ? "Data: " : ""}${idPad(
             set.id
           )} ${count}/${sets.length}`
         );
@@ -41,8 +41,8 @@ function buildData(datasets, target, context) {
       done() {
         observer.next(
           `${context.verbose
-            ? 'Data: '
-            : ''}${envSets.length}/${envSets.length}`
+            ? "Data: "
+            : ""}${envSets.length}/${envSets.length}`
         );
         observer.complete();
       }

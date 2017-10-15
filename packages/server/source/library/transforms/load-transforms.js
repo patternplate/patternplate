@@ -1,5 +1,5 @@
-import loadTransform from './load-transform';
-import selectTransformNames from './select-transform-names';
+import loadTransform from "./load-transform";
+import selectTransformNames from "./select-transform-names";
 
 export default loadTransforms;
 

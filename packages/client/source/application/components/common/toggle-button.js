@@ -1,6 +1,6 @@
-import React from 'react';
-import {styled} from '@patternplate/components';
-import Link from './link';
+import React from "react";
+import { styled } from "@patternplate/components";
+import Link from "./link";
 
 export default ToggleButton;
 
@@ -21,7 +21,7 @@ function ToggleButton(props) {
     <Link
       className={props.className}
       title={title}
-      query={{[props.shortcut.key]: !props.enabled}}
+      query={{ [props.shortcut.key]: !props.enabled }}
     >
       {props.children}
     </Link>

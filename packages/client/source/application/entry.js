@@ -1,16 +1,16 @@
-import url from 'url';
+import url from "url";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
-import Router, {DefaultRoute, Route} from 'react-router';
-import {EventEmitter} from 'events';
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
+import Router, { DefaultRoute, Route } from "react-router";
+import { EventEmitter } from "events";
 
-import Application from './components';
-import Content from './components/content';
-import Documentation from './containers/documentation';
+import Application from "./components";
+import Content from "./components/content";
+import Documentation from "./containers/documentation";
 
-function getRoutes(base = '/') {
+function getRoutes(base = "/") {
   return (
     <Route name="root" path={base} handler={Application}>
       <DefaultRoute handler={Documentation} />
@@ -20,12 +20,12 @@ function getRoutes(base = '/') {
   );
 }
 
-function router(path = '/', data) {
+function router(path = "/", data) {
   return new Promise(resolve => {
     const eventEmitter = new EventEmitter();
 
     Router.run(getRoutes(), path, (Handler, state) => {
-      const appData = {...data, ...state, eventEmitter, base: '/'};
+      const appData = { ...data, ...state, eventEmitter, base: "/" };
       resolve(ReactDOMServer.renderToString(<Handler {...appData} />));
     });
   });
@@ -37,11 +37,11 @@ function client(data, el) {
     const base = url.resolve(global.location.pathname, data.base);
 
     Router.run(getRoutes(base), Router.HistoryLocation, (Handler, state) => {
-      const appData = {...data, ...state, eventEmitter, base};
+      const appData = { ...data, ...state, eventEmitter, base };
       resolve(ReactDOM.render(<Handler {...appData} />, el));
     });
   });
 }
 
 export default router;
-export {client};
+export { client };

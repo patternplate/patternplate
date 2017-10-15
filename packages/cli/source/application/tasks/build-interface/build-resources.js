@@ -1,12 +1,12 @@
-import path from 'path';
-import {max, padEnd} from 'lodash/fp';
-import Observable from 'zen-observable';
+import path from "path";
+import { max, padEnd } from "lodash/fp";
+import Observable from "zen-observable";
 
-import build from './build';
-import getTargets from './get-targets';
-import getSourceSets from './get-source-sets';
-import writeEach from './write-each';
-import serverRequire from './server-require';
+import build from "./build";
+import getTargets from "./get-targets";
+import getSourceSets from "./get-source-sets";
+import writeEach from "./write-each";
+import serverRequire from "./server-require";
 
 export default buildResources;
 
@@ -17,7 +17,7 @@ function buildResources(resources, target, context) {
     build(resources, {
       async read(source, _, count) {
         observer.next(
-          `${context.verbose ? 'Resources: ' : ''}${idPad(
+          `${context.verbose ? "Resources: " : ""}${idPad(
             source.id
           )} ${count}/${resources.length}`
         );
@@ -36,8 +36,8 @@ function buildResources(resources, target, context) {
       done() {
         observer.next(
           `${context.verbose
-            ? 'Resources: '
-            : ''}${resources.length}/${resources.length}`
+            ? "Resources: "
+            : ""}${resources.length}/${resources.length}`
         );
         observer.complete();
       }

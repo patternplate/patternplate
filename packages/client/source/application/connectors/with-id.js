@@ -1,5 +1,5 @@
-import {connect} from 'react-redux';
-import selectItem from '../selectors/item';
+import { connect } from "react-redux";
+import selectItem from "../selectors/item";
 
 export default connect(withId);
 

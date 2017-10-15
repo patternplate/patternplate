@@ -1,29 +1,29 @@
-import {EventEmitter} from 'events';
+import { EventEmitter } from "events";
 
-import appRootPath from 'app-root-path';
-import {merge} from 'lodash';
+import appRootPath from "app-root-path";
+import { merge } from "lodash";
 
-import queuedLogger from '../utilities/queued-logger';
-import hooks from '../hooks';
+import queuedLogger from "../utilities/queued-logger";
+import hooks from "../hooks";
 
 const emergencyLogger = {
   log(level, ...rest) {
     console.log(...[level, ...rest]);
   },
   error(...message) {
-    emergencyLogger.log('error', ...message);
+    emergencyLogger.log("error", ...message);
   },
   warn(...message) {
-    emergencyLogger.log('message', ...message);
+    emergencyLogger.log("message", ...message);
   },
   info(...message) {
-    emergencyLogger.log('info', ...message);
+    emergencyLogger.log("info", ...message);
   },
   debug(...message) {
-    emergencyLogger.log('debug', ...message);
+    emergencyLogger.log("debug", ...message);
   },
   silly(...message) {
-    emergencyLogger.log('silly', ...message);
+    emergencyLogger.log("silly", ...message);
   }
 };
 
@@ -37,14 +37,14 @@ class BoilerPlateServer extends EventEmitter {
     this.runtime = merge(
       {},
       {
-        mode: 'server',
-        prefix: '/',
+        mode: "server",
+        prefix: "/",
         env:
           process.env.BOILERPLATESERVER_ENV ||
           process.env.BOILERPLATE_ENV ||
           process.env.NODE_ENV ||
           process.env.ENV ||
-          'development',
+          "development",
         cwds: [],
         cwd: appRootPath.path
       },
@@ -63,9 +63,9 @@ class BoilerPlateServer extends EventEmitter {
   }
 
   async stop() {
-    this.log.info('\nStopping server gracefully...');
+    this.log.info("\nStopping server gracefully...");
     await this.engine.stop();
-    this.log.info('\nStopped server gracefully...');
+    this.log.info("\nStopped server gracefully...");
     return this;
   }
 
@@ -79,7 +79,7 @@ class BoilerPlateServer extends EventEmitter {
 
   async run(command, options) {
     if (!this.console) {
-      this.log.warn('application.console is not avaiable. Aborting.');
+      this.log.warn("application.console is not avaiable. Aborting.");
       return this;
     }
 

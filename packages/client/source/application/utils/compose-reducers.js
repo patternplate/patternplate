@@ -1,4 +1,4 @@
-import {pick} from 'lodash';
+import { pick } from "lodash";
 
 export default function composeReducers(...args) {
   const required = args.reduce((registry, arg) => {
