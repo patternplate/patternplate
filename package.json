@@ -93,7 +93,12 @@
     ]
   },
   "lint-staged": {
-    "**/*.(js|jsx)": [
+    "**/*.js": [
+      "prettier --write",
+      "xo --fix",
+      "git add"
+    ],
+    "**/*.jsx": [
       "prettier --write",
       "xo --fix",
       "git add"
