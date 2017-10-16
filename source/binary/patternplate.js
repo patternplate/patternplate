@@ -8,6 +8,7 @@ import {omitBy, isNull} from 'lodash';
 
 import patternplate from '../';
 import patternplateInit from '../library/init/index.js';
+import patternplateCreate from '../library/create/index.js';
 
 const defaults = {
 	'open': null,
@@ -89,6 +90,10 @@ async function main(command = 'start', options = {}, input = []) {
 	if (command === 'init') {
 		const [, path] = input;
 		await patternplateInit(path, settings);
+		return {mode: 'console'};
+	} else if (command === 'create') {
+		const [, id, ...other] = input;
+		await patternplateCreate(id, other);
 		return {mode: 'console'};
 	}
 
