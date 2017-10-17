@@ -10,7 +10,8 @@
     "components": "npx lerna run start --scope @patternplate/components --stream",
     "precommit": "lint-staged",
     "reinstall": "npx yarn run clean && npx yarn install && npx lerna bootstrap",
-    "start": "npx lerna run watch --stream --parallel --include-filtered-dependencies"
+    "start": "npx lerna run watch --stream --parallel --include-filtered-dependencies",
+    "start:components": "npx lerna run start --scope=@patternplate/components --stream"
   },
   "author": {
     "name": "Mario Nebl",
