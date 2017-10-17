@@ -6,7 +6,7 @@
   "scripts": {
     "start": "patternplate",
     "build": "babel patterns -d lib --source-maps",
-    "dev": "babel patterns -d lib --source-maps -w"
+    "watch": "babel patterns -d lib --source-maps -w"
   },
   "repository": {
     "type": "git",
@@ -69,10 +69,10 @@
     "lodash": "^4.17.4",
     "lowlight": "^1.9.1",
     "prop-types": "^15.6.0",
-    "react": "^15.6.1",
+    "react": "16",
     "react-addons-text-content": "^0.0.4",
     "react-clipboard.js": "^1.1.2",
-    "react-dom": "^15.6.1",
+    "react-dom": "16",
     "react-side-effect": "^1.0.2",
     "react-vis": "^1.7.5",
     "react-vis-force": "^0.3.1",

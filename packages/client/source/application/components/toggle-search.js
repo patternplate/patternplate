@@ -6,6 +6,7 @@ export default SearchButton;
 function SearchButton(props) {
   return (
     <StyledLink
+      debug
       title={`Enable search ${props.shortcut.toString()}`}
       query={{ "search-enabled": !props.enabled }}
     >

@@ -125,8 +125,8 @@
     "react-addons-shallow-compare": "15.3.1",
     "react-addons-text-content": "0.0.4",
     "react-dom": "^15.6.1",
-    "react-helmet": "^3.1.0",
-    "react-redux": "^4.4.5",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.6",
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "react-side-effect": "^1.0.2",
@@ -150,6 +150,7 @@
     "shortid": "^2.2.6",
     "srcdoc-polyfill": "^1.0.0",
     "strip-ansi": "^3.0.1",
+    "styled-components": "^2.1.1",
     "tag-hoc": "^1.0.0-0",
     "topologically-combine-reducers": "0.0.5",
     "unescape-html": "^1.0.0",
@@ -196,7 +197,6 @@
     "less-plugin-npm-import": "^2.0.0",
     "minifyify": "^7.3.3",
     "scripty": "^1.6.0",
-    "styled-components": "^2.1.1",
     "watchify": "^3.7.0"
   }
 }

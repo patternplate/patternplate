@@ -1,12 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import tag from "tag-hoc";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
 import { bindActionCreators } from "redux";
 import { createSelector } from "reselect";
-import { styled, ThemeProvider, themes } from "@patternplate/components";
+import {
+  Link,
+  styled,
+  injection,
+  ThemeProvider,
+  themes
+} from "@patternplate/components";
 
 import * as actions from "../actions";
 import * as item from "../selectors/item";
@@ -17,8 +21,9 @@ import Favicon from "./favicon";
 import Fullscreen from "./trigger-fullscreen";
 import Indicator from "./indicator";
 import InfoPane from "./info-pane";
-import Message from "./message";
+import ConnectedLink from "./link";
 import Logo from "./logo";
+import Message from "./message";
 import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
 import Network from "./network";
 import ToggleDoc from "./toggle-doc";
@@ -85,20 +90,22 @@ function mapDispatch(dispatch) {
   return bindActionCreators(
     {
       onLoad: () => actions.listen({ url: "api" }),
-      onResize: actions.windowResize,
-      onPush: push
+      onResize: actions.windowResize
     },
     dispatch
   );
 }
 
+const injections = [
+  {
+    target: Link,
+    source: ConnectedLink
+  }
+];
+
 function Application(props) {
   return (
-    <LocationProvider
-      base={props.base}
-      location={props.location}
-      onPush={props.onPush}
-    >
+    <injection.InjectionProvider injections={injections}>
       <ThemeProvider theme={props.themes[props.theme]}>
         <StyledApplication>
           <Helmet meta={meta(props)} title={props.title} />
@@ -197,32 +204,9 @@ function Application(props) {
           )}
         </StyledApplication>
       </ThemeProvider>
-    </LocationProvider>
+    </injection.InjectionProvider>
   );
 }
-
-class LocationProvider extends React.Component {
-  getChildContext() {
-    return {
-      base: this.props.base,
-      location: this.props.location,
-      push: this.props.onPush
-    };
-  }
-
-  render() {
-    return React.Children.only(this.props.children);
-  }
-}
-
-LocationProvider.childContextTypes = {
-  base: PropTypes.string,
-  location: PropTypes.shape({
-    query: PropTypes.any,
-    href: PropTypes.string
-  }),
-  push: PropTypes.func
-};
 
 const WIDTH = 300;
 const NAVIGATION_WIDTH = props => (props.enabled ? WIDTH : 0);

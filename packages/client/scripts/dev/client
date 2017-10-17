@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-npm run build:client -- --watch
+npx yarn run build:client -- --watch

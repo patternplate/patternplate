@@ -6,6 +6,7 @@ module.exports = {
   InnerInfoPane: require("./info-pane").InnerInfoPane,
   InfoPane: require("./info-pane"),
   injectGlobal: require("styled-components").injectGlobal,
+  injection: require("./injection"),
   keyframes: require("styled-components").keyframes,
   Link: require("./link"),
   MainHeader: require("./main-header"),

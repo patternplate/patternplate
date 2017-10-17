@@ -3,6 +3,7 @@
   "displayName": "Link",
   "version": "1.0.0",
   "patterns": {
-    "../fonts": "fonts"
+    "../fonts": "fonts",
+    "../injection": "injection"
   }
 }

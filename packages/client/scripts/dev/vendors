@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-npm run build:vendors -- --watch
+npx yarn run build:vendors -- --watch
