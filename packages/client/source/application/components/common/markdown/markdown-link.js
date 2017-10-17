@@ -8,7 +8,7 @@ export default MarkdownLink;
 function MarkdownLink(props) {
   const parsed = url.parse(props.href || "./");
   const abs = absolute(props.href);
-  const href = abs ? props.href : parsed.pathname;
+  const href = abs ? props.href : [parsed.pathname, parsed.hash].join("");
   const query = abs ? {} : queryString.parse(parsed.query);
 
   return (

@@ -24,7 +24,8 @@ function mapDispatch(dispatch, ownProps) {
           return { type: null };
         }
         e.preventDefault();
-        return push(url.parse(e.currentTarget.href).path);
+        const parsed = url.parse(e.currentTarget.href);
+        return push([parsed.path, parsed.hash].join(""));
       }
     },
     dispatch
@@ -63,6 +64,6 @@ function getHref(props, context) {
   return url.format({
     pathname,
     query,
-    hash: props.hash
+    hash: props.hash || (parsed.hash || "#").slice(1)
   });
 }
