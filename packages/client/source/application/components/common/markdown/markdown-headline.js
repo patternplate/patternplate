@@ -31,6 +31,11 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledTarget = styled.div`
+  width: 0;
+  height: 0;
+`;
+
 export default styled(MarkdownHeadline)`
   position: relative;
   color: ${props => props.theme.color};
@@ -67,6 +72,7 @@ function MarkdownHeadline(props) {
 function MarkdownHeadlineLink(props) {
   return (
     <StyledLink title={`Link to "${props.name}"`} hash={props.id}>
+      <StyledTarget id={props.id} />
       <ThemedIcon symbol="anchor" size="s" />
       {props.children}
     </StyledLink>
