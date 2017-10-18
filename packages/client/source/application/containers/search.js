@@ -31,6 +31,7 @@ function mapDispatch(dispatch) {
         actions.search({ persist: true, perform: true, value: "" }),
       onClick: () => actions.toggleSearch({ focus: true }),
       onClickOutside: () => actions.toggleSearch({ focus: false }),
+      onClose: () => actions.toggleSearch({ focus: false }),
       onComplete: value =>
         actions.search({ persist: true, perform: true, value }),
       onFocus: () => actions.toggleSearch({ focus: true }),

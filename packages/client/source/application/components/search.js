@@ -5,7 +5,7 @@ import tag from "tag-hoc";
 
 import Markdown from "./common/markdown";
 import Outside from "./outside";
-import SearchField from "../containers/search-field";
+import SearchField from "./search-field";
 import Text from "./text";
 import withToggleStates from "../connectors/with-toggle-states";
 import PassThrough from "../containers/pass-through";
@@ -107,13 +107,16 @@ export default class Search extends React.Component {
         <StyledForm onSubmit={this.handleSubmit} method="GET">
           <StyledSearchFieldBox onClick={props.inline ? props.onClick : NOOP}>
             <SearchField
+              autoFocus={!props.inline}
               linkTo="/search"
               mark={props.inline ? null : true}
               name={props.inline ? "inline-search" : "search"}
               onBlur={props.inline ? NOOP : props.onBlur}
+              onClose={props.inine ? NOOP : props.onClose}
               onChange={props.inline ? NOOP : props.onChange}
               onClear={props.inline ? NOOP : props.onClear}
               onComplete={props.inline ? NOOP : props.onComplete}
+              onKeyDown={props.inline ? NOOP : props.onKeyDown}
               onFocus={props.inline ? NOOP : props.onFocus}
               onStop={props.inline ? NOOP : props.onStop}
               onUp={props.inline ? NOOP : this.handleUp}

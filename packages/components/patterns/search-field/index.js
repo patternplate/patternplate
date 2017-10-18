@@ -50,28 +50,51 @@ const StyledInputSuggestion = styled(p => <StyledInput {...p} readOnly />)`
   opacity: 0.3;
 `;
 
-module.exports = function SearchField(props) {
-  return (
-    <StyledSearchField>
-      <StyledIcon symbol="search" />
-      <StyledInputContainer>
-        <StyledInputSuggestion value={props.suggestion || ""} />
-        <StyledInput
-          autoComplete="off"
-          autoFocus={props.autoFocus}
-          name={props.name}
-          onBlur={props.onBlur}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onKeyDown={props.onKeyDown}
-          placeholder={props.placeholder}
-          title={props.title}
-          type="text"
-          value={props.value}
-          data-search={props.mark}
-        />
-      </StyledInputContainer>
-      {props.children}
-    </StyledSearchField>
-  );
-};
+class SearchField extends React.Component {
+  constructor() {
+    super();
+    this.saveRef = this.saveRef.bind(this);
+  }
+
+  saveRef(ref) {
+    this.ref = ref;
+  }
+
+  componentDidMount() {
+    if (this.props.autoFocus && this.ref) {
+      const length = this.props.value.length;
+      this.ref.focus();
+      this.ref.setSelectionRange(length, length);
+    }
+  }
+
+  render() {
+    const { props } = this;
+    return (
+      <StyledSearchField>
+        <StyledIcon symbol="search" />
+        <StyledInputContainer>
+          <StyledInputSuggestion value={props.suggestion || ""} />
+          <StyledInput
+            autoComplete="off"
+            autoFocus={props.autoFocus}
+            name={props.name}
+            onBlur={props.onBlur}
+            onChange={props.onChange}
+            onFocus={props.onFocus}
+            onKeyDown={props.onKeyDown}
+            placeholder={props.placeholder}
+            title={props.title}
+            type="text"
+            value={props.value}
+            data-search={props.mark}
+            innerRef={this.saveRef}
+          />
+        </StyledInputContainer>
+        {props.children}
+      </StyledSearchField>
+    );
+  }
+}
+
+module.exports = SearchField;

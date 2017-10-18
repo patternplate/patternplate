@@ -23,6 +23,10 @@ class SearchField extends React.Component {
     const hasValue = target.value.length > 0;
     const atEnd = hasValue && target.selectionStart === target.value.length;
 
+    if (e.which === 32 && e.altKey && e.ctrlKey) {
+      e.preventDefault();
+      this.props.onClose();
+    }
     if (e.which !== 27) {
       e.stopPropagation();
     }
@@ -42,6 +46,8 @@ class SearchField extends React.Component {
       this.props.onDown(e);
     }
   }
+
+  componentDidMount() {}
 
   render() {
     const props = this.props;
