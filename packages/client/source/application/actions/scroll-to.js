@@ -8,7 +8,10 @@ function scrollTo(hash) {
   if (document) {
     const target = document.getElementById(hash);
     const parent = scrollparent(target);
-    parent.scrollTop = target.offsetTop;
+
+    if (parent) {
+      parent.scrollTop = target.offsetParent.offsetTop;
+    }
   }
 
   return dispatch => {

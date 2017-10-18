@@ -5,6 +5,7 @@ import { pickBy } from "lodash";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import { bindActionCreators } from "redux";
+import { scrollTo } from "../actions";
 
 export default connect(mapState, mapDispatch)(Link.RawLink);
 
@@ -25,6 +26,11 @@ function mapDispatch(dispatch, ownProps) {
         }
         e.preventDefault();
         const parsed = url.parse(e.currentTarget.href);
+
+        if (parsed.hash) {
+          scrollTo(parsed.hash.slice(1));
+        }
+
         return push([parsed.path, parsed.hash].join(""));
       }
     },
