@@ -5,7 +5,7 @@ import tag from "tag-hoc";
 
 import Markdown from "./common/markdown";
 import Outside from "./outside";
-import SearchField from "./common/search-field";
+import SearchField from "../containers/search-field";
 import Text from "./text";
 import withToggleStates from "../connectors/with-toggle-states";
 import PassThrough from "../containers/pass-through";
@@ -121,7 +121,7 @@ export default class Search extends React.Component {
               placeholder="Search"
               suggestion={props.suggestion}
               title={`Search for patterns ${props.shortcuts.toggleSearch.toString()}`}
-              value={props.value || ""}
+              value={props.value}
             >
               {props.enabled && (
                 <Close

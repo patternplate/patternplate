@@ -1,0 +1,10 @@
+{
+  "name": "search-field",
+  "displayName": "Search Field",
+  "patterns": {
+    "../icon": "icon"
+  },
+  "demoPatterns": {
+    "../demo-themer": "demo-themer"
+  }
+}
