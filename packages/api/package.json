@@ -1,0 +1,32 @@
+{
+  "name": "@patternplate/api",
+  "version": "1.0.0",
+  "description": "Patternplate JSON API",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@patternplate/load-config": "^1.0.0",
+    "@patternplate/load-docs": "^1.0.0",
+    "@patternplate/load-meta": "^1.0.0",
+    "chokidar": "^1.7.0",
+    "express": "^4.16.2",
+    "globby": "^6.1.0",
+    "loader-utils": "^1.1.0",
+    "lodash": "^4.17.4",
+    "memory-fs": "^0.4.1",
+    "resolve-from": "^4.0.0",
+    "webpack": "^3.8.1"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@patternplate/load-meta",
+  "version": "1.0.0",
+  "description": "Load patternplate meta data",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@marionebl/sander": "^0.6.1",
+    "cosmiconfig": "^3.1.0",
+    "front-matter": "^2.2.0",
+    "globby": "^6.1.0",
+    "load-json-file": "^3.0.0",
+    "load-source-map": "^1.0.0",
+    "lodash": "^4.17.4",
+    "path-exists": "^3.0.0",
+    "promise-reduce": "^2.1.0",
+    "remark": "^8.0.0",
+    "throat": "^4.1.0",
+    "unist-util-find": "^1.0.1",
+    "webpack-sources": "^1.0.1"
+  }
+}

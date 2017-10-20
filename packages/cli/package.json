@@ -2,15 +2,13 @@
   "name": "@patternplate/cli",
   "version": "2.0.0",
   "description": "Create, show and deliver component libraries",
-  "main": "library/",
   "bin": {
-    "patternplate": "binary/patternplate.js",
-    "patternplate-console": "binary/patternplate-console.js"
+    "patternplate": "./lib/cli.js"
   },
   "scripts": {
-    "babel": "babel source --out-dir ./",
+    "babel": "babel src --out-dir ./lib",
     "build": "npm run babel",
-    "clean": "rimraf library application configuration",
+    "clean": "rimraf lib",
     "console": "node binary/patternplate-console",
     "start": "node binary/patternplate.js",
     "watch": "npm run babel -- --watch"
@@ -28,13 +26,13 @@
   },
   "dependencies": {
     "@patternplate/client": "^2.0.0",
-    "@patternplate/server": "^2.0.0",
     "app-root-path": "^1.0.0",
     "babel-polyfill": "^6.5.0",
-    "boilerplate-server": "^0.12.0",
     "boxen": "^0.8.0",
     "cp-file": "^3.2.0",
     "default-shell": "^1.0.1",
+    "express": "^4.16.2",
+    "express-slash": "^2.0.1",
     "find-root": "^0.1.1",
     "globby": "^6.0.0",
     "import-from": "^2.1.0",
@@ -63,6 +61,7 @@
     "babel-preset-es2015-node4": "^2.1.0",
     "babel-preset-es2016-node4": "^6.0.1",
     "babel-preset-es2017": "^6.14.0",
+    "errorhandler": "^1.5.0",
     "rimraf": "^2.6.2"
   },
   "repository": {
@@ -70,31 +69,9 @@
     "url": "sinnerschrader/patternplate"
   },
   "author": {
-    "name": "SinnerSchrader - Team UX",
-    "email": "team-ux@sinnerschrader.com"
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
   },
-  "contributors": [
-    {
-      "name": "Paul Bienkowski",
-      "email": "paul.bienkowski@sinnerschrader.com"
-    },
-    {
-      "name": "Tim Brust",
-      "email": "tim.brust@sinnerschrader.com"
-    },
-    {
-      "name": "Daniel Gooß",
-      "email": "daniel.gooss@sinnerschrader.com"
-    },
-    {
-      "name": "Veit Lehmann",
-      "email": "veit.lehmann@sinnerschrader.com"
-    },
-    {
-      "name": "Mario Nebl",
-      "email": "mario.nebl@sinnerschrader.com"
-    }
-  ],
   "license": "MIT",
   "engines": {
     "node": ">= 4",

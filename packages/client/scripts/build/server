@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-babel source --ignore source/assets -d ./ "$@"
+babel src --ignore src/assets -d lib "$@"

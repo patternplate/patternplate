@@ -1,0 +1,29 @@
+{
+  "name": "@patternplate/load-docs",
+  "version": "1.0.0",
+  "description": "Load patternplate docs",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@marionebl/sander": "^0.6.1",
+    "cosmiconfig": "^3.1.0",
+    "front-matter": "^2.2.0",
+    "globby": "^6.1.0",
+    "lodash": "^4.17.4",
+    "path-exists": "^3.0.0",
+    "remark": "^8.0.0",
+    "unist-util-find": "^1.0.1"
+  }
+}

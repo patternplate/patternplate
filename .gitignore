@@ -4,17 +4,8 @@ node_modules
 # boilerplate-server based apps
 /packages/**/yarn.lock
 
-/packages/cli/application/
-/packages/cli/binary/
-/packages/cli/configuration/
-/packages/cli/library/
-
-/packages/client/application/
-/packages/client/assets/
-/packages/client/binary/
-/packages/client/configuration/
-/packages/client/library/
-/packages/client/assets/script/index.bundle.js
+/packages/*/lib/
+/packages/client/static/
 
 /packages/components/lib/
 /packages/components/build/

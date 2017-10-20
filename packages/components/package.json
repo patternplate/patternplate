@@ -5,22 +5,21 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "patternplate",
-    "build": "babel patterns -d lib --source-maps",
-    "watch": "babel patterns -d lib --source-maps -w"
+    "build": "babel src -d lib --source-maps",
+    "watch": "babel src -d lib --source-maps -w"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/sinnerschrader/patternplate.git"
   },
-  "author": "Sinnerschrader Deutschland GmbH",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
   "contributors": [
     {
       "name": "Daniel Gooß",
       "email": "daniel.gooss@sinnerschrader.com"
-    },
-    {
-      "name": "Mario Nebl",
-      "email": "mario.nebl@sinnerschrader.com"
     }
   ],
   "license": "MIT",
@@ -30,9 +29,6 @@
   },
   "xo": false,
   "babel": {
-    "ignore": [
-      "demo.js"
-    ],
     "sourceMaps": true,
     "presets": [
       "react",
@@ -50,16 +46,13 @@
     "@patternplate/cli": "^2.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "browserify": "^14.4.0",
     "lorem-ipsum": "^1.0.4",
-    "patternplate-transform-babel": "^1.1.1",
-    "patternplate-transform-browserify": "^1.2.2",
-    "patternplate-transform-react-mount": "^1.1.0",
-    "patternplate-transform-react-to-markup": "^1.2.0-0",
-    "patternplate-transform-styled-components": "^1.1.0-0"
+    "webpack": "^3.8.1"
   },
   "dependencies": {
     "color": "^2.0.0",

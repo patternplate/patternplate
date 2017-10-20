@@ -58,6 +58,9 @@
       "ava/no-async-fn-without-await": [
         0
       ],
+      "capitalized-comments": [
+        0
+      ],
       "import/prefer-default-export": [
         0
       ],
@@ -101,12 +104,6 @@
   "lint-staged": {
     "**/*.js": [
       "prettier --write",
-      "xo --fix",
-      "git add"
-    ],
-    "**/*.jsx": [
-      "prettier --write",
-      "xo --fix",
       "git add"
     ]
   },
