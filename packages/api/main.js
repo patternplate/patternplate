@@ -18,16 +18,18 @@ module.exports = options => {
       }
       case "json":
       default: {
-        const { config } = await loadConfig({ cwd: options.cwd });
+        const { config, filepath } = await loadConfig({ cwd: options.cwd });
         const { entry = [] } = config;
+        const cwd = path.dirname(filepath);
 
         const docs = await loadDocsTree({
-          cwd: path.join(options.cwd, "patterns/@docs"),
-          files: ["**/*.md"] // eslint-disable-line no-useless-escape
+          cwd,
+          docs: config.docs,
+          readme: config.readme
         });
 
         const meta = await loadMetaTree({
-          cwd: options.cwd,
+          cwd,
           entry
         });
 

@@ -12,23 +12,6 @@ const docs = createSelector(
   (tree, id, hide, location, base) => {
     const context = { hide, id, prefix: "doc", location, base };
     const t = sanitize(merge({}, tree), context);
-
-    if (!t.children.some(i => i.id === "root")) {
-      const doc = enrich(
-        {
-          contents: tree.contents,
-          href: "/",
-          id: tree.id,
-          manifest: tree.manifest,
-          path: ["/"],
-          type: "doc"
-        },
-        { id, config: {}, prefix: "/", location, base }
-      );
-
-      t.children.push(doc);
-    }
-
     return Immutable.from(t);
   }
 );

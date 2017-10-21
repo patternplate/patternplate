@@ -1,4 +1,5 @@
-# patternplate-ui
+# Documentation
+
 ## Pattern Development
 
 patternplate is a platform for the pattern-driven development of component libraries.
@@ -158,7 +159,7 @@ function main() {
 	if (!buttonElement) {
 		return;
 	}
-	
+
 	buttonElement.addEventListener('click', clickHandler(0));
 }
 

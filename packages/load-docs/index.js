@@ -5,7 +5,6 @@ const { merge } = require("lodash");
 const remark = require("remark");
 const find = require("unist-util-find");
 const sander = require("@marionebl/sander");
-const getReadme = require("./load-readme");
 
 const DEFAULT_MANIFEST = {
   version: "1.0.0",
@@ -17,7 +16,9 @@ module.exports = loadDocs;
 module.exports.loadDocsTree = loadDocsTree;
 
 async function loadDocs(options) {
-  const files = await globby(options.files, { cwd: options.cwd });
+  const files = await globby([...options.docs, `!${options.readme}`], {
+    cwd: options.cwd
+  });
 
   return await Promise.all(
     files.map(async file => {
@@ -44,23 +45,14 @@ async function loadDocs(options) {
 }
 
 async function loadDocsTree(options) {
-  return treeFromPaths(await loadDocs(options), {
-    base: options.base,
-    cwd: options.cwd
-  });
+  return treeFromPaths(await loadDocs(options));
 }
 
-async function treeFromPaths(files, options) {
-  const contents = await getReadme(".", options.cwd);
-
+async function treeFromPaths(files) {
   const tree = {
     id: "root",
     children: [],
-    contents,
-    manifest: merge({}, DEFAULT_MANIFEST, {
-      name: "readme",
-      displayName: "Documentation"
-    })
+    type: "doc"
   };
 
   files.forEach(file => {

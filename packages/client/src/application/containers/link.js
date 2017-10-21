@@ -59,7 +59,8 @@ function getHref(props, context) {
       parsed.query,
       props.query || context.location.query
     ),
-    value => value !== "false" && value !== false
+    value =>
+      value !== "false" && value !== false && value !== "0" && value !== ""
   );
 
   const pathname =

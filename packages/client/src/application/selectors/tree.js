@@ -1,4 +1,5 @@
 import path from "path";
+import querystring from "querystring";
 import url from "url";
 import frontmatter from "front-matter";
 
@@ -90,12 +91,17 @@ export function enrich(child, context) {
 
   const parsed = url.parse(child.href || path.join(prefix, child.id));
 
+  const q =
+    typeof parsed.query === "string"
+      ? querystring.parse(parsed.query)
+      : parsed.query;
+
   child.href = url.format({
     pathname:
       typeof parsed.pathname === "string"
         ? url.resolve(context.base, parsed.pathname)
         : location.pathname,
-    query: { ...context.location.query, ...parsed.query }
+    query: { ...context.location.query, ...q }
   });
 
   child.warnings = child.warnings || [];

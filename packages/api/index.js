@@ -1,14 +1,11 @@
 const express = require("express");
-const bundle = require("./routes/bundle");
-const main = require("./routes/main");
-const render = require("./routes/render");
+const pack = require("./pack");
+const main = require("./main");
 
 module.exports = api;
 
 async function api({ cwd }) {
   return express()
-    .get("/", main({ cwd }))
-    .get("/bundle.js", bundle({ cwd }))
-    .get("/render.js", render({ cwd }))
-    .get("/start.js", render({ cwd }));
+    .get("/", await main({ cwd }))
+    .use(await pack({ cwd }));
 }

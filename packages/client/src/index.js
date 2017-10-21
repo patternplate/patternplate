@@ -82,16 +82,18 @@ async function main(options) {
   return async function mainRoute(req, res, next) {
     try {
       const result = (await loadConfig({ cwd: options.cwd })) || {};
-      const { config = {} } = result;
+      const { config = {}, filepath } = result;
       const { entry = [] } = config;
+      const cwd = path.dirname(filepath);
 
       const docs = await loadDocsTree({
-        cwd: path.join(options.cwd, "patterns/@docs"),
-        files: ["**/*.md"] // eslint-disable-line no-useless-escape
+        cwd,
+        docs: config.docs,
+        readme: config.readme
       });
 
       const meta = await loadMetaTree({
-        cwd: options.cwd,
+        cwd,
         entry
       });
 
@@ -129,13 +131,14 @@ function html(content, payload) {
         <textarea style="display:none" data-patternplate-vault="data-patternplate-vault">
           ${data}
         </textarea>
-        <script src="/api/bundle.js"></script>
-        <script src="/api/render.js"></script>
+        <script src="/api/patternplate-vendors.js"></script>
+        <script src="/api/patternplate-components.js"></script>
+        <script src="/api/patternplate-render.js"></script>
         <script>
           var element = document.querySelector('[data-patternplate-mount]');
           var data = JSON.parse(decodeURIComponent(document.querySelector('[data-patternplate-vault]').textContent));
-          var component = patternplate[data.artifact];
-          patternplate.render.mount(component, element);
+          var component = window['patternplate-components'][data.artifact];
+          window['patternplate-render'].mount(component, element);
         </script>
       </body>
     </html>
