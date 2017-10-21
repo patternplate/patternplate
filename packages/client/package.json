@@ -84,6 +84,7 @@
     "hast-util-sanitize": "^1.0.0",
     "hast-util-to-html": "^2.1.0",
     "highlight.js": "^9.6.0",
+    "import-from": "^2.1.0",
     "isomorphic-fetch": "^2.0.2",
     "lodash": "^4.15.0",
     "logic-query-parser": "0.0.5",

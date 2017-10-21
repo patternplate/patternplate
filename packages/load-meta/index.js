@@ -38,34 +38,42 @@ async function loadMeta(options) {
     })
   );
 
-  const sources = uniq(
-    await entries.filter(b => Boolean(b.map)).reduce(async (accp, b) => {
+  const pairs = await entries
+    .filter(b => Boolean(b.map))
+    .reduce(async (accp, b) => {
       const acc = await accp;
 
       const sources = await Promise.all(
         b.map.sources.map(async s => {
           const { path: p } = url.parse(s);
+          const artifact = path.relative(options.cwd, b.path);
           const pa = path.resolve(path.dirname(b.path), p);
 
           if (await sander.exists(pa)) {
-            return pa;
+            return {
+              artifact,
+              source: pa
+            };
           }
 
           const resolved = path.join(b.map.sourceRoot || options.cwd, pa);
 
           if (await sander.exists(resolved)) {
-            return resolved;
+            return {
+              artifact,
+              source: resolved
+            };
           }
         })
       );
 
       Array.prototype.push.apply(acc, sources.filter(Boolean));
       return acc;
-    }, Promise.resolve([]))
-  );
+    }, Promise.resolve([]));
 
   const candidates = (await Promise.all(
-    sources.map(async source => {
+    pairs.map(async pair => {
+      const { source, artifact } = pair;
       const patternBase = path.dirname(source);
       const manifestPath = path.join(patternBase, "pattern.json");
 
@@ -85,7 +93,12 @@ async function loadMeta(options) {
 
         data.displayName = data.displayName || data.name || null;
         const manifest = { ...DEFAULT_MANIFEST, ...data };
-        return { id, path: relativeManifestPath, manifest };
+        return {
+          id,
+          artifact,
+          path: relativeManifestPath,
+          manifest
+        };
       }
       return false;
     })

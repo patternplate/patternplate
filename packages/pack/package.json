@@ -1,7 +1,7 @@
 {
-  "name": "@patternplate/api",
+  "name": "@patternplate/pack",
   "version": "1.0.0",
-  "description": "Patternplate JSON API",
+  "description": "Bundle JS sources with webpack",
   "xo": false,
   "repository": {
     "type": "git",
@@ -17,18 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@patternplate/load-config": "^1.0.0",
-    "@patternplate/load-docs": "^1.0.0",
-    "@patternplate/load-meta": "^1.0.0",
-    "@patternplate/pack": "^1.0.0",
-    "chokidar": "^1.7.0",
-    "express": "^4.16.2",
-    "globby": "^6.1.0",
-    "import-from": "^2.1.0",
-    "loader-utils": "^1.1.0",
-    "lodash": "^4.17.4",
     "memory-fs": "^0.4.1",
-    "resolve-from": "^4.0.0",
     "webpack": "^3.8.1"
   }
 }

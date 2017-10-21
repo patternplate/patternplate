@@ -1,19 +1,15 @@
-const path = require("path");
 const querystring = require("querystring");
 const loadConfig = require("@patternplate/load-config");
+const pack = require("@patternplate/pack");
 const globby = require("globby");
-const MemoryFS = require("memory-fs");
-const webpack = require("webpack");
 
 const LOADER = require.resolve("./loader.js");
 
 module.exports = ({ cwd }) => {
-  const fs = new MemoryFS();
-
   const bundle = async (req, res) => {
     const { config } = await loadConfig({ cwd });
     const options = await getOptions(config, { cwd });
-    const result = await pack(options, { fs, cwd });
+    const result = await pack(options, { cwd });
 
     res.type("js");
     res.send(result);
@@ -41,38 +37,10 @@ async function getOptions(config, { cwd }) {
   });
 
   return {
-    entry: `${LOADER}?${q}!`
-  };
-}
-
-function pack(options, { fs }) {
-  return new Promise((resolve, reject) => {
-    options.output = {
-      filename: "pack.js",
+    entry: `${LOADER}?${q}!`,
+    output: {
       library: "patternplate",
-      libraryTarget: "window",
-      path: "/"
-    };
-
-    const compiler = webpack(options);
-    compiler.outputFileSystem = fs;
-
-    compiler.run((err, stats) => {
-      if (err) {
-        return reject(err);
-      }
-
-      const info = stats.toJson();
-
-      if (info.errors.length > 0) {
-        return reject(info.errors);
-      }
-
-      if (info.warnings.length > 0) {
-        console.warn(info.warnings);
-      }
-
-      resolve(fs.readFileSync("/pack.js"));
-    });
-  });
+      libraryTarget: "window"
+    }
+  };
 }

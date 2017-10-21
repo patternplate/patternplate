@@ -1,12 +1,13 @@
 const path = require("path");
-const express = require("express");
-const serve = require("serve-static");
-const unindent = require("unindent");
 
 const api = require("@patternplate/api");
 const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
+const express = require("express");
+const importFrom = require("import-from");
+const serve = require("serve-static");
+const unindent = require("unindent");
 const renderPage = require("./render-page");
 
 const { loadMetaTree } = loadMeta;
@@ -63,8 +64,14 @@ async function demo(options) {
         return res.sendStatus(404);
       }
 
-      // TODO: Implement a SSR API that is not React specific
-      res.send(html());
+      const { render } = importFrom(
+        path.dirname(result.filepath),
+        config.render
+      );
+      const component = importFrom(options.cwd, `./${found.artifact}`);
+      const content = render(component);
+
+      res.send(html(content, found));
     } catch (err) {
       next(err);
     }
@@ -100,14 +107,36 @@ async function main(options) {
   };
 }
 
-function html() {
+function html(content, payload) {
+  const data = encodeURIComponent(JSON.stringify(payload));
+
   return unindent(`
     <!doctype html>
     <html>
       <head>
-        <script src="/api/bundle.js"></script>
+        <!-- content.head -->
+        ${content.head || ""}
+        <!-- content.css -->
+        ${content.css}
       </head>
       <body>
+        <!-- content.before -->
+        ${content.before || ""}
+        <!-- content.html -->
+        <div data-patternplate-mount="data-patternplate-mount">${content.html}</div>
+        <!-- content.after -->
+        ${content.after || ""}
+        <textarea style="display:none" data-patternplate-vault="data-patternplate-vault">
+          ${data}
+        </textarea>
+        <script src="/api/bundle.js"></script>
+        <script src="/api/render.js"></script>
+        <script>
+          var element = document.querySelector('[data-patternplate-mount]');
+          var data = JSON.parse(decodeURIComponent(document.querySelector('[data-patternplate-vault]').textContent));
+          var component = patternplate[data.artifact];
+          patternplate.render.mount(component, element);
+        </script>
       </body>
     </html>
   `);
