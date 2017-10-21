@@ -114,7 +114,7 @@ function html(content, payload) {
 
   return unindent(`
     <!doctype html>
-    <html>
+    <html lang="en">
       <head>
         <!-- content.head -->
         ${content.head || ""}
