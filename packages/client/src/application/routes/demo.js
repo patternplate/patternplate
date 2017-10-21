@@ -46,11 +46,9 @@ export default function patternRouteFactory(application) {
     const extension = getPatternExtension(parsed.pathname);
     const type = this.accepts("text", "html", "json") || extension;
     const errorType = type === "json" ? "json" : "html";
-    const { environment = "index" } = parsed.query;
 
     const filters = {
-      outFormats: [extension],
-      environments: [environment].filter(Boolean)
+      outFormats: [extension]
     };
 
     if (type === "html" && extension === "html") {
@@ -58,10 +56,6 @@ export default function patternRouteFactory(application) {
         server,
         id,
         filters,
-        environment,
-        {
-          mount: this.query.mount !== "false"
-        },
         `/${this.request.url}`
       );
 
@@ -88,8 +82,7 @@ export default function patternRouteFactory(application) {
       application.parent.server,
       id,
       filters,
-      extension,
-      environment
+      extension
     );
 
     if (error) {

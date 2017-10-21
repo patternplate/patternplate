@@ -5,14 +5,13 @@ export const type = "OPEN_FULLSCREEN";
 
 function openFullscreen() {
   return (dispatch, getState) => {
-    const { base, id, environment } = getState();
+    const { base, id } = getState();
     if (id === ".." || !global.open) {
       return;
     }
 
     const href = urlQuery.format({
-      pathname: `${base}demo/${id}/index.html`,
-      query: { environment }
+      pathname: `${base}demo/${id}/index.html`
     });
 
     global.open(href, "_blank");

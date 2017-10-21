@@ -25,7 +25,6 @@ export function flatten(tree) {
       demoDependents: tree.demoDependents,
       dependencies: tree.dependencies,
       dependents: tree.dependents,
-      envs: tree.envs,
       href: tree.href,
       id: tree.id,
       manifest: tree.manifest,

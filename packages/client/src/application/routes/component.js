@@ -8,10 +8,9 @@ export default function(application) {
 
     const parsed = urlQuery.parse(this.params.id);
     const id = parsed.pathname;
-    const { environment } = parsed.query;
     const server = application.parent.server;
 
-    const component = await getComponent(server, id, environment);
+    const component = await getComponent(server, id);
 
     if (!component.buffer) {
       this.throw(404);

@@ -10,13 +10,11 @@ import demoDependentsEnabled from "./demo-dependents-enabled";
 import dependenciesEnabled from "./dependencies-enabled";
 import dependentsEnabled from "./dependents-enabled";
 import docEnabled from "./doc-enabled";
-import environment from "./environment";
 import fetching from "./fetching";
 import id from "./id";
 import infoEnabled from "./info-enabled";
 import manifestEnabled from "./manifest-enabled";
 import messages from "./messages";
-import mountEnabled from "./mount-enabled";
 import navigationEnabled from "./navigation-enabled";
 import networkEnabled from "./network-enabled";
 import opacity from "./opacity";
@@ -47,14 +45,12 @@ export default {
   dependentsEnabled,
   depth,
   docEnabled,
-  environment,
   fetching,
   hideEnabled,
   id,
   infoEnabled,
   manifestEnabled,
   messages,
-  mountEnabled,
   navigationEnabled,
   networkEnabled,
   opacity,

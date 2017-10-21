@@ -260,16 +260,6 @@ function InnerInfoPane(props) {
                 </StyledDataCell>
               </tr>
             )}
-          {
-            <ClickableRow onClick={props.onMountChange}>
-              <StyledDataCell>
-                <StyledKey>Mount</StyledKey>
-              </StyledDataCell>
-              <StyledDataCell>
-                <input type="checkbox" checked={props.mount} />
-              </StyledDataCell>
-            </ClickableRow>
-          }
         </tbody>
       </StyledData>
       {has(props.dependencies) && (
@@ -330,10 +320,6 @@ function InnerInfoPane(props) {
     </StyledInnerPane>
   );
 }
-
-const ClickableRow = styled.tr`
-  cursor: pointer;
-`;
 
 const StyledSelectContainer = styled.div`
   position: relative;

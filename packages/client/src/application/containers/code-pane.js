@@ -47,7 +47,6 @@ function findContainer(doc) {
 function mapProps(state) {
   return {
     active: item.selectType(state) === "pattern",
-    env: item.selectEnv(state),
     source: selectSource(state)
   };
 }

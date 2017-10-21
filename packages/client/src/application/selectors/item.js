@@ -63,19 +63,6 @@ const selectReactToMarkupOpts = createSelector(
   r => r.opts || {}
 );
 
-export const selectAutomount = createSelector(
-  selectReactToMarkupOpts,
-  state => state.schema.automount,
-  state => state.mountEnabled,
-  (opts, globalConfig, enabled) => {
-    if (enabled !== null) {
-      return enabled;
-    }
-
-    return "automount" in opts ? opts.automount : globalConfig;
-  }
-);
-
 export const selectIcon = createSelector(
   selectItem,
   item => (item ? item.manifest.icon || item.type : "")
@@ -104,36 +91,6 @@ export const selectFlag = createSelector(
 export const selectId = createSelector(
   selectItem,
   item => (item ? item.id : "")
-);
-
-export const selectEnv = createSelector(
-  state => state.environment,
-  state => state.schema.envs,
-  (env, envs) => {
-    const found = envs.find(e => e.name === env);
-    return {
-      name: found.name,
-      displayName: found.displayName
-    };
-  }
-);
-
-export const selectEnvs = createSelector(
-  selectItem,
-  state => state.schema.envs,
-  (item, envs) => {
-    if (!item) {
-      return [];
-    }
-
-    return (item.envs || []).map(e => {
-      const found = envs.find(env => env.name === e);
-      return {
-        name: found.name,
-        displayName: found.displayName
-      };
-    });
-  }
 );
 
 export const selectContents = createSelector(selectItem, item => {

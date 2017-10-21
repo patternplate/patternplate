@@ -2,7 +2,6 @@ import activateNode from "./activate-node";
 import applyState from "./apply-state";
 import arrow from "./arrow";
 import changeConcern from "./change-concern";
-import changeEnvironment from "./change-environment";
 import changeType from "./change-type";
 import closeAllTheThings from "./close-all-the-things";
 import demoContentResize from "./demo-content-resize";
@@ -30,7 +29,6 @@ import toggleHide from "./toggle-hide";
 import toggleInfo from "./toggle-info";
 import toggleKeyboardShortcuts from "./toggle-keyboard-shortcuts";
 import toggleManifest from "./toggle-manifest";
-import toggleMount from "./toggle-mount";
 import toggleNavigation from "./toggle-navigation";
 import toggleNetwork from "./toggle-network";
 import toggleOpacity from "./toggle-opacity";
@@ -44,7 +42,6 @@ export {
   applyState,
   arrow,
   changeConcern,
-  changeEnvironment,
   changeType,
   closeAllTheThings,
   demoContentResize,
@@ -72,7 +69,6 @@ export {
   toggleInfo,
   toggleKeyboardShortcuts,
   toggleManifest,
-  toggleMount,
   toggleNavigation,
   toggleNetwork,
   toggleOpacity,
