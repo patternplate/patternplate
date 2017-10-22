@@ -35,6 +35,7 @@
       [
         "env",
         {
+          "modules": false,
           "targets": {
             "node": "4"
           }

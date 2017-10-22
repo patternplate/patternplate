@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { createSelector } from "reselect";
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
+import selectPool from "../selectors/pool";
 import themes from "../themes";
 
 export default connect(mapState)(Documentation);
@@ -55,11 +56,20 @@ Help us to make this message more helpful on [GitHub](https://github.com/sinners
 
 const selectDoc = createSelector(
   selectItem,
+  state => state.id,
+  selectPool,
   selectNoDocs,
   selectNotFound,
-  (match, noDocs, notFound) => {
+  (match, id, pool, noDocs, notFound) => {
     if (match && match.contents) {
       return match.contents;
+    }
+
+    if (id === "/") {
+      const first = pool.find(i => Boolean(i.contents) && i.type !== "pattern");
+      if (first) {
+        return first.contents;
+      }
     }
 
     if (match && !match.contents) {
