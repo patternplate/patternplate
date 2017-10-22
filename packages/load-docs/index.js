@@ -16,7 +16,7 @@ module.exports = loadDocs;
 module.exports.loadDocsTree = loadDocsTree;
 
 async function loadDocs(options) {
-  const files = await globby([...options.docs, `!${options.readme}`], {
+  const files = await globby([...options.docs], {
     cwd: options.cwd
   });
 

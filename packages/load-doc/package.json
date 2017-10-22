@@ -1,7 +1,7 @@
 {
-  "name": "@patternplate/load-docs",
+  "name": "@patternplate/load-doc",
   "version": "1.0.0",
-  "description": "Load patternplate docs",
+  "description": "Load a markdown index docs",
   "xo": false,
   "repository": {
     "type": "git",
@@ -18,13 +18,6 @@
   "license": "MIT",
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/load-doc": "^1.0.0",
-    "cosmiconfig": "^3.1.0",
-    "front-matter": "^2.2.0",
-    "globby": "^6.1.0",
-    "lodash": "^4.17.4",
-    "path-exists": "^3.0.0",
-    "remark": "^8.0.0",
-    "unist-util-find": "^1.0.1"
+    "globby": "^6.1.0"
   }
 }

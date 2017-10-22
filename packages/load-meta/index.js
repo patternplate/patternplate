@@ -1,5 +1,6 @@
 const path = require("path");
 const url = require("url");
+const loadDoc = require("@patternplate/load-doc");
 const frontmatter = require("front-matter");
 const globby = require("globby");
 const { merge, partition } = require("lodash");
@@ -170,10 +171,7 @@ async function treeFromPaths(files) {
                 return null;
               }
 
-              const fromPatterns = path.resolve.bind(null, "./patterns");
-              const contents = await getDoc(fromPatterns(...itemPath), {
-                type
-              });
+              const contents = await loadDoc({ cwd: path.join(...itemPath) });
 
               const ast = remark().parse(contents);
               const first = find(ast, { type: "heading", depth: 1 });
@@ -193,6 +191,10 @@ async function treeFromPaths(files) {
                 path: itemPath,
                 type
               };
+
+              if (item.type === "folder" && !contents) {
+                return null;
+              }
 
               level.children.push(item);
 
@@ -230,14 +232,4 @@ function getType(basename) {
     return "pattern";
   }
   return "folder";
-}
-
-async function getDoc(itemPath, context) {
-  const baseName = context.type === "pattern" ? "index.md" : "readme.md";
-  const file = path.resolve(itemPath, baseName);
-
-  if (!await sander.exists(file)) {
-    return "";
-  }
-  return String(await sander.readFile(file));
 }
