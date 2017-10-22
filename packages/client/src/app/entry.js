@@ -3,7 +3,7 @@ import url from "url";
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
-import Router, { DefaultRoute, Route } from "react-router";
+import Router, { Route } from "@marionebl/react-router";
 import { EventEmitter } from "events";
 
 import Application from "./components";

@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from "react-dom";
-import { Router, browserHistory } from "react-router";
+import { hydrate } from "react-dom";
+import { Router, browserHistory } from "@marionebl/react-router";
 import { Provider } from "react-redux";
 import { syncHistoryWithStore } from "react-router-redux";
 
@@ -17,5 +17,5 @@ export default function(data, el) {
     </Provider>
   );
 
-  return render(router, el);
+  return hydrate(router, el);
 }

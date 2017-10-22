@@ -109,6 +109,7 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.4.0",
     "eslint-config-xo-react": "^0.13.0",
     "eslint-plugin-patternplate": "^1.0.1",

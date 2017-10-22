@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, IndexRoute } from "react-router";
+import { Route, IndexRoute } from "@marionebl/react-router";
 
 import Application from "./containers/application";
 import Pattern from "./containers/pattern";
