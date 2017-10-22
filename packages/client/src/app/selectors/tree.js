@@ -22,8 +22,6 @@ export function flatten(tree) {
   const init = [
     {
       contents: tree.contents,
-      demoDependencies: tree.demoDependencies,
-      demoDependents: tree.demoDependents,
       dependencies: tree.dependencies,
       dependents: tree.dependents,
       href: tree.href,

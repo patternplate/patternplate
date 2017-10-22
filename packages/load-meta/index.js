@@ -3,10 +3,12 @@ const url = require("url");
 const loadDoc = require("@patternplate/load-doc");
 const frontmatter = require("front-matter");
 const globby = require("globby");
-const { merge, partition } = require("lodash");
+const { flatten, merge, partition } = require("lodash");
 const loadJsonFile = require("load-json-file");
 const loadSourceMap = require("load-source-map");
+const precinct = require("precinct");
 const remark = require("remark");
+const resolveFrom = require("resolve-from");
 const find = require("unist-util-find");
 const sander = require("@marionebl/sander");
 const throat = require("throat");
@@ -72,13 +74,20 @@ async function loadMeta(options) {
       return acc;
     }, Promise.resolve([]));
 
-  const candidates = (await Promise.all(
-    pairs.map(async pair => {
-      const { source, artifact } = pair;
-      const patternBase = path.dirname(source);
-      const manifestPath = path.join(patternBase, "pattern.json");
+  const candidates = await Promise.all(
+    pairs
+      .filter(async pair => {
+        const manifestPath = path.join(
+          path.dirname(pair.source),
+          "pattern.json"
+        );
+        return await sander.exists(manifestPath);
+      })
+      .map(async pair => {
+        const { source, artifact } = pair;
+        const patternBase = path.dirname(source);
+        const manifestPath = path.join(patternBase, "pattern.json");
 
-      if (await sander.exists(manifestPath)) {
         const base = path.dirname(path.relative(options.cwd, patternBase));
         const relativeManifestPath = path.relative(options.cwd, manifestPath);
         const [err, data] = await json(manifestPath);
@@ -97,28 +106,73 @@ async function loadMeta(options) {
         return {
           id,
           artifact,
+          source,
+          files: await getFiles(source, { cwd: options.cwd }),
           path: relativeManifestPath,
           manifest
         };
-      }
-      return false;
-    })
-  )).filter(Boolean);
+      })
+  );
 
   const [, patterns] = partition(candidates, r => r instanceof Error);
 
-  // TODO: implement dependency lookups
-  return patterns.map(pattern => {
-    pattern.dependencies = [];
-    pattern.demoDependencies = [];
-    pattern.dependents = [];
-    pattern.demoDependents = [];
-    return pattern;
+  const patternWithDeps = await Promise.all(
+    patterns.map(async p => {
+      p.dependencies = await getDeps(p, patterns, options);
+      return p;
+    })
+  );
+
+  return patternWithDeps.map(p => {
+    p.dependents = getDependents(p.id, patternWithDeps);
+    return p;
   });
 }
 
 async function loadMetaTree(options) {
   return treeFromPaths(await loadMeta(options));
+}
+
+async function getFiles(source, options) {
+  const cwd = path.dirname(source);
+  return (await globby(["*", "!pattern.json"], { cwd })).map(file =>
+    path.relative(options.cwd, path.join(cwd, file))
+  );
+}
+
+async function getDeps(p, pool, options) {
+  const { external } = await getReferences(p.source, p.files, options);
+
+  return external
+    .map(ext => pool.find(p => p.files.includes(ext)))
+    .filter(Boolean)
+    .map(p => p.id);
+}
+
+async function getReferences(sourceFile, files, options) {
+  const base = path.dirname(sourceFile);
+  const content = String(await sander.readFile(sourceFile));
+
+  const found = precinct(content).map(i =>
+    path.relative(options.cwd, resolveFrom(base, i))
+  );
+
+  const [local, external] = partition(found, i => files.includes(i));
+
+  const sub = await Promise.all(
+    local.map(loc => getReferences(loc, files, options))
+  );
+
+  return {
+    local: [...local, ...flatten(sub.map(s => s.local))],
+    external: [...external, ...flatten(sub.map(s => s.external))]
+  };
+}
+
+function getDependents(id, pool) {
+  return pool
+    .filter(p => p.dependencies.includes(id) && p.id !== id)
+    .map(p => p.id);
 }
 
 function getSourceMap(jsFile) {

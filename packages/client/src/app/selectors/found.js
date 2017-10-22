@@ -428,8 +428,6 @@ export const selectActiveItem = createSelector(
     return item
       ? Immutable.merge(item, {
           index,
-          demoDependents: rel("demoDependents"),
-          demoDependencies: rel("demoDependencies"),
           dependents: rel("dependents"),
           dependencies: rel("dependencies")
         })

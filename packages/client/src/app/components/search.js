@@ -418,8 +418,6 @@ function ResultPreview(props) {
         <StyledResultPreview>
           <InfoPane
             active
-            demoDependencies={values(props.item.demoDependencies)}
-            demoDependents={values(props.item.demoDependents)}
             dependencies={values(props.item.dependencies)}
             dependents={values(props.item.dependents)}
             flag={props.item.manifest.flag}

@@ -4,7 +4,7 @@ export default activateNode;
 export const type = "ACTIVATE_NODE";
 
 function activateNode(id) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch(
       patchLocation({
         query: {

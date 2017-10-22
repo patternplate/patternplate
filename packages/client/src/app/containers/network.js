@@ -60,16 +60,7 @@ const selectNodesDataSet = createSelector(
 const selectEdges = createSelector(selectFlattened, flat => {
   return flat.filter(f => f.type === "pattern").reduce((r, f) => {
     const deps = f.dependencies.map(d => ({ from: f.id, to: d }));
-
-    const demoDeps = f.demoDependencies.map(d => ({
-      from: f.id,
-      to: d,
-      dashes: true
-    }));
-
     Array.prototype.push.apply(r, deps);
-    Array.prototype.push.apply(r, demoDeps);
-
     return r;
   }, []);
 });

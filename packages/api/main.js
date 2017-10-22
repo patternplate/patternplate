@@ -1,12 +1,14 @@
 const path = require("path");
+const commondir = require("commondir");
+const globby = require("globby");
 const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
-const { loadMetaTree } = require("@patternplate/load-meta");
+const loadMeta = require("@patternplate/load-meta");
 const chokidar = require("chokidar");
-const { isEqual } = require("lodash");
+const { flatten, isEqual, uniq } = require("lodash");
 
-module.exports = options => {
-  const watch = watcher({ cwd: options.cwd });
+module.exports = async options => {
+  const watch = await watcher({ cwd: options.cwd });
 
   const api = async (req, res) => {
     const type = req.accepts("json", "text/event-stream");
@@ -28,7 +30,7 @@ module.exports = options => {
           readme: config.readme
         });
 
-        const meta = await loadMetaTree({
+        const meta = await loadMeta.loadMetaTree({
           cwd,
           entry
         });
@@ -47,21 +49,27 @@ module.exports = options => {
   };
 };
 
-function watcher(options) {
+async function watcher(options) {
   const connections = new Set();
+  const { config, filepath } = await loadConfig({ cwd: options.cwd });
+  const cwd = path.dirname(filepath);
+  const { entry = [] } = config;
+
+  const meta = await loadMeta({ cwd, entry });
+  const metaGroups = dirGroup(meta.map(m => m.path), { cwd });
+  const docsGroups = await globGroup(config.docs, { cwd });
+  const groups = [...metaGroups, ...docsGroups];
 
   const broadcast = (id, payload) => {
     connections.forEach(send => send(id, payload));
   };
 
-  const watchPath = path.join(options.cwd, "./patterns");
-  const sentinel = chokidar.watch(watchPath, { ignoreInitial: true });
-  let patterns = { id: "root", children: [] };
+  const sentinel = chokidar.watch(groups, { ignoreInitial: true });
 
-  const onChange = async (type, file) => {
+  const onChange = async (type, abs) => {
+    const file = path.relative(options.cwd, abs);
     broadcast("change", { type, file });
-    const meta = { id: "root", children: [] };
-    patterns = await affected(file, meta, patterns);
+    const patterns = await affected(file, meta);
     patterns.forEach(pattern => broadcast("reload", { pattern }));
   };
 
@@ -115,17 +123,27 @@ function watcher(options) {
   };
 }
 
+async function globGroup(patterns, { cwd }) {
+  const list = await globby(patterns, { cwd });
+  const dirs = list.map(i => (path.extname(i) ? path.dirname(i) : i));
+  return dirGroup(dirs, { cwd });
+}
+
+function dirGroup(files, { cwd }) {
+  return uniq(files.map(e => e.split(path.sep)[0]))
+    .map(dir => files.filter(e => e.startsWith(dir)))
+    .map(group => commondir(cwd, group));
+}
+
 function sse(event, data) {
   return `event:${event}\ndata: ${JSON.stringify(data)}\n\n`;
 }
 
 function affected(file, patterns, previous) {
-  const b = strip(file);
-  const basename = path.basename(file);
+  console.log(file, patterns, previous);
 
-  if (!["demo", "index"].includes(b) && basename !== "pattern.json") {
-    return [];
-  }
+  /* const b = strip(file);
+  const basename = path.basename(file);
 
   const guess = path.dirname(
     file
@@ -157,34 +175,5 @@ function affected(file, patterns, previous) {
     ...deps(match, patterns, "demoDependents")
   ];
 
-  return [match.id, ...dependents];
-}
-
-function deps(pattern, patterns, key) {
-  return pattern[key].reduce((d, p) => {
-    const match = find(patterns, p);
-    return [...d, p, ...deps(match, patterns, key)];
-  }, []);
-}
-
-function find(tree, id, depth = 1) {
-  if (!tree || !id) {
-    return;
-  }
-
-  const frags = id.split("/").filter(Boolean);
-  const sub = frags.slice(0, depth).map(strip);
-  const match = tree.children.find(child =>
-    child.path.every((s, i) => sub[i] === strip(s))
-  );
-
-  if (match && depth < frags.length) {
-    return find(match, id, depth + 1);
-  }
-
-  return match;
-}
-
-function strip(b) {
-  return path.basename(b, path.extname(b));
+  return [match.id, ...dependents]; */
 }

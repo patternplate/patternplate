@@ -30,8 +30,6 @@ const selectFilter = createSelector(state => state.hide, hide => filter(hide));
 
 const relation = key => createRelationSelector(key, selectItem, selectFilter);
 
-export const selectDemoDependencies = relation("demoDependencies");
-export const selectDemoDependents = relation("demoDependents");
 export const selectDependencies = relation("dependencies");
 export const selectDependents = relation("dependents");
 

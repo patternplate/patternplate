@@ -5,8 +5,6 @@ import codeEnabled from "./code-enabled";
 import connection from "./connection";
 import depth from "./depth";
 import demo from "./demo";
-import demoDependenciesEnabled from "./demo-dependencies-enabled";
-import demoDependentsEnabled from "./demo-dependents-enabled";
 import dependenciesEnabled from "./dependencies-enabled";
 import dependentsEnabled from "./dependents-enabled";
 import docEnabled from "./doc-enabled";
@@ -39,8 +37,6 @@ export default {
   config: ident,
   connection,
   demo,
-  demoDependenciesEnabled,
-  demoDependentsEnabled,
   dependenciesEnabled,
   dependentsEnabled,
   depth,

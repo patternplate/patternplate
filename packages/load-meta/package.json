@@ -26,8 +26,10 @@
     "load-source-map": "^1.0.0",
     "lodash": "^4.17.4",
     "path-exists": "^3.0.0",
+    "precinct": "^3.8.0",
     "promise-reduce": "^2.1.0",
     "remark": "^8.0.0",
+    "resolve-from": "^4.0.0",
     "throat": "^4.1.0",
     "unist-util-find": "^1.0.1",
     "webpack-sources": "^1.0.1"
