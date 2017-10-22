@@ -7,10 +7,8 @@
   },
   "scripts": {
     "babel": "babel src --out-dir ./lib",
-    "build": "npm run babel",
-    "clean": "rimraf lib",
-    "console": "node binary/patternplate-console",
-    "start": "node binary/patternplate.js",
+    "build": "npx yarn run babel",
+    "clean": "npx rimraf lib",
     "watch": "npm run babel -- --watch"
   },
   "xo": false,

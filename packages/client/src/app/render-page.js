@@ -3,10 +3,10 @@ import { fill } from "lodash";
 import { Icon } from "@patternplate/components";
 import Helmet from "react-helmet";
 
-import router from "./application/server";
-import layout from "./application/layouts";
-import getIdByPathname from "./application/utils/get-id-by-pathname";
-import navigate from "./application/utils/navigate";
+import router from "./server";
+import layout from "./layouts";
+import getIdByPathname from "./utils/get-id-by-pathname";
+import navigate from "./utils/navigate";
 
 module.exports = renderPage;
 
@@ -44,10 +44,7 @@ async function renderPage(uri, { config, schema }) {
     link: head.link,
     meta: head.meta,
     title: head.title,
-    scripts: [
-      `${base}/script/vendors.bundle.js`,
-      `${base}/script/index.bundle.js`
-    ]
+    scripts: [`${base}/static/vendors.js`, `${base}/static/client.js`]
   });
 }
 

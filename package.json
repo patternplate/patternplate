@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
+    "relink": "ln -fs ../../../cli/lib/cli.js packages/components/node_modules/.bin/patternplate && chmod +x packages/components/node_modules/.bin/patternplate",
     "build": "npx lerna run build --stream --include-filtered-dependencies",
-    "clean": "npx lerna clean --yes && npx rimraf node_modules",
+    "clean": "npx lerna clean --yes && npx lerna run clean && npx rimraf node_modules",
     "components": "npx lerna run start --scope @patternplate/components --stream",
     "precommit": "lint-staged",
     "reinstall": "npx yarn run clean && npx yarn install && npx lerna bootstrap",
