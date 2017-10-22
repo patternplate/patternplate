@@ -1,4 +1,3 @@
-const lorem = require("lorem-ipsum");
 const React = require("react");
 const styled = require("styled-components").default;
 const fonts = require(".");
@@ -19,7 +18,9 @@ function FontFace(props) {
   return (
     <StyledParagraph face={props.face}>
       <StyledName>{props.name}</StyledName>
-      {lorem({ count: 2, units: "sentences" })}
+      Sit elit laboris quis exercitation exercitation eu aliquip mollit aliquip
+      est tempor nostrud. Ad mollit sint esse pariatur ex est ipsum culpa elit
+      eu ipsum irure enim esse.
     </StyledParagraph>
   );
 }

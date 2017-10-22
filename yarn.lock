@@ -557,6 +557,13 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-styled-components@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/babel-plugin-styled-components/-/babel-plugin-styled-components-1.2.1.tgz#e1593f2a6a0327e2d156695306e60c4dd175866d"
+  dependencies:
+    babel-types "^6.26.0"
+    stylis "^3.2.1"
+
 babel-plugin-syntax-async-functions@^6.3.13, babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"

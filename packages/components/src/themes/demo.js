@@ -92,12 +92,6 @@ const StyledGrid = styled.div`
 `;
 
 function Groups(props) {
-  const labelColors = pick(props.theme, [
-    "error",
-    "warning",
-    "success",
-    "info"
-  ]);
   const groups = props.theme;
 
   let colorConverter;
@@ -120,7 +114,7 @@ function Groups(props) {
       <StyledName>{props.name}</StyledName>
       <StyledGrid>
         {entries(groups).map(group => (
-          <StyledTyleGroup>
+          <StyledTyleGroup key={group[0]}>
             {entries(group[1]).map(value => (
               <Tile
                 key={value.join("-")}

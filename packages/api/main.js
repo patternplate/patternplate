@@ -140,40 +140,5 @@ function sse(event, data) {
 }
 
 function affected(file, patterns, previous) {
-  console.log(file, patterns, previous);
-
-  /* const b = strip(file);
-  const basename = path.basename(file);
-
-  const guess = path.dirname(
-    file
-      .split(path.sep)
-      .slice(1)
-      .join("/")
-  );
-
-  const match = find(patterns, guess);
-  const prev = find(previous, guess);
-
-  if (!match) {
-    return [];
-  }
-
-  if (
-    basename === "pattern.json" &&
-    isEqual(prev.manifest.patterns, match.manifest.patterns)
-  ) {
-    return [];
-  }
-
-  if (b === "demo") {
-    return [match.id];
-  }
-
-  const dependents = [
-    ...deps(match, patterns, "dependents"),
-    ...deps(match, patterns, "demoDependents")
-  ];
-
-  return [match.id, ...dependents]; */
+  return [];
 }

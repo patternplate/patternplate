@@ -7,16 +7,19 @@ const StyledDemo = styled.iframe`
   border: 0;
 `;
 
-const SUPPORTS = check();
-
 class PatternDemo extends React.Component {
   constructor() {
     super();
     this.saveRef = this.saveRef.bind(this);
+    this.state = {
+      srcDoc: false
+    };
   }
 
   componentDidMount() {
-    console.log(this.ref);
+    this.setState({
+      srcDoc: check()
+    });
   }
 
   saveRef(ref) {
@@ -25,11 +28,7 @@ class PatternDemo extends React.Component {
 
   render() {
     const { props } = this;
-    return SUPPORTS ? (
-      <StyledDemo srcDoc={props.contents} seamless />
-    ) : (
-      <StyledDemo src={props.src} seamless />
-    );
+    return <StyledDemo srcDoc={props.contents} seamless />;
   }
 }
 
