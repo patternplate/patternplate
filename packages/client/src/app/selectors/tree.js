@@ -97,10 +97,7 @@ export function enrich(child, context) {
       : parsed.query;
 
   child.href = url.format({
-    pathname:
-      typeof parsed.pathname === "string"
-        ? url.resolve(context.base, parsed.pathname)
-        : location.pathname,
+    pathname: url.resolve(context.base, parsed.pathname),
     query: { ...context.location.query, ...q }
   });
 
@@ -124,15 +121,6 @@ export function enrich(child, context) {
       message: `${child.manifest.displayName} is flagged as ${child.manifest
         .flag}.`
     });
-  }
-
-  // If there is no special content in a folder show the first child
-  if (
-    child.children &&
-    child.children.length > 0 &&
-    (!child.contents || !frontmatter(child.contents).body)
-  ) {
-    child.href = child.children[0].href;
   }
 
   return child;

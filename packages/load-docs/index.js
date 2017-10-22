@@ -52,7 +52,7 @@ async function treeFromPaths(files) {
   const tree = {
     id: "root",
     children: [],
-    type: "doc"
+    type: "root"
   };
 
   files.forEach(file => {

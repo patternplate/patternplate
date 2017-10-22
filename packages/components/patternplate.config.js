@@ -1,6 +1,5 @@
 module.exports = {
-  docs: ["docs/**/*.md"],
-  readme: "docs/readme.md",
+  docs: ["docs/**/*.md", "alt-docs/**/*.md"],
   entry: ["lib/**/demo.js"],
   render: "./patternplate.render.js",
   ui: {

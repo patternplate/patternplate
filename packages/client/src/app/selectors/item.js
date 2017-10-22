@@ -2,16 +2,19 @@ import { createSelector } from "reselect";
 import selectPool from "./pool";
 import createRelationSelector from "./relation";
 
-const REGISTRY = {
-  "/": "doc/root"
-};
-
 const selectItem = createSelector(
   selectPool,
   state => state.id,
   (pool, id) => {
-    const search = id in REGISTRY ? REGISTRY[id] : id;
-    return pool.find(item => search === `${item.type}/${item.id}`);
+    const item = pool.find(item => id === `${item.type}/${item.id}`);
+
+    if (item) {
+      return item;
+    }
+
+    const folder = pool.find(item => id === `doc/${item.id}`);
+
+    return folder;
   }
 );
 
