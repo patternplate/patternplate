@@ -5,7 +5,7 @@ const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 const chokidar = require("chokidar");
-const { flatten, isEqual, uniq } = require("lodash");
+const { uniq } = require("lodash");
 
 module.exports = async options => {
   const watch = await watcher({ cwd: options.cwd });
