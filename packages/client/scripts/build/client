@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-./scripts/build/bundle \
-	src/assets/script/index.js \
-	static/script/index.bundle.js \
-	-x \
-	./index.bundle.map \
-	./static/script/index.bundle.map \
-	"$@"

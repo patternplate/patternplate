@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-./scripts/build/server && \
-
-concurrently -k \
-	"./scripts/build/client" \
-	"./scripts/build/vendors" \
-	"$@"

@@ -36,21 +36,7 @@ async function createCompiler({ cwd }) {
 
   compiler.outputFileSystem = fs;
 
-  compiler.watch({}, (err, stats) => {
-    if (err) {
-      console.error(err);
-    }
-
-    const info = stats.toJson();
-
-    if (info.errors.length > 0) {
-      console.error(info.errors);
-    }
-
-    if (info.warnings.length > 0) {
-      console.warn(info.warnings);
-    }
-  });
+  compiler.watch({}, () => {});
 
   return compiler;
 }

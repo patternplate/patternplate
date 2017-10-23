@@ -69,7 +69,7 @@ async function watcher(options) {
   const onChange = async (type, abs) => {
     const file = path.relative(options.cwd, abs);
     broadcast("change", { type, file });
-    const patterns = await affected(file, meta);
+    const patterns = affected(file, meta);
     patterns.forEach(pattern => broadcast("reload", { pattern }));
   };
 
@@ -139,6 +139,21 @@ function sse(event, data) {
   return `event:${event}\ndata: ${JSON.stringify(data)}\n\n`;
 }
 
-function affected(file, patterns, previous) {
-  return [];
+function affected(file, patterns) {
+  const match = patterns.find(p => p.files.includes(file));
+
+  if (!match) {
+    return [];
+  }
+
+  return [match.id].concat(dependents(match, patterns));
+}
+
+function dependents(pattern, patterns) {
+  return pattern.dependents.reduce((acc, id) => {
+    acc.push(id);
+    const match = patterns.find(p => p.id === id);
+    Array.prototype.push.apply(acc, dependents(match, patterns));
+    return acc;
+  }, []);
 }

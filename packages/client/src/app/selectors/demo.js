@@ -1,6 +1,4 @@
-import queryString from "query-string";
 import { createSelector } from "reselect";
-import urlQuery from "../utils/url-query";
 import selectItem from "./item";
 
 export const selectSrc = createSelector(
@@ -10,6 +8,6 @@ export const selectSrc = createSelector(
     if (!item) {
       return null;
     }
-    return `${base}demo/${item.id}/index.html`;
+    return `${base}api/demo/${item.id}/index.html`;
   }
 );

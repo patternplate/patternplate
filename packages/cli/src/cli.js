@@ -52,3 +52,7 @@ main(cli).catch(err => {
     throw err;
   });
 });
+
+process.on("unhandledRejection", reason => {
+  throw reason;
+});

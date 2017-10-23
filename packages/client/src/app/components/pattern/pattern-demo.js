@@ -8,24 +8,6 @@ const StyledDemo = styled.iframe`
 `;
 
 class PatternDemo extends React.Component {
-  constructor() {
-    super();
-    this.saveRef = this.saveRef.bind(this);
-    this.state = {
-      srcDoc: false
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      srcDoc: check()
-    });
-  }
-
-  saveRef(ref) {
-    this.ref = ref;
-  }
-
   render() {
     const { props } = this;
     return <StyledDemo srcDoc={props.contents} seamless />;
@@ -33,10 +15,3 @@ class PatternDemo extends React.Component {
 }
 
 export default PatternDemo;
-
-function check() {
-  if (!global.document) {
-    return false;
-  }
-  return "srcdoc" in document.createElement("iframe");
-}
