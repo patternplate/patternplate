@@ -1,7 +1,7 @@
 module.exports = {
-  docs: ["docs/**/*.md", "alt-docs/**/*.md"],
-  entry: ["lib/**/demo.js", "alt-lib/**/*.js"],
-  render: "./patternplate.render.js",
+  docs: ["docs/**/*.md"],
+  entry: ["lib/**/demo.js"],
+  render: "./patternplate.render.js", // "@patternplate/react-render"
   ui: {
     title: "@patternplate/components"
   }

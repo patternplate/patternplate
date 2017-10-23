@@ -1,3 +1,4 @@
+const AggregateError = require("aggregate-error");
 const express = require("express");
 const createCompiler = require("./compiler");
 const demo = require("./demo");
@@ -25,7 +26,9 @@ async function api({ cwd }) {
     const info = stats.toJson();
 
     if (info.errors.length > 0) {
-      console.error(info.errors);
+      context.running.resolve(null);
+      context.error.resolve(info.errors);
+      return;
     }
 
     if (info.warnings.length > 0) {
@@ -38,7 +41,7 @@ async function api({ cwd }) {
 
   compiler.plugin("failed", error => {
     context.running.resolve(null);
-    context.running.resolve(error);
+    context.error.resolve(error);
   });
 
   return express()

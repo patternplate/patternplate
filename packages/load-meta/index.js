@@ -109,7 +109,8 @@ async function loadMeta(options) {
           source,
           files: await getFiles(source, { cwd: options.cwd }),
           path: relativeManifestPath,
-          manifest
+          manifest,
+          errors: []
         };
       })
   );
@@ -118,7 +119,9 @@ async function loadMeta(options) {
 
   const patternWithDeps = await Promise.all(
     patterns.map(async p => {
-      p.dependencies = await getDeps(p, patterns, options);
+      const { deps, error } = await getDeps(p, patterns, options);
+      p.dependencies = deps;
+      p.errors = [...p.errors, ...error];
       return p;
     })
   );
@@ -141,23 +144,31 @@ async function getFiles(source, options) {
 }
 
 async function getDeps(p, pool, options) {
-  const { external } = await getReferences(p.source, p.files, options);
+  const { error, external } = await getReferences(p.source, p.files, options);
 
-  return external
-    .map(ext => pool.find(p => p.files.includes(ext)))
-    .filter(Boolean)
-    .map(p => p.id);
+  return {
+    error,
+    deps: external
+      .map(ext => pool.find(p => p.files.includes(ext)))
+      .filter(Boolean)
+      .map(p => p.id)
+  };
 }
 
 async function getReferences(sourceFile, files, options) {
   const base = path.dirname(sourceFile);
   const content = String(await sander.readFile(sourceFile));
 
-  const found = precinct(content).map(i =>
-    path.relative(options.cwd, resolveFrom(base, i))
-  );
+  const found = precinct(content).map(i => {
+    try {
+      return path.relative(options.cwd, resolveFrom(base, i));
+    } catch (err) {
+      return err;
+    }
+  });
 
-  const [local, external] = partition(found, i => files.includes(i));
+  const [error, mods] = partition(found, i => i instanceof Error);
+  const [local, external] = partition(mods, i => files.includes(i));
 
   const sub = await Promise.all(
     local.map(loc => getReferences(loc, files, options))
@@ -165,7 +176,8 @@ async function getReferences(sourceFile, files, options) {
 
   return {
     local: [...local, ...flatten(sub.map(s => s.local))],
-    external: [...external, ...flatten(sub.map(s => s.external))]
+    external: [...external, ...flatten(sub.map(s => s.external))],
+    error: [...error, ...flatten(sub.map(s => s.error))]
   };
 }
 

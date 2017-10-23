@@ -44,7 +44,14 @@ module.exports = async options => {
     try {
       await api(req, res);
     } catch (err) {
-      next(err);
+      const type = req.accepts("json", "text/event-stream");
+      switch (type) {
+        case "json":
+          return res.json(err);
+        case "text/event-stream":
+        default:
+          next(err);
+      }
     }
   };
 };
@@ -55,7 +62,14 @@ async function watcher(options) {
   const cwd = path.dirname(filepath);
   const { entry = [] } = config;
 
-  const meta = await loadMeta({ cwd, entry });
+  const [err, meta] = await nodeish(loadMeta)({ cwd, entry });
+
+  if (err) {
+    console.error("Failed initializing file watcher on with errors:");
+    console.error(err);
+    return (req, res) => {};
+  }
+
   const metaGroups = dirGroup(meta.map(m => m.path), { cwd });
   const docsGroups = await globGroup(config.docs, { cwd });
   const groups = [...metaGroups, ...docsGroups];
@@ -156,4 +170,15 @@ function dependents(pattern, patterns) {
     Array.prototype.push.apply(acc, dependents(match, patterns));
     return acc;
   }, []);
+}
+
+function nodeish(fn) {
+  return async (...args) => {
+    try {
+      const result = await fn(...args);
+      return [null, result];
+    } catch (err) {
+      return [err];
+    }
+  };
 }

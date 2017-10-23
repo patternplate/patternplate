@@ -1,13 +1,14 @@
 const path = require("path");
 const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
+const AggregateError = require("aggregate-error");
 const resolveFrom = require("resolve-from");
 const unindent = require("unindent");
 
 module.exports = demo;
 
 async function demo(options) {
-  return async function demoRoute(req, res, next) {
+  return async function demoRoute(req, res) {
     const { context } = options;
 
     try {
@@ -52,7 +53,8 @@ async function demo(options) {
 
       res.send(html(content, found));
     } catch (err) {
-      next(err);
+      const error = Array.isArray(err) ? new AggregateError(err) : err;
+      res.status(500).send(error.message);
     }
   };
 }
@@ -83,10 +85,30 @@ function html(content, payload) {
         <script src="/api/patternplate-components.js"></script>
         <script src="/api/patternplate-render.js"></script>
         <script>
-          var element = document.querySelector('[data-patternplate-mount]');
-          var data = JSON.parse(decodeURIComponent(document.querySelector('[data-patternplate-vault]').textContent));
-          var component = window['patternplate-components'][data.artifact];
-          window['patternplate-render'].mount(component, element);
+          (function main() {
+            var components = window['patternplate-components'];
+            var render = window['patternplate-render'];
+
+            var errors = [];
+
+            if (!components) {
+              errors.push(new Error('No patternplate components found. There might be errors during bundling.'))
+            }
+
+            if (!render) {
+              errors.push(new Error('No render module found. There might be errors during bundling.'))
+            }
+
+            if (errors.length > 0) {
+              errors.forEach(err => console.error(err));
+              return;
+            }
+
+            var element = document.querySelector('[data-patternplate-mount]');
+            var data = JSON.parse(decodeURIComponent(document.querySelector('[data-patternplate-vault]').textContent));
+            var component = components[data.artifact];
+            render.mount(component, element);
+          })();
         </script>
       </body>
     </html>

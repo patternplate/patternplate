@@ -6,7 +6,15 @@ export default Message;
 function Message(props) {
   return (
     <StyledMessage>
-      <StyledMessageContent>{props.message}</StyledMessageContent>
+      <StyledMessageContent>
+        {props.message}
+        {props.details && (
+          <StyledDetails>
+            {props.summary && <StyledSummary>{props.summary}</StyledSummary>}
+            {props.details}
+          </StyledDetails>
+        )}
+      </StyledMessageContent>
     </StyledMessage>
   );
 }
@@ -20,4 +28,16 @@ const StyledMessage = styled.div`
 
 const StyledMessageContent = styled.pre`
   color: #fff;
+  max-height: calc(100vh - 160px);
+  overflow: scroll;
+`;
+
+const StyledDetails = styled.details`
+  margin: 10px 0;
+`;
+
+const StyledSummary = styled.summary`
+  outline: none;
+  cursor: pointer;
+  user-select: none;
 `;

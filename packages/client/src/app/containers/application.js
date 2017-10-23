@@ -255,6 +255,7 @@ const StyledMessageBox = styled.div`
   z-index: 3;
   padding: 15px;
   width: 100%;
+  overflow: hidden;
 `;
 
 const StyledControlsArea = styled.div`
