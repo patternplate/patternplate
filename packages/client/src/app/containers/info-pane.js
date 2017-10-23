@@ -10,7 +10,7 @@ function mapProps(state) {
     dependencies: item.selectDependencies(state),
     dependents: item.selectDependents(state),
     flag: item.selectFlag(state),
-    id: state => state.id,
+    id: state.id,
     icon: item.selectIcon(state),
     type: item.selectType(state),
     name: item.selectName(state),
