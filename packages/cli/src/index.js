@@ -9,16 +9,16 @@ export default patternplate;
 async function patternplate(options) {
   const { port } = options;
 
+  const clientMiddleware = await client({
+    cwd: options.cwd,
+    config: options.config
+  });
+
   const app = express()
     .enable("strict-routing")
     .disable("powered-by")
     .use(errorhandler())
-    .use(
-      await client({
-        cwd: options.cwd,
-        config: options.config
-      })
-    )
+    .use(clientMiddleware)
     .use(slash());
 
   await start(app, { port });
@@ -30,7 +30,7 @@ async function patternplate(options) {
 }
 
 function start(app, { port }) {
-  return new Promise(resolve => {
-    app.listen(port, () => resolve());
+  return new Promise((resolve, reject) => {
+    app.listen(port, () => resolve()).on("error", reject);
   });
 }

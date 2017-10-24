@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import chalk from "chalk";
 import meow from "meow";
 import ora from "ora";
 import patternplate from ".";
@@ -25,7 +26,7 @@ async function main({ input, flags }) {
     return;
   }
 
-  const spinner = ora("Starting").start();
+  const spinner = ora("Starting patternplate server").start();
 
   const port = isNaN(Number(flags.port)) ? 1337 : Number(flags.port);
 
@@ -34,18 +35,26 @@ async function main({ input, flags }) {
       port,
       cwd: flags.cwd || process.cwd()
     });
-    spinner.stop();
-    console.log(`Started on http://localhost:${app.port}`);
+    spinner.text = `Started on http://localhost:${app.port}`;
+    spinner.succeed();
   } catch (err) {
-    spinner.stop();
-    throw err;
+    switch (err.code) {
+      case "EADDRINUSE":
+        spinner.text = `Starting patternplate server failed`;
+        spinner.fail();
+        err.message = `Server could not be started, free the port: ${err.message}`;
+        err.patternplate = true;
+        throw err;
+      default:
+        throw err;
+    }
   }
 }
 
 main(cli).catch(err => {
   if (err.patternplate) {
     console.log(cli.help);
-    console.error(err.message);
+    console.error(chalk.red(err.message));
     process.exit(1);
   }
   setTimeout(() => {

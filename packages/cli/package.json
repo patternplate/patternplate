@@ -27,6 +27,7 @@
     "app-root-path": "^1.0.0",
     "babel-polyfill": "^6.5.0",
     "boxen": "^0.8.0",
+    "chalk": "^2.3.0",
     "cp-file": "^3.2.0",
     "default-shell": "^1.0.1",
     "express": "^4.16.2",
