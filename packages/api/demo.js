@@ -68,7 +68,7 @@ function html(content, payload) {
         <!-- content.head -->
         ${content.head || ""}
         <!-- content.css -->
-        ${content.css}
+        ${content.css || ""}
       </head>
       <body>
         <!-- content.before -->
@@ -78,7 +78,7 @@ function html(content, payload) {
         <!-- content.after -->
         ${content.after || ""}
         <textarea style="display:none" data-patternplate-vault="data-patternplate-vault">
-          ${data}
+          ${data || "{}"}
         </textarea>
         <script src="/api/patternplate-vendors.js"></script>
         <script src="/api/patternplate-components.js"></script>
