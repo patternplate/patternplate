@@ -221,7 +221,7 @@ async function treeFromPaths(files) {
         return await Promise.all(
           parts.map(
             throat(1, async (id, i) => {
-              const existing = level.children.find(c => c.name === id);
+              const existing = (level.children || []).find(c => c.name === id);
               const n = parts[i + 1];
               const itemPath = parts.slice(0, i + 1);
 
@@ -237,7 +237,9 @@ async function treeFromPaths(files) {
                 return null;
               }
 
-              const contents = await loadDoc({ cwd: path.join(...itemPath) });
+              const contents = String(
+                await loadDoc({ cwd: path.join(...itemPath) })
+              );
 
               const ast = remark().parse(contents);
               const first = find(ast, { type: "heading", depth: 1 });

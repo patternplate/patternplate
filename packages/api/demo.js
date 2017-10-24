@@ -49,8 +49,7 @@ async function demo(options) {
       delete require.cache[componentModule];
       const component = require(componentModule);
 
-      const content = render(component);
-
+      const content = render(component.default || component);
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;

@@ -5,7 +5,6 @@ const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 const express = require("express");
-const resolveFrom = require("resolve-from");
 const serve = require("serve-static");
 const renderPage = require("./app/render-page");
 
@@ -25,11 +24,7 @@ async function client(options) {
   });
 
   const apiStatic = path.join(options.cwd, "static");
-  const appStatic = path.join(
-    resolveFrom(options.cwd, "@patternplate/client"),
-    "..",
-    "static"
-  );
+  const appStatic = path.join(__dirname, "static");
 
   return express()
     .use("/static", serve(appStatic))
