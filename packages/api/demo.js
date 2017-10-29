@@ -106,7 +106,7 @@ function html(content, payload) {
             var element = document.querySelector('[data-patternplate-mount]');
             var data = JSON.parse(decodeURIComponent(document.querySelector('[data-patternplate-vault]').textContent));
             var component = components[data.artifact];
-            render.mount(component, element);
+            render.mount(component.default || component, element);
           })();
         </script>
       </body>
