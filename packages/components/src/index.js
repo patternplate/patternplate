@@ -15,6 +15,15 @@ module.exports = {
   NavigationToolbar: require("./navigation-toolbar"),
   NavigationTree: require("./navigation-tree"),
   Network: require("./network"),
+  Search: {
+    Search: require("./search").default,
+    SearchResult: require("./search").SearchResult,
+    SearchResultHeading: require("./search").SearchResultHeading,
+    SearchResultPreview: require("./search").SearchResultPreview,
+    SearchFieldSlot: require("./search").SearchFieldSlot,
+    PassThroughSlot: require("./search").PassThroughSlot,
+    Close: require("./search").Close
+  },
   SearchField: require("./search-field"),
   ServerStyleSheet: require("styled-components").ServerStyleSheet,
   styled: require("styled-components").default,
