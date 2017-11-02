@@ -49,10 +49,11 @@ async function demo(options) {
       delete require.cache[componentModule];
       const component = require(componentModule);
 
-      const content = render(component.default || component);
+      const content = render(component);
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
+      console.log(error);
       res.status(500).send(error.message);
     }
   };
