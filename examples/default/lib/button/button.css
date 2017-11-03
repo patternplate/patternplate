@@ -1,0 +1,7 @@
+@import "../color";
+
+.Button {
+  background: --var(color-black);
+  color: --var(color-white);
+  border-radius: 0;
+}
