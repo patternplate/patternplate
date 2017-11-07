@@ -21,6 +21,7 @@
     "@patternplate/load-docs": "^1.0.0",
     "@patternplate/load-meta": "^1.0.0",
     "@patternplate/pack": "^1.0.0",
+    "@patternplate/webpack-entry": "^1.0.0",
     "aggregate-error": "^1.0.0",
     "chokidar": "^1.7.0",
     "commondir": "^1.0.1",

@@ -1,13 +1,8 @@
-const globby = require("globby");
-
-const entry = globby.sync(["src/**/*.demo.js"]).reduce((acc, file) => {
-  acc[file] = `./${file}`;
-  return acc;
-}, {});
+const webpackEntry = require("@patternplate/webpack-entry");
 
 module.exports = {
   devtool: "source-map",
-  entry,
+  entry: webpackEntry.sync(["src/**/*.demo.js"]),
   module: {
     rules: [
       {
@@ -37,7 +32,6 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "components.bundle.js",
-    library: "[name]",
     libraryTarget: "commonjs"
   }
 };

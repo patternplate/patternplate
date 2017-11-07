@@ -55,6 +55,7 @@ async function demo(options) {
 
 function getComponent(components, data) {
   const fileModule = components[data.artifact];
+  console.log(components);
 
   if (data.source in fileModule) {
     return fileModule[data.source];

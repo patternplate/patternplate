@@ -1,24 +1,18 @@
 const path = require("path");
-const globby = require("globby");
 const resolveFrom = require("resolve-from");
-const querystring = require("querystring");
 const loadConfig = require("@patternplate/load-config");
+const webpackEntry = require("@patternplate/webpack-entry");
 const webpack = require("webpack");
-
-const LOADER = require.resolve("./loader");
 
 module.exports = createCompiler;
 
 async function createCompiler({ cwd, fs, target = "" }) {
-  const config = await loadConfig({ cwd });
+  const { config, filepath } = await loadConfig({ cwd });
 
-  const components = await getBundleEntry(config.config, { cwd });
-  const render = await getRenderEntry(config.config, {
-    filepath: config.filepath
-  });
-  const mount = await getMountEntry(config.config, {
-    filepath: config.filepath
-  });
+  const components = await webpackEntry(config.entry, { cwd });
+
+  const render = await getEntry(config.render, { filepath });
+  const mount = await getEntry(config.mount, { filepath });
 
   const entry = { components, mount, render };
 
@@ -66,27 +60,7 @@ async function createCompiler({ cwd, fs, target = "" }) {
   return compiler;
 }
 
-async function getBundleEntry(config, { cwd }) {
-  const files = await globby(config.entry || [], { cwd });
-
-  const q = querystring.stringify({
-    entries: JSON.stringify(
-      files.reduce((acc, file) => {
-        acc[file] = file;
-        return acc;
-      }, {})
-    )
-  });
-
-  return `${LOADER}?${q}!`;
-}
-
-function getMountEntry(config, { filepath }) {
+function getEntry(id, { filepath }) {
   const base = filepath ? path.dirname(filepath) : process.cwd();
-  return resolveFrom(base, config.mount);
-}
-
-function getRenderEntry(config, { filepath }) {
-  const base = filepath ? path.dirname(filepath) : process.cwd();
-  return resolveFrom(base, config.render);
+  return resolveFrom(base, id);
 }
