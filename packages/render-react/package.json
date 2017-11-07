@@ -1,0 +1,23 @@
+{
+  "name": "@patternplate/render-react",
+  "version": "1.0.0",
+  "description": "patternplate render package for React",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}

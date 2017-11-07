@@ -1,5 +1,6 @@
 module.exports = mount;
 
 function mount(component) {
-  component();
+  const comp = component.default || component;
+  comp();
 }

@@ -6,7 +6,7 @@ module.exports = render;
 
 function render(Component) {
   const sheet = new styled.ServerStyleSheet();
-  const component = React.createElement(Component);
+  const component = React.createElement(Component.default || Component);
   const html = ReactDOMServer.renderToString(sheet.collectStyles(component));
   const css = sheet.getStyleTags();
   return { html, css };

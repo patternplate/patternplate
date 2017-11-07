@@ -41,22 +41,26 @@ async function demo(options) {
       }
 
       const render = getModule(RENDER_PATH);
-
-      const components = getModule(BUNDLE_PATH);
-      const component = components[found.artifact];
+      const component = getComponent(getModule(BUNDLE_PATH), found);
       const content = render(component);
 
-      res.send(
-        html(content, {
-          artifact: found.artifact
-        })
-      );
+      res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.log(error);
       res.status(500).send(error.message);
     }
   };
+}
+
+function getComponent(components, data) {
+  const fileModule = components[data.artifact];
+
+  if (data.source in fileModule) {
+    return fileModule[data.source];
+  }
+
+  return fileModule;
 }
 
 function fromFs(fs) {
@@ -108,6 +112,14 @@ function html(content, payload) {
               return JSON.parse(json);
             }
 
+            function getComponent(components, data) {
+              const fileModule = components[data.artifact];
+              if (data.source in fileModule) {
+                return fileModule[data.source];
+              }
+              return fileModule;
+            }
+
             var components = window['patternplate-components'];
             var mount = window['patternplate-mount'];
 
@@ -127,8 +139,7 @@ function html(content, payload) {
             }
 
             var element = document.querySelector('[data-patternplate-mount]');
-            var data = getData();
-            var component = components[data.artifact];
+            var component = getComponent(components, getData());
             mount(component, element);
           })();
         </script>

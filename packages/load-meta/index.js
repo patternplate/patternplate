@@ -116,7 +116,7 @@ async function loadMeta(options) {
         return {
           id,
           artifact,
-          source,
+          source: path.relative(options.cwd, source),
           files: await getFiles(source, { cwd: options.cwd }),
           path: relativeManifestPath,
           manifest,
