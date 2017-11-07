@@ -1,6 +1,8 @@
-import button from "./button";
+const button = require("./button");
 
-export default main;
+module.exports = main;
+module.exports.css = require("./demo.css");
+module.exports.html = require("./demo.html");
 
 function main() {
   var nl = global.document.querySelectorAll(".Button");

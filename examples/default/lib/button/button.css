@@ -1,7 +1,7 @@
-@import "../color";
+@import "../color/index.css";
 
 .Button {
-  background: --var(color-black);
-  color: --var(color-white);
+  background: var(--color-black);
+  color: var(--color-white);
   border-radius: 0;
 }

@@ -41,52 +41,60 @@ async function loadMeta(options) {
     })
   );
 
-  const pairs = await entries
-    .filter(b => Boolean(b.map))
-    .reduce(async (accp, b) => {
-      const acc = await accp;
+  const pairs = await entries.reduce(async (accp, b) => {
+    const acc = await accp;
+    const artifact = path.relative(options.cwd, b.path);
 
-      const sources = await Promise.all(
-        b.map.sources.map(async s => {
-          const { path: p } = url.parse(s);
-          const artifact = path.relative(options.cwd, b.path);
-          const pa = path.resolve(path.dirname(b.path), p);
+    if (!b.map) {
+      const pair = {
+        artifact,
+        source: artifact
+      };
 
-          if (await sander.exists(pa)) {
-            return {
-              artifact,
-              source: pa
-            };
-          }
-
-          const resolved = path.join(b.map.sourceRoot || options.cwd, pa);
-
-          if (await sander.exists(resolved)) {
-            return {
-              artifact,
-              source: resolved
-            };
-          }
-        })
-      );
-
-      Array.prototype.push.apply(acc, sources.filter(Boolean));
+      acc.push(pair);
       return acc;
-    }, Promise.resolve([]));
+    }
+
+    const sources = await Promise.all(
+      b.map.sources.map(async s => {
+        const { path: p } = url.parse(s);
+        const pa = path.resolve(path.dirname(b.path), p);
+
+        if (await sander.exists(pa)) {
+          return {
+            artifact,
+            source: pa
+          };
+        }
+
+        const resolved = path.join(b.map.sourceRoot || options.cwd, pa);
+
+        if (await sander.exists(resolved)) {
+          return {
+            artifact,
+            source: resolved
+          };
+        }
+      })
+    );
+
+    Array.prototype.push.apply(acc, sources.filter(Boolean));
+    return acc;
+  }, Promise.resolve([]));
 
   const candidates = await Promise.all(
     pairs
       .filter(async pair => {
         const manifestPath = path.join(
           path.dirname(pair.source),
-          "pattern.json"
+          "package.json"
         );
         return await sander.exists(manifestPath);
       })
       .map(async pair => {
         const { source, artifact } = pair;
         const patternBase = path.dirname(source);
-        const manifestPath = path.join(patternBase, "pattern.json");
+        const manifestPath = path.join(patternBase, "package.json");
 
         const base = path.dirname(path.relative(options.cwd, patternBase));
         const relativeManifestPath = path.relative(options.cwd, manifestPath);
@@ -289,14 +297,14 @@ async function treeFromPaths(files) {
 }
 
 function getName(basename, manifest) {
-  if (basename === "pattern.json") {
+  if (basename === "package.json") {
     return manifest.name;
   }
   return basename;
 }
 
 function getType(basename) {
-  if (basename === "pattern.json") {
+  if (basename === "package.json") {
     return "pattern";
   }
   return "folder";
