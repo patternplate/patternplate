@@ -13,6 +13,8 @@ const find = require("unist-util-find");
 const sander = require("@marionebl/sander");
 const throat = require("throat");
 
+const MANIFEST_NAME = "pattern.json";
+
 const DEFAULT_MANIFEST = {
   displayName: "",
   version: "1.0.0",
@@ -87,14 +89,14 @@ async function loadMeta(options) {
       .filter(async pair => {
         const manifestPath = path.join(
           path.dirname(pair.source),
-          "package.json"
+          MANIFEST_NAME
         );
         return await sander.exists(manifestPath);
       })
       .map(async pair => {
         const { source, artifact } = pair;
         const patternBase = path.dirname(source);
-        const manifestPath = path.join(patternBase, "package.json");
+        const manifestPath = path.join(patternBase, MANIFEST_NAME);
 
         const base = path.dirname(path.relative(options.cwd, patternBase));
         const relativeManifestPath = path.relative(options.cwd, manifestPath);
@@ -146,7 +148,7 @@ async function loadMetaTree(options) {
 
 async function getFiles(source, options) {
   const cwd = path.dirname(source);
-  return (await globby(["*", "!pattern.json"], { cwd })).map(file =>
+  return (await globby(["*", `!${MANIFEST_NAME}`], { cwd })).map(file =>
     path.relative(options.cwd, path.join(cwd, file))
   );
 }
@@ -297,14 +299,14 @@ async function treeFromPaths(files) {
 }
 
 function getName(basename, manifest) {
-  if (basename === "package.json") {
+  if (basename === MANIFEST_NAME) {
     return manifest.name;
   }
   return basename;
 }
 
 function getType(basename) {
-  if (basename === "package.json") {
+  if (basename === MANIFEST_NAME) {
     return "pattern";
   }
   return "folder";
