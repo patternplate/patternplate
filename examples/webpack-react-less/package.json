@@ -1,0 +1,36 @@
+{
+  "name": "@examples/webpack-react-less",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "stmux -a a -- [ \"webpack -w\" .. \"patternplate\" ]"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sinnerschrader/patternplate"
+  },
+  "xo": false,
+  "devDependencies": {
+    "@patternplate/cli": "^2.0.0",
+    "@patternplate/render-react": "^1.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "dev-loader": "^0.1.0",
+    "globby": "^6.1.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "stmux": "^1.4.18",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "react": "^16.0.0"
+  }
+}
