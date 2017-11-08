@@ -8,7 +8,6 @@
     "build": "npx lerna run build --stream --include-filtered-dependencies",
     "clean": "npx lerna clean --yes && npx lerna run clean && npx rimraf node_modules",
     "components": "npx lerna run start --scope @patternplate/components --stream",
-    "precommit": "lint-staged",
     "reinstall": "npx yarn run clean && npx yarn install && npx lerna bootstrap",
     "setup": "npx yarn bootstrap && npx yarn build && npx yarn link",
     "start": "stmux -a a -t patternplate -- [[ \"npx lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"wait-on packages/cli/lib/cli.js && npx yarn components\" ] : bash]"
@@ -78,12 +77,6 @@
       "packages/**/library/**",
       "packages/**/lib/**",
       "**/*.bundle.js"
-    ]
-  },
-  "lint-staged": {
-    "**/*.js": [
-      "prettier --write",
-      "git add"
     ]
   },
   "devDependencies": {
