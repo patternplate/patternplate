@@ -72,6 +72,9 @@
     "email": "mario.nebl@sinnerschrader.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">= 4",
     "npm": ">= 3"

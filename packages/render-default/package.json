@@ -15,5 +15,8 @@
     "name": "Mario Nebl",
     "email": "mario.nebl@sinnerschrader.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
 }

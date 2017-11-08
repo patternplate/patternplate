@@ -16,6 +16,13 @@
     "email": "mario.nebl@sinnerschrader.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
     "@patternplate/load-config": "^1.0.0",

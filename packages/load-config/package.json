@@ -16,6 +16,9 @@
     "email": "mario.nebl@sinnerschrader.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "cosmiconfig": "^3.1.0"
   }

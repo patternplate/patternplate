@@ -47,10 +47,12 @@
     }
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
-    "iojs": ">= 1.4.3",
-    "node": ">= 0.12.0",
-    "npm": ">= 2.5.1"
+    "node": ">= 4",
+    "npm": ">= 3"
   },
   "dependencies": {
     "@marionebl/react-router": "^2.6.2",

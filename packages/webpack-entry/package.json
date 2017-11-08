@@ -16,6 +16,9 @@
     "email": "mario.nebl@sinnerschrader.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
