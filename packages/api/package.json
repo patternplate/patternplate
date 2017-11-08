@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "1.0.0",
+  "version": "2.0.0-0",
   "description": "Patternplate JSON API",
   "xo": false,
   "repository": {
@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/load-config": "^1.0.0",
-    "@patternplate/load-docs": "^1.0.0",
-    "@patternplate/load-meta": "^1.0.0",
-    "@patternplate/pack": "^1.0.0",
-    "@patternplate/webpack-entry": "^1.0.0",
+    "@patternplate/load-config": "^2.0.0-0",
+    "@patternplate/load-docs": "^2.0.0-0",
+    "@patternplate/load-meta": "^2.0.0-0",
+    "@patternplate/pack": "^2.0.0-0",
+    "@patternplate/webpack-entry": "^2.0.0-0",
     "aggregate-error": "^1.0.0",
     "chokidar": "^1.7.0",
     "commondir": "^1.0.1",
