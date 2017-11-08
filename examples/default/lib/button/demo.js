@@ -1,8 +1,9 @@
-const button = require("./button");
+import button from "./button";
+import css from "./demo.css";
+import html from "./demo.html";
 
-module.exports = main;
-module.exports.css = require("./demo.css");
-module.exports.html = require("./demo.html");
+export default main;
+export {css, html};
 
 function main() {
   var nl = global.document.querySelectorAll(".Button");

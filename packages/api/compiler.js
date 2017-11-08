@@ -10,14 +10,19 @@ async function createCompiler({ cwd, fs, target = "" }) {
   const { config, filepath } = await loadConfig({ cwd });
 
   const components = await webpackEntry(config.entry, { cwd });
+  const entry = { components };
 
-  const render = await getEntry(config.render, { filepath });
-  const mount = await getEntry(config.mount, { filepath });
+  if (target === "node") {
+    entry.render = await getEntry(config.render, { filepath });
+  }
 
-  const entry = { components, mount, render };
+  if (target === "web") {
+    entry.mount = await getEntry(config.mount, { filepath });
+  }
 
   const compiler = webpack({
     entry,
+    target,
     module: {
       rules: [
         {
@@ -45,13 +50,7 @@ async function createCompiler({ cwd, fs, target = "" }) {
                 mod.context && mod.context.indexOf("node_modules") > -1
             })
           ]
-        : [],
-    resolve:
-      target === "web"
-        ? {
-            aliasFields: ["browser"]
-          }
-        : {}
+        : []
   });
 
   compiler.outputFileSystem = fs;

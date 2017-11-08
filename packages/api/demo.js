@@ -1,8 +1,9 @@
-// const path = require("path");
+const path = require("path");
 const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
 const AggregateError = require("aggregate-error");
 const fromString = require("require-from-string");
+const sander = require("@marionebl/sander");
 const unindent = require("unindent");
 
 module.exports = demo;
@@ -44,6 +45,17 @@ async function demo(options) {
       const component = getComponent(getModule(BUNDLE_PATH), found);
       const content = render(component);
 
+      const cssArtifact = path.join(path.dirname(found.artifact), 'demo.css');
+      const htmlArtifact = path.join(path.dirname(found.artifact), 'demo.html');
+
+      if (!content.css && await sander.exists(cssArtifact)) {
+        content.css = `<style>${String(await sander.readFile(cssArtifact))}</style>`;
+      }
+
+      if (!content.html && await sander.exists(htmlArtifact)) {
+        content.html = String(await sander.readFile(htmlArtifact));
+      }
+
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
@@ -66,9 +78,9 @@ function getComponent(components, data) {
 }
 
 function fromFs(fs) {
-  return path => {
-    const componentBundleSource = String(fs.readFileSync(path));
-    return fromString(componentBundleSource);
+  return filename => {
+    const componentBundleSource = String(fs.readFileSync(filename));
+    return fromString(componentBundleSource, filename);
   };
 }
 
