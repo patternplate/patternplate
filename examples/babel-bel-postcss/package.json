@@ -32,7 +32,7 @@
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
-    "@patternplate/cli": "^2.0.0",
+    "@patternplate/cli": "^2.0.0-0",
     "babel-preset-env": "^1.6.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0"

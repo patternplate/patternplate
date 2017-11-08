@@ -153,12 +153,6 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-ansi-align@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/ansi-align/-/ansi-align-1.1.0.tgz#2f0c1658829739add5ebb15e6b0c6e3423f016ba"
-  dependencies:
-    string-width "^1.0.1"
-
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -217,10 +211,6 @@ anymatch@^1.3.0:
   dependencies:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
-
-app-root-path@^1.0.0:
-  version "1.4.0"
-  resolved "https://registry.npmjs.org/app-root-path/-/app-root-path-1.4.0.tgz#6335d865c9640d0fad99004e5a79232238e92dfa"
 
 app-root-path@^2.0.0:
   version "2.0.1"
@@ -407,7 +397,7 @@ aws4@^1.2.1, aws4@^1.6.0:
   version "1.6.0"
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-babel-cli@^6.14.0, babel-cli@^6.26.0:
+babel-cli@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-cli/-/babel-cli-6.26.0.tgz#502ab54874d7db88ad00b887a06383ce03d002f1"
   dependencies:
@@ -460,16 +450,6 @@ babel-core@^6.26.0:
     slash "^1.0.0"
     source-map "^0.5.6"
 
-babel-eslint@^6.0.2:
-  version "6.1.2"
-  resolved "https://registry.npmjs.org/babel-eslint/-/babel-eslint-6.1.2.tgz#5293419fe3672d66598d327da9694567ba6a5f2f"
-  dependencies:
-    babel-traverse "^6.0.20"
-    babel-types "^6.0.19"
-    babylon "^6.0.18"
-    lodash.assign "^4.0.0"
-    lodash.pickby "^4.0.0"
-
 babel-generator@6.24.0:
   version "6.24.0"
   resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-6.24.0.tgz#eba270a8cc4ce6e09a61be43465d7c62c1f87c56"
@@ -512,7 +492,7 @@ babel-helper-builder-react-jsx@^6.24.1:
     babel-types "^6.26.0"
     esutils "^2.0.2"
 
-babel-helper-call-delegate@^6.24.1, babel-helper-call-delegate@^6.6.5:
+babel-helper-call-delegate@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-helper-call-delegate/-/babel-helper-call-delegate-6.24.1.tgz#ece6aacddc76e41c3461f88bfc575bd0daa2df8d"
   dependencies:
@@ -538,7 +518,7 @@ babel-helper-explode-assignable-expression@^6.24.1:
     babel-traverse "^6.24.1"
     babel-types "^6.24.1"
 
-babel-helper-function-name@^6.24.1, babel-helper-function-name@^6.4.0:
+babel-helper-function-name@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-helper-function-name/-/babel-helper-function-name-6.24.1.tgz#d3475b8c03ed98242a25b48351ab18399d3580a9"
   dependencies:
@@ -548,7 +528,7 @@ babel-helper-function-name@^6.24.1, babel-helper-function-name@^6.4.0:
     babel-traverse "^6.24.1"
     babel-types "^6.24.1"
 
-babel-helper-get-function-arity@^6.24.1, babel-helper-get-function-arity@^6.6.5:
+babel-helper-get-function-arity@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-helper-get-function-arity/-/babel-helper-get-function-arity-6.24.1.tgz#8f7782aa93407c41d3aa50908f89b031b1b6853d"
   dependencies:
@@ -569,7 +549,7 @@ babel-helper-optimise-call-expression@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-helper-regex@^6.24.1, babel-helper-regex@^6.3.13:
+babel-helper-regex@^6.24.1:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-helper-regex/-/babel-helper-regex-6.26.0.tgz#325c59f902f82f24b74faceed0363954f6495e72"
   dependencies:
@@ -577,7 +557,7 @@ babel-helper-regex@^6.24.1, babel-helper-regex@^6.3.13:
     babel-types "^6.26.0"
     lodash "^4.17.4"
 
-babel-helper-remap-async-to-generator@^6.24.1, babel-helper-remap-async-to-generator@^6.7.0:
+babel-helper-remap-async-to-generator@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-helper-remap-async-to-generator/-/babel-helper-remap-async-to-generator-6.24.1.tgz#5ec581827ad723fecdd381f1c928390676e4551b"
   dependencies:
@@ -619,10 +599,6 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-add-module-exports@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-0.2.1.tgz#9ae9a1f4a8dc67f0cdec4f4aeda1e43a5ff65e25"
-
 babel-plugin-check-es2015-constants@^6.22.0:
   version "6.22.0"
   resolved "https://registry.npmjs.org/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
@@ -636,11 +612,11 @@ babel-plugin-styled-components@^1.2.1:
     babel-types "^6.26.0"
     stylis "3.x"
 
-babel-plugin-syntax-async-functions@^6.3.13, babel-plugin-syntax-async-functions@^6.8.0:
+babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
 
-babel-plugin-syntax-class-properties@^6.3.13, babel-plugin-syntax-class-properties@^6.8.0:
+babel-plugin-syntax-class-properties@^6.8.0:
   version "6.13.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-class-properties/-/babel-plugin-syntax-class-properties-6.13.0.tgz#d7eb23b79a317f8543962c505b827c7d6cac27de"
 
@@ -660,42 +636,21 @@ babel-plugin-syntax-jsx@^6.3.13, babel-plugin-syntax-jsx@^6.8.0:
   version "6.18.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
 
-babel-plugin-syntax-object-rest-spread@^6.3.13, babel-plugin-syntax-object-rest-spread@^6.8.0:
+babel-plugin-syntax-object-rest-spread@^6.8.0:
   version "6.13.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
-
-babel-plugin-syntax-trailing-function-commas@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.npmjs.org/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.5.0.tgz#44b9d4c9f65881d88811dbb6f68a33c2e5a3da62"
-  dependencies:
-    babel-runtime "^5.0.0"
 
 babel-plugin-syntax-trailing-function-commas@^6.22.0:
   version "6.22.0"
   resolved "https://registry.npmjs.org/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.22.0.tgz#ba0360937f8d06e40180a43fe0d5616fff532cf3"
 
-babel-plugin-transform-async-to-generator@6.7.4:
-  version "6.7.4"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-async-to-generator/-/babel-plugin-transform-async-to-generator-6.7.4.tgz#aec7c7ae45fadc9a916ecdef7879785dbd45f9ae"
-  dependencies:
-    babel-helper-remap-async-to-generator "^6.7.0"
-    babel-plugin-syntax-async-functions "^6.3.13"
-    babel-runtime "^5.0.0"
-
-babel-plugin-transform-async-to-generator@^6.22.0, babel-plugin-transform-async-to-generator@^6.24.1:
+babel-plugin-transform-async-to-generator@^6.22.0:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-async-to-generator/-/babel-plugin-transform-async-to-generator-6.24.1.tgz#6536e378aff6cb1d5517ac0e40eb3e9fc8d08761"
   dependencies:
     babel-helper-remap-async-to-generator "^6.24.1"
     babel-plugin-syntax-async-functions "^6.8.0"
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-class-properties@6.6.0:
-  version "6.6.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-class-properties/-/babel-plugin-transform-class-properties-6.6.0.tgz#42341b72eb636fc9acd5837077b8dba190fb4271"
-  dependencies:
-    babel-plugin-syntax-class-properties "^6.3.13"
-    babel-runtime "^5.0.0"
 
 babel-plugin-transform-class-properties@^6.24.1:
   version "6.24.1"
@@ -749,13 +704,7 @@ babel-plugin-transform-es2015-computed-properties@^6.22.0:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-es2015-destructuring@6.6.5:
-  version "6.6.5"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.6.5.tgz#6ccb14e245f80a015ee219b0143cf1df59ecd223"
-  dependencies:
-    babel-runtime "^5.0.0"
-
-babel-plugin-transform-es2015-destructuring@^6.23.0, babel-plugin-transform-es2015-destructuring@^6.6.5:
+babel-plugin-transform-es2015-destructuring@^6.23.0:
   version "6.23.0"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.23.0.tgz#997bb1f1ab967f682d2b0876fe358d60e765c56d"
   dependencies:
@@ -774,15 +723,7 @@ babel-plugin-transform-es2015-for-of@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-function-name@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-function-name/-/babel-plugin-transform-es2015-function-name-6.5.0.tgz#2939dc437acac705e3c9468542b6e4ac05179088"
-  dependencies:
-    babel-helper-function-name "^6.4.0"
-    babel-runtime "^5.0.0"
-    babel-types "^6.4.0"
-
-babel-plugin-transform-es2015-function-name@^6.22.0, babel-plugin-transform-es2015-function-name@^6.5.0:
+babel-plugin-transform-es2015-function-name@^6.22.0:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-function-name/-/babel-plugin-transform-es2015-function-name-6.24.1.tgz#834c89853bc36b1af0f3a4c5dbaa94fd8eacaa8b"
   dependencies:
@@ -804,16 +745,7 @@ babel-plugin-transform-es2015-modules-amd@^6.22.0, babel-plugin-transform-es2015
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-es2015-modules-commonjs@6.7.4:
-  version "6.7.4"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.7.4.tgz#df65f39cdd1f5ce442cee63e676467a6e5916e46"
-  dependencies:
-    babel-plugin-transform-strict-mode "^6.6.5"
-    babel-runtime "^5.0.0"
-    babel-template "^6.7.0"
-    babel-types "^6.7.0"
-
-babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1, babel-plugin-transform-es2015-modules-commonjs@^6.7.4:
+babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.26.0.tgz#0d8394029b7dc6abe1a97ef181e00758dd2e5d8a"
   dependencies:
@@ -845,18 +777,7 @@ babel-plugin-transform-es2015-object-super@^6.22.0:
     babel-helper-replace-supers "^6.24.1"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-parameters@6.7.0:
-  version "6.7.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.7.0.tgz#5d993482ea432934d4918de6065fc330b56cbcb7"
-  dependencies:
-    babel-helper-call-delegate "^6.6.5"
-    babel-helper-get-function-arity "^6.6.5"
-    babel-runtime "^5.0.0"
-    babel-template "^6.7.0"
-    babel-traverse "^6.7.0"
-    babel-types "^6.7.0"
-
-babel-plugin-transform-es2015-parameters@^6.23.0, babel-plugin-transform-es2015-parameters@^6.7.0:
+babel-plugin-transform-es2015-parameters@^6.23.0:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.24.1.tgz#57ac351ab49caf14a97cd13b09f66fdf0a625f2b"
   dependencies:
@@ -867,41 +788,20 @@ babel-plugin-transform-es2015-parameters@^6.23.0, babel-plugin-transform-es2015-
     babel-traverse "^6.24.1"
     babel-types "^6.24.1"
 
-babel-plugin-transform-es2015-shorthand-properties@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-shorthand-properties/-/babel-plugin-transform-es2015-shorthand-properties-6.5.0.tgz#8d7c8fa332826546c86c94b83faf226ad0182559"
-  dependencies:
-    babel-runtime "^5.0.0"
-    babel-types "^6.3.13"
-
-babel-plugin-transform-es2015-shorthand-properties@^6.22.0, babel-plugin-transform-es2015-shorthand-properties@^6.5.0:
+babel-plugin-transform-es2015-shorthand-properties@^6.22.0:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-shorthand-properties/-/babel-plugin-transform-es2015-shorthand-properties-6.24.1.tgz#24f875d6721c87661bbd99a4622e51f14de38aa0"
   dependencies:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-plugin-transform-es2015-spread@6.6.5:
-  version "6.6.5"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-spread/-/babel-plugin-transform-es2015-spread-6.6.5.tgz#e1a496c686cc4710f40bc80465841dc1fac80511"
-  dependencies:
-    babel-runtime "^5.0.0"
-
-babel-plugin-transform-es2015-spread@^6.22.0, babel-plugin-transform-es2015-spread@^6.6.5:
+babel-plugin-transform-es2015-spread@^6.22.0:
   version "6.22.0"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-spread/-/babel-plugin-transform-es2015-spread-6.22.0.tgz#d6d68a99f89aedc4536c81a542e8dd9f1746f8d1"
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-sticky-regex@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-sticky-regex/-/babel-plugin-transform-es2015-sticky-regex-6.5.0.tgz#eb8bb6b474d2c0a4d8855f05fe4f5b197c45b49c"
-  dependencies:
-    babel-helper-regex "^6.3.13"
-    babel-runtime "^5.0.0"
-    babel-types "^6.3.13"
-
-babel-plugin-transform-es2015-sticky-regex@^6.22.0, babel-plugin-transform-es2015-sticky-regex@^6.5.0:
+babel-plugin-transform-es2015-sticky-regex@^6.22.0:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-sticky-regex/-/babel-plugin-transform-es2015-sticky-regex-6.24.1.tgz#00c1cdb1aca71112cdf0cf6126c2ed6b457ccdbc"
   dependencies:
@@ -921,15 +821,7 @@ babel-plugin-transform-es2015-typeof-symbol@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-unicode-regex@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-unicode-regex/-/babel-plugin-transform-es2015-unicode-regex-6.5.0.tgz#f53143d2df3db96b830c8162510b36758016ddef"
-  dependencies:
-    babel-helper-regex "^6.3.13"
-    babel-runtime "^5.0.0"
-    regexpu-core "^1.0.0"
-
-babel-plugin-transform-es2015-unicode-regex@^6.22.0, babel-plugin-transform-es2015-unicode-regex@^6.5.0:
+babel-plugin-transform-es2015-unicode-regex@^6.22.0:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-es2015-unicode-regex/-/babel-plugin-transform-es2015-unicode-regex-6.24.1.tgz#d38b12f42ea7323f729387f18a7c5ae1faeb35e9"
   dependencies:
@@ -958,13 +850,6 @@ babel-plugin-transform-flow-strip-types@^6.22.0:
   dependencies:
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-object-rest-spread@6.6.5:
-  version "6.6.5"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.6.5.tgz#b93bd9b10950e77d1953e9bbd44980cc49157f1f"
-  dependencies:
-    babel-plugin-syntax-object-rest-spread "^6.3.13"
-    babel-runtime "^5.0.0"
 
 babel-plugin-transform-object-rest-spread@^6.26.0:
   version "6.26.0"
@@ -1007,14 +892,14 @@ babel-plugin-transform-regenerator@^6.22.0:
   dependencies:
     regenerator-transform "^0.10.0"
 
-babel-plugin-transform-strict-mode@^6.24.1, babel-plugin-transform-strict-mode@^6.6.5:
+babel-plugin-transform-strict-mode@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-plugin-transform-strict-mode/-/babel-plugin-transform-strict-mode-6.24.1.tgz#d5faf7aa578a65bbe591cf5edae04a0c67020758"
   dependencies:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-polyfill@^6.26.0, babel-polyfill@^6.5.0:
+babel-polyfill@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
   dependencies:
@@ -1057,43 +942,6 @@ babel-preset-env@^1.6.0, babel-preset-env@^1.6.1:
     invariant "^2.2.2"
     semver "^5.3.0"
 
-babel-preset-es2015-node4@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/babel-preset-es2015-node4/-/babel-preset-es2015-node4-2.1.1.tgz#e31f290859b58619c8cfa241d1b0bc900f941cdb"
-  dependencies:
-    babel-plugin-transform-es2015-destructuring "^6.6.5"
-    babel-plugin-transform-es2015-function-name "^6.5.0"
-    babel-plugin-transform-es2015-modules-commonjs "^6.7.4"
-    babel-plugin-transform-es2015-parameters "^6.7.0"
-    babel-plugin-transform-es2015-shorthand-properties "^6.5.0"
-    babel-plugin-transform-es2015-spread "^6.6.5"
-    babel-plugin-transform-es2015-sticky-regex "^6.5.0"
-    babel-plugin-transform-es2015-unicode-regex "^6.5.0"
-
-babel-preset-es2016-node4@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npmjs.org/babel-preset-es2016-node4/-/babel-preset-es2016-node4-6.0.1.tgz#46810c56f6b8f013aac481d657cb56d8a19bc2ce"
-  dependencies:
-    babel-plugin-syntax-trailing-function-commas "6.5.0"
-    babel-plugin-transform-async-to-generator "6.7.4"
-    babel-plugin-transform-class-properties "6.6.0"
-    babel-plugin-transform-es2015-destructuring "6.6.5"
-    babel-plugin-transform-es2015-function-name "6.5.0"
-    babel-plugin-transform-es2015-modules-commonjs "6.7.4"
-    babel-plugin-transform-es2015-parameters "6.7.0"
-    babel-plugin-transform-es2015-shorthand-properties "6.5.0"
-    babel-plugin-transform-es2015-spread "6.6.5"
-    babel-plugin-transform-es2015-sticky-regex "6.5.0"
-    babel-plugin-transform-es2015-unicode-regex "6.5.0"
-    babel-plugin-transform-object-rest-spread "6.6.5"
-
-babel-preset-es2017@^6.14.0:
-  version "6.24.1"
-  resolved "https://registry.npmjs.org/babel-preset-es2017/-/babel-preset-es2017-6.24.1.tgz#597beadfb9f7f208bcfd8a12e9b2b29b8b2f14d1"
-  dependencies:
-    babel-plugin-syntax-trailing-function-commas "^6.22.0"
-    babel-plugin-transform-async-to-generator "^6.24.1"
-
 babel-preset-flow@^6.23.0:
   version "6.23.0"
   resolved "https://registry.npmjs.org/babel-preset-flow/-/babel-preset-flow-6.23.0.tgz#e71218887085ae9a24b5be4169affb599816c49d"
@@ -1123,12 +971,6 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@^5.0.0:
-  version "5.8.38"
-  resolved "https://registry.npmjs.org/babel-runtime/-/babel-runtime-5.8.38.tgz#1c0b02eb63312f5f087ff20450827b425c9d4c19"
-  dependencies:
-    core-js "^1.0.0"
-
 babel-runtime@^6.0.0, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0, babel-runtime@^6.9.2:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
@@ -1143,7 +985,7 @@ babel-runtime@~6.25.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
-babel-template@^6.24.1, babel-template@^6.26.0, babel-template@^6.7.0:
+babel-template@^6.24.1, babel-template@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-template/-/babel-template-6.26.0.tgz#de03e2d16396b069f46dd9fff8521fb1a0e35e02"
   dependencies:
@@ -1167,7 +1009,7 @@ babel-traverse@6.23.1:
     invariant "^2.2.0"
     lodash "^4.2.0"
 
-babel-traverse@^6.0.20, babel-traverse@^6.24.1, babel-traverse@^6.26.0, babel-traverse@^6.5.0, babel-traverse@^6.7.0:
+babel-traverse@^6.24.1, babel-traverse@^6.26.0, babel-traverse@^6.5.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-traverse/-/babel-traverse-6.26.0.tgz#46a9cbd7edcc62c8e5c064e2d2d8d0f4035766ee"
   dependencies:
@@ -1190,7 +1032,7 @@ babel-types@6.23.0:
     lodash "^4.2.0"
     to-fast-properties "^1.0.1"
 
-babel-types@^6.0.19, babel-types@^6.19.0, babel-types@^6.23.0, babel-types@^6.24.1, babel-types@^6.26.0, babel-types@^6.3.13, babel-types@^6.4.0, babel-types@^6.5.2, babel-types@^6.7.0:
+babel-types@^6.19.0, babel-types@^6.23.0, babel-types@^6.24.1, babel-types@^6.26.0, babel-types@^6.5.2:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-6.26.0.tgz#a3b073f94ab49eb6fa55cd65227a334380632497"
   dependencies:
@@ -1212,7 +1054,7 @@ babylon@6.16.1:
   version "6.16.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.16.1.tgz#30c5a22f481978a9e7f8cdfdf496b11d94b404d3"
 
-babylon@^6.0.18, babylon@^6.15.0, babylon@^6.17.0, babylon@^6.18.0, babylon@^6.5.2, babylon@^6.8.1:
+babylon@^6.15.0, babylon@^6.17.0, babylon@^6.18.0, babylon@^6.5.2, babylon@^6.8.1:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
@@ -1325,18 +1167,6 @@ boom@5.x.x:
   resolved "https://registry.npmjs.org/boom/-/boom-5.2.0.tgz#5dd9da6ee3a5f302077436290cb717d3f4a54e02"
   dependencies:
     hoek "4.x.x"
-
-boxen@^0.8.0:
-  version "0.8.1"
-  resolved "https://registry.npmjs.org/boxen/-/boxen-0.8.1.tgz#aa68457f4643b820a9358c670d8a32f1c0956870"
-  dependencies:
-    ansi-align "^1.1.0"
-    camelcase "^3.0.0"
-    chalk "^1.1.1"
-    cli-boxes "^1.0.0"
-    string-width "^1.0.1"
-    term-size "^0.1.0"
-    widest-line "^1.0.0"
 
 boxen@^1.0.0:
   version "1.2.1"
@@ -2361,18 +2191,6 @@ cosmiconfig@^3.1.0:
     parse-json "^3.0.0"
     require-from-string "^2.0.1"
 
-cp-file@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/cp-file/-/cp-file-3.2.0.tgz#6f83616254624f0ad58aa4aa8d076f026be7e188"
-  dependencies:
-    graceful-fs "^4.1.2"
-    mkdirp "^0.5.0"
-    nested-error-stacks "^1.0.1"
-    object-assign "^4.0.1"
-    pify "^2.3.0"
-    pinkie-promise "^2.0.0"
-    readable-stream "^2.1.4"
-
 create-ecdh@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.0.tgz#888c723596cdf7612f6498233eebd7a35301737d"
@@ -2413,13 +2231,6 @@ create-react-class@^15.5.2:
     fbjs "^0.8.9"
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
-
-cross-spawn-async@^2.1.1:
-  version "2.2.5"
-  resolved "https://registry.npmjs.org/cross-spawn-async/-/cross-spawn-async-2.2.5.tgz#845ff0c0834a3ded9d160daca6d390906bb288cc"
-  dependencies:
-    lru-cache "^4.0.0"
-    which "^1.2.8"
 
 cross-spawn@^4.0.0:
   version "4.0.2"
@@ -2793,10 +2604,6 @@ deep-strict-equal@^0.2.0:
   resolved "https://registry.yarnpkg.com/deep-strict-equal/-/deep-strict-equal-0.2.0.tgz#4a078147a8ab57f6a0d4f5547243cd22f44eb4e4"
   dependencies:
     core-assert "^0.2.0"
-
-default-shell@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/default-shell/-/default-shell-1.0.1.tgz#752304bddc6174f49eb29cb988feea0b8813c8bc"
 
 defaults@^1.0.3:
   version "1.0.3"
@@ -3583,17 +3390,6 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
   dependencies:
     md5.js "^1.3.4"
     safe-buffer "^5.1.1"
-
-execa@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/execa/-/execa-0.4.0.tgz#4eb6467a36a095fabb2970ff9d5e3fb7bce6ebc3"
-  dependencies:
-    cross-spawn-async "^2.1.1"
-    is-stream "^1.1.0"
-    npm-run-path "^1.0.0"
-    object-assign "^4.0.1"
-    path-key "^1.0.0"
-    strip-eof "^1.0.0"
 
 execa@^0.5.0:
   version "0.5.1"
@@ -4510,14 +4306,6 @@ http-errors@1.6.2, http-errors@~1.6.2:
     depd "1.1.1"
     inherits "2.0.3"
     setprototypeof "1.0.3"
-    statuses ">= 1.3.1 < 2"
-
-http-errors@~1.5.0:
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/http-errors/-/http-errors-1.5.1.tgz#788c0d2c1de2c81b9e6e8c01843b6b97eb920750"
-  dependencies:
-    inherits "2.0.3"
-    setprototypeof "1.0.2"
     statuses ">= 1.3.1 < 2"
 
 http-signature@~1.1.0:
@@ -5450,22 +5238,9 @@ lint-staged@^4.2.3:
     staged-git-files "0.0.4"
     stringify-object "^3.2.0"
 
-listr-silent-renderer@^1.0.0, listr-silent-renderer@^1.1.1:
+listr-silent-renderer@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/listr-silent-renderer/-/listr-silent-renderer-1.1.1.tgz#924b5a3757153770bf1a8e3fbf74b8bbf3f9242e"
-
-listr-update-renderer@^0.1.1:
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/listr-update-renderer/-/listr-update-renderer-0.1.4.tgz#64262df6efa9da4f7e08e0bac5032895c738a183"
-  dependencies:
-    chalk "^1.1.3"
-    cli-truncate "^0.2.1"
-    elegant-spinner "^1.0.1"
-    figures "^1.7.0"
-    indent-string "^3.0.0"
-    log-symbols "^1.0.2"
-    log-update "^1.0.2"
-    strip-ansi "^3.0.1"
 
 listr-update-renderer@^0.2.0:
   version "0.2.0"
@@ -5479,14 +5254,6 @@ listr-update-renderer@^0.2.0:
     log-symbols "^1.0.2"
     log-update "^1.0.2"
     strip-ansi "^3.0.1"
-
-listr-verbose-renderer@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/listr-verbose-renderer/-/listr-verbose-renderer-0.1.0.tgz#7b6c67b31e4e12e5e3127a726a495869f6af4ff8"
-  dependencies:
-    chalk "^1.1.3"
-    cli-cursor "^1.0.2"
-    figures "^1.7.0"
 
 listr-verbose-renderer@^0.4.0:
   version "0.4.0"
@@ -5514,26 +5281,6 @@ listr@^0.12.0:
     log-update "^1.0.2"
     ora "^0.2.3"
     p-map "^1.1.1"
-    rxjs "^5.0.0-beta.11"
-    stream-to-observable "^0.1.0"
-    strip-ansi "^3.0.1"
-
-listr@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/listr/-/listr-0.7.0.tgz#b94ba2a5072daad8bff6d3984b50afc590c3d8e5"
-  dependencies:
-    chalk "^1.1.3"
-    cli-truncate "^0.2.1"
-    figures "^1.7.0"
-    indent-string "^2.1.0"
-    is-promise "^2.1.0"
-    is-stream "^1.1.0"
-    listr-silent-renderer "^1.0.0"
-    listr-update-renderer "^0.1.1"
-    listr-verbose-renderer "^0.1.0"
-    log-symbols "^1.0.2"
-    log-update "^1.0.2"
-    ora "^0.2.3"
     rxjs "^5.0.0-beta.11"
     stream-to-observable "^0.1.0"
     strip-ansi "^3.0.1"
@@ -5638,10 +5385,6 @@ lodash._root@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/lodash._root/-/lodash._root-3.0.1.tgz#fba1c4524c19ee9a5f8136b4609f017cf4ded692"
 
-lodash.assign@^4.0.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
-
 lodash.camelcase@^4.1.1, lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
@@ -5706,10 +5449,6 @@ lodash.memoize@^4.1.2:
 lodash.memoize@~3.0.3:
   version "3.0.4"
   resolved "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-3.0.4.tgz#2dcbd2c287cbc0a55cc42328bd0c736150d53e3f"
-
-lodash.pickby@^4.0.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
 
 lodash.restparam@^3.0.0:
   version "3.6.1"
@@ -5857,7 +5596,7 @@ lru-cache@^3.2.0:
   dependencies:
     pseudomap "^1.0.1"
 
-lru-cache@^4.0.0, lru-cache@^4.0.1:
+lru-cache@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.1.tgz#622e32e82488b49279114a4f9ecf45e7cd6bba55"
   dependencies:
@@ -6165,12 +5904,6 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-nested-error-stacks@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/nested-error-stacks/-/nested-error-stacks-1.0.2.tgz#19f619591519f096769a5ba9a86e6eeec823c3cf"
-  dependencies:
-    inherits "~2.0.1"
-
 next-tick@^0.2.2:
   version "0.2.2"
   resolved "https://registry.npmjs.org/next-tick/-/next-tick-0.2.2.tgz#75da4a927ee5887e39065880065b7336413b310d"
@@ -6332,12 +6065,6 @@ npm-path@^2.0.2:
   dependencies:
     which "^1.2.10"
 
-npm-run-path@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/npm-run-path/-/npm-run-path-1.0.0.tgz#f5c32bf595fe81ae927daec52e82f8b000ac3c8f"
-  dependencies:
-    path-key "^1.0.0"
-
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
@@ -6431,13 +6158,6 @@ onetime@^2.0.0:
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
   dependencies:
     mimic-fn "^1.0.0"
-
-opn@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.npmjs.org/opn/-/opn-4.0.2.tgz#7abc22e644dff63b0a96d5ab7f2790c0f01abc95"
-  dependencies:
-    object-assign "^4.0.1"
-    pinkie-promise "^2.0.0"
 
 optimist@^0.6.1:
   version "0.6.1"
@@ -6654,17 +6374,13 @@ path-exists@^2.0.0, path-exists@^2.1.0:
   dependencies:
     pinkie-promise "^2.0.0"
 
-path-is-absolute@1.0.1, path-is-absolute@^1.0.0, path-is-absolute@^1.0.1:
+path-is-absolute@^1.0.0, path-is-absolute@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
 
 path-is-inside@^1.0.1, path-is-inside@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
-
-path-key@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/path-key/-/path-key-1.0.0.tgz#5d53d578019646c0d68800db4e146e6bdc2ac7af"
 
 path-key@^2.0.0:
   version "2.0.1"
@@ -7182,10 +6898,6 @@ progress@^1.1.8:
 progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
-
-promise-polyfill@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.npmjs.org/promise-polyfill/-/promise-polyfill-1.1.6.tgz#cd04eff46f5c95c3a7d045591d79b5e3e01f12d7"
 
 promise-reduce@^2.1.0:
   version "2.1.0"
@@ -7988,13 +7700,6 @@ resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
 
-resolve-path@^1.2.2:
-  version "1.3.3"
-  resolved "https://registry.npmjs.org/resolve-path/-/resolve-path-1.3.3.tgz#4d83aba6468c2b8e632a575e3f52b0fa0dbe1a5c"
-  dependencies:
-    http-errors "~1.5.0"
-    path-is-absolute "1.0.1"
-
 resolve@1.1.7:
   version "1.1.7"
   resolved "https://registry.npmjs.org/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
@@ -8088,14 +7793,6 @@ safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, s
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-sander@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.npmjs.org/sander/-/sander-0.6.0.tgz#af1624cd7fb6dfad98ebef565319f920078da925"
-  dependencies:
-    graceful-fs "^4.1.3"
-    mkdirp "^0.5.1"
-    rimraf "^2.5.2"
-
 sax@^1.2.1, sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -8164,10 +7861,6 @@ set-immediate-shim@^1.0.1:
 setimmediate@^1.0.4, setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
-
-setprototypeof@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.0.2.tgz#81a552141ec104b88e89ce383103ad5c66564d08"
 
 setprototypeof@1.0.3:
   version "1.0.3"
@@ -8484,12 +8177,6 @@ stream-to-observable@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/stream-to-observable/-/stream-to-observable-0.1.0.tgz#45bf1d9f2d7dc09bed81f1c307c430e68b84cffe"
 
-stream-to-string@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/stream-to-string/-/stream-to-string-1.1.0.tgz#39210b01317e6abb35e854538e013037b6a35940"
-  dependencies:
-    promise-polyfill "^1.1.6"
-
 strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
@@ -8755,12 +8442,6 @@ tempfile@^1.1.1:
     os-tmpdir "^1.0.0"
     uuid "^2.0.1"
 
-term-size@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/term-size/-/term-size-0.1.1.tgz#87360b96396cab5760963714cda0d0cbeecad9ca"
-  dependencies:
-    execa "^0.4.0"
-
 term-size@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
@@ -8790,10 +8471,6 @@ thenify-all@^1.0.0:
   resolved "https://registry.npmjs.org/thenify/-/thenify-3.3.0.tgz#e69e38a1babe969b0108207978b9f62b88604839"
   dependencies:
     any-promise "^1.0.0"
-
-throat@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/throat/-/throat-3.2.0.tgz#50cb0670edbc40237b9e347d7e1f88e4620af836"
 
 throat@^4.1.0:
   version "4.1.0"
@@ -9425,7 +9102,7 @@ which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
 
-which@^1.2.10, which@^1.2.12, which@^1.2.8, which@^1.2.9:
+which@^1.2.10, which@^1.2.12, which@^1.2.9:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
   dependencies:
@@ -9643,7 +9320,3 @@ yargs@~3.10.0:
 yarn@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/yarn/-/yarn-1.2.1.tgz#0d628dc01438881a1663a6f83cbf7ac5db7a75fc"
-
-zen-observable@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/zen-observable/-/zen-observable-0.3.0.tgz#137bb5e31be7b83ed5eda9c14f9305cb3cdaa725"
