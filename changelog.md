@@ -1,3 +1,8 @@
+<a name="1.8.0-5"></a>
+# [1.8.0-5](https://github.com/sinnerschrader/patternplate/compare/v1.8.0-1...v1.8.0-5) (2017-11-22)
+
+
+
 <a name="1.8.0-1"></a>
 # [1.8.0-1](https://github.com/sinnerschrader/patternplate/compare/v1.7.3...v1.8.0-1) (2017-11-22)
 
