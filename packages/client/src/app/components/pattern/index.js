@@ -6,7 +6,6 @@ import Transition from "react-transition-group/Transition";
 
 import Markdown from "../common/markdown";
 import PatternDemo from "./pattern-demo";
-import Search from "../../containers/search";
 
 const VISIBILITY = props => (props.checkers ? "block" : "none");
 
