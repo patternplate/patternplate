@@ -116,6 +116,7 @@ async function loadMeta(options) {
         return {
           id,
           artifact,
+          contentType: "pattern",
           source: path.relative(options.cwd, source),
           files: await getFiles(source, { cwd: options.cwd }),
           path: relativeManifestPath,
@@ -247,9 +248,8 @@ async function treeFromPaths(files) {
                 return null;
               }
 
-              const contents = String(
-                await loadDoc({ cwd: path.join(...itemPath) })
-              );
+              const raw = await loadDoc({ cwd: path.join(...itemPath) });
+              const contents = raw ? String(raw) : "";
 
               const ast = remark().parse(contents);
               const first = find(ast, { type: "heading", depth: 1 });
@@ -263,6 +263,7 @@ async function treeFromPaths(files) {
 
               const item = {
                 contents,
+                contentType: file.contentType,
                 name,
                 manifest: type === "folder" ? manifest : file.manifest,
                 id: parts.slice(0, i + 1).join("/"),

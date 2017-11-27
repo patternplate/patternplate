@@ -22,7 +22,8 @@ async function loadDocs(options) {
 
   return await Promise.all(
     files.map(async file => {
-      const contents = String(await sander.readFile(options.cwd, file));
+      const raw = await sander.readFile(options.cwd, file);
+      const contents = raw ? String(raw) : '';
       const ast = remark().parse(contents);
       const first = find(ast, { type: "heading", depth: 1 });
 
@@ -37,6 +38,7 @@ async function loadDocs(options) {
 
       return {
         contents,
+        contentType: "doc",
         path: file,
         manifest
       };
@@ -79,7 +81,8 @@ async function treeFromPaths(files) {
         contents: file.contents,
         id: sid,
         path: sid.split("/"),
-        type: path.extname(part) ? "doc" : "folder"
+        type: path.extname(part) ? "doc" : "folder",
+        contentType: file.contentType
       };
 
       if (item.type === "folder") {

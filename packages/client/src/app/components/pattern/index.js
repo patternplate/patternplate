@@ -86,6 +86,7 @@ const StyledPatternLoader = styled.div`
             transform: translateX(0);
           `;
         case "exited":
+        default:
           return `
             transform: translateX(-100%);
             transition: opacity .3s .25s ease-out;
@@ -96,45 +97,52 @@ const StyledPatternLoader = styled.div`
 `;
 
 export default class Pattern extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { srcdoc: false };
+  }
+
   render() {
     const { props } = this;
 
-    switch (props.type) {
-      case "pattern":
-        return (
-          <StyledPattern checkers={props.opacity}>
-            <Helmet
-              title={[getPrefix(props), props.displayName]
-                .filter(Boolean)
-                .join(": ")}
-            />
-            <Transition
-              in={props.loading || props.error}
-              timeout={{ enter: 1000, exit: 850 }}
-            >
-              {status => (
-                <StyledPatternLoader status={status} error={props.error} />
-              )}
-            </Transition>
-            <StyledPatternDemo>
-              <PatternDemo
-                src={props.src}
-                contents={props.contents}
-                loading={props.loading}
-              />
-            </StyledPatternDemo>
-          </StyledPattern>
-        );
-      case "not-found":
-      default:
-        return (
-          <StyledPatternFolder>
-            <StyledPatternDoc>
-              <Markdown source={props.docs} />
-            </StyledPatternDoc>
-          </StyledPatternFolder>
-        );
+    if (props.contentType !== "pattern") {
+      return null;
     }
+
+    if (props.type === "folder") {
+      return (
+        <StyledPatternFolder>
+          <StyledPatternDoc>
+            <Markdown source={props.docs} />
+          </StyledPatternDoc>
+        </StyledPatternFolder>
+      );
+    }
+
+    return (
+      <StyledPattern checkers={props.opacity}>
+        <Helmet
+          title={[getPrefix(props), props.displayName]
+            .filter(Boolean)
+            .join(": ")}
+        />
+        <Transition
+          in={props.loading || props.error}
+          timeout={{ enter: 1000, exit: 850 }}
+        >
+          {status => (
+            <StyledPatternLoader status={status} error={props.error} />
+          )}
+        </Transition>
+        <StyledPatternDemo>
+          <PatternDemo
+            src={props.src}
+            contents={props.contents}
+            loading={props.loading}
+          />
+        </StyledPatternDemo>
+      </StyledPattern>
+    );
   }
 }
 
