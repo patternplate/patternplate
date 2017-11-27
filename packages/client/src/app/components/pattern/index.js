@@ -131,7 +131,6 @@ export default class Pattern extends React.Component {
         return (
           <StyledPatternFolder>
             <StyledPatternDoc>
-              <Search inline />
               <Markdown source={props.docs} />
             </StyledPatternDoc>
           </StyledPatternFolder>
