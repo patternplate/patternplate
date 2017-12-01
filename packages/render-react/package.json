@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/render-react",
-  "version": "2.0.0-3",
+  "version": "2.0.0-4",
   "description": "patternplate render package for React",
   "xo": false,
   "repository": {
