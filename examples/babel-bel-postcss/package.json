@@ -35,6 +35,7 @@
     "@patternplate/cli": "^2.0.0-3",
     "babel-preset-env": "^1.6.1",
     "postcss-cli": "^4.1.1",
-    "postcss-import": "^11.0.0"
+    "postcss-import": "^11.0.0",
+    "stmux": "^1.4.18"
   }
 }
