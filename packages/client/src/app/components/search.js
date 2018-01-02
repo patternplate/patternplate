@@ -28,7 +28,7 @@ const {
   PassThroughSlot: SearchPassThroughSlot
 } = SearchComponents;
 
-const NOOP = () => {};
+const NOOP = () => { };
 
 export default class Search extends React.Component {
   constructor(...args) {
@@ -76,6 +76,38 @@ export default class Search extends React.Component {
       type={type}
     />
   );
+
+  getSearchResultPreview = () => {
+    const item = this.props.activeItem;
+
+    switch (item.type) {
+      case "doc":
+        return (
+          <SearchResultPreview {...this.props}>
+            <Markdown source={item.contents} />
+          </SearchResultPreview>
+        );
+      default:
+        return (
+          <SearchResultPreview {...this.props}>
+            <InfoPane
+              active
+              demoDependencies={values(item.demoDependencies)}
+              demoDependents={values(item.demoDependents)}
+              dependencies={values(item.dependencies)}
+              dependents={values(item.dependents)}
+              flag={item.manifest.flag}
+              icon={item.manifest.options.icon || item.type}
+              id={item.id}
+              manifest={JSON.stringify(item.manifest, null, "  ")}
+              name={item.manifest.displayName}
+              tags={item.manifest.tags}
+              version={item.manifest.version}
+            />
+          </SearchResultPreview>
+        );
+    }
+  }
 
   componentDidMount() {
     if (typeof this.props.onMount === "function") {
@@ -163,9 +195,15 @@ export default class Search extends React.Component {
 
           {props.components.map(d => this.getSearchResult(d, "pattern"))}
         </SearchResultList>
-        <WrappedSearchResultPreview item={props.activeItem} />
+
+        {(withComponents || withDocs) && this.getSearchResultPreview()}
+
         <SearchFieldSlot>
           <SearchField
+            autoFocus={!props.inline}
+            linkTo="/search"
+            mark={props.inline ? null : true}
+            name={props.inline ? "inline-search" : "search"}
             onBlur={props.onBlur}
             onChange={props.onChange}
             onClear={props.onClear}
@@ -175,6 +213,9 @@ export default class Search extends React.Component {
             onFocus={props.onFocus}
             onStop={props.onStop}
             onUp={this.handleUp}
+            placeholder="Search"
+            suggestion={props.suggestion}
+            title={`Search for patterns ${props.shortcuts.toggleSearch.toString()}`}
             value={props.value}
           >
             {props.enabled && (
@@ -192,22 +233,3 @@ export default class Search extends React.Component {
     );
   }
 }
-
-const WrappedSearchResultPreview = props => (
-  <SearchResultPreview {...props}>
-    <InfoPane
-      active
-      demoDependencies={values(props.item.demoDependencies)}
-      demoDependents={values(props.item.demoDependents)}
-      dependencies={values(props.item.dependencies)}
-      dependents={values(props.item.dependents)}
-      flag={props.item.manifest.flag}
-      icon={props.item.manifest.options.icon || props.item.type}
-      id={props.item.id}
-      manifest={JSON.stringify(props.item.manifest, null, "  ")}
-      name={props.item.manifest.displayName}
-      tags={props.item.manifest.tags}
-      version={props.item.manifest.version}
-    />
-  </SearchResultPreview>
-);

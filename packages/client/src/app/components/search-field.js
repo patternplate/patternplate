@@ -47,8 +47,6 @@ class SearchField extends React.Component {
     }
   }
 
-  componentDidMount() {}
-
   render() {
     const props = this.props;
 

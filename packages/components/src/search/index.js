@@ -1,39 +1,38 @@
-var React = require("react");
-var styled = require("styled-components").default;
-var Link = require("../link");
-var Icon = require("../icon");
-var Text = require("../text");
-var InnerInfoPane = require("../info-pane").InnerInfoPane;
-var tag = require("tag-hoc").default;
+const React = require("react");
+const styled = require("styled-components").default;
+const Link = require("../link");
+const Icon = require("../icon");
+const Text = require("../text");
+const InnerInfoPane = require("../info-pane").InnerInfoPane;
+const tag = require("tag-hoc").default;
 
-// import Markdown from "./common/markdown";
 // import Outside from "./outside";
 
-var SearchFieldSlot = function SearchFieldSlot(props) {
+const SearchFieldSlot = function SearchFieldSlot(props) {
   return props.children;
 };
-var PassThroughSlot = function PassThroughSlot(props) {
+const PassThroughSlot = function PassThroughSlot(props) {
   return props.children;
 };
 
-var NOOP = function NOOP() { };
+const NOOP = function NOOP() { };
 
 function Search(props) {
-  var children = React.Children.toArray(props.children);
+  const children = React.Children.toArray(props.children);
 
-  var searchResultList = children.filter(function (item) {
+  const searchResultList = children.filter(function (item) {
     return item.type === StyledResultList;
   });
 
-  var searchPreviewChildren = children.filter(function (item) {
+  const searchPreviewChildren = children.filter(function (item) {
     return item.type === StyledResultPreview;
   });
 
-  var searchField = children.filter(function (item) {
+  const searchField = children.filter(function (item) {
     return item.type === SearchFieldSlot;
   });
 
-  var passThrough = children.filter(function (item) {
+  const passThrough = children.filter(function (item) {
     return item.type === PassThroughSlot;
   });
 
@@ -68,11 +67,11 @@ function Search(props) {
   );
 }
 
-var SEARCH_HEIGHT = "60vh";
-var SEARCH_FIELD_HEIGHT = "80px";
-var SEARCH_LEGEND_HEIGHT = "30px";
+const SEARCH_HEIGHT = "60vh";
+const SEARCH_FIELD_HEIGHT = "80px";
+const SEARCH_LEGEND_HEIGHT = "30px";
 
-var StyledFormBox = styled.div`
+const StyledFormBox = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -82,7 +81,7 @@ var StyledFormBox = styled.div`
   opacity: ${props => props.inline && props.enabled ? '0' : '1'};
 `;
 
-var StyledForm = styled.form`
+const StyledForm = styled.form`
   display:flex;
   flex-direction:column;
   position:relative;
@@ -92,13 +91,13 @@ var StyledForm = styled.form`
   ${props => withTint(props)}
 `;
 
-var StyledSearchFieldBox = styled.div`
+const StyledSearchFieldBox = styled.div`
   position:relative;
   z-index:1;
   flex:0 0 auto;
 `;
 
-var StyledResults = styled.div`
+const StyledResults = styled.div`
   position:relative;
   z-index:1;
   flex:1 1 auto;
@@ -107,20 +106,20 @@ var StyledResults = styled.div`
   max-height: calc(${SEARCH_HEIGHT} - ${SEARCH_FIELD_HEIGHT} - ${SEARCH_LEGEND_HEIGHT});
 `;
 
-var StyledResultPreview = styled.div`
+const StyledResultPreview = styled.div`
   flex:1 1 60%;
   overflow:scroll;
   -webkit-touch-scroll:auto;
 `;
 
-var StyledResultList = styled.div`
+const StyledResultList = styled.div`
   flex: 1 0 40%;
   overflow: scroll;
   -webkit-touch-scroll: auto;
   border-right: 1px solid ${props => props.theme.border};
 `;
 
-var StyledResultHeading = styled(Text)`
+const StyledResultHeading = styled(Text)`
   box-sizing:border-box;
   position:-webkit-sticky;
   position:sticky;
@@ -136,15 +135,15 @@ var StyledResultHeading = styled(Text)`
   background: ${props => props.theme.background};
 `;
 
-var StyledIcon = styled(tag(["active"])(Icon))`
+const StyledIcon = styled(tag(["active"])(Icon))`
   flex:0 0 auto;
   fill: ${props => props.active ? props.theme.active : props.theme.color};
   margin-right:10px;
 `;
 
-var Linkable = tag(["active"])(Link);
+const Linkable = tag(["active"])(Link);
 
-var StyledPreviewLink = styled(Linkable)`
+const StyledPreviewLink = styled(Linkable)`
   position:absolute;
   right:15px;
   top:50%;
@@ -158,7 +157,7 @@ var StyledPreviewLink = styled(Linkable)`
   }
 `;
 
-var StyledResultLink = styled(Linkable)`
+const StyledResultLink = styled(Linkable)`
   display:flex;
   align-items:center;
   width:100%;
@@ -168,7 +167,7 @@ var StyledResultLink = styled(Linkable)`
   text-decoration:none;
 `;
 
-var StyledResult = styled.div`
+const StyledResult = styled.div`
   position:relative;
   box-sizing:border-box;
   display:flex;
@@ -197,7 +196,7 @@ class SearchResult extends React.Component {
     }
   }
   render() {
-    var props = this.props;
+    const props = this.props;
 
     return (
       <StyledResult
@@ -243,27 +242,25 @@ SearchResult.defaultProps = {
   onScrollRequest: function onScrollRequest() { }
 };
 
-var Submit = function Submit(props) {
-  return <input type="submit" className={props.className} />;
-};
-
-var HiddenSubmit = styled(Submit)`
-  display:none;
+const HiddenSubmit = styled.input.attrs({
+  type: 'submit'
+})`
+  display: none;
 `;
 
-var StyledClose = styled(Link)`
+const StyledClose = styled(Link)`
   font-size: 0;
   line-height:0;
 `;
 
-var StyledCloseIcon = styled(Icon)`
+const StyledCloseIcon = styled(Icon)`
   fill: ${props => props.theme.color};
 `;
 
 function Close(props) {
-  var verb = props.clears ? `Clear` : "Close";
-  var query = props.clears ? { search: null } : { "search-enabled": null };
-  var symbol = props.clears ? "return" : "close";
+  const verb = props.clears ? `Clear` : "Close";
+  const query = props.clears ? { search: null } : { "search-enabled": null };
+  const symbol = props.clears ? "return" : "close";
   return (
     <StyledClose
       query={query}
@@ -275,45 +272,12 @@ function Close(props) {
   );
 }
 
-var StyledMarkdown = styled.div`
+const StyledMarkdown = styled.div`
   width: 80%;
   margin:0 auto;
 `;
 
-function ResultPreview(props) {
-  if (!props.item) {
-    return null;
-  }
-  switch (props.item.type) {
-    case "doc":
-      return <StyledResultPreview/>;
-    default:
-      return (
-        <StyledResultPreview>
-          {props.children}
-        </StyledResultPreview>
-      );
-  }
-}
-
-/*
-<InfoPane
-  active
-  demoDependencies={values(props.item.demoDependencies)}
-  demoDependents={values(props.item.demoDependents)}
-  dependencies={values(props.item.dependencies)}
-  dependents={values(props.item.dependents)}
-  flag={props.item.manifest.flag}
-  icon={props.item.manifest.options.icon || props.item.type}
-  id={props.item.id}
-  manifest={JSON.stringify(props.item.manifest, null, "  ")}
-  name={props.item.manifest.displayName}
-  tags={props.item.manifest.tags}
-  version={props.item.manifest.version}
-/>
-*/
-
-var StyledSearchLegend = styled.div`
+const StyledSearchLegend = styled.div`
   display:flex;
   align-items:center;
   height:30px;
@@ -326,7 +290,7 @@ var StyledSearchLegend = styled.div`
   ${props => withTint(props)};
 `;
 
-var StyledSearchLegendBox = styled.div`
+const StyledSearchLegendBox = styled.div`
   display:flex;
   overflow:scroll;
   -webkit-overflow-scrolling:touch;
@@ -338,7 +302,7 @@ var StyledSearchLegendBox = styled.div`
   }
 `;
 
-var StyledField = styled(Text)`
+const StyledField = styled(Text)`
   padding:0 10px;
   color: ${props => props.theme.color};
   &:first-child{
@@ -346,14 +310,14 @@ var StyledField = styled(Text)`
   }
 }`;
 
-var StyledLegendName = styled(StyledField)`
+const StyledLegendName = styled(StyledField)`
   padding-right:20px;
   font-weight:bold;
   color: ${props => props.theme.color};
   position:relative;z-index:1;
 `;
 
-var StyledFieldLink = styled(Link)`
+const StyledFieldLink = styled(Link)`
   white-space:nowrap;
   &:link,
   &:active,
@@ -416,7 +380,7 @@ module.exports.default = Search;
 module.exports.SearchResult = SearchResult;
 module.exports.SearchResultList = StyledResultList;
 module.exports.SearchResultHeading = StyledResultHeading;
-module.exports.SearchResultPreview = ResultPreview;
+module.exports.SearchResultPreview = StyledResultPreview;
 module.exports.SearchFieldSlot = SearchFieldSlot;
 module.exports.PassThroughSlot = PassThroughSlot;
 module.exports.Close = Close;
