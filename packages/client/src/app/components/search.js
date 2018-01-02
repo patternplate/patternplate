@@ -116,18 +116,18 @@ export default class Search extends React.Component {
         docs={props.docs}
         enabled={props.enabled}
         inline={props.inline}
-        onActivate={props.handleActivate}
+        onActivate={this.handleActivate}
         onClickOutside={props.onClickOutside}
         onBlur={props.onBlur}
         onChange={props.onChange}
         onClear={props.onClear}
         onComplete={props.onComplete}
-        onDown={props.handleDown}
+        onDown={this.handleDown}
         onFocus={props.onFocus}
         onScrollRequest={props.handleScrollRequest}
         onStop={props.onStop}
-        onSubmit={props.handleSubmit}
-        onUp={props.handleUp}
+        onSubmit={this.handleSubmit}
+        onUp={this.handleUp}
         shortcuts={props.shortcuts}
         suggestion={props.suggestion}
         legend={props.legend}
@@ -136,15 +136,15 @@ export default class Search extends React.Component {
           <SearchResultHeading>Docs ({props.docs.length})</SearchResultHeading>
         )}
 
-        {props.docs.map(d => getSearchResult(d, "doc"))}
+        {props.docs.map(d => getSearchResult(d, "doc", props))}
 
         {withComponents > 0 && (
-          <StyledResultHeading navigationEnabled={props.navigationEnabled}>
+          <SearchResultHeading navigationEnabled={props.navigationEnabled}>
             Components ({props.components.length})
-          </StyledResultHeading>
+          </SearchResultHeading>
         )}
 
-        {props.components.map(d => getSearchResult(d, "pattern"))}
+        {props.components.map(d => getSearchResult(d, "pattern", props))}
         <WrappedSearchResultPreview item={props.activeItem} />
         <SearchFieldSlot>
           <SearchField
@@ -152,11 +152,12 @@ export default class Search extends React.Component {
             onChange={props.onChange}
             onClear={props.onClear}
             onComplete={props.onComplete}
-            onDown={props.handleDown}
+            onDown={this.handleDown}
             onFocus={props.onFocus}
-            onScrollRequest={props.handleScrollRequest}
+            onScrollRequest={this.handleScrollRequest}
             onStop={props.onStop}
-            onUp={props.handleUp}
+            onUp={this.handleUp}
+            value={props.value}
           >
             {props.enabled && (
               <SearchClose
@@ -193,8 +194,7 @@ const WrappedSearchResultPreview = props => (
   </SearchResultPreview>
 );
 
-// Todo: refactor to Component
-const getSearchResult = (item, type) => (
+const getSearchResult = (item, type, props) => (
   <SearchResult
     active={(props.activeItem || {}).id === item.id}
     id={item.id}
@@ -204,6 +204,6 @@ const getSearchResult = (item, type) => (
     key={item.id}
     onActivate={props.onActivate}
     onScrollRequest={props.onScrollRequest}
-    type
+    type={type}
   />
 );

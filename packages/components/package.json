@@ -4,7 +4,7 @@
   "description": "ui component library for patternplate-client",
   "main": "lib/index.js",
   "scripts": {
-    "start": "patternplate",
+    "start": "concurrently \"patternplate\" \"npm run watch\"",
     "build": "babel src -d lib --source-maps",
     "watch": "babel src -d lib --source-maps -w"
   },
@@ -70,6 +70,7 @@
   },
   "dependencies": {
     "color": "^2.0.0",
+    "concurrently": "^3.5.1",
     "d3-force": "^1.0.6",
     "hast-to-hyperscript": "^3.0.2",
     "highlight.js": "^9.12.0",
