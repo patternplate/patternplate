@@ -4,8 +4,6 @@ const React = require("react");
 const Themer = require("../demo-themer");
 const SearchField = require("../search-field");
 
-console.log(Search)
-
 module.exports = () => (
   <Themer>
     <SearchComponent

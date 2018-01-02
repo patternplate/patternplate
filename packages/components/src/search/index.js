@@ -21,23 +21,21 @@ var NOOP = function NOOP() { };
 function Search(props) {
   var children = React.Children.toArray(props.children);
 
-  var SearchResultChildren = children.filter(function (item) {
-    return item.type === SearchResult;
+  var searchResultList = children.filter(function (item) {
+    return item.type === StyledResultList;
   });
 
-  var SearchPreviewChildren = children.filter(function (item) {
+  var searchPreviewChildren = children.filter(function (item) {
     return item.type === StyledResultPreview;
   });
 
-  var SearchField = children.filter(function (item) {
+  var searchField = children.filter(function (item) {
     return item.type === SearchFieldSlot;
   });
 
-  var PassThrough = children.filter(function (item) {
+  var passThrough = children.filter(function (item) {
     return item.type === PassThroughSlot;
   });
-
-  console.log(props);
 
   return (
     <StyledFormBox
@@ -54,18 +52,16 @@ function Search(props) {
         <StyledSearchFieldBox
           onClick={props.inline ? props.onClick : NOOP}
         >
-          {SearchField}
-          {PassThrough}
+          {searchField}
+          {passThrough}
           <HiddenSubmit />
           <SearchLegend
             {...props.legend}
           />
         </StyledSearchFieldBox>
         <StyledResults>
-          <StyledResultList innerRef={this.getListRef}>
-            {SearchResultChildren}
-          </StyledResultList>
-          {SearchPreviewChildren}
+          {searchResultList}
+          {searchPreviewChildren}
         </StyledResults>
       </StyledForm>
     </StyledFormBox>
@@ -187,6 +183,11 @@ var StyledResult = styled.div`
 `;
 
 class SearchResult extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this.getRef = this.getRef.bind(this);
+  }
+
   getRef(ref) {
     this.ref = ref;
   }
@@ -197,7 +198,6 @@ class SearchResult extends React.Component {
   }
   render() {
     var props = this.props;
-    console.log(props);
 
     return (
       <StyledResult
@@ -414,6 +414,7 @@ function withTint(props) {
 
 module.exports.default = Search;
 module.exports.SearchResult = SearchResult;
+module.exports.SearchResultList = StyledResultList;
 module.exports.SearchResultHeading = StyledResultHeading;
 module.exports.SearchResultPreview = ResultPreview;
 module.exports.SearchFieldSlot = SearchFieldSlot;

@@ -18,6 +18,7 @@ module.exports = {
   Search: {
     Search: require("./search").default,
     SearchResult: require("./search").SearchResult,
+    SearchResultList: require("./search").SearchResultList,
     SearchResultHeading: require("./search").SearchResultHeading,
     SearchResultPreview: require("./search").SearchResultPreview,
     SearchFieldSlot: require("./search").SearchFieldSlot,

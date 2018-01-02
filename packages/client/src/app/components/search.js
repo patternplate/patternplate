@@ -20,6 +20,7 @@ const InfoPane = withToggleStates(InnerInfoPane);
 const {
   Search: SearchComponent,
   SearchResult,
+  SearchResultList,
   SearchResultHeading,
   SearchResultPreview,
   SearchFieldSlot,
@@ -32,12 +33,14 @@ const NOOP = () => {};
 export default class Search extends React.Component {
   constructor(...args) {
     super(...args);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUp = this.handleUp.bind(this);
     this.handleDown = this.handleDown.bind(this);
     this.handleActivate = this.handleActivate.bind(this);
     this.handleScrollRequest = this.handleScrollRequest.bind(this);
     this.getListRef = this.getListRef.bind(this);
+    this.getSearchResult = this.getSearchResult.bind(this);
   }
 
   handleScrollRequest(e) {
@@ -59,6 +62,20 @@ export default class Search extends React.Component {
   getListRef(ref) {
     this.list = ref;
   }
+
+  getSearchResult = (item, type) => (
+    <SearchResult
+      active={(this.props.activeItem || {}).id === item.id}
+      id={item.id}
+      index={item.index}
+      icon={item.manifest.icon || item.type}
+      name={item.manifest.displayName}
+      key={item.id}
+      onActivate={this.props.onActivate}
+      onScrollRequest={this.handleScrollRequest}
+      type={type}
+    />
+  );
 
   componentDidMount() {
     if (typeof this.props.onMount === "function") {
@@ -116,45 +133,46 @@ export default class Search extends React.Component {
         docs={props.docs}
         enabled={props.enabled}
         inline={props.inline}
-        onActivate={this.handleActivate}
-        onClickOutside={props.onClickOutside}
-        onBlur={props.onBlur}
-        onChange={props.onChange}
-        onClear={props.onClear}
-        onComplete={props.onComplete}
-        onDown={this.handleDown}
-        onFocus={props.onFocus}
-        onScrollRequest={props.handleScrollRequest}
-        onStop={props.onStop}
-        onSubmit={this.handleSubmit}
-        onUp={this.handleUp}
+        onActivate={props.inline ? NOOP : this.handleActivate}
+        onClickOutside={props.inline ? NOOP : props.onClickOutside}
+        onBlur={props.inline ? NOOP : props.onBlur}
+        onChange={props.inline ? NOOP : props.onChange}
+        onClear={props.inline ? NOOP : props.onClear}
+        onComplete={props.inline ? NOOP : props.onComplete}
+        onDown={props.inline ? NOOP : this.handleDown}
+        onFocus={props.inline ? NOOP : props.onFocus}
+        onStop={props.inline ? NOOP : props.onStop}
+        onSubmit={props.inline ? NOOP : this.handleSubmit}
+        onUp={props.inline ? NOOP : this.handleUp}
         shortcuts={props.shortcuts}
         suggestion={props.suggestion}
         legend={props.legend}
       >
-        {withDocs > 0 && (
-          <SearchResultHeading>Docs ({props.docs.length})</SearchResultHeading>
-        )}
+        <SearchResultList innerRef={this.getListRef}>
+          {withDocs > 0 && (
+            <SearchResultHeading>Docs ({props.docs.length})</SearchResultHeading>
+          )}
 
-        {props.docs.map(d => getSearchResult(d, "doc", props))}
+          {props.docs.map(d => this.getSearchResult(d, "doc", props))}
 
-        {withComponents > 0 && (
-          <SearchResultHeading navigationEnabled={props.navigationEnabled}>
-            Components ({props.components.length})
-          </SearchResultHeading>
-        )}
+          {withComponents > 0 && (
+            <SearchResultHeading navigationEnabled={props.navigationEnabled}>
+              Components ({props.components.length})
+            </SearchResultHeading>
+          )}
 
-        {props.components.map(d => getSearchResult(d, "pattern", props))}
+          {props.components.map(d => this.getSearchResult(d, "pattern"))}
+        </SearchResultList>
         <WrappedSearchResultPreview item={props.activeItem} />
         <SearchFieldSlot>
           <SearchField
             onBlur={props.onBlur}
             onChange={props.onChange}
             onClear={props.onClear}
+            onClose={props.onClose}
             onComplete={props.onComplete}
             onDown={this.handleDown}
             onFocus={props.onFocus}
-            onScrollRequest={this.handleScrollRequest}
             onStop={props.onStop}
             onUp={this.handleUp}
             value={props.value}
@@ -192,18 +210,4 @@ const WrappedSearchResultPreview = props => (
       version={props.item.manifest.version}
     />
   </SearchResultPreview>
-);
-
-const getSearchResult = (item, type, props) => (
-  <SearchResult
-    active={(props.activeItem || {}).id === item.id}
-    id={item.id}
-    index={item.index}
-    icon={item.manifest.icon || item.type}
-    name={item.manifest.displayName}
-    key={item.id}
-    onActivate={props.onActivate}
-    onScrollRequest={props.onScrollRequest}
-    type={type}
-  />
 );
