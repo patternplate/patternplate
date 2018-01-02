@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/components",
-  "version": "2.0.0",
+  "version": "2.0.0-4",
   "description": "ui component library for patternplate-client",
   "main": "lib/index.js",
   "scripts": {
@@ -23,6 +23,9 @@
     }
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">= 4",
     "npm": ">= 3"
@@ -44,14 +47,16 @@
     ],
     "plugins": [
       [
-        "styled-components", {
+        "styled-components",
+        {
           "ssr": true
         }
       ]
     ]
   },
   "devDependencies": {
-    "@patternplate/cli": "^2.0.0",
+    "@patternplate/cli": "^2.0.0-4",
+    "@patternplate/render-styled-components": "^2.0.0-4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

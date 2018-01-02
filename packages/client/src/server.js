@@ -41,7 +41,7 @@ async function main(options) {
       const result = (await loadConfig({ cwd: options.cwd })) || {};
       const { config = {}, filepath } = result;
       const { entry = [] } = config;
-      const cwd = path.dirname(filepath);
+      const cwd = filepath ? path.dirname(filepath) : process.cwd();
 
       const docs = await loadDocsTree({
         cwd,

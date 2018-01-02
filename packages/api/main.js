@@ -22,7 +22,7 @@ module.exports = async options => {
       default: {
         const { config, filepath } = await loadConfig({ cwd: options.cwd });
         const { entry = [] } = config;
-        const cwd = path.dirname(filepath);
+        const cwd = filepath ? path.dirname(filepath) : process.cwd();
 
         const docs = await loadDocsTree({
           cwd,
@@ -59,7 +59,7 @@ module.exports = async options => {
 async function watcher(options) {
   const connections = new Set();
   const { config, filepath } = await loadConfig({ cwd: options.cwd });
-  const cwd = path.dirname(filepath);
+  const cwd = filepath ? path.dirname(filepath) : process.cwd();
   const { entry = [] } = config;
 
   const [err, meta] = await nodeish(loadMeta)({ cwd, entry });

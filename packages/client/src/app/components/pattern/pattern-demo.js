@@ -7,11 +7,8 @@ const StyledDemo = styled.iframe`
   border: 0;
 `;
 
-class PatternDemo extends React.Component {
-  render() {
-    const { props } = this;
-    return <StyledDemo srcDoc={props.contents} seamless />;
-  }
+function PatternDemo(props) {
+  return <StyledDemo src={props.src} />;
 }
 
 export default PatternDemo;

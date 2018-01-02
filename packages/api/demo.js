@@ -2,17 +2,22 @@ const path = require("path");
 const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
 const AggregateError = require("aggregate-error");
-const resolveFrom = require("resolve-from");
+const fromString = require("require-from-string");
+const sander = require("@marionebl/sander");
 const unindent = require("unindent");
 
 module.exports = demo;
 
+const BUNDLE_PATH = "/patternplate.node.components.js";
+const RENDER_PATH = "/patternplate.node.render.js";
+
 async function demo(options) {
   return async function demoRoute(req, res) {
     const { context } = options;
+    const getModule = fromFs(context.fs);
 
     try {
-      const result = (await loadConfig({ cwd: options.cwd })) || {};
+      const result = await loadConfig({ cwd: options.cwd });
       const { config = {} } = result;
       const { entry = [] } = config;
 
@@ -29,32 +34,53 @@ async function demo(options) {
         return res.sendStatus(404);
       }
 
-      const renderModule = resolveFrom(
-        path.dirname(result.filepath),
-        config.render
-      );
-
-      const componentModule = resolveFrom(options.cwd, `./${found.artifact}`);
-
-      await context.running;
+      const stats = await context.running;
       const err = await context.error;
 
       if (err) {
         throw err;
       }
 
-      delete require.cache[renderModule];
-      const { render } = require(renderModule);
+      const render = getModule(RENDER_PATH);
+      const component = getComponent(getModule(BUNDLE_PATH), found);
+      const content = render(component);
 
-      delete require.cache[componentModule];
-      const component = require(componentModule);
+      const cssArtifact = path.join(path.dirname(found.artifact), 'demo.css');
+      const htmlArtifact = path.join(path.dirname(found.artifact), 'demo.html');
 
-      const content = render(component.default || component);
+      if (!content.css && await sander.exists(cssArtifact)) {
+        content.css = `<style>${String(await sander.readFile(cssArtifact))}</style>`;
+      }
+
+      if (!content.html && await sander.exists(htmlArtifact)) {
+        content.html = String(await sander.readFile(htmlArtifact));
+      }
+
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
+      console.log(error);
       res.status(500).send(error.message);
     }
+  };
+}
+
+function getComponent(components, data) {
+  const fileModule = components[data.artifact];
+
+  const match = data.files.find(file => file in fileModule);
+
+  if (match) {
+    return fileModule[match];
+  }
+
+  return fileModule;
+}
+
+function fromFs(fs) {
+  return filename => {
+    const componentBundleSource = String(fs.readFileSync(filename));
+    return fromString(componentBundleSource, filename);
   };
 }
 
@@ -71,22 +97,48 @@ function html(content, payload) {
         ${content.css || ""}
       </head>
       <body>
+        <textarea style="display: none;" data-patternplate-vault="data-patternplate-vault">${data}</textarea>
         <!-- content.before -->
         ${content.before || ""}
         <!-- content.html -->
-        <div data-patternplate-mount="data-patternplate-mount">${content.html}</div>
+        <div data-patternplate-mount="data-patternplate-mount">${content.html ||
+          ""}</div>
         <!-- content.after -->
         ${content.after || ""}
-        <textarea style="display:none" data-patternplate-vault="data-patternplate-vault">
-          ${data || "{}"}
-        </textarea>
-        <script src="/api/patternplate-vendors.js"></script>
-        <script src="/api/patternplate-components.js"></script>
-        <script src="/api/patternplate-render.js"></script>
+        <script src="/api/patternplate.web.vendors.js"></script>
+        <script src="/api/patternplate.web.components.js"></script>
+        <script src="/api/patternplate.web.mount.js"></script>
         <script>
           (function main() {
+            function getData() {
+              var vault = document.querySelector('[data-patternplate-vault]');
+              if (!vault) {
+                return {};
+              }
+              var encodedJson = vault.textContent;
+              if (!encodedJson) {
+                return {};
+              }
+              var json = decodeURIComponent(encodedJson);
+              if (!json) {
+                return {};
+              }
+              return JSON.parse(json);
+            }
+
+            function getComponent(components, data) {
+              const fileModule = components[data.artifact];
+              const match = data.files.find(file => file in fileModule);
+
+              if (match) {
+                return fileModule[match];
+              }
+
+              return fileModule;
+            }
+
             var components = window['patternplate-components'];
-            var render = window['patternplate-render'];
+            var mount = window['patternplate-mount'];
 
             var errors = [];
 
@@ -94,8 +146,8 @@ function html(content, payload) {
               errors.push(new Error('No patternplate components found. There might be errors during bundling.'))
             }
 
-            if (!render) {
-              errors.push(new Error('No render module found. There might be errors during bundling.'))
+            if (!mount) {
+              errors.push(new Error('No mount module found. There might be errors during bundling.'))
             }
 
             if (errors.length > 0) {
@@ -104,9 +156,8 @@ function html(content, payload) {
             }
 
             var element = document.querySelector('[data-patternplate-mount]');
-            var data = JSON.parse(decodeURIComponent(document.querySelector('[data-patternplate-vault]').textContent));
-            var component = components[data.artifact];
-            render.mount(component.default || component, element);
+            var component = getComponent(components, getData());
+            mount(component, element);
           })();
         </script>
       </body>

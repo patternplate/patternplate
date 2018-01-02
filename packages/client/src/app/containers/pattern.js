@@ -9,45 +9,12 @@ import Pattern from "../components/pattern";
 import * as actions from "../actions";
 
 class PatternContainer extends React.Component {
-  constructor(...args) {
-    super(...args);
-    this.state = { srcdoc: false };
-  }
-
-  componentDidMount() {
-    if (this.state.srcdoc) {
-      this.props.onChange();
-    }
-  }
-
-  componentWillMount() {
-    if (global.document) {
-      const el = document.createElement("iframe");
-      this.setState({ srcdoc: "srcdoc" in el });
-    }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timeout);
-  }
-
-  componentWillReceiveProps(next) {
-    if (this.state.srcdoc && this.props.src !== next.src && next.src) {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
-
-      this.timeout = setTimeout(() => {
-        this.props.onChange();
-      }, 250);
-    }
-  }
-
   render() {
     const { props } = this;
     return (
       <Pattern
-        contents={this.state.srcdoc ? props.contents : null}
+        contents={props.contents}
+        contentType={props.contentType}
         docs={props.docs}
         error={props.error}
         displayName={props.displayName}
@@ -62,7 +29,7 @@ class PatternContainer extends React.Component {
 
 export default connect(mapState, mapDispatch)(PatternContainer);
 
-const DEFAULT_CONTENTS = `
+const DEFAULT_PATTERN_CONTENTS = `
 # :construction: Add documentation
 
 > Undocumented software could not exist just as well.
@@ -96,10 +63,13 @@ const selectDocs = createSelector(
   items.selectType,
   items.selectContents,
   (pattern, type, contents) => {
+    if (pattern && pattern.type === 'folder') {
+      return contents;
+    }
     if (type === "not-found") {
       return NOT_FOUND;
     }
-    return contents || DEFAULT_CONTENTS;
+    return contents || DEFAULT_PATTERN_CONTENTS;
   }
 );
 
@@ -112,7 +82,8 @@ function mapState(state) {
     loading: state.demo.fetching,
     opacity: state.opacity,
     src: demo.selectSrc(state),
-    type: items.selectType(state)
+    type: items.selectType(state),
+    contentType: items.selectContentType(state)
   };
 }
 

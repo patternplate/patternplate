@@ -1,0 +1,41 @@
+{
+  "name": "@examples/babel-hyperx-postcss",
+  "version": "2.0.0-4",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "stmux -a a -- [ \"babel src -d lib -w -s\" .. \"postcss 'src/**/demo.css' -d lib -b src -w\" .. \"patternplate\" ]"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "postcss-import": {}
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "sinnerschrader/patternplate"
+  },
+  "xo": false,
+  "dependencies": {
+    "bel": "^5.1.5",
+    "hyperscript": "^2.0.2",
+    "hyperx": "^2.3.2",
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "@patternplate/cli": "^2.0.0-4",
+    "babel-preset-env": "^1.6.1",
+    "postcss-cli": "^4.1.1",
+    "postcss-import": "^11.0.0",
+    "stmux": "^1.4.18"
+  }
+}

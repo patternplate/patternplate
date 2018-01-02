@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-docs",
-  "version": "1.0.0",
+  "version": "2.0.0-4",
   "description": "Load patternplate docs",
   "xo": false,
   "repository": {
@@ -16,9 +16,12 @@
     "email": "mario.nebl@sinnerschrader.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/load-doc": "^1.0.0",
+    "@patternplate/load-doc": "^2.0.0-4",
     "cosmiconfig": "^3.1.0",
     "front-matter": "^2.2.0",
     "globby": "^6.1.0",

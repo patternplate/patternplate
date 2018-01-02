@@ -13,6 +13,8 @@ const find = require("unist-util-find");
 const sander = require("@marionebl/sander");
 const throat = require("throat");
 
+const MANIFEST_NAME = "pattern.json";
+
 const DEFAULT_MANIFEST = {
   displayName: "",
   version: "1.0.0",
@@ -41,52 +43,60 @@ async function loadMeta(options) {
     })
   );
 
-  const pairs = await entries
-    .filter(b => Boolean(b.map))
-    .reduce(async (accp, b) => {
-      const acc = await accp;
+  const pairs = await entries.reduce(async (accp, b) => {
+    const acc = await accp;
+    const artifact = path.relative(options.cwd, b.path);
 
-      const sources = await Promise.all(
-        b.map.sources.map(async s => {
-          const { path: p } = url.parse(s);
-          const artifact = path.relative(options.cwd, b.path);
-          const pa = path.resolve(path.dirname(b.path), p);
+    if (!b.map) {
+      const pair = {
+        artifact,
+        source: artifact
+      };
 
-          if (await sander.exists(pa)) {
-            return {
-              artifact,
-              source: pa
-            };
-          }
-
-          const resolved = path.join(b.map.sourceRoot || options.cwd, pa);
-
-          if (await sander.exists(resolved)) {
-            return {
-              artifact,
-              source: resolved
-            };
-          }
-        })
-      );
-
-      Array.prototype.push.apply(acc, sources.filter(Boolean));
+      acc.push(pair);
       return acc;
-    }, Promise.resolve([]));
+    }
+
+    const sources = await Promise.all(
+      b.map.sources.map(async s => {
+        const { path: p } = url.parse(s);
+        const pa = path.resolve(path.dirname(b.path), p);
+
+        if (await sander.exists(pa)) {
+          return {
+            artifact,
+            source: pa
+          };
+        }
+
+        const resolved = path.join(b.map.sourceRoot || options.cwd, pa);
+
+        if (await sander.exists(resolved)) {
+          return {
+            artifact,
+            source: resolved
+          };
+        }
+      })
+    );
+
+    Array.prototype.push.apply(acc, sources.filter(Boolean));
+    return acc;
+  }, Promise.resolve([]));
 
   const candidates = await Promise.all(
     pairs
       .filter(async pair => {
         const manifestPath = path.join(
           path.dirname(pair.source),
-          "pattern.json"
+          MANIFEST_NAME
         );
         return await sander.exists(manifestPath);
       })
       .map(async pair => {
         const { source, artifact } = pair;
         const patternBase = path.dirname(source);
-        const manifestPath = path.join(patternBase, "pattern.json");
+        const manifestPath = path.join(patternBase, MANIFEST_NAME);
 
         const base = path.dirname(path.relative(options.cwd, patternBase));
         const relativeManifestPath = path.relative(options.cwd, manifestPath);
@@ -106,7 +116,8 @@ async function loadMeta(options) {
         return {
           id,
           artifact,
-          source,
+          contentType: "pattern",
+          source: path.relative(options.cwd, source),
           files: await getFiles(source, { cwd: options.cwd }),
           path: relativeManifestPath,
           manifest,
@@ -138,7 +149,7 @@ async function loadMetaTree(options) {
 
 async function getFiles(source, options) {
   const cwd = path.dirname(source);
-  return (await globby(["*", "!pattern.json"], { cwd })).map(file =>
+  return (await globby(["*", `!${MANIFEST_NAME}`], { cwd })).map(file =>
     path.relative(options.cwd, path.join(cwd, file))
   );
 }
@@ -237,9 +248,8 @@ async function treeFromPaths(files) {
                 return null;
               }
 
-              const contents = String(
-                await loadDoc({ cwd: path.join(...itemPath) })
-              );
+              const raw = await loadDoc({ cwd: path.join(...itemPath) });
+              const contents = raw ? String(raw) : "";
 
               const ast = remark().parse(contents);
               const first = find(ast, { type: "heading", depth: 1 });
@@ -253,6 +263,7 @@ async function treeFromPaths(files) {
 
               const item = {
                 contents,
+                contentType: file.contentType,
                 name,
                 manifest: type === "folder" ? manifest : file.manifest,
                 id: parts.slice(0, i + 1).join("/"),
@@ -289,14 +300,14 @@ async function treeFromPaths(files) {
 }
 
 function getName(basename, manifest) {
-  if (basename === "pattern.json") {
+  if (basename === MANIFEST_NAME) {
     return manifest.name;
   }
   return basename;
 }
 
 function getType(basename) {
-  if (basename === "pattern.json") {
+  if (basename === MANIFEST_NAME) {
     return "pattern";
   }
   return "folder";

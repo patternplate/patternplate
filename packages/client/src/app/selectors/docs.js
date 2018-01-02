@@ -1,7 +1,7 @@
 import { merge } from "lodash";
 import { createSelector } from "reselect";
 import Immutable from "seamless-immutable";
-import { enrich, flatten, sanitize } from "./tree";
+import { flatten, sanitize } from "./tree";
 
 const docs = createSelector(
   state => state.schema.docs,

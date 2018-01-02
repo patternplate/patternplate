@@ -5,40 +5,17 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
-    "relink": "ln -fs ../../../cli/lib/cli.js packages/components/node_modules/.bin/patternplate && chmod +x packages/components/node_modules/.bin/patternplate",
     "build": "npx lerna run build --stream --include-filtered-dependencies",
     "clean": "npx lerna clean --yes && npx lerna run clean && npx rimraf node_modules",
     "components": "npx lerna run start --scope @patternplate/components --stream",
-    "precommit": "lint-staged",
     "reinstall": "npx yarn run clean && npx yarn install && npx lerna bootstrap",
-    "start": "npx lerna run watch --stream --parallel --include-filtered-dependencies"
+    "setup": "npx yarn bootstrap && npx yarn build && npx yarn link",
+    "start": "stmux -a a -t patternplate -- [[ \"npx lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"wait-on packages/cli/lib/cli.js && lerna link && chmod +x packages/cli/lib/cli.js && npx yarn components\" ] : bash]"
   },
   "author": {
     "name": "Mario Nebl",
     "email": "mario.nebl@sinnerschrader.com"
   },
-  "contributors": [
-    {
-      "name": "Paul Bienkowski",
-      "email": "paul.bienkowski@sinnerschrader.com"
-    },
-    {
-      "name": "Tim Brust",
-      "email": "tim.brust@sinnerschrader.com"
-    },
-    {
-      "name": "Daniel Gooß",
-      "email": "daniel.gooss@sinnerschrader.com"
-    },
-    {
-      "name": "Veit Lehmann",
-      "email": "veit.lehmann@sinnerschrader.com"
-    },
-    {
-      "name": "Mario Nebl",
-      "email": "mario.nebl@sinnerschrader.com"
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "sinnerschrader/patternplate"
@@ -102,12 +79,6 @@
       "**/*.bundle.js"
     ]
   },
-  "lint-staged": {
-    "**/*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.4.0",
@@ -115,19 +86,22 @@
     "eslint-plugin-patternplate": "^1.0.1",
     "eslint-plugin-react": "^7.3.0",
     "husky": "^0.14.3",
-    "lerna": "^2.1.0",
+    "lerna": "^2.5.1",
     "lint-staged": "^4.2.3",
     "prettier": "^1.6.1",
     "rimraf": "^2.6.2",
+    "stmux": "^1.4.18",
+    "wait-on": "^2.0.2",
     "xo": "^0.18.2",
-    "yarn": "^1.0.1"
+    "yarn": "^1.3.2"
   },
   "engines": {
     "node": ">= 4",
     "npm": ">= 3"
   },
   "workspaces": [
-    "@patternplate/*",
+    "examples/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {}
 }

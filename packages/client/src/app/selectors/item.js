@@ -6,15 +6,11 @@ const selectItem = createSelector(
   selectPool,
   state => state.id,
   (pool, id) => {
-    const item = pool.find(item => id === `${item.type}/${item.id}`);
+    const item = pool.find(item => id === `${item.contentType}/${item.id}`);
 
     if (item) {
       return item;
     }
-
-    const folder = pool.find(item => id === `doc/${item.id}`);
-
-    return folder;
   }
 );
 
@@ -38,6 +34,11 @@ export const selectManifest = createSelector(
   item => (item ? JSON.stringify(item.manifest, null, "  ") : "")
 );
 
+export const selectContentType = createSelector(
+  selectItem,
+  item => (item ? item.contentType : "")
+);
+
 export const selectType = createSelector(
   selectItem,
   item => (item ? item.type : "")
@@ -47,21 +48,6 @@ export const selectActive = createSelector(
   selectItem,
   state => state.searchEnabled,
   (item, search) => !search && item !== null && typeof item !== "undefined"
-);
-
-const selectOptions = createSelector(
-  selectItem,
-  item => item.manifest.options || {}
-);
-
-const selectReactToMarkup = createSelector(
-  selectOptions,
-  options => options["react-to-markup"] || {}
-);
-
-const selectReactToMarkupOpts = createSelector(
-  selectReactToMarkup,
-  r => r.opts || {}
 );
 
 export const selectIcon = createSelector(

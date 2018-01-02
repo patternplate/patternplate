@@ -3,11 +3,8 @@
 ## Development
 
 ```sh
-npm install -g npx
+# Start all watch tasks
 npx yarn install
-npx yarn run bootstrap
-npx yarn run build
-npx yarn start # optional, e.g: --scope=@patternplate/client
-
-npx yarn run components
+npx yarn setup
+npx yarn start
 ```

@@ -15,5 +15,7 @@ module.exports = function loader() {
     return `module.exports[${name}] = require(${file});`;
   });
 
-  return lines.join("\n");
+  return [`module.exports['__patternplate-bundle'] = true;`]
+    .concat(lines)
+    .join("\n");
 };

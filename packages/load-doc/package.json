@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-doc",
-  "version": "1.0.0",
+  "version": "2.0.0-4",
   "description": "Load a markdown index docs",
   "xo": false,
   "repository": {
@@ -16,6 +16,9 @@
     "email": "mario.nebl@sinnerschrader.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
     "globby": "^6.1.0"
