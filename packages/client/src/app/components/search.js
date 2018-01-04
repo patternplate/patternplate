@@ -5,11 +5,11 @@ import {
   InnerInfoPane,
   Icon,
   Link,
+  Markdown,
   styled
 } from "@patternplate/components";
 import tag from "tag-hoc";
 
-import Markdown from "./common/markdown";
 import Outside from "./outside";
 import SearchField from "./search-field";
 import Text from "./text";

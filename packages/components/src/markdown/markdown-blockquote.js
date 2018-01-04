@@ -1,10 +1,10 @@
-import React from "react";
-import textContent from "react-addons-text-content";
-import { styled } from "@patternplate/components";
+const React = require('react');
+const textContent = require('react-addons-text-content');
+const styled = require("styled-components").default;
 
-import Text from "../../text";
+const Text = require('../text');
 
-export default styled(MarkdownBlockquote)`
+module.exports = styled(MarkdownBlockquote)`
   margin: 0 0 16px 0;
   font-size: 18px;
   line-height: 27px;

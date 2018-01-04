@@ -1,8 +1,8 @@
-import React from "react";
-import { Icon, Link, styled } from "@patternplate/components";
-
-// Import Icon from '../icon';
-import Text from "../../text";
+const React = require('react');
+const styled = require("styled-components").default;
+const Icon = require('../icon');
+const Link = require('../link');
+const Text = require('../text');
 
 const SIZES = {
   h1: 36,
@@ -36,7 +36,7 @@ const StyledTarget = styled.div`
   height: 0;
 `;
 
-export default styled(MarkdownHeadline)`
+module.exports = styled(MarkdownHeadline)`
   position: relative;
   color: ${props => props.theme.color};
   font-size: ${props => SIZES[props.is]}px;

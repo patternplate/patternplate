@@ -1,9 +1,11 @@
-import url from "url";
-import queryString from "query-string";
-import React from "react";
-import { Link, styled } from "@patternplate/components";
+const React = require('react');
+const styled = require('styled-components').default;
 
-export default MarkdownLink;
+const url = require('url');
+const queryString = require('query-string');
+const Link = require('../link');
+
+module.exports = MarkdownLink;
 
 function MarkdownLink(props) {
   const parsed = url.parse(props.href || "./");

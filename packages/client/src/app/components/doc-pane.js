@@ -1,7 +1,5 @@
 import React from "react";
-import { styled } from "@patternplate/components";
-
-import Markdown from "./common/markdown";
+import { Markdown, styled } from "@patternplate/components";
 
 export default DocPane;
 

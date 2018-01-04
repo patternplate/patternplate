@@ -1,9 +1,9 @@
-import React from "react";
-import { styled } from "@patternplate/components";
+const React = require('react');
+const styled = require('styled-components').default;
 
-import Text from "../../text";
+const Text = require('../text');
 
-export default styled(MarkdownItem)`
+module.exports = styled(MarkdownItem)`
   font-size: 18px;
   line-height: 27px;
   color: ${props => props.theme.color};

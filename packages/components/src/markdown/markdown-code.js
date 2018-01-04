@@ -1,7 +1,7 @@
-import { styled } from "@patternplate/components";
-import Code from "../code";
+const styled = require('styled-components').default;
+const Code = require('../code');
 
-export default styled(Code)`
+module.exports = styled(Code)`
   display: inline;
   padding: 0;
   background: ${props => props.theme.backgroundSecondary};

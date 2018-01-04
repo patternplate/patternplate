@@ -11,6 +11,7 @@ module.exports = {
   Link: require("./link"),
   MainHeader: require("./main-header"),
   MainNavigation: require("./main-navigation"),
+  Markdown: require("./markdown"),
   NavigationItem: require("./main-navigation"),
   NavigationToolbar: require("./navigation-toolbar"),
   NavigationTree: require("./navigation-tree"),

@@ -1,5 +1,6 @@
 const React = require("react");
 const styled = require("styled-components").default;
+const tag = require('tag-hoc').default;
 
 const fonts = require("../fonts");
 
@@ -15,6 +16,6 @@ function Text(props) {
   );
 }
 
-const StyledText = styled("div")`
+const StyledText = styled(tag(["size"])("div"))`
   font-family: ${FONTS.default};
 `;

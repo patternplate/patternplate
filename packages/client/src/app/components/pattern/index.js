@@ -1,10 +1,9 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { styled } from "@patternplate/components";
+import { Markdown, styled } from "@patternplate/components";
 import tag from "tag-hoc";
 import Transition from "react-transition-group/Transition";
 
-import Markdown from "../common/markdown";
 import PatternDemo from "./pattern-demo";
 
 const VISIBILITY = props => (props.checkers ? "block" : "none");
