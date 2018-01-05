@@ -1,5 +1,6 @@
 module.exports = {
   Button: require("./button"),
+  CodePane: require("./code-pane"),
   css: require("styled-components").css,
   Icon: require("./icon"),
   IconDefinitions: require("./icon").definitions,
