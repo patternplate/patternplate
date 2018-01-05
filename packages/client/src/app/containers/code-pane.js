@@ -5,7 +5,7 @@ import { createSelector } from "reselect";
 
 // Import * as actions from '../actions';
 import { mountable, skippable } from "../behaviours";
-import CodePane from "../components/code-pane";
+import { CodePane } from "@patternplate/components";
 import * as item from "../selectors/item";
 
 export default connect(mapProps)(skippable(mountable(CodePane)));
