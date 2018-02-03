@@ -1,12 +1,12 @@
-import url from "url";
+// import url from "url";
 import { createPromiseThunkAction } from "./promise-thunk-action";
-import loadPatternDemo from "./load-pattern-demo";
-import loadSchema from "./load-schema";
+// import loadPatternDemo from "./load-pattern-demo";
+// import loadSchema from "./load-schema";
 
 export default createPromiseThunkAction(
   "LISTEN",
   (payload, dispatch, getState) => {
-    if (!global.EventSource) {
+    /* if (!global.EventSource) {
       return;
     }
 
@@ -39,6 +39,6 @@ export default createPromiseThunkAction(
       if (state.id === `pattern/${payload.pattern}`) {
         dispatch(loadPatternDemo({ reloadTime: Date.now() }));
       }
-    });
+    }); */
   }
 );

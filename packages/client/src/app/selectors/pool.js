@@ -3,8 +3,8 @@ import Immutable from "seamless-immutable";
 import { flat as selectDocs } from "../selectors/docs";
 import { flat as selectNavigation } from "../selectors/navigation";
 
-export default createSelector(selectDocs, selectNavigation, (docs, nav) =>
-  Immutable.from(docs)
+export default createSelector(selectDocs, selectNavigation, (docs, nav) => {
+  return Immutable.from(docs)
     .concat(nav)
-    .filter(item => Boolean(item.id) && Boolean(item.type))
-);
+    .filter(item => Boolean(item.id) && Boolean(item.contentType))
+});

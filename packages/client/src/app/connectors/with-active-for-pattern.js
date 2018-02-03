@@ -6,6 +6,6 @@ export default connect(withActiveForPattern);
 function withActiveForPattern(state) {
   const item = selectItem(state);
   return {
-    active: item ? item.type === "pattern" : false
+    active: item ? item.contentType === "pattern" : false
   };
 }

@@ -1,7 +1,6 @@
 import path from "path";
 import querystring from "querystring";
 import url from "url";
-import frontmatter from "front-matter";
 
 const WEIGHTS = {
   folder: 0,
@@ -10,33 +9,7 @@ const WEIGHTS = {
 };
 
 export function flatten(tree) {
-  if (!tree) {
-    return [];
-  }
-
-  /**
-   * This defines the schema of items to be found
-   * in all tree and pool representations of patterns,
-   * docs and folders
-   */
-  const init = [
-    {
-      contents: tree.contents,
-      contentType: tree.contentType,
-      dependencies: tree.dependencies,
-      dependents: tree.dependents,
-      href: tree.href,
-      id: tree.id,
-      manifest: tree.manifest,
-      name: tree.name,
-      path: tree.path,
-      type: tree.type
-    }
-  ];
-
-  return (tree.children || []).reduce((reg, child) => {
-    return [...reg, ...flatten(child)];
-  }, init);
+  return tree.children;
 }
 
 export function sanitize(tree, context) {
@@ -80,13 +53,7 @@ export function sanitize(tree, context) {
 
 export function enrich(child, context) {
   const { id, config, prefix } = context;
-  const p = prefix.split("/");
-  const fragments = id.split("/").filter((f, i) => p[i] !== f);
-
-  child.active =
-    child.id === "root"
-      ? id === "/"
-      : (child.path || ["/"]).every((f, i) => fragments[i] === f);
+  child.active = [child.contentType, child.id].join('/') === id;
 
   const parsed = url.parse(child.href || path.join(prefix, child.id));
 

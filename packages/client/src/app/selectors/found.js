@@ -212,21 +212,19 @@ export const selectFound = createSelector(
   selectMatches,
   (pool, matches) => {
     const sorted = uniqBy(
-      sortBy(matches.map(match => pool.find(p => p.id === match)), "type"),
+      sortBy(matches.map(match => pool.find(p => p.id === match)), "contentType"),
       "id"
     );
-    return sorted
-      .filter(s => s.type !== "folder")
-      .map((s, i) => Immutable.set(s, "index", i));
+    return sorted.map((s, i) => Immutable.set(s, "index", i));
   }
 );
 
 export const selectPatterns = createSelector(selectFound, found =>
-  found.filter(f => f.type === "pattern")
+  found.filter(f => f.contentType === "pattern")
 );
 
 const selectPatternPool = createSelector(selectPool, pool =>
-  pool.filter(f => f.type === "pattern")
+  pool.filter(f => f.contentType === "pattern")
 );
 
 const selectOptions = createSelector(
