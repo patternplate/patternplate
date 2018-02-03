@@ -3,7 +3,7 @@
   "version": "2.0.0-4",
   "description": "Create, show and deliver component libraries",
   "bin": {
-    "patternplate": "./lib/cli.js"
+    "patternplate": "./cli.js"
   },
   "scripts": {
     "babel": "babel src --out-dir ./lib",

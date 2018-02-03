@@ -34,7 +34,7 @@ async function demo(options) {
         return res.sendStatus(404);
       }
 
-      const stats = await context.running;
+      await context.running;
       const err = await context.error;
 
       if (err) {
@@ -101,8 +101,7 @@ function html(content, payload) {
         <!-- content.before -->
         ${content.before || ""}
         <!-- content.html -->
-        <div data-patternplate-mount="data-patternplate-mount">${content.html ||
-          ""}</div>
+        <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
         <!-- content.after -->
         ${content.after || ""}
         <script src="/api/patternplate.web.vendors.js"></script>
