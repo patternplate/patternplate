@@ -1,22 +1,23 @@
-import frontmatter from "front-matter";
-import React from "react";
-import remark from "remark";
-import emoji from "remark-gemoji-to-emoji";
-import reactRenderer from "remark-react";
-import { styled } from "@patternplate/components";
+const frontmatter = require('front-matter');
+const React = require('react');
+const remark = require('remark');
+const emoji = require('remark-gemoji-to-emoji');
+const reactRenderer = require('remark-react');
+const styled = require("styled-components").default;
 
-import MarkdownBlockQuote from "./markdown-blockquote";
-import MarkdownCode from "./markdown-code";
-import MarkdownCodeBlock from "./markdown-code-block";
-import MarkdownCopy from "./markdown-copy";
-import MarkdownHeadline from "./markdown-headline";
-import MarkdownHr from "./markdown-hr";
-import MarkdownImage from "./markdown-image";
-import MarkdownItem from "./markdown-item";
-import MarkdownList from "./markdown-list";
-import MarkdownLink from "./markdown-link";
+const MarkdownBlockQuote = require('./markdown-blockquote');
+const MarkdownCode = require('./markdown-code');
+const MarkdownCodeBlock = require('./markdown-code-block');
+const MarkdownCopy = require('./markdown-copy');
+const MarkdownHeadline = require('./markdown-headline');
+const MarkdownHr = require('./markdown-hr');
+const MarkdownImage = require('./markdown-image');
+const MarkdownItem = require('./markdown-item');
+const MarkdownList = require('./markdown-list');
+const MarkdownLink = require('./markdown-link');
+const Text = require('../text');
 
-export default class Markdown extends React.Component {
+class Markdown extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = props;
@@ -115,3 +116,5 @@ function is(is) {
 function prop(name, value) {
   return Component => props => <Component {...props} {...{ [name]: value }} />;
 }
+
+module.exports = Markdown;

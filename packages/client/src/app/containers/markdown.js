@@ -1,6 +1,6 @@
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Markdown from "../components/common/markdown";
+import { Markdown } from "@patternplate/components";
 import { scrollTo } from "../actions";
 
 function mapProps(state) {

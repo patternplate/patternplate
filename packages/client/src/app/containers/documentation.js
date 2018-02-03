@@ -3,7 +3,9 @@ import { createSelector } from "reselect";
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
 import selectPool from "../selectors/pool";
-import themes from "../themes";
+import {
+  themes
+} from "@patternplate/components";
 
 export default connect(mapState)(Documentation);
 

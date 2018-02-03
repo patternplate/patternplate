@@ -1,9 +1,9 @@
-import React from "react";
-import textContent from "react-addons-text-content";
-import { styled } from "@patternplate/components";
-import Code from "../code";
+const React = require('react');
+const textContent = require('react-addons-text-content');
+const styled = require("styled-components").default;
+const Code = require('../code');
 
-export default styled(MarkdownCodeBlock)`
+module.exports = styled(MarkdownCodeBlock)`
   background: ${props => props.theme.backgroundSecondary};
   border-radius: 3px;
   font-size: 15.3px;

@@ -8,7 +8,7 @@ export default Opacity;
 function Opacity(props) {
   return (
     <StyledToggleButton enabled={props.enabled} shortcut={props.shortcut}>
-      <StyledIcon symbol="opacity" /> {props.shortcut.toString()}
+      <StyledIcon symbol="checkers-inverted" /> {props.shortcut.toString()}
     </StyledToggleButton>
   );
 }

@@ -8,7 +8,7 @@ export default Info;
 function Info(props) {
   return (
     <StyledToggleButton enabled={props.enabled} shortcut={props.shortcut}>
-      <StyledIcon symbol="info" /> {props.shortcut.toString()}
+      <StyledIcon symbol="pattern" /> {props.shortcut.toString()}
     </StyledToggleButton>
   );
 }

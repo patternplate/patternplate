@@ -1,6 +1,6 @@
-import { styled } from "@patternplate/components";
+const styled = require("styled-components").default;
 
-export default styled.hr`
+module.exports = styled.hr`
   height: 0.25em;
   padding: 0;
   margin: 24px 0;
