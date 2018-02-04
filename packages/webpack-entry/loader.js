@@ -1,21 +1,23 @@
-const { entries } = require("lodash");
+// const { entries } = require("lodash");
+const commonDir = require("common-dir");
+const globby = require("globby");
 const utils = require("loader-utils");
 
-module.exports = function loader() {
+module.exports = function webpackEntry() {
   const options = utils.getOptions(this);
-  const e = JSON.parse(options.entries);
+  const cwd = options.cwd || process.cwd();
+  const entries = Array.isArray(options.entry) ? options.entry : [options.entry];
+  const files = globby.sync(entries, {cwd});
+  const dir = commonDir(files);
 
-  const lines = entries(e).map(entry => {
-    const [n, f] = entry;
-    this.addDependency(f);
+  if (files.length > 0) {
+    this.addContextDependency(dir);
+  }
 
-    const name = JSON.stringify(n);
-    const file = JSON.stringify(`./${f}`);
-
-    return `module.exports[${name}] = require(${file});`;
-  });
-
-  return [`module.exports['__patternplate-bundle'] = true;`]
-    .concat(lines)
-    .join("\n");
+  return `
+    if (module.hot) {
+      module.hot.accept([]);
+    }
+    ${files.map(file => `module.exports['${file}'] = require('./${file}');`).join('\n')}
+  `;
 };

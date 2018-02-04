@@ -20,6 +20,8 @@
     "access": "public"
   },
   "dependencies": {
+    "common-dir": "^1.0.1",
+    "commondir": "^1.0.1",
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",

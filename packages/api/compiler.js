@@ -1,12 +1,17 @@
 const path = require("path");
-const resolveFrom = require("resolve-from");
 const loadConfig = require("@patternplate/load-config");
 const webpackEntry = require("@patternplate/webpack-entry");
+const MemoryFS = require("memory-fs");
+const resolveFrom = require("resolve-from");
 const webpack = require("webpack");
+const Observable = require("zen-observable");
 
 module.exports = createCompiler;
 
-async function createCompiler({ cwd, fs, target = "" }) {
+const debug = require("util").debuglog("PATTERNPLATE");
+
+async function createCompiler({ cwd, target = "" }) {
+  const fs = new MemoryFS();
   const { config, filepath } = await loadConfig({ cwd });
 
   const components = await webpackEntry(config.entry, { cwd });
@@ -18,6 +23,7 @@ async function createCompiler({ cwd, fs, target = "" }) {
 
   if (target === "web") {
     entry.mount = await getEntry(config.mount, { filepath });
+    entry.demo = require.resolve('./demo.client.js');
   }
 
   const compiler = webpack({
@@ -54,12 +60,57 @@ async function createCompiler({ cwd, fs, target = "" }) {
   });
 
   compiler.outputFileSystem = fs;
-  compiler.watch({}, () => {});
 
-  return compiler;
+  const observable = new Observable(observer => {
+    let run = defer();
+    observer.next(run);
+
+    compiler.plugin("compile", () => {
+      debug("compile", target);
+      run = defer();
+      observer.next(run);
+    });
+
+    compiler.plugin("done", (stats) => {
+      if (stats.compilation.errors && stats.compilation.errors.length > 0) {
+        debug("error", target);
+        return run.reject(new Error(stats.compilation.errors));
+      }
+      debug("done", target);
+      run.resolve(fs);
+    });
+
+    compiler.plugin("failed", err => {
+      debug("failed", target);
+      run.reject(err);
+    });
+  });
+
+  observable.compiler = compiler;
+
+  setTimeout(() => {
+    compiler.watch({}, () => {});
+  });
+
+  return observable;
 }
 
 function getEntry(id, { filepath }) {
   const base = filepath ? path.dirname(filepath) : process.cwd();
   return resolveFrom(base, id);
+}
+
+function defer() {
+  let res;
+  let rej;
+
+  const promise = new Promise((resolve, reject) => {
+    res = resolve;
+    rej = reject;
+  });
+
+  promise.resolve = res;
+  promise.reject = rej;
+
+  return promise;
 }

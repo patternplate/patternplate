@@ -12,10 +12,9 @@ const BUNDLE_PATH = "/patternplate.node.components.js";
 const RENDER_PATH = "/patternplate.node.render.js";
 
 async function demo(options) {
-  return async function demoRoute(req, res) {
-    const { context } = options;
-    const getModule = fromFs(context.fs);
+  const latest = getLatestMessage(options.compiler);
 
+  return async function demoRoute(req, res) {
     try {
       const result = await loadConfig({ cwd: options.cwd });
       const { config = {} } = result;
@@ -34,15 +33,12 @@ async function demo(options) {
         return res.sendStatus(404);
       }
 
-      await context.running;
-      const err = await context.error;
+      const run = await latest();
 
-      if (err) {
-        throw err;
-      }
-
+      const getModule = fromFs(await run);
       const render = getModule(RENDER_PATH);
-      const component = getComponent(getModule(BUNDLE_PATH), found);
+      const bundle = getModule(BUNDLE_PATH);
+      const component = getComponent(bundle, found);
       const content = render(component);
 
       const cssArtifact = path.join(path.dirname(found.artifact), 'demo.css');
@@ -59,22 +55,20 @@ async function demo(options) {
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
-      console.log(error);
+      console.error(error);
       res.status(500).send(error.message);
     }
   };
 }
 
 function getComponent(components, data) {
-  const fileModule = components[data.artifact];
+  const top = components[data.artifact];
 
-  const match = data.files.find(file => file in fileModule);
-
-  if (match) {
-    return fileModule[match];
+  if (top[data.source]) {
+    return top[data.source];
   }
 
-  return fileModule;
+  return top;
 }
 
 function fromFs(fs) {
@@ -107,59 +101,33 @@ function html(content, payload) {
         <script src="/api/patternplate.web.vendors.js"></script>
         <script src="/api/patternplate.web.components.js"></script>
         <script src="/api/patternplate.web.mount.js"></script>
-        <script>
-          (function main() {
-            function getData() {
-              var vault = document.querySelector('[data-patternplate-vault]');
-              if (!vault) {
-                return {};
-              }
-              var encodedJson = vault.textContent;
-              if (!encodedJson) {
-                return {};
-              }
-              var json = decodeURIComponent(encodedJson);
-              if (!json) {
-                return {};
-              }
-              return JSON.parse(json);
-            }
-
-            function getComponent(components, data) {
-              const fileModule = components[data.artifact];
-              const match = data.files.find(file => file in fileModule);
-
-              if (match) {
-                return fileModule[match];
-              }
-
-              return fileModule;
-            }
-
-            var components = window['patternplate-components'];
-            var mount = window['patternplate-mount'];
-
-            var errors = [];
-
-            if (!components) {
-              errors.push(new Error('No patternplate components found. There might be errors during bundling.'))
-            }
-
-            if (!mount) {
-              errors.push(new Error('No mount module found. There might be errors during bundling.'))
-            }
-
-            if (errors.length > 0) {
-              errors.forEach(err => console.error(err));
-              return;
-            }
-
-            var element = document.querySelector('[data-patternplate-mount]');
-            var component = getComponent(components, getData());
-            mount(component, element);
-          })();
-        </script>
+        <script src="/api/patternplate.web.demo.js"></script>
       </body>
     </html>
   `);
+}
+
+function getLatestMessage(observerable) {
+  let msg = null;
+  let err = null;
+
+  observerable.subscribe(
+    r => {
+      err = null;
+      msg = r;
+    },
+    e => {
+      msg = null;
+      err = e;
+    }
+  );
+
+  return () => {
+    return new Promise((resolve, reject) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(msg);
+    });
+  }
 }

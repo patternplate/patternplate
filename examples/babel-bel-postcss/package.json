@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@patternplate/cli": "^2.0.0-4",
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
