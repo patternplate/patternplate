@@ -35,8 +35,10 @@ async function main({ input, flags }) {
       port,
       cwd: flags.cwd || process.cwd()
     });
+
     spinner.text = `Started on http://localhost:${app.port}`;
     spinner.succeed();
+    app.subscribe();
   } catch (err) {
     switch (err.code) {
       case "EADDRINUSE":

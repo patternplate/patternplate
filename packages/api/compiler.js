@@ -61,36 +61,56 @@ async function createCompiler({ cwd, target = "" }) {
 
   compiler.outputFileSystem = fs;
 
+  const queue = [];
+
   const observable = new Observable(observer => {
-    let run = defer();
-    observer.next(run);
+    if (queue.length > 0) {
+      return;
+    }
 
     compiler.plugin("compile", () => {
       debug("compile", target);
-      run = defer();
-      observer.next(run);
+      queue.unshift({type: 'start'});
+      observer.next(queue);
     });
 
     compiler.plugin("done", (stats) => {
       if (stats.compilation.errors && stats.compilation.errors.length > 0) {
         debug("error", target);
-        return run.reject(new Error(stats.compilation.errors));
+        queue.unshift({type: 'error', payload: stats.compilation.errors});
+        return observer.next(queue);
       }
-      debug("done", target);
-      run.resolve(fs);
+      queue.unshift({type: 'done', payload: {fs}});
+      observer.next(queue);
     });
 
     compiler.plugin("failed", err => {
       debug("failed", target);
-      run.reject(err);
+      queue.unshift({type: 'error', payload: err});
+      observer.next(queue);
+    });
+
+    compiler.watch({}, (err, stats) => {
+      if (err) {
+        debug("inital:failed", target);
+        queue.unshift({type: 'error', payload: err});
+        observer.next(queue);
+      }
+
+      if (stats.compilation.errors && stats.compilation.errors.length > 0) {
+        debug("inital:error", target);
+        queue.unshift({type: 'error', payload: stats.compilation.errors});
+        return observer.next(queue);
+      }
+
+      debug("inital:done", target);
+      queue.unshift({type: 'done', payload: {fs}});
+      observer.next(queue);
     });
   });
 
   observable.compiler = compiler;
-
-  setTimeout(() => {
-    compiler.watch({}, () => {});
-  });
+  observable.queue = queue;
 
   return observable;
 }
@@ -98,19 +118,4 @@ async function createCompiler({ cwd, target = "" }) {
 function getEntry(id, { filepath }) {
   const base = filepath ? path.dirname(filepath) : process.cwd();
   return resolveFrom(base, id);
-}
-
-function defer() {
-  let res;
-  let rej;
-
-  const promise = new Promise((resolve, reject) => {
-    res = resolve;
-    rej = reject;
-  });
-
-  promise.resolve = res;
-  promise.reject = rej;
-
-  return promise;
 }

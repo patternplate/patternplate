@@ -26,13 +26,19 @@ async function client(options) {
   const apiStatic = path.join(options.cwd, "static");
   const appStatic = path.join(__dirname, "static");
 
-  return express()
+  const app = express()
     .use("/static", serve(appStatic))
     .use("/api/static", serve(apiStatic))
     .use("/api/", apiRoute)
     .get("/pattern/*", mainRoute)
     .get("/doc/*", mainRoute)
     .get("/", mainRoute);
+
+  app.subscribe = () => {
+    apiRoute.subscribe();
+  }
+
+  return app;
 }
 
 async function main(options) {

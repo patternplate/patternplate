@@ -12,8 +12,6 @@ const BUNDLE_PATH = "/patternplate.node.components.js";
 const RENDER_PATH = "/patternplate.node.render.js";
 
 async function demo(options) {
-  const latest = getLatestMessage(options.compiler);
-
   return async function demoRoute(req, res) {
     try {
       const result = await loadConfig({ cwd: options.cwd });
@@ -33,9 +31,9 @@ async function demo(options) {
         return res.sendStatus(404);
       }
 
-      const run = await latest();
+      const {fs} = await wait(options.queue);
 
-      const getModule = fromFs(await run);
+      const getModule = fromFs(fs);
       const render = getModule(RENDER_PATH);
       const bundle = getModule(BUNDLE_PATH);
       const component = getComponent(bundle, found);
@@ -59,6 +57,31 @@ async function demo(options) {
       res.status(500).send(error.message);
     }
   };
+}
+
+function wait(observable) {
+  return new Promise((resolve, reject) => {
+    const [message = {}] = observable.queue;
+    switch (message.type) {
+      case 'done':
+        return resolve(message.payload);
+      case 'error':
+        return reject(message.payload);
+    }
+
+    observable.subscribe(
+      queue => {
+        const [message] = queue;
+        switch (message.type) {
+          case 'done':
+            return resolve(message.payload);
+          case 'error':
+            return reject(message.payload);
+        }
+      },
+      reject
+    )
+  });
 }
 
 function getComponent(components, data) {
@@ -107,27 +130,3 @@ function html(content, payload) {
   `);
 }
 
-function getLatestMessage(observerable) {
-  let msg = null;
-  let err = null;
-
-  observerable.subscribe(
-    r => {
-      err = null;
-      msg = r;
-    },
-    e => {
-      msg = null;
-      err = e;
-    }
-  );
-
-  return () => {
-    return new Promise((resolve, reject) => {
-      if (err) {
-        return reject(err);
-      }
-      resolve(msg);
-    });
-  }
-}
