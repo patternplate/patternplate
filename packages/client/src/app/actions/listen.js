@@ -1,4 +1,4 @@
-// import url from "url";
+import url from "url";
 import { createPromiseThunkAction } from "./promise-thunk-action";
 // import loadPatternDemo from "./load-pattern-demo";
 // import loadSchema from "./load-schema";
@@ -6,6 +6,29 @@ import { createPromiseThunkAction } from "./promise-thunk-action";
 export default createPromiseThunkAction(
   "LISTEN",
   (payload, dispatch, getState) => {
+    const {WebSocket} = global;
+
+    if (!WebSocket) {
+      return;
+    }
+
+    const state = getState();
+    const source = url.resolve(state.base, payload.url);
+    const ws = new WebSocket(`ws://${global.location.host}${source}/`);
+
+    ws.addEventListener('open', () => {
+      console.log('open!');
+    });
+
+    ws.addEventListener('close', () => {
+      console.log('close!');
+    });
+
+    ws.addEventListener('message', envelope => {
+      const message = JSON.parse(envelope.data);
+      console.log(message);
+    });
+
     /* if (!global.EventSource) {
       return;
     }

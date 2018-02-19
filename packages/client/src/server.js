@@ -15,7 +15,8 @@ module.exports = client;
 async function client(options) {
   const apiRoute = await api({
     cwd: options.cwd,
-    config: options.config
+    config: options.config,
+    server: options.server
   });
 
   const mainRoute = await main({

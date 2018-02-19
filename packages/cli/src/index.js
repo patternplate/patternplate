@@ -1,3 +1,4 @@
+import http from "http";
 import errorhandler from "errorhandler";
 import express from "express";
 import slash from "express-slash";
@@ -9,19 +10,23 @@ export default patternplate;
 async function patternplate(options) {
   const { port } = options;
 
+  const app = express();
+  const server = http.createServer(app);
+
   const clientMiddleware = await client({
     cwd: options.cwd,
-    config: options.config
+    config: options.config,
+    server
   });
 
-  const app = express()
+  app
     .enable("strict-routing")
     .disable("powered-by")
     .use(errorhandler())
     .use(clientMiddleware)
     .use(slash());
 
-  await start(app, { port });
+  await start({ port, server });
 
   return {
     app,
@@ -32,8 +37,8 @@ async function patternplate(options) {
   };
 }
 
-function start(app, { port }) {
+function start({ port, server }) {
   return new Promise((resolve, reject) => {
-    app.listen(port, () => resolve()).on("error", reject);
+    server.listen(port, () => resolve()).on("error", reject);
   });
 }

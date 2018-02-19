@@ -48,6 +48,7 @@
     "unindent": "^2.0.0",
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.12.0",
+    "ws": "^4.0.0",
     "zen-observable": "^0.7.1"
   }
 }

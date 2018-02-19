@@ -7,7 +7,7 @@ module.exports = function CodeDemo() {
   return (
     <Themer>
       <StyledDemoBox>
-        <Code language="js">const foo = bar;</Code>
+        <Code language="js">const foo = bar</Code>
       </StyledDemoBox>
     </Themer>
   );
