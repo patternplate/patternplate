@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-config",
-  "version": "2.0.0-4",
+  "version": "2.0.0-5",
   "description": "Load patternplate config",
   "xo": false,
   "repository": {
