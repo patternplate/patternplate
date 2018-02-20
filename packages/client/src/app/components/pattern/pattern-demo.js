@@ -8,7 +8,11 @@ const StyledDemo = styled.iframe`
 `;
 
 function PatternDemo(props) {
-  return <StyledDemo src={props.src} />;
+  const src = typeof props.updated === "number"
+    ? `${props.src}?reload=${props.updated}`
+    : props.src;
+
+  return <StyledDemo src={src} />;
 }
 
 export default PatternDemo;

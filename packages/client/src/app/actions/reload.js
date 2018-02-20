@@ -6,7 +6,7 @@ function reload() {
   return async dispatch => {
     const actions = [
       async () => dispatch(await Promise.resolve(loadSchema())),
-      loadPatternDemo({ reloadTime: Date.now() })
+      loadPatternDemo({ force: true })
     ];
 
     await Promise.all(actions.map(dispatch));

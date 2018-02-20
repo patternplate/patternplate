@@ -22,6 +22,7 @@ class PatternContainer extends React.Component {
         opacity={props.opacity}
         src={props.src}
         type={props.type}
+        updated={props.updated}
       />
     );
   }
@@ -83,7 +84,8 @@ function mapState(state) {
     opacity: state.opacity,
     src: demo.selectSrc(state),
     type: items.selectType(state),
-    contentType: items.selectContentType(state)
+    contentType: items.selectContentType(state),
+    updated: state.demo.updated
   };
 }
 

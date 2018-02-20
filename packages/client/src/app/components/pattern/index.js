@@ -138,6 +138,7 @@ export default class Pattern extends React.Component {
             src={props.src}
             contents={props.contents}
             loading={props.loading}
+            updated={props.updated}
           />
         </StyledPatternDemo>
       </StyledPattern>

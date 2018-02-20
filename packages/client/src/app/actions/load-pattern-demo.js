@@ -1,7 +1,7 @@
 import fetch from "isomorphic-fetch";
 import * as demo from "../selectors/demo";
 
-export default () => {
+export default (payload) => {
   return async (dispatch, getState) => {
     const getSrc = src(getState);
     const uri = getSrc();
@@ -40,7 +40,7 @@ export default () => {
 
     dispatch({
       type: "LOAD_PATTERN_DEMO_SUCCESS",
-      payload: { id: uri, contents: body }
+      payload: { id: uri, contents: body, force: payload.force }
     });
   };
 };

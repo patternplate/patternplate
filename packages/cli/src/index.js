@@ -26,7 +26,7 @@ async function patternplate(options) {
     .use(clientMiddleware)
     .use(slash());
 
-  await start({ port, server });
+  await start({ app, port, server });
 
   return {
     app,
@@ -39,6 +39,8 @@ async function patternplate(options) {
 
 function start({ port, server }) {
   return new Promise((resolve, reject) => {
-    server.listen(port, () => resolve()).on("error", reject);
+    server
+      .listen(port, () => resolve())
+      .on("error", reject);
   });
 }
