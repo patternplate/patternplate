@@ -61,7 +61,9 @@ class WebSocketClient{
 
   close() {
     this.ended = true;
-    this.instance.close();
+    if (this.opened) {
+      this.instance.close();
+    }
   }
 
   onOpen(handler) {
