@@ -39,17 +39,6 @@ async function demo(options) {
       const component = getComponent(bundle, found);
       const content = render(component);
 
-      const cssArtifact = path.join(path.dirname(found.artifact), 'demo.css');
-      const htmlArtifact = path.join(path.dirname(found.artifact), 'demo.html');
-
-      if (!content.css && await sander.exists(cssArtifact)) {
-        content.css = `<style>${String(await sander.readFile(cssArtifact))}</style>`;
-      }
-
-      if (!content.html && await sander.exists(htmlArtifact)) {
-        content.html = String(await sander.readFile(htmlArtifact));
-      }
-
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;

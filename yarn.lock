@@ -8891,7 +8891,7 @@ strong-log-transformer@^1.0.6:
     moment "^2.6.0"
     through "^2.3.4"
 
-styled-components@^2.1.1, styled-components@^2.2.0:
+styled-components@^2.2.0:
   version "2.2.3"
   resolved "https://registry.npmjs.org/styled-components/-/styled-components-2.2.3.tgz#154575c269880c840f903f580287dab155cf684c"
   dependencies:
