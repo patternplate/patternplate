@@ -125,7 +125,7 @@
     "shortid": "^2.2.6",
     "srcdoc-polyfill": "^1.0.0",
     "strip-ansi": "^3.0.1",
-    "styled-components": "^2.1.1",
+    "styled-components": "^3.1.6",
     "tag-hoc": "^1.0.0-0",
     "topologically-combine-reducers": "0.0.5",
     "unescape-html": "^1.0.0",

@@ -10,7 +10,7 @@
     "components": "npx lerna run start --scope @patternplate/components --stream",
     "reinstall": "npx yarn run clean && npx yarn install && npx lerna bootstrap",
     "setup": "npx yarn bootstrap && npx yarn build && npx yarn link",
-    "start": "stmux -a a -t patternplate -- [[ \"npx lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"npx yarn components\" ] : bash]"
+    "start": "stmux -a a -t patternplate -- [ \"npx lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"npx yarn components\" ]"
   },
   "author": {
     "name": "Mario Nebl",

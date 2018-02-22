@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/button/index.js"],"names":["Button","button"],"mappings":";;;;;;;AAAA;;;;;;;;AAEA,IAAMA,SAAS,0BAAOC,MAAhB,iBAAN;;eAMeD,M","file":"index.js","sourcesContent":["import styled from \"styled-components\";\n\nconst Button = styled.button`\n  background: black;\n  color: white;\n  border: none;\n`;\n\nexport default Button;\n"]}

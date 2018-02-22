@@ -21,12 +21,8 @@
   },
   "dependencies": {
     "common-dir": "^1.0.1",
-    "commondir": "^1.0.1",
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
-    "lodash": "^4.17.4",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "styled-components": "^2.2.3"
+    "lodash": "^4.17.4"
   }
 }

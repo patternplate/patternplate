@@ -28,7 +28,7 @@ async function main({ input, flags }) {
 
   const spinner = ora("Starting patternplate server").start();
 
-  const port = isNaN(Number(flags.port)) ? 1337 : Number(flags.port);
+  const port = selectPort(cli.flags);
 
   try {
     const app = await patternplate({
@@ -67,3 +67,15 @@ main(cli).catch(err => {
 process.on("unhandledRejection", reason => {
   throw reason;
 });
+
+function selectPort(flags) {
+  if (!isNaN(Number(flags.port))) {
+    return Number(flags.port);
+  }
+
+  if (!isNaN(Number(process.env.PORT))) {
+    return (process.env.PORT);
+  }
+
+  return 1337;
+}
