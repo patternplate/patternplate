@@ -23,14 +23,7 @@ module.exports = async options => {
 
       res.send({ docs, meta });
     } catch (err) {
-      const type = req.accepts("json", "text/event-stream");
-      switch (type) {
-        case "json":
-          return res.json(err);
-        case "text/event-stream":
-        default:
-          next(err);
-      }
+      return res.json(err);
     }
   };
 };

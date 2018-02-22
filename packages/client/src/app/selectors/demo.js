@@ -8,7 +8,7 @@ export const selectSrc = createSelector(
     if (!item) {
       return null;
     }
-    if (item.type !== "pattern") {
+    if (item.contentType !== "pattern") {
       return null;
     }
     return `${base}api/demo/${item.id}/index.html`;
