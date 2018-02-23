@@ -1,7 +1,14 @@
 // const AggregateError = require("aggregate-error");
+const path = require("path");
+const loadConfig = require("@patternplate/load-config");
+const loadMeta = require("@patternplate/load-meta");
+const chokidar = require("chokidar");
+const commonDir = require("common-dir");
 const express = require("express");
+const globParent = require("glob-parent");
 const WebSocket = require("ws");
 const debug = require("util").debuglog("PATTERNPLATE");
+const Observable = require("zen-observable");
 
 const createCompiler = require("./compiler");
 const demo = require("./demo");
@@ -13,6 +20,8 @@ module.exports = api;
 async function api({ server, cwd }) {
   const clientQueue = await createCompiler({ cwd, target: "web" });
   const serverQueue = await createCompiler({ cwd, target: "node" });
+
+  const watcher = await createWatcher({cwd});
 
   const mw = express()
     .get("/", await main({ cwd }))
@@ -40,9 +49,54 @@ async function api({ server, cwd }) {
       const [message] = queue;
       send(message);
     });
+
+    watcher.subscribe(message => {
+      send(message);
+    });
   };
 
   return mw;
+}
+
+async function createWatcher(options) {
+  const result = await loadConfig({ cwd: options.cwd });
+  const { config = {}, filepath = options.cwd } = result;
+  const { entry = [] } = config;
+  const cwd = path.dirname(filepath);
+
+  // TODO: only **list** relevant manifest paths
+  // instead of reading them
+  const meta = await loadMeta({
+    entry,
+    cwd
+  });
+
+  const parents = [
+    commonDir(meta.map(m => path.join(cwd, m.path))),
+    ...entry.map(e => path.join(cwd, globParent(e)))
+  ];
+
+  let subscribers = [];
+
+  const next = message => subscribers.forEach(subs => subs.next(message));
+
+  const watcher = chokidar.watch(parents, {
+    ignoreInitial: true
+  });
+
+  debug("subscribing to meta data and documentation changes");
+  watcher.on('all', (e, p) => {
+    if (path.basename(p) === "pattern.json") {
+      next({ type: "change", payload: { file: p }});
+    }
+  });
+
+  return new Observable(subs => {
+    subscribers.push(subs);
+    return () => {
+      subscribers = subscribers.filter(s => s !== subs);
+    };
+  });
 }
 
 function getSender(wss) {

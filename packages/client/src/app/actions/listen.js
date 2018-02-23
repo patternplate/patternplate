@@ -2,7 +2,7 @@ import url from "url";
 import {EventEmitter} from "events";
 import { createPromiseThunkAction } from "./promise-thunk-action";
 import loadPatternDemo from "./load-pattern-demo";
-// import loadSchema from "./load-schema";
+import loadSchema from "./load-schema";
 
 class WebSocketClient{
   constructor({src, reconnect, interval}) {
@@ -53,7 +53,6 @@ class WebSocketClient{
         if (this.ended  || this.opened) {
           return;
         }
-        this.instance.close();
         open();
       }, this.interval);
     }
@@ -129,6 +128,9 @@ export default createPromiseThunkAction(
             type: "LISTEN_HEARTBEAT",
             payload: {}
           });
+        }
+        case "change": {
+          return dispatch(loadSchema());
         }
         default: {
           throw new TypeError(`Received unknown message of type ${type}`);

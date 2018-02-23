@@ -77,6 +77,7 @@ async function createCompiler({ cwd, target = "" }) {
       queue.unshift({type: 'error', payload: stats.compilation.errors});
       return next(queue);
     }
+    debug("done", target);
     queue.unshift({type: 'done', payload: {fs}});
     next(queue);
   });
@@ -87,23 +88,7 @@ async function createCompiler({ cwd, target = "" }) {
     next(queue);
   });
 
-  compiler.watch({}, (err, stats) => {
-    if (err) {
-      debug("inital:failed", target);
-      queue.unshift({type: 'error', payload: err});
-      next(queue);
-    }
-
-    if (stats.compilation.errors && stats.compilation.errors.length > 0) {
-      debug("inital:error", target);
-      queue.unshift({type: 'error', payload: stats.compilation.errors});
-      return next(queue);
-    }
-
-    debug("inital:done", target);
-    queue.unshift({type: 'done', payload: {fs}});
-    next(queue);
-  });
+  compiler.watch({ignored: "**/pattern.json"}, () => {});
 
   const observable = new Observable(observer => {
     listeners.push(observer);

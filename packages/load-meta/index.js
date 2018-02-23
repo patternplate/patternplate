@@ -1,18 +1,10 @@
 const path = require("path");
 const url = require("url");
-const loadDoc = require("@patternplate/load-doc");
-const frontmatter = require("front-matter");
 const globby = require("globby");
-const { flatten, merge, partition } = require("lodash");
 const loadJsonFile = require("load-json-file");
 const loadSourceMap = require("load-source-map");
 const pFilter = require("p-filter");
-const precinct = require("precinct");
-const remark = require("remark");
-const resolveFrom = require("resolve-from");
-const find = require("unist-util-find");
 const sander = require("@marionebl/sander");
-const throat = require("throat");
 
 const MANIFEST_NAME = "pattern.json";
 

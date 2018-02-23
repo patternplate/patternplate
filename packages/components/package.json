@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "concurrently \"patternplate\" \"npm run watch\"",
-    "build": "babel src -d lib --source-maps",
-    "watch": "babel src -d lib --source-maps -w"
+    "build": "babel -D src -d lib --source-maps",
+    "watch": "babel -D src -d lib --source-maps -w"
   },
   "repository": {
     "type": "git",
