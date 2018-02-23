@@ -62,51 +62,54 @@ async function createCompiler({ cwd, target = "" }) {
   compiler.outputFileSystem = fs;
 
   const queue = [];
+  let listeners = [];
+  const next = (message) => listeners.forEach(listener => listener.next(message));
 
-  const observable = new Observable(observer => {
-    if (queue.length > 0) {
-      return;
+  compiler.plugin("compile", () => {
+    debug("compile", target);
+    queue.unshift({type: 'start'});
+    next(queue);
+  });
+
+  compiler.plugin("done", (stats) => {
+    if (stats.compilation.errors && stats.compilation.errors.length > 0) {
+      debug("error", target);
+      queue.unshift({type: 'error', payload: stats.compilation.errors});
+      return next(queue);
+    }
+    queue.unshift({type: 'done', payload: {fs}});
+    next(queue);
+  });
+
+  compiler.plugin("failed", err => {
+    debug("failed", target);
+    queue.unshift({type: 'error', payload: err});
+    next(queue);
+  });
+
+  compiler.watch({}, (err, stats) => {
+    if (err) {
+      debug("inital:failed", target);
+      queue.unshift({type: 'error', payload: err});
+      next(queue);
     }
 
-    compiler.plugin("compile", () => {
-      debug("compile", target);
-      queue.unshift({type: 'start'});
-      observer.next(queue);
-    });
+    if (stats.compilation.errors && stats.compilation.errors.length > 0) {
+      debug("inital:error", target);
+      queue.unshift({type: 'error', payload: stats.compilation.errors});
+      return next(queue);
+    }
 
-    compiler.plugin("done", (stats) => {
-      if (stats.compilation.errors && stats.compilation.errors.length > 0) {
-        debug("error", target);
-        queue.unshift({type: 'error', payload: stats.compilation.errors});
-        return observer.next(queue);
-      }
-      queue.unshift({type: 'done', payload: {fs}});
-      observer.next(queue);
-    });
+    debug("inital:done", target);
+    queue.unshift({type: 'done', payload: {fs}});
+    next(queue);
+  });
 
-    compiler.plugin("failed", err => {
-      debug("failed", target);
-      queue.unshift({type: 'error', payload: err});
-      observer.next(queue);
-    });
-
-    compiler.watch({}, (err, stats) => {
-      if (err) {
-        debug("inital:failed", target);
-        queue.unshift({type: 'error', payload: err});
-        observer.next(queue);
-      }
-
-      if (stats.compilation.errors && stats.compilation.errors.length > 0) {
-        debug("inital:error", target);
-        queue.unshift({type: 'error', payload: stats.compilation.errors});
-        return observer.next(queue);
-      }
-
-      debug("inital:done", target);
-      queue.unshift({type: 'done', payload: {fs}});
-      observer.next(queue);
-    });
+  const observable = new Observable(observer => {
+    listeners.push(observer);
+    return () => {
+      listeners = listeners.filter(listener => listener !== observer);
+    }
   });
 
   observable.compiler = compiler;
