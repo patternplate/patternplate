@@ -15,39 +15,15 @@ const MarkdownImage = require('./markdown-image');
 const MarkdownItem = require('./markdown-item');
 const MarkdownList = require('./markdown-list');
 const MarkdownLink = require('./markdown-link');
-const Text = require('../text');
 
 class Markdown extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = props;
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  componentWillReceiveProps(next) {
-    if (next.source === this.props.source) {
-      return;
-    }
-
-    clearTimeout(this.timer);
-
-    this.setState({
-      source: ""
-    });
-
-    setTimeout(() => this.setState(next));
-  }
-
   render() {
     const { props } = this;
     const Headline = prop("linkable", props.linkable)(MarkdownHeadline);
 
     return (
       <StyledMarkdown className={props.className}>
-        {this.state.source &&
+        {props.source &&
           remark()
             .use(reactRenderer, {
               sanitize: false,
@@ -71,7 +47,7 @@ class Markdown extends React.Component {
               }
             })
             .use(emoji)
-            .processSync(frontmatter(this.state.source).body).contents}
+            .processSync(frontmatter(props.source).body).contents}
       </StyledMarkdown>
     );
   }
