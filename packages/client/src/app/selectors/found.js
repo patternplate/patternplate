@@ -380,7 +380,7 @@ export const selectLegend = createSelector(
 );
 
 export const selectDocs = createSelector(selectFound, found =>
-  found.filter(f => f.type === "doc")
+  found.filter(f => f.contentType === "doc")
 );
 
 export const selectSuggestion = createSelector(

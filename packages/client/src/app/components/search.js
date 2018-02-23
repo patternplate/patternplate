@@ -80,7 +80,7 @@ export default class Search extends React.Component {
   getSearchResultPreview = () => {
     const item = this.props.activeItem;
 
-    switch (item.type) {
+    switch (item.contentType) {
       case "doc":
         return (
           <SearchResultPreview {...this.props}>

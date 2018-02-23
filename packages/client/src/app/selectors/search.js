@@ -39,7 +39,7 @@ export function parse(search) {
   }
 }
 
-const OPERATORS = /([^!><\^~\n=]+)?(?:(!)?(>|<|\^|~)?(=)?)([^!><\^~\n=]+)?/;
+const OPERATORS = /([^!><^~\n=]+)?(?:(!)?(>|<|\^|~)?(=)?)([^!><^~\n=]+)?/;
 
 export function parseTerm(term) {
   const found = term.match(OPERATORS) || [];
