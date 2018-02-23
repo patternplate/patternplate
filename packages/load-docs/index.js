@@ -37,6 +37,7 @@ async function loadDocs(options) {
       manifest.displayName = manifest.displayName || manifest.name;
 
       return {
+        id: path.join(path.dirname(file), path.basename(file, path.extname(file))),
         contents,
         contentType: "doc",
         path: file,
@@ -47,57 +48,9 @@ async function loadDocs(options) {
 }
 
 async function loadDocsTree(options) {
-  return treeFromPaths(await loadDocs(options));
-}
-
-async function treeFromPaths(files) {
-  const tree = {
+  return {
     id: "root",
-    children: [],
+    children: await loadDocs(options),
     type: "root"
   };
-
-  files.forEach(file => {
-    const parts = file.path.split("/");
-    let level = tree;
-
-    parts.forEach((part, i) => {
-      const existing = level.children.find(c => c.name === part);
-
-      if (existing) {
-        level = existing;
-        return;
-      }
-
-      const id = parts.slice(0, i + 1).join("/");
-      const sid = path.join(
-        path.dirname(id),
-        path.basename(id, path.extname(id))
-      );
-
-      const item = {
-        name: path.basename(part, path.extname(part)),
-        manifest: file.manifest,
-        contents: file.contents,
-        id: sid,
-        path: sid.split("/"),
-        type: path.extname(part) ? "doc" : "folder",
-        contentType: file.contentType
-      };
-
-      if (item.type === "folder") {
-        item.children = [];
-      }
-
-      if (part.toLowerCase() === "readme.md") {
-        level.contents = file.contents;
-        level.manifest = file.manifest;
-      } else {
-        level.children.push(item);
-        level = item;
-      }
-    });
-  });
-
-  return tree;
 }

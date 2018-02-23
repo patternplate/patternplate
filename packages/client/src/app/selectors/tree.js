@@ -55,7 +55,7 @@ export function enrich(child, context) {
   const { id, config, prefix } = context;
   child.active = [child.contentType, child.id].join('/') === id;
 
-  const parsed = url.parse(child.href || path.join(prefix, child.id));
+  const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
 
   const q =
     typeof parsed.query === "string"
