@@ -149,7 +149,7 @@ export default class Search extends React.Component {
       return this.props.onSubmit(e);
     }
     this.props.onNavigate(
-      `/${this.props.activeItem.type}/${this.props.activeItem.id}`
+      `/${this.props.activeItem.contentType}/${this.props.activeItem.id}`
     );
   }
 
