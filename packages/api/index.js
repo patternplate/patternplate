@@ -6,6 +6,7 @@ const chokidar = require("chokidar");
 const commonDir = require("common-dir");
 const express = require("express");
 const globParent = require("glob-parent");
+const micromatch = require("micromatch");
 const WebSocket = require("ws");
 const debug = require("util").debuglog("PATTERNPLATE");
 const Observable = require("zen-observable");
@@ -61,7 +62,7 @@ async function api({ server, cwd }) {
 async function createWatcher(options) {
   const result = await loadConfig({ cwd: options.cwd });
   const { config = {}, filepath = options.cwd } = result;
-  const { entry = [] } = config;
+  const { entry = [], docs = [] } = config;
   const cwd = path.dirname(filepath);
 
   // TODO: only **list** relevant manifest paths
@@ -73,6 +74,7 @@ async function createWatcher(options) {
 
   const parents = [
     commonDir(meta.map(m => path.join(cwd, m.path))),
+    ...docs.map(d => path.join(cwd, globParent(d))),
     ...entry.map(e => path.join(cwd, globParent(e)))
   ];
 
@@ -86,8 +88,13 @@ async function createWatcher(options) {
 
   debug("subscribing to meta data and documentation changes");
   watcher.on('all', (e, p) => {
-    if (path.basename(p) === "pattern.json") {
-      next({ type: "change", payload: { file: p }});
+    const rel = path.relative(cwd, p);
+
+    if (path.basename(rel) === "pattern.json") {
+      next({ type: "change", payload: { file: p, contentType: "pattern" }});
+    }
+    if (micromatch.some(rel, docs, {matchBase: true})) {
+      next({ type: "change", payload: { file: p, contentType: "doc" }});
     }
   });
 

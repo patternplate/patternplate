@@ -39,6 +39,7 @@
     "globby": "^6.1.0",
     "html-loader": "^0.5.1",
     "memory-fs": "^0.4.1",
+    "micromatch": "^3.1.8",
     "require-from-string": "^2.0.1",
     "resolve-from": "^4.0.0",
     "to-string-loader": "^1.1.5",
