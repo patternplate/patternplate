@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/search",
-  "version": "2.0.0-9",
+  "version": "2.0.0-10",
   "description": "Perform search queries on a list of patternplate items",
   "xo": false,
   "repository": {
