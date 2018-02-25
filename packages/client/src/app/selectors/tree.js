@@ -69,12 +69,21 @@ export function enrich(child, context) {
 
   child.warnings = child.warnings || [];
 
-  if (child.id in config) {
+  if (child.contentType === "doc") {
+    const {options = {}} = child.manifest;
+    const {query = ""} = options;
+
+    if (query) {
+
+     }
+  }
+
+  /* if (child.id in config) {
     const o = config[child.id];
     child.manifest.displayName = o.displayName || child.manifest.displayName;
     child.manifest.options.order = o.order || child.manifest.options.order;
     child.manifest.options.icon = o.icon || child.manifest.options.icon;
-  }
+  } */
 
   if (
     child.manifest &&

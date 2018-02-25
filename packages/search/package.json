@@ -1,0 +1,29 @@
+{
+  "name": "@patternplate/search",
+  "version": "2.0.0-9",
+  "description": "Perform search queries on a list of patternplate items",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "fuse.js": "^3.2.0",
+    "lodash.flatten": "^4.4.0",
+    "lodash.intersection": "^4.4.0",
+    "logic-query-parser": "^0.0.5",
+    "semver": "^5.5.0"
+  }
+}

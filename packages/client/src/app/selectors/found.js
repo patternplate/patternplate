@@ -1,10 +1,9 @@
-import Fuse from "fuse.js";
+import { createSearch, Query, Term } from "@patternplate/search";
 import Immutable from "seamless-immutable";
 import { flatten, uniq, uniqBy, sortBy } from "lodash";
 import { createSelector } from "reselect";
 import semver from "semver";
 import selectPool from "./pool";
-import { apply, parse, parseTerm } from "./search";
 import createRelationSelector from "./relation";
 
 const FLAGS = {
@@ -103,39 +102,25 @@ const OPERATORS = [
   }
 ];
 
-const selectFuse = createSelector(selectPool, pool => {
-  return new Fuse(pool, {
-    id: "id",
-    keys: [
-      "id",
-      "contents",
-      "mainfest.displayName",
-      "manifest.name",
-      "manifest.version",
-      "manifest.tags",
-      "manifest.flag"
-    ]
-  });
-});
+const selectSearch = createSelector(
+  selectPool,
+  pool => createSearch(pool)
+)
 
 const selectMatches = createSelector(
+  selectSearch,
   state => state.search,
-  selectFuse,
-  selectPool,
-  (search, fuse, pool) => {
-    if (typeof search !== "string" || search.length < 3) {
+  (search, queryString) => {
+    if (typeof queryString !== "string" || queryString.length < 3) {
       return [];
     }
-
-    const perform = apply(fuse, pool);
-    const query = parse(search);
-    return perform(query);
+    return search(queryString);
   }
 );
 
 const selectParsedValue = createSelector(
   state => state.searchValue,
-  search => parse(search)
+  search => Query.parse(search)
 );
 
 const selectLastQuery = createSelector(selectParsedValue, parsed =>
@@ -174,7 +159,7 @@ const selectFieldHit = createSelector(
 );
 
 const selectParsedQuery = createSelector(selectLastQuery, query =>
-  parseTerm(query)
+  Term.parse(query)
 );
 
 const selectOps = createSelector(

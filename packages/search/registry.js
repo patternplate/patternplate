@@ -1,79 +1,31 @@
-import { flatten, intersection } from "lodash";
-import semver from "semver";
-import q from "logic-query-parser";
+const semver = require("semver");
 
-export function apply(fuse, pool) {
-  const m = match(fuse, pool);
-  return function perform(query) {
-    switch (query.type) {
-      case "and": {
-        return intersection(...query.values.map(value => perform(value)));
-      }
-      case "or": {
-        return flatten(query.values.map(value => perform(value)));
-      }
-      case "string":
-      default:
-        return m(query.value || "");
-    }
-  };
-}
+module.exports = {
+  create
+};
 
-export function match(fuse, pool) {
-  return term => {
-    const parsed = parseTerm(term);
+const FLAGS = {
+  deprecated: 0,
+  alpha: 0,
+  beta: 1,
+  rc: 2,
+  stable: 3
+};
 
-    if (parsed.valid) {
-      return searchField(pool, parsed);
-    }
-
-    return fuse.search(term);
-  };
-}
-
-export function parse(search) {
-  try {
-    return q.utils.binaryTreeToQueryJson(q.parse(search));
-  } catch (err) {
-    return { type: "and", values: [] };
-  }
-}
-
-const OPERATORS = /([^!><^~\n=]+)?(?:(!)?(>|<|\^|~)?(=)?)([^!><^~\n=]+)?/;
-
-export function parseTerm(term) {
-  const found = term.match(OPERATORS) || [];
-  const [raw, field, negator, modifier, equality, value] = found;
-
+// TODO: create an efficient search data structure
+function create(items) {
   return {
-    field,
-    value,
-    raw,
-    operators: [modifier, equality].join(""),
-    negated: negator === "!",
-    greater: modifier === ">",
-    lower: modifier === "<",
-    startsWith: equality === "=" && modifier === "^",
-    includes: equality === "=" && modifier === "~",
-    equals: equality === "=",
-    valid: Boolean(
-      field &&
-        value &&
-        (typeof modifier === "string" || typeof equality === "string")
-    )
+    search(term) {
+      const matcher = getMatcher(term.field, term.value, term);
+      return items
+        .filter(item => typeof item.manifest === "object")
+        .filter(item => (term.negated ? !matcher(item) : matcher(item)))
+        .map(i => i.id);
+    }
   };
 }
 
-function searchField(pool, options) {
-  const tester = test(options.field, options.value, options);
-
-  return pool
-    .filter(item => typeof item.manifest === "object")
-    .filter(item => (options.negated ? !tester(item) : tester(item)))
-    .map(i => i.id);
-}
-
-function test(field, value, options) {
+function getMatcher(field, value, options) {
   const depends = matchDepends(value, options);
   const has = matchHas(value, options);
   const provides = matchProvides(value, options);
@@ -102,13 +54,6 @@ function test(field, value, options) {
   };
 }
 
-export const FLAGS = {
-  deprecated: 0,
-  alpha: 0,
-  beta: 1,
-  rc: 2,
-  stable: 3
-};
 
 const manifest = item => item.manifest;
 const flag = item => manifest(item).flag;
