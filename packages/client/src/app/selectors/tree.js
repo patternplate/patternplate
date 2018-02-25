@@ -1,6 +1,7 @@
 import path from "path";
 import querystring from "querystring";
 import url from "url";
+import { merge } from "lodash";
 
 const WEIGHTS = {
   folder: 0,
@@ -13,7 +14,7 @@ export function flatten(tree) {
 }
 
 export function sanitize(tree, context) {
-  const { hide, id, config = {}, prefix, base, location } = context;
+  const { hide, id, config = {}, prefix, base, location, search } = context;
   const filter = hide ? child => !child.manifest.options.hidden : i => i;
 
   tree.children = tree.children
@@ -25,10 +26,11 @@ export function sanitize(tree, context) {
         hide,
         id,
         config,
-        prefix
+        prefix,
+        search,
       });
       return enriched.children
-        ? sanitize(enriched, { base, location, hide, id, config, prefix })
+        ? sanitize(enriched, context)
         : enriched;
     })
     .sort((a, b) => {
@@ -48,11 +50,11 @@ export function sanitize(tree, context) {
       return comp;
     });
 
-  return enrich(tree, { base, location, id, config, prefix });
+  return enrich(tree, { base, location, id, config, prefix, search });
 }
 
 export function enrich(child, context) {
-  const { id, config, prefix } = context;
+  const { id, prefix, search } = context;
   child.active = [child.contentType, child.id].join('/') === id;
 
   const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
@@ -74,16 +76,22 @@ export function enrich(child, context) {
     const {query = ""} = options;
 
     if (query) {
+      const virtual = query
+        ? search(query)
+        : [];
 
-     }
+      child.type = "folder";
+      child.children = virtual.map(v => {
+        const virtual = merge({}, v, {
+          id: [child.id, v.id].join('/'),
+          href: null,
+          virtual: true,
+          reference: child.id
+        });
+        return enrich(virtual, context);
+      });
+    }
   }
-
-  /* if (child.id in config) {
-    const o = config[child.id];
-    child.manifest.displayName = o.displayName || child.manifest.displayName;
-    child.manifest.options.order = o.order || child.manifest.options.order;
-    child.manifest.options.icon = o.icon || child.manifest.options.icon;
-  } */
 
   if (
     child.manifest &&
