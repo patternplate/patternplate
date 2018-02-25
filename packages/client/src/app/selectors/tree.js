@@ -55,7 +55,11 @@ export function sanitize(tree, context) {
 
 export function enrich(child, context) {
   const { id, prefix, search } = context;
-  child.active = [child.contentType, child.id].join('/') === id;
+  const childid = child.virtual
+    ? ['pattern', child.id].join('/')
+    : [child.contentType, child.id].join('/');
+
+  child.active = childid === id;
 
   const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
 
@@ -83,13 +87,14 @@ export function enrich(child, context) {
       child.type = "folder";
       child.children = virtual.map(v => {
         const virtual = merge({}, v, {
-          id: [child.id, v.id].join('/'),
-          href: null,
+          id: [child.id, v.id].join("/"),
+          href: [v.contentType, child.id, v.id].join("/"),
           virtual: true,
           reference: child.id
         });
         return enrich(virtual, context);
       });
+      child.active = child.active || child.children.some(c => c.active);
     }
   }
 
