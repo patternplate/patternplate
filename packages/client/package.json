@@ -4,7 +4,7 @@
   "description": "Universal javascript client application for patternplate",
   "main": "lib/server.js",
   "scripts": {
-    "build": "concurrently \"npx webpack\" \"babel src -d lib --source-maps\"",
+    "build": "concurrently \"npx webpack -c webpack.prod.config.js\" \"babel src -d lib --source-maps\"",
     "clean": "npx rimraf lib",
     "watch": "concurrently \"npx webpack -w\" \"babel src -d lib --source-maps -w\""
   },
@@ -101,6 +101,7 @@
     "topologically-combine-reducers": "0.0.5",
     "unindent": "^2.0.0",
     "vis": "^4.20.1",
+    "webpack": "4.0.0",
     "ws": "^4.0.0",
     "xmldom": "^0.1.27"
   },
@@ -117,6 +118,6 @@
     "concurrently": "^3.5.0",
     "dependency-check": "^2.6.0",
     "fast-async": "^6.3.0",
-    "webpack": "^3.8.1"
+    "webpack-cli": "^2.0.9"
   }
 }

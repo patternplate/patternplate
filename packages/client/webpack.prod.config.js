@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = [
   {
-    mode: "development",
+    mode: "production",
     devtool: "source-map",
     entry: {
       client: "./src/client.js"

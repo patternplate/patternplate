@@ -38,9 +38,6 @@ module.exports = async function webpackEntry() {
   }));
 
   const result = `
-    if (module.hot) {
-      module.hot.accept([]);
-    }
     ${reg.join('\n')}
   `;
 
