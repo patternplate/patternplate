@@ -40,6 +40,10 @@ const selectItem = createSelector(
     if (item) {
       return item;
     }
+
+    if (id === '/') {
+      return pool[0];
+    }
   }
 );
 
