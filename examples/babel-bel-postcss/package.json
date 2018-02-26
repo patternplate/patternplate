@@ -12,7 +12,7 @@
   },
   "babel": {
     "presets": [
-      "env"
+      "@babel/preset-env"
     ]
   },
   "postcss": {
@@ -32,9 +32,9 @@
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
     "@patternplate/cli": "^2.0.0-12",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
     "stmux": "^1.4.18"

@@ -12,7 +12,7 @@
   "babel": {
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
           "exclude": [
             "transform-regenerator",
@@ -20,13 +20,12 @@
           ]
         }
       ],
-      "react"
+      "@babel/preset-react"
     ],
     "plugins": [
-      "fast-async",
-      "transform-class-properties",
-      "transform-export-extensions",
-      "transform-object-rest-spread"
+      "module:fast-async",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
     ]
   },
   "repository": {
@@ -55,6 +54,8 @@
     "npm": ">= 3"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
     "@marionebl/react-router": "^2.6.2",
     "@patternplate/api": "^2.0.0-12",
     "@patternplate/components": "^2.0.0-12",
@@ -104,16 +105,15 @@
     "xmldom": "^0.1.27"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-runtime": "^6.26.0",
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/polyfill": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@babel/runtime": "^7.0.0-beta.40",
+    "babel-loader": "8.0.0-beta.0",
     "concurrently": "^3.5.0",
     "dependency-check": "^2.6.0",
     "fast-async": "^6.3.0",

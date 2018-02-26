@@ -1,0 +1,50 @@
+{
+  "name": "@patternplate/mdx",
+  "version": "2.0.0-12",
+  "description": "Utilities for patternplate-flavored markdown",
+  "scripts": {
+    "build": "babel -D src -d lib --source-maps",
+    "watch": "babel -D src -d lib --source-maps -w",
+    "clean": "rimraf lib"
+  },
+  "xo": false,
+  "babel": {
+    "sourceMaps": true,
+    "presets": [
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "targets": {
+            "node": "4"
+          }
+        }
+      ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "react": "^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40"
+  }
+}

@@ -16,12 +16,13 @@
   },
   "xo": false,
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@patternplate/webpack-entry": "^2.0.0-12",
     "@patternplate/cli": "^2.0.0-12",
     "@patternplate/render-react": "^2.0.0-12",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "babel-loader": "8.0.0-beta.0",
     "css-loader": "^0.28.7",
     "dev-loader": "^0.1.0",
     "globby": "^6.1.0",
@@ -31,7 +32,6 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "@patternplate/webpack-entry": "^2.0.0-12",
     "react": "^16.0.0"
   }
 }
