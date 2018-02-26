@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.0.0-11",
+  "version": "2.0.0-12",
   "description": "Create, show and deliver component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -29,7 +29,7 @@
     ]
   },
   "dependencies": {
-    "@patternplate/client": "^2.0.0-11",
+    "@patternplate/client": "^2.0.0-12",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
     "express-slash": "^2.0.1",

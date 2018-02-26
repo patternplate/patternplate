@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/components",
-  "version": "2.0.0-11",
+  "version": "2.0.0-12",
   "description": "ui component library for patternplate-client",
   "main": "lib/index.js",
   "scripts": {
@@ -55,8 +55,8 @@
     ]
   },
   "devDependencies": {
-    "@patternplate/cli": "^2.0.0-11",
-    "@patternplate/render-styled-components": "^2.0.0-11",
+    "@patternplate/cli": "^2.0.0-12",
+    "@patternplate/render-styled-components": "^2.0.0-12",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
