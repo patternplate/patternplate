@@ -59,7 +59,7 @@ export function enrich(child, context) {
     ? ['pattern', child.id].join('/')
     : [child.contentType, child.id].join('/');
 
-  child.active = childid === id;
+  child.active = (childid === id);
 
   const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
 

@@ -16,7 +16,7 @@ const selectSearch = createSelector(
   }
 );
 
-const docs = createSelector(
+const selectDocsTree = createSelector(
   state => state.schema.docs,
   state => state.id,
   state => state.hideEnabled,
@@ -25,8 +25,27 @@ const docs = createSelector(
   selectSearch,
   (tree, id, hide, location, base, search) => {
     const context = { hide, id, prefix: "doc", location, base, search };
-    const t = sanitize(merge({}, tree), context);
-    return Immutable.from(t);
+    return sanitize(merge({}, tree), context);
+  }
+);
+
+const selectFirstItem = createSelector(
+  selectDocsTree,
+  (tree) => {
+    const list = flatten(tree);
+    return list ? list[0]: null;
+  }
+);
+
+const docs = createSelector(
+  selectDocsTree,
+  selectFirstItem,
+  state => state.id,
+  (tree, first, id) => {
+    if (id === '/' && first) {
+      first.active = true;
+    }
+    return Immutable.from(tree);
   }
 );
 
