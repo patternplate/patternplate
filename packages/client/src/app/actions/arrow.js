@@ -1,6 +1,5 @@
 import { push } from "react-router-redux";
 import toggleNavigation from "./toggle-navigation";
-import selectItem from "../selectors/item";
 import selectPool from "../selectors/pool";
 
 export default arrow;
@@ -32,18 +31,22 @@ function arrow(payload) {
         if (!state.navigationEnabled) {
           return dispatch(toggleNavigation());
         }
-        const i = selectItem(state);
-        const p = selectPool(state);
-        const id = i.path.slice(0, i.path.length - 1).join("/");
-        const next = p.find(i => i.id === id);
-        return next && next.href && go(dispatch)(next.href);
+        return;
       }
       case "up":
       case "down":
       default: {
+        if (!state.navigationEnabled) {
+          return;
+        }
+
         const offset = payload in OFFSETS ? OFFSETS[payload] : OFFSETS.default;
-        const next = jump(selectPool(state), selectItem(state), offset);
-        return next && go(dispatch)(next);
+        const pool = selectPool(state);
+        const index = pool.findIndex((item) => `${item.contentType}/${item.id}` === state.id || state.id === '/' && item.id === '/root');
+        const next = pool[index + offset];
+        if (next) {
+          go(dispatch)(next.href);
+        }
       }
     }
   };
@@ -53,34 +56,3 @@ function go(dispatch) {
   return next => dispatch(push(next));
 }
 
-function jump(pool, start, offset) {
-  if (!start) {
-    return "";
-  }
-
-  if (offset === 0) {
-    return start;
-  }
-
-  let result = start.href;
-  let index = pool.indexOf(start);
-
-  while (result === start.href) {
-    index += offset;
-
-    if (!pool[index]) {
-      break;
-    }
-
-    result = pool[index].href;
-
-    if (offset < 0 && index === 0) {
-      break;
-    }
-    if (offset > 0 && index === pool.length) {
-      break;
-    }
-  }
-
-  return result;
-}
