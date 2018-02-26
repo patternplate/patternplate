@@ -1,4 +1,5 @@
 import { push } from "react-router-redux";
+import toggleNavigation from "./toggle-navigation";
 import selectItem from "../selectors/item";
 import selectPool from "../selectors/pool";
 
@@ -20,12 +21,17 @@ function arrow(payload) {
       return;
     }
 
-    if (!state.navigationEnabled) {
-      return;
-    }
-
     switch (payload) {
+      case "right": {
+        if (state.navigationEnabled) {
+          return dispatch(toggleNavigation());
+        }
+        return;
+      }
       case "left": {
+        if (!state.navigationEnabled) {
+          return dispatch(toggleNavigation());
+        }
         const i = selectItem(state);
         const p = selectPool(state);
         const id = i.path.slice(0, i.path.length - 1).join("/");
