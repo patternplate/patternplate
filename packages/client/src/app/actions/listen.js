@@ -1,5 +1,6 @@
 import url from "url";
 import {EventEmitter} from "events";
+import ARSON from "arson";
 import { createPromiseThunkAction } from "./promise-thunk-action";
 import loadPatternDemo from "./load-pattern-demo";
 import loadSchema from "./load-schema";
@@ -110,7 +111,7 @@ export default createPromiseThunkAction(
     ws.onError(() => dispatch({ type: "ERROR_HEARTBEAT", payload: {}}));
 
     ws.onMessage(async envelope => {
-      const message = JSON.parse(envelope.data);
+      const message = ARSON.parse(envelope.data);
       const {type, payload} = message;
 
       switch (type) {

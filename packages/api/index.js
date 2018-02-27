@@ -2,6 +2,7 @@
 const path = require("path");
 const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
+const ARSON = require("arson");
 const chokidar = require("chokidar");
 const commonDir = require("common-dir");
 const express = require("express");
@@ -110,7 +111,7 @@ function getSender(wss) {
   return message => {
     wss.clients.forEach(client => {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(message));
+        client.send(ARSON.stringify(message));
       }
     })
   }
