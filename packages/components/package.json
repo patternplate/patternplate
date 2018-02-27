@@ -58,6 +58,8 @@
     "lorem-ipsum": "^1.0.4"
   },
   "dependencies": {
+    "@babel/code-frame": "^7.0.0-beta.40",
+    "buble": "^0.19.3",
     "color": "^2.0.0",
     "concurrently": "^3.5.1",
     "d3-force": "^1.0.6",
@@ -66,6 +68,8 @@
     "highlight.js": "^9.12.0",
     "lodash": "^4.17.4",
     "lowlight": "^1.9.1",
+    "mdx-breadboard": "^1.1.0",
+    "mdxc": "^1.1.1",
     "prop-types": "^15.6.0",
     "react": "16.2.0",
     "react-addons-text-content": "^0.0.4",
@@ -78,6 +82,7 @@
     "remark-react": "^4.0.1",
     "styled-components": "^3.1.6",
     "tag-hoc": "^1.0.0",
-    "vis": "^4.20.1"
+    "vis": "^4.20.1",
+    "xmldom": "^0.1.27"
   }
 }

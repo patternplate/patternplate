@@ -4,6 +4,8 @@ const remark = require('remark');
 const emoji = require('remark-gemoji-to-emoji');
 const reactRenderer = require('remark-react');
 const styled = require("styled-components").default;
+const buble = require("buble");
+const vm = require("vm");
 
 const MarkdownBlockQuote = require('./markdown-blockquote');
 const MarkdownCode = require('./markdown-code');
@@ -41,7 +43,33 @@ class Markdown extends React.Component {
                 img: MarkdownImage,
                 li: MarkdownItem,
                 p: MarkdownCopy,
-                pre: MarkdownCodeBlock,
+                pre: props => {
+                  const [child = {}] = props.children;
+                  const {props: childProps = {}} = child;
+                  const {className = ''} = childProps;
+                  const type = className.replace(/^language-/, '');
+
+                  switch (type) {
+                    case 'widget': {
+                      const [terr, code] = transpile(childProps.children.join('\n'));
+
+                      if (terr) {
+                        console.error(terr);
+                        return <WidgetError message={terr.message} snippet={terr.snippet}/>
+                      }
+
+                      const [err, result] = execute(code);
+                      if (err) {
+                        console.error(err);
+                        return <WidgetError message={err.message} snippet={err.snippet}/>
+                      }
+
+                      return result;
+                    }
+                    default:
+                      return <MarkdownCodeBlock {...props}/>;
+                  }
+                },
                 ul: is("ul")(MarkdownList),
                 ol: is("ol")(MarkdownList)
               }
@@ -85,12 +113,66 @@ const StyledMarkdown = styled.div`
   }
 `;
 
+function WidgetError(props) {
+  return (
+    <StyledWidgetError>
+      <div>{props.message}</div>
+      <pre>
+        {props.snippet}
+      </pre>
+    </StyledWidgetError>
+  );
+}
+
+const StyledWidgetError = styled.div`
+  background: ${props => props.theme.error};
+  color: #fff;
+  padding: 10px 15px;
+  font-family: monospace;
+`;
+
 function is(is) {
   return Component => props => <Component is={is} {...props} />;
 }
 
 function prop(name, value) {
   return Component => props => <Component {...props} {...{ [name]: value }} />;
+}
+
+function transpile(source) {
+  try {
+    const {code} = buble.transform(source);
+    return [null, code];
+  } catch (err) {
+    return [err];
+  }
+}
+
+const widgets = {
+  PatternList() {
+    return 'PatternList';
+  }
+};
+
+function execute(code) {
+  try {
+    const result = vm.runInNewContext(code, {
+      module: {exports: {}},
+      require(id) {
+        if (id === 'react') {
+          return React;
+        }
+        if (id === '@patternplate/widgets') {
+          return widgets;
+        }
+        throw new Error(`Could not resolve ${id}`);
+      }
+    });
+
+    return [null, result];
+  } catch (err) {
+    return [err];
+  }
 }
 
 module.exports = Markdown;
