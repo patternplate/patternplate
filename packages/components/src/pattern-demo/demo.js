@@ -6,7 +6,7 @@ module.exports = PatternDemoDemo;
 function PatternDemoDemo() {
   return (
     <div>
-      <PatternDemo/>
+      No meaningful demo for pattern demo implemented
     </div>
   );
 }

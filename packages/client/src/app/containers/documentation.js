@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { createSelector } from "reselect";
 
 import ConnectedPatternList from "./pattern-list-widget";
+import ConnectedPatternDemo from "./pattern-demo-widget";
+
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
 import selectPool from "../selectors/pool";
@@ -104,9 +106,7 @@ function mapState(state) {
     type: selectType(state),
     widgets: {
       PatternList: ConnectedPatternList,
-      PatternDemo() {
-        return 'PatternDemo';
-      }
+      PatternDemo: ConnectedPatternDemo
     }
   };
 }
