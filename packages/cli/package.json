@@ -7,9 +7,9 @@
   },
   "scripts": {
     "babel": "babel src --out-dir ./lib",
-    "build": "npx yarn run babel",
+    "build": "yarn babel",
     "clean": "npx rimraf lib",
-    "watch": "npm run babel -- --watch"
+    "watch": "yarn babel --watch"
   },
   "xo": false,
   "babel": {

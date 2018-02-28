@@ -1,3 +1,4 @@
+const widgets = require('@patternplate/widgets');
 const frontmatter = require('front-matter');
 const React = require('react');
 const remark = require('remark');
@@ -148,12 +149,6 @@ function transpile(source) {
   }
 }
 
-const widgets = {
-  PatternList() {
-    return 'PatternList';
-  }
-};
-
 function execute(code) {
   try {
     const result = vm.runInNewContext(code, {
@@ -169,7 +164,7 @@ function execute(code) {
       }
     });
 
-    return [null, result];
+    return [null, result()];
   } catch (err) {
     return [err];
   }

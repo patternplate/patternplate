@@ -4,13 +4,12 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "bootstrap": "npx lerna bootstrap",
-    "build": "npx lerna run build --stream --include-filtered-dependencies",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --stream --include-filtered-dependencies",
     "clean": "npx lerna clean --yes && npx lerna run clean && npx rimraf node_modules",
-    "components": "npx lerna run start --scope @patternplate/components --stream",
-    "reinstall": "npx yarn run clean && npx yarn install && npx lerna bootstrap",
-    "setup": "npx yarn bootstrap && npx yarn build && npx yarn link",
-    "start": "stmux -a a -t patternplate -- [ \"npx lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"npx yarn components\" ]"
+    "components": "lerna run start --scope @patternplate/components --stream",
+    "reinstall": "yarn clean && yarn && lerna bootstrap",
+    "start": "stmux -a a -t patternplate -- [ \"yarn lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"yarn yarn components\" ]"
   },
   "author": {
     "name": "Mario Nebl",
@@ -101,6 +100,5 @@
   "workspaces": [
     "examples/*",
     "packages/*"
-  ],
-  "dependencies": {}
+  ]
 }

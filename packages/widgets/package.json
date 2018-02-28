@@ -1,0 +1,30 @@
+{
+  "name": "@patternplate/widgets",
+  "version": "2.0.0-12",
+  "description": "Markdown widgets available in patternplate",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "babel -D src -d lib --source-maps",
+    "watch": "yarn build -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinnerschrader/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "xo": false,
+  "dependencies": {
+    "@patternplate/components": "2.0.0-12"
+  }
+}

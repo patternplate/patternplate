@@ -16,7 +16,6 @@ module.exports = {
   NavigationItem: require("./main-navigation"),
   NavigationToolbar: require("./navigation-toolbar"),
   NavigationTree: require("./navigation-tree"),
-  Network: require("./network"),
   Search: {
     Search: require("./search").default,
     SearchResult: require("./search").SearchResult,

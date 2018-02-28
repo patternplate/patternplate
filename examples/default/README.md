@@ -9,5 +9,5 @@
 ## Getting started
 
 ```
-npx yarn start
+yarn start
 ```

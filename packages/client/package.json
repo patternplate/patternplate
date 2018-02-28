@@ -54,8 +54,6 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
     "@marionebl/react-router": "^2.6.2",
     "@patternplate/api": "^2.0.0-12",
     "@patternplate/components": "^2.0.0-12",
@@ -66,6 +64,7 @@
     "arson": "^0.2.6",
     "btoa": "^1.1.2",
     "color": "^2.0.0",
+    "create-react-class": "^15.6.3",
     "dom4": "^1.8.3",
     "es6-promise": "^4.0.5",
     "express": "^4.16.2",
