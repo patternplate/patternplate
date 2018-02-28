@@ -1,4 +1,3 @@
-const widgets = require('@patternplate/widgets');
 const frontmatter = require('front-matter');
 const React = require('react');
 const remark = require('remark');
@@ -44,8 +43,8 @@ class Markdown extends React.Component {
                 img: MarkdownImage,
                 li: MarkdownItem,
                 p: MarkdownCopy,
-                pre: props => {
-                  const [child = {}] = props.children;
+                pre: preProps => {
+                  const [child = {}] = preProps.children;
                   const {props: childProps = {}} = child;
                   const {className = ''} = childProps;
                   const type = className.replace(/^language-/, '');
@@ -59,7 +58,7 @@ class Markdown extends React.Component {
                         return <WidgetError message={terr.message} snippet={terr.snippet}/>
                       }
 
-                      const [err, result] = execute(code);
+                      const [err, result] = execute(code, props.widgets);
                       if (err) {
                         console.error(err);
                         return <WidgetError message={err.message} snippet={err.snippet}/>
@@ -68,7 +67,7 @@ class Markdown extends React.Component {
                       return result;
                     }
                     default:
-                      return <MarkdownCodeBlock {...props}/>;
+                      return <MarkdownCodeBlock {...preProps}/>;
                   }
                 },
                 ul: is("ul")(MarkdownList),
@@ -149,7 +148,7 @@ function transpile(source) {
   }
 }
 
-function execute(code) {
+function execute(code, widgets = {}) {
   try {
     const result = vm.runInNewContext(code, {
       module: {exports: {}},
@@ -157,7 +156,7 @@ function execute(code) {
         if (id === 'react') {
           return React;
         }
-        if (id === '@patternplate/widgets') {
+        if ('@patternplate/widgets') {
           return widgets;
         }
         throw new Error(`Could not resolve ${id}`);

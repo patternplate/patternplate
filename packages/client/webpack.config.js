@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 
 module.exports = [
@@ -20,6 +21,13 @@ module.exports = [
     output: {
       path: path.join(__dirname, "lib", "static"),
       filename: "[name].js"
-    }
+    },
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "vendors",
+        minChunks: mod =>
+          mod.context && mod.context.indexOf("node_modules") > -1
+      })
+    ]
   }
 ];

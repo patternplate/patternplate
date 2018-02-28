@@ -5,17 +5,26 @@ module.exports = PatternListDemo;
 
 const ITEMS = [
   {
-    id: 'one'
+    id: 'one',
+    href: '#one',
+    manifest: {
+      name: 'one',
+      displayName: 'One'
+    }
   },
   {
-    id: 'two'
+    id: 'two',
+    href: '#two',
+    manifest: {
+      name: 'two'
+    }
   }
 ];
 
 function PatternListDemo() {
   return (
     <div>
-      <PatternList items={ITEMS}/>
+      <PatternList search={() => ITEMS}/>
     </div>
   );
 }

@@ -7,9 +7,9 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream --include-filtered-dependencies",
     "clean": "npx lerna clean --yes && npx lerna run clean && npx rimraf node_modules",
-    "components": "lerna run start --scope @patternplate/components --stream",
+    "components": "yarn lerna exec \"patternplate start\" --scope=@patternplate/components",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
-    "start": "stmux -a a -t patternplate -- [ \"yarn lerna run watch --stream --parallel --include-filtered-dependencies\" .. \"yarn yarn components\" ]"
+    "start": "yarn lerna run watch --stream --parallel --include-filtered-dependencies"
   },
   "author": {
     "name": "Mario Nebl",

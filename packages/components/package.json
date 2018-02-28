@@ -3,9 +3,9 @@
   "version": "2.0.0-12",
   "description": "ui component library for patternplate-client",
   "scripts": {
-    "start": "concurrently \"patternplate\" \"npm run watch\"",
+    "start": "yarn build -w",
     "build": "babel -D src -d lib --source-maps",
-    "watch": "babel -D src -d lib --source-maps -w"
+    "watch": "yarn build -w"
   },
   "repository": {
     "type": "git",

@@ -1,11 +1,11 @@
+import { themes } from "@patternplate/components";
 import { connect } from "react-redux";
 import { createSelector } from "reselect";
+
+import ConnectedPatternList from "./pattern-list-widget";
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
 import selectPool from "../selectors/pool";
-import {
-  themes
-} from "@patternplate/components";
 
 export default connect(mapState)(Documentation);
 
@@ -101,6 +101,12 @@ function mapState(state) {
   return {
     doc: selectDoc(state),
     themes: selectThemes(state),
-    type: selectType(state)
+    type: selectType(state),
+    widgets: {
+      PatternList: ConnectedPatternList,
+      PatternDemo() {
+        return 'PatternDemo';
+      }
+    }
   };
 }

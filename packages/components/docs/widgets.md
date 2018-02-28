@@ -10,7 +10,7 @@ Placing the following code inside a `widget` code block creates a list
 of all patterns with the tag `widget`.
 
 ```js
-const React = require('react');
+const React = require("react");
 const {PatternList} = require("@patternplate/widgets");
 
 module.exports = () =>  <PatternList query="tags=widget" />;
@@ -29,7 +29,7 @@ module.exports = () =>  <PatternList query="tags=widget" />;
 `<PatternDemo />` displays the demo for the pattern referenced via `id`.
 
 ```js
-const React = require('react');
+const React = require("react");
 const {PatternDemo} = require("@patternplate/widgets");
 
 module.exports = () =>  <PatternDemo id="src/button" />;
