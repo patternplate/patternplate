@@ -61,6 +61,7 @@
     "@patternplate/load-docs": "^2.0.0-12",
     "@patternplate/load-meta": "^2.0.0-12",
     "@patternplate/search": "^2.0.0-12",
+    "@patternplate/widgets": "^2.0.0-12",
     "arson": "^0.2.6",
     "btoa": "^1.1.2",
     "color": "^2.0.0",

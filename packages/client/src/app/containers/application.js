@@ -12,6 +12,8 @@ import {
   themes
 } from "@patternplate/components";
 
+import {PatternList, PatternDemo} from "@patternplate/widgets";
+
 import * as actions from "../actions";
 import * as item from "../selectors/item";
 
@@ -96,11 +98,22 @@ function mapDispatch(dispatch) {
   );
 }
 
+const ConnectedPatternDemo = () => <div>Connected PatternDemo</div>;
+const ConnectedPatternList = () => <div>Connected PatternList</div>;
+
 const injections = [
   {
     target: Link,
     source: ConnectedLink
-  }
+  },
+  {
+    target: PatternDemo,
+    source: ConnectedPatternDemo
+  },
+  {
+    target: PatternList,
+    source: ConnectedPatternList
+  },
 ];
 
 function Application(props) {
