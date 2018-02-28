@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/webpack-entry",
-  "version": "2.0.0-13",
+  "version": "2.0.0-14",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "xo": false,
   "repository": {
