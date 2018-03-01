@@ -1,7 +1,7 @@
 const React = require("react");
-const MarkdownItem = require("../markdown/markdown-item");
-const MarkdownList = require("../markdown/markdown-list");
-const MarkdownLink = require("../markdown/markdown-link");
+const MarkdownItem = require("../../markdown/markdown-item");
+const MarkdownList = require("../../markdown/markdown-list");
+const MarkdownLink = require("../../markdown/markdown-link");
 
 module.exports = PatternList;
 
