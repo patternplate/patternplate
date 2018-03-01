@@ -32,7 +32,7 @@ async function api({ server, cwd }) {
 
   mw.subscribe = () => {
     debug("subscribing to webpack and fs events");
-    const wss = new WebSocket.Server({server});
+    const wss = new WebSocket.Server({ server });
 
     // Prevent client errors (frequently caused by Chrome disconnecting on reload)
     // from bubbling up and killing the server, ref: https://github.com/websockets/ws/issues/1256
@@ -46,10 +46,12 @@ async function api({ server, cwd }) {
     });
 
     const send = getSender(wss);
+
     clientQueue.subscribe();
+
     serverQueue.subscribe(queue => {
       const [message] = queue;
-      send(message);
+      send({type: message.type });
     });
 
     watcher.subscribe(message => {

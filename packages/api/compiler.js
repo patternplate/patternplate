@@ -23,8 +23,8 @@ async function createCompiler({ cwd, target = "" }) {
 
   if (target === "web") {
     entry.mount = await getEntry(config.mount, { filepath });
-    entry.demo = require.resolve("./demo.client.js");
-    entry.probe = require.resolve("./probe.client.js")
+    entry.demo = require.resolve("@patternplate/demo-client");
+    entry.probe = require.resolve("@patternplate/probe-client")
   }
 
   const compiler = webpack({
@@ -68,30 +68,35 @@ async function createCompiler({ cwd, target = "" }) {
 
   compiler.plugin("compile", () => {
     debug("compile", target);
-    queue.unshift({type: 'start'});
+    queue.unshift({type: 'start', target, payload: {}});
     next(queue);
   });
 
   compiler.plugin("done", (stats) => {
     if (stats.compilation.errors && stats.compilation.errors.length > 0) {
       debug("error", target);
-      queue.unshift({type: 'error', payload: stats.compilation.errors});
+      queue.unshift({type: 'error', target, payload: stats.compilation.errors});
       return next(queue);
     }
     debug("done", target);
-    queue.unshift({type: 'done', payload: {fs}});
+    queue.unshift({type: 'done', target, payload: {fs}});
     next(queue);
   });
 
   compiler.plugin("failed", err => {
     debug("failed", target);
-    queue.unshift({type: 'error', payload: err});
+    queue.unshift({type: 'error', target, payload: err});
     next(queue);
   });
 
-  compiler.watch({ignored: "**/pattern.json"}, () => {});
+  let watching = false;
 
   const observable = new Observable(observer => {
+    if (!watching) {
+      watching = true;
+      compiler.watch({ignored: "**/pattern.json"}, () => {});
+    }
+
     listeners.push(observer);
     return () => {
       listeners = listeners.filter(listener => listener !== observer);

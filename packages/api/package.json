@@ -29,6 +29,7 @@
     "@patternplate/load-docs": "^2.0.0-14",
     "@patternplate/load-meta": "^2.0.0-14",
     "@patternplate/pack": "^2.0.0-14",
+    "@patternplate/probe-client": "^2.0.0-14",
     "@patternplate/webpack-entry": "^2.0.0-14",
     "aggregate-error": "^1.0.0",
     "arson": "^0.2.6",

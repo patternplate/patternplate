@@ -12,7 +12,7 @@ module.exports = class PatternDemo extends React.Component {
       return <PatternDemoError message={`Could not find ${props.id}`}/>
     }
 
-    return <ResizingIframe src={`${src}?resize=true`}/>;
+    return <ResizingIframe src={`${src}?resize=true&reload=true`}/>;
   }
 }
 

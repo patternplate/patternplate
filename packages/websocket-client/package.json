@@ -1,0 +1,46 @@
+{
+  "name": "@patternplate/websocket-client",
+  "version": "2.0.0-14",
+  "description": "Websocket client with automatic retries",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "babel -D src -d lib --source-maps",
+    "watch": "yarn build -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinnerschrader/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "xo": false,
+  "babel": {
+    "sourceMaps": true,
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "targets": {
+            "node": "4"
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40"
+  }
+}

@@ -9,7 +9,7 @@ const SkippableFullscreen = withActiveForPattern(skippable(Fullscreen));
 
 const mapProps = state => {
   return {
-    href: demo.selectSrc(state)
+    href: `${demo.selectSrc(state)}?reload=true`
   };
 };
 

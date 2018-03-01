@@ -15,10 +15,10 @@ module.exports = function ButtonDemo() {
           external
           layout="no-border"
         >
-          Link Button
+          Link Button!
         </Button>
         <Button symbol="reload" title="Reload">
-          Button
+          Button!
         </Button>
         <Button title="Reload" layout="no-border">
           Button without icon
