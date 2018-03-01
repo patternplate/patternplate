@@ -167,6 +167,13 @@ function execute(code, widgets = {}) {
       }
     });
 
+    if (typeof result !== "function") {
+
+      const err = new Error(`widget blocks must export a function, but found "${typeof result}". Make sure to export a function e.g.:`);
+      err.snippet = `module.exports = () => <div>Hello World</div>;`;
+      throw err;
+    }
+
     return [null, result()];
   } catch (err) {
     return [err];
