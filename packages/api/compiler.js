@@ -23,7 +23,8 @@ async function createCompiler({ cwd, target = "" }) {
 
   if (target === "web") {
     entry.mount = await getEntry(config.mount, { filepath });
-    entry.demo = require.resolve('./demo.client.js');
+    entry.demo = require.resolve("./demo.client.js");
+    entry.probe = require.resolve("./probe.client.js")
   }
 
   const compiler = webpack({

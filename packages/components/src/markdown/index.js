@@ -19,6 +19,10 @@ const MarkdownList = require('./markdown-list');
 const MarkdownLink = require('./markdown-link');
 
 class Markdown extends React.Component {
+  shouldComponentUpdate(next) {
+    return this.props.source !== next.source;
+  }
+
   render() {
     const { props } = this;
     const Headline = prop("linkable", props.linkable)(MarkdownHeadline);

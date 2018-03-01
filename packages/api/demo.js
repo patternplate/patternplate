@@ -125,6 +125,7 @@ function html(content, payload) {
         ${content.after || ""}
         <script src="/api/patternplate.web.vendors.js"></script>
         <script src="/api/patternplate.web.components.js"></script>
+        <script src="/api/patternplate.web.probe.js"></script>
         <script src="/api/patternplate.web.mount.js"></script>
         <script src="/api/patternplate.web.demo.js"></script>
       </body>
