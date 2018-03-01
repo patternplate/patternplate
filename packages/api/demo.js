@@ -5,6 +5,7 @@ const AggregateError = require("aggregate-error");
 const fromString = require("require-from-string");
 const sander = require("@marionebl/sander");
 const unindent = require("unindent");
+const stringHash = require("string-hash");
 
 module.exports = demo;
 
@@ -86,8 +87,20 @@ function getComponent(components, data) {
 function fromFs(fs) {
   return filename => {
     const componentBundleSource = String(fs.readFileSync(filename));
-    return fromString(componentBundleSource, filename);
+    return getExports(componentBundleSource, filename);
   };
+}
+
+const exportsCache = new Map();
+
+function getExports(source, {filename}) {
+  const hash = stringHash(source);
+
+  if (!exportsCache.has(hash)) {
+    exportsCache.set(hash, fromString(source, filename));
+  }
+
+  return exportsCache.get(hash);
 }
 
 function html(content, payload) {
