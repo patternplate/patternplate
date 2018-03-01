@@ -250,7 +250,7 @@ const HiddenSubmit = styled.input.attrs({
 
 const StyledClose = styled(Link)`
   font-size: 0;
-  line-height:0;
+  line-height: 0;
 `;
 
 const StyledCloseIcon = styled(Icon)`
@@ -260,13 +260,13 @@ const StyledCloseIcon = styled(Icon)`
 function Close(props) {
   const verb = props.clears ? `Clear` : "Close";
   const query = props.clears ? { search: null } : { "search-enabled": null };
-  const symbol = props.clears ? "return" : "close";
+  const symbol = "close"; // TODO: Add and use icon for clearing
   return (
     <StyledClose
       query={query}
       title={`${verb} search ${props.shortcut.toString()}`}
     >
-      <StyledCloseIcon size="s" symbol={symbol} />
+      <StyledCloseIcon size="m" symbol={symbol} />
       {verb}
     </StyledClose>
   );
@@ -274,18 +274,18 @@ function Close(props) {
 
 const StyledMarkdown = styled.div`
   width: 80%;
-  margin:0 auto;
+  margin: 0 auto;
 `;
 
 const StyledSearchLegend = styled.div`
-  display:flex;
-  align-items:center;
-  height:30px;
-  position:relative;
-  box-sizing:border-box;
-  width:100%;
-  padding:0 15px;
-  border:1px solid ${props => props.theme.border};
+  display: flex;
+  align-items: center;
+  height: 30px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 15px;
+  border: 1px solid ${props => props.theme.border};
   color: ${props => props.theme.border};
   ${props => withTint(props)};
 `;

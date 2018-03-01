@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import * as actions from "../actions";
 import Search from "../components/search";
+import * as actions from "../actions";
 import * as found from "../selectors/found";
 
 function mapProps(state) {

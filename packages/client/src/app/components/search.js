@@ -218,12 +218,12 @@ export default class Search extends React.Component {
             title={`Search for patterns ${props.shortcuts.toggleSearch.toString()}`}
             value={props.value}
           >
-            {props.enabled && (
+            {props.enabled &&
               <SearchClose
                 shortcut={props.shortcuts.close}
-                clears={String(props.value).length > 0}
+                clears={typeof props.value === "string" && props.value.length > 0}
               />
-            )}
+            }
           </SearchField>
         </SearchFieldSlot>
         <SearchPassThroughSlot>
