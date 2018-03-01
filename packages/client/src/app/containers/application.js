@@ -28,13 +28,9 @@ import Logo from "./logo";
 import Message from "./message";
 import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
 import Network from "./network";
-import ToggleDoc from "./toggle-doc";
-import ToggleInfoPane from "./toggle-info-pane";
 import ToggleNavigation from "./toggle-navigation";
-import ToggleNetwork from "./toggle-network";
 import ToggleOpacity from "./toggle-opacity";
 import ToggleSearch from "./toggle-search";
-import ToggleSource from "./toggle-code";
 import Search from "./search";
 
 export default connect(mapProps, mapDispatch)(Application);
@@ -44,38 +40,10 @@ const selectThemes = createSelector(
   color => themes(color)
 );
 
-const selectIsPattern = createSelector(
-  item.selectType,
-  type => type === "pattern"
-);
-
-const selectCodeEnabled = createSelector(
-  selectIsPattern,
-  state => state.codeEnabled,
-  (isPattern, enabled) => isPattern && enabled
-);
-
-const selectDocEnabled = createSelector(
-  selectIsPattern,
-  item.selectContents,
-  state => state.docEnabled,
-  (isPattern, contents, docEnabled) =>
-    isPattern && Boolean(contents) && docEnabled
-);
-
-const selectInfoEnabled = createSelector(
-  selectIsPattern,
-  state => state.infoEnabled,
-  (isPattern, enabled) => isPattern && enabled
-);
-
 function mapProps(state) {
   return {
     base: state.base,
-    codeEnabled: selectCodeEnabled(state),
-    docEnabled: selectDocEnabled(state),
     description: state.schema.description,
-    infoEnabled: selectInfoEnabled(state),
     lightbox: state.lightbox,
     location: state.routing.locationBeforeTransitions,
     networkEnabled: state.networkEnabled,
@@ -133,7 +101,7 @@ function Application(props) {
                     </NavigationHeader>
                   )}
                   <NavigationToolbar>
-                    <ToggleNetwork />
+                    <div/>
                     <ToggleSearch />
                     <Indicator />
                   </NavigationToolbar>
@@ -156,44 +124,12 @@ function Application(props) {
                   </StyledSearchBox>
                 </ThemeProvider>
               )}
-              <ThemeProvider theme={props.themes.dark}>
-                <StyledFloatingBox>
-                  {props.infoEnabled && (
-                    <StyledInfoPane>
-                      <InfoPane
-                        hermit={!(props.codeEnabled || props.docEnabled)}
-                      >
-                        <ToggleSource />
-                        <ToggleDoc />
-                      </InfoPane>
-                    </StyledInfoPane>
-                  )}
-                  {props.infoEnabled &&
-                    (props.codeEnabled || props.docEnabled) && (
-                      <StyledPane
-                        hermit={!props.infoEnabled}
-                        infoEnabled={props.infoEnabled}
-                      >
-                        {props.codeEnabled &&
-                          !props.docEnabled && (
-                            <CodePane hermit={!props.infoEnabled} />
-                          )}
-                        {props.docEnabled && (
-                          <DocPane hermit={!props.infoEnabled} />
-                        )}
-                      </StyledPane>
-                    )}
-                </StyledFloatingBox>
-              </ThemeProvider>
             </StyledContent>
             <ThemeProvider theme={props.themes.dark}>
               <StyledControlsBox enabled={props.navigationEnabled}>
                 <StyledControlsArea orient="left">
                   <StyledControlsItem>
                     <ToggleNavigation />
-                  </StyledControlsItem>
-                  <StyledControlsItem>
-                    <ToggleInfoPane />
                   </StyledControlsItem>
                 </StyledControlsArea>
                 <StyledControlsArea orient="right">
@@ -207,14 +143,6 @@ function Application(props) {
               </StyledControlsBox>
             </ThemeProvider>
           </StyledContentContainer>
-          {props.networkEnabled && (
-            <StyledNetworkContainer>
-              <Network />
-              <FixedNetworkToggleContainer>
-                <ToggleNetwork />
-              </FixedNetworkToggleContainer>
-            </StyledNetworkContainer>
-          )}
         </StyledApplication>
       </ThemeProvider>
     </injection.InjectionProvider>
@@ -235,23 +163,6 @@ const StyledApplication = styled.div`
   width: 100%;
   height: 100%;
   background: ${props => props.theme.background};
-`;
-
-const StyledNetworkContainer = styled.div`
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: ${props => props.theme.background};
-`;
-
-const FixedNetworkToggleContainer = styled.div`
-  position: fixed;
-  z-index: 4;
-  left: 15px;
-  bottom: 0;
 `;
 
 const StyledNavigationBox = styled(tag(["enabled"])("div"))`
