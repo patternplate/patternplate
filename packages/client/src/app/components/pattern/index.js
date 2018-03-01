@@ -7,6 +7,7 @@ import Transition from "react-transition-group/Transition";
 import PatternDemo from "./pattern-demo";
 
 const VISIBILITY = props => (props.checkers ? "block" : "none");
+const CROSSES = props => encodeURI(`<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path stroke-width="1.5" stroke="#666666" fill="none" d="M15 10.187v9.875M10 15h10"/></svg>`);
 
 const StyledPattern = styled(tag(["checkers"])("div"))`
   box-sizing: border-box;
@@ -23,9 +24,10 @@ const StyledPattern = styled(tag(["checkers"])("div"))`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: ${props => checkers(props)};
-    background-size: 16px 16px;
-    background-position: 0 0, 8px 8px;
+    background-image: url("data:image/svg+xml;utf-8,${CROSSES}");
+    background-size: 15px 15px;
+    background-repeat: repeat;
+    background-position: 50% 50%;
   }
 `;
 
@@ -146,17 +148,6 @@ export default class Pattern extends React.Component {
   }
 }
 
-function grad(fill) {
-  return `linear-gradient(45deg, ${fill} 25%, transparent 25%, transparent 75%, ${fill} 75%, ${fill})`;
-}
-
-function checkers(props) {
-  const fill = props.theme.border;
-  return `
-    ${grad(fill)},
-    ${grad(fill)};
-  `;
-}
 
 function getPrefix(props) {
   if (props.loading) {
