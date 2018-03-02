@@ -114,9 +114,9 @@ async function loadMetaResult(options) {
     const previous = acc.patterns.find(pattern => pattern.id === manifest.name);
 
     if (previous) {
-      const relPath = path.relative(process.cwd(), manifestPath);
+      const relPath = path.relative(process.cwd(), file);
       const err = new Error(`Found duplicated pattern "${previous.id}" at "${relPath}" already present at "${previous.path}"`);
-      err.errno = PATTERNPLATE_DUPE_PATTERN;
+      err.errno = PATTERNPLATE_ERROR_DUPE_PATTERN;
       acc.errors.push(err);
       return acc;
     }
