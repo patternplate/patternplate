@@ -1,0 +1,52 @@
+{
+  "name": "@patternplate/load-manifest",
+  "version": "2.0.0-14",
+  "description": "Read pattern meta data from package.json or pattern.json",
+  "scripts": {
+    "start": "yarn build -w",
+    "test": "jest",
+    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "watch": "yarn build -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "xo": false,
+  "babel": {
+    "sourceMaps": true,
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "targets": {
+            "node": "4"
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
+    "fixturez": "^1.1.0",
+    "jest": "^22.4.2",
+    "jest-cli": "^22.4.2"
+  }
+}
