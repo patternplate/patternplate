@@ -76,7 +76,7 @@ async function createWatcher(options) {
         const result = await loadConfig({ cwd: options.cwd });
         const { config = {}, filepath = options.cwd } = result;
         const { entry = [], docs = [] } = config;
-        const cwd = path.dirname(filepath);
+        const cwd = filepath ? path.dirname(filepath) : options.cwd;
 
         // TODO: only **list** relevant manifest paths
         // instead of reading them
