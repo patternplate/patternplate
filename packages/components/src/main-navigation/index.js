@@ -65,7 +65,7 @@ class Navigation extends React.Component {
               />
           }
           {
-            props.docs.children.length > 0 && (
+            props.navigation.children.length > 0 && (
               <React.Fragment>
                 <NavigationLabel
                   enabled={props.patternsEnabled}
