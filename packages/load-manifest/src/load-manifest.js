@@ -5,6 +5,16 @@ const sander = require("@marionebl/sander");
 const PATTERNPLATE_ERR_NO_MANIFEST = 'PATTERNPLATE_ERR_NO_MANIFEST';
 const PATTERNPLATE_ERR_MALFORMED_MANIFEST = 'PATTERNPLATE_ERR_MALFORMED_MANIFEST';
 
+const DEFAULT_MANIFEST = {
+  displayName: "",
+  version: "1.0.0",
+  build: true,
+  display: true,
+  flag: "alpha",
+  options: {},
+  patterns: {}
+};
+
 module.exports = {
   PATTERNPLATE_ERR_NO_MANIFEST,
   PATTERNPLATE_ERR_MALFORMED_MANIFEST,

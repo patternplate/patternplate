@@ -27,3 +27,12 @@ test("throws for malformed file", async () => {
     errno: errors.PATTERNPLATE_ERR_MALFORMED_MANIFEST
   });
 });
+
+test("throws for empty file", async () => {
+  const cwd = f.copy("empty");
+
+  await expect(loadManifest(cwd)).rejects.toMatchObject({
+    message: expect.stringContaining("Unexpected end"),
+    errno: errors.PATTERNPLATE_ERR_MALFORMED_MANIFEST
+  });
+});
