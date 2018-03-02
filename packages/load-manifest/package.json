@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-manifest",
-  "version": "2.0.0-14",
+  "version": "2.0.0-15",
   "description": "Read pattern meta data from package.json or pattern.json",
   "scripts": {
     "start": "yarn build -w",
