@@ -2,6 +2,8 @@ module.exports = {
   Button: require("./button"),
   CodePane: require("./code-pane"),
   css: require("styled-components").css,
+  Flag: require("./flag"),
+  Headline: require("./headline"),
   Icon: require("./icon"),
   IconDefinitions: require("./icon").definitions,
   InnerInfoPane: require("./info-pane").InnerInfoPane,

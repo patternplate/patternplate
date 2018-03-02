@@ -1,16 +1,17 @@
 const React = require('react');
 const styled = require("styled-components").default;
+
+const Headline = require("../headline");
 const Icon = require('../icon');
 const Link = require('../link');
-const Text = require('../text');
 
-const SIZES = {
-  h1: 36,
-  h2: 27,
-  h3: 23,
-  h4: 18,
-  h5: 18,
-  h6: 18
+const ORDER = {
+  h1: 1,
+  h2: 2,
+  h3: 3,
+  h4: 4,
+  h5: 4,
+  h6: 4
 };
 
 const ThemedIcon = styled(Icon)`
@@ -39,7 +40,6 @@ const StyledTarget = styled.div`
 module.exports = styled(MarkdownHeadline)`
   position: relative;
   color: ${props => props.theme.color};
-  font-size: ${props => SIZES[props.is]}px;
   margin: 60px 0 16px 0;
   font-weight: 300;
   line-height: 1.25;
@@ -57,7 +57,7 @@ function MarkdownHeadline(props) {
   );
 
   return (
-    <Text is={props.is} className={props.className} id={id}>
+    <Headline is={props.is} order={ORDER[props.is]} className={props.className} id={id}>
       {props.linkable ? (
         <MarkdownHeadlineLink name={children} id={id}>
           {props.children}
@@ -65,7 +65,7 @@ function MarkdownHeadline(props) {
       ) : (
         props.children
       )}
-    </Text>
+    </Headline>
   );
 }
 
