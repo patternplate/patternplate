@@ -32,6 +32,6 @@ const StyledDocumentation = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
-  max-width: 800px;
-  padding: 30px;
+  max-width: 860px;
+  padding: 60px;
 `;

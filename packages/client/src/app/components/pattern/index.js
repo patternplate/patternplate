@@ -22,8 +22,8 @@ const StyledPattern = styled(tag(["checkers"])("div"))`
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-image: url("data:image/svg+xml;utf-8,${CROSSES}");
     background-size: 15px 15px;
     background-repeat: repeat;
@@ -51,7 +51,6 @@ const StyledPatternDemo = styled.div`
   height: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  margin-left: 60px;
 `;
 
 const StyledPatternLoader = styled.div`
@@ -98,6 +97,11 @@ const StyledPatternLoader = styled.div`
   }
 `;
 
+const PatternContainer = styled.div`
+  height: 100%;
+  padding-left: 60px;
+`;
+
 export default class Pattern extends React.Component {
   constructor(...args) {
     super(...args);
@@ -137,12 +141,14 @@ export default class Pattern extends React.Component {
           )}
         </Transition>
         <StyledPatternDemo>
-          <PatternDemo
-            src={props.src}
-            contents={props.contents}
-            loading={props.loading}
-            updated={props.updated}
-          />
+          <PatternContainer>
+            <PatternDemo
+              src={props.src}
+              contents={props.contents}
+              loading={props.loading}
+              updated={props.updated}
+            />
+          </PatternContainer>
         </StyledPatternDemo>
       </StyledPattern>
     );
