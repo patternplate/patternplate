@@ -1,0 +1,8 @@
+{
+  "name": "pkg",
+  "patternplate": {
+    "options": {
+      "some": "thing"
+    }
+  }
+}

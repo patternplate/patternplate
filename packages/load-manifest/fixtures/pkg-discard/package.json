@@ -1,0 +1,7 @@
+{
+  "name": "pkg",
+  "patternplate": {},
+  "dependencies": {
+    "@patternplate/cli": "1.0.0"
+  }
+}

@@ -40,7 +40,43 @@ async function loadManifest(dir) {
   const fullPath = path.resolve(dir, file);
   const data = await loadJSON(fullPath);
 
-  return Object.assign({}, DEFAULT_MANIFEST, data);
+  const isPkg = path.basename(file) === "package.json";
+  const isPatternPkg = typeof data.patternplate === "object";
+  const needsPattern = isPkg && !isPatternPkg;
+
+  if (needsPattern && files.length === 1) {
+    const err = new Error(`load-manifest could not find pattern.json in ${dir}, package.json contains no patternplate object`);
+    err.errno = PATTERNPLATE_ERR_NO_MANIFEST;
+    throw err;
+  }
+
+  if (needsPattern && files.length === 2) {
+    const fullPath = path.resolve(dir, files[1]);
+    const data = await loadJSON(fullPath);
+    return Object.assign({}, DEFAULT_MANIFEST, data);
+  }
+
+  const extracted = {};
+
+  if (data.hasOwnProperty('name')) {
+    extracted.name = data.name;
+  }
+
+  if (data.hasOwnProperty('version')) {
+    extracted.version = data.version;
+  }
+
+  const sourceData = isPatternPkg ? data.patternplate : data;
+
+  if (sourceData.hasOwnProperty("displayName")) {
+    extracted.displayName = sourceData.displayName;
+  }
+
+  if (sourceData.hasOwnProperty("options")) {
+    extracted.options = sourceData.options;
+  }
+
+  return Object.assign({}, DEFAULT_MANIFEST, extracted);
 }
 
 async function loadJSON(file) {

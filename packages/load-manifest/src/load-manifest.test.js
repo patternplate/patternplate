@@ -37,9 +37,17 @@ test("throws for empty file", async () => {
   });
 });
 
+test("throws for missing pattern.json next to package.json without options", async () => {
+  const cwd = f.copy("missing-pattern");
+
+  await expect(loadManifest(cwd)).rejects.toMatchObject({
+    message: expect.stringContaining("contains no patternplate"),
+    errno: errors.PATTERNPLATE_ERR_NO_MANIFEST
+  });
+});
+
 test("returns default data for empty data", async () => {
   const cwd = f.copy("empty-data");
-
   const result = await loadManifest(cwd);
 
   expect(result).toMatchObject({
@@ -47,3 +55,60 @@ test("returns default data for empty data", async () => {
     flag: "alpha"
   });
 });
+
+test("ignores package.json if not decorated", async () => {
+  const cwd = f.copy("pkg-undecorated");
+  const result = await loadManifest(cwd);
+
+  expect(result).toMatchObject({
+    "name": "pattern"
+  });
+});
+
+test("honors package.json if decorated", async () => {
+  const cwd = f.copy("pkg");
+  const result = await loadManifest(cwd);
+
+  expect(result).toMatchObject({
+    "name": "pkg"
+  });
+});
+
+test("uses version from package.json", async () => {
+  const cwd = f.copy("pkg-version");
+  const result = await loadManifest(cwd);
+
+  expect(result).toMatchObject({
+    "version": "2.0.0"
+  });
+});
+
+test("discards other data from package.json", async () => {
+  const cwd = f.copy("pkg-discard");
+  const result = await loadManifest(cwd);
+
+  expect(result).not.toMatchObject({
+    "dependencies": {
+      "@patternplate/cli": "1.0.0"
+    }
+  });
+});
+
+test("uses displayName from package.json[patternplate]", async () => {
+  const cwd = f.copy("pkg-display-name");
+  const result = await loadManifest(cwd);
+
+  expect(result).toMatchObject({
+    "displayName": "Package"
+  });
+});
+
+test("uses options from package.json[patternplate]", async () => {
+  const cwd = f.copy("pkg-options");
+  const result = await loadManifest(cwd);
+
+  expect(result).toMatchObject({
+    "options": { "some": "thing" }
+  });
+});
+
