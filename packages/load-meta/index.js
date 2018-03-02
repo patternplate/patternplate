@@ -2,13 +2,12 @@ const path = require("path");
 const url = require("url");
 // const AggregateError = require("aggregate-error");
 const globby = require("globby");
-const loadJsonFile = require("load-json-file");
 const loadSourceMap = require("load-source-map");
 const pFilter = require("p-filter");
 const sander = require("@marionebl/sander");
+const {loadManifest, PATTERNPLATE_ERR_NO_MANIFEST} = require("@patternplate/load-manifest");
 
-const PATTERNPLATE_DUPE_PATTERN = 'PATTERNPLATE_DUPE_PATTERN';
-const MANIFEST_NAME = "pattern.json";
+const PATTERNPLATE_ERROR_DUPE_PATTERN = 'PATTERNPLATE_ERROR_DUPE_PATTERN';
 
 const DEFAULT_MANIFEST = {
   displayName: "",
@@ -23,8 +22,7 @@ const DEFAULT_MANIFEST = {
 module.exports = loadMeta;
 module.exports.loadMetaResult = loadMetaResult;
 module.exports.loadMetaTree = loadMetaTree;
-
-module.exports.PATTERNPLATE_DUPE_PATTERN = PATTERNPLATE_DUPE_PATTERN;
+module.exports.PATTERNPLATE_ERROR_DUPE_PATTERN = PATTERNPLATE_ERROR_DUPE_PATTERN;
 
 async function loadMeta(options) {
   const [err, result] = await loadMetaResult(options);
@@ -89,27 +87,24 @@ async function loadMetaResult(options) {
     return acc;
   }, Promise.resolve([]));
 
-  const candidates = await pFilter(pairs, pair => {
-    return sander.exists(path.dirname(pair.source), MANIFEST_NAME);
-  });
-
-  const inspected = await candidates.reduce(async (accing, pair) => {
+  const inspected = await pairs.reduce(async (accing, pair) => {
     const acc = await accing;
     const { source, artifact } = pair;
     const patternBase = path.dirname(source);
-    const manifestPath = path.join(patternBase, MANIFEST_NAME);
+    const [err, result] = await json(patternBase);
 
-    const base = path.dirname(path.relative(options.cwd, patternBase));
-    const relativeManifestPath = path.relative(options.cwd, manifestPath);
-
-    if (acc.patterns.some(p => relativeManifestPath === p.path)) {
+    if (err) {
+      if (err.errno !== PATTERNPLATE_ERR_NO_MANIFEST) {
+        acc.errors.push(err);
+      }
       return acc;
     }
 
-    const [err, data] = await json(manifestPath);
+    const {file, manifest: data} = result;
+    const base = path.dirname(path.relative(options.cwd, patternBase));
+    const relativeManifestPath = path.relative(options.cwd, file);
 
-    if (err) {
-      acc.errors.push(err)
+    if (acc.patterns.some(p => relativeManifestPath === p.path)) {
       return acc;
     }
 
@@ -157,7 +152,7 @@ async function loadMetaTree(options) {
 
 async function getFiles(source, options) {
   const cwd = path.dirname(source);
-  return (await globby(["*", `!${MANIFEST_NAME}`], { cwd })).map(file =>
+  return (await globby(["*", "!package.json", "!pattern.json"], { cwd })).map(file =>
     path.relative(options.cwd, path.join(cwd, file))
   );
 }
@@ -175,7 +170,7 @@ function getSourceMap(jsFile) {
 
 async function json(jsonFile) {
   try {
-    return [null, await loadJsonFile(jsonFile)];
+    return [null, await loadManifest(jsonFile)];
   } catch (err) {
     return [err];
   }
