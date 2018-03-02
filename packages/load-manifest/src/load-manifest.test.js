@@ -1,3 +1,4 @@
+const path = require("path");
 const fixturez = require("fixturez");
 const errors = require("./load-manifest");
 const {loadManifest} = require("./load-manifest");
@@ -50,7 +51,7 @@ test("returns default data for empty data", async () => {
   const cwd = f.copy("empty-data");
   const result = await loadManifest(cwd);
 
-  expect(result).toMatchObject({
+  expect(result.manifest).toMatchObject({
     version: "1.0.0",
     flag: "alpha"
   });
@@ -60,7 +61,7 @@ test("ignores package.json if not decorated", async () => {
   const cwd = f.copy("pkg-undecorated");
   const result = await loadManifest(cwd);
 
-  expect(result).toMatchObject({
+  expect(result.manifest).toMatchObject({
     "name": "pattern"
   });
 });
@@ -69,16 +70,14 @@ test("honors package.json if decorated", async () => {
   const cwd = f.copy("pkg");
   const result = await loadManifest(cwd);
 
-  expect(result).toMatchObject({
-    "name": "pkg"
-  });
+  expect(result.file).toBe(path.join(cwd, "package.json"));
 });
 
 test("uses version from package.json", async () => {
   const cwd = f.copy("pkg-version");
   const result = await loadManifest(cwd);
 
-  expect(result).toMatchObject({
+  expect(result.manifest).toMatchObject({
     "version": "2.0.0"
   });
 });
@@ -87,7 +86,7 @@ test("discards other data from package.json", async () => {
   const cwd = f.copy("pkg-discard");
   const result = await loadManifest(cwd);
 
-  expect(result).not.toMatchObject({
+  expect(result.manifest).not.toMatchObject({
     "dependencies": {
       "@patternplate/cli": "1.0.0"
     }
@@ -98,7 +97,7 @@ test("uses displayName from package.json[patternplate]", async () => {
   const cwd = f.copy("pkg-display-name");
   const result = await loadManifest(cwd);
 
-  expect(result).toMatchObject({
+  expect(result.manifest).toMatchObject({
     "displayName": "Package"
   });
 });
@@ -107,7 +106,7 @@ test("uses options from package.json[patternplate]", async () => {
   const cwd = f.copy("pkg-options");
   const result = await loadManifest(cwd);
 
-  expect(result).toMatchObject({
+  expect(result.manifest).toMatchObject({
     "options": { "some": "thing" }
   });
 });

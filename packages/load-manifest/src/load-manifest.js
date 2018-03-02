@@ -53,7 +53,7 @@ async function loadManifest(dir) {
   if (needsPattern && files.length === 2) {
     const fullPath = path.resolve(dir, files[1]);
     const data = await loadJSON(fullPath);
-    return Object.assign({}, DEFAULT_MANIFEST, data);
+    return {file: fullPath, manifest: Object.assign({}, DEFAULT_MANIFEST, data)};
   }
 
   const extracted = {};
@@ -76,7 +76,7 @@ async function loadManifest(dir) {
     extracted.options = sourceData.options;
   }
 
-  return Object.assign({}, DEFAULT_MANIFEST, extracted);
+  return {file: fullPath, manifest: Object.assign({}, DEFAULT_MANIFEST, extracted)};
 }
 
 async function loadJSON(file) {
