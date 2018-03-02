@@ -6,8 +6,14 @@ import Transition from "react-transition-group/Transition";
 
 import PatternDemo from "./pattern-demo";
 
+const btoa = global.btoa ? global.btoa : input => Buffer.from(input).toString('base64');
+
 const VISIBILITY = props => (props.checkers ? "block" : "none");
-const CROSSES = props => encodeURI(`<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path stroke-width="1.5" stroke="#666666" fill="none" d="M15 10.187v9.875M10 15h10"/></svg>`);
+const CROSSES = props => btoa(`
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-width="1.5" stroke="#666666" fill="none" d="M15 10.187v9.875M10 15h10"/>
+</svg>
+`);
 
 const StyledPattern = styled(tag(["checkers"])("div"))`
   box-sizing: border-box;
@@ -24,7 +30,7 @@ const StyledPattern = styled(tag(["checkers"])("div"))`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml;utf-8,${CROSSES}");
+    background-image: url("data:image/svg+xml;base64,${CROSSES}");
     background-size: 15px 15px;
     background-repeat: repeat;
     background-position: 50% 50%;
