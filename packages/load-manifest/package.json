@@ -48,5 +48,8 @@
     "fixturez": "^1.1.0",
     "jest": "^22.4.2",
     "jest-cli": "^22.4.2"
+  },
+  "dependencies": {
+    "@marionebl/sander": "^0.6.1"
   }
 }
