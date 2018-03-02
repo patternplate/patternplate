@@ -111,3 +111,21 @@ test("uses options from package.json[patternplate]", async () => {
   });
 });
 
+test("uses tags from pattern.json[tags]", async () => {
+  const cwd = f.copy("pattern-tags");
+  const result = await loadManifest(cwd);
+
+  expect(result.manifest).toMatchObject({
+    "tags": expect.arrayContaining(["a", "b", "c"])
+  });
+});
+
+
+test("uses tags from package.json[tags]", async () => {
+  const cwd = f.copy("pkg-tags");
+  const result = await loadManifest(cwd);
+
+  expect(result.manifest).toMatchObject({
+    "tags": expect.arrayContaining(["a", "b", "c"])
+  });
+});

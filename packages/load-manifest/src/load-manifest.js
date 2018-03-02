@@ -7,12 +7,10 @@ const PATTERNPLATE_ERR_MALFORMED_MANIFEST = 'PATTERNPLATE_ERR_MALFORMED_MANIFEST
 
 const DEFAULT_MANIFEST = {
   displayName: "",
-  version: "1.0.0",
-  build: true,
-  display: true,
   flag: "alpha",
   options: {},
-  patterns: {}
+  tags: [],
+  version: "1.0.0",
 };
 
 module.exports = {
@@ -64,6 +62,10 @@ async function loadManifest(dir) {
 
   if (data.hasOwnProperty('version')) {
     extracted.version = data.version;
+  }
+
+  if (data.hasOwnProperty('tags')) {
+    extracted.tags = data.tags;
   }
 
   const sourceData = isPatternPkg ? data.patternplate : data;
