@@ -1,0 +1,12 @@
+{
+  "name": "@example-lerna/button",
+  "version": "1.0.0",
+  "patternplate": {
+    "displayName": "Button"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  }
+}

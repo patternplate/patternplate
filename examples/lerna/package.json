@@ -1,0 +1,22 @@
+{
+  "name": "@examples/lerna",
+  "version": "2.0.0-14",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "patternplate"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sinnerschrader/patternplate"
+  },
+  "xo": false,
+  "devDependencies": {
+    "@patternplate/cli": "^2.0.0-14",
+    "@patternplate/render-default": "^2.0.0-14"
+  }
+}

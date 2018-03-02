@@ -1,0 +1,16 @@
+html {
+  margin: 0;
+}
+
+.Swatch {
+  width: 150px;
+  height: 150px;
+}
+
+.Swatch--white {
+  background: var(--color-white);
+}
+
+.Swatch--black {
+  background: var(--color-black);
+}
