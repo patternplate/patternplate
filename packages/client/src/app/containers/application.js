@@ -92,23 +92,28 @@ function Application(props) {
           <Helmet meta={meta(props)} title={props.title} />
           <Favicon />
           <ThemeProvider theme={props.themes.dark}>
-            <StyledNavigationBox enabled={props.navigationEnabled}>
-              {props.navigationEnabled && (
-                <Navigation>
-                  {props.logo && (
-                    <NavigationHeader>
-                      <Logo />
-                    </NavigationHeader>
-                  )}
-                  <NavigationToolbar>
-                    <div/>
-                    <ToggleSearch />
-                    <Indicator />
-                  </NavigationToolbar>
-                </Navigation>
-              )}
-            </StyledNavigationBox>
+            <React.Fragment>
+              <StyledNavigationBox enabled={props.navigationEnabled}>
+                {props.navigationEnabled && (
+                  <Navigation>
+                    {props.logo && (
+                      <NavigationHeader>
+                        <Logo />
+                      </NavigationHeader>
+                    )}
+                    <NavigationToolbar>
+                      <div/>
+                      <ToggleSearch />
+                      <Indicator />
+                    </NavigationToolbar>
+                  </Navigation>
+                )}
+              </StyledNavigationBox>
+            </React.Fragment>
           </ThemeProvider>
+          <NavigationControl enabled={props.navigationEnabled}>
+            <ToggleNavigation />
+          </NavigationControl>
           <StyledContentContainer>
             <StyledContent navigationEnabled={props.navigationEnabled}>
               <StyledMessageBox>
@@ -125,13 +130,8 @@ function Application(props) {
                 </ThemeProvider>
               )}
             </StyledContent>
-            <ThemeProvider theme={props.themes.dark}>
+            {/* <ThemeProvider theme={props.themes.dark}>
               <StyledControlsBox enabled={props.navigationEnabled}>
-                <StyledControlsArea orient="left">
-                  <StyledControlsItem>
-                    <ToggleNavigation />
-                  </StyledControlsItem>
-                </StyledControlsArea>
                 <StyledControlsArea orient="right">
                   <StyledControlsItem>
                     <ToggleOpacity />
@@ -141,7 +141,7 @@ function Application(props) {
                   </StyledControlsItem>
                 </StyledControlsArea>
               </StyledControlsBox>
-            </ThemeProvider>
+            </ThemeProvider> */}
           </StyledContentContainer>
         </StyledApplication>
       </ThemeProvider>
@@ -196,6 +196,7 @@ const StyledControlsBox = styled.div`
   box-sizing: border-box;
   height: ${TOOLBAR_HEIGHT}px;
   padding: 0 15px;
+  background: white;
 `;
 
 const StyledControlsItem = styled.div`
@@ -212,12 +213,10 @@ const StyledContent = styled.div`
 `;
 
 const StyledContentContainer = styled.div`
-  display: flex;
   flex: 1 1 calc(100% - ${NAVIGATION_WIDTH}px);
   width: calc(100% - ${NAVIGATION_WIDTH}px);
-  height: 100%;
   flex-direction: column;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const StyledSearchBox = styled.div`
@@ -264,6 +263,18 @@ const StyledPane = styled.div`
   width: 100%;
   overflow: hidden;
   pointer-events: all;
+`;
+
+const NavigationControl = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: ${props => props.enabled ? '300px' : '0'};
+  width: 60px;
+  height: 60px;
 `;
 
 function meta(props) {

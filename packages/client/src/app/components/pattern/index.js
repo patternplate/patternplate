@@ -51,6 +51,7 @@ const StyledPatternDemo = styled.div`
   height: 100%;
   max-width: 1240px;
   margin: 0 auto;
+  margin-left: 60px;
 `;
 
 const StyledPatternLoader = styled.div`
