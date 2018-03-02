@@ -31,9 +31,7 @@ async function patternplate(options) {
   return {
     app,
     port,
-    subscribe() {
-      clientMiddleware.subscribe();
-    }
+    subscribe: clientMiddleware.subscribe
   };
 }
 

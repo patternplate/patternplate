@@ -39,5 +39,5 @@ module.exports = () => <PatternDemo id="src/code" />;
 const React = require('react');
 const {PatternDemo} = require("@patternplate/widgets");
 
-module.exports = () => <PatternDemo id="src/button" />;
+module.exports = () => <PatternDemo id="button" />;
 ```

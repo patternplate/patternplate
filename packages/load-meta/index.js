@@ -1,11 +1,13 @@
 const path = require("path");
 const url = require("url");
+// const AggregateError = require("aggregate-error");
 const globby = require("globby");
 const loadJsonFile = require("load-json-file");
 const loadSourceMap = require("load-source-map");
 const pFilter = require("p-filter");
 const sander = require("@marionebl/sander");
 
+const PATTERNPLATE_DUPE_PATTERN = 'PATTERNPLATE_DUPE_PATTERN';
 const MANIFEST_NAME = "pattern.json";
 
 const DEFAULT_MANIFEST = {
@@ -19,9 +21,20 @@ const DEFAULT_MANIFEST = {
 };
 
 module.exports = loadMeta;
+module.exports.loadMetaResult = loadMetaResult;
 module.exports.loadMetaTree = loadMetaTree;
 
+module.exports.PATTERNPLATE_DUPE_PATTERN = PATTERNPLATE_DUPE_PATTERN;
+
 async function loadMeta(options) {
+  const [err, result] = await loadMetaResult(options);
+  if (err) {
+    throw err;
+  }
+  return result;
+}
+
+async function loadMetaResult(options) {
   const list = await globby(options.entry, { cwd: options.cwd });
   const entries = await Promise.all(
     list.map(async bundle => {
@@ -100,16 +113,21 @@ async function loadMeta(options) {
       return acc;
     }
 
-    const id = path
-      .join(base, data.name)
-      .split(path.sep)
-      .join("/");
-
     data.displayName = data.displayName || data.name || null;
-    const manifest = { ...DEFAULT_MANIFEST, ...data };
+    const manifest = Object.assign({}, DEFAULT_MANIFEST, data);
+
+    const previous = acc.patterns.find(pattern => pattern.id === manifest.name);
+
+    if (previous) {
+      const relPath = path.relative(process.cwd(), manifestPath);
+      const err = new Error(`Found duplicated pattern "${previous.id}" at "${relPath}" already present at "${previous.path}"`);
+      err.errno = PATTERNPLATE_DUPE_PATTERN;
+      acc.errors.push(err);
+      return acc;
+    }
 
     acc.patterns.push({
-      id,
+      id: manifest.name,
       artifact,
       contentType: "pattern",
       source: path.relative(options.cwd, source),
@@ -125,8 +143,12 @@ async function loadMeta(options) {
     patterns: []
   }));
 
-  const {patterns} = inspected;
-  return patterns;
+  const {patterns, errors} = inspected;
+
+  return [
+    errors.length > 0 ? errors : null,
+    patterns
+  ];
 }
 
 async function loadMetaTree(options) {

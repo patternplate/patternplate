@@ -38,7 +38,12 @@ async function main({ input, flags }) {
 
     spinner.text = `Started on http://localhost:${app.port}`;
     spinner.succeed();
-    app.subscribe();
+    app.subscribe(message => {
+      if (message.type === "error") {
+        spinner.text = message.payload.message;
+        spinner.fail();
+      }
+    });
   } catch (err) {
     switch (err.code) {
       case "EADDRINUSE":

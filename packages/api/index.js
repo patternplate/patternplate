@@ -1,7 +1,7 @@
 // const AggregateError = require("aggregate-error");
 const path = require("path");
 const loadConfig = require("@patternplate/load-config");
-const loadMeta = require("@patternplate/load-meta");
+const {loadMetaResult} = require("@patternplate/load-meta");
 const ARSON = require("arson");
 const chokidar = require("chokidar");
 const commonDir = require("common-dir");
@@ -30,7 +30,7 @@ async function api({ server, cwd }) {
     .get("/demo/*/index.html", await demo({ cwd, queue: serverQueue }))
     .use(await pack({ compiler: clientQueue.compiler }));
 
-  mw.subscribe = () => {
+  mw.subscribe = handler => {
     debug("subscribing to webpack and fs events");
     const wss = new WebSocket.Server({ server });
 
@@ -45,72 +45,88 @@ async function api({ server, cwd }) {
       });
     });
 
-    const send = getSender(wss);
+    const send = getSender(wss, handler);
 
-    clientQueue.subscribe();
+    clientQueue.subscribe(queue => {
+      const [message] = queue;
+      send({type: message.type});
+    });
 
     serverQueue.subscribe(queue => {
       const [message] = queue;
-      send({type: message.type });
+      send({type: message.type});
     });
 
-    watcher.subscribe(message => {
-      send(message);
-    });
+    watcher.subscribe(send);
   };
 
   return mw;
 }
 
 async function createWatcher(options) {
-  const result = await loadConfig({ cwd: options.cwd });
-  const { config = {}, filepath = options.cwd } = result;
-  const { entry = [], docs = [] } = config;
-  const cwd = path.dirname(filepath);
-
-  // TODO: only **list** relevant manifest paths
-  // instead of reading them
-  const meta = await loadMeta({
-    entry,
-    cwd
-  });
-
-  const parents = [
-    commonDir(meta.map(m => path.join(cwd, m.path))),
-    ...docs.map(d => path.join(cwd, globParent(d))),
-    ...entry.map(e => path.join(cwd, globParent(e)))
-  ];
-
+  let watching = false;
   let subscribers = [];
-
   const next = message => subscribers.forEach(subs => subs.next(message));
 
-  const watcher = chokidar.watch(parents, {
-    ignoreInitial: true
-  });
-
-  debug("subscribing to meta data and documentation changes");
-  watcher.on('all', (e, p) => {
-    const rel = path.relative(cwd, p);
-
-    if (path.basename(rel) === "pattern.json") {
-      next({ type: "change", payload: { file: p, contentType: "pattern" }});
-    }
-    if (micromatch.some(rel, docs, {matchBase: true})) {
-      next({ type: "change", payload: { file: p, contentType: "doc" }});
-    }
-  });
-
   return new Observable(subs => {
+    if (!watching) {
+      watching = true;
+
+      (async () => {
+        const result = await loadConfig({ cwd: options.cwd });
+        const { config = {}, filepath = options.cwd } = result;
+        const { entry = [], docs = [] } = config;
+        const cwd = path.dirname(filepath);
+
+        // TODO: only **list** relevant manifest paths
+        // instead of reading them
+        const [errors, meta] = await loadMetaResult({
+          entry,
+          cwd
+        });
+
+        if (errors && errors.length > 0) {
+          errors.forEach(err => next({ type: 'error', payload: err }));
+        }
+
+        const parents = [
+          commonDir(meta.map(m => path.join(cwd, m.path))),
+          ...docs.map(d => path.join(cwd, globParent(d))),
+          ...entry.map(e => path.join(cwd, globParent(e)))
+        ];
+
+        const watcher = chokidar.watch(parents, {
+          ignoreInitial: true
+        });
+
+        debug("subscribing to meta data and documentation changes");
+
+        watcher.on('all', async (e, p) => {
+          const rel = path.relative(cwd, p);
+
+          if (path.basename(rel) === "pattern.json") {
+            next({ type: "change", payload: { file: p, contentType: "pattern" }});
+          }
+          if (micromatch.some(rel, docs, {matchBase: true})) {
+            next({ type: "change", payload: { file: p, contentType: "doc" }});
+          }
+        });
+      })();
+    }
+
     subscribers.push(subs);
+
     return () => {
       subscribers = subscribers.filter(s => s !== subs);
     };
   });
 }
 
-function getSender(wss) {
+function getSender(wss, handler) {
   return message => {
+    if (typeof handler === "function") {
+      handler(message);
+    }
     wss.clients.forEach(client => {
       if (client.readyState === WebSocket.OPEN) {
         client.send(ARSON.stringify(message));

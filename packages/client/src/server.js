@@ -35,9 +35,7 @@ async function client(options) {
     .get("/doc/*", mainRoute)
     .get("/", mainRoute);
 
-  app.subscribe = () => {
-    apiRoute.subscribe();
-  }
+  app.subscribe = apiRoute.subscribe;
 
   return app;
 }

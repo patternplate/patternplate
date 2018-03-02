@@ -14,16 +14,13 @@ export function flatten(tree) {
 }
 
 export function sanitize(tree, context) {
-  const { hide, id, config = {}, prefix, base, location, search } = context;
-  const filter = hide ? child => !child.manifest.options.hidden : i => i;
+  const { id, config = {}, prefix, base, location, search } = context;
 
   tree.children = tree.children
-    .filter(filter)
     .map(child => {
       const enriched = enrich(child, {
         base,
         location,
-        hide,
         id,
         config,
         prefix,
@@ -70,7 +67,7 @@ export function enrich(child, context) {
 
   child.href = url.format({
     pathname: url.resolve(context.base, parsed.pathname),
-    query: { ...context.location.query, ...q }
+    query: Object.assign({}, context.location.query, q)
   });
 
   child.warnings = child.warnings || [];
