@@ -1,8 +1,11 @@
 const React = require("react");
 const styled = require("styled-components").default;
+const fonts = require("../fonts");
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
 const Header = require("../main-header");
+
+const FONTS = fonts();
 
 class Navigation extends React.Component {
   constructor(...args) {
@@ -22,11 +25,12 @@ class Navigation extends React.Component {
 
     if (item.bottom > list.bottom - pad("bottom")) {
       this.ref.scrollTop =
-        e.target.offsetTop - list.height + pad("bottom") + item.height;
+        e.target.offsetTop - list.height + pad("bottom") + 60 + item.height;
+      return;
     }
 
-    if (item.top < list.top + pad("top")) {
-      this.ref.scrollTop = e.target.offsetTop + pad("top");
+    if (item.top < list.top + 90 + pad("top")) {
+      this.ref.scrollTop = e.target.offsetTop + pad("top") - 90;
     }
   }
 
@@ -51,19 +55,35 @@ class Navigation extends React.Component {
               symbol="patternplate"
             />
           )}
-          <Documentation
-            active={props.active}
-            docs={props.docs}
-            onItemClick={props.onItemClick}
-            onScrollRequest={this.handleScrollRequest}
-          />
-          <NavigationTree
-            active={props.active}
-            data={props.navigation.children}
-            onItemClick={props.onItemClick}
-            onScrollRequest={this.handleScrollRequest}
-            prefix="/pattern"
-          />
+          { props.docs.children.length > 0 &&
+            <React.Fragment>
+              <NavigationLabel>
+                Docs
+              </NavigationLabel>
+              <Documentation
+                active={props.active}
+                docs={props.docs}
+                onItemClick={props.onItemClick}
+                onScrollRequest={this.handleScrollRequest}
+                />
+            </React.Fragment>
+          }
+          {
+            props.docs.children.length > 0 && (
+              <React.Fragment>
+                <NavigationLabel>
+                  Patterns
+                </NavigationLabel>
+                <NavigationTree
+                  active={props.active}
+                  data={props.navigation.children}
+                  onItemClick={props.onItemClick}
+                  onScrollRequest={this.handleScrollRequest}
+                  prefix="/pattern"
+                  />
+              </React.Fragment>
+            )
+          }
         </StyledNavigationTree>
         {toolbar && (
           <StyledNavigationToolbar>{toolbar}</StyledNavigationToolbar>
@@ -81,6 +101,10 @@ Navigation.defaultProps = {
   tools: []
 };
 
+function NavigationLabel(props) {
+  return <StyledLabel>{props.children}</StyledLabel>;
+}
+
 function NavigationHeader(props) {
   return <div>{props.children}</div>;
 }
@@ -92,8 +116,10 @@ function getPadding(el) {
 }
 
 const StyledHeader = styled(Header)`
+  position: sticky;
+  top: 0;
+  height: 60px;
   box-sizing: border-box;
-  margin-bottom: 10px;
 `;
 
 const StyledNavigation = styled.div`
@@ -105,6 +131,19 @@ const StyledNavigation = styled.div`
   background-color: ${props => props.theme.background};
 `;
 
+const StyledLabel = styled.div`
+  position: sticky;
+  top: 60px;
+  left: 0;
+  padding: 5px 10px;
+  font-family: ${FONTS.default};
+  font-size: .8em;
+  color: ${props => props.theme.color};
+  background-color: ${props => props.theme.background};
+  border: 1px solid ${props => props.theme.border};
+  border-width: 1px 0;
+`;
+
 const PASSAGE_HEIGHT = 50;
 
 const StyledNavigationTree = styled.div`
@@ -113,6 +152,7 @@ const StyledNavigationTree = styled.div`
   padding-bottom: 50px;
   overflow-x: hidden;
   overflow-y: scroll;
+  scroll-behavior: smooth;
   -webkit-overflow-scroll: touch;
   mask-image: linear-gradient(
     to top,
@@ -146,6 +186,5 @@ function Documentation(props) {
 
 const StyledDocumentationTree = styled(NavigationTree)`
   margin-bottom: 5px;
-  border-bottom: 1px solid ${props => props.theme.border};
   padding-bottom: 5px;
 `;
