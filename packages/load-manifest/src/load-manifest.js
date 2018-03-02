@@ -39,6 +39,8 @@ async function loadManifest(dir) {
 
   const fullPath = path.resolve(dir, file);
   const data = await loadJSON(fullPath);
+
+  return Object.assign({}, DEFAULT_MANIFEST, data);
 }
 
 async function loadJSON(file) {

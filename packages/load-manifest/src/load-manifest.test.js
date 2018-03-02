@@ -36,3 +36,14 @@ test("throws for empty file", async () => {
     errno: errors.PATTERNPLATE_ERR_MALFORMED_MANIFEST
   });
 });
+
+test("returns default data for empty data", async () => {
+  const cwd = f.copy("empty-data");
+
+  const result = await loadManifest(cwd);
+
+  expect(result).toMatchObject({
+    version: "1.0.0",
+    flag: "alpha"
+  });
+});
