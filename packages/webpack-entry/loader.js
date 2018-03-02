@@ -22,7 +22,7 @@ module.exports = async function webpackEntry() {
 
   const reg = await Promise.all(files.map(async file => {
     const full = path.join(context, file);
-    const exported = require(full);
+    const exported = getExported(full);
 
     const mod = [`module.exports['${file}'] = require('./${file}');`]
 
@@ -55,4 +55,12 @@ function ext(e, ...input) {
   parsed.base = `${path.basename(parsed.base, path.extname(parsed.base))}${e}`;
   parsed.ext = e;
   return path.format(parsed);
+}
+
+function getExported(id) {
+  try {
+    return require(id)
+  } catch (err) {
+    return {};
+  }
 }
