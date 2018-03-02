@@ -1,3 +1,4 @@
+import ARSON from "arson";
 import assert from "assert";
 
 const CODES = {
@@ -38,19 +39,39 @@ export default class Shortcut {
     if (!this.active) {
       return;
     }
-    global.addEventListener("keydown", e => {
+
+    const onKeyPress = e => {
       if (!this.modifiers.every(m => e[m])) {
         return;
       }
 
-      const code = e.data ? e.data.keyCode : e.keyCode;
-
-      if (code !== this.code) {
-        return;
+      if (e.keyCode !== this.code) {
+        return false;
       }
 
-      e.preventDefault();
       store.dispatch(this.action());
+    };
+
+    global.addEventListener("message", e => {
+      try {
+        const message = ARSON.parse(e.data);
+        if (message.type === "keydown") {
+          onKeyPress(message.payload);
+        }
+      } catch (err) {
+
+      }
+    }, false);
+
+    global.addEventListener("keydown", e => {
+      const prevent = onKeyPress({
+        altKey: e.altKey,
+        ctrlKey: e.ctrlKey,
+        keyCode: (e.data || e).keyCode,
+      });
+      if (prevent) {
+        e.preventDefault();
+      }
     });
   }
 

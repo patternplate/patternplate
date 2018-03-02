@@ -29,4 +29,15 @@ function main() {
       }
     });
   }
+
+  window.addEventListener("keydown", e => {
+    top.postMessage(ARSON.stringify({
+      type: "keydown",
+      payload: {
+        keyCode: (e.data || e).keyCode,
+        altKey: e.altKey,
+        ctrlKey: e.ctrlKey
+      }
+    }), "*");
+  });
 }
