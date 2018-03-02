@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/websocket-client",
-  "version": "2.0.0-15",
+  "version": "2.0.0-16",
   "description": "Websocket client with automatic retries",
   "scripts": {
     "start": "yarn build -w",
