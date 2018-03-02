@@ -39,7 +39,7 @@ async function main({ input, flags }) {
     spinner.text = `Started on http://localhost:${app.port}`;
     spinner.succeed();
     app.subscribe(message => {
-      if (message.type === "error") {
+      if (message.type === "error" && message.payload && typeof message.payload.message === "string") {
         spinner.text = message.payload.message;
         spinner.fail();
       }

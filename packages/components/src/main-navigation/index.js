@@ -1,9 +1,10 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const fonts = require("../fonts");
+const Link = require("../link");
+const Header = require("../main-header");
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
-const Header = require("../main-header");
 
 const FONTS = fonts();
 
@@ -55,32 +56,32 @@ class Navigation extends React.Component {
               symbol="patternplate"
             />
           )}
-          { props.docs.children.length > 0 &&
-            <React.Fragment>
-              <NavigationLabel>
-                Docs
-              </NavigationLabel>
-              <Documentation
-                active={props.active}
-                docs={props.docs}
-                onItemClick={props.onItemClick}
-                onScrollRequest={this.handleScrollRequest}
-                />
-            </React.Fragment>
+          {props.docs.children.length > 0 &&
+            <Documentation
+              active={props.active}
+              docs={props.docs}
+              onItemClick={props.onItemClick}
+              onScrollRequest={this.handleScrollRequest}
+              />
           }
           {
             props.docs.children.length > 0 && (
               <React.Fragment>
-                <NavigationLabel>
+                <NavigationLabel
+                  enabled={props.patternsEnabled}
+                  name="patterns">
                   Patterns
                 </NavigationLabel>
-                <NavigationTree
-                  active={props.active}
-                  data={props.navigation.children}
-                  onItemClick={props.onItemClick}
-                  onScrollRequest={this.handleScrollRequest}
-                  prefix="/pattern"
-                  />
+                {
+                  props.patternsEnabled &&
+                    <NavigationTree
+                      active={props.active}
+                      data={props.navigation.children}
+                      onItemClick={props.onItemClick}
+                      onScrollRequest={this.handleScrollRequest}
+                      prefix="/pattern"
+                      />
+                }
               </React.Fragment>
             )
           }
@@ -102,7 +103,17 @@ Navigation.defaultProps = {
 };
 
 function NavigationLabel(props) {
-  return <StyledLabel>{props.children}</StyledLabel>;
+  return (
+    <StyledLabel>
+      {props.children}
+      <StyledLabelLink
+        query={{[`${props.name}-enabled`]: !props.enabled}}
+        title={`${props.enabled ? 'Close' : 'Expand'} ${props.children} list`}
+        >
+        {props.enabled ? '▼' : '◀'}
+      </StyledLabelLink>
+    </StyledLabel>
+  );
 }
 
 function NavigationHeader(props) {
@@ -136,12 +147,21 @@ const StyledLabel = styled.div`
   top: 60px;
   left: 0;
   padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-family: ${FONTS.default};
   font-size: .8em;
   color: ${props => props.theme.color};
   background-color: ${props => props.theme.background};
   border: 1px solid ${props => props.theme.border};
   border-width: 1px 0;
+`;
+
+const StyledLabelLink = styled(Link)`
+  color: ${props => props.theme.color};
+  text-decoration: none;
+  margin-right: 15px;
 `;
 
 const PASSAGE_HEIGHT = 50;
