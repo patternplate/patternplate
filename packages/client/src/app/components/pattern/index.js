@@ -5,6 +5,7 @@ import tag from "tag-hoc";
 import Transition from "react-transition-group/Transition";
 
 import PatternDemo from "./pattern-demo";
+import PatternSheet from "./pattern-sheet";
 
 const btoa = global.btoa ? global.btoa : input => Buffer.from(input).toString('base64');
 
@@ -16,6 +17,8 @@ const CROSSES = props => btoa(`
 `);
 
 const StyledPattern = styled(tag(["checkers"])("div"))`
+  position: sticky;
+  top: 0;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -132,35 +135,37 @@ export default class Pattern extends React.Component {
     }
 
     return (
-      <StyledPattern checkers={props.opacity}>
-        <Helmet
-          title={[getPrefix(props), props.displayName]
-            .filter(Boolean)
-            .join(": ")}
-        />
-        <Transition
-          in={props.loading || props.error}
-          timeout={{ enter: 1000, exit: 850 }}
-        >
-          {status => (
-            <StyledPatternLoader status={status} error={props.error} />
-          )}
-        </Transition>
-        <StyledPatternDemo>
-          <PatternContainer>
-            <PatternDemo
-              src={props.src}
-              contents={props.contents}
-              loading={props.loading}
-              updated={props.updated}
-            />
-          </PatternContainer>
-        </StyledPatternDemo>
-      </StyledPattern>
+      <React.Fragment>
+        <StyledPattern checkers={props.opacity}>
+          <Helmet
+            title={[getPrefix(props), props.displayName]
+              .filter(Boolean)
+              .join(": ")}
+          />
+          <Transition
+            in={props.loading || props.error}
+            timeout={{ enter: 1000, exit: 850 }}
+          >
+            {status => (
+              <StyledPatternLoader status={status} error={props.error} />
+            )}
+          </Transition>
+          <StyledPatternDemo>
+            <PatternContainer>
+              <PatternDemo
+                src={props.src}
+                contents={props.contents}
+                loading={props.loading}
+                updated={props.updated}
+              />
+            </PatternContainer>
+          </StyledPatternDemo>
+        </StyledPattern>
+        <PatternSheet/>
+      </React.Fragment>
     );
   }
 }
-
 
 function getPrefix(props) {
   if (props.loading) {

@@ -20,7 +20,6 @@ import * as item from "../selectors/item";
 import CodePane from "./code-pane";
 import DocPane from "./doc-pane";
 import Favicon from "./favicon";
-import Fullscreen from "./trigger-fullscreen";
 import Indicator from "./indicator";
 import InfoPane from "./info-pane";
 import ConnectedLink from "./link";
@@ -29,7 +28,6 @@ import Message from "./message";
 import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
 import Network from "./network";
 import ToggleNavigation from "./toggle-navigation";
-import ToggleOpacity from "./toggle-opacity";
 import ToggleSearch from "./toggle-search";
 import Search from "./search";
 
@@ -152,10 +150,6 @@ function Application(props) {
 const WIDTH = 300;
 const NAVIGATION_WIDTH = props => (props.enabled ? WIDTH : 0);
 const TOOLBAR_HEIGHT = 60;
-const ORIENTATION = props => {
-  const direction = props.orient === "right" ? "left" : "right";
-  return `margin-${direction}: auto`;
-};
 
 const StyledApplication = styled.div`
   box-sizing: border-box;
@@ -180,29 +174,6 @@ const StyledMessageBox = styled.div`
   padding: 15px;
   width: 100%;
   overflow: hidden;
-`;
-
-const StyledControlsArea = styled.div`
-  display: flex;
-  ${ORIENTATION};
-`;
-
-const StyledControlsBox = styled.div`
-  display: flex;
-  align-items: center;
-  flex: 0 0 ${TOOLBAR_HEIGHT}px;
-  position: relative;
-  z-index: 2;
-  box-sizing: border-box;
-  height: ${TOOLBAR_HEIGHT}px;
-  padding: 0 15px;
-  background: white;
-`;
-
-const StyledControlsItem = styled.div`
-  & + & {
-    padding-left: 10px;
-  }
 `;
 
 const StyledContent = styled.div`

@@ -37,6 +37,7 @@ const selectItem = createSelector(
     }
 
     const item = pool.find(item => id === `${item.contentType}/${item.id}`);
+
     if (item) {
       return item;
     }
@@ -95,7 +96,7 @@ export const selectName = createSelector(
 
 export const selectTags = createSelector(
   selectItem,
-  item => (item ? item.manifest.tags : [])
+  item => (item ? item.manifest.tags || [] : [])
 );
 
 export const selectVersion = createSelector(

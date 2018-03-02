@@ -3,7 +3,7 @@ import { styled } from "@patternplate/components";
 
 const StyledDemo = styled.iframe`
   width: 100%;
-  height: 100%;
+  height: calc(100% - 20vh);
   border: 0;
 `;
 

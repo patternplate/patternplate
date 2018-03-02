@@ -33,6 +33,7 @@ module.exports = {
   styled: require("styled-components").default,
   StyleSheetManager: require("styled-components").StyleSheetManager,
   Symbol: require("./icon").Symbol,
+  Tag: require("./tag"),
   ThemeProvider: require("styled-components").ThemeProvider,
   Text: require("./text"),
   themes: require("./themes")

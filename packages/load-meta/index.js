@@ -1,11 +1,11 @@
 const path = require("path");
 const url = require("url");
-// const AggregateError = require("aggregate-error");
 const globby = require("globby");
 const loadSourceMap = require("load-source-map");
 const pFilter = require("p-filter");
 const sander = require("@marionebl/sander");
 const {loadManifest, PATTERNPLATE_ERR_NO_MANIFEST} = require("@patternplate/load-manifest");
+const loadDoc = require("@patternplate/load-doc");
 
 const PATTERNPLATE_ERROR_DUPE_PATTERN = 'PATTERNPLATE_ERROR_DUPE_PATTERN';
 
@@ -121,9 +121,12 @@ async function loadMetaResult(options) {
       return acc;
     }
 
+    const contents = await loadDoc({cwd: patternBase});
+
     acc.patterns.push({
       id: manifest.name,
       artifact,
+      contents: contents ? String(contents) : null,
       contentType: "pattern",
       source: path.relative(options.cwd, source),
       files: await getFiles(source, { cwd: options.cwd }),
