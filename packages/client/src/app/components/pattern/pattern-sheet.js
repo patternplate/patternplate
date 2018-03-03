@@ -131,11 +131,10 @@ const StyledControlsArea = styled.div`
 const StyledControlsBox = styled.div`
   display: flex;
   align-items: center;
-  flex: 0 0 ${TOOLBAR_HEIGHT}px;
+  flex: 0 0 auto;
   position: relative;
   z-index: 2;
   box-sizing: border-box;
-  height: ${TOOLBAR_HEIGHT}px;
   background: white;
 `;
 

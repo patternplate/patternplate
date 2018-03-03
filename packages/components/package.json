@@ -43,6 +43,9 @@
           }
         }
       ]
+    ],
+    "plugins": [
+      "babel-plugin-styled-components"
     ]
   },
   "devDependencies": {
@@ -52,6 +55,7 @@
     "@babel/preset-react": "^7.0.0-beta.40",
     "@patternplate/cli": "^2.0.0-16",
     "@patternplate/render-styled-components": "^2.0.0-16",
+    "babel-plugin-styled-components": "^1.5.0",
     "concurrently": "^3.5.1"
   },
   "dependencies": {
