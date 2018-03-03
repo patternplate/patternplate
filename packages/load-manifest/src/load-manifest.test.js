@@ -129,3 +129,22 @@ test("uses tags from package.json[tags]", async () => {
     "tags": expect.arrayContaining(["a", "b", "c"])
   });
 });
+
+test("uses description from pattern.json[description]", async () => {
+  const cwd = f.copy("pattern-description");
+  const result = await loadManifest(cwd);
+
+  expect(result.manifest).toMatchObject({
+    "description": "pattern"
+  });
+});
+
+
+test("uses description from package.json[description]", async () => {
+  const cwd = f.copy("pkg-description");
+  const result = await loadManifest(cwd);
+
+  expect(result.manifest).toMatchObject({
+    "description": "pkg"
+  });
+});

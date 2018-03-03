@@ -2,16 +2,10 @@ const path = require("path");
 const loadJsonFile = require("load-json-file");
 const sander = require("@marionebl/sander");
 
+const normalize = require("./normalize");
+
 const PATTERNPLATE_ERR_NO_MANIFEST = 'PATTERNPLATE_ERR_NO_MANIFEST';
 const PATTERNPLATE_ERR_MALFORMED_MANIFEST = 'PATTERNPLATE_ERR_MALFORMED_MANIFEST';
-
-const DEFAULT_MANIFEST = {
-  displayName: "",
-  flag: "alpha",
-  options: {},
-  tags: [],
-  version: "1.0.0",
-};
 
 module.exports = {
   PATTERNPLATE_ERR_NO_MANIFEST,
@@ -51,34 +45,16 @@ async function loadManifest(dir) {
   if (needsPattern && files.length === 2) {
     const fullPath = path.resolve(dir, files[1]);
     const data = await loadJSON(fullPath);
-    return {file: fullPath, manifest: Object.assign({}, DEFAULT_MANIFEST, data)};
+    return {
+      file: fullPath,
+      manifest: normalize(data, {isPatternPkg})
+    };
   }
 
-  const extracted = {};
-
-  if (data.hasOwnProperty('name')) {
-    extracted.name = data.name;
-  }
-
-  if (data.hasOwnProperty('version')) {
-    extracted.version = data.version;
-  }
-
-  if (data.hasOwnProperty('tags')) {
-    extracted.tags = data.tags;
-  }
-
-  const sourceData = isPatternPkg ? data.patternplate : data;
-
-  if (sourceData.hasOwnProperty("displayName")) {
-    extracted.displayName = sourceData.displayName;
-  }
-
-  if (sourceData.hasOwnProperty("options")) {
-    extracted.options = sourceData.options;
-  }
-
-  return {file: fullPath, manifest: Object.assign({}, DEFAULT_MANIFEST, extracted)};
+  return {
+    file: fullPath,
+    manifest: normalize(data, {isPatternPkg})
+  };
 }
 
 async function loadJSON(file) {
