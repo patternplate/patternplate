@@ -67,7 +67,7 @@ function Search(props) {
   );
 }
 
-const SEARCH_HEIGHT = "60vh";
+const SEARCH_HEIGHT = "55vh";
 const SEARCH_FIELD_HEIGHT = "80px";
 const SEARCH_LEGEND_HEIGHT = "30px";
 

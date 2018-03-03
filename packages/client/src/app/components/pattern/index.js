@@ -16,7 +16,7 @@ const CROSSES = props => btoa(`
 </svg>
 `);
 
-const StyledPattern = styled(tag(["checkers"])("div"))`
+const StyledPattern = styled(tag(["checkers", "navigationEnabled"])("div"))`
   position: fixed;
   top: 0;
   right: 0;

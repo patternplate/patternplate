@@ -36,8 +36,8 @@ function PatternSheet(props) {
             </SearchTrigger>
             <StyledTagList>
               {
-                props.tags.map(tag => (
-                  <SearchTrigger field="tags" search={tag}>
+                props.tags.map((tag, index) => (
+                  <SearchTrigger key={`${tag}-${index}`} field="tags" search={tag}>
                     <Tag>{tag}</Tag>
                   </SearchTrigger>
                 ))
