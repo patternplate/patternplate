@@ -1,0 +1,56 @@
+{
+  "name": "@patternplate/compiler",
+  "version": "2.0.0-16",
+  "description": "Create a compiler to create browser-compatible code from patternplate entries",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "watch": "yarn build -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "xo": false,
+  "babel": {
+    "sourceMaps": true,
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false,
+          "targets": {
+            "node": "6"
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-core": "^7.0.0-0",
+    "fixturez": "^1.1.0"
+  },
+  "dependencies": {
+    "@patternplate/demo-client": "^2.0.0-16",
+    "@patternplate/load-config": "^2.0.0-16",
+    "@patternplate/probe-client": "^2.0.0-16",
+    "@patternplate/webpack-entry": "^2.0.0-16",
+    "memory-fs": "^0.4.1",
+    "webpack": "3"
+  }
+}
