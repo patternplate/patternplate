@@ -17,11 +17,13 @@ const CROSSES = props => btoa(`
 `);
 
 const StyledPattern = styled(tag(["checkers"])("div"))`
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
+  left: ${props => props.navigationEnabled ? 300 : 0}px;
   box-sizing: border-box;
   height: 100%;
-  width: 100%;
+  width: ${props => props.navigationEnabled ? 'calc(100% - 300px)' : '100%'};
   &::before {
     content: "";
     display: ${VISIBILITY};
@@ -136,7 +138,7 @@ export default class Pattern extends React.Component {
 
     return (
       <React.Fragment>
-        <StyledPattern checkers={props.opacity}>
+        <StyledPattern checkers={props.opacity} navigationEnabled={props.navigationEnabled}>
           <Helmet
             title={[getPrefix(props), props.displayName]
               .filter(Boolean)

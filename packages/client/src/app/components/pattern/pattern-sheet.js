@@ -106,9 +106,10 @@ const StyledPatternSheet = styled.div`
   z-index: 2;
   box-sizing: border-box;
   width: 100%;
-  min-height: 20vh;
-  margin-top: -20vh;
+  min-height: 30vh;
+  margin-top: 70vh;
   padding: 30px 60px;
+  border-top: 1px solid ${props => props.theme.border};
   background: ${props => props.theme.background};
 `;
 

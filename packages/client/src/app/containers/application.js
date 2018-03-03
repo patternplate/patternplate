@@ -16,6 +16,7 @@ import {PatternList, PatternDemo} from "@patternplate/widgets";
 
 import * as actions from "../actions";
 import * as item from "../selectors/item";
+import * as demo from "../selectors/demo";
 
 import CodePane from "./code-pane";
 import DocPane from "./doc-pane";
@@ -38,6 +39,24 @@ const selectThemes = createSelector(
   color => themes(color)
 );
 
+const selectLines = createSelector(
+  state => state.messages,
+  demo.selectSrc,
+  (messages, src) => (messages[src] || "").split("\n").filter(Boolean)
+);
+
+const selectMessage = createSelector(selectLines, lines =>
+  lines
+    .slice(0, 2)
+    .map(l => l.trim())
+    .join("\n")
+);
+
+const selectHasMessage = createSelector(
+  selectMessage,
+  message => typeof message === "string" && message !== ""
+);
+
 function mapProps(state) {
   return {
     base: state.base,
@@ -50,7 +69,8 @@ function mapProps(state) {
     searchEnabled: state.searchEnabled,
     theme: state.theme,
     themes: selectThemes(state),
-    title: state.config.title || state.schema.name
+    title: state.config.title || state.schema.name,
+    hasMessage: selectHasMessage(state)
   };
 }
 
@@ -114,9 +134,13 @@ function Application(props) {
           </NavigationControl>
           <StyledContentContainer>
             <StyledContent navigationEnabled={props.navigationEnabled}>
-              <StyledMessageBox>
-                <Message />
-              </StyledMessageBox>
+              {
+                props.hasMessage && (
+                  <StyledMessageBox>
+                    <Message />
+                  </StyledMessageBox>
+                )
+              }
               {props.children}
               {props.searchEnabled && (
                 <ThemeProvider theme={props.themes.dark}>
@@ -128,18 +152,6 @@ function Application(props) {
                 </ThemeProvider>
               )}
             </StyledContent>
-            {/* <ThemeProvider theme={props.themes.dark}>
-              <StyledControlsBox enabled={props.navigationEnabled}>
-                <StyledControlsArea orient="right">
-                  <StyledControlsItem>
-                    <ToggleOpacity />
-                  </StyledControlsItem>
-                  <StyledControlsItem>
-                    <Fullscreen />
-                  </StyledControlsItem>
-                </StyledControlsArea>
-              </StyledControlsBox>
-            </ThemeProvider> */}
           </StyledContentContainer>
         </StyledApplication>
       </ThemeProvider>
@@ -179,7 +191,6 @@ const StyledMessageBox = styled.div`
 const StyledContent = styled.div`
   flex: 1 1 100%;
   width: 100%;
-  height: calc(100% - 60px);
   position: relative;
 `;
 

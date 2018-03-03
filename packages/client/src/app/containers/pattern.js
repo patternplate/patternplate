@@ -23,6 +23,7 @@ class PatternContainer extends React.Component {
         src={props.src}
         type={props.type}
         updated={props.updated}
+        navigationEnabled={props.navigationEnabled}
       />
     );
   }
@@ -85,7 +86,8 @@ function mapState(state) {
     src: demo.selectSrc(state),
     type: items.selectType(state),
     contentType: items.selectContentType(state),
-    updated: state.demo.updated
+    updated: state.demo.updated,
+    navigationEnabled: state.navigationEnabled
   };
 }
 
