@@ -1,11 +1,11 @@
-import http from "http";
-import errorhandler from "errorhandler";
-import express from "express";
-import slash from "express-slash";
+const http = require("http");
+const errorhandler = require("errorhandler");
+const express = require("express");
+const slash = require("express-slash");
 
-import client from "@patternplate/client";
+const client = require("@patternplate/client");
 
-export default patternplate;
+module.exports = patternplate;
 
 async function patternplate(options) {
   const { port } = options;
