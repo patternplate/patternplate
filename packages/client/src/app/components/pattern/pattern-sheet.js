@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React from "react";
-import { Flag, Headline, Link, Markdown, styled, Tag, ThemeProvider, themes } from "@patternplate/components";
+import { Flag, Headline, Link, Markdown, styled, Tag, Text, ThemeProvider, themes } from "@patternplate/components";
 
 import * as item from "../../selectors/item";
 import Fullscreen from "../../containers/trigger-fullscreen";
@@ -30,6 +30,11 @@ function PatternSheet(props) {
               </StyledControlsArea>
             </ThemeProvider>
           </StyledControlsBox>
+          {props.description &&
+            <StyledDescription>
+              {props.description}
+            </StyledDescription>
+          }
           <StyledBoxLine>
             <SearchTrigger field="flag" search={props.flag}>
               <Flag>{props.flag}</Flag>
@@ -79,6 +84,7 @@ function SearchTrigger(props) {
 function mapProps(state) {
   return {
     doc: item.selectContents(state),
+    description: item.selectDescription(state),
     id: state.id,
     icon: item.selectIcon(state),
     type: item.selectType(state),
@@ -92,13 +98,18 @@ function mapProps(state) {
 const TOOLBAR_HEIGHT = 60;
 
 const StyledName = styled(props => <Headline {...props} is="h1" order={1}/>)`
-  margin-top: 0;
+  margin: 0 0 10px 0;
 `;
 
 const StyledVersion = styled(props => <Headline {...props} is="small" order={3}/>)`
   display: inline-block;
   color: ${props => props.theme.dark};
-  margin-top: 0;
+  margin: 0;
+`;
+
+const StyledDescription = styled(Text)`
+  color: ${props => props.theme.recess};
+  margin-bottom: 20px;
 `;
 
 const StyledPatternSheet = styled.div`

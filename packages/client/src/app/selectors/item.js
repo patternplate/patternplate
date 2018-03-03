@@ -120,3 +120,8 @@ export const selectContents = createSelector(selectItem, item => {
   }
   return typeof item.contents === "string" ? item.contents : null;
 });
+
+export const selectDescription = createSelector(
+  selectItem,
+  item => (item ? item.manifest.description : "")
+);
