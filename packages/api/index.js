@@ -90,7 +90,7 @@ async function createWatcher(options) {
         }
 
         const parents = [
-          commonDir(meta.map(m => path.join(cwd, m.path))),
+          ...(meta.length > 0 ? [commonDir(meta.map(m => path.join(cwd, m.path)))] : []),
           ...docs.map(d => path.join(cwd, globParent(d))),
           ...entry.map(e => path.join(cwd, globParent(e)))
         ];
