@@ -18,6 +18,10 @@ async function main() {
   const vault = document.query('[data-application-state="patternplate"]');
   const data = await getData(vault);
 
+  if (data.isStatic) {
+    slot.innerHTML = '';
+  }
+
   router(data, slot);
 }
 
