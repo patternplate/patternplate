@@ -23,7 +23,7 @@ const selectSrc = createSelector(
       if (item.contentType !== "pattern") {
         return null;
       }
-      return `${base}api/demo/${item.id}/index.html`;
+      return [base, "api/demo", `${item.id}.html`].join("/");
     };
   }
 );
@@ -31,6 +31,7 @@ const selectSrc = createSelector(
 function mapState(state) {
   return {
     get: selectGet(state),
-    src: selectSrc(state)
+    src: selectSrc(state),
+    reload: state.isStatic ? null : true
   };
 }

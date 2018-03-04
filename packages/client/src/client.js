@@ -1,5 +1,6 @@
 require("dom4"); // eslint-disable-line import/no-unassigned-import
 
+const ARSON = require("arson");
 const url = require("url");
 const fetch = require("isomorphic-fetch");
 const platform = require("platform");
@@ -21,7 +22,7 @@ async function main() {
 }
 
 async function getData(vault) {
-  const data = JSON.parse(vault.textContent);
+  const data = ARSON.parse(decodeURIComponent(vault.textContent));
   const schema = await getStateData(data.base);
 
   return merge(data, getPlatformData(), getWindowData(), {
@@ -31,7 +32,7 @@ async function getData(vault) {
 }
 
 async function getStateData(base) {
-  return (await fetch(url.resolve(base, "/api"))).json();
+  return (await fetch([base, "api/state.json"].join("/"))).json();
 }
 
 function getPlatformData() {

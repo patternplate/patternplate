@@ -10,24 +10,27 @@ import navigate from "./utils/navigate";
 
 module.exports = renderPage;
 
-async function renderPage(uri, { config, schema }) {
+async function renderPage(uri, { base, config, schema, isStatic }) {
   const id = getId(uri);
   const pattern = navigate(id, schema.meta) || {};
-  const base = getBase(uri);
+  const startBase = base ? base : getBase(uri);
+  const scriptBase = base === "/" ? "" : startBase;
 
   const render = {
     base,
     config,
     pattern,
     schema,
-    startBase: base
+    startBase,
+    isStatic
   };
 
   const transfer = {
     base,
     config,
     pattern: { id },
-    startBase: base
+    startBase,
+    isStatic
   };
 
   const { html, css } = await router(uri, render);
@@ -36,7 +39,7 @@ async function renderPage(uri, { config, schema }) {
 
   return layout({
     attributes: head.htmlAttributes,
-    base,
+    base: startBase,
     css,
     data: transfer,
     html,
@@ -44,7 +47,7 @@ async function renderPage(uri, { config, schema }) {
     link: head.link,
     meta: head.meta,
     title: head.title,
-    scripts: [`${base}/static/vendors.js`, `${base}/static/client.js`]
+    scripts: [`${scriptBase}/static/vendors.js`, `${scriptBase}/static/client.js`]
   });
 }
 

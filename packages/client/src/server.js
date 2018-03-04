@@ -62,7 +62,8 @@ async function main(options) {
       res.send(
         await renderPage(req.url, {
           schema: { meta, docs },
-          config
+          config,
+          base: options.base || "/"
         })
       );
     } catch (err) {

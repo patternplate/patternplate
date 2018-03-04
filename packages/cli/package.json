@@ -30,11 +30,15 @@
   },
   "dependencies": {
     "@patternplate/client": "^2.0.0-16",
+    "@patternplate/compiler": "^2.0.0-16",
+    "@patternplate/load-config": "^2.0.0-16",
+    "@patternplate/load-docs": "^2.0.0-16",
+    "@patternplate/load-meta": "^2.0.0-16",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
     "express-slash": "^2.0.1",
     "meow": "^3.7.0",
-    "ora": "^0.3.0"
+    "ora": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",

@@ -11,6 +11,6 @@ export const selectSrc = createSelector(
     if (item.contentType !== "pattern") {
       return null;
     }
-    return `${base}api/demo/${item.id}/index.html`;
+    return [base, 'api/demo', `${item.id}.html`].join("/");
   }
 );

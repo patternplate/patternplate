@@ -1,3 +1,4 @@
+const querystring = require("querystring");
 const React = require("react");
 const ResizingIframe = require("react-iframe-resizer-super").default;
 const styled = require("styled-components").default;
@@ -12,7 +13,8 @@ module.exports = class PatternDemo extends React.Component {
       return <PatternDemoError message={`Could not find ${props.id}`}/>
     }
 
-    return <ResizingIframe src={`${src}?resize=true&reload=true`}/>;
+    const q = querystring.stringify({ resize: true, reload: props.reload });
+    return <ResizingIframe iframeResizerOptions={{log: false}} src={`${src}?${q}`}/>;
   }
 }
 

@@ -1,4 +1,5 @@
 /* eslint-disable react/no-danger */
+import ARSON from "arson";
 import React from "react";
 import { renderToStaticMarkup as render } from "react-dom/server";
 import { styled, ServerStyleSheet } from "@patternplate/components";
@@ -17,7 +18,6 @@ function layout(props) {
 
 function Layout(props) {
   const attributes = props.attributes ? props.attributes.toComponent() : {};
-
   const scripts = Array.isArray(props.scripts) ? props.scripts : [];
 
   return (
@@ -71,7 +71,7 @@ const StyledContent = styled.div`
 `;
 
 function State(props) {
-  const value = JSON.stringify(props.data);
+  const value = encodeURIComponent(ARSON.stringify(props.data));
   return (
     <StyledState
       data-application-state={props["data-application-state"]}

@@ -66,7 +66,7 @@ export function enrich(child, context) {
       : parsed.query;
 
   child.href = url.format({
-    pathname: url.resolve(context.base, parsed.pathname),
+    pathname: pre(context.base || '', parsed.pathname || ''),
     query: Object.assign({}, context.location.query, q)
   });
 
@@ -109,4 +109,19 @@ export function enrich(child, context) {
   }
 
   return child;
+}
+
+function pre(base, pathname) {
+  const b = norm(base);
+  const p = norm(pathname);
+
+  if (p.startsWith(b)) {
+    return `/${p}`;
+  }
+
+  return `/${[norm(base), norm(pathname)].join("/")}`;
+}
+
+function norm(p) {
+  return p.split("/").filter(Boolean).join("/");
 }

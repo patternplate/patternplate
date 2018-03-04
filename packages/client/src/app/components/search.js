@@ -1,3 +1,4 @@
+import url from "url";
 import { values } from "lodash";
 import React from "react";
 import {Disabled} from "@patternplate/widgets";
@@ -67,6 +68,7 @@ export default class Search extends React.Component {
   getSearchResult = (item, type) => (
     <SearchResult
       active={(this.props.activeItem || {}).id === item.id}
+      href={[item.contentType, item.id].join('/')}
       id={item.id}
       index={item.index}
       icon={item.manifest.icon || item.type}
@@ -152,12 +154,14 @@ export default class Search extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (!this.props.activeItem) {
-      return this.props.onSubmit(e);
+    const {props} = this;
+
+    if (!props.activeItem) {
+      return props.onSubmit(e);
     }
-    this.props.onNavigate(
-      `/${this.props.activeItem.contentType}/${this.props.activeItem.id}`
-    );
+
+    const {activeItem} = props;
+    props.onNavigate([props.base, activeItem.contentType, activeItem.id].join('/'));
   }
 
   render() {

@@ -11,10 +11,9 @@ export default connect(mapState, mapDispatch)(Link.RawLink);
 
 function mapState(state, own) {
   const location = state.routing.locationBeforeTransitions;
-  return {
-    ...own,
-    href: getHref(own, { base: state.base, location })
-  };
+  return Object.assign({}, own,
+    {href: getHref(own, { base: state.base, location })}
+  );
 }
 
 function mapDispatch(dispatch, ownProps) {
@@ -65,7 +64,7 @@ function getHref(props, context) {
 
   const pathname =
     typeof parsed.pathname === "string"
-      ? url.resolve(context.base, parsed.pathname)
+      ? prefix(context.base, parsed.pathname)
       : context.location.pathname;
 
   return url.format({
@@ -73,4 +72,19 @@ function getHref(props, context) {
     query,
     hash: props.hash || (parsed.hash || "#").slice(1)
   });
+}
+
+function prefix(base, pathname) {
+  const b = norm(base);
+  const p = norm(pathname);
+
+  if (p.startsWith(b)) {
+    return `/${p}`;
+  }
+
+  return `/${[norm(base), norm(pathname)].join("/")}`;
+}
+
+function norm(p) {
+  return p.split("/").filter(Boolean).join("/");
 }

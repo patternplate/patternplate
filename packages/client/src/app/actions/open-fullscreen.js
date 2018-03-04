@@ -24,7 +24,7 @@ function openFullscreen() {
     }
 
     const href = urlQuery.format({
-      pathname: `${state.base}api/demo/${id}/index.html`
+      pathname: `${state.base}api/demo/${id}.html`
     });
 
     global.open(href, "_blank");

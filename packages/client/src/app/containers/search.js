@@ -8,6 +8,7 @@ import * as found from "../selectors/found";
 function mapProps(state) {
   return {
     activeItem: found.selectActiveItem(state), // Used for highlight in list
+    base: state.base,
     components: found.selectPatterns(state), // List of components matching state.components
     docs: found.selectDocs(state), // List of docs matching state.search
     enabled: state.searchEnabled, // If search is to be displayed
@@ -36,8 +37,9 @@ function mapDispatch(dispatch) {
         actions.search({ persist: true, perform: true, value }),
       onFocus: () => actions.toggleSearch({ focus: true }),
       onMount: () => actions.toggleSearch({ sync: true }),
-      onNavigate: pathname =>
-        actions.patchLocation({ pathname, query: { "search-enabled": false } }),
+      onNavigate: pathname => {
+        return actions.patchLocation({ pathname, query: { "search-enabled": false } })
+      },
       onSubmit: e => {
         e.preventDefault();
         return actions.search({

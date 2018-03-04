@@ -190,11 +190,13 @@ class SearchResult extends React.Component {
   getRef(ref) {
     this.ref = ref;
   }
+
   componentWillUpdate(next) {
     if (next.active && this.ref) {
       this.props.onScrollRequest({ target: this.ref });
     }
   }
+
   render() {
     const props = this.props;
 
@@ -207,7 +209,7 @@ class SearchResult extends React.Component {
       >
         <StyledResultLink
           active={props.active}
-          href={`/${props.type}/${props.id}`}
+          href={props.href}
           query={{ "search-enabled": false }}
         >
         {

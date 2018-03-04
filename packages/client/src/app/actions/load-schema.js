@@ -5,7 +5,7 @@ import fetch from "../utils/fetch";
 export default createPromiseThunkAction(
   "LOAD_SCHEMA",
   async (_, __, getState) => {
-    const uri = url.resolve(getState().base, "api");
+    const uri = [getState().base, "api/state.json"].join("/");
     const response = await fetch(uri);
     return response.json();
   }

@@ -26,8 +26,8 @@ async function api({ server, cwd }) {
   const watcher = await createWatcher({cwd});
 
   const mw = express()
-    .get("/", await main({ cwd }))
-    .get("/demo/*/index.html", await demo({ cwd, queue: serverQueue }))
+    .get("/state.json", await main({ cwd }))
+    .get("/demo/*.html", await demo({ cwd, queue: serverQueue }))
     .use(await pack({ compiler: clientQueue.compiler }));
 
   mw.subscribe = handler => {

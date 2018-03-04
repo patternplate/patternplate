@@ -123,11 +123,12 @@ function html(content, payload) {
         <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
         <!-- content.after -->
         ${content.after || ""}
-        <script src="/api/patternplate.web.vendors.js"></script>
-        <script src="/api/patternplate.web.components.js"></script>
-        <script src="/api/patternplate.web.probe.js"></script>
-        <script src="/api/patternplate.web.mount.js"></script>
-        <script src="/api/patternplate.web.demo.js"></script>
+        <!-- ../ -> /api/ -->
+        <script src="../patternplate.web.vendors.js"></script>
+        <script src="../patternplate.web.components.js"></script>
+        <script src="../patternplate.web.probe.js"></script>
+        <script src="../patternplate.web.mount.js"></script>
+        <script src="../patternplate.web.demo.js"></script>
       </body>
     </html>
   `);

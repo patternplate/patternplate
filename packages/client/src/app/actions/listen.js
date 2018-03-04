@@ -15,6 +15,11 @@ export default createPromiseThunkAction(
     }
 
     const state = getState();
+
+    if (state.isStatic) {
+      return;
+    }
+
     const source = url.resolve(state.base, payload.url);
 
     const ws = new WebSocketClient({

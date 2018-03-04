@@ -5,22 +5,5 @@ node_modules
 /packages/**/yarn.lock
 
 /packages/*/lib/
-/packages/client/static/
+/packages/components/docs/patterns
 
-/packages/components/lib/
-/packages/components/build/
-
-/packages/server/application/
-/packages/server/binary/
-/packages/server/configuration/
-/packages/server/library/
-
-/packages/boilerplate-server/application/
-/packages/boilerplate-server/binary/
-/packages/boilerplate-server/configuration/
-/packages/boilerplate-server/library/
-
-/packages/patternplate-transform-babel/distribution
-/packages/patternplate-transform-react-mount/index.js
-/packages/patternplate-transform-react-to-markup/distribution
-/packages/patternplate-transform-styled-components/index.js

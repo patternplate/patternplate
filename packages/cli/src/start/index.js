@@ -4,7 +4,7 @@ const patternplate = require("./serve");
 module.exports = start;
 
 async function start({flags}) {
-  const spinner = ora("Starting patternplate server").start();
+  const spinner = ora({ text: "Starting patternplate server" }).start();
 
   const port = selectPort(flags);
 

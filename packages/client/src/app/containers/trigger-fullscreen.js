@@ -1,3 +1,4 @@
+import querystring from "querystring";
 import { connect } from "react-redux";
 import Fullscreen from "../components/trigger-fullscreen";
 import withActiveForPattern from "../connectors/with-active-for-pattern";
@@ -8,8 +9,11 @@ import { skippable } from "../behaviours";
 const SkippableFullscreen = withActiveForPattern(skippable(Fullscreen));
 
 const mapProps = state => {
+  const q = querystring.stringify({
+    reload: state.isStatic ? null : true
+  });
   return {
-    href: `${demo.selectSrc(state)}?reload=true`
+    href: `${demo.selectSrc(state)}?${q}`
   };
 };
 

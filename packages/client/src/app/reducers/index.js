@@ -11,6 +11,7 @@ import docEnabled from "./doc-enabled";
 import fetching from "./fetching";
 import id from "./id";
 import infoEnabled from "./info-enabled";
+import isStatic from "./is-static";
 import manifestEnabled from "./manifest-enabled";
 import messages from "./messages";
 import navigationEnabled from "./navigation-enabled";
@@ -45,6 +46,7 @@ export default {
   fetching,
   hideEnabled,
   id,
+  isStatic,
   infoEnabled,
   manifestEnabled,
   messages,
