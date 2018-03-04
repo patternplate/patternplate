@@ -1,17 +1,30 @@
 import urlQuery from "../utils/url-query";
+import { selectId, selectContentType } from "../selectors/item";
 
 export default openFullscreen;
 export const type = "OPEN_FULLSCREEN";
 
 function openFullscreen() {
   return (dispatch, getState) => {
-    const { base, id } = getState();
-    if (id === ".." || !global.open) {
+    if (!global.open) {
+      return;
+    }
+
+    const state = getState();
+    const contentType = selectContentType(state);
+
+    if (contentType !== "pattern") {
+      return;
+    }
+
+    const id = selectId(state);
+
+    if (!id) {
       return;
     }
 
     const href = urlQuery.format({
-      pathname: `${base}demo/${id}/index.html`
+      pathname: `${state.base}api/demo/${id}/index.html`
     });
 
     global.open(href, "_blank");
