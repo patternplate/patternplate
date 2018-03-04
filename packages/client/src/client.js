@@ -32,7 +32,13 @@ async function getData(vault) {
 }
 
 async function getStateData(base) {
-  return (await fetch([base, "api/state.json"].join("/"))).json();
+  return (await fetch(`${prefix(base)}/api/state.json`)).json();
+}
+
+function prefix(base) {
+  return base.charAt(base.length - 1) === "/"
+    ? base.slice(0, base.length - 1)
+    : base;
 }
 
 function getPlatformData() {

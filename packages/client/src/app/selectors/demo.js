@@ -11,6 +11,12 @@ export const selectSrc = createSelector(
     if (item.contentType !== "pattern") {
       return null;
     }
-    return [base, 'api/demo', `${item.id}.html`].join("/");
+    return `${prefix(base)}/api/demo/${item.id}.html`;
   }
 );
+
+function prefix(base) {
+  return base.charAt(base.length - 1) === "/"
+    ? base.slice(0, base.length - 1)
+    : base;
+}
