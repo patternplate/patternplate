@@ -1,13 +1,5 @@
 > Example for minimal possible patternplate setup
 
-# @examples/default
+# @patternplate-examples/default
 
-* Simplicity: No build chain at all
-* Zero config: Start patternplate right away
-* Standards all the way: From W3C with :heart:
-
-## Getting started
-
-```
-yarn start
-```
+See [`./docs/readme.md`](./docs/readme.md) for a getting started guide

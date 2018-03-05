@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "stmux -a a -- [ \"webpack -w\" .. \"patternplate\" ]"
+    "start": "concurrently \"yarn webpack -w\" \"patternplate\""
   },
   "author": {
     "name": "Mario Nebl",
@@ -23,6 +23,7 @@
     "@patternplate/render-react": "^2.0.0-16",
     "@patternplate/webpack-entry": "^2.0.0-16",
     "babel-loader": "8.0.0-beta.0",
+    "concurrently": "^3.5.1",
     "css-loader": "^0.28.7",
     "dev-loader": "^0.1.0",
     "globby": "^6.1.0",

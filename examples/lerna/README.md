@@ -1,38 +1,35 @@
 ---
-displayName: Getting started
-options:
-  order: -1
+displayName: Getting Started
 ---
 
-# @patternplate-example/default
+# @patternplate-example/lerna
 
-* Render `HTML`
-* Style with `CSS`
-* Program with `JavaScript`
+* Manage components as `npm` packages with `lerna`
+* Use patternplate defaults, als see [@patternplate-example/default](../default)
 
 ## Getting started
 
 ```bash
 git clone git@github.com:sinnerschrader/patternplate.git
-cd examples/default
+cd examples/lerna
 yarn
 yarn start
 # Open localhost:1337 in your browser
 ```
 
-## Add a "Hello World" pattern
+## Add a "Hello World" package
 
-Create `lib/hello-world/demo.js` with the
+Create `packages/hello-world/demo.js` with the
 following contents. 
 
 We'll export `HTML`, `CSS` from one `demo.js` file for now to keep it simple
 
 ```js
-// lib/hello-world/demo.js
+// packages/hello-world/demo.js
 module.exports = {
   default: function() { 
     document.querySelector("[data-hello-world]").addEventListener("click", function() {
-      this.textContent = "Hello world, clicked";
+      this.textContent = "Hello World, clicked";
     })
   },
   css: '.hello-world { font-family: sans-serif; color: cornflowerblue; }',
@@ -40,7 +37,7 @@ module.exports = {
 };
 ```
 
-* Create `lib/hello-world/package.json`
+* Create `packages/hello-world/package.json`
 
 ```json
 {
@@ -54,14 +51,14 @@ Navigate to [pattern/hello-world](http://localhost:1337/pattern/hello-world)
 
 ## Move HTML to own file
 
-Replace inline `HTML` with a reexport of `lib/hello-world/demo.js`.
+Replace inline `HTML` with a reexport of `packages/hello-world/demo.js`.
 
 ```js
-// lib/hello-world/demo.js
+// packages/hello-world/demo.js
 module.exports = {
   default: function() { 
     document.querySelector("[data-hello-world]").addEventListener("click", function() {
-      this.textContent = "Hello world, clicked";
+      this.textContent = "Hello World, clicked";
     })
   },
   css: require("./demo.css"),
@@ -70,7 +67,7 @@ module.exports = {
 ```
 
 ```html
-<!-- lib/hello-world/demo.html -->
+<!-- packages/hello-world/demo.html -->
 <h1 class="hello-world" data-hello-world>
   Hello World
 </h1>
@@ -79,7 +76,7 @@ module.exports = {
 The same works for `CSS`:
 
 ```css
-/* lib/hello-world/demo.css */
+/* packages/hello-world/demo.css */
 .hello-world {
   font-family: sans-serif; 
   color: cornflowerblue;

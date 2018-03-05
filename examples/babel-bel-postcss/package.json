@@ -1,10 +1,12 @@
 {
-  "name": "@examples/babel-bel-postcss",
+  "name": "@patternplate-example/babel-bel-postcss",
   "version": "2.0.0-16",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "stmux -a a -- [ \"babel src -d lib -w -s\" .. \"postcss 'src/**/demo.css' -d lib -b src -w\" .. \"patternplate\" ]"
+    "start": "concurrently \"yarn babel -w\" \"yarn postcss -w\" \"yarn patternplate\"",
+    "babel": "babel src -d lib -s",
+    "postcss": "postcss 'src/**/demo.css' -d lib -b src"
   },
   "author": {
     "name": "Mario Nebl",
@@ -28,6 +30,7 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.40",
     "bel": "^5.1.5",
+    "concurrently": "^3.5.1",
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
@@ -35,7 +38,6 @@
     "@babel/preset-env": "^7.0.0-beta.40",
     "@patternplate/cli": "^2.0.0-16",
     "postcss-cli": "^4.1.1",
-    "postcss-import": "^11.0.0",
-    "stmux": "^1.4.18"
+    "postcss-import": "^11.0.0"
   }
 }
