@@ -104,9 +104,14 @@ async function createWatcher(options) {
         watcher.on('all', async (e, p) => {
           const rel = path.relative(cwd, p);
 
+          if (path.extname(rel) === ".md") {
+            next({ type: "change", payload: { file: p, contentType: "pattern" }});
+          }
+
           if (path.basename(rel) === "pattern.json") {
             next({ type: "change", payload: { file: p, contentType: "pattern" }});
           }
+
           if (micromatch.some(rel, docs, {matchBase: true})) {
             next({ type: "change", payload: { file: p, contentType: "doc" }});
           }
