@@ -1,6 +1,6 @@
 import path from "path";
 import url from "url";
-import { includes } from "lodash";
+import { entries, includes } from "lodash";
 
 function has(token) {
   return item => includes(item, token);
@@ -23,7 +23,7 @@ function shove(input) {
 }
 
 export function format(parsed = {}) {
-  const query = Object.entries(parsed.query || {}).reduce(
+  const query = entries(parsed.query || {}).reduce(
     (result, entry) => [...result, entry.join("--")],
     []
   );

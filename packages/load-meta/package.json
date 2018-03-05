@@ -2,6 +2,12 @@
   "name": "@patternplate/load-meta",
   "version": "2.0.0-16",
   "description": "Load patternplate meta data",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "clean": "rimraf lib",
+    "watch": "yarn build -w"
+  },
   "xo": false,
   "repository": {
     "type": "git",
@@ -37,5 +43,15 @@
     "throat": "^4.1.0",
     "unist-util-find": "^1.0.1",
     "webpack-sources": "^1.0.1"
+  },
+  "babel": {
+    "presets": [
+      "module:@patternplate/babel-preset"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-16",
+    "fixturez": "^1.1.0"
   }
 }

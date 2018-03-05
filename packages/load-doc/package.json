@@ -2,6 +2,12 @@
   "name": "@patternplate/load-doc",
   "version": "2.0.0-16",
   "description": "Load a markdown index docs",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "clean": "rimraf lib",
+    "watch": "yarn build -w"
+  },
   "xo": false,
   "repository": {
     "type": "git",
@@ -22,5 +28,15 @@
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
     "globby": "^6.1.0"
+  },
+  "babel": {
+    "presets": [
+      "module:@patternplate/babel-preset"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-16",
+    "fixturez": "^1.1.0"
   }
 }

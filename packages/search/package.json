@@ -2,6 +2,12 @@
   "name": "@patternplate/search",
   "version": "2.0.0-16",
   "description": "Perform search queries on a list of patternplate items",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "clean": "rimraf lib",
+    "watch": "yarn build -w"
+  },
   "xo": false,
   "repository": {
     "type": "git",
@@ -25,5 +31,15 @@
     "lodash.intersection": "^4.4.0",
     "logic-query-parser": "^0.0.5",
     "semver": "^5.5.0"
+  },
+  "babel": {
+    "presets": [
+      "module:@patternplate/babel-preset"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-16",
+    "fixturez": "^1.1.0"
   }
 }

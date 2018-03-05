@@ -1,12 +1,12 @@
 import assert from "assert";
 import { handleActions } from "redux-actions";
-import { pick } from "lodash";
+import { entries, pick } from "lodash";
 
 export default handleDependentActions;
 
 function partialReduce(deps) {
   return handlers => {
-    return Object.entries(handlers).reduce((registry, entry) => {
+    return entries(handlers).reduce((registry, entry) => {
       const [name, fn] = entry;
       registry[name] = (state, action) => {
         return fn(state, action, deps);
