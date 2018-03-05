@@ -154,8 +154,10 @@ function transpile(source) {
 
 function execute(code, widgets = {}) {
   try {
-    const result = vm.runInNewContext(code, {
-      module: {exports: {}},
+    const mod = {exports: {}};
+
+    vm.runInNewContext(`(function() {${code}})();`, {
+      module: mod,
       require(id) {
         if (id === 'react') {
           return React;
@@ -167,8 +169,9 @@ function execute(code, widgets = {}) {
       }
     });
 
-    if (typeof result !== "function") {
+    const result = mod.exports;
 
+    if (typeof result !== "function") {
       const err = new Error(`widget blocks must export a function, but found "${typeof result}". Make sure to export a function e.g.:`);
       err.snippet = `module.exports = () => <div>Hello World</div>;`;
       throw err;

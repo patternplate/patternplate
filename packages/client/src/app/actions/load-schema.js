@@ -5,7 +5,7 @@ import fetch from "../utils/fetch";
 export default createPromiseThunkAction(
   "LOAD_SCHEMA",
   async (_, __, getState) => {
-    const response = await fetch(`${prefix(base)}/api/state.json`);
+    const response = await fetch(`${prefix(getState().base)}/api/state.json`);
     return response.json();
   }
 );
