@@ -19,9 +19,7 @@ const cli = meow(
   Build options
     --base     - Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
     --cwd      - Working directory to search patternplate.config.js in
-    --open     - Open the build in sytem default browser
     --out      - Directory to save the build in, defaults to "docs"
-    --port     - Port to start static server on with --open, defaults to 1337, $PORT
 
   Examples
     $ patternplate

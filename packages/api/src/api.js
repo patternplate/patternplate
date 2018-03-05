@@ -108,7 +108,7 @@ async function createWatcher(options) {
             next({ type: "change", payload: { file: p, contentType: "pattern" }});
           }
 
-          if (path.basename(rel) === "pattern.json") {
+          if (path.basename(rel) === "pattern.json" || path.basename(rel) === "package.json") {
             next({ type: "change", payload: { file: p, contentType: "pattern" }});
           }
 
