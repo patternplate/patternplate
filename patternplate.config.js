@@ -1,8 +1,7 @@
 module.exports = {
   docs: [
     "docs/**/*.md",
-    "!docs/**/*/patterns",
-    "packages/components/docs/**/*.md"
+    "!docs/**/*/patterns"
   ],
   entry: [
     "packages/components/lib/**/demo.js"

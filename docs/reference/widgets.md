@@ -1,4 +1,4 @@
-# Widgets
+# Reference: Widgets
 
 `patternplate` provides widgets for your use in Markdown files.
 Widgets can display information derived from your component library.
