@@ -1,5 +1,5 @@
 {
-  "name": "@examples/webpack-react-less",
+  "name": "@patternplate-example/webpack-react-less",
   "version": "2.0.0-16",
   "private": true,
   "license": "MIT",

@@ -1,0 +1,7 @@
+{
+  "name": "button",
+  "version": "1.0.0",
+  "patternplate": {
+    "displayName": "Button"
+  }
+}

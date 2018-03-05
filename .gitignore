@@ -7,4 +7,6 @@ node_modules
 /packages/*/lib/
 /packages/components/docs/patterns
 
+/examples/*/lib
+!/exmaples/default/lib
 /examples/**/hello-world/

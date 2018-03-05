@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "./lib/",
+    "rootDir": "./src/",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "declaration": true
+  }
+}

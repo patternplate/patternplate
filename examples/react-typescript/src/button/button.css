@@ -1,0 +1,7 @@
+@import "../color/index.css";
+
+.button {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 0;
+}

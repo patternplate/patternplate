@@ -1,0 +1,31 @@
+{
+  "name": "@patternplate-example/react-typescript",
+  "version": "2.0.0-16",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"tsc -w\" \"cpx 'src/**/*.css' lib -w\" \"patternplate\""
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sinnerschrader/patternplate"
+  },
+  "xo": false,
+  "devDependencies": {
+    "@patternplate/cli": "^2.0.0-16",
+    "@patternplate/render-react": "^2.0.0-16",
+    "concurrently": "^3.5.1",
+    "cpx": "^1.5.0",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/react": "^16.0.40",
+    "classnames": "^2.2.5",
+    "react": "^16.2.0"
+  }
+}
