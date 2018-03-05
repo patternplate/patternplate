@@ -1,0 +1,36 @@
+{
+  "name": "@patternplate/babel-preset",
+  "version": "2.0.0-16",
+  "description": "@babel preset for compilation of @patternplate projects",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinnerschrader/patternplate/issues"
+  },
+  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "babel-plugin-styled-components": "^1.5.1",
+    "fast-async": "^6.3.1",
+    "lodash.merge": "^4.6.1"
+  }
+}

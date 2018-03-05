@@ -26,23 +26,13 @@
   },
   "xo": false,
   "babel": {
-    "sourceMaps": true,
     "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false,
-          "targets": {
-            "node": "6"
-          }
-        }
-      ]
+      "module:@patternplate/babel-preset"
     ]
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-16",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",
     "fixturez": "^1.1.0",

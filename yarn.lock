@@ -115,7 +115,7 @@
   dependencies:
     "@babel/types" "7.0.0-beta.40"
 
-"@babel/helper-module-imports@7.0.0-beta.40":
+"@babel/helper-module-imports@7.0.0-beta.40", "@babel/helper-module-imports@^7.0.0-beta.39":
   version "7.0.0-beta.40"
   resolved "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-7.0.0-beta.40.tgz#251cbb6404599282e8f7356a5b32c9381bef5d2d"
   dependencies:
@@ -421,13 +421,6 @@
   dependencies:
     "@babel/helper-regex" "7.0.0-beta.40"
     regexpu-core "^4.1.3"
-
-"@babel/polyfill@^7.0.0-beta.40":
-  version "7.0.0-beta.40"
-  resolved "https://registry.npmjs.org/@babel/polyfill/-/polyfill-7.0.0-beta.40.tgz#90f447aa04ab54c317dcf0ccb8cb11ad4228fea0"
-  dependencies:
-    core-js "^2.5.3"
-    regenerator-runtime "^0.11.1"
 
 "@babel/preset-env@^7.0.0-beta.40":
   version "7.0.0-beta.40"
@@ -1208,9 +1201,9 @@ babel-plugin-jest-hoist@^22.4.1:
   version "22.4.1"
   resolved "https://registry.npmjs.org/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-22.4.1.tgz#d712fe5da8b6965f3191dacddbefdbdf4fb66d63"
 
-babel-plugin-styled-components@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.npmjs.org/babel-plugin-styled-components/-/babel-plugin-styled-components-1.5.0.tgz#4549f28a19fb05170aa9ee429b4de0eac2d2401d"
+babel-plugin-styled-components@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/babel-plugin-styled-components/-/babel-plugin-styled-components-1.5.1.tgz#31dbeb696d1354d1585e60d66c7905f5e474afcd"
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.0.0-beta.37"
     babel-types "^6.26.0"
@@ -4268,6 +4261,14 @@ fast-async@^6.3.0:
     nodent-compiler ">=3.1.0"
     nodent-runtime ">=3.0.4"
 
+fast-async@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.npmjs.org/fast-async/-/fast-async-6.3.1.tgz#53383a651be5e4f7aa2d4cc38e3520fd1460b4ad"
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0-beta.39"
+    nodent-compiler ">=3.1.7"
+    nodent-runtime ">=3.2.0"
+
 fast-deep-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
@@ -6810,6 +6811,10 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
 
+lodash.merge@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
+
 lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved "https://registry.npmjs.org/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
@@ -7496,9 +7501,21 @@ nodent-compiler@>=3.1.0:
     acorn-es7-plugin ">=1.1.6"
     source-map "^0.5.6"
 
+nodent-compiler@>=3.1.7:
+  version "3.1.7"
+  resolved "https://registry.npmjs.org/nodent-compiler/-/nodent-compiler-3.1.7.tgz#78198d9baacc491b0065b8c65bc0ca83d3fcd2a2"
+  dependencies:
+    acorn ">=2.5.2"
+    acorn-es7-plugin ">=1.1.6"
+    source-map "^0.5.6"
+
 nodent-runtime@>=3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/nodent-runtime/-/nodent-runtime-3.0.4.tgz#a801ecb7bb0f6c39a69b24cc2fa370cfa8b492da"
+
+nodent-runtime@>=3.2.0:
+  version "3.2.1"
+  resolved "https://registry.npmjs.org/nodent-runtime/-/nodent-runtime-3.2.1.tgz#9e2755d85e39f764288f0d4752ebcfe3e541e00e"
 
 nomnom@^1.8.1:
   version "1.8.1"

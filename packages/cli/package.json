@@ -14,18 +14,7 @@
   "xo": false,
   "babel": {
     "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "exclude": [
-            "transform-regenerator",
-            "transform-async-to-generator"
-          ]
-        }
-      ]
-    ],
-    "plugins": [
-      "module:fast-async"
+      "module:@patternplate/babel-preset"
     ]
   },
   "dependencies": {
@@ -42,8 +31,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/runtime": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-16",
     "fast-async": "^6.3.0",
     "rimraf": "^2.6.2"
   },

@@ -31,31 +31,22 @@
   },
   "xo": false,
   "babel": {
-    "sourceMaps": true,
     "presets": [
-      "@babel/preset-react",
       [
-        "@babel/preset-env",
+        "module:@patternplate/babel-preset",
         {
-          "modules": false,
-          "targets": {
-            "node": "4"
-          }
+          "targets": ["node", "web"],
+          "sources": ["react", "styled-components"]
         }
       ]
-    ],
-    "plugins": [
-      "babel-plugin-styled-components"
     ]
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/core": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "@babel/preset-react": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-16",
     "@patternplate/cli": "^2.0.0-16",
     "@patternplate/render-styled-components": "^2.0.0-16",
-    "babel-plugin-styled-components": "^1.5.0",
     "concurrently": "^3.5.1"
   },
   "dependencies": {

@@ -61,7 +61,7 @@ async function compiler({ cwd, target = "" }) {
   return compiler;
 }
 
-function getEntry(id, { filepath }) {
+async function getEntry(id, { filepath }) {
   const base = filepath ? path.dirname(filepath) : process.cwd();
   return resolveFrom(base, id);
 }

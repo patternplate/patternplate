@@ -17,7 +17,7 @@ module.exports = () =>  <PatternList query="tags=widget" />;
 ```
 
 ```widget
-const React = require('react');
+const React = require("react");
 const {PatternList} = require("@patternplate/widgets");
 
 module.exports = () =>  <PatternList query="tags=widget" />;
@@ -36,7 +36,7 @@ module.exports = () => <PatternDemo id="src/code" />;
 ```
 
 ```widget
-const React = require('react');
+const React = require("react");
 const {PatternDemo} = require("@patternplate/widgets");
 
 module.exports = () => <PatternDemo id="button" />;

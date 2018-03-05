@@ -11,9 +11,28 @@ module.exports = [
       rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          exclude(input) {
+            if (input.indexOf('@patternplate') > - 1) {
+              return false;
+            }
+            if (input.indexOf('node_modules') > -1) {
+              return true;
+            }
+            return false;
+          },
           use: {
-            loader: "babel-loader"
+            loader: "babel-loader",
+            options: {
+              presets: [
+                [
+                  "module:@patternplate/babel-preset",
+                  {
+                    targets: ["web"],
+                    sources: ["react", "styled-components"]
+                  }
+                ]
+              ]
+            }
           }
         }
       ]
