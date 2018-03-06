@@ -80,8 +80,8 @@ async function loadMeta(options) {
   return await pairs.reduce(async (accing, pair) => {
     const acc = await accing;
     const { source, artifact } = pair;
-    const patternBase = path.dirname(source);
-    const [err, result] = await json(patternBase);
+    const cwd = path.dirname(source);
+    const [err, result] = await json({cwd});
 
     if (err) {
       if (err.errno !== PATTERNPLATE_ERR_NO_MANIFEST) {
@@ -91,7 +91,7 @@ async function loadMeta(options) {
     }
 
     const {file, manifest: data} = result;
-    const base = path.dirname(path.relative(options.cwd, patternBase));
+    const base = path.dirname(path.relative(options.cwd, cwd));
     const relativeManifestPath = path.relative(options.cwd, file);
 
     if (acc.patterns.some(p => relativeManifestPath === p.path)) {
@@ -111,7 +111,7 @@ async function loadMeta(options) {
       return acc;
     }
 
-    const {contents} = await loadDoc({cwd: patternBase});
+    const {contents} = await loadDoc({cwd});
 
     acc.patterns.push({
       id: manifest.name,
@@ -150,9 +150,9 @@ function getSourceMap(jsFile) {
   });
 }
 
-async function json(jsonFile) {
+async function json(options) {
   try {
-    return [null, await loadManifest(jsonFile)];
+    return [null, await loadManifest(options)];
   } catch (err) {
     return [err];
   }
