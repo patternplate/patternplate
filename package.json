@@ -1,5 +1,6 @@
 {
   "name": "patternplate",
+  "description": "Documentation and development interface for component libraries",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",

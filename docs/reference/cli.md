@@ -1,9 +1,31 @@
-#!/usr/bin/env node
-const chalk = require("chalk");
-const meow = require("meow");
+# Reference: CLI
 
-const cli = meow(
-  `
+The `patternplate` command line interface is the default
+way of interacting with `patternplate` functionality.
+
+```
+yarn add @patternplate/cli --dev
+```
+
+## Usage
+
+For tnow 
+
+```bash
+λ yarn patternplate start # Start a patternplate server
+✔ Started on "http://localhost:1337"
+
+λ yarn patternplate build # Start a patternplate server
+✔ Built to "docs/patterns"
+```
+
+## Options
+
+```bash
+λ yarn patternplate help
+
+  Create, show and deliver component libraries
+
   Usage
   $ patternplate [command=start] [options]
 
@@ -31,37 +53,4 @@ const cli = meow(
 
     $ patterplate build
     ✔ Built to ./docs
-`
-);
-
-async function main({ input, flags }) {
-  const [command] = input;
-
-  switch (command) {
-    case 'help':
-      return cli.showHelp(0);
-    case 'build':
-      const build = require("./build");
-      return build({input, flags});
-    case 'start':
-    default:
-      const start = require("./start");
-      return start({input, flags});
-  }
-}
-
-main(cli).catch(err => {
-  if (err.patternplate) {
-    console.log(cli.help);
-    console.error(chalk.red(err.message));
-    process.exit(1);
-  }
-  setTimeout(() => {
-    throw err;
-  });
-});
-
-process.on("unhandledRejection", reason => {
-  throw reason;
-});
-
+```

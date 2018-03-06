@@ -9,7 +9,7 @@
 This is the contributor documentation for the `patternplate` mono-repository.
 For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
 
-## Qick start
+## Quick start
 
 ```sh
 git clone https://github.com/sinnerschrader/patternplate.git
