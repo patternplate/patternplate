@@ -43,7 +43,7 @@ We left this friendly reminder for you to change that soon.
 
 ---
 
-Help us to make this message more helpful on [GitHub](https://github.com/sinnerschrader/patternplate).
+Help us to make this message more helpful on [GitHub](https://github.com/patternplate/patternplate).
 `;
 
 const NOT_FOUND = `
@@ -57,7 +57,7 @@ You might want to navigate back to [Home](/) or use the search.
 
 ---
 
-Help us to make this message more helpful on [GitHub](https://github.com/sinnerschrader/patternplate)
+Help us to make this message more helpful on [GitHub](https://github.com/patternplate/patternplate)
 `;
 
 const selectDocs = createSelector(

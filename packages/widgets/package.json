@@ -4,7 +4,7 @@
   "description": "Markdown widgets available in patternplate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sinnerschrader/patternplate.git"
+    "url": "https://github.com/patternplate/patternplate.git"
   },
   "author": {
     "name": "Mario Nebl",

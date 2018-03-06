@@ -7,7 +7,7 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for `@patternplate/cli`
-For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+For user configuration see [patternplate.github.io](https://patternplate.github.io)
 
 ## About @patternplate/load-doc
 
@@ -17,7 +17,7 @@ the conntents of `README.md`, `readme.md` or `index.md`.
 ## Quick start
 
 ```sh
-git clone https://github.com/sinnerschrader/patternplate.git
+git clone https://github.com/patternplate/patternplate.git
 cd patternplate/packages/load-doc
 yarn
 yarn start

@@ -24,7 +24,7 @@ You might want to navigate back to [Home](/) or use the [Search](?search-enabled
 
 ---
 
-Help us to make this message more helpful on [GitHub](https://github.com/sinnerschrader/patternplate)
+Help us to make this message more helpful on [GitHub](https://github.com/patternplate/patternplate)
 `
 );
 
@@ -55,7 +55,7 @@ Some ideas on what to write into your pattern readme
 
 ---
 
-Help us to make this message more helpful on [GitHub](https://github.com/sinnerschrader/patternplate).
+Help us to make this message more helpful on [GitHub](https://github.com/patternplate/patternplate).
 `;
 
 const selectDoc = createSelector(

@@ -14,7 +14,7 @@ options:
 ## Getting started
 
 ```bash
-git clone git@github.com:sinnerschrader/patternplate.git
+git clone git@github.com:patternplate/patternplate.git
 cd examples/babel-bel-postcss
 yarn
 yarn start
@@ -36,7 +36,7 @@ function HelloWorld() {
 }
 ```
 
-* Add `src/hello-world/package.json` 
+* Add `src/hello-world/package.json`
 
 ```json
 {

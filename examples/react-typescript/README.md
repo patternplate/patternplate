@@ -11,7 +11,7 @@ displayName: Getting Started
 ## Getting started
 
 ```bash
-git clone git@github.com:sinnerschrader/patternplate.git
+git clone git@github.com:patternplate/patternplate.git
 cd examples/react-typescript
 yarn
 yarn start

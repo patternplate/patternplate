@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sinnerschrader/patternplate.git"
+    "url": "git+https://github.com/patternplate/patternplate.git"
   },
   "bugs": {
-    "url": "https://github.com/sinnerschrader/patternplate/issues"
+    "url": "https://github.com/patternplate/patternplate/issues"
   },
-  "homepage": "https://github.com/sinnerschrader/patternplate#readme",
+  "homepage": "https://github.com/patternplate/patternplate#readme",
   "author": {
     "name": "Mario Nebl",
     "email": "mario.nebl@sinnerschrader.com"

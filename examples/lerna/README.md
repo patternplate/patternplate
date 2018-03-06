@@ -10,7 +10,7 @@ displayName: Getting Started
 ## Getting started
 
 ```bash
-git clone git@github.com:sinnerschrader/patternplate.git
+git clone git@github.com:patternplate/patternplate.git
 cd examples/lerna
 yarn
 yarn start

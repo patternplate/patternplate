@@ -7,7 +7,7 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for `@patternplate/babel-preset`
-For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+For user configuration see [patternplate.github.io](https://patternplate.github.io)
 
 
 ## About @patternplate/babel-preset
@@ -18,7 +18,7 @@ across the patternplate mono repoository. It abstracts away the complexities of 
 ## Quick start
 
 ```sh
-git clone https://github.com/sinnerschrader/patternplate.git
+git clone https://github.com/patternplate/patternplate.git
 cd patternplate/packages/babel-preset
 yarn
 yarn start

@@ -7,7 +7,7 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for `@patternplate/load-manifest`
-For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+For user configuration see [patternplate.github.io](https://patternplate.github.io)
 
 ## About @patternplate/load-manifest
 
@@ -16,7 +16,7 @@ Read pattern meta data from a given cwd, picking up `package.json` and `pattern.
 ## Quick start
 
 ```sh
-git clone https://github.com/sinnerschrader/patternplate.git
+git clone https://github.com/patternplate/patternplate.git
 cd patternplate/packages/load-manifest
 yarn
 yarn start

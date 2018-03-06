@@ -7,12 +7,12 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for `@patternplate/cli`
-For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+For user configuration see [patternplate.github.io](https://patternplate.github.io)
 
 
 ## About @patternplate/api
 
-`@patternplate/api` provides an express middleware for use with 
+`@patternplate/api` provides an express middleware for use with
 `@patternplate/client`, as well as a web socket emitting
 data about file changes and compilation processes.
 
@@ -34,7 +34,7 @@ The web socket on `/` emits the following events:
 ## Quick start
 
 ```sh
-git clone https://github.com/sinnerschrader/patternplate.git
+git clone https://github.com/patternplate/patternplate.git
 cd patternplate/packages/cli
 yarn
 yarn start
@@ -61,4 +61,3 @@ const api = require("@patternplate/api");
 ## License
 
 Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
-

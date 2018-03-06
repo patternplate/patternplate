@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "sinnerschrader/patternplate"
+    "url": "patternplate/patternplate"
   },
   "xo": false,
   "dependencies": {

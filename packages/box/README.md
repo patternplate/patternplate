@@ -8,7 +8,7 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for `@patternplate/babel-preset`
-For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+For user configuration see [patternplate.github.io](https://patternplate.github.io)
 
 ## About @patternplate/box
 
