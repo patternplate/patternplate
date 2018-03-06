@@ -15,21 +15,21 @@ module.exports = {
 
 const map = fn => Promise.all(['package.json', 'pattern.json'].map(fn));
 
-async function loadManifest(dir) {
-  if (typeof dir !== "string") {
-    throw new Error(`load-manifest dir expects string, received ${dir}, typeof ${dir}`);
+async function loadManifest({cwd}) {
+  if (typeof cwd !== "string") {
+    throw new Error(`load-manifest cwd expects string, received ${cwd}, typeof ${cwd}`);
   }
 
-  const files = (await map(async f => (await sander.exists(dir, f)) ? f : null)).filter(Boolean);
+  const files = (await map(async f => (await sander.exists(cwd, f)) ? f : null)).filter(Boolean);
   const file = files[0];
 
   if (!file) {
-    const err = new Error(`load-manifest could not find pattern.json, package.json in ${dir}`);
+    const err = new Error(`load-manifest could not find pattern.json, package.json in ${cwd}`);
     err.errno = PATTERNPLATE_ERR_NO_MANIFEST;
     throw err;
   }
 
-  const fullPath = path.resolve(dir, file);
+  const fullPath = path.resolve(cwd, file);
   const data = await loadJSON(fullPath);
 
   const isPkg = path.basename(file) === "package.json";
@@ -37,13 +37,13 @@ async function loadManifest(dir) {
   const needsPattern = isPkg && !isPatternPkg;
 
   if (needsPattern && files.length === 1) {
-    const err = new Error(`load-manifest could not find pattern.json in ${dir}, package.json contains no patternplate object`);
+    const err = new Error(`load-manifest could not find pattern.json in ${cwd}, package.json contains no patternplate object`);
     err.errno = PATTERNPLATE_ERR_NO_MANIFEST;
     throw err;
   }
 
   if (needsPattern && files.length === 2) {
-    const fullPath = path.resolve(dir, files[1]);
+    const fullPath = path.resolve(cwd, files[1]);
     const data = await loadJSON(fullPath);
     return {
       file: fullPath,
