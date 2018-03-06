@@ -48,6 +48,12 @@ module.exports = [
         minChunks: mod =>
           mod.context && mod.context.indexOf("node_modules") > -1
       }),
+      new webpack.DefinePlugin({
+        NODE_ENV: JSON.stringify("production")
+      }),
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: "production"
+      }),
       new UglifyJsPlugin()
     ]
   }
