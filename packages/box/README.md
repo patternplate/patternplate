@@ -1,6 +1,21 @@
+
+> Documentation and development interface for component libraries
+
 # @patternplate/box
 
-> Wrap an async function to return a boxed result
+* Framework independent
+* Bring design docs to live with real components
+* Powerful search and meta data system
+
+This is the contributor documentation for `@patternplate/babel-preset`
+For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+
+## About @patternplate/box
+
+Wrap an async function to return a boxed result. 
+
+This is useful at callsites where errors might be expected
+and recoverable.
 
 ## Install
 
