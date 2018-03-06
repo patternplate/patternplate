@@ -11,7 +11,7 @@ For user configuration see [sinnerschrader.github.com/patternplate](https://sinn
 
 ## About @patternplate/load-config
 
-provided a current working directory `@patternplate/load-config` loads and normalizes patternplate configuration from `patternplate.config.js` files.
+Provided a current working directory `@patternplate/load-config` loads and normalizes patternplate configuration from `patternplate.config.js` files.
 
 ## Quick start
 

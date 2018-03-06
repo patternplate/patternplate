@@ -11,7 +11,7 @@ For user configuration see [sinnerschrader.github.com/patternplate](https://sinn
 
 ## About @patternplate/load-doc
 
-provided a current working directory `@patternplate/load-doc` return the `Buffer` holding
+Provided a current working directory `@patternplate/load-doc` return the `Buffer` holding
 the conntents of `README.md`, `readme.md` or `index.md`.
 
 ## Quick start
