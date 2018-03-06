@@ -8,8 +8,6 @@ const express = require("express");
 const serve = require("serve-static");
 const renderPage = require("./app/render-page");
 
-const { loadMetaTree } = loadMeta;
-
 module.exports = client;
 
 async function client(options) {
@@ -54,14 +52,17 @@ async function main(options) {
         readme: config.readme
       });
 
-      const meta = await loadMetaTree({
+      // TODO: Send errors to central observer
+      const {patterns} = await loadMeta({
         cwd,
         entry
       });
 
+      const tree = {id: "root", children: patterns};
+
       res.send(
         await renderPage(req.url, {
-          schema: { meta, docs },
+          schema: { meta: tree, docs },
           config,
           base: options.base || "/"
         })

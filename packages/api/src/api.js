@@ -1,7 +1,7 @@
 // const AggregateError = require("aggregate-error");
 const path = require("path");
 const loadConfig = require("@patternplate/load-config");
-const {loadMetaResult} = require("@patternplate/load-meta");
+const loadMeta = require("@patternplate/load-meta");
 const ARSON = require("arson");
 const chokidar = require("chokidar");
 const commonDir = require("common-dir");
@@ -80,17 +80,17 @@ async function createWatcher(options) {
 
         // TODO: only **list** relevant manifest paths
         // instead of reading them
-        const [errors, meta] = await loadMetaResult({
+        const meta = await loadMeta({
           entry,
           cwd
         });
 
-        if (errors && errors.length > 0) {
-          errors.forEach(err => next({ type: 'error', payload: err }));
+        if (meta.errors && meta.errors.length > 0) {
+          meta.errors.forEach(error => next({ type: "error", payload: error }));
         }
 
         const parents = [
-          ...(meta.length > 0 ? [commonDir(meta.map(m => path.join(cwd, m.path)))] : []),
+          ...(meta.patterns.length > 0 ? [commonDir(meta.patterns.map(m => path.join(cwd, m.path)))] : []),
           ...docs.map(d => path.join(cwd, globParent(d))),
           ...entry.map(e => path.join(cwd, globParent(e)))
         ];

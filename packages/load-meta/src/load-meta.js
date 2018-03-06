@@ -20,19 +20,9 @@ const DEFAULT_MANIFEST = {
 };
 
 module.exports = loadMeta;
-module.exports.loadMetaResult = loadMetaResult;
-module.exports.loadMetaTree = loadMetaTree;
 module.exports.PATTERNPLATE_ERROR_DUPE_PATTERN = PATTERNPLATE_ERROR_DUPE_PATTERN;
 
 async function loadMeta(options) {
-  const [err, result] = await loadMetaResult(options);
-  if (err) {
-    throw err;
-  }
-  return result;
-}
-
-async function loadMetaResult(options) {
   const list = await globby(options.entry, { cwd: options.cwd });
   const entries = await Promise.all(
     list.map(async bundle => {
@@ -87,7 +77,7 @@ async function loadMetaResult(options) {
     return acc;
   }, Promise.resolve([]));
 
-  const inspected = await pairs.reduce(async (accing, pair) => {
+  return await pairs.reduce(async (accing, pair) => {
     const acc = await accing;
     const { source, artifact } = pair;
     const patternBase = path.dirname(source);
@@ -140,17 +130,6 @@ async function loadMetaResult(options) {
     errors: [],
     patterns: []
   }));
-
-  const {patterns, errors} = inspected;
-
-  return [
-    errors.length > 0 ? errors : null,
-    patterns
-  ];
-}
-
-async function loadMetaTree(options) {
-  return {id: 'root', children: await loadMeta(options)};
 }
 
 async function getFiles(source, options) {

@@ -15,6 +15,8 @@ module.exports = build;
 const BUNDLE_PATH = "/patternplate.node.components.js";
 const RENDER_PATH = "/patternplate.node.render.js";
 
+// TODO: provide a lib version of this that
+// writes to a virtual fs / union fs
 async function build({flags}) {
   const cwd = flags.cwd || process.cwd();
   const out = path.join(cwd, flags.out || "docs/patterns");
@@ -32,13 +34,18 @@ async function build({flags}) {
     readme: config.readme
   });
 
-  const meta = await loadMeta.loadMetaTree({
+  const {patterns, errors} = await loadMeta({
     cwd,
     entry
   });
 
-  const patterns = meta.children;
-  const schema = { docs, meta };
+  const tree = {id: "root", children: patterns};
+
+  if (errors && errors.length > 0) {
+    throw new Error(errors.map(error => error.message).join("\n"));
+  }
+
+  const schema = { docs, meta: tree };
   const state = { base, config, schema, isStatic: true};
 
   // Create api/state.json
@@ -49,7 +56,7 @@ async function build({flags}) {
   await sander.writeFile(out, 'index.html', home);
 
   // Create pages
-  const pool = [...flatten(docs.children), ...flatten(meta.children)];
+  const pool = [...flatten(docs.children), ...flatten(patterns)];
 
   await Promise.all(pool.map(async item => {
     const full = `${base}/${item.contentType}/${item.id}`;

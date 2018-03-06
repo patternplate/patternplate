@@ -16,12 +16,15 @@ module.exports = async options => {
         readme: config.readme
       });
 
-      const meta = await loadMeta.loadMetaTree({
+      // TODO: Send errors to central observer
+      const {patterns} = await loadMeta({
         cwd,
         entry
       });
 
-      res.send({ docs, meta });
+      const tree = {id: "root", children: patterns};
+
+      res.send({ docs, meta: tree });
     } catch (err) {
       return res.json(err);
     }

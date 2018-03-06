@@ -21,7 +21,8 @@ async function demo(options) {
 
       const id = req.params[0];
 
-      const patterns = await loadMeta({
+      // TODO: Send errors to central observer
+      const {patterns} = await loadMeta({
         cwd: options.cwd,
         entry
       });
