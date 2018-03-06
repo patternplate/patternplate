@@ -1,1 +1,1 @@
-module.exports = require("./lib/load-config");
+module.exports = require("./lib/load-doc");

@@ -111,7 +111,7 @@ async function loadMeta(options) {
       return acc;
     }
 
-    const contents = await loadDoc({cwd: patternBase});
+    const {contents} = await loadDoc({cwd: patternBase});
 
     acc.patterns.push({
       id: manifest.name,
