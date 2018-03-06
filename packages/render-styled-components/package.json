@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/render-styled-components",
-  "version": "2.0.0-20",
+  "version": "2.0.0-21",
   "description": "patternplate render package for React and styled-components",
   "xo": false,
   "repository": {
