@@ -40,6 +40,24 @@ yarn
 yarn start
 ```
 
+## Usage
+
+```js
+const http = require("http");
+const api = require("@patternplate/api");
+
+(async () => {
+  const server = http.createServer();
+
+  const apiRoute = await api({
+    cwd: process.cwd(),
+    server
+  });
+
+  const app = express().use("/api/", apiRoute)
+})();
+```
+
 ## License
 
 Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
