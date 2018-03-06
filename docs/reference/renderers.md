@@ -11,7 +11,7 @@ can be written in or transformed to `JavaScript` and render `HTML`.
 
 * `@patternplate/default`: Pass `html` and `css` exports from demos
 * `@patternplate/react`: Render `html` from demo on server, mount on client
-* `@patternplate/styled-coponents`: Render `html`, `css`, mount on client
+* `@patternplate/styled-components`: Render `html`, `css`, mount on client
 
 ## Contracts
 
