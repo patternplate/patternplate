@@ -13,5 +13,6 @@ before_install:
   - ssh-add patternplate-deploy
   - rm patternplate-deploy
 script:
+  - yarn lerna build
   - yarn components:build
   - yarn components:deploy
