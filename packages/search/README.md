@@ -1,12 +1,18 @@
-> Perform search queries on a list of patternplate items
+> Documentation and development interface for component libraries
 
 # @patternplate/search
 
-## Getting started
+* Framework independent
+* Bring design docs to live with real components
+* Powerful search and meta data system
 
-```
-npm install @patternplate/search
-```
+This is the contributor documentation for `@patternplate/search`
+For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
+
+## About @patternplate/search
+
+Given a list of patterns, create a function that returns a 
+new list matching a provided search query.
 
 ## Usage
 
@@ -26,3 +32,8 @@ const items = [
 const search = createSearch(items);
 search('button');
 ```
+
+## License
+
+Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
+
