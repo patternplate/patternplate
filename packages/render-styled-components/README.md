@@ -12,7 +12,7 @@ For user configuration see [sinnerschrader.github.com/patternplate](https://sinn
 ## About @patternplate/render-styled-components
 
 `@patternplate/render-styled-components` provides the entry points for rendering and mounting
-of patternplate components written in React. 
+of patternplate components written in React and `styled-components`. 
 
 It is used by default in unconfigured patternplate instances.
 
