@@ -8,9 +8,10 @@ before_install:
     -iv $encrypted_b9bd228152b0_iv
     -in patternplate-deploy.enc
     -out patternplate-deploy -d
-  - chmod 600 github_deploy_key
+  - chmod 600 patternplate-deploy
   - eval $(ssh-agent -s)
-  - ssh-add github_deploy_key
+  - ssh-add patternplate-deploy
+  - rm patternplate-deploy
 script:
   - yarn components:build
   - yarn components:deploy
