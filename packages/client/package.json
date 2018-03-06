@@ -3,17 +3,26 @@
   "version": "2.0.0-16",
   "description": "Universal javascript client application for patternplate",
   "scripts": {
-    "build": "concurrently \"yarn webpack\" \"babel src -d lib --source-maps\"",
+    "start": "yarn watch",
+    "build": "concurrently \"yarn webpack --config webpack.prod.js\" \"babel src -d lib --source-maps\"",
     "clean": "npx rimraf lib",
     "watch": "concurrently \"yarn webpack -w\" \"babel src -d lib --source-maps -w\""
   },
   "xo": false,
   "babel": {
     "presets": [
-      ["module:@patternplate/babel-preset", {
-        "targets": ["node"],
-        "sources": ["react", "styled-components"]
-      }]
+      [
+        "module:@patternplate/babel-preset",
+        {
+          "targets": [
+            "node"
+          ],
+          "sources": [
+            "react",
+            "styled-components"
+          ]
+        }
+      ]
     ]
   },
   "repository": {
@@ -106,6 +115,7 @@
     "concurrently": "^3.5.0",
     "dependency-check": "^2.6.0",
     "fast-async": "^6.3.0",
+    "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "3",
     "webpack-cli": "1"
   }
