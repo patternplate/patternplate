@@ -36,7 +36,7 @@ export function btoa(source) {
 
 export function parse(source) {
   const doc = parser.parseFromString(source, "image/svg+xml");
-  const parsed = [...doc.childNodes].find(node => node.tagName === "svg");
+  const parsed = Array.prototype.slice.call(doc.childNodes).find(node => node.tagName === "svg");
   parsed.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   return parsed;
 }
@@ -63,7 +63,7 @@ export function png(source) {
 }
 
 export function purge(parsed) {
-  return [...parsed]
+  return Array.prototype.slice.call(parsed)
     .filter(node => TAG_NAMES.includes(node.tagName))
     .map(node => {
       node.childNodes = purge(node.childNodes);

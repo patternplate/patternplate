@@ -1,0 +1,29 @@
+{
+  "name": "@patternplate/deploy-site",
+  "version": "2.0.0-19",
+  "description": "patternplate static site deployment",
+  "scripts": {
+    "patternplate-deploy": "./deploy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinnerschrader/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "xo": false,
+  "dependencies": {
+    "execa": "^0.9.0",
+    "meow": "^4.0.0"
+  }
+}
