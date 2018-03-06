@@ -9,8 +9,6 @@ yarn add @patternplate/cli --dev
 
 ## Usage
 
-For tnow 
-
 ```bash
 λ yarn patternplate start # Start a patternplate server
 ✔ Started on "http://localhost:1337"
