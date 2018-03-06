@@ -104,15 +104,15 @@ Navigation.defaultProps = {
 
 function NavigationLabel(props) {
   return (
-    <StyledLabel>
-      {props.children}
       <StyledLabelLink
         query={{[`${props.name}-enabled`]: !props.enabled}}
         title={`${props.enabled ? 'Close' : 'Expand'} ${props.children} list`}
         >
-        {props.enabled ? '▼' : '◀'}
-      </StyledLabelLink>
-    </StyledLabel>
+        <StyledLabel>
+          <StyledLabelIcon enabled={props.enabled}>▼</StyledLabelIcon>
+          {props.children}
+        </StyledLabel>
+    </StyledLabelLink>
   );
 }
 
@@ -149,7 +149,6 @@ const StyledLabel = styled.div`
   padding: 5px 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-family: ${FONTS.default};
   font-size: .8em;
   color: ${props => props.theme.color};
@@ -161,7 +160,12 @@ const StyledLabel = styled.div`
 const StyledLabelLink = styled(Link)`
   color: ${props => props.theme.color};
   text-decoration: none;
-  margin-right: 15px;
+`;
+
+const StyledLabelIcon = styled.span`
+  margin-right: 10px;
+  transform-origin: center;
+  transform: rotate(${props => props.enabled ? 0 : -90}deg);
 `;
 
 const PASSAGE_HEIGHT = 50;
