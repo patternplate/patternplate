@@ -47,7 +47,7 @@ yarn add @patternplate/cli --dev
     ✔ Started on http://localhost:1337
 
     $ patternplate --port 1338
-    ✔ Started on http://localhost:1337
+    ✔ Started on http://localhost:1338
 
     $ patterplate build
     ✔ Built to ./docs
