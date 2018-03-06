@@ -10,3 +10,5 @@ node_modules
 /examples/*/lib
 !/exmaples/default/lib
 /examples/**/hello-world/
+
+/docs/patterns

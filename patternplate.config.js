@@ -1,5 +1,6 @@
 module.exports = {
   docs: [
+    "CHANGELOG.md",
     "docs/**/*.md",
     "!docs/**/*/patterns"
   ],
