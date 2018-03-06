@@ -1,45 +1,39 @@
-# Patternplate UI
+> Documentation and development interface for component libraries
 
-This is the home of Patternplates next UI elements. The idea is a recursive strategy by documenting Patternplates UI in itself.
+# @patternplate/components
 
-## Stages
-- **Stage 1:** Concept
-	- Structure
-		- Navigation ✓
-		- Header ✓
-		- Pluginareas ✓
-		-	Settings
-		- Pattern ✓
-	- Functionalities
-		- Narrowing navigation ✓
-		- Dark mode
-		- Build download
-- **Stage 2:** Design
-	- UI
-		- Function buttons ✓
-		- Primary button
-		- New meta labels
-		- Toolbars ✓
-	- Frame
-		- Navigation ✓
-		- Header ✓
-		- Pluginarea ✓
-		-	Settings
-		- Pattern ✓
-- **Stage 3:** Build it!
-	- Setup patternplate project ✓
-	- Build Frame [Prove of Concept](http://codepen.io/daniel_gooss/pen/PPwGML?editors=110)
-	- Build components
+* Framework independent
+* Bring design docs to live with real components
+* Powerful search and meta data system
 
-**Note: Stage 2+3 can run simultaneously**
+This is the contributor documentation for `@patternplate/cli`
+For user configuration see [sinnerschrader.github.com/patternplate](https://sinnerschrader.github.com/patternplate)
 
-## Design status
+## About @patternplate/components
 
-![](layouts/design/pattern_20160412.png)
+`@patternplate/components` doubles as component library and source for the example `patternplate` instance
+than can be started on the mono repository root.
 
-## UI Ideas
+## Quick start
 
-* Priority Plus Pattern for toolbars with swiping elements
-	* Elements are located in overlay and move out if place is given.
-	* By selecting hidden icon overlay gets closed and icon pushes visible icons from right - last icon moves to overlay
-* Probably handles for frames resizing
+```sh
+git clone https://github.com/sinnerschrader/patternplate.git
+cd patternplate
+yarn
+yarn components
+```
+
+## Usage
+
+```js
+const React = require("react");
+const ReactDOM = require("react-dom/server");
+const {Button} = require("@patternplate/components");
+
+const html = ReactDOM.renderToString(<Button/>);
+```
+
+## License
+
+Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
+
