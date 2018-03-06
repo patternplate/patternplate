@@ -21,7 +21,9 @@ async function build({flags}) {
   const cwd = flags.cwd || process.cwd();
   const out = path.join(cwd, flags.out || "docs/patterns");
   const rel = path.relative(cwd, out);
-  const base = `/${flags.base || path.basename(out)}`;
+  const base = flags.base === "/"
+    ? flags.base
+    : `/${typeof flags.base === "undefined" ? path.basename(out) : "/"}`;
 
   const spinner = ora(`Building to "${rel}"`).start();
 
