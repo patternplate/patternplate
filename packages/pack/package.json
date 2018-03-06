@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/pack",
-  "version": "2.0.0-18",
+  "version": "2.0.0-19",
   "description": "Bundle JS sources with webpack",
   "scripts": {
     "start": "yarn build -w",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-18",
+    "@patternplate/babel-preset": "^2.0.0-19",
     "fixturez": "^1.1.0"
   }
 }
