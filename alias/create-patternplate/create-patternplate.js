@@ -8,8 +8,6 @@ const pkgDir = resolvePkg('@patternplate/cli', {cwd: __dirname});
 const manifest = readPkg.sync(path.join(pkgDir, 'package.json'));
 const bin = path.join(pkgDir, manifest.bin.patternplate);
 
-console.log(process.argv);
-
 execa(bin, ["create"].concat(process.argv.slice(2)), {
   stdout: "inherit",
   stderr: "inherit"

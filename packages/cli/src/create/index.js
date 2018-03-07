@@ -5,6 +5,7 @@ const sander = require("@marionebl/sander");
 const MemoryFilesystem = require("memory-fs");
 const importFrom = require("import-from");
 const resolveFrom = require("resolve-from");
+const resolvePkg = require("resolve-pkg");
 
 module.exports = create;
 
@@ -15,7 +16,11 @@ async function create({flags, pkg}) {
 
   const cwd = flags.cwd || process.cwd();
   const rel = path.relative(cwd, path.resolve(cwd, flags.out));
-  const templateId = flags.template || "@patternplate/create-default";
+
+  const templateId = flags.template
+    ? flags.template
+    : resolveFrom(resolvePkg("@patternplate/cli"), "@patternplate/create-default");
+
   const relTemplateId = path.relative(cwd, resolveFrom(cwd, templateId));
   const template = importFrom(cwd, templateId);
 
