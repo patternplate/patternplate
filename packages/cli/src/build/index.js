@@ -1,5 +1,4 @@
 const path = require("path");
-const client = require("@patternplate/client");
 const eject = require("@patternplate/client/eject");
 const render = require("@patternplate/client/render");
 const compiler = require("@patternplate/compiler");
@@ -70,7 +69,7 @@ async function build({flags}) {
   }));
 
   // Create required client js bundles
-  await dump(await eject(["static/**/*"]), "/static", out);
+  await dump(await eject(), "/static", out);
 
   // Create component bundles
   await dump(await bundle({ cwd, target: "web" }), "/", path.join(out, 'api'));

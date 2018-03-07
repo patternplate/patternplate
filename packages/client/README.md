@@ -77,7 +77,6 @@ const eject = require("@patternplate/client/eject");
 
 (async () => {
   const vfs = await eject(); // MemoryFilesystem({ /static/, /lib/ });
-  const sfs = await eject(["static/**/*"]); // MemoryFilesystem({ /static/ });
 })();
 ```
 

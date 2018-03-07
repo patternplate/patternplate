@@ -57,8 +57,7 @@ async function create({flags, pkg}) {
   }
 
   if (flags.npm !== false) {
-    await sander.copydir(self).to(target, "node_modules/@patternplate/cli");
-    await sander.symlinkOrCopy(target, "node_modules/@patternplate/cli/cli.js").to(target, "node_modules/.bin/patternplate");
+    await execa("npm", ["install"], {cwd: target});
   }
 
   spinner.succeed(`Created patternplate project at "${rel}"`);

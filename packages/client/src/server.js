@@ -30,12 +30,42 @@ async function client(options) {
   const appStatic = path.join(self, "lib", "static");
 
   const app = express()
-    .use("/static", serve(appStatic))
     .use("/api/static", serve(apiStatic))
     .use("/api/", apiRoute)
     .get("/pattern/*", mainRoute)
     .get("/doc/*", mainRoute)
     .get("/", mainRoute);
+
+  if (process.env.BUNDLE !== "@patternplate/cli") {
+    // regular node environment
+    app.use("/static", serve(appStatic))
+  } else {
+    // bundled via @patternplate/cli
+    const efs = require("./eject")();
+
+    app.use("/static", (req, res, next) => {
+      switch (req.url) {
+        case "/vendors.js": {
+          res.type("js");
+          return res.send(efs.readFileSync("/static/vendors.js"));
+        }
+        case "/client.js": {
+          res.type("js");
+          return res.send(efs.readFileSync("/static/client.js"));
+        }
+        case "/vendors.js.map": {
+          res.type("text");
+          return res.send(efs.readFileSync("/static/vendors.js.map"));
+        }
+        case "/client.js.map": {
+          res.type("text");
+          return res.send(efs.readFileSync("/static/client.js.map"));
+        }
+        default:
+          next();
+      }
+    });
+  }
 
   app.subscribe = apiRoute.subscribe;
 

@@ -42,7 +42,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: function(file) {
-          return file.indexOf(__dirname) === -1;
+          return file.indexOf(__dirname) === -1 || file.indexOf("client/lib/static") > -1;
         },
         use: {
           loader: "babel-loader",
@@ -71,7 +71,8 @@ module.exports = {
       NODE_ENV: JSON.stringify("production")
     }),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: "production"
+      NODE_ENV: "production",
+      BUNDLE: "@patternplate/cli"
     })
   ]
 };
