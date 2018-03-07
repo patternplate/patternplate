@@ -1,6 +1,6 @@
 {
   "name": "create-patternplate",
-  "version": "2.0.0-24",
+  "version": "2.0.0-24.debug",
   "description": "Create new patternplate projects",
   "bin": {
     "create-patternplate": "./create-patternplate.js"
