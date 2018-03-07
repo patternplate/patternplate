@@ -10,17 +10,25 @@ const cli = meow(
   Commands
     start   - Start a patternplate instance in cwd
     build   - Create a static interface build
+    create  - Create a new patternplate project
     help    - Show this help
 
   Start options
     --cwd      - Working directory to search patternplate.config.js in
-    --open     - Open the interface in system default browser
     --port     - Port to start patternplate server on, defaults to 1337, $PORT
 
   Build options
     --base     - Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
     --cwd      - Working directory to search patternplate.config.js in
     --out      - Directory to save the build in, defaults to "docs"
+
+  Create options
+    --cwd      - Working directory to operate in
+    --force    - Overwrite existing directories
+    --out      - Directory to create the new project in
+    --template - Template to use, defaults to @patternplate/create-default
+    --no-git   - Skip git init
+    --no-npm   - Skip installation of npm packages
 
   Examples
     $ patternplate
@@ -34,7 +42,7 @@ const cli = meow(
 `
 );
 
-async function main({ input, flags }) {
+async function main({ input, flags, pkg }) {
   const [command] = input;
 
   switch (command) {
@@ -43,6 +51,9 @@ async function main({ input, flags }) {
     case 'build':
       const build = require("./build");
       return build({input, flags});
+    case 'create':
+      const create = require("./create");
+      return create({input, flags, pkg});
     case 'start':
     default:
       const start = require("./start");

@@ -1,0 +1,22 @@
+{
+  "name": "@patternplate/create-default",
+  "version": "2.0.0-22",
+  "description": "Create a default patternplate project via patternplate create",
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternplate/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternplate/patternplate/issues"
+  },
+  "homepage": "https://github.com/patternplate/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
