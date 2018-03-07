@@ -16,7 +16,7 @@ npx patternplate [command]
 λ patternplate start # Start a patternplate server
 ✔ Started on "http://localhost:1337"
 
-λ patternplate build # Start a patternplate server
+λ patternplate build # Build static interface
 ✔ Built to "docs/patterns"
 ```
 
