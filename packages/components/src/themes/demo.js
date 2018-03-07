@@ -266,6 +266,7 @@ class ColorDot extends Component {
 const StyledColorName = styled.div`
   font-family: sans-serif;
   padding: 1em;
+  background-color: #fff;
 `;
 
 const StyledColorDot = styled(CopyToClipboard).attrs({ component: "div" })`

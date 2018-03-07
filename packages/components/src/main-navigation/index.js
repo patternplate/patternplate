@@ -5,6 +5,7 @@ const Link = require("../link");
 const Header = require("../main-header");
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
+const Icon = require("../icon");
 
 const FONTS = fonts();
 
@@ -47,15 +48,15 @@ class Navigation extends React.Component {
 
     return (
       <StyledNavigation onKeyDown={this.handleKeyDown}>
+        {header ? (
+          header
+        ) : (
+          <StyledHeader
+            title={props.applicationTitle}
+            symbol="patternplate"
+          />
+        )}
         <StyledNavigationTree innerRef={this.getRef}>
-          {header ? (
-            header
-          ) : (
-            <StyledHeader
-              title={props.applicationTitle}
-              symbol="patternplate"
-            />
-          )}
           {props.docs.children.length > 0 &&
             <Documentation
               active={props.active}
@@ -108,9 +109,11 @@ function NavigationLabel(props) {
       <StyledLabelLink
         title={`${props.enabled ? 'Close' : 'Expand'} ${props.children} list`}
         onClick={()=> props.onClick({[`${props.name}-enabled`]: !props.enabled})}
-        >
-        <StyledLabel>
-          <StyledLabelIcon enabled={props.enabled}>▼</StyledLabelIcon>
+      >
+        <StyledLabel enabled={props.enabled}>
+          <StyledLabelIcon enabled={props.enabled}>
+            <Icon symbol="arrow-right" />
+          </StyledLabelIcon>
           {props.children}
         </StyledLabel>
     </StyledLabelLink>
@@ -128,10 +131,9 @@ function getPadding(el) {
 }
 
 const StyledHeader = styled(Header)`
-  position: sticky;
-  top: 0;
   height: 60px;
   box-sizing: border-box;
+  flex-shrink: 0;
 `;
 
 const StyledNavigation = styled.div`
@@ -144,20 +146,26 @@ const StyledNavigation = styled.div`
 `;
 
 const StyledLabel = styled.div`
-  padding: 5px 10px;
+  box-sizing: border-box;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   font-family: ${FONTS.default};
   font-size: .8em;
   color: ${props => props.theme.color};
-  background-color: ${props => props.theme.background};
-  border: 1px solid ${props => props.theme.border};
+  background-color: ${props =>
+    props.enabled ?
+      props.theme.backgroundTertiary : props.theme.background
+  };
+  border-style: solid;
+  border-top-color: ${props => props.enabled ? props.theme.backgroundSecondary : props.theme.border};
+  border-bottom-color: ${props => props.enabled ? 'transparent' : props.theme.border};
   border-width: 1px 0;
 `;
 
 const StyledLabelLink = styled.div`
   position: sticky;
-  top: 60px;
+  top: 0;
   left: 0;
   color: ${props => props.theme.color};
   cursor: pointer;
@@ -167,7 +175,7 @@ const StyledLabelLink = styled.div`
 const StyledLabelIcon = styled.span`
   margin-right: 10px;
   transform-origin: center;
-  transform: rotate(${props => props.enabled ? 0 : -90}deg);
+  transform: rotate(${props => props.enabled ? 90 : 0}deg);
 `;
 
 const PASSAGE_HEIGHT = 50;
