@@ -5,6 +5,7 @@ import { push } from "react-router-redux";
 import { bindActionCreators } from "redux";
 import { MainNavigation } from "@patternplate/components";
 import { Link } from "@patternplate/components";
+import { patchLocation } from "../actions";
 
 import selectNavigation from "../selectors/navigation";
 import selectDocs from "../selectors/docs";
@@ -34,6 +35,9 @@ function mapDispatch(dispatch) {
 
         const parsed = url.parse(e.currentTarget.href);
         return push(`${parsed.pathname}?${parsed.query}`);
+      },
+      onLabelClick(query) {
+        return patchLocation({query});
       }
     },
     dispatch
