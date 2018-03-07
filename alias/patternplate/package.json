@@ -27,6 +27,7 @@
     "npm": ">= 3"
   },
   "dependencies": {
+    "@patternplate/client": "^2.0.0-24",
     "read-pkg": "^3.0.0",
     "resolve-pkg": "^1.0.0"
   }
