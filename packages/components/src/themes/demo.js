@@ -1,6 +1,6 @@
 const color = require("color");
 const React = require("react");
-// const Clipboard = require("react-clipboard.js");
+const CopyToClipboard = require("react-clipboard.js").default;
 const Component = require("react").Component;
 const styled = require("styled-components").default;
 const css = require("styled-components").css;
@@ -268,7 +268,7 @@ const StyledColorName = styled.div`
   padding: 1em;
 `;
 
-const StyledColorDot = styled.div`
+const StyledColorDot = styled(CopyToClipboard).attrs({ component: "div" })`
   overflow: hidden;
   position: relative;
   display: flex;
