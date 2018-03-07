@@ -3,12 +3,12 @@ const globby = require("globby");
 const micromatch = require("micromatch");
 const pkgDir = require("pkg-dir");
 const MemoryFileSystem = require("memory-fs");
+const resolvePkg = require("resolve-pkg");
 const sander = require("@marionebl/sander");
 
 module.exports = async function eject(pattern = []) {
   const fs = new MemoryFileSystem();
-  const cwd = path.join(await pkgDir(__dirname), "./lib");
-
+  const cwd = path.join(resolvePkg("@patternplate/client"), "./lib");
   const files = await globby(["**/*"], {cwd});
 
   await Promise.all(files.map(async file => {

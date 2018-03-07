@@ -20,8 +20,8 @@ async function compiler({ cwd, target = "" }) {
 
   if (target === "web") {
     entry.mount = await getEntry(config.mount, { filepath });
-    entry.demo = require.resolve("@patternplate/demo-client");
-    entry.probe = require.resolve("@patternplate/probe-client")
+    entry.demo = resolveFrom(cwd, "@patternplate/demo-client");
+    entry.probe = resolveFrom(cwd, "@patternplate/probe-client")
   }
 
   const compiler = webpack({

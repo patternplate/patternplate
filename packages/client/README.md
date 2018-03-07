@@ -55,7 +55,7 @@ const client = require("@patternplate/client");
 ### Render a page
 
 ```js
-const {render} = require("@patternplate/client");
+const render = require("@patternplate/client/render");
 
 (async () => {
   const html = await render("/", {
@@ -73,7 +73,7 @@ const {render} = require("@patternplate/client");
 ### Eject a virtual fs with static assets 
 
 ```js
-const eject = require("@patternplate/client");
+const eject = require("@patternplate/client/eject");
 
 (async () => {
   const vfs = await eject(); // MemoryFilesystem({ /static/, /lib/ });

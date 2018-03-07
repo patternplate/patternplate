@@ -1,5 +1,7 @@
 const path = require("path");
 const client = require("@patternplate/client");
+const eject = require("@patternplate/client/eject");
+const render = require("@patternplate/client/render");
 const compiler = require("@patternplate/compiler");
 const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
@@ -54,7 +56,7 @@ async function build({flags}) {
   await sander.writeFile(out, 'api/state.json', JSON.stringify(schema));
 
   // Create /
-  const home = await client.render(base, state);
+  const home = await render(base, state);
   await sander.writeFile(out, 'index.html', home);
 
   // Create pages
@@ -62,26 +64,26 @@ async function build({flags}) {
 
   await Promise.all(pool.map(async item => {
     const full = `${base}/${item.contentType}/${item.id}`;
-    const html = await client.render(full, state);
+    const html = await render(full, state);
     const target = path.join(out, item.contentType, item.id, 'index.html');
     await sander.writeFile(target, html);
   }));
 
   // Create required client js bundles
-  await dump(await client.eject(["static/**/*"]), "/static", out);
+  await dump(await eject(["static/**/*"]), "/static", out);
 
   // Create component bundles
   await dump(await bundle({ cwd, target: "web" }), "/", path.join(out, 'api'));
 
   const bundleFs = await bundle({ cwd, target: "node" });
   const getModule = fromFs(bundleFs);
-  const render = getModule(RENDER_PATH);
+  const renderComponent = getModule(RENDER_PATH);
   const bundles = getModule(BUNDLE_PATH);
 
   // Create demo.html files
   await Promise.all(patterns.map(async pattern => {
     const component = getComponent(bundles, pattern);
-    const result = render(component);
+    const result = renderComponent(component);
     await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
   }));
 

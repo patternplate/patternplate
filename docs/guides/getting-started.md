@@ -20,10 +20,46 @@ and executable on your system:
 
 ## Initialize a new project
 
-```bash
-# - Creates a new patternplate project at my-patternplate
-# - Installs dependencies
-# - Changes into my-patternplate
-npx create-patternplate --out my-patternplate
-```
+1. Open your terminal emulator and enter the following command:
 
+   ```bash
+   # - Creates a new patternplate project at my-patternplate
+   # - Installs dependencies
+   # - Changes into my-patternplate
+   λ npx create-patternplate --out my-patternplate
+   ```
+
+2. `create-patternplate` tells you about the next steps. Additionally you can check on it with `tree` like below. If you see similiar output you are all set.
+
+   ```bash
+   λ npx create-patternplate --out my-patternplate
+   ✔ Created patternplate project at "my-patternplate"
+
+   Proceed via
+   - cd my-patternplate
+   - npm start
+
+   λ tree my-patternplate --filelimit=100
+   my-patternplate
+   ├── README.md
+   ├── docs
+   │   └── docs.md
+   ├── lib
+   │   └── hello-world
+   │       ├── demo.js
+   │       └── package.json
+   └── package.json
+   ```
+
+3. Follow the instructions provided by `create-patternplate`:
+
+   ```bash
+   # Change into `my-patternplate`
+   λ cd my-patternplate
+   
+   # Start a patternplate server
+   λ npm start
+   Started on http://localhost:1337
+   ```
+
+4. You can open [localhost:1337](http://localhost:1337) 
