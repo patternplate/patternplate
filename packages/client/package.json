@@ -2,12 +2,13 @@
   "name": "@patternplate/client",
   "version": "2.0.0-30",
   "description": "Universal javascript client application for patternplate",
-  "main": "./client.js",
+  "main": "./server.js",
   "scripts": {
     "start": "yarn watch",
-    "build": "yarn webpack --config webpack.prod.js",
+    "babel": "babel src -d lib --source-maps",
+    "build": "concurrently \"webpack --config webpack.prod.js\" \"yarn babel\"",
     "clean": "npx rimraf lib",
-    "watch": "yarn webpack -w"
+    "watch": "concurrently \"webpack -w\" \"yarn babel -w\""
   },
   "xo": false,
   "babel": {
@@ -52,20 +53,9 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "chokidar": "^2.0.2",
-    "encoding": "^0.1.12",
-    "express": "^4.16.2",
-    "require-from-string": "^2.0.1",
-    "use": "^3.1.0",
-    "webpack": "3",
-    "ws": "^4.0.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
     "@marionebl/react-router": "^2.6.2",
     "@marionebl/sander": "^0.6.1",
     "@patternplate/api": "^2.0.0-30",
-    "@patternplate/babel-preset": "^2.0.0-30",
     "@patternplate/components": "^2.0.0-30",
     "@patternplate/load-config": "^2.0.0-30",
     "@patternplate/load-docs": "^2.0.0-30",
@@ -74,15 +64,12 @@
     "@patternplate/websocket-client": "^2.0.0-30",
     "@patternplate/widgets": "^2.0.0-30",
     "arson": "^0.2.6",
-    "babel-loader": "8.0.0-beta.0",
     "btoa": "^1.1.2",
     "color": "^2.0.0",
-    "concurrently": "^3.5.0",
     "create-react-class": "^15.6.3",
-    "dependency-check": "^2.6.0",
     "dom4": "^1.8.3",
     "es6-promise": "^4.0.5",
-    "fast-async": "^6.3.0",
+    "express": "^4.16.2",
     "front-matter": "^2.1.2",
     "fuse.js": "^2.2.0",
     "github-markdown-css": "^2.4.0",
@@ -111,18 +98,25 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "reselect": "^3.0.1",
-    "resolve-pkg": "^1.0.0",
     "scrollparent": "^1.0.0",
     "seamless-immutable": "^7.1.2",
     "semver": "^5.4.1",
-    "serve-static": "^1.13.1",
-    "styled-components": "^3.1.6",
     "tag-hoc": "^1.0.0-0",
     "topologically-combine-reducers": "0.0.5",
-    "uglifyjs-webpack-plugin": "^1.2.2",
     "unindent": "^2.0.0",
-    "vis": "^4.20.1",
-    "webpack-cli": "1",
+    "webpack-dev-middleware": "^1.12.0",
+    "ws": "^4.0.0",
     "xmldom": "^0.1.27"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^2.0.0-27",
+    "babel-loader": "8.0.0-beta.0",
+    "concurrently": "^3.5.0",
+    "dependency-check": "^2.6.0",
+    "fast-async": "^6.3.0",
+    "uglifyjs-webpack-plugin": "^1.2.2",
+    "webpack": "3",
+    "webpack-cli": "1"
   }
 }

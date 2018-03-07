@@ -3,15 +3,20 @@ const loadConfig = require("@patternplate/load-config");
 const webpackEntry = require("@patternplate/webpack-entry");
 const MemoryFS = require("memory-fs");
 const resolveFrom = require("resolve-from");
+const resolvePkg = require("resolve-pkg");
 const webpack = require("webpack");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = compiler;
+
+const self = resolvePkg("@patternplate/compiler");
 
 async function compiler({ cwd, target = "" }) {
   const fs = new MemoryFS();
   const { config, filepath } = await loadConfig({ cwd });
+  const fcwd = filepath ? path.dirname(filepath) : process.cwd();
 
-  const components = await webpackEntry(config.entry, { cwd });
+  const components = await webpackEntry(config.entry, { cwd: fcwd });
   const entry = { components };
 
   if (target === "node") {
@@ -20,13 +25,14 @@ async function compiler({ cwd, target = "" }) {
 
   if (target === "web") {
     entry.mount = await getEntry(config.mount, { filepath });
-    entry.demo = resolveFrom(cwd, "@patternplate/demo-client");
-    entry.probe = resolveFrom(cwd, "@patternplate/probe-client")
+    entry.demo = resolveFrom(self, "@patternplate/demo-client");
+    entry.probe = resolveFrom(self, "@patternplate/probe-client")
   }
 
   const compiler = webpack({
     entry,
     target,
+    externals: target === "node" ? [nodeExternals()] : [],
     module: {
       rules: [
         {

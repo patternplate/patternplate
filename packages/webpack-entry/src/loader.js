@@ -16,22 +16,19 @@ module.exports = async function webpackEntry() {
     this.addContextDependency(dir);
   }
 
-  // this.context is "null" for our case, so we resort
-  // to "hacky" access on the compiler instance
-  const context = this.context || this._compiler.context;
-
   const reg = await Promise.all(files.map(async file => {
-    const full = path.join(context, file);
+    const full = path.join(options.cwd, file);
+    const rel = path.relative(process.cwd(), full);
     const exported = getExported(full);
 
-    const mod = [`module.exports['${file}'] = require('./${file}');`]
+    const mod = [`module.exports['${file}'] = require('./${rel}');`]
 
     if (!exported.css && await exists(ext('.css', full))) {
-      mod.push(`module.exports['${file}'].css = require('./${ext('.css', file)}')`);
+      mod.push(`module.exports['${file}'].css = require('./${ext('.css', rel)}')`);
     }
 
     if (!exported.html && await exists(ext('.html', full))) {
-      mod.push(`module.exports['${file}'].html = require('./${ext('.html', file)}')`);
+      mod.push(`module.exports['${file}'].html = require('./${ext('.html', rel)}')`);
     }
 
     return mod.join('\n');

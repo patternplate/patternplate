@@ -27,7 +27,6 @@ import ConnectedLink from "./link";
 import Logo from "./logo";
 import Message from "./message";
 import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
-import Network from "./network";
 import ToggleNavigation from "./toggle-navigation";
 import ToggleSearch from "./toggle-search";
 import Search from "./search";

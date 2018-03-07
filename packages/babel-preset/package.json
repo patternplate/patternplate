@@ -31,6 +31,7 @@
     "@babel/preset-react": "^7.0.0-beta.40",
     "babel-plugin-styled-components": "^1.5.1",
     "fast-async": "^6.3.1",
-    "lodash.merge": "^4.6.1"
+    "lodash.merge": "^4.6.1",
+    "nodent-runtime": "^3.2.1"
   }
 }

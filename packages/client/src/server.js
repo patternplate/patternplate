@@ -6,11 +6,15 @@ const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 const express = require("express");
 const serve = require("serve-static");
+const resolvePkg = require("resolve-pkg");
+
 const renderPage = require("./app/render-page");
 
 module.exports = client;
 
 async function client(options) {
+  const self = resolvePkg("@patternplate/client");
+
   const apiRoute = await api({
     cwd: options.cwd,
     config: options.config,
@@ -23,7 +27,7 @@ async function client(options) {
   });
 
   const apiStatic = path.join(options.cwd, "static");
-  const appStatic = path.join(__dirname, "static");
+  const appStatic = path.join(self, "lib", "static");
 
   const app = express()
     .use("/static", serve(appStatic))

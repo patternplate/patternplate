@@ -55,10 +55,19 @@ async function main({ input, flags, pkg }) {
       const create = require("./create");
       return create({input, flags, pkg});
     case 'start':
-    default:
+    case undefined:
       const start = require("./start");
       return start({input, flags});
+    default: {
+      throw error(`Unknown command "${command}"`);
+    }
   }
+}
+
+function error(message) {
+  const err = new Error(message);
+  err.patternplate = true;
+  return err;
 }
 
 main(cli).catch(err => {

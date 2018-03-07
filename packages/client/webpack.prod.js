@@ -56,52 +56,5 @@ module.exports = [
       }),
       new UglifyJsPlugin()
     ]
-  },
-  {
-    entry: {
-      server: "./src/server.js",
-      eject: "./src/eject.js",
-      render: "./src/render.js"
-    },
-    externals: /^(express|chokidar|webpack|uglify-js|load-runner|ws|encoding|use|require-from-string|@patternplate\/demo-client|@patternplate\/demo-client|@patternplate\/webpack-entry)/,
-    target: "node",
-    node: {
-      __dirname: true
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                [
-                  "module:@patternplate/babel-preset",
-                  {
-                    targets: ["node"],
-                    sources: ["react", "styled-components"]
-                  }
-                ]
-              ]
-            }
-          }
-        }
-      ]
-    },
-    output: {
-      libraryTarget: "commonjs2",
-      path: path.join(__dirname, "lib"),
-      filename: "[name].js"
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        NODE_ENV: JSON.stringify("production")
-      }),
-      new webpack.EnvironmentPlugin({
-        NODE_ENV: "production"
-      })
-    ]
   }
 ];

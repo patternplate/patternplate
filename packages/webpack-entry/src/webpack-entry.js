@@ -1,6 +1,9 @@
 const querystring = require("querystring");
+const resolvePkg = require("resolve-pkg");
+const resolveFrom = require("resolve-from");
 
-const LOADER = require.resolve("./loader");
+const SELF = resolvePkg("@patternplate/webpack-entry");
+const LOADER = resolveFrom(SELF, "./lib/loader");
 
 module.exports = webpackEntry;
 module.exports.sync = webpackEntrySync;

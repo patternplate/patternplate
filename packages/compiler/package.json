@@ -40,6 +40,7 @@
     "@patternplate/probe-client": "^2.0.0-30",
     "@patternplate/webpack-entry": "^2.0.0-30",
     "memory-fs": "^0.4.1",
-    "webpack": "3"
+    "webpack": "3",
+    "webpack-node-externals": "^1.6.0"
   }
 }

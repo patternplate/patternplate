@@ -99,7 +99,10 @@ function bundle({ cwd, target }) {
             return reject(err);
           }
           if (stats.compilation.errors && stats.compilation.errors.length > 0) {
-            return reject(errors);
+            stats.compilation.errors.forEach(error => {
+              console.error(error);
+            });
+            return reject(stats.compilation.errors);
           }
           resolve(c.outputFileSystem);
         })
