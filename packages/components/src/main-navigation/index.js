@@ -69,7 +69,8 @@ class Navigation extends React.Component {
               <React.Fragment>
                 <NavigationLabel
                   enabled={props.patternsEnabled}
-                  name="patterns">
+                  name="patterns"
+                  onClick={props.onLabelClick}>
                   Patterns
                 </NavigationLabel>
                 {
@@ -105,8 +106,8 @@ Navigation.defaultProps = {
 function NavigationLabel(props) {
   return (
       <StyledLabelLink
-        query={{[`${props.name}-enabled`]: !props.enabled}}
         title={`${props.enabled ? 'Close' : 'Expand'} ${props.children} list`}
+        onClick={()=> props.onClick({[`${props.name}-enabled`]: !props.enabled})}
         >
         <StyledLabel>
           <StyledLabelIcon enabled={props.enabled}>▼</StyledLabelIcon>
@@ -143,9 +144,6 @@ const StyledNavigation = styled.div`
 `;
 
 const StyledLabel = styled.div`
-  position: sticky;
-  top: 60px;
-  left: 0;
   padding: 5px 10px;
   display: flex;
   align-items: center;
@@ -157,8 +155,12 @@ const StyledLabel = styled.div`
   border-width: 1px 0;
 `;
 
-const StyledLabelLink = styled(Link)`
+const StyledLabelLink = styled.div`
+  position: sticky;
+  top: 60px;
+  left: 0;
   color: ${props => props.theme.color};
+  cursor: pointer;
   text-decoration: none;
 `;
 
