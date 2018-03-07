@@ -25,7 +25,7 @@ const EXTERNALS = builtinModules.concat([
 module.exports = {
   entry: {
     build: "./src/build/index.js",
-    eject: "./src/create/index.js",
+    create: "./src/create/index.js",
     start: "./src/start/index.js"
   },
   target: "node",

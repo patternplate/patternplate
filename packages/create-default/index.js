@@ -1,5 +1,12 @@
 module.exports = createDefault;
 
+const GITIGNORE = data => {
+  return `
+node_modules
+*.log
+`;
+}
+
 const PACKAGE = data => {
   return JSON.stringify({
     name: data.name,
@@ -70,9 +77,10 @@ module.exports = {
   }
 };
 `;
-}
+};
 
 function createDefault(data, fs) {
+  fs.writeFileSync("/.gitignore", GITIGNORE(data));
 
   fs.writeFileSync("/package.json", PACKAGE(data));
   fs.writeFileSync("/README.md", README(data));

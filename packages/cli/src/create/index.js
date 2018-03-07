@@ -5,6 +5,7 @@ const sander = require("@marionebl/sander");
 const MemoryFilesystem = require("memory-fs");
 const importFrom = require("import-from");
 const resolveFrom = require("resolve-from");
+const resolvePkg = require("resolve-pkg");
 
 module.exports = create;
 
@@ -13,12 +14,14 @@ async function create({flags, pkg}) {
     throw error("create: --out flag is required");
   }
 
+  const resolved = resolvePkg("@patternplate/cli")
+  const self = typeof resolved === "string" ? resolved : path.dirname(__dirname);
   const cwd = flags.cwd || process.cwd();
   const rel = path.relative(cwd, path.resolve(cwd, flags.out));
 
   const templateId = flags.template
     ? flags.template
-    : resolveFrom(__dirname, "@patternplate/create-default");
+    : resolveFrom(self, "@patternplate/create-default");
 
   const relTemplateId = path.relative(cwd, resolveFrom(cwd, templateId));
   const template = importFrom(cwd, templateId);
@@ -46,14 +49,16 @@ async function create({flags, pkg}) {
 
   const fs = template(data, new MemoryFilesystem());
 
-  await dump(fs, "/", path.join(cwd, flags.out));
+  const target = path.join(cwd, flags.out);
+  await dump(fs, "/", target);
 
   if (flags.git !== false) {
-    await execa("git", ["init"], {cwd});
+    await execa("git", ["init"], {cwd: target});
   }
 
   if (flags.npm !== false) {
-    await execa("npm", ["install"], {cwd});
+    await sander.copydir(self).to(target, "node_modules/@patternplate/cli");
+    await sander.symlinkOrCopy(target, "node_modules/@patternplate/cli/cli.js").to(target, "node_modules/.bin/patternplate");
   }
 
   spinner.succeed(`Created patternplate project at "${rel}"`);
