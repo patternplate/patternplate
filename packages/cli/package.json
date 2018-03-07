@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.0.0-22",
+  "version": "2.0.0-23",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -18,11 +18,11 @@
     ]
   },
   "dependencies": {
-    "@patternplate/client": "^2.0.0-22",
-    "@patternplate/compiler": "^2.0.0-22",
-    "@patternplate/load-config": "^2.0.0-22",
-    "@patternplate/load-docs": "^2.0.0-22",
-    "@patternplate/load-meta": "^2.0.0-22",
+    "@patternplate/client": "^2.0.0-23",
+    "@patternplate/compiler": "^2.0.0-23",
+    "@patternplate/load-config": "^2.0.0-23",
+    "@patternplate/load-docs": "^2.0.0-23",
+    "@patternplate/load-meta": "^2.0.0-23",
     "errorhandler": "^1.5.0",
     "execa": "^0.9.0",
     "express": "^4.16.2",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/runtime": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-22",
+    "@patternplate/babel-preset": "^2.0.0-23",
     "fast-async": "^6.3.0",
     "rimraf": "^2.6.2"
   },
