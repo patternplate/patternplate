@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-doc",
-  "version": "2.0.0-30",
+  "version": "2.0.0-31",
   "description": "Load a markdown index docs",
   "scripts": {
     "start": "yarn build -w",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-30",
+    "@patternplate/babel-preset": "^2.0.0-31",
     "fixturez": "^1.1.0"
   }
 }
