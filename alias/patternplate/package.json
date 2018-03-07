@@ -1,5 +1,5 @@
 {
-  "name": "create-patternplate",
+  "name": "patternplate",
   "version": "2.0.0-2.0.0-26.debug.0",
   "description": "Documentation and development interface for component libraries",
   "bin": {
