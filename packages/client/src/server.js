@@ -53,14 +53,6 @@ async function client(options) {
           res.type("js");
           return res.send(efs.readFileSync("/static/client.js"));
         }
-        case "/vendors.js.map": {
-          res.type("text");
-          return res.send(efs.readFileSync("/static/vendors.js.map"));
-        }
-        case "/client.js.map": {
-          res.type("text");
-          return res.send(efs.readFileSync("/static/client.js.map"));
-        }
         default:
           next();
       }
