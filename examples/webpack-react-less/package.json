@@ -1,6 +1,6 @@
 {
   "name": "@patternplate-example/webpack-react-less",
-  "version": "2.0.0-36",
+  "version": "2.0.0-37",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -19,9 +19,9 @@
     "@babel/core": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
-    "@patternplate/cli": "^2.0.0-36",
-    "@patternplate/render-react": "^2.0.0-36",
-    "@patternplate/webpack-entry": "^2.0.0-36",
+    "@patternplate/cli": "^2.0.0-37",
+    "@patternplate/render-react": "^2.0.0-37",
+    "@patternplate/webpack-entry": "^2.0.0-37",
     "babel-loader": "8.0.0-beta.0",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.7",
