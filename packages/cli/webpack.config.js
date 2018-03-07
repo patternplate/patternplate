@@ -18,7 +18,8 @@ const EXTERNALS = builtinModules.concat([
   "express", // express/lib/view creates an expression require
   "errorhandler", // non-resolvable static assets
   "require-from-string", // fails unpredictably
-  "meow" // installed in cli anyway
+  "meow", // installed in cli anyway
+  "chalk" // installed in cli anyway
 ]);
 
 module.exports = {
