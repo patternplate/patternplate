@@ -101,6 +101,7 @@
     "npm": ">= 3"
   },
   "workspaces": [
+    "alias/*",
     "examples/*",
     "packages/*"
   ]
