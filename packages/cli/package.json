@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@patternplate/create-default": "^2.0.0-35",
+    "chalk": "^2.3.2",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
     "import-from": "^2.1.0",
