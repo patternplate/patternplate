@@ -69,7 +69,7 @@ async function build({flags}) {
   }));
 
   // Create required client js bundles
-  await dump(await eject(), "/static", out);
+  await dump(eject(), "/static", out);
 
   // Create component bundles
   await dump(await bundle({ cwd, target: "web" }), "/", path.join(out, 'api'));
