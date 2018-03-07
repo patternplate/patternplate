@@ -7,7 +7,7 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for `@patternplate/babel-preset`
-For user configuration see [patternplate.github.io](https://patternplate.github.io)
+For user docs see [patternplate.github.io](https://patternplate.github.io)
 
 
 ## About @patternplate/babel-preset

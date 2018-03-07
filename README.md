@@ -7,7 +7,7 @@
 * Powerful search and meta data system
 
 This is the contributor documentation for the `patternplate` mono-repository.
-For user configuration see [patternplate.github.io](https://patternplate.github.io)
+For user docs see [patternplate.github.io](https://patternplate.github.io)
 
 ## Quick start
 
