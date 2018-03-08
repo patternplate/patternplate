@@ -7,6 +7,7 @@ module.exports = {
   ],
   render: "@patternplate/render-styled-components/render",
   mount: "@patternplate/render-styled-components/mount",
+  cover: "./cover",
   ui: {
     title: "@patternplate/components"
   }

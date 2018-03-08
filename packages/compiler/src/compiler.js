@@ -31,6 +31,11 @@ async function compiler(options) {
     entry.mount = cascadeResolve(config.mount, {bases});
     entry.demo = DEMO;
     entry.probe = PROBE;
+
+    console.log(config.cover);
+    if (config.cover) {
+      entry.cover = cascadeResolve(config.cover, {bases: [cwd, __dirname]});
+    }
   }
 
   const compiler = webpack({
