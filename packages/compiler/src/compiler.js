@@ -32,9 +32,9 @@ async function compiler(options) {
     entry.demo = DEMO;
     entry.probe = PROBE;
 
-    console.log(config.cover);
+    console.log('Cover', config.cover);
     if (config.cover) {
-      entry.cover = cascadeResolve(config.cover, {bases: [cwd, __dirname]});
+      entry.cover = cascadeResolve(config.cover, {bases});
     }
   }
 
