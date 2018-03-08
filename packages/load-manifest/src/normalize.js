@@ -37,5 +37,9 @@ function normalize(data, {isPatternPkg}) {
     normalized.options = sourceData.options;
   }
 
+  if (sourceData.hasOwnProperty("flag")) {
+    normalized.flag = sourceData.flag;
+  }
+
   return normalized;
 }

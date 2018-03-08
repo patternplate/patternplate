@@ -12,7 +12,7 @@ test("throws for missing input", async () => {
 });
 
 test("throws for missing file", async () => {
-  const cwd = f.copy("missing");
+  const cwd = f.copy("missing-pattern");
 
   await expect(loadManifest({cwd})).rejects.toMatchObject({
     message: expect.stringContaining("could not find"),
@@ -146,5 +146,23 @@ test("uses description from package.json[description]", async () => {
 
   expect(result.manifest).toMatchObject({
     "description": "pkg"
+  });
+});
+
+test("uses flag from pattern.json[flag]", async () => {
+  const cwd = f.copy("pattern-flag");
+  const result = await loadManifest({cwd});
+
+  expect(result.manifest).toMatchObject({
+    "flag": "beta"
+  });
+});
+
+test("uses flag from package.json[patternplate][flag]", async () => {
+  const cwd = f.copy("pkg-flag");
+  const result = await loadManifest({cwd});
+
+  expect(result.manifest).toMatchObject({
+    "flag": "beta"
   });
 });

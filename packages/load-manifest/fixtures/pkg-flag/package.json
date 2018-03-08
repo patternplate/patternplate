@@ -1,0 +1,7 @@
+{
+  "name": "pattern",
+  "flag": "deprecated",
+  "patternplate": {
+    "flag": "beta"
+  }
+}
