@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-manifest",
-  "version": "2.0.0-44",
+  "version": "2.0.0-45",
   "description": "Read pattern meta data from package.json or pattern.json",
   "scripts": {
     "clean": "rimraf lib",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-44",
+    "@patternplate/babel-preset": "^2.0.0-45",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",
     "fixturez": "^1.1.0",
