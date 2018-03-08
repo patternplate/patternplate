@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/widgets",
-  "version": "2.0.0-41",
+  "version": "2.0.0-42",
   "description": "Markdown widgets available in patternplate",
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
   },
   "xo": false,
   "dependencies": {
-    "@patternplate/components": "^2.0.0-41"
+    "@patternplate/components": "^2.0.0-42"
   }
 }
