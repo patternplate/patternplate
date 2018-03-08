@@ -39,7 +39,10 @@
     "@patternplate/load-config": "^2.0.0-44",
     "@patternplate/probe-client": "^2.0.0-44",
     "@patternplate/webpack-entry": "^2.0.0-44",
+    "css-loader": "^0.28.10",
+    "html-loader": "^0.5.5",
     "memory-fs": "^0.4.1",
+    "to-string-loader": "^1.1.5",
     "webpack": "3",
     "webpack-node-externals": "^1.6.0"
   }
