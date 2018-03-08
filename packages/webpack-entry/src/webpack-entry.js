@@ -1,7 +1,7 @@
 const querystring = require("querystring");
 const resolveFrom = require("resolve-from");
 
-const LOADER = resolveFrom(__dirname, "./loader");
+const LOADER = require.resolve("./loader");
 
 module.exports = webpackEntry;
 module.exports.sync = webpackEntrySync;

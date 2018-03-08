@@ -8,6 +8,12 @@ const nodeExternals = require("webpack-node-externals");
 
 module.exports = compiler;
 
+const TO_STRING_LOADER = require.resolve("to-string-loader");
+const CSS_LOADER = require.resolve("css-loader");
+const HTML_LOADER = require.resolve("html-loader");
+const DEMO = require.resolve("@patternplate/demo-client");
+const PROBE = require.resolve("@patternplate/probe-client");
+
 async function compiler(options) {
   const fs = new MemoryFS();
   const { config, filepath } = await loadConfig({ cwd: options.cwd });
@@ -15,21 +21,17 @@ async function compiler(options) {
 
   const components = await webpackEntry(config.entry, { cwd });
   const entry = { components };
-  const bases = [__dirname, cwd, this.context, process.cwd()].filter(Boolean);
+  const bases = [cwd, process.cwd()].filter(Boolean);
 
   if (options.target === "node") {
-    entry.render = cascadeResolve(config.render, {bases: [cwd, __dirname]});
+    entry.render = cascadeResolve(config.render, {bases});
   }
 
   if (options.target === "web") {
-    entry.mount = cascadeResolve(config.mount, {bases: [cwd, __dirname]});
-    entry.demo = cascadeResolve("@patternplate/demo-client", {bases});
-    entry.probe = cascadeResolve("@patternplate/probe-client", {bases});
+    entry.mount = cascadeResolve(config.mount, {bases});
+    entry.demo = DEMO;
+    entry.probe = PROBE;
   }
-
-  const toStringLoader = cascadeResolve("to-string-loader", {bases});
-  const cssLoader = cascadeResolve("css-loader", {bases});
-  const htmlLoader = cascadeResolve("html-loader", {bases});
 
   const compiler = webpack({
     entry,
@@ -39,11 +41,11 @@ async function compiler(options) {
       rules: [
         {
           test: /\.css$/,
-          use: [toStringLoader, cssLoader]
+          use: [TO_STRING_LOADER, CSS_LOADER]
         },
         {
           test: /\.html$/,
-          use: [htmlLoader]
+          use: [HTML_LOADER]
         }
       ]
     },
@@ -74,7 +76,7 @@ function cascadeResolve(id, {bases}) {
     if (resolved) {
       return resolved;
     }
-    return resolveFrom(base, id);
+    return (resolveFrom.silent || resolveFrom)(base, id);
   }, '');
 
   if (typeof result !== "string") {

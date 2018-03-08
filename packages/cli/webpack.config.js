@@ -1,8 +1,9 @@
 const builtinModules = require('builtin-modules');
 const webpack = require("webpack");
 const path = require("path");
+const resolvePkg = require("resolve-pkg");
 
-const EXTERNALS = builtinModules.concat([
+const EXCLUDED = [
   "fsevents", // native
   "ws", // issues with buffer-utils
   "utf8-validate", // native
@@ -20,8 +21,10 @@ const EXTERNALS = builtinModules.concat([
   "require-from-string", // fails unpredictably
   "meow", // installed in cli anyway
   "chalk", // installed in cli anyway,
-  "@patternplate/webpack-entry" // needs relative access to itself
-]);
+  "@patternplate/compiler" // needs relative access to itself
+];
+
+const EXTERNALS = builtinModules.concat(EXCLUDED);
 
 module.exports = {
   entry: {
@@ -32,9 +35,14 @@ module.exports = {
   target: "node",
   externals: [
     (context, request, callback) => {
+      if (request.charAt(0) === ".") {
+        return callback();
+      }
+
       if (EXTERNALS.indexOf(request) > -1){
         return callback(null, 'commonjs ' + request);
       }
+
       callback();
     }
   ],
