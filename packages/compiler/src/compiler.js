@@ -32,7 +32,6 @@ async function compiler(options) {
     entry.demo = DEMO;
     entry.probe = PROBE;
 
-    console.log('Cover', config.cover);
     if (config.cover) {
       entry.cover = cascadeResolve(config.cover, {bases});
     }
@@ -60,16 +59,17 @@ async function compiler(options) {
       path: "/",
       filename: `patternplate.${options.target}.[name].js`
     },
-    plugins:
-      options.target === "web"
-        ? [
-            new webpack.optimize.CommonsChunkPlugin({
-              name: "vendors",
-              minChunks: mod =>
-                mod.context && mod.context.indexOf("node_modules") > -1
-            })
-          ]
-        : []
+    // Disabled due to inconsistencies with chunking
+    // plugins:
+    //   options.target === "web"
+    //     ? [
+    //         new webpack.optimize.CommonsChunkPlugin({
+    //           name: "vendors",
+    //           minChunks: mod =>
+    //             mod.context && mod.context.indexOf("node_modules") > -1
+    //         })
+    //       ]
+    //     : []
   });
 
   compiler.outputFileSystem = fs;
