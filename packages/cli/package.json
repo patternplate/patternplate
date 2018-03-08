@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.0.0-46",
+  "version": "2.0.0-47",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -21,10 +21,10 @@
     ]
   },
   "dependencies": {
-    "@patternplate/demo-client": "^2.0.0-46",
-    "@patternplate/probe-client": "^2.0.0-46",
-    "@patternplate/render-default": "^2.0.0-46",
-    "@patternplate/webpack-entry": "^2.0.0-46",
+    "@patternplate/demo-client": "^2.0.0-47",
+    "@patternplate/probe-client": "^2.0.0-47",
+    "@patternplate/render-default": "^2.0.0-47",
+    "@patternplate/webpack-entry": "^2.0.0-47",
     "chalk": "^2.3.2",
     "css-loader": "^0.28.10",
     "encoding": "^0.1.12",
@@ -48,13 +48,13 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/runtime": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-46",
-    "@patternplate/client": "^2.0.0-46",
-    "@patternplate/compiler": "^2.0.0-46",
-    "@patternplate/create-default": "^2.0.0-46",
-    "@patternplate/load-config": "^2.0.0-46",
-    "@patternplate/load-docs": "^2.0.0-46",
-    "@patternplate/load-meta": "^2.0.0-46",
+    "@patternplate/babel-preset": "^2.0.0-47",
+    "@patternplate/client": "^2.0.0-47",
+    "@patternplate/compiler": "^2.0.0-47",
+    "@patternplate/create-default": "^2.0.0-47",
+    "@patternplate/load-config": "^2.0.0-47",
+    "@patternplate/load-docs": "^2.0.0-47",
+    "@patternplate/load-meta": "^2.0.0-47",
     "builtin-modules": "^2.0.0",
     "chalk": "^2.3.2",
     "errorhandler": "^1.5.0",
