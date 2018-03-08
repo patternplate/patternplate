@@ -8,7 +8,8 @@
     "babel": "babel src -d lib --source-maps",
     "build": "concurrently \"webpack --config webpack.prod.js\" \"yarn babel\"",
     "clean": "npx rimraf lib",
-    "watch": "concurrently \"webpack -w\" \"yarn babel -w\""
+    "watch": "concurrently \"webpack -w\" \"yarn babel -w\"",
+    "prepublishOnly": "yarn build"
   },
   "xo": false,
   "babel": {

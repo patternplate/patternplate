@@ -11,7 +11,8 @@
     "build": "concurrently \"yarn webpack\" \"yarn babel\"",
     "clean": "npx rimraf lib",
     "watch": "yarn babel -w",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "prepublishOnly": "yarn build"
   },
   "xo": false,
   "babel": {
