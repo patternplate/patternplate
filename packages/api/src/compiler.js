@@ -22,7 +22,10 @@ async function createCompiler({ cwd, target = "" }) {
 
   c.plugin("done", (stats) => {
     if (stats.compilation.errors && stats.compilation.errors.length > 0) {
-      debug("error", target);
+      stats.compilation.errors.forEach(err => {
+        debug("error", {err, target});
+      });
+
       queue.unshift({type: 'error', target, payload: stats.compilation.errors});
       return next(queue);
     }

@@ -10,6 +10,7 @@
     "babel": "babel src -d lib --source-maps",
     "build": "concurrently \"yarn webpack\" \"yarn babel\"",
     "clean": "npx rimraf lib",
+    "clean:dev": "npx rimraf lib/build.js lib/create.js lib/start.js",
     "watch": "yarn babel -w",
     "webpack": "webpack",
     "prepublishOnly": "yarn build"

@@ -30,7 +30,8 @@
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
-    "path-exists": "^3.0.0"
+    "path-exists": "^3.0.0",
+    "require-from-string": "^2.0.1"
   },
   "babel": {
     "presets": [

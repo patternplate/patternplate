@@ -8,48 +8,53 @@ const nodeExternals = require("webpack-node-externals");
 
 module.exports = compiler;
 
-async function compiler({ cwd, target = "" }) {
+async function compiler(options) {
   const fs = new MemoryFS();
-  const { config, filepath } = await loadConfig({ cwd });
-  const fcwd = filepath ? path.dirname(filepath) : process.cwd();
+  const { config, filepath } = await loadConfig({ cwd: options.cwd });
+  const cwd = typeof filepath === "string" ? path.dirname(filepath) : options.cwd;
 
-  const components = await webpackEntry(config.entry, { cwd: fcwd });
+  const components = await webpackEntry(config.entry, { cwd });
   const entry = { components };
+  const bases = [__dirname, cwd, this.context, process.cwd()].filter(Boolean);
 
-  if (target === "node") {
-    entry.render = await getEntry(config.render, { filepath });
+  if (options.target === "node") {
+    entry.render = cascadeResolve(config.render, {bases: [cwd, __dirname]});
   }
 
-  if (target === "web") {
-    entry.mount = await getEntry(config.mount, { filepath });
-    entry.demo = resolveFrom(fcwd, "@patternplate/demo-client");
-    entry.probe = resolveFrom(fcwd, "@patternplate/probe-client")
+  if (options.target === "web") {
+    entry.mount = cascadeResolve(config.mount, {bases: [cwd, __dirname]});
+    entry.demo = cascadeResolve("@patternplate/demo-client", {bases});
+    entry.probe = cascadeResolve("@patternplate/probe-client", {bases});
   }
+
+  const toStringLoader = cascadeResolve("to-string-loader", {bases});
+  const cssLoader = cascadeResolve("css-loader", {bases});
+  const htmlLoader = cascadeResolve("html-loader", {bases});
 
   const compiler = webpack({
     entry,
-    target,
-    externals: target === "node" ? [nodeExternals()] : [],
+    target: options.target,
+    externals: options.target === "node" ? [nodeExternals()] : [],
     module: {
       rules: [
         {
           test: /\.css$/,
-          use: ["to-string-loader", "css-loader"]
+          use: [toStringLoader, cssLoader]
         },
         {
           test: /\.html$/,
-          use: ["html-loader"]
+          use: [htmlLoader]
         }
       ]
     },
     output: {
       library: "patternplate-[name]",
-      libraryTarget: target === "node" ? "commonjs2" : "window",
+      libraryTarget: options.target === "node" ? "commonjs2" : "window",
       path: "/",
-      filename: `patternplate.${target}.[name].js`
+      filename: `patternplate.${options.target}.[name].js`
     },
     plugins:
-      target === "web"
+      options.target === "web"
         ? [
             new webpack.optimize.CommonsChunkPlugin({
               name: "vendors",
@@ -64,7 +69,17 @@ async function compiler({ cwd, target = "" }) {
   return compiler;
 }
 
-async function getEntry(id, { filepath }) {
-  const base = filepath ? path.dirname(filepath) : process.cwd();
-  return resolveFrom(base, id);
+function cascadeResolve(id, {bases}) {
+  const result = bases.reduce((resolved, base) => {
+    if (resolved) {
+      return resolved;
+    }
+    return resolveFrom(base, id);
+  }, '');
+
+  if (typeof result !== "string") {
+    throw new Error(`Could not resolve "${id}" from ${bases.join(", ")}`);
+  }
+
+  return result;
 }

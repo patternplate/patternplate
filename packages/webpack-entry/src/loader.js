@@ -4,6 +4,7 @@ const commonDir = require("common-dir");
 const exists = require("path-exists");
 const globby = require("globby");
 const utils = require("loader-utils");
+const requireFromString = require("require-from-string");
 
 module.exports = async function webpackEntry() {
   const cb = this.async();
@@ -19,15 +20,15 @@ module.exports = async function webpackEntry() {
   const reg = await Promise.all(files.map(async file => {
     const full = path.join(options.cwd, file);
     const rel = path.relative(process.cwd(), full);
-    const exported = getExported(full);
+    const exported = await getExported(full, {fs: this.fs});
 
     const mod = [`module.exports['${file}'] = require('./${rel}');`]
 
-    if (!exported.css && await exists(ext('.css', full))) {
+    if (exported.indexOf("css") === -1 && await exists(ext('.css', full))) {
       mod.push(`module.exports['${file}'].css = require('./${ext('.css', rel)}')`);
     }
 
-    if (!exported.html && await exists(ext('.html', full))) {
+    if (exported.indexOf("html") === -1 && await exists(ext('.html', full))) {
       mod.push(`module.exports['${file}'].html = require('./${ext('.html', rel)}')`);
     }
 
@@ -54,10 +55,12 @@ function ext(e, ...input) {
   return path.format(parsed);
 }
 
-function getExported(id) {
+async function getExported(modulePath, {fs}) {
+  const code = String(fs.readFileSync(modulePath));
+
   try {
-    return require(id)
+    return Object.keys(requireFromString(code, modulePath));
   } catch (err) {
-    return {};
+    return [];
   }
 }
