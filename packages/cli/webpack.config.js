@@ -19,7 +19,8 @@ const EXTERNALS = builtinModules.concat([
   "errorhandler", // non-resolvable static assets
   "require-from-string", // fails unpredictably
   "meow", // installed in cli anyway
-  "chalk" // installed in cli anyway
+  "chalk", // installed in cli anyway,
+  "@patternplate/webpack-entry" // needs relative access to itself
 ]);
 
 module.exports = {
