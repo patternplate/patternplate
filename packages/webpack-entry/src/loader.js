@@ -1,8 +1,8 @@
 // const { entries } = require("lodash");
 const path = require("path");
-const commonDir = require("common-dir");
 const exists = require("path-exists");
 const globby = require("globby");
+const globParent = require("glob-parent");
 const utils = require("loader-utils");
 const requireFromString = require("require-from-string");
 
@@ -11,11 +11,8 @@ module.exports = async function webpackEntry() {
   const options = utils.getOptions(this);
 
   const files = await getFiles(options)
-
-  if (files.length > 0) {
-    const dir = commonDir(files);
-    this.addContextDependency(dir);
-  }
+  const parent = globParent(options.entry);
+  this.addContextDependency(parent);
 
   const reg = await Promise.all(files.map(async file => {
     const full = path.join(options.cwd, file);
