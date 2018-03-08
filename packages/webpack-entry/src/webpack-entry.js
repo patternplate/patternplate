@@ -1,8 +1,7 @@
 const querystring = require("querystring");
-const resolvePkg = require("resolve-pkg");
 const resolveFrom = require("resolve-from");
 
-const LOADER = resolveFrom(__dirname, "./lib/loader");
+const LOADER = resolveFrom(__dirname, "./loader");
 
 module.exports = webpackEntry;
 module.exports.sync = webpackEntrySync;
