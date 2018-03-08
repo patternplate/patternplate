@@ -5,6 +5,7 @@ const globby = require("globby");
 const globParent = require("glob-parent");
 const utils = require("loader-utils");
 const requireFromString = require("require-from-string");
+const debug = require("util").debuglog("patternplate");
 
 module.exports = async function webpackEntry() {
   const cb = this.async();
@@ -12,7 +13,12 @@ module.exports = async function webpackEntry() {
 
   const files = await getFiles(options)
   const parent = globParent(options.entry);
-  this.addContextDependency(parent);
+  const parentFull = path.join(options.cwd, parent);
+  const rel = path.relative(process.cwd(), parentFull);
+
+  this.addContextDependency(parentFull);
+
+  debug("webpack context", parent, "=>", `./${rel}`);
 
   const reg = await Promise.all(files.map(async file => {
     const full = path.join(options.cwd, file);
