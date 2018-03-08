@@ -27,8 +27,13 @@ const README = data => {
 
 # ${data.name}
 
-* Documentation at \`docs\`
+This is the minimal template required for
+a \`patternplate\` project.
+
+* No \`patternplate.config.js\`, defaults apply
+* Documentation at \`docs\` and \`README.md\`
 * Pattern sources at \`lib\`
+* Demos are plain HTML, CSS, JavaScript
 
 ## Getting started
 
@@ -36,21 +41,14 @@ const README = data => {
 yarn
 yarn patternplate
 \`\`\
+
+## Hello world pattern
+
+This template contains a "Hello World" pattern.
+
+Access it by navigating to [pattern/hello-world](./pattern/hello-world).
 `;
 }
-
-const DOCS = data => {
-return `---
-displayName: Documentation
-options:
-  order: -1
----
-
-> a patternplate project
-
-# ${data.name}
-`
-};
 
 const PATTERN_JSON = data => {
   return JSON.stringify({
@@ -84,9 +82,6 @@ function createDefault(data, fs) {
 
   fs.writeFileSync("/package.json", PACKAGE(data));
   fs.writeFileSync("/README.md", README(data));
-
-  fs.mkdirpSync("/docs");
-  fs.writeFileSync("/docs/docs.md", DOCS(data));
 
   fs.mkdirpSync("/lib/hello-world");
   fs.writeFileSync("/lib/hello-world/package.json", PATTERN_JSON(data));

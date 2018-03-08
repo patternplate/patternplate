@@ -25,7 +25,6 @@ and executable on your system:
    ```bash
    # - Creates a new patternplate project at my-patternplate
    # - Installs dependencies
-   # - Changes into my-patternplate
    λ npx create-patternplate --out my-patternplate
    ```
 
@@ -62,4 +61,8 @@ and executable on your system:
    Started on http://localhost:1337
    ```
 
-4. You can open [localhost:1337](http://localhost:1337) 
+4. You can open [localhost:1337](http://localhost:1337/pattern/hello-world?patterns-enabled=true&navigation-enabled=true) in a browser to access 
+the web interface of your freshly installed patternplate project:
+
+
+![](https://patternplate.github.io/media/images/screenshot-hello-world.png)
