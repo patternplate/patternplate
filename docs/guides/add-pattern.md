@@ -10,7 +10,7 @@ options:
 * **Audience**: Eyerone
 * **Level**: Beginner
 
-### Outline
+### What to expect
 
 * Learn how to add pattern 
 * Style component with `CSS`
@@ -20,8 +20,9 @@ options:
 
 * Text editor
 * **patternplate project**
-
-  Follow along our [Getting Started Guide](./doc/docs/guides/getting-started) to bootstrap one.
+  * Follow along our [Getting Started Guide](./doc/docs/guides/getting-started) to bootstrap one.
+  * A completed copy is available via `git clone https://github.com/patternplate/getting-started.git`
+  * Make sure to start patternplate via `pattternplate start` and check it is running on `http://localhost:1337`.
 
 
 ## Create a new pattern
@@ -134,7 +135,6 @@ Let's count up when clicking on **Button**.
       }',
      `,
      default: () => {
-       // Don't try this at home. Use data attributes in real code
        const el = document.querySelector("button"); 
 
        let count = 0;

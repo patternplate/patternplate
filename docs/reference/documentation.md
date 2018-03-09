@@ -47,15 +47,14 @@ Those files are rendered below the demo of their pattern.
 Documentation in patternplate entries support [frontmatter][frontmatter] blocks. Supported
 properties are: `order` and `options.displayName`.
 
-* **order**: Integer, position in the documentation list. Lower numbers are listed first
-
-* **options.displayName**: Name of the doc item in the sidebar
+* **displayName**: Name of the doc item in the sidebar
+* **options.order**: Integer, position in the documentation list. Lower numbers are listed first
 
 ```md
 –––
-order: 0 # first in sidebar
+displayName: Read this first
 options:
-  displayName: Some docs
+  order: 0 # first in sidebar
 –––
 ```
 
