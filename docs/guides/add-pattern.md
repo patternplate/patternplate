@@ -12,8 +12,9 @@ options:
 
 ### Outline
 
-* Learn about documentation support in patternplate
-* Add local documentation to a pattern
+* Learn how to add pattern 
+* Style component with `CSS`
+* Program the demo with `JavaScript`
 
 ### You'll need
 
