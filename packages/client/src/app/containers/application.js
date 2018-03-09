@@ -110,6 +110,9 @@ function Application(props) {
           <Favicon />
           <ThemeProvider theme={props.themes.dark}>
             <React.Fragment>
+              <NavigationControl enabled={props.navigationEnabled}>
+                <ToggleNavigation />
+              </NavigationControl>
               <StyledNavigationBox enabled={props.navigationEnabled}>
                 {props.navigationEnabled && (
                   <Navigation>
@@ -128,9 +131,6 @@ function Application(props) {
               </StyledNavigationBox>
             </React.Fragment>
           </ThemeProvider>
-          <NavigationControl enabled={props.navigationEnabled}>
-            <ToggleNavigation />
-          </NavigationControl>
           <StyledContentContainer>
             <StyledContent>
               {
@@ -253,7 +253,9 @@ const NavigationControl = styled.div`
   position: fixed;
   z-index: 3;
   top: 0;
-  left: ${props => props.enabled ? '300px' : '0'};
+  left: ${props => props.enabled ? 300 : 0}px;
+  transform: translate(-${props => props.enabled ? 100 : 0}%);
+  color: ${props => props.enabled ? props.theme.color : props.theme.background};
   width: 60px;
   height: 60px;
 `;
