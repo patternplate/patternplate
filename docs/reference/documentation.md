@@ -61,8 +61,8 @@ options:
 
 ## Related
 
-* [Reference: Configuration](./doc/docs/reference/documentation.md)
-* [Reference: Widgets](./doc/docs/reference/widgets.md)
+* [Reference: Configuration](./doc/docs/reference/configuration)
+* [Reference: Widgets](./doc/docs/reference/widgets)
 
 [frontmatter]: https://jekyllrb.com/docs/frontmatter/
 [github-flavored-markdown]: https://guides.github.com/features/mastering-markdown/
