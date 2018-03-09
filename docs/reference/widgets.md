@@ -1,3 +1,8 @@
+---
+options:
+  order: 15
+---
+
 # Reference: Widgets
 
 `patternplate` provides widgets for your use in Markdown files.

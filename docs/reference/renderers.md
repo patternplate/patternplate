@@ -1,3 +1,8 @@
+---
+options:
+  order: 14
+---
+
 # Reference: Renderers
 
 `patternplate` renderer packages provide necessary glue 

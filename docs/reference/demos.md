@@ -1,3 +1,8 @@
+---
+options:
+  order: 12
+---
+
 # Reference: Demos
 
 Demo files provide the necessary entry points for `patternplate` to

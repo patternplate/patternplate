@@ -1,3 +1,8 @@
+---
+options:
+  order: 10
+---
+
 # Reference: CLI
 
 The `patternplate` command line interface is the default

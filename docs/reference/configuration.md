@@ -1,3 +1,8 @@
+---
+options:
+  order: 11
+---
+
 # Reference: Configuration
 
 `patternplate` can be configured via `patternplate.config.js`.
