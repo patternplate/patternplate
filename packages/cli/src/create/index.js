@@ -59,15 +59,20 @@ async function create({flags, pkg}) {
   }
 
   spinner.succeed(`Created patternplate project at "${rel}"`);
-  console.log(`\nProceed via`);
 
-  console.log(`- cd ${rel}`);
+  if (flags.guide !== true) {
+    console.log(`\nProceed via`);
 
-  if (flags.npm === false) {
-    console.log(`- npm install`);
+    console.log(`- cd ${rel}`);
+
+    if (flags.npm === false) {
+      console.log(`- npm install`);
+    }
+
+    console.log(`- npm start`);
+  } else {
+    console.log(`Head back to https://git.io/vAp5V for further instructions`);
   }
-
-  console.log(`- npm start`);
 }
 
 function error(message) {
