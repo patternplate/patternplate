@@ -41,7 +41,7 @@ module.exports = {
 
 ## Meta data
 
-Meta data about your componennt can be provided in `JSON` format.
+Meta data about your component can be provided in `JSON` format.
 `package.json` and `pattern.json` files are read according to the 
 following rules: 
 
