@@ -5,3 +5,64 @@ options:
 
 # Reference: Documentation
 
+`patternplate` supports Markdown for global as well as pattern documentation.
+
+Markdown in `patternplate` supports all features of [GitHub flavored markdown][github-flavored-markdown].
+
+Additionally you can configure the order and display of documentation [frontmatter][frontmatter] blocks.
+
+## Global documentation
+
+Pattern independent documentation is picked according to the `docs` glob pattern
+in `patternplate.config.js`. The default is `["docs/**/*.md", "README.md"]`. 
+
+This means in the tree below `README.md`, `docs/readme.md` and `docs/design/colors.md`
+is picked up.
+
+```bash
+λ tree .
+.
+├── CHANGELOG.md
+├── README.md
+└── docs
+    ├── design
+    │   └── colors.md
+    └── readme.md
+
+2 directories, 4 files
+```
+
+By default the first `#` headline in the document is the name of the doc item in `patternplate`'s sidebar. If no `#` headline is found the filename is used instead. 
+
+## Local documentation
+
+Documentation that relates to a single pattern  is placed next to the pattern sources.
+
+The supported file names are `README.md`, `readme.md` and `index.md`. 
+
+Those files are rendered below the demo of their pattern.
+
+## Frontmatter 
+
+Documentation in patternplate entries support [frontmatter][frontmatter] blocks. Supported
+properties are: `order` and `options.displayName`.
+
+* **order**: Integer, position in the documentation list. Lower numbers are listed first
+
+* **options.displayName**: Name of the doc item in the sidebar
+
+```md
+–––
+order: 0 # first in sidebar
+options:
+  displayName: Some docs
+–––
+```
+
+## Related
+
+* [Reference: Configuration](./doc/docs/reference/documentation.md)
+* [Reference: Widgets](./doc/docs/reference/widgets.md)
+
+[frontmatter]: https://jekyllrb.com/docs/frontmatter/
+[github-flavored-markdown]: https://guides.github.com/features/mastering-markdown/
