@@ -1,6 +1,9 @@
 import { themes } from "@patternplate/components";
 import { connect } from "react-redux";
 import { createSelector } from "reselect";
+import { bindActionCreators } from "redux";
+
+import * as actions from "../actions";
 
 import ConnectedPatternList from "./pattern-list-widget";
 import ConnectedPatternDemo from "./pattern-demo-widget";
@@ -9,7 +12,7 @@ import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
 import selectPool from "../selectors/pool";
 
-export default connect(mapState)(Documentation);
+export default connect(mapState, mapDispatch)(Documentation);
 
 const selectNotFound = createSelector(
   state => state.routing.locationBeforeTransitions.pathname,
@@ -109,4 +112,13 @@ function mapState(state) {
       PatternDemo: ConnectedPatternDemo
     }
   };
+}
+
+function mapDispatch(dispatch) {
+  return bindActionCreators(
+    {
+      requestScroll: actions.scrollTo
+    },
+    dispatch
+  );
 }
