@@ -18,12 +18,9 @@ options:
 ### You'll need
 
 * Terminal
-* Node.js `>=6`
-  * [Install](https://nodejs.org/en/)
-  * Check via `node -v`
-* npm `>=5` 
-  * Installs with Node.js automatically
-  * Check via `npm -v`
+* Node.js `>=6` ([Install](https://nodejs.org/en/))
+* npm `>=5` (Bundled with Node.js)
+* npx (Bundled with Node.js)
 
 ## Initialize a new project
 
