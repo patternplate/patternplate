@@ -83,13 +83,34 @@ You may have noticed the **my-patternplate** item in the Getting Started project
 ![](https://patternplate.github.io/media/images/screenshot-doc-global.png)
 
 This represents the `README.md`, which is picked up by `patternplate` automatically.
-Click on `my-patternplate` to reveal is rendered contents. 
 
-Also open a text editor.
+1. Click on `my-patternplate` to reveal is rendered contents. 
+
+2. Also open a text editor.
 
 Having both windows side by side gives you the optimal editing experience:
 
+![](https://patternplate.github.io/media/images/screenshot-doc-global-side-by-side.png)
 
+3. Change the text of `README.md` to your liking. Notice how the rendered page
+update immediately when you save the file.
+
+4. We'll change the page name in the sidebar next. It is controlled by the block
+at the beginning of `README.md`. 
+
+  Change the frontmatter block at the top of the file to something like this
+
+```md
+---
+displayName: Introduction
+---
+```
+
+The interface updates automatically and display your changes:
+
+![](https://patternplate.github.io/media/images/screenshot-doc-global-introduction.png)
+
+That's it for this guide, thanks for following along. :bow:
 
 ## Related topics
 
