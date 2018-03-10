@@ -90,5 +90,5 @@ type DemoExecutable {
   (...args: any[]): any;
 }
 
-function mount(DemoExecutable): void;
+function mount(DemoExecutable, element: Node): void;
 ```
