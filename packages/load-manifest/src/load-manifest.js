@@ -53,7 +53,8 @@ async function loadManifest({cwd}) {
 
   return {
     file: fullPath,
-    manifest: normalize(data, {isPatternPkg})
+    manifest: normalize(data, {isPatternPkg, withDefaults: true}),
+    raw: normalize(data, {isPatternPkg})
   };
 }
 
