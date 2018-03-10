@@ -37,6 +37,10 @@ function getMatcher(field, value, options) {
     switch (field) {
       case "depends":
         return depends(item);
+      case "description":
+        return description(item);
+      case "flag":
+        return flag(item);
       case "has":
         return has(item);
       case "provides":
@@ -72,11 +76,20 @@ function matchHas(value) {
         return (item.dependencies || []).length > 0;
       case "dependents":
         return (item.dependents || []).length > 0;
+      case "description":
+        return Boolean(item.manifest.description);
+      case "displayName":
+        return Boolean((item.rawManifest || {}).displayName);
       case "doc":
       case "docs":
-        return Boolean(item.contents);
+        return item.contentType === "pattern" && Boolean(item.contents);
+      case "flag":
+        return Boolean((item.rawManifest || {}).flag);
+      case "tag":
       case "tags":
         return (item.manifest.tags || []).length > 0;
+      case "version":
+        return Boolean((item.rawManifest || {}).version);
       default:
         return false;
     }

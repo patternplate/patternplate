@@ -1,5 +1,7 @@
 {
   "name": "pattern-demo-widget",
+  "version": "1.0.0",
+  "flag": "beta",
   "description": "Demonstrate patterns next to your documentation",
   "displayName": "Pattern Demo",
   "tags": ["widget"]

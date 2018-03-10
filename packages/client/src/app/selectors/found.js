@@ -229,7 +229,7 @@ const selectOptions = createSelector(
             type: "quality",
             key: "docs",
             value: [field.key, op.key, "docs"].join(""),
-            description: "patterns with documentation"
+            description: "colocated markdown"
           },
           /* {
             type: "quality",
@@ -245,9 +245,33 @@ const selectOptions = createSelector(
           }, */
           {
             type: "quality",
+            key: "flag",
+            value: [field.key, op.key, "flag"].join(""),
+            description: "flag specified"
+          },
+          {
+            type: "quality",
+            key: "version",
+            value: [field.key, op.key, "version"].join(""),
+            description: "version specified"
+          },
+          {
+            type: "quality",
+            key: "description",
+            value: [field.key, op.key, "description"].join(""),
+            description: "description provided"
+          },
+          {
+            type: "quality",
+            key: "displayName",
+            value: [field.key, op.key, "displayName"].join(""),
+            description: "display name provided"
+          },
+          {
+            type: "quality",
             key: "tags",
             value: [field.key, op.key, "tags"].join(""),
-            description: "patterns with tags"
+            description: "tag attached"
           }
         ];
       case "depends":
