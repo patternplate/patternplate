@@ -88,9 +88,9 @@ This represents the `README.md`, which is picked up by `patternplate` automatica
 
 2. Also open a text editor.
 
-Having both windows side by side gives you the optimal editing experience:
+  Having both windows side by side gives you the optimal editing experience:
 
-![](https://patternplate.github.io/media/images/screenshot-doc-global-side-by-side.png)
+  ![](https://patternplate.github.io/media/images/screenshot-doc-global-side-by-side.png)
 
 3. Change the text of `README.md` to your liking. Notice how the rendered page
 update immediately when you save the file.
@@ -106,9 +106,9 @@ displayName: Introduction
 ---
 ```
 
-The interface updates automatically and display your changes:
+  The interface updates automatically and display your changes:
 
-![](https://patternplate.github.io/media/images/screenshot-doc-global-introduction.png)
+  ![](https://patternplate.github.io/media/images/screenshot-doc-global-introduction.png)
 
 That's it for this guide, thanks for following along. :bow:
 
