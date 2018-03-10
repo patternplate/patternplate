@@ -106,7 +106,7 @@ displayName: Introduction
 ---
 ```
 
-  The interface updates automatically and display your changes:
+  The interface updates automatically to display your changes:
 
   ![](https://patternplate.github.io/media/images/screenshot-doc-global-introduction.png)
 
