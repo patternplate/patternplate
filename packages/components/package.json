@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/components",
-  "version": "2.0.0-50",
+  "version": "2.0.0-51",
   "description": "ui component library for patternplate-client",
   "scripts": {
     "start": "yarn build -w",
@@ -50,12 +50,12 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/core": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-50",
-    "@patternplate/render-styled-components": "^2.0.0-50",
+    "@patternplate/babel-preset": "^2.0.0-51",
+    "@patternplate/render-styled-components": "^2.0.0-51",
     "concurrently": "^3.5.1"
   },
   "dependencies": {
-    "@patternplate/widgets": "^2.0.0-50",
+    "@patternplate/widgets": "^2.0.0-51",
     "buble": "^0.19.3",
     "color": "^2.0.0",
     "front-matter": "^2.3.0",
