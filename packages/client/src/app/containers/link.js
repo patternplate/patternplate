@@ -58,8 +58,20 @@ function getHref(props, context) {
       parsed.query,
       props.query || context.location.query
     ),
-    value =>
-      value !== "false" && value !== false && value !== "0" && value !== ""
+    (value, key) => {
+      // TODO: deduce this for all keys from reduce config
+      // special case "navigation-enabled", invert logic
+      if (key === "navigation-enabled") {
+        return value !== true && value !== "true";
+      }
+
+      // if the key is not in the current query, add it
+      if (!context.location.query.hasOwnProperty(key)) {
+        return true;
+      }
+      // omit "falsy" values to keep url shorter
+      return value !== "false" && value !== "0" && !!(value);
+    }
   );
 
   const pathname =
