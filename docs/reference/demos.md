@@ -19,7 +19,7 @@ Demo files are assumend to be executable JavaScript according to your
 browser targets, as `patternplate` does not perform additional transpilation
 on them. 
 
-The smallest valid noop demo files is:
+The smallest valid noop demo file is:
 
 ```js
 module.exports.default = () => {};
