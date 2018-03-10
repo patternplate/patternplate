@@ -32,6 +32,7 @@ function getMatcher(field, value, options) {
   const flag = matchFlag(value, options);
   const tags = matchTags(value, options);
   const version = matchVersion(value, options);
+  const is = matchIs(value);
 
   return item => {
     switch (field) {
@@ -43,6 +44,8 @@ function getMatcher(field, value, options) {
         return flag(item);
       case "has":
         return has(item);
+      case "is":
+        return is(item);
       case "provides":
         return provides(item);
       case "tag":
@@ -94,6 +97,10 @@ function matchHas(value) {
         return false;
     }
   };
+}
+
+function matchIs(value) {
+  return item => item.contentType === value;
 }
 
 function matchDepends(value, options) {

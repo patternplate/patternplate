@@ -24,9 +24,23 @@ const FIELDS = [
   }, */
   {
     type: "field",
+    key: "flag",
+    value: "flag",
+    description: "being flagged as [value]",
+    operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
+  },
+  {
+    type: "field",
+    key: "is",
+    value: "is",
+    description: "being of type [value]",
+    operators: ["=", "!="]
+  },
+  {
+    type: "field",
     key: "has",
     value: "has",
-    description: "pattern featuring data of [value]",
+    description: "having data of [value]",
     operators: ["=", "!="]
   },
   /* {
@@ -40,21 +54,14 @@ const FIELDS = [
     type: "field",
     key: "tags",
     value: "tags",
-    description: "pattern manifest .tags",
+    description: "having a tag of [value]",
     operators: ["=", "!=", "^=", "~="]
   },
   {
     type: "field",
     key: "version",
     value: "version",
-    description: "semantic version of pattern",
-    operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
-  },
-  {
-    type: "field",
-    key: "flag",
-    value: "flag",
-    description: "stability flag of pattern",
+    description: "having version of [value]",
     operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
   }
 ];
@@ -338,6 +345,21 @@ const selectOptions = createSelector(
           };
         });
       }
+      case "is":
+        return [
+          {
+            type: "is",
+            key: "pattern",
+            value: [field.key, op.key, "pattern"].join(""),
+            description: "is a pattern"
+          },
+          {
+            type: "is",
+            key: "doc",
+            value: [field.key, op.key, "doc"].join(""),
+            description: "is a doc"
+          }
+        ];
       default:
         return [];
     }
