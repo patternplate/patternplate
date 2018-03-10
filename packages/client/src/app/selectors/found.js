@@ -15,13 +15,13 @@ const FLAGS = {
 };
 
 const FIELDS = [
-  {
+  /* {
     type: "field",
     key: "depends",
     value: "depends",
     description: "patterns depending on id",
     operators: ["=", "!=", "^=", "~="]
-  },
+  }, */
   {
     type: "field",
     key: "has",
@@ -29,13 +29,13 @@ const FIELDS = [
     description: "pattern featuring data of [value]",
     operators: ["=", "!="]
   },
-  {
+  /* {
     type: "field",
     key: "provides",
     value: "provides",
     description: "patterns providing for id",
     operators: ["=", "!=", "^=", "~="]
-  },
+  }, */
   {
     type: "field",
     key: "tags",
@@ -231,7 +231,7 @@ const selectOptions = createSelector(
             value: [field.key, op.key, "docs"].join(""),
             description: "patterns with documentation"
           },
-          {
+          /* {
             type: "quality",
             key: "dependencies",
             value: [field.key, op.key, "dependencies"].join(""),
@@ -242,7 +242,7 @@ const selectOptions = createSelector(
             key: "dependents",
             value: [field.key, op.key, "dependents"].join(""),
             description: "patterns with dependents"
-          },
+          }, */
           {
             type: "quality",
             key: "tags",
@@ -411,8 +411,8 @@ export const selectActiveItem = createSelector(
     return item
       ? Immutable.merge(item, {
           index,
-          dependents: rel("dependents"),
-          dependencies: rel("dependencies")
+          dependents: [],// rel("dependents"),
+          dependencies: []//rel("dependencies")
         })
       : item;
   }
