@@ -7,8 +7,11 @@ const MemoryFilesystem = require("memory-fs");
 const importFrom = require("import-from");
 const resolveFrom = require("resolve-from");
 const resolvePkg = require("resolve-pkg");
+const commandExists = require("command-exists");
 
 module.exports = create;
+
+const INSTALLERS = ["yarn", "npm"];
 
 async function create({flags, pkg}) {
   if (typeof flags.out !== "string") {
@@ -34,6 +37,16 @@ async function create({flags, pkg}) {
     throw error(`create: target "${flags.out}" already exists at "${rel}", aborting.`);
   }
 
+  const installer = (await Promise.all(INSTALLERS.map(i => commandExists(i)))).filter(Boolean)[0];
+
+  if (flags.install !== false) {
+    if (!installer) {
+      throw error(`No compatible installer found, one of the following must be installed: ${INSTALLERS.join(", ")}`);
+    }
+  }
+
+  spinner.start();
+
   if (flags.force && await sander.exists(cwd, flags.out)) {
     await sander.rimraf(cwd, flags.out);
   }
@@ -50,15 +63,18 @@ async function create({flags, pkg}) {
   const target = path.join(cwd, flags.out);
   await dump(fs, "/", target);
 
+  spinner.succeed(`Created patternplate project at "${rel}"`);
+
   if (flags.git !== false) {
     await execa("git", ["init"], {cwd: target});
   }
 
-  if (flags.npm !== false) {
+  if (flags.install !== false) {
+    spinner.text = `Installing dependencies via ${installer}`;
+    spinner.start();
     await execa("npm", ["install"], {cwd: target});
+    spinner.succeed(`Installed dependencies via ${installer}`);
   }
-
-  spinner.succeed(`Created patternplate project at "${rel}"`);
 
   if (flags.guide !== true) {
     console.log(`\nProceed via`);
@@ -66,10 +82,10 @@ async function create({flags, pkg}) {
     console.log(`- cd ${rel}`);
 
     if (flags.npm === false) {
-      console.log(`- npm install`);
+      console.log(`- ${installer} install`);
     }
 
-    console.log(`- npm start`);
+    console.log(`- ${installer} start`);
   } else {
     console.log(`Head back to https://git.io/vAp5V for further instructions`);
   }

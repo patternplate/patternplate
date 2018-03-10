@@ -28,6 +28,7 @@
     "@patternplate/render-default": "^2.0.0-50",
     "@patternplate/webpack-entry": "^2.0.0-50",
     "chalk": "^2.3.2",
+    "command-exists": "^1.2.2",
     "css-loader": "^0.28.10",
     "encoding": "^0.1.12",
     "errorhandler": "^1.5.0",
