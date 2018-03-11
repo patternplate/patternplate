@@ -13,7 +13,8 @@
     "components:deploy": "patternplate-deploy --source .tmp --target=git@github.com:patternplate/patternplate.github.io.git",
     "components:serve": "yarn serve .tmp",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
-    "start": "yarn lerna run watch --stream --parallel --include-filtered-dependencies"
+    "start": "yarn lerna run watch --stream --parallel --include-filtered-dependencies",
+    "test": "yarn lerna run test --stream --parallel --include-filtered-dependencies"
   },
   "author": {
     "name": "Mario Nebl",

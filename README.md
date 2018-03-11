@@ -23,6 +23,17 @@ yarn start
 yarn patternplate start
 ```
 
+## Publish a release
+
+```bash
+yarn clean
+yarn
+yarn test
+yarn build
+yarn lerna publish 
+yarn lerna run clean:dev # remove publishing bundles
+```
+
 ## License
 
 Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
