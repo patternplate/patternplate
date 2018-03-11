@@ -1,7 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const { ThemeProvider } = require("styled-components");
-const getThemes = require("../themes");
+const getThemes = require("./themes");
 
 const themes = getThemes();
 
