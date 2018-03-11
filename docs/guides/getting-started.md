@@ -32,7 +32,7 @@ options:
    npx create-patternplate --out my-patternplate --guide
    ```
 
-2. Let's start `patternplate next`
+2. Let's start `patternplate` next:
 
    ```bash
    # Change into `my-patternplate`
@@ -45,13 +45,9 @@ options:
 
 3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/pattern/hello-world?patterns-enabled=true&navigation-enabled=true).
 
-Click the menu icon in the top left corner to open the sidebar and pattern list.
+  If everything worked `patternplate` greets you with this screen:
 
-![](https://patternplate.github.io/media/images/screenshot-hello-world.png)
-
-You can see there is some **Documentation** and a **Hello World** pattern.
-
-Good job. Be sure to check the rest of our documentation:
+  ![](https://patternplate.github.io/media/images/screenshot-hello-world.png)
 
 
 ## Up next
