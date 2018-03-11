@@ -93,13 +93,7 @@ const StyledMeta = styled.div`
 const StyledNavigationItem = styled.div`
   width: 100%;
   box-sizing: border-box;
-  border-left: ${props => props.type === "folder" && `3px solid transparent`};
   margin-left: 1px;
-  ${props =>
-    props.active &&
-    `border-color: ${color(props.theme.active)
-      .fade(0.6)
-      .toString()}`};
 `;
 
 const LinkTag = tag(["active", "type"])(Link);
@@ -114,13 +108,6 @@ const StyledNavigationLink = styled(LinkTag)`
   line-height: 20px;
   font-family: ${FONTS.default};
   font-weight: ${props => props.theme.fontWeight};
-  ${props =>
-    props.active &&
-    `
-		margin-left: ${props.type === "folder" ? "-3px" : "-4px"};
-		padding-left: ${props.type === "folder" ? 0 : "1px"};
-		border-left: 3px solid ${props.theme.active};
-	`};
   :link,
   :visited {
     color: ${props => props.theme.color};

@@ -67,7 +67,11 @@ function selectActiveSymbol(props, item) {
     return item.manifest.options.iconActive;
   }
 
-  return item.type;
+  if (item.type === "folder") {
+    return "arrow-down";
+  }
+
+  return null;
 }
 
 function selectSymbol(props, item) {
@@ -79,5 +83,9 @@ function selectSymbol(props, item) {
     return item.manifest.options.icon;
   }
 
-  return item.type;
+  if (item.type === "folder") {
+    return "arrow-right";
+  }
+
+  return null;
 }
