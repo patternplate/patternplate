@@ -102,6 +102,7 @@
     "scrollparent": "^1.0.0",
     "seamless-immutable": "^7.1.2",
     "semver": "^5.4.1",
+    "shortid": "^2.2.8",
     "tag-hoc": "^1.0.0-0",
     "topologically-combine-reducers": "0.0.5",
     "unindent": "^2.0.0",

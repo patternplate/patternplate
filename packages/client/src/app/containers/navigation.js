@@ -19,7 +19,8 @@ function mapProps(state) {
     active: state.id,
     docs: selectDocs(state),
     patternsEnabled: state.patternsEnabled,
-    navigation: selectNavigation(state)
+    navigation: selectNavigation(state),
+    query: state.routing.locationBeforeTransitions.query,
   };
 }
 

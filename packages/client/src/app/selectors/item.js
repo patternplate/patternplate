@@ -17,17 +17,8 @@ const selectVirtual = createSelector(
 
 const selectItem = createSelector(
   selectPool,
-  selectVirtual,
   state => state.id,
-  (pool, virtual, id) => {
-    const v = virtual
-      .map(v => v.children.find(child => id === [v.contentType, child.id].join('/')))
-      .filter(Boolean)[0];
-
-    if (v) {
-      return v;
-    }
-
+  (pool, id) => {
     const item = pool.find(item => id === `${item.contentType}/${item.id}`);
 
     if (item) {

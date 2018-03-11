@@ -1,4 +1,5 @@
 const React = require("react");
+const NavigationLabel = require("../navigation-label");
 const NavigationItem = require("../navigation-item");
 const Flag = require("../flag");
 
@@ -10,41 +11,71 @@ function NavigationTree(props) {
       {props.children}
       {(props.data || [])
         .filter(item => typeof item.manifest === "object")
-        .map(item => {
+        .map((item, index) => {
           const hidden = (item.manifest.options || {}).hidden || false;
-          const icon = selectSymbol(props, item);
-          const iconActive = selectActiveSymbol(props, item);
+          const icon = selectSymbol(item);
+          const iconActive = selectActiveSymbol(item);
+          const name = item.manifest.name.toLowerCase();
+          const enabled = props.query[`${name}-enabled`] === "true";
 
-          return (
-            <NavigationItem
-              key={item.id}
-              active={item.active}
-              hidden={hidden}
-              href={item.href}
-              id={item.id}
-              meta={(item.warnings || []).map(warning => (
-                <NavigationMeta key={warning.value} warning={warning} />
-              ))}
-              name={item.manifest.displayName}
-              onClick={props.onItemClick}
-              onScrollRequest={props.onScrollRequest}
-              prefix={props.prefix}
-              symbol={icon}
-              symbolActive={iconActive}
-              type={item.type}
-            >
-              {item.type === "folder" && (
-                <NavigationTree
-                  active={props.active}
-                  data={item.children}
+          switch (item.type) {
+            case "folder":
+              return (
+                <React.Fragment>
+                  <NavigationLabel
+                    key={name}
+                    enabled={enabled}
+                    name={name}
+                    highlight={false}
+                    >
+                    {item.manifest.displayName || item.manifest.name}
+                  </NavigationLabel>
+                  {
+                    (enabled &&
+                      item.children.map(child => {
+                        return (
+                          <NavigationItem
+                            key={child.id}
+                            active={child.active}
+                            href={child.href}
+                            id={child.id}
+                            meta={(child.warnings || []).map(warning => (
+                              <NavigationMeta key={warning.value} warning={warning} />
+                            ))}
+                            name={child.manifest.displayName}
+                            onClick={props.onItemClick}
+                            onScrollRequest={props.onScrollRequest}
+                            prefix={props.prefix}
+                            symbol={selectSymbol(child)}
+                            symbolActive={selectActiveSymbol(child)}
+                            type={child.type}
+                            />
+                        );
+                    }))
+                  }
+                </React.Fragment>
+              );
+            case "item":
+              return (
+                <NavigationItem
+                  key={item.id}
+                  active={item.active}
+                  hidden={hidden}
+                  href={item.href}
                   id={item.id}
+                  meta={(item.warnings || []).map(warning => (
+                    <NavigationMeta key={warning.value} warning={warning} />
+                  ))}
+                  name={item.manifest.displayName}
                   onClick={props.onItemClick}
                   onScrollRequest={props.onScrollRequest}
-                  prefix={item.prefix}
-                />
-              )}
-            </NavigationItem>
-          );
+                  prefix={props.prefix}
+                  symbol={icon}
+                  symbolActive={iconActive}
+                  type={item.type}
+                  />
+              );
+          }
         })}
     </div>
   );
@@ -58,8 +89,8 @@ function NavigationMeta(props) {
   }
 }
 
-function selectActiveSymbol(props, item) {
-  if (item.type === "pattern") {
+function selectActiveSymbol(item) {
+  if (item.type === "item") {
     return null;
   }
 
@@ -74,8 +105,8 @@ function selectActiveSymbol(props, item) {
   return null;
 }
 
-function selectSymbol(props, item) {
-  if (item.type === "pattern") {
+function selectSymbol(item) {
+  if (item.type === "item") {
     return null;
   }
 

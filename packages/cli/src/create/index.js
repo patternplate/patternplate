@@ -87,7 +87,7 @@ async function create({flags, pkg}) {
 
     console.log(`- ${installer} start`);
   } else {
-    console.log(`Head back to https://git.io/vxeMM for further instructions`);
+    console.log(`Head back to https://git.io/vxeY1 for further instructions`);
   }
 }
 

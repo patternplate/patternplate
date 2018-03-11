@@ -153,8 +153,8 @@ Let's count up when clicking on **Button**.
 
 ## Up next
 
-* [Guide: Write documentation](./doc/docs/guides/index/docs/guides/write-documentation)
+* [Guide: Write documentation](./doc/docs/guides/write-documentation)
 
 ## Related topics
 
-* [Demos](./doc/docs/reference/index/docs/reference/demos)
+* [Demos](./doc/docs/reference/demos)

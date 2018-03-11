@@ -115,10 +115,10 @@ displayName: Introduction
 
 ## Up next
 
-* [Guide: Create Virtual Folders](./doc/docs/guides/index/docs/guides/virtual-folders)
+* [Guide: Create Virtual Folders](./doc/docs/guides/virtual-folders)
 
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/index/docs/reference/documentation)
-* [Demos](./doc/docs/reference/index/docs/reference/demos)
+* [Documentation](./doc/docs/reference/documentation)
+* [Demos](./doc/docs/reference/demos)

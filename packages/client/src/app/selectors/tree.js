@@ -2,6 +2,7 @@ import path from "path";
 import querystring from "querystring";
 import url from "url";
 import { merge } from "lodash";
+import * as Immutable from "seamless-immutable";
 
 const WEIGHTS = {
   folder: 0,
@@ -67,28 +68,12 @@ export function enrich(child, context) {
   });
 
   child.warnings = child.warnings || [];
+  child.type = child.contentType === "doc" && typeof ((child.manifest).options || {}).query === "string"
+    ? "folder"
+    : "item";
 
-  if (child.contentType === "doc") {
-    const {options = {}} = child.manifest;
-    const {query = ""} = options;
-
-    if (query) {
-      const virtual = query
-        ? search(query).filter(Boolean)
-        : [];
-
-      child.type = "folder";
-      child.children = virtual.map(v => {
-        const virtual = merge({}, v, {
-          id: [child.id, v.id].join("/"),
-          href: [v.contentType, child.id, v.id].join("/"),
-          virtual: true,
-          reference: child.id
-        });
-        return enrich(virtual, {...context, parent: child.id});
-      });
-      child.active = child.active || child.children.some(c => c.active);
-    }
+  if (child.type === "folder") {
+    child.children = search(child.manifest.options.query).map(child => Immutable.asMutable(child));
   }
 
   if (
