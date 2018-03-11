@@ -37,7 +37,8 @@ function mapDispatch(dispatch) {
         actions.search({ persist: true, perform: true, value }),
       onFocus: () => actions.toggleSearch({ focus: true }),
       onMount: () => actions.toggleSearch({ sync: true }),
-      onNavigate: pathname => {
+      onNavigate: item => {
+        const pathname = `${item.contentType}/${item.id}`;
         return actions.patchLocation({ pathname, query: { "search-enabled": false } })
       },
       onSubmit: e => {

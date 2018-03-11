@@ -5,18 +5,38 @@ import { flat as selectDocs } from "../selectors/docs";
 import { flat as selectNavigation } from "../selectors/navigation";
 import { enrich } from "../selectors/tree";
 
-const selectSearch = createSelector(
+export const selectFlatPool = createSelector(
+  selectDocs,
   selectNavigation,
-  (patterns) => {
-    const search = createSearch(patterns);
+  state => ({
+    hide: state.hideEnabled,
+    id: state.id,
+    location: state.routing.locationBeforeTransitions,
+    base: state.base,
+    prefix: "doc",
+    search: () => []
+  }),
+  (docs, nav, context) => {
+    const enriched = flatten(docs.map(d => {
+      return enrich(Immutable.asMutable(d), context);
+    }));
+    return Immutable.from(enriched)
+      .concat(nav)
+      .filter(item => Boolean(item.id) && Boolean(item.contentType))
+  });
+
+const selectSearch = createSelector(
+  selectFlatPool,
+  flatPool => {
+    const search = createSearch(flatPool);
     return term => {
       const matches = search(term);
-      return matches.map(item => patterns.find(p => p.id === item));
+      return matches.map(item => flatPool.find(p => p.id === item));
     };
   }
 );
 
-export default createSelector(
+const selectPool = createSelector(
   selectDocs,
   selectNavigation,
   state => ({
@@ -45,3 +65,10 @@ function flatten(tree, initial = []) {
     return acc;
   }, initial);
 }
+
+export default selectPool;
+export const flat = createSelector(
+  selectDocs,
+  selectNavigation,
+  (docs, nav) => flatten(docs.concat(nav))
+);

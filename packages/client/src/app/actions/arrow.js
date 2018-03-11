@@ -1,6 +1,6 @@
 import { push } from "react-router-redux";
 import toggleNavigation from "./toggle-navigation";
-import selectPool from "../selectors/pool";
+import {flat as selectPool} from "../selectors/pool";
 
 export default arrow;
 export const type = "ARROW";

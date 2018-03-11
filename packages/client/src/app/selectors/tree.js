@@ -52,12 +52,8 @@ export function sanitize(tree, context) {
 
 export function enrich(child, context) {
   const { id, prefix, search } = context;
-  const childid = child.virtual
-    ? ['pattern', child.id].join('/')
-    : [child.contentType, child.id].join('/');
-
-  child.active = (childid === id);
-
+  const childid = [child.contentType, child.id].join('/');
+  child.active = (childid === id) || `doc/${context.parent}/${childid}` === id;
   const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
 
   const q =
@@ -78,7 +74,7 @@ export function enrich(child, context) {
 
     if (query) {
       const virtual = query
-        ? search(query)
+        ? search(query).filter(Boolean)
         : [];
 
       child.type = "folder";
@@ -89,7 +85,7 @@ export function enrich(child, context) {
           virtual: true,
           reference: child.id
         });
-        return enrich(virtual, context);
+        return enrich(virtual, {...context, parent: child.id});
       });
       child.active = child.active || child.children.some(c => c.active);
     }

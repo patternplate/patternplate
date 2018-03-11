@@ -2,7 +2,7 @@ import { PatternList } from "@patternplate/widgets";
 import { createSearch } from "@patternplate/search";
 import { connect } from "react-redux";
 import { createSelector } from "reselect";
-import selectPool from "../selectors/pool";
+import { flat as selectPool } from "../selectors/pool";
 
 export default connect(mapState)(PatternList);
 

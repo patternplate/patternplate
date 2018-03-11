@@ -3,7 +3,7 @@ import Immutable from "seamless-immutable";
 import { flatten, uniq, uniqBy, sortBy } from "lodash";
 import { createSelector } from "reselect";
 import semver from "semver";
-import selectPool from "./pool";
+import {flat as selectPoolFlat} from "./pool";
 import createRelationSelector from "./relation";
 
 const FLAGS = {
@@ -110,7 +110,7 @@ const OPERATORS = [
 ];
 
 const selectSearch = createSelector(
-  selectPool,
+  selectPoolFlat,
   pool => createSearch(pool)
 )
 
@@ -200,7 +200,7 @@ const selectOpsHit = createSelector(
 );
 
 export const selectFound = createSelector(
-  selectPool,
+  selectPoolFlat,
   selectMatches,
   (pool, matches) => {
     const sorted = uniqBy(
@@ -215,7 +215,7 @@ export const selectPatterns = createSelector(selectFound, found =>
   found.filter(f => f.contentType === "pattern")
 );
 
-const selectPatternPool = createSelector(selectPool, pool =>
+const selectPatternPool = createSelector(selectPoolFlat, pool =>
   pool.filter(f => f.contentType === "pattern")
 );
 
@@ -416,7 +416,7 @@ export const selectDocs = createSelector(selectFound, found =>
 
 export const selectSuggestion = createSelector(
   state => state.searchValue,
-  selectPool,
+  selectPoolFlat,
   selectLegend,
   (search, pool, legend) => {
     if (typeof search !== "string" || search.length === 0) {
