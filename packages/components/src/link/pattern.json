@@ -1,9 +1,8 @@
 {
   "name": "link",
   "displayName": "Link",
+  "description": "Primary interaction element for URL based state changes",
   "version": "1.0.0",
-  "patterns": {
-    "../fonts": "fonts",
-    "../injection": "injection"
-  }
+  "flag": "stable",
+  "tags": ["Interaction"]
 }

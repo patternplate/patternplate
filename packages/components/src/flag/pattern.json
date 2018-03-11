@@ -1,11 +1,8 @@
 {
   "name": "flag",
   "displayName": "Flag",
+  "description": "Display color-coded stability states",
   "version": "1.0.0",
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  },
-  "patterns": {
-    "../fonts": "fonts"
-  }
+  "flag": "stable",
+  "tags": ["Meta Data"]
 }

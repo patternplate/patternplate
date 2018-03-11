@@ -1,14 +1,8 @@
 {
   "name": "info-pane",
   "displayName": "Info pane",
-  "patterns": {
-    "../icon": "icon",
-    "../text": "text",
-    "../link": "link",
-    "../flag": "flag",
-    "../code": "code"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  }
+  "description": "A hud-like container for display of related data",
+  "version": "1.0.0",
+  "flag": "deprecated",
+  "tags": ["Meta Data"]
 }

@@ -1,13 +1,8 @@
 {
   "name": "button",
   "displayName": "Button",
+  "description": "Primary interatction element for toggled states",
   "version": "1.0.0",
-  "patterns": {
-    "../fonts": "fonts",
-    "../icon": "icon",
-    "../link": "link"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  }
+  "flag": "stable",
+  "tags": ["Interaction"]
 }

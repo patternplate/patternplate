@@ -1,4 +1,8 @@
 {
   "name": "markdown",
-  "displayName": "Markdown"
+  "displayName": "Markdown",
+  "description": "Render md sources with patternplate components",
+  "version": "1.0.0",
+  "tags": ["Documentation", "Typography"],
+  "flag": "stable"
 }

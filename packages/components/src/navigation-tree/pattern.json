@@ -1,8 +1,8 @@
 {
   "name": "navigation-tree",
   "displayName": "Navigation Tree",
-  "patterns": {
-    "../flag": "flag",
-    "../navigation-item": "navigation-item"
-  }
+  "description": "Nestable tree of navigation-items",
+  "version": "1.0.0",
+  "tags": ["Navigation"],
+  "flag": "stable"
 }

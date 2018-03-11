@@ -2,7 +2,7 @@
   "name": "pattern-demo-widget",
   "version": "1.0.0",
   "flag": "beta",
-  "description": "Demonstrate patterns next to your documentation",
+  "description": "Demonstrate patterns directly inside your documentation",
   "displayName": "Pattern Demo",
-  "tags": ["widget"]
+  "tags": ["Widget", "Documentation", "Demo"]
 }

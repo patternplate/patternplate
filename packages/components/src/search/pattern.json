@@ -2,14 +2,7 @@
   "name": "search",
   "displayName": "Search",
   "version": "1.0.0",
-  "patterns": {
-    "../icon": "icon",
-    "../link": "link",
-    "../text": "text",
-    "../info-pane": "info-pane"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer",
-    "../search-field": "search-field"
-  }
+  "description": "A rich search panel with query suggestions",
+  "flag": "beta",
+  "tags": ["Search"]
 }

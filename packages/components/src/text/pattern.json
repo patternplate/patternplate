@@ -1,11 +1,8 @@
 {
   "name": "text",
   "displayName": "Text",
+  "description": "Basic typography adhering to font-face and size rules",
   "version": "1.0.0",
-  "patterns": {
-    "../fonts": "fonts"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  }
+  "flag": "stable",
+  "tags": ["Primitives", "Typography"]
 }

@@ -1,5 +1,8 @@
 {
   "name": "pattern-list-widget",
   "displayName": "Pattern List",
-  "tags": ["widget"]
+  "version": "1.0.0",
+  "flag": "beta",
+  "description": "Show lists of patterns in your documentation",
+  "tags": ["Widget", "Documentation", "Search"]
 }

@@ -1,9 +1,8 @@
 {
   "name": "navigation-item",
   "displayName": "Navigation Item",
-  "patterns": {
-    "../fonts": "fonts",
-    "../icon": "icon",
-    "../link": "link"
-  }
+  "description": "Leaf node of navigation-tree",
+  "version": "1.0.0",
+  "tags": ["Navigation", "Interaction"],
+  "flag": "stable"
 }

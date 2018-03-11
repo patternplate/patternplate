@@ -1,9 +1,8 @@
 {
   "name": "navigation-toolbar",
   "displayName": "Navigation Toolbar",
+  "description": "Toolbar with additional states and controls for main-navigation",
   "version": "1.0.0",
-  "demoPatterns": {
-    "../button": "button",
-    "../demo-themer": "demo-themer"
-  }
+  "tags": ["Navigation", "Interaction"],
+  "flag": "stable"
 }
