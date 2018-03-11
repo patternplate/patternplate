@@ -16,7 +16,7 @@ function NavigationTree(props) {
           const icon = selectSymbol(item);
           const iconActive = selectActiveSymbol(item);
           const name = item.manifest.name.toLowerCase();
-          const enabled = props.query[`${name}-enabled`] === "true";
+          const enabled = (props.query || {})[`${name}-enabled`] === "true";
 
           switch (item.type) {
             case "folder":
