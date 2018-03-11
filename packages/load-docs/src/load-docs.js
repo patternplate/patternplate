@@ -41,7 +41,8 @@ async function loadDocs(options) {
         contents,
         contentType: "doc",
         path: file,
-        manifest
+        manifest,
+        rawManifest: front
       };
     })
   );
