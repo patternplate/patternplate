@@ -1,5 +1,7 @@
 ---
 displayName: "Guide: Write documentation"
+tags: 
+ - Guide
 options:
   order: 1
 ---
@@ -110,9 +112,13 @@ displayName: Introduction
 
   ![](https://patternplate.github.io/media/images/screenshot-doc-global-introduction.png)
 
-That's it for this guide, thanks for following along. :bow:
+
+## Up next
+
+* [Guide: Create Virtual Folders](./doc/docs/guides/index/docs/guides/virtual-folders)
+
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/documentation)
-* [Demos](./doc/docs/reference/demos)
+* [Documentation](./doc/docs/reference/index/docs/reference/documentation)
+* [Demos](./doc/docs/reference/index/docs/reference/demos)

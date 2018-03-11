@@ -1,5 +1,7 @@
 ---
 displayName: "Guide: Getting Started"
+tags: 
+ - Guide
 options:
   order: 0
 ---
@@ -52,8 +54,8 @@ options:
 
 ## Up next
 
-* [Guide: Build a component](./doc/docs/guides/add-pattern)
+* [Guide: Build a component](./doc/docs/guides/index/docs/guides/add-pattern)
 
 ## Related topics
 
-* [CLI](./doc/docs/reference/cli)
+* [CLI](./doc/docs/reference/index/docs/reference/cli)
