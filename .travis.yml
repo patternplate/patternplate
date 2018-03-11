@@ -4,15 +4,17 @@ node_js:
 before_install:
   - >-
     openssl aes-256-cbc
-    -K $encrypted_b9bd228152b0_key
-    -iv $encrypted_b9bd228152b0_iv
-    -in patternplate-deploy.enc
-    -out patternplate-deploy -d
-  - chmod 600 patternplate-deploy
-  - eval $(ssh-agent -s)
-  - ssh-add patternplate-deploy
-  - rm patternplate-deploy
+      -K $encrypted_b9bd228152b0_key
+      -iv $encrypted_b9bd228152b0_iv
+      -in patternplate-deploy.enc
+      -out patternplate-deploy -d &&\
+    chmod 600 patternplate-deploy &&\
+    eval $(ssh-agent -s) &&\
+    ssh-add patternplate-deploy &&\
+    rm patternplate-deploy
 script:
-  - yarn build
-  - yarn components:build
-  - yarn components:deploy
+  - >-
+    yarn test &&\
+    yarn build &&\
+    yarn components:build &&\
+    if [ "$TRAVIS_BRANCH" = "master" ]; then yarn components:deploy; fi
