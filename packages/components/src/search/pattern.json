@@ -2,7 +2,7 @@
   "name": "search",
   "displayName": "Search",
   "version": "1.0.0",
-  "description": "A rich search panel with query suggestions",
+  "description": "Rich search panel with query suggestions",
   "flag": "beta",
   "tags": ["Search"]
 }

@@ -1,7 +1,7 @@
 {
   "name": "markdown",
   "displayName": "Markdown",
-  "description": "Render md sources with patternplate components",
+  "description": "Convert Markdown to styled text",
   "version": "1.0.0",
   "tags": ["Documentation", "Typography"],
   "flag": "stable"

@@ -1,7 +1,7 @@
 {
   "name": "fonts",
   "displayName": "Fonts",
-  "description": "Font face stack in use for patternplate",
+  "description": "Fonts for patternplate",
   "version": "1.0.0",
   "flag": "stable",
   "tags": ["Primitives"]

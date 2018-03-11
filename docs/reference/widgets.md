@@ -12,19 +12,19 @@ Widgets can display information derived from your component library.
 
 `<PatternList />` displays an unordered list of patterns matching a search query.
 Placing the following code inside a `widget` code block creates a list
-of all patterns with the tag `widget`.
+of all patterns with the tag `Widget`.
 
 ```js
 const React = require("react");
 const {PatternList} = require("@patternplate/widgets");
 
-module.exports = () =>  <PatternList query="tags=widget" />;
+module.exports = () =>  <PatternList query="tags=Widget" />;
 ```
 
 ```widget
 const React = require("react");
 const {PatternList} = require("@patternplate/widgets");
-module.exports = () => <PatternList query="tags=widget" />;
+module.exports = () => <PatternList query="tags=Widget" />;
 ```
 
 

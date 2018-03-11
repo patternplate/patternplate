@@ -1,7 +1,7 @@
 {
   "name": "text",
   "displayName": "Text",
-  "description": "Basic typography adhering to font-face and size rules",
+  "description": "Style text according to patternplate rules",
   "version": "1.0.0",
   "flag": "stable",
   "tags": ["Primitives", "Typography"]

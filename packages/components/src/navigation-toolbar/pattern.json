@@ -1,7 +1,7 @@
 {
   "name": "navigation-toolbar",
   "displayName": "Navigation Toolbar",
-  "description": "Toolbar with additional states and controls for main-navigation",
+  "description": "Toolbar for Main Navigation",
   "version": "1.0.0",
   "tags": ["Navigation", "Interaction"],
   "flag": "stable"

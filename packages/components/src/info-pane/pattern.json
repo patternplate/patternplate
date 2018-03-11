@@ -1,7 +1,7 @@
 {
   "name": "info-pane",
   "displayName": "Info pane",
-  "description": "A hud-like container for display of related data",
+  "description": "A HUD-like container for display of related data",
   "version": "1.0.0",
   "flag": "deprecated",
   "tags": ["Meta Data"]

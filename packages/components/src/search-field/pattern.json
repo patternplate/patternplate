@@ -2,7 +2,7 @@
   "name": "search-field",
   "displayName": "Search Field",
   "version": "1.0.0",
-  "description": "A search field with autocompletion",
+  "description": "Search field with autocompletion",
   "flag": "beta",
   "tags": ["Search"]
 }
