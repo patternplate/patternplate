@@ -9,13 +9,13 @@ before_install:
     -in patternplate-deploy.enc
     -out patternplate-deploy -d
   - >-
-    chmod 600 patternplate-deploy &&\
-    eval $(ssh-agent -s) &&\
-    ssh-add patternplate-deploy &&\
+    chmod 600 patternplate-deploy &&
+    eval $(ssh-agent -s) &&
+    ssh-add patternplate-deploy &&
     rm patternplate-deploy
 script:
   - >-
-    yarn test &&\
-    yarn build &&\
-    yarn components:build &&\
+    yarn test &&
+    yarn build &&
+    yarn components:build &&
     if [ "$TRAVIS_BRANCH" = "master" ]; then yarn components:deploy; fi
