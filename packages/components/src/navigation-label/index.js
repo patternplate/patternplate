@@ -10,25 +10,30 @@ module.exports = NavigationLabel;
 
 function NavigationLabel(props) {
   return (
+    <StyledLabelContainer highlight={props.highlight}>
       <StyledLabelLink
         highlight={props.highlight}
         title={`${props.enabled ? 'Close' : 'Expand'} ${props.children} list`}
         query={{[`${props.name}-enabled`]: !props.enabled}}
-      >
+        >
         <StyledLabel highlight={props.highlight} enabled={props.enabled}>
           <StyledLabelIcon enabled={props.enabled}>
             <Icon symbol="arrow-right" />
           </StyledLabelIcon>
           {props.children}
         </StyledLabel>
-    </StyledLabelLink>
+      </StyledLabelLink>
+    </StyledLabelContainer>
   );
 }
 
-const StyledLabelLink = styled(Link)`
-  position: ${props => props.highlight ? 'sticky' : 'static'};
-  top: 0;
+const StyledLabelContainer = styled.div`
+  position: sticky;
+  top: -1px;
   left: 0;
+`;
+
+const StyledLabelLink = styled(Link)`
   color: ${props => props.theme.color};
   cursor: pointer;
   text-decoration: none;
@@ -42,12 +47,9 @@ const StyledLabel = styled.div`
   font-family: ${FONTS.default};
   font-size: .8em;
   color: ${props => props.theme.color};
-  background-color: ${props =>
-    props.enabled && props.highlight ?
-      props.theme.backgroundTertiary : props.theme.background
-  };
+  background-color: ${({enabled, theme}) => enabled ? theme.backgroundTertiary : theme.background};
   border-style: solid;
-  border-top-color: ${props => props.enabled ? props.theme.backgroundSecondary : props.theme.border};
+  border-top-color: ${({enabled, theme}) => enabled ? theme.backgroundSecondary : theme.border};
   border-bottom-color: ${props => props.enabled ? 'transparent' : props.theme.border};
   border-width: ${props => props.highlight ? 1 : 0}px 0;
 `;

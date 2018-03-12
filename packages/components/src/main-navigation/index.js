@@ -123,7 +123,6 @@ const PASSAGE_HEIGHT = 50;
 const StyledNavigationTree = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
-  padding-bottom: 50px;
   overflow-x: hidden;
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -138,6 +137,9 @@ const StyledNavigationTree = styled.div`
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 1) ${PASSAGE_HEIGHT}px
   );
+  & > *:last-child {
+    margin-bottom: ${PASSAGE_HEIGHT}px;
+  }
 `;
 
 const StyledNavigationToolbar = styled.div`

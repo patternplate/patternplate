@@ -21,9 +21,8 @@ function NavigationTree(props) {
           switch (item.type) {
             case "folder":
               return (
-                <React.Fragment>
+                <React.Fragment key={item.id}>
                   <NavigationLabel
-                    key={name}
                     enabled={enabled}
                     name={name}
                     highlight={false}
@@ -32,7 +31,7 @@ function NavigationTree(props) {
                   </NavigationLabel>
                   {
                     (enabled &&
-                      item.children.map(child => {
+                      item.children.map((child, index) => {
                         return (
                           <NavigationItem
                             key={child.id}
