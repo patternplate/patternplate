@@ -1,5 +1,4 @@
 import { createSearch, Query, Term } from "@patternplate/search";
-import Immutable from "seamless-immutable";
 import { flatten, uniq, uniqBy, sortBy } from "lodash";
 import { createSelector } from "reselect";
 import semver from "semver";
@@ -207,7 +206,10 @@ export const selectFound = createSelector(
       sortBy(matches.map(match => pool.find(p => p.id === match)), "contentType"),
       "id"
     );
-    return sorted.map((s, i) => Immutable.set(s, "index", i));
+    return sorted.map((s, i) => {
+      s.index = i;
+      return s;
+    });
   }
 );
 
@@ -455,7 +457,7 @@ export const selectActiveItem = createSelector(
       : i => i;
 
     return item
-      ? Immutable.merge(item, {
+      ? Object.assign({}, item, {
           index,
           dependents: [],// rel("dependents"),
           dependencies: []//rel("dependencies")

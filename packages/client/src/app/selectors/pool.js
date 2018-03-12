@@ -1,6 +1,5 @@
 import { createSearch } from "@patternplate/search";
 import { createSelector } from "reselect";
-import * as Immutable from "seamless-immutable";
 import { flat as selectDocs } from "../selectors/docs";
 import { flat as selectNavigation } from "../selectors/navigation";
 import { enrich } from "../selectors/tree";
@@ -18,9 +17,9 @@ export const selectFlatPool = createSelector(
   }),
   (docs, nav, context) => {
     const enriched = flatten(docs.map(d => {
-      return enrich(Immutable.asMutable(d), context);
+      return enrich(d, context);
     }));
-    return Immutable.from(enriched)
+    return enriched
       .concat(nav)
       .filter(item => Boolean(item.id) && Boolean(item.contentType))
   });
@@ -49,9 +48,9 @@ const selectPool = createSelector(
   }),
   (docs, nav, context) => {
     const enriched = flatten(docs.map(d => {
-      return enrich(Immutable.asMutable(d), context);
+      return enrich(d, context);
     }));
-    return Immutable.from(enriched)
+    return enriched
       .concat(nav)
       .filter(item => Boolean(item.id) && Boolean(item.contentType))
   });
