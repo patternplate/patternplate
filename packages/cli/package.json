@@ -13,7 +13,8 @@
     "clean:dev": "npx rimraf lib/build.js lib/create.js lib/start.js",
     "watch": "yarn babel -w",
     "webpack": "webpack",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "postpublish": "yarn clean:dev"
   },
   "xo": false,
   "babel": {
