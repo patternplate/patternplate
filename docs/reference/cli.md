@@ -20,22 +20,22 @@ npx patternplate [command]
 ## Usage
 
 ```bash
-λ patternplate start # Start a patternplate server
+patternplate start # Start a patternplate server
 ✔ Started on "http://localhost:1337"
 
-λ patternplate build # Build static interface
+patternplate build # Build static interface
 ✔ Built to "docs/patterns"
 ```
 
 ## Options
 
 ```bash
-λ patternplate help
+patternplate help
 
   Documentation and development interface for component libraries
 
   Usage
-  $ patternplate [command=start] [options]
+  patternplate [command=start] [options]
 
   Commands
     start   - Start a patternplate instance in cwd
@@ -61,13 +61,13 @@ npx patternplate [command]
     --no-npm   - Skip installation of npm packages
 
   Examples
-    $ patternplate
+    patternplate
     ✔ Started on http://localhost:1337
 
-    $ patternplate --port 1338
+    patternplate --port 1338
     ✔ Started on http://localhost:1338
 
-    $ patterplate build
+    patterplate build
     ✔ Built to ./docs
 
 ```

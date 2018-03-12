@@ -22,7 +22,7 @@ This means in the tree below `README.md`, `docs/readme.md` and `docs/design/colo
 is picked up.
 
 ```bash
-λ tree .
+tree .
 .
 ├── CHANGELOG.md
 ├── README.md

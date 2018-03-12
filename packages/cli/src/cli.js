@@ -5,7 +5,7 @@ const meow = require("meow");
 const cli = meow(
   `
   Usage
-  $ patternplate [command=start] [options]
+  patternplate [command=start] [options]
 
   Commands
     start        - Start a patternplate instance in cwd
@@ -31,13 +31,13 @@ const cli = meow(
     --no-install - Skip installation of npm packages
 
   Examples
-    $ patternplate
+    patternplate
     ✔ Started on http://localhost:1337
 
-    $ patternplate --port 1338
+    patternplate --port 1338
     ✔ Started on http://localhost:1338
 
-    $ patterplate build
+    patterplate build
     ✔ Built to ./docs
 `
 );
