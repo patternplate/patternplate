@@ -13,7 +13,8 @@ function NavigationTree(props) {
         .filter(item => typeof item.manifest === "object")
         .map((item, index) => {
           // TODO: this should not have to deal with normalization
-          const hidden = (item.manifest.options || {}).hidden || false;
+          const options = (item.manifest.options || {});
+          const hidden = options.hidden || false;
           const icon = selectSymbol(item);
           const iconActive = selectActiveSymbol(item);
           const name = (item.manifest.name ? String(item.manifest.name) : '').toLowerCase();
@@ -61,7 +62,8 @@ function NavigationTree(props) {
                   key={item.id}
                   active={item.active}
                   hidden={hidden}
-                  href={item.href}
+                  href={options.href || item.href}
+                  external={Boolean(options.href)}
                   id={item.id}
                   meta={(item.warnings || []).map(warning => (
                     <NavigationMeta key={warning.value} warning={warning} />

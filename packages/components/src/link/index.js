@@ -15,7 +15,6 @@ class Link extends React.Component {
 
   render() {
     const { props } = this;
-
     return (
       <a
         target={props.external ? "_blank" : null}

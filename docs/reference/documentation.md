@@ -52,6 +52,7 @@ properties are: `order` and `options.displayName`.
 * **displayName**: String, Name of the doc item in the sidebar
 * **options.order**: Integer, position in the documentation list. Lower numbers are listed first
 * **options.query**: String, search query. The file is considered a virtual folder. Matching items will be displayed as children.
+* **option.link**: String, absolute url. The file is considered an external link.
 
 ```md
 –––
