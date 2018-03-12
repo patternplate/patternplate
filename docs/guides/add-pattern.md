@@ -14,7 +14,7 @@ options:
 
 ### What to expect
 
-* Learn how to add pattern 
+* Learn how to add a pattern 
 * Style component with `CSS`
 * Program the demo with `JavaScript`
 

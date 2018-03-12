@@ -14,7 +14,7 @@ options:
 
 ### What to expect
 
-* Use `create-patternplate` to initialize a new project
+* Use the `create-patternplate` commandline tool to initialize a new project
 * Learn how to start the `patternplate` dev server
 
 ### You'll need
