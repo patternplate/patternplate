@@ -6,8 +6,10 @@ import { bindActionCreators } from "redux";
 import { createSelector } from "reselect";
 import {
   Link,
+  Icon,
   styled,
   injection,
+  Text,
   ThemeProvider,
   themes
 } from "@patternplate/components";
@@ -133,6 +135,27 @@ function Application(props) {
           </ThemeProvider>
           <StyledContentContainer>
             <StyledContent>
+            <StyledBrowserWarning navigationEnabled={props.navigationEnabled} data-browser-warning>
+              <StyledBrowserContainer>
+                <div>
+                  <StyledWarningLabel>
+                    Nice browser. Is it antique?
+                  </StyledWarningLabel>
+                  <Text>
+                    No, seriously - your browser is so old that some features of patternplate don't work as expected.
+                  </Text>
+                  <Text>
+                    Don't worry - you can either continue with a restricted version or install an up-to-date browser.
+                  </Text>
+                </div>
+                <StyledBrowserContainerClose
+                  title={`Close browser warning`}
+                  query={{"browser-warning": false}}
+                  >
+                  <Icon symbol="close"/>
+                </StyledBrowserContainerClose>
+              </StyledBrowserContainer>
+            </StyledBrowserWarning>
               {
                 props.hasMessage && (
                   <StyledMessageBox>
@@ -161,6 +184,42 @@ function Application(props) {
 const WIDTH = 300;
 const NAVIGATION_WIDTH = props => (props.enabled ? WIDTH : 0);
 const TOOLBAR_HEIGHT = 60;
+
+const StyledWarningLabel = styled(Text)`
+  font-weight: bold;
+`;
+
+const StyledBrowserWarning = styled.div`
+  display: none; /* overridden by separate js if needed */
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  right: 0;
+  left: ${props => props.navigationEnabled ? WIDTH : 0}px;
+  width: 100%;
+  padding: 20px 15px;
+  padding-left: ${props => props.navigationEnabled ? 20 : 60}px;
+  background: ${props => props.theme.warning};
+`;
+
+const StyledBrowserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+`;
+
+const StyledBrowserContainerClose = styled(Link)`
+  flex-shrink: 0;
+  margin-left: 15px;
+  &:link,
+  &:visited,
+  &:active {
+    color: ${props => props.theme.color};
+  }
+`;
 
 const StyledApplication = styled.div`
   box-sizing: border-box;
@@ -251,7 +310,7 @@ const NavigationControl = styled.div`
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 3;
+  z-index: 5;
   top: 0;
   left: ${props => props.enabled ? 300 : 0}px;
   transform: translate(-${props => props.enabled ? 100 : 0}%);
