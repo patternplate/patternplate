@@ -70,5 +70,5 @@ export default selectPool;
 export const flat = createSelector(
   selectDocs,
   selectNavigation,
-  (docs, nav) => flatten(docs.concat(nav))
+  (docs, nav) => flatten(docs.concat(nav)).filter(item => item.type === "item")
 );

@@ -10,7 +10,7 @@ import ConnectedPatternDemo from "./pattern-demo-widget";
 
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
-import selectPool from "../selectors/pool";
+import {flat as selectPool} from "../selectors/pool";
 
 export default connect(mapState, mapDispatch)(Documentation);
 
@@ -68,15 +68,16 @@ const selectDoc = createSelector(
   selectNoDocs,
   selectNotFound,
   (match, id, pool, noDocs, notFound) => {
-    if (match && match.contents) {
-      return match.contents;
-    }
-
     if (id === "/") {
-      const first = pool.find(i => Boolean(i.contents) && i.type !== "pattern");
+      const first = pool.find(i => i.contentType === "doc");
+
       if (first) {
         return first.contents;
       }
+    }
+
+    if (match && match.contents) {
+      return match.contents;
     }
 
     if (match && !match.contents) {
