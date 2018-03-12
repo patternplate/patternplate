@@ -12,10 +12,11 @@ function NavigationTree(props) {
       {(props.data || [])
         .filter(item => typeof item.manifest === "object")
         .map((item, index) => {
+          // TODO: this should not have to deal with normalization
           const hidden = (item.manifest.options || {}).hidden || false;
           const icon = selectSymbol(item);
           const iconActive = selectActiveSymbol(item);
-          const name = item.manifest.name.toLowerCase();
+          const name = (item.manifest.name ? String(item.manifest.name) : '').toLowerCase();
           const enabled = (props.query || {})[`${name}-enabled`] === "true";
 
           switch (item.type) {
