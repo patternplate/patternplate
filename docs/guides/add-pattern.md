@@ -9,7 +9,7 @@ options:
 # Build your first component in patternplate
 
 * **Time invest**: 10 Minutes
-* **Audience**: Eyerone
+* **Audience**: Everyone
 * **Level**: Beginner
 
 ### What to expect

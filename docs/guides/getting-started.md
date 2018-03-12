@@ -9,7 +9,7 @@ options:
 # Your kickstart into patternplate
 
 * **Time invest**: 5 Minutes
-* **Audience**: Eyerone
+* **Audience**: Everyone
 * **Level**: Beginner
 
 ### What to expect

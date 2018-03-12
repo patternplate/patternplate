@@ -9,7 +9,7 @@ options:
 # Guide: Divide and Conquer with Virtual Folders
 
 * **Time invest**: 5 Minutes
-* **Audience**: Eyerone
+* **Audience**: Everyone
 * **Level**: Beginner
 
 ### What to expect

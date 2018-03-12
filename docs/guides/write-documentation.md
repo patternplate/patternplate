@@ -9,7 +9,7 @@ options:
 # Explain your work with Markdown
 
 * **Time invest**: 10 Minutes
-* **Audience**: Eyerone
+* **Audience**: Everyone
 * **Level**: Beginner
 
 ### What to expect
