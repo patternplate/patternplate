@@ -39,4 +39,4 @@ yarn lerna run clean:dev # remove publishing bundles
 Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
 
 [site]: https://patternplate.github.io/
-[getting-started]: https://patternplate.github.io/doc/docs/guides/getting-started
+[getting-started]: https://patternplate.github.io/doc/docs/guides/getting-started?guides-enabled=true
