@@ -5,10 +5,10 @@ options:
   order: 15
 ---
 
-  # Reference: Widgets
+# Reference: Widgets
 
-`patternplate` provides widgets for your use in Markdown files.
-Widgets can display information derived from your component library.
+`patternplate` provides components that can be used in Markdown.
+This allows you to bring your documenation to live with e.g. actual, real component demos.
 
 ## Component List
 
