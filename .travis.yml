@@ -2,27 +2,10 @@ language: node_js
 node_js:
   - 8
 before_install:
-  - >-
-    if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then openssl aes-256-cbc
-      -K $encrypted_b9bd228152b0_key
-      -iv $encrypted_b9bd228152b0_iv
-      -in patternplate-deploy.enc
-      -out patternplate-deploy -d;
-    else;
-      echo "Skipping deployment, secure env vars not available";
-    fi
-  - >-
-    if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then
-      chmod 600 patternplate-deploy &&
-      eval $(ssh-agent -s) &&
-      ssh-add patternplate-deploy &&
-      rm patternplate-deploy;
-    fi
+  - ./.travis/decrypt.sh
 script:
   - >-
     yarn test &&
     yarn build &&
     yarn components:build &&
-    if [ "$TRAVIS_SECURE_ENV_VARS" = "true" && "$TRAVIS_BRANCH" = "master" ]; then
-      yarn components:deploy;
-    fi
+    ./.travis/deploy.sh
