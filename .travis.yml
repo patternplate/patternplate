@@ -3,14 +3,13 @@ node_js:
   - 8
 before_install:
   - >-
-    if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then
-      openssl aes-256-cbc
+    if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then openssl aes-256-cbc
       -K $encrypted_b9bd228152b0_key
       -iv $encrypted_b9bd228152b0_iv
       -in patternplate-deploy.enc
       -out patternplate-deploy -d;
-    else
-      echo "Skipping deployment, secure env vars not available"
+    else;
+      echo "Skipping deployment, secure env vars not available";
     fi
   - >-
     if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then
