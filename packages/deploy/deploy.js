@@ -42,11 +42,16 @@ async function main(cli) {
   await git(["commit", "-m", `Deploy "${hash}" at ${new Date()}`], {cwd, stderr: "inherit"});
 
   if (identity) {
-    await execa.shell("eval $(ssh-agent -s)", {cwd, stderr: "inherit"});
+    const {stdout: startAgent} = await execa("ssh-agent", ["-s"]);
+    await execa.shell(startAgent, {stderr: "inherit"});
     await execa("ssh-add", [identity], {cwd, stderr: "inherit"});
   }
 
   await git(["push", "-f", "--set-upstream", "target", "master"], {cwd, stderr: "inherit"});
+
+  if (identity) {
+    await execa("ssh-add", ["-D"], {cwd, stderr: "inherit"});
+  }
 }
 
 main(meow(`
