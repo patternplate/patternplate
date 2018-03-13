@@ -39,7 +39,7 @@ Create an object representing `HTML` and `CSS` output from an
 object representing the exports of a demo file.
 
 ```ts
-type DemoExports {
+type Input {
   /**
    * Demo function returning a "component"
    * according to semantics of used technology
@@ -51,46 +51,66 @@ type DemoExports {
   /** 
    * HTML fragment that may have been provided 
    * by user via export const html = "" 
-   **/
+   */
   html?: string;
 
   /** 
    * CSS code that may have been provided 
    * by user via export const html = "" 
-   **/
+   */
   css?: string;
+
+  /**
+   * CSS code that may have been provided 
+   * by user via export const js = "" 
+   */
+  js?: string;
+
+  /**
+   * Element mount point in client side
+   * exection contexts.
+   */
+  element?: Node
 }
 
-type RenderOutput {
+type Output {
   /**
-   * HTML fragment to inject into <body>
+   * HTML fragment to inject into <head>
    */
-  html: string;
+  head?: string;
   /**
-   * CSS <style> tag to inject into <head>
+   * CSS to inject into <head>
    */
-  css: string;
+  css?: string;
+  /**
+   * HTML fragment to inject into <body> before mount point
+   */
+  before?: string;
+  /**
+   * HTML fragment to inject into <body> inside mount point
+   */
+  html?: string;
+  /**
+   * HTML fragment to inject into <body> after mount point
+   */
+  before?: string;
+  /**
+   * JS code to inject into end of <body>
+   */
+  js?: string;
 }
 
-function render(DemoExports): RenderOutput;
+function render(Input): Output;
 ```
 
 ### mount
 
 Perform the necessary side effects to register 
-client-side functionality, e.g. `ReactDOM.mount`
+client-side functionality, e.g. `ReactDOM.mount`.
+
+Returned `Output` objects will be injected into 
+the host document.
 
 ```ts
-type DemoExecutable {
-  /**
-   * Demo function returning a "component"
-   * according to semantics of used technology
-   * .default should take precedence over call signature
-   * if present 
-   **/
-  default?: (...args: any[]): any;
-  (...args: any[]): any;
-}
-
-function mount(DemoExecutable, element: Node): void;
+function mount(Input): Output;
 ```
