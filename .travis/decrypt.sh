@@ -2,7 +2,7 @@
 set -e
 set -u
 
-if [ "$TRAVIS_SECURE_ENV_VARS" != "true" ]
+if [ "$TRAVIS_SECURE_ENV_VARS" != "true" ]; then
     echo "Skipping decryption, secure env vars not available";
     exit 0;
 fi
