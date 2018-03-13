@@ -11,5 +11,5 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
 fi
 
 patternplate-deploy --source .tmp \
- --identity=./patternplate-deploy
+ --identity=./patternplate-deploy \
  --target=git@github.com:patternplate/patternplate.github.io.git
