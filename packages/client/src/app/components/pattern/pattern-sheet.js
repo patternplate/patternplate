@@ -66,18 +66,27 @@ function PatternSheet(props) {
   );
 }
 
+
+const StyledSearchTrigger = styled.span`
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
+`;
+
 function SearchTrigger(props) {
   return (
-    <Link
-      className={props.className}
-      query={{
-        "search-enabled": true,
-        search: `${props.field}=${props.search}`
-      }}
-      title={`Search other patterns with ${props.field} "${props.search}"`}
-    >
-      {props.children}
-    </Link>
+    <StyledSearchTrigger>
+      <Link
+        className={props.className}
+        query={{
+          "search-enabled": true,
+          search: `${props.field}=${props.search}`
+        }}
+        title={`Search other patterns with ${props.field} "${props.search}"`}
+      >
+        {props.children}
+      </Link>
+    </StyledSearchTrigger>
   );
 }
 
