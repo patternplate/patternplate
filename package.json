@@ -10,7 +10,6 @@
     "clean": "npx lerna clean --yes && npx lerna run clean && npx rimraf node_modules",
     "components:start": "yarn patternplate start",
     "components:build": "yarn patternplate build --out .tmp --base '/'",
-    "components:deploy": "patternplate-deploy --source .tmp --target=git@github.com:patternplate/patternplate.github.io.git",
     "components:serve": "yarn serve .tmp",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
     "start": "yarn lerna run watch --stream --parallel --include-filtered-dependencies",

@@ -13,7 +13,4 @@ openssl aes-256-cbc \
   -in patternplate-deploy.enc \
   -out patternplate-deploy -d
 
-chmod 600 patternplate-deploy;
-eval $(ssh-agent -s);
-ssh-add patternplate-deploy;
-rm patternplate-deploy;
+chmod 400 patternplate-deploy;

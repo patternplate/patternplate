@@ -27,7 +27,11 @@ async function main(cli) {
   await git(["remote", "add", "target", target], {cwd, stdout: "inherit", stderr: "inherit"});
   await git(["add", "."], {cwd, stdout: "inherit", stderr: "inherit"});
   await git(["commit", "-m", `Deploy "${hash}" at ${new Date()}`], {cwd, stdout: "inherit", stderr: "inherit"});
-  await git(["push", "-f", "--set-upstream", "target", "master"], {cwd, stdout: "inherit", stderr: "inherit"});
+  await git([
+    "push", "-f",
+    "--set-upstream", "target", "master",
+    ...(cli.flags.identity ?  ["-i", cli.flags.identity] : [])
+  ], {cwd, stdout: "inherit", stderr: "inherit"});
 }
 
 main(meow(`
