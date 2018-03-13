@@ -9,8 +9,11 @@ import {
   IconDefinitions
 } from "@patternplate/components";
 import * as svg from "../utils/svg";
+import platform from "platform";
 
 const THEMES = themes();
+
+const SVG_FAVICON_SUPPORT = ["Firefox"];
 
 class FavIcon extends React.Component {
   constructor(...args) {
@@ -19,33 +22,52 @@ class FavIcon extends React.Component {
   }
 
   componentDidMount() {
+    if (SVG_FAVICON_SUPPORT.indexOf(platform.name) > -1) {
+      return;
+    }
+
     svg
       .png(getSource(this.props))
-      .then(href => this.setState({ href }))
+      .then(pngHref => this.setState({
+        pngHref
+      }))
       .catch(err => {
         console.error(err);
-        this.setState({ href: null });
+        this.setState({
+          pngHref: null
+        });
       });
   }
 
   componentWillReceiveProps(next) {
+    if (SVG_FAVICON_SUPPORT.indexOf(platform.name) > -1) {
+      return;
+    }
+
     svg
       .png(getSource(next))
-      .then(href => this.setState({ href }))
+      .then(pngHref => this.setState({
+        pngHref
+      }))
       .catch(err => {
         console.error(err);
-        this.setState({ href: null });
+        this.setState({
+          pngHref: null
+        });
       });
   }
 
   render() {
+    const source = getSource(this.props);
+    const svgHref = svg.btoa(source);
+
     return (
       <Helmet
         link={[
-          { rel: "icon", href: this.state.href, type: "image/png" },
+          ...(this.state.pngHref ? [{ rel: "icon", href: this.state.pngHref, type: "image/png" }] : []),
           {
             rel: "icon",
-            href: svg.btoa(getSource(this.props)),
+            href: svgHref,
             type: "image/svg+xml"
           }
         ]}
