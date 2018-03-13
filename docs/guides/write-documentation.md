@@ -9,23 +9,34 @@ options:
 # Explain your work with Markdown
 
 * **Time invest**: 10 Minutes
-* **Audience**: Everyone
-* **Level**: Beginner
+* **Level**: Intermediate - Expert
 
-### What to expect
+## What to expect
 
-* Add local documentation to a pattern
-* Learn about global docs in patternplate
+No matter how hard you strive for simplicity, you'll always have to describe some aspects
+of your component library in text. 
 
-### You'll need
+`patternplate` can help you to add rich documentation to components and for the whole of 
+your library - let's see how.
 
+We will …
+
+* … add some documentation for a component
+* … write docs for generic topics
+* … learn how to control the names of docs in the sidebar
+
+## You'll need
+
+* :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
 * Text editor
-* **patternplate project**
-  * Follow along our [Getting Started Guide](./doc/docs/guides/getting-started) to bootstrap one.
-  * A completed copy is available via `git clone https://github.com/patternplate/getting-started.git`
-  * Make sure to start patternplate via `pattternplate start` and check it is running on `http://localhost:1337`.
+* patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
-### Describe a pattern with Markdown
+## Before you start
+
+* Have a rough grasp [on Markdown](https://guides.github.com/features/mastering-markdown/)
+* Make yourself familiar with [JSON](https://www.impressivewebs.com/what-is-json-introduction-guide-for-beginners/)
+
+## Describe a single component with Markdown
 
 Demos for your components are a great way to document them, but some things need additional text docs. 
 
@@ -38,6 +49,8 @@ counts up. Let's tell the consumers of our component library about this.
   touch lib/hello-world/readme.md
   ```
 
+2. Copy the following code into `lib/button/readme.md`
+
   ```md
   <!-- lib/hello-world/readme.md -->
   ## Behaviour
@@ -45,20 +58,20 @@ counts up. Let's tell the consumers of our component library about this.
   Clicking on a the text will count up from 1
   ```
 
-2. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&patterns-enabled=true) and scroll down: Your small description has been rendered below the pattern demo.
+3. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&patterns-enabled=true) and scroll down: Your small description has been rendered below the component demo.
 
 ![](https://patternplate.github.io/media/images/screenshot-doc-pattern-markdown.png)
 
-3. Complementy to Markdown you can also provide structured meta data for a pattern, including
+4. You can also provide structured meta data for a pattern, e.g.
 
   * **name** - unique identifier for this pattern, e.g. `fancy-button`
   * **displayName** - human-readable name of the pattern, e.g. `Fancy Button`
-  * **description** - short summary of the pattern intent, e.g. `Primary CTA element for playful contexts`
+  * **description** - short summary of the component intent, e.g. `Primary CTA element for playful contexts`
   * **version** - the semver version, e.g. `1.0.0`
   * **flag** - stability flag, one of `alpha`, `beta`, `rc`, `stable`, `deprecated`
   * **tags** - list of words describing the pattern
 
-  Meta data for a pattern is saved in `package.json`, e.g. `lib/hello-world/package.json`
+  Meta data for a component is saved in `package.json`, e.g. `lib/hello-world/package.json`
   Copy the following JSON to `lib/hello-world/package.json`:
 
   ```json
@@ -78,7 +91,8 @@ counts up. Let's tell the consumers of our component library about this.
 
 ![](https://patternplate.github.io/media/images/screenshot-doc-pattern-json.png)
 
-## Add global documentation
+
+## Add documentation for a generic topic
 
 You may have noticed the **my-patternplate** item in the Getting Started project:
 
@@ -102,11 +116,15 @@ at the beginning of `README.md`.
 
   Change the frontmatter block at the top of the file to something like this
 
-```md
----
-displayName: Introduction
----
-```
+  ```md
+  ---
+  displayName: Introduction
+  ---
+  
+  # You did it! :tada:
+  
+  You successfully installed and started patternplate.
+  ```
 
   The interface updates automatically to display your changes:
 
@@ -115,10 +133,10 @@ displayName: Introduction
 
 ## Up next
 
-* [Guide: Create Virtual Folders](./doc/docs/guides/virtual-folders)
+* [Guide: Create Virtual Folders](./doc/docs/guides/virtual-folders?guides-enabled=true)
 
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/documentation)
-* [Demos](./doc/docs/reference/demos)
+* [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
+* [Demos](./doc/docs/reference/demos?reference-enabled=true)

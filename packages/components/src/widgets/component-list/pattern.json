@@ -1,0 +1,8 @@
+{
+  "name": "component-list-widget",
+  "displayName": "Component List",
+  "version": "1.0.0",
+  "flag": "beta",
+  "description": "Show lists of components in your documentation",
+  "tags": ["Widget", "Documentation", "Search"]
+}

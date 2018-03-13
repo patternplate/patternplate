@@ -91,7 +91,9 @@ export default class Search extends React.Component {
               source={item.contents}
               widgets={{
                 PatternList: Disabled,
-                PatternDemo: Disabled
+                PatternDemo: Disabled,
+                ComponentList: Disabled,
+                ComponentDemo: Disabled
               }}
               />
           </SearchResultPreview>

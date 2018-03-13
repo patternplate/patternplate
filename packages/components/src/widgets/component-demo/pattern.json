@@ -1,0 +1,8 @@
+{
+  "name": "component-demo-widget",
+  "version": "1.0.0",
+  "flag": "beta",
+  "description": "Demonstrate components directly inside your documentation",
+  "displayName": "Components Demo",
+  "tags": ["Widget", "Documentation", "Demo"]
+}

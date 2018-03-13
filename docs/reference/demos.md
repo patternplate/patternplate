@@ -10,7 +10,7 @@ options:
 Demo files provide the necessary entry points for `patternplate` to
 identify your components correctly. 
 
-A pattern `demo` is a `JavaScript` file, that provides
+A component `demo` is a `JavaScript` file, that provides
 
 * an executable function on `module.exports`: demo.js
 * meta data in a `package.json` or `pattern.json` file

@@ -5,8 +5,8 @@ import { Flag, Headline, Link, Markdown, styled, Tag, Text, ThemeProvider, theme
 import * as item from "../../selectors/item";
 import Fullscreen from "../../containers/trigger-fullscreen";
 import ToggleOpacity from "../../containers/toggle-opacity";
-import ConnectedPatternList from "../../containers/pattern-list-widget";
-import ConnectedPatternDemo from "../../containers/pattern-demo-widget";
+import ConnectedComponentList from "../../containers/component-list-widget";
+import ConnectedComponentDemo from "../../containers/component-demo-widget";
 
 export default connect(mapProps)(PatternSheet);
 
@@ -55,8 +55,10 @@ function PatternSheet(props) {
                 linkable={true}
                 source={props.doc}
                 widgets={{
-                  PatternList: ConnectedPatternList,
-                  PatternDemo: ConnectedPatternDemo
+                  PatternList: ConnectedComponentList,
+                  PatternDemo: ConnectedComponentDemo,
+                  ComponentList: ConnectedComponentList,
+                  ComponentDemo: ConnectedComponentDemo
                 }}
               />
             </StyledMarkdownBox>

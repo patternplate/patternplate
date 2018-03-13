@@ -36,7 +36,6 @@ function Layout(props) {
         <script dangerouslySetInnerHTML={{__html: `
           if (supported() === false && window.location.search.indexOf("browser-warning=false") === -1) {
             var el = document.querySelector("[data-browser-warning]");
-            console.log(el);
             el.style.display = "block";
           }
 

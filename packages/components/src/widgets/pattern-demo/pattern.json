@@ -1,8 +1,0 @@
-{
-  "name": "pattern-demo-widget",
-  "version": "1.0.0",
-  "flag": "beta",
-  "description": "Demonstrate patterns directly inside your documentation",
-  "displayName": "Pattern Demo",
-  "tags": ["Widget", "Documentation", "Demo"]
-}

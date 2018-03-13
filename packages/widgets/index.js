@@ -1,10 +1,12 @@
 // Explicit drilling requires to avoid circular references
-const PatternList = require("@patternplate/components/lib/widgets/pattern-list");
-const PatternDemo = require("@patternplate/components/lib/widgets/pattern-demo");
+const ComponentList = require("@patternplate/components/lib/widgets/component-list");
+const ComponentDemo = require("@patternplate/components/lib/widgets/component-demo");
 const Disabled = require("@patternplate/components/lib/widgets/disabled");
 
 module.exports = {
+  ComponentList,
+  ComponentDemo,
   Disabled,
-  PatternList,
-  PatternDemo,
+  PatternList: ComponentList,
+  PatternDemo: ComponentDemo,
 };

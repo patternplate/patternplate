@@ -9,27 +9,27 @@ options:
 # Build your first component in patternplate
 
 * **Time invest**: 10 Minutes
-* **Audience**: Everyone
-* **Level**: Beginner
+* **Level**: Beginner - Expert
 
-### What to expect
+## What to expect
 
-* Learn how to add a pattern 
-* Style component with `CSS`
-* Program the demo with `JavaScript`
+Components are, well components - but also the bread of butter of every 
+component library. Let's learn about the default way to add components to `patternplate`.
 
-### You'll need
+We will …
 
-* Text editor
-* **patternplate project**
-  * Follow along our [Getting Started Guide](./doc/docs/guides/getting-started) to bootstrap one.
-  * A completed copy is available via `git clone https://github.com/patternplate/getting-started.git`
-  * Make sure to start patternplate via `pattternplate start` and check it is running on `http://localhost:1337`.
+* … learn how to add a component 
+* … style a component with `CSS`
+* … program simple behaviour via `JavaScript`
 
+## You'll need
+
+* Text editor ([Atom](https://atom.io/) | [VSCode](https://code.visualstudio.com/))
+* patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
 ## Create a new pattern
 
-Let's improve the pattern library and add a `Button` component. 
+Let's improve the component library and add a `Button` component. 
 Open a new terminal window or tab, then procceed with the steps below.
 
 1. Create a new directory `button` in `lib`.
@@ -59,7 +59,7 @@ Open a new terminal window or tab, then procceed with the steps below.
    ```
 
 3. Create a `demo.js` file at `lib/button`. The interface will update
-automatically and add **Button** to the patterns list. 
+automatically and add **Button** to the components list. 
 
    ```bash
    # create "package.json"
@@ -153,8 +153,8 @@ Let's count up when clicking on **Button**.
 
 ## Up next
 
-* [Guide: Write documentation](./doc/docs/guides/write-documentation)
+* [Guide: Write documentation](./doc/docs/guides/write-documentation?guides-enabled=true)
 
 ## Related topics
 
-* [Demos](./doc/docs/reference/demos)
+* [Demos](./doc/docs/reference/demos?reference-enabled=true)

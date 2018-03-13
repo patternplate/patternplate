@@ -1,13 +1,13 @@
-import { PatternDemo } from "@patternplate/widgets";
+import { ComponentDemo } from "@patternplate/widgets";
 import { connect } from "react-redux";
 import { createSelector } from "reselect";
-import selectPool from "../selectors/pool";
+import { flat as selectPool } from "../selectors/pool";
 
-export default connect(mapState)(PatternDemo);
+export default connect(mapState)(ComponentDemo);
 
 const selectGet = createSelector(
   selectPool,
-  pool => id => pool.find(pattern => pattern.id === id)
+  pool => id => pool.filter(p => p.contentType === "pattern").find(pattern => pattern.id === id)
 );
 
 const selectSrc = createSelector(

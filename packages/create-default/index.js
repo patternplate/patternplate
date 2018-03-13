@@ -34,7 +34,7 @@ Head back to the [Getting Started Guide](https://patternplate.github.io/doc/docs
 
 ## Up next
 
-* [Guide: Build a component](https://patternplate.github.io/doc/docs/guides/add-pattern)
+* [Guide: Build a component](https://patternplate.github.io/doc/docs/guides/add-component)
 
 
 ## Related topics

@@ -9,24 +9,28 @@ options:
 # Your kickstart into patternplate
 
 * **Time invest**: 5 Minutes
-* **Audience**: Everyone
-* **Level**: Beginner
+* **Level**: Beginner - Expert
 
-### What to expect
+## What to expect
 
-* Use the `create-patternplate` command line tool to initialize a new project
-* Learn how to start the `patternplate` dev server
+Setting up a new component library can be a tedious task - but `patternplate` has you covered!
+Let's have a look at how patternplate can help you to get started in 5 minutes, max.
 
-### You'll need
+We will …
 
-* Terminal
+* … learn how to use the `create-patternplate` command line tool to initialize a new project
+* … start the `patternplate` dev server to visualize components and documentation
+
+## You'll need
+
+* Terminal (MacOS: [iTerm](https://www.iterm2.com/) | Windows: [cmder](http://cmder.net/))
 * Node.js `>=6` ([Install](https://nodejs.org/en/))
-* npm `>=5` (Bundled with Node.js)
-* npx (Bundled with Node.js)
 
 ## Initialize a new project
 
-1. Open your terminal emulator and enter the following command:
+1. Open your terminal emulator and enter the following command.
+
+   Don't worry if you did not install `npx` explicitly, it is installed with Node.js automatically.
 
    ```bash
    # - Creates a new patternplate project at my-patternplate
@@ -35,6 +39,8 @@ options:
    ```
 
 2. Let's start `patternplate` next:
+
+   Like `npx`, `npm` is available if you installed Node.js.
 
    ```bash
    # Change into `my-patternplate`
@@ -45,7 +51,7 @@ options:
    Started on http://localhost:1337
    ```
 
-3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/pattern/hello-world?patterns-enabled=true&navigation-enabled=true).
+3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/pattern/hello-world?guides-enabled=true).
 
   If everything worked `patternplate` greets you with this screen:
 
@@ -54,8 +60,19 @@ options:
 
 ## Up next
 
-* [Guide: Build a component](./doc/docs/guides/add-pattern)
+* [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
 
 ## Related topics
 
-* [CLI](./doc/docs/reference/cli)
+* [CLI](./doc/docs/reference/cli?reference-enabled=true)
+
+## Shortcut
+
+If you want to get the result of the getting started guide without 
+typing all commands you can use the ready-made git repository
+
+```bash
+git clone git@github.com:patternplate/getting-started.git
+cd getting-started
+npm install
+```

@@ -9,24 +9,28 @@ options:
 # Guide: Divide and Conquer with Virtual Folders
 
 * **Time invest**: 5 Minutes
-* **Audience**: Everyone
-* **Level**: Beginner
+* **Level**: Intermediate - Expert
 
-### What to expect
+## What to expect
 
-* How to add meta data
-* First steps with patternplate search
-* Create folders in patternplate's sidebar
+We will …
 
-### You'll need
+* … prepare some meta data
+* … take first steps with patternplate search
+* … create folders in patternplate's sidebar
 
+## You'll need
+
+* :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
 * Text editor
-* **patternplate project**
-  * Follow along our [Getting Started Guide](./doc/docs/guides/getting-started) to bootstrap one.
-  * A completed copy is available via `git clone https://github.com/patternplate/getting-started.git`
-  * Make sure to start patternplate via `pattternplate start` and check it is running on `http://localhost:1337`.
+* patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
-### Add meta data
+## Before you start
+
+* Have a rough grasp [on Markdown](https://guides.github.com/features/mastering-markdown/)
+* Read up on [frontmatter](https://jekyllrb.com/docs/frontmatter/)
+
+## Prepare some search data
 
 `patternplate` uses meta data attached to your patterns and docs to 
  inform its search query and the virtual folder system.
@@ -52,7 +56,7 @@ Let's add some tags to the items in Getting Started.
   {
     "name": "hello-world",
     "version": "1.0.0",
-    "tags": ["hello", "typography"],
+    "tags": ["hello", "world", "typography"],
     "patternplate": {
       "displayName": "Hello World"
     }
@@ -65,12 +69,15 @@ Let's add some tags to the items in Getting Started.
   {
     "name": "button",
     "version": "1.0.0",
-    "tags": ["hello", "interaction"],
+    "tags": ["hello", "world", "interaction"],
     "patternplate": {
       "displayName": "Button"
     }
   }
   ```
+
+We won't see a lot of changes in patternplate for our meta data changes,
+let's use it for searching in the next section instead.
 
 ## First steps with patternplate search
 
@@ -96,29 +103,39 @@ in a second.
 
    Let's try to be more structured about our search.
 
-3. Enter a structured search query like this: `tags=world`. 
-   Don't wory if you don't know what that means just yet.
+3. Delete our previous search by clicking on the `x` the search field
+
+4. Enter a structured search query like this: `tags=world`. 
+   Don't worry if you don't know what that means just yet.
  
-   This will search for all items that have the tag `world` attached to them any 
-   yield a result list like this:
- 
+   This will search for all items that have the tag `world` attached. This results
+   in a list like this:
+
    ![](https://patternplate.github.io/media/images/screenshot-search-structured.png)
 
    This time around we matched only **Button** and **Hello-World**. That happens because they have both
    the tag `world` attached, while the **my-patternplate** item does not.
 
-   Visit the [search reference](./reference/search) for detailed information about search queries.
+   Visit the [search reference](./doc/docs/reference/search?reference-enabled=true) for detailed information about search queries.
 
-   Let's take this a step further and use our `tags=world` query to create a virtual folder.
+## Create a virtual folder
 
-4. Create `docs/my-virtual-folder.md`
+Let's take this a step further and use our `tags=world` query to create a virtual folder.
+Virtual folders are doc files with special configuration in them. 
+
+`patternplate` searches
+for documenation in `/README.md`, and all `.md` files in `/docs`. 
+
+So we'll add a new file there:
+
+1. Create `docs/my-virtual-folder.md`
 
   ```bash
   mkdir docs
   touch docs/my-virtual-folder.md
   ```
 
-5. Paste the following code into `docs/my-virtual-folder.md` and save it.
+2. Paste the following code into `docs/my-virtual-folder.md` and save it.
   
    ```md
    ---
@@ -133,7 +150,7 @@ in a second.
 
   ![](https://patternplate.github.io/media/images/screenshot-virtual-folder.png)
 
-  Click on the folder to reveal its contents:
+3. Click on the folder to reveal its contents:
 
   ![](https://patternplate.github.io/media/images/screenshot-virtual-folder-open.png)
 
@@ -148,5 +165,5 @@ in a second.
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/documentation)
-* [Search](./doc/docs/reference/search)
+* [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
+* [Search](./doc/docs/reference/search?reference-enabled=true)

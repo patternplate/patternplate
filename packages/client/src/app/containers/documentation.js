@@ -5,8 +5,8 @@ import { bindActionCreators } from "redux";
 
 import * as actions from "../actions";
 
-import ConnectedPatternList from "./pattern-list-widget";
-import ConnectedPatternDemo from "./pattern-demo-widget";
+import ConnectedComponentList from "./component-list-widget";
+import ConnectedComponentDemo from "./component-demo-widget";
 
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
@@ -109,8 +109,10 @@ function mapState(state) {
     themes: selectThemes(state),
     type: selectType(state),
     widgets: {
-      PatternList: ConnectedPatternList,
-      PatternDemo: ConnectedPatternDemo
+      PatternList: ConnectedComponentList,
+      PatternDemo: ConnectedComponentDemo,
+      ComponentDemo: ConnectedComponentDemo,
+      ComponentList: ConnectedComponentList
     }
   };
 }

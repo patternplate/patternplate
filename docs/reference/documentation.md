@@ -7,7 +7,7 @@ options:
 
 # Reference: Documentation
 
-`patternplate` supports Markdown for global as well as pattern documentation.
+`patternplate` supports Markdown for global as well as component documentation.
 
 Markdown in `patternplate` supports all features of [GitHub flavored markdown][github-flavored-markdown].
 
@@ -15,7 +15,7 @@ Additionally you can configure the order and display of documentation [frontmatt
 
 ## Global documentation
 
-Pattern independent documentation is picked according to the `docs` glob pattern
+Documentation that is independent of components is picked according to the `docs` glob pattern
 in `patternplate.config.js`. The default is `["docs/**/*.md", "README.md"]`. 
 
 This means in the tree below `README.md`, `docs/readme.md` and `docs/design/colors.md`
