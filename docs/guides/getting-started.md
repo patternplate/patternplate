@@ -1,5 +1,6 @@
 ---
 displayName: "Guide: Getting Started"
+description: "Hit the ground running with create-patternplate"
 tags: 
  - Guide
 options:

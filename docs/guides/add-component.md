@@ -1,5 +1,6 @@
 ---
 displayName: "Guide: Build a component"
+description: "Learn how to build components in patternplate"
 tags: 
  - Guide
 options:

@@ -1,5 +1,6 @@
 ---
 displayName: "Guide: Create Virtual folders"
+description: "Bring order to chaos with search and virtual folders"
 tags: 
  - Guide
 options:
@@ -7,6 +8,11 @@ options:
 ---
 
 # Guide: Divide and Conquer with Virtual Folders
+
+As your component library grows you'll find it increasingly difficult 
+to find all the sweet components you built. 
+
+Learn how the search and tagging system in `patternplate` helps you stay ahead of your component librarie's complexity.
 
 * **Time invest**: 5 Minutes
 * **Level**: Intermediate - Expert

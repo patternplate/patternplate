@@ -1,5 +1,6 @@
 ---
 name: "reference"
+description: "Detailed technical documetation for patternplate features"
 displayName: "Reference"
 options:
   order: -2

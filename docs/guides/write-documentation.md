@@ -1,5 +1,6 @@
 ---
 displayName: "Guide: Write documentation"
+description: "Learn how to use patternplate for living documentation"
 tags: 
  - Guide
 options:
