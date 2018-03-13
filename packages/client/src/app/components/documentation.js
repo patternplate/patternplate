@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "@patternplate/components";
 import { findDOMNode } from "react-dom";
+import Helmet from "react-helmet";
 import Markdown from "../containers/markdown";
 
 export default class Documentation extends React.Component {
@@ -17,6 +18,9 @@ export default class Documentation extends React.Component {
     return (
       <StyledDocumentation ref={ref => this.ref = ref}>
         <div id="doctop"/>
+        <Helmet
+          title={props.displayName}
+          />
         <Markdown
           linkable
           source={props.doc}

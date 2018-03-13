@@ -61,30 +61,45 @@ Some ideas on what to write into your pattern readme
 Help us to make this message more helpful on [GitHub](https://github.com/patternplate/patternplate).
 `;
 
-const selectDoc = createSelector(
+const selectDocItem = createSelector(
   selectItem,
-  state => state.id,
   selectPool,
-  selectNoDocs,
-  selectNotFound,
-  (match, id, pool, noDocs, notFound) => {
+  state => state.id,
+  (item, pool, id) => {
     if (id === "/") {
       const first = pool.find(i => i.contentType === "doc");
-
       if (first) {
-        return first.contents;
+        return first;
       }
     }
+    return item;
+  }
+);
 
-    if (match && match.contents) {
-      return match.contents;
+const selectDoc = createSelector(
+  selectDocItem,
+  selectNoDocs,
+  selectNotFound,
+  (item, noDocs, notFound) => {
+    if (item && item.contents) {
+      return item.contents;
     }
 
-    if (match && !match.contents) {
+    if (item && !item.contents) {
       return noDocs;
     }
 
     return notFound;
+  }
+);
+
+const selectDisplayName = createSelector(
+  selectDocItem,
+  item => {
+    if (!item) {
+      return 'patternpalte';
+    }
+    return item.manifest.displayName;
   }
 );
 
@@ -105,6 +120,7 @@ const selectThemes = createSelector(
 
 function mapState(state) {
   return {
+    displayName: selectDisplayName(state),
     doc: selectDoc(state),
     themes: selectThemes(state),
     type: selectType(state),
