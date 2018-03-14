@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/search",
-  "version": "2.0.0-62",
+  "version": "2.0.0-y.0",
   "description": "Perform search queries on a list of patternplate items",
   "scripts": {
     "start": "yarn build -w",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-62",
+    "@patternplate/babel-preset": "^2.0.0-y.0",
     "fixturez": "^1.1.0"
   }
 }
