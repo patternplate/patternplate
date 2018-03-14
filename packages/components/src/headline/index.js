@@ -4,6 +4,7 @@ const styled = require("styled-components").default;
 const Text = require("../text");
 
 const ORDERS = {
+  0: 72,
   1: 36,
   2: 27,
   3: 23,
