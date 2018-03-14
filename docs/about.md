@@ -1,17 +1,5 @@
 # About 
 
-```diff:json
-{
-  "scripts": {
--   "precommit": "foo",
-+   "precommit": "lint-staged"
-  },
-+ "lint-staged": {
-+   "*.js": ["eslint --fix", "git add"]
-+ }
-}
-```
-
 `patternplate` documentation is categorized into **Guides** and **References**.
 
 * **Guides** are instructions for common use cases that can be followed step by step.
