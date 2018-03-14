@@ -70,7 +70,7 @@ async function main(options) {
       const cwd = filepath ? path.dirname(filepath) : process.cwd();
       const base = options.base || "/";
 
-      if (typeof cover === "string") {
+      if (req.path === base && typeof cover === "string") {
         const response = await fetch(`${req.protocol}://${req.get("host")}/api/cover.html?base=${base}`);
         return res.send(await response.text());
       }

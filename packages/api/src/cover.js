@@ -99,10 +99,10 @@ function html(content, options) {
         <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
         <!-- content.after -->
         ${content.after || ""}
-        <script src=".${prefix}/patternplate.web.probe.js"></script>
-        <script src=".${prefix}/patternplate.web.cover.js"></script>
-        <script src=".${prefix}/patternplate.web.mount.js"></script>
-        <script src=".${prefix}/patternplate.web.cover-client.js"></script>
+        <script src="${prefix}/patternplate.web.probe.js"></script>
+        <script src="${prefix}/patternplate.web.cover.js"></script>
+        <script src="${prefix}/patternplate.web.mount.js"></script>
+        <script src="${prefix}/patternplate.web.cover-client.js"></script>
         <script>
           /* content.js */
           ${content.js || ""}
