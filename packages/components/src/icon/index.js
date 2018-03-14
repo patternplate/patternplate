@@ -268,14 +268,15 @@ function getRegistryMountPoint() {
 }
 
 const SIZES = {
-  s: 14,
-  m: 22,
-  l: 38
+  s: '14px',
+  m: '22px',
+  l: '38px',
+  text: '.8em'
 };
 
 function Icon(props) {
   return (
-    <StyledIcon className={props.className} size={props.size}>
+    <StyledIcon className={props.className} size={props.size} inline={props.inline}>
       <use
         title={props.title}
         xlinkHref={`#${props.symbol || "placeholder"}`}
@@ -290,9 +291,10 @@ Icon.defaultProps = {
 };
 
 const StyledIcon = styled.svg`
-  display: flex;
-  width: ${props => SIZES[props.size]}px;
-  height: ${props => SIZES[props.size]}px;
+  display: ${props => props.inline ? 'inline-flex' : 'flex'};
+  flex-shrink: 0;
+  width: ${props => SIZES[props.size]};
+  height: ${props => SIZES[props.size]};
   justify-content: center;
   align-items: center;
   color: inherit;

@@ -57,6 +57,8 @@ class NavigationItem extends React.Component {
           type={props.type}
           title={title}
           nested={props.nested}
+          iconSize="s"
+          grow
         >
           {symbol && (
             <StyledIcon active={props.active} size="m" symbol={symbol} />

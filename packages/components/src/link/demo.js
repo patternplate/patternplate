@@ -2,5 +2,14 @@ const React = require("react");
 const Link = require(".");
 
 module.exports = function LinkDemo() {
-  return <Link href="/">Standard link</Link>;
+  return (
+    <React.Fragment>
+      <div>
+        <Link href="/">Standard link</Link>
+      </div>
+      <div>
+        <Link href="/" external>External Link</Link>
+      </div>
+    </React.Fragment>
+  );
 };

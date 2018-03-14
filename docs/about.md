@@ -1,8 +1,3 @@
----
-options:
-  order: -3
----
-
 # About 
 
 `patternplate` documentation is categorized into **Guides** and **References**.
