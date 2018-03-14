@@ -2,18 +2,30 @@ import b from "btoa";
 import { createElement as h } from "react";
 import { styled } from "@patternplate/components";
 import { DOMParser, XMLSerializer } from "xmldom";
+import { camelCase } from "lodash";
 
 const parser = new DOMParser();
 const serializer = new XMLSerializer();
 
 const TAG_NAMES = ["circle", "g", "path", "polygon", "rect", "svg"];
 
+/**
+ * These attributes are valid on all SVG elements and accepted by this
+ * renderer.
+ * All attributes will be converted to their camelCase version.
+ * This allows using valid SVG strings. 
+ * Extend this list to allow additional default SVG attributes.
+ * 
+ * @type {Array}
+ */
+const SHARED_ATTRIBUTES = ["fill", "stroke", "stroke-width"];
+
 const ATTRIBUTES = {
-  circle: ["cx", "cy", "r", "fill", "stroke", "style"],
-  g: ["x", "y", "style"],
-  path: ["d", "fill", "stroke", "style"],
-  polygon: ["points", "fill", "stroke", "style"],
-  rect: ["x", "y", "width", "height", "fill", "stroke", "style"],
+  circle: [...SHARED_ATTRIBUTES, "cx", "cy", "r", "style"],
+  g: [...SHARED_ATTRIBUTES, "x", "y"],
+  path: [...SHARED_ATTRIBUTES, "d", "style"],
+  polygon: [...SHARED_ATTRIBUTES, "points"],
+  rect: [...SHARED_ATTRIBUTES, "x", "y", "width", "height", "style"],
   svg: ["width", "height", "viewBox", "x", "y", "style", "xmlns"]
 };
 
@@ -21,8 +33,9 @@ function attributes(node, key) {
   return (ATTRIBUTES[node.tagName] || []).reduce(
     (props, name) => {
       const attribute = node.attributes.getNamedItem(name);
+      const reactProp = camelCase(name);
       if (attribute && attribute.specified) {
-        props[name] = attribute.value;
+        props[reactProp] = attribute.value;
       }
       return props;
     },
