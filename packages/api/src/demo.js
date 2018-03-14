@@ -37,11 +37,10 @@ async function demo(options) {
       const {fs} = await wait(options.queue);
 
       const getModule = fromFs(fs);
-      const render = getModule(RENDER_PATH);
       const bundle = getModule(BUNDLE_PATH);
       const component = getComponent(bundle, found);
+      const render =  component.render || getModule(RENDER_PATH);
       const content = render(component);
-
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;

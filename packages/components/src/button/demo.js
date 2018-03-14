@@ -3,7 +3,7 @@ const Button = require(".");
 const styled = require("styled-components").default;
 const Themer = require("../demo-themer");
 
-module.exports = function ButtonDemo() {
+module.exports.default = function ButtonDemo() {
   return (
     <Themer>
       <StyledDemoBox>

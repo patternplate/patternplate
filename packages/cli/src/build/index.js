@@ -79,13 +79,12 @@ async function build({flags}) {
 
   const bundleFs = await bundle({ cwd, target: "node" });
   const getModule = fromFs(bundleFs);
-  const renderComponent = getModule(RENDER_PATH);
   const bundles = getModule(BUNDLE_PATH);
 
   // Create demo.html files
   await Promise.all(patterns.map(async pattern => {
     const component = getComponent(bundles, pattern);
-    const result = renderComponent(component);
+    const result = component.render || getModule(RENDER_PATH)(component);
     await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
   }));
 
