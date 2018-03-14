@@ -1,0 +1,25 @@
+{
+  "name": "@patternplate/cover-client",
+  "version": "2.0.0-59",
+  "description": "patternplate browser script for cover startup",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternplate/patternplate.git"
+  },
+  "author": {
+    "name": "Daniel Gooß",
+    "email": "daniel.gooss@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "xo": false,
+  "dependencies": {
+    "@patternplate/websocket-client": "^2.0.0-59"
+  }
+}

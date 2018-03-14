@@ -1,6 +1,6 @@
 > Documentation and development interface for component libraries
 
-# @patternplate/demo-client
+# @patternplate/cover-client
 
 * Framework independent
 * Bring design docs to live with real components

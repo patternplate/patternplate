@@ -1,57 +1,46 @@
 const path = require("path");
 const loadConfig = require("@patternplate/load-config");
+const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 const AggregateError = require("aggregate-error");
-const fromString = require("require-from-string");
-const sander = require("@marionebl/sander");
 const unindent = require("unindent");
 const stringHash = require("string-hash");
+const fromString = require("require-from-string");
 
-module.exports = demo;
-
-const BUNDLE_PATH = "/patternplate.node.components.js";
 const RENDER_PATH = "/patternplate.node.render.js";
+const COVER_PATH = "/patternplate.node.cover.js";
 
-async function demo(options) {
-  return async function demoRoute(req, res) {
+module.exports = async options => {
+  return async function main(req, res, next) {
     try {
-      const result = await loadConfig({ cwd: options.cwd });
-      const { config = {}, filepath } = result;
+      const { config, filepath } = await loadConfig({ cwd: options.cwd });
       const { entry = [] } = config;
+      const cwd = filepath ? path.dirname(filepath) : process.cwd();
 
-      const cwd = filepath ? path.dirname(filepath) : options.cwd;
-      const id = req.params[0];
-
-      // TODO: Send errors to central observer
-      const {patterns} = await loadMeta({
-        cwd,
-        entry
-      });
-
-      const found = patterns.find(pattern => pattern.id === id);
-
-      if (!found) {
+      if (!config.cover) {
         return res.sendStatus(404);
       }
 
       const {fs} = await wait(options.queue);
 
-      const getModule = fromFs(fs);
-      const render = getModule(RENDER_PATH);
-      const bundle = getModule(BUNDLE_PATH);
-      const component = getComponent(bundle, found);
-      const content = render(component);
 
-      res.send(html(content, found));
+      const getModule = fromFs(fs);
+
+      // Todo: Make "right"
+      const render = getModule(RENDER_PATH);
+      const cover = getModule(COVER_PATH);
+      const content = render(cover);
+
+      res.send(html(content));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);
       res.status(500).send(error.message);
     }
   };
-}
+};
 
-// Todo: Provide basic description
+// Todo: Unify with wait and fromFS, getExports from demo.js
 function wait(observable) {
   return new Promise((resolve, reject) => {
     const [message = {}] = observable.queue;
@@ -77,16 +66,6 @@ function wait(observable) {
   });
 }
 
-function getComponent(components, data) {
-  const top = components[data.artifact];
-
-  if (top[data.source]) {
-    return top[data.source];
-  }
-
-  return top;
-}
-
 function fromFs(fs) {
   return filename => {
     const componentBundleSource = String(fs.readFileSync(filename));
@@ -106,9 +85,7 @@ function getExports(source, {filename}) {
   return exportsCache.get(hash);
 }
 
-function html(content, payload) {
-  const data = encodeURIComponent(JSON.stringify(payload));
-
+function html(content) {
   return unindent(`
     <!doctype html>
     <html lang="en">
@@ -121,19 +98,17 @@ function html(content, payload) {
         </style>
       </head>
       <body>
-        <textarea style="display: none;" data-patternplate-vault="data-patternplate-vault">${data}</textarea>
         <!-- content.before -->
         ${content.before || ""}
         <!-- content.html -->
         <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
         <!-- content.after -->
         ${content.after || ""}
-        <!-- ../ -> /api/ -->
-        <script src="../patternplate.web.vendors.js"></script>
-        <script src="../patternplate.web.components.js"></script>
-        <script src="../patternplate.web.probe.js"></script>
-        <script src="../patternplate.web.mount.js"></script>
-        <script src="../patternplate.web.demo.js"></script>
+        <!-- ./ -> /api/ -->
+        <script src="./patternplate.web.probe.js"></script>
+        <script src="./patternplate.web.cover.js"></script>
+        <script src="./patternplate.web.mount.js"></script>
+        <script src="./patternplate.web.cover-client.js"></script>
         <script>
           /* content.js */
           ${content.js}
@@ -143,3 +118,56 @@ function html(content, payload) {
   `);
 }
 
+
+
+// function mapAttributes(attr) {
+//   return `${key}="${value}"`;
+// }
+
+// function mapMeta(data) {
+//   return `<meta ${data.attributes.map(mapAttributes)} />`
+// }
+
+// function mapLink(data) {
+//   return `<link ${data.attributes.map(mapAttributes)} />`
+// }
+
+// function cover(props) {
+//   const scripts = Array.isArray(props.scripts) ? props.scripts : [];
+
+//   return (
+//     `<!doctype html>
+//       <html ${props.attributes ? mapAttributes(props.attributes) : ''}>
+//       <head>
+//         ${props.title ? `<title>${props.title}</title>` : ''}
+//         ${props.meta ? props.meta.map(mapMeta) : ''}
+//         ${props.link ? props.link.map(mapLink) : ''}
+//         ${props.layoutCSS}
+//         ${props.css}
+//       </head>
+//       <body>
+//         <div
+//           data-application-el="${props["data-application-el"]}"
+//         >${props.content}</div>
+//         {scripts.map(src => <script src={src} />)}
+//       </body>
+//     </html>`
+//   );
+// }
+
+// const StyledDocument = styled("html")`
+//   overflow: hidden;
+// `;
+
+// const StyledBody = styled("body")`
+//   margin: 0;
+// `;
+
+// function Content(props) {
+//   return (
+//     <div
+//       data-application-el={props["data-application-el"]}
+//       dangerouslySetInnerHTML={{ __html: props.content }}
+//     ></div>
+//   );
+// }

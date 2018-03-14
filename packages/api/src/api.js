@@ -16,6 +16,7 @@ const createCompiler = require("./compiler");
 const demo = require("./demo");
 const pack = require("./pack");
 const main = require("./main");
+const cover = require("./cover");
 
 module.exports = api;
 
@@ -28,6 +29,7 @@ async function api({ server, cwd }) {
   const mw = express()
     .get("/state.json", await main({ cwd }))
     .get("/demo/*.html", await demo({ cwd, queue: serverQueue }))
+    .get("/cover.html", await cover({ cwd, queue: serverQueue }))
     .use(await pack({ compiler: clientQueue.compiler }));
 
   mw.subscribe = handler => {
