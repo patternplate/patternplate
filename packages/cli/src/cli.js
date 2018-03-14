@@ -18,7 +18,7 @@ const cli = meow(
     --port       - Port to start patternplate server on, defaults to 1337, $PORT
 
   Build options
-    --base       - Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
+    --base       - [REQUIRED] Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
     --cwd        - Working directory to search patternplate.config.js in
     --out        - Directory to save the build in, defaults to "docs"
 
@@ -37,7 +37,7 @@ const cli = meow(
     patternplate --port 1338
     ✔ Started on http://localhost:1338
 
-    patterplate build
+    patterplate build --base="/"
     ✔ Built to ./docs
 `
 );

@@ -23,8 +23,8 @@ npx patternplate [command]
 patternplate start # Start a patternplate server
 ✔ Started on "http://localhost:1337"
 
-patternplate build # Build static interface
-✔ Built to "docs/patterns"
+patternplate build --base="/" # Build static interface
+✔ Built to "docs/patterns" 
 ```
 
 ## Options
@@ -38,27 +38,27 @@ patternplate help
   patternplate [command=start] [options]
 
   Commands
-    start   - Start a patternplate instance in cwd
-    build   - Create a static interface build
-    create  - Create a new patternplate project
-    help    - Show this help
+    start        - Start a patternplate instance in cwd
+    build        - Create a static interface build
+    create       - Create a new patternplate project
+    help         - Show this help
 
   Start options
-    --cwd      - Working directory to search patternplate.config.js in
-    --port     - Port to start patternplate server on, defaults to 1337, $PORT
+    --cwd        - Working directory to search patternplate.config.js in
+    --port       - Port to start patternplate server on, defaults to 1337, $PORT
 
   Build options
-    --base     - Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
-    --cwd      - Working directory to search patternplate.config.js in
-    --out      - Directory to save the build in, defaults to "docs"
+    --base       - [REQUIRED] Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
+    --cwd        - Working directory to search patternplate.config.js in
+    --out        - Directory to save the build in, defaults to "docs"
 
   Create options
-    --cwd      - Working directory to operate in
-    --force    - Overwrite existing directories
-    --out      - Directory to create the new project in
-    --template - Template to use, defaults to @patternplate/create-default
-    --no-git   - Skip git init
-    --no-npm   - Skip installation of npm packages
+    --cwd        - Working directory to operate in
+    --force      - Overwrite existing directories
+    --out        - Directory to create the new project in
+    --template   - Template to use, defaults to @patternplate/create-default
+    --no-git     - Skip git init
+    --no-install - Skip installation of npm packages
 
   Examples
     patternplate
@@ -67,7 +67,7 @@ patternplate help
     patternplate --port 1338
     ✔ Started on http://localhost:1338
 
-    patterplate build
+    patterplate build --base="/"
     ✔ Built to ./docs
 
 ```
