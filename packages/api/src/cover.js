@@ -1,7 +1,5 @@
-const path = require("path");
+const url = require("url");
 const loadConfig = require("@patternplate/load-config");
-const { loadDocsTree } = require("@patternplate/load-docs");
-const loadMeta = require("@patternplate/load-meta");
 const AggregateError = require("aggregate-error");
 const unindent = require("unindent");
 const stringHash = require("string-hash");
@@ -11,27 +9,20 @@ const RENDER_PATH = "/patternplate.node.render.js";
 const COVER_PATH = "/patternplate.node.cover.js";
 
 module.exports = async options => {
-  return async function main(req, res, next) {
+  return async function main(req, res) {
     try {
-      const { config, filepath } = await loadConfig({ cwd: options.cwd });
-      const { entry = [] } = config;
-      const cwd = filepath ? path.dirname(filepath) : process.cwd();
+      const { config } = await loadConfig({ cwd: options.cwd });
 
       if (!config.cover) {
         return res.sendStatus(404);
       }
 
       const {fs} = await wait(options.queue);
-
-
       const getModule = fromFs(fs);
 
-      // Todo: Make "right"
-      const render = getModule(RENDER_PATH);
       const cover = getModule(COVER_PATH);
-      const content = render(cover);
-
-      res.send(html(content));
+      const render = typeof cover.render === "function" ? cover.render : getModule(RENDER_PATH);
+      res.send(html(render(cover), {base: req.params.base || "/"}));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);
@@ -49,20 +40,22 @@ function wait(observable) {
         return resolve(message.payload);
       case 'error':
         return reject(message.payload);
+      default:
+        observable.subscribe(
+          queue => {
+            const [message] = queue;
+            switch (message.type) {
+              case 'done':
+                return resolve(message.payload);
+              case 'error':
+                return reject(message.payload);
+              default:
+                return null;
+            }
+          },
+          reject
+        );
     }
-
-    observable.subscribe(
-      queue => {
-        const [message] = queue;
-        switch (message.type) {
-          case 'done':
-            return resolve(message.payload);
-          case 'error':
-            return reject(message.payload);
-        }
-      },
-      reject
-    )
   });
 }
 
@@ -85,7 +78,9 @@ function getExports(source, {filename}) {
   return exportsCache.get(hash);
 }
 
-function html(content) {
+function html(content, options) {
+  const prefix = url.resolve(options.base, "api");
+
   return unindent(`
     <!doctype html>
     <html lang="en">
@@ -104,14 +99,13 @@ function html(content) {
         <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
         <!-- content.after -->
         ${content.after || ""}
-        <!-- ./ -> /api/ -->
-        <script src="./patternplate.web.probe.js"></script>
-        <script src="./patternplate.web.cover.js"></script>
-        <script src="./patternplate.web.mount.js"></script>
-        <script src="./patternplate.web.cover-client.js"></script>
+        <script src=".${prefix}/patternplate.web.probe.js"></script>
+        <script src=".${prefix}/patternplate.web.cover.js"></script>
+        <script src=".${prefix}/patternplate.web.mount.js"></script>
+        <script src=".${prefix}/patternplate.web.cover-client.js"></script>
         <script>
           /* content.js */
-          ${content.js}
+          ${content.js || ""}
         </script>
       </body>
     </html>
