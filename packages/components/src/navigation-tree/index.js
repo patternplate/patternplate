@@ -44,6 +44,7 @@ function NavigationTree(props) {
                               <NavigationMeta key={warning.value} warning={warning} />
                             ))}
                             name={child.manifest.displayName}
+                            nested
                             onClick={props.onItemClick}
                             onScrollRequest={props.onScrollRequest}
                             prefix={props.prefix}

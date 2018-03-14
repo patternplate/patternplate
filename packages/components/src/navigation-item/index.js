@@ -56,6 +56,7 @@ class NavigationItem extends React.Component {
           sticky={props.type === "folder" && props.active}
           type={props.type}
           title={title}
+          nested={props.nested}
         >
           {symbol && (
             <StyledIcon active={props.active} size="m" symbol={symbol} />
@@ -109,6 +110,7 @@ const StyledNavigationLink = styled(LinkTag)`
   line-height: 20px;
   font-family: ${FONTS.default};
   font-weight: ${props => props.theme.fontWeight};
+  padding-left: ${props => props.nested ? 30 : 0}px;
   :link,
   :visited {
     color: ${props => props.theme.color};
