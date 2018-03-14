@@ -10,21 +10,19 @@ module.exports = async options => {
       const { entry = [] } = config;
       const cwd = filepath ? path.dirname(filepath) : process.cwd();
 
-      const docs = await loadDocsTree({
-        cwd,
-        docs: config.docs,
-        readme: config.readme
-      });
+      const [docs, {patterns}] = await Promise.all([
+        loadDocsTree({
+          cwd,
+          docs: config.docs,
+          readme: config.readme
+        }),
+        loadMeta({
+          cwd,
+          entry
+        })
+      ]);
 
-      // TODO: Send errors to central observer
-      const {patterns} = await loadMeta({
-        cwd,
-        entry
-      });
-
-      const tree = {id: "root", children: patterns};
-
-      res.send({ docs, meta: tree });
+      res.send({ docs, meta: {id: "root", children: patterns} });
     } catch (err) {
       return res.json(err);
     }
