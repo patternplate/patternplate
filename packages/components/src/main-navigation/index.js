@@ -56,20 +56,20 @@ class Navigation extends React.Component {
             props.navigation.children.length > 0 && (
               <React.Fragment>
                 <NavigationLabel
-                  enabled={props.patternsEnabled}
-                  name="patterns"
+                  enabled={props.componentsEnabled}
+                  name="components"
                   highlight={true}
                   onClick={props.onLabelClick}>
-                  Patterns
+                  Components
                 </NavigationLabel>
                 {
-                  props.patternsEnabled &&
+                  props.componentsEnabled &&
                     <NavigationTree
                       active={props.active}
                       data={props.navigation.children}
                       onItemClick={props.onItemClick}
                       onScrollRequest={this.handleScrollRequest}
-                      prefix="/pattern"
+                      prefix="/component"
                       query={props.query}
                       />
                 }

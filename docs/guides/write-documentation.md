@@ -59,7 +59,7 @@ counts up. Let's tell the consumers of our component library about this.
   Clicking on a the text will count up from 1
   ```
 
-3. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&patterns-enabled=true) and scroll down: Your small description has been rendered below the component demo.
+3. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true) and scroll down: Your small description has been rendered below the component demo.
 
 ![](https://patternplate.github.io/media/images/screenshot-doc-pattern-markdown.png)
 

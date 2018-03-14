@@ -17,7 +17,7 @@ import messages from "./messages";
 import navigationEnabled from "./navigation-enabled";
 import networkEnabled from "./network-enabled";
 import opacity from "./opacity";
-import patternsEnabled from "./patterns-enabled";
+import componentsEnabled from "./components-enabled";
 import search from "./search";
 import searchEnabled from "./search-enabled";
 import searchPreview from "./search-preview";
@@ -53,7 +53,7 @@ export default {
   navigationEnabled,
   networkEnabled,
   opacity,
-  patternsEnabled,
+  componentsEnabled,
   schema,
   search,
   searchEnabled,
