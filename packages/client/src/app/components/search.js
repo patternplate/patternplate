@@ -91,7 +91,9 @@ export default class Search extends React.Component {
               source={item.contents}
               widgets={{
                 PatternList: Disabled,
-                PatternDemo: Disabled
+                PatternDemo: Disabled,
+                ComponentList: Disabled,
+                ComponentDemo: Disabled
               }}
               />
           </SearchResultPreview>
@@ -106,7 +108,6 @@ export default class Search extends React.Component {
               dependencies={values(item.dependencies)}
               dependents={values(item.dependents)}
               flag={item.manifest.flag}
-              icon={item.manifest.options.icon || item.type}
               id={item.id}
               manifest={JSON.stringify(item.manifest, null, "  ")}
               name={item.manifest.displayName}
@@ -161,7 +162,7 @@ export default class Search extends React.Component {
     }
 
     const {activeItem} = props;
-    props.onNavigate([props.base, activeItem.contentType, activeItem.id].join('/'));
+    props.onNavigate(activeItem);
   }
 
   render() {

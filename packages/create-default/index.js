@@ -22,31 +22,24 @@ const PACKAGE = data => {
 }
 
 const README = data => {
-  return `
-> a patternplate project
+  return `---
+displayName: "my-patternplate"
+---
 
-# ${data.name}
+# You did it! :tada:
 
-This is the minimal template required for
-a \`patternplate\` project.
+You successfully installed and started patternplate.
 
-* No \`patternplate.config.js\`, defaults apply
-* Documentation at \`docs\` and \`README.md\`
-* Pattern sources at \`lib\`
-* Demos are plain HTML, CSS, JavaScript
+Head back to the [Getting Started Guide](https://patternplate.github.io/doc/docs/guides/getting-started#up-next) for further instructions.
 
-## Getting started
+## Up next
 
-\`\`\`bash
-yarn
-yarn patternplate
-\`\`\
+* [Guide: Build a component](https://patternplate.github.io/doc/docs/guides/add-component)
 
-## Hello world pattern
 
-This template contains a "Hello World" pattern.
+## Related topics
 
-Access it by navigating to [pattern/hello-world](./pattern/hello-world).
+* [CLI](https://patternplate.github.io/doc/docs/reference/cli)
 `;
 }
 

@@ -1,0 +1,8 @@
+{
+  "name": "navigation-label",
+  "displayName": "Navigation Label",
+  "description": "Toggle labels for directories in patternplate sidebar",
+  "version": "1.0.0",
+  "tags": ["Navigation"],
+  "flag": "alpha"
+}

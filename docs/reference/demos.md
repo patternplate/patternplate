@@ -1,9 +1,16 @@
+---
+tags:
+  - Reference
+options:
+  order: 12
+---
+
 # Reference: Demos
 
 Demo files provide the necessary entry points for `patternplate` to
 identify your components correctly. 
 
-A pattern `demo` is a `JavaScript` file, that provides
+A component `demo` is a `JavaScript` file, that provides
 
 * an executable function on `module.exports`: demo.js
 * meta data in a `package.json` or `pattern.json` file
@@ -14,7 +21,7 @@ Demo files are assumend to be executable JavaScript according to your
 browser targets, as `patternplate` does not perform additional transpilation
 on them. 
 
-The smallest valid noop demo files is:
+The smallest valid noop demo file is:
 
 ```js
 module.exports.default = () => {};
@@ -41,7 +48,7 @@ module.exports = {
 
 ## Meta data
 
-Meta data about your componennt can be provided in `JSON` format.
+Meta data about your component can be provided in `JSON` format.
 `package.json` and `pattern.json` files are read according to the 
 following rules: 
 

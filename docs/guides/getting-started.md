@@ -1,68 +1,79 @@
 ---
+displayName: "Guide: Getting Started"
+description: "Hit the ground running with create-patternplate"
+tags: 
+ - Guide
 options:
-  order: -1
+  order: 0
 ---
 
-# Guide: Getting started
+# Your kickstart into patternplate
 
-* Step-by-step tutorial to your first component in `patternplate`
-* Time invest: **15 Minutes**
-* Audience: People evaluating `patternplate` after first contact
+* **Time invest**: 5 Minutes
+* **Level**: Beginner - Expert
 
-## Prerequesites
+## What to expect
 
-We assume some software to be installed
-and executable on your system:
+Setting up a new component library can be a tedious task - but `patternplate` has you covered!
+Let's have a look at how patternplate can help you to get started in 5 minutes, max.
 
-* Node.js `>=6`
-* npm `>=5` or yarn `>=1`
-* npx (bundled with npm)
+We will …
+
+* … learn how to use the `create-patternplate` command line tool to initialize a new project
+* … start the `patternplate` dev server to visualize components and documentation
+
+## You'll need
+
+* Terminal (MacOS: [iTerm](https://www.iterm2.com/) | Windows: [cmder](http://cmder.net/))
+* Node.js `>=6` ([Install](https://nodejs.org/en/))
 
 ## Initialize a new project
 
-1. Open your terminal emulator and enter the following command:
+1. Open your terminal emulator and enter the following command.
+
+   Don't worry if you did not install `npx` explicitly, it is installed with Node.js automatically.
 
    ```bash
    # - Creates a new patternplate project at my-patternplate
    # - Installs dependencies
-   λ npx create-patternplate --out my-patternplate
+   npx create-patternplate --out my-patternplate --guide
    ```
 
-2. `create-patternplate` tells you about the next steps. Additionally you can check on it with `tree` like below. If you see similiar output you are all set.
+2. Let's start `patternplate` next:
 
-   ```bash
-   λ npx create-patternplate --out my-patternplate
-   ✔ Created patternplate project at "my-patternplate"
-
-   Proceed via
-   - cd my-patternplate
-   - npm start
-
-   λ tree my-patternplate --filelimit=100
-   my-patternplate
-   ├── README.md
-   ├── docs
-   │   └── docs.md
-   ├── lib
-   │   └── hello-world
-   │       ├── demo.js
-   │       └── package.json
-   └── package.json
-   ```
-
-3. Follow the instructions provided by `create-patternplate`:
+   Like `npx`, `npm` is available if you installed Node.js.
 
    ```bash
    # Change into `my-patternplate`
-   λ cd my-patternplate
+   cd my-patternplate
    
    # Start a patternplate server
-   λ npm start
+   npm start
    Started on http://localhost:1337
    ```
 
-4. You can open [localhost:1337](http://localhost:1337/pattern/hello-world?patterns-enabled=true&navigation-enabled=true) in a browser to access 
-the web interface of your freshly installed patternplate project:
+3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/pattern/hello-world?guides-enabled=true).
+
+  If everything worked `patternplate` greets you with this screen:
+
+  ![](https://patternplate.github.io/media/images/screenshot-hello-world.png)
 
 
-![](https://patternplate.github.io/media/images/screenshot-hello-world.png)
+## Up next
+
+* [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+
+## Related topics
+
+* [CLI](./doc/docs/reference/cli?reference-enabled=true)
+
+## Shortcut
+
+If you want to get the result of the getting started guide without 
+typing all commands you can use the ready-made git repository
+
+```bash
+git clone git@github.com:patternplate/getting-started.git
+cd getting-started
+npm install
+```

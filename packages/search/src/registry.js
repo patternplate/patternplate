@@ -32,13 +32,20 @@ function getMatcher(field, value, options) {
   const flag = matchFlag(value, options);
   const tags = matchTags(value, options);
   const version = matchVersion(value, options);
+  const is = matchIs(value);
 
   return item => {
     switch (field) {
       case "depends":
         return depends(item);
+      case "description":
+        return description(item);
+      case "flag":
+        return flag(item);
       case "has":
         return has(item);
+      case "is":
+        return is(item);
       case "provides":
         return provides(item);
       case "tag":
@@ -72,15 +79,28 @@ function matchHas(value) {
         return (item.dependencies || []).length > 0;
       case "dependents":
         return (item.dependents || []).length > 0;
+      case "description":
+        return Boolean(item.manifest.description);
+      case "displayName":
+        return Boolean((item.rawManifest || {}).displayName);
       case "doc":
       case "docs":
-        return Boolean(item.contents);
+        return item.contentType === "pattern" && Boolean(item.contents);
+      case "flag":
+        return Boolean((item.rawManifest || {}).flag);
+      case "tag":
       case "tags":
         return (item.manifest.tags || []).length > 0;
+      case "version":
+        return Boolean((item.rawManifest || {}).version);
       default:
         return false;
     }
   };
+}
+
+function matchIs(value) {
+  return item => item.contentType === value;
 }
 
 function matchDepends(value, options) {

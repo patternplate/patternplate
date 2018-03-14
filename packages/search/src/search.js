@@ -11,6 +11,7 @@ function create(items) {
       "id",
       "contents",
       "manifest.displayName",
+      "manifest.description",
       "manifest.name",
       "manifest.version",
       "manifest.tags",

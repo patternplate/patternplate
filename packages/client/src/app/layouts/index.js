@@ -33,18 +33,33 @@ function Layout(props) {
         <IconRegistry>{props.icons}</IconRegistry>
         <Content data-application-el="patternplate" content={props.html} />
         <State data-application-state="patternplate" data={props.data} />
+        <script dangerouslySetInnerHTML={{__html: `
+          if (supported() === false && window.location.search.indexOf("browser-warning=false") === -1) {
+            var el = document.querySelector("[data-browser-warning]");
+            el.style.display = "block";
+          }
+
+          function supported() {
+            try {
+              eval("async () => {}");
+              return true;
+            } catch (err) {
+              return false;
+            }
+          }
+        `}}/>
         {scripts.map(src => <script key={src} src={src} />)}
       </StyledBody>
     </StyledDocument>
   );
 }
 
-const StyledDocument = styled("html")`
+const StyledDocument = styled.html`
   height: 100%;
   overflow: hidden;
 `;
 
-const StyledBody = styled("body")`
+const StyledBody = styled.body`
   margin: 0;
   height: 100%;
 `;

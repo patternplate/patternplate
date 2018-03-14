@@ -8,8 +8,8 @@ const DEFAULT_MANIFEST = {
   version: "1.0.0",
 };
 
-function normalize(data, {isPatternPkg}) {
-  const normalized = Object.assign({}, DEFAULT_MANIFEST);
+function normalize(data, {isPatternPkg, withDefaults}) {
+  const normalized = Object.assign({}, withDefaults ? DEFAULT_MANIFEST : {});
 
   if (data.hasOwnProperty('name')) {
     normalized.name = data.name;

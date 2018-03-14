@@ -1,5 +1,4 @@
 const React = require('react');
-const textContent = require('react-addons-text-content');
 const styled = require("styled-components").default;
 
 const Text = require('../text');
@@ -16,7 +15,7 @@ module.exports = styled(MarkdownBlockquote)`
 function MarkdownBlockquote(props) {
   return (
     <Text className={props.className} is="blockquote">
-      {textContent(props.children)}
+      {props.children}
     </Text>
   );
 }

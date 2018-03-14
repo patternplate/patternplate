@@ -73,7 +73,7 @@ function MarkdownHeadlineLink(props) {
   return (
     <StyledLink title={`Link to "${props.name}"`} hash={props.id}>
       <StyledTarget id={props.id} />
-      <ThemedIcon symbol="anchor" size="s" />
+      <ThemedIcon symbol="link" size="m" />
       {props.children}
     </StyledLink>
   );

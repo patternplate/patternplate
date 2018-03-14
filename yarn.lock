@@ -539,7 +539,7 @@
     glob-to-regexp "^0.3.0"
 
 "@patternplate/deploy-site@file:./packages/deploy":
-  version "2.0.0-48"
+  version "2.0.0-59"
   dependencies:
     "@marionebl/sander" "^0.6.1"
     execa "^0.9.0"
@@ -2519,6 +2519,10 @@ comma-separated-tokens@^1.0.0:
   resolved "https://registry.npmjs.org/comma-separated-tokens/-/comma-separated-tokens-1.0.4.tgz#72083e58d4a462f01866f6617f4d98a3cd3b8a46"
   dependencies:
     trim "0.0.1"
+
+command-exists@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/command-exists/-/command-exists-1.2.2.tgz#12819c64faf95446ec0ae07fe6cafb6eb3708b22"
 
 command-join@^2.0.0:
   version "2.0.0"
@@ -9670,10 +9674,6 @@ scrollparent@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/scrollparent/-/scrollparent-1.0.2.tgz#6df02c7b231431eb0308364c9a9a3e5d278dc538"
 
-seamless-immutable@^7.1.2:
-  version "7.1.2"
-  resolved "https://registry.npmjs.org/seamless-immutable/-/seamless-immutable-7.1.2.tgz#c87a1eba6767a32455311d76600ac5eddeafbb69"
-
 select@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
@@ -9853,6 +9853,10 @@ shelljs@^0.7.0, shelljs@^0.7.5:
 shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
+
+shortid@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.npmjs.org/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
 
 sigmund@^1.0.1:
   version "1.0.1"

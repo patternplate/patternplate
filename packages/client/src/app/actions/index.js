@@ -32,7 +32,7 @@ import toggleManifest from "./toggle-manifest";
 import toggleNavigation from "./toggle-navigation";
 import toggleNetwork from "./toggle-network";
 import toggleOpacity from "./toggle-opacity";
-import togglePatternsEnabled from "./toggle-patterns-enabled";
+import toggleComponentsEnabled from "./toggle-components-enabled";
 import toggleRulers from "./toggle-rulers";
 import toggleSearch from "./toggle-search";
 import toggleTheme from "./toggle-theme";
@@ -73,7 +73,7 @@ export {
   toggleNavigation,
   toggleNetwork,
   toggleOpacity,
-  togglePatternsEnabled,
+  toggleComponentsEnabled,
   toggleRulers,
   toggleSearch,
   toggleTheme,

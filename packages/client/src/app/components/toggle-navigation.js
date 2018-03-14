@@ -8,17 +8,11 @@ export default Hamburger;
 function Hamburger(props) {
   return (
     <StyledToggleButton enabled={props.enabled} shortcut={props.shortcut}>
-      <StyledIcon
-        symbol="hamburger"
-        />
-        {props.shortcut.toString()}
+      <Icon symbol="hamburger"/>
+      {props.shortcut.toString()}
     </StyledToggleButton>
   );
 }
-
-const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.color};
-`;
 
 const StyledToggleButton = styled(ToggleButton)`
   display: flex;
@@ -29,4 +23,5 @@ const StyledToggleButton = styled(ToggleButton)`
   width: 60px;
   height: 60px;
   cursor: pointer;
+  color: inherit;
 `;

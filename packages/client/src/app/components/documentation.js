@@ -1,17 +1,34 @@
 import React from "react";
 import { styled } from "@patternplate/components";
+import { findDOMNode } from "react-dom";
+import Helmet from "react-helmet";
 import Markdown from "../containers/markdown";
 
-export default function Documentation(props) {
-  return (
-    <StyledDocumentation>
-      <Markdown
-        linkable
-        source={props.doc}
-        widgets={props.widgets}
-        />
-    </StyledDocumentation>
-  );
+export default class Documentation extends React.Component {
+  componentWillUpdate(nextProps) {
+    const {props} = this;
+    const changed = props.location.pathname !== nextProps.location.pathname;
+    if (changed && typeof props.requestScroll === "function") {
+      props.requestScroll(findDOMNode(this.ref));
+    }
+  }
+
+  render () {
+    const {props} = this;
+    return (
+      <StyledDocumentation ref={ref => this.ref = ref}>
+        <div id="doctop"/>
+        <Helmet
+          title={props.displayName}
+          />
+        <Markdown
+          linkable
+          source={props.doc}
+          widgets={props.widgets}
+          />
+      </StyledDocumentation>
+    );
+  }
 }
 
 const StyledDocumentation = styled.div`

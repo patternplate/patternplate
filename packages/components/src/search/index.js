@@ -212,14 +212,6 @@ class SearchResult extends React.Component {
           href={props.href}
           query={{ "search-enabled": false }}
         >
-        {
-          typeof props.icon === "string" &&
-              <StyledIcon
-                active={props.active}
-                size="m"
-                symbol={props.icon}
-              />
-        }
           <Text
             active={props.active}
             size="l"

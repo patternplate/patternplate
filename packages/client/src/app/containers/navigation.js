@@ -18,8 +18,9 @@ function mapProps(state) {
   return {
     active: state.id,
     docs: selectDocs(state),
-    patternsEnabled: state.patternsEnabled,
-    navigation: selectNavigation(state)
+    componentsEnabled: state.componentsEnabled,
+    navigation: selectNavigation(state),
+    query: state.routing.locationBeforeTransitions.query,
   };
 }
 

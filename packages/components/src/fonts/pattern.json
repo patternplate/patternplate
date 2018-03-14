@@ -1,5 +1,8 @@
 {
   "name": "fonts",
   "displayName": "Fonts",
-  "version": "1.0.0"
+  "description": "Fonts for patternplate",
+  "version": "1.0.0",
+  "flag": "stable",
+  "tags": ["Primitives"]
 }

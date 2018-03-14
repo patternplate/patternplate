@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { flat as selectDocs } from "./docs";
-import selectPool from "./pool";
+import { flat as selectPool } from "./pool";
 import createRelationSelector from "./relation";
 
 const selectVirtual = createSelector(
@@ -17,25 +17,8 @@ const selectVirtual = createSelector(
 
 const selectItem = createSelector(
   selectPool,
-  selectVirtual,
   state => state.id,
-  (pool, virtual, id) => {
-    const cid = id.split('/').slice(1).join('/');
-
-    const v = virtual.reduce((found, virt) => {
-      if (found) return found;
-      const match = virt.children.find(c => c.id === cid);
-      if (match) {
-        const mid = match.id.replace(`${virt.id}/`, '');
-        return pool.find(item => item.id === mid);
-      }
-      return null;
-    }, null);
-
-    if (v) {
-      return v;
-    }
-
+  (pool, id) => {
     const item = pool.find(item => id === `${item.contentType}/${item.id}`);
 
     if (item) {

@@ -45,6 +45,7 @@ export default createPromiseThunkAction(
             payload
           });
         case "start": {
+          dispatch(loadSchema());
           // TODO: only reload pattern if the current pattern is affected
           return dispatch(loadPatternDemo({force: false}));
         }

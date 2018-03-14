@@ -90,7 +90,7 @@ async function loadMeta(options) {
       return acc;
     }
 
-    const {file, manifest: data} = result;
+    const {file, manifest: data, raw} = result;
     const base = path.dirname(path.relative(options.cwd, cwd));
     const relativeManifestPath = path.relative(options.cwd, file);
 
@@ -122,6 +122,7 @@ async function loadMeta(options) {
       files: await getFiles(source, { cwd: options.cwd }),
       path: relativeManifestPath,
       manifest,
+      rawManifest: raw,
       errors: []
     });
 

@@ -1,9 +1,8 @@
 import { createSearch, Query, Term } from "@patternplate/search";
-import Immutable from "seamless-immutable";
 import { flatten, uniq, uniqBy, sortBy } from "lodash";
 import { createSelector } from "reselect";
 import semver from "semver";
-import selectPool from "./pool";
+import {flat as selectPoolFlat} from "./pool";
 import createRelationSelector from "./relation";
 
 const FLAGS = {
@@ -15,46 +14,53 @@ const FLAGS = {
 };
 
 const FIELDS = [
-  {
+  /* {
     type: "field",
     key: "depends",
     value: "depends",
     description: "patterns depending on id",
     operators: ["=", "!=", "^=", "~="]
+  }, */
+  {
+    type: "field",
+    key: "flag",
+    value: "flag",
+    description: "being flagged as [value]",
+    operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
+  },
+  {
+    type: "field",
+    key: "is",
+    value: "is",
+    description: "being of type [value]",
+    operators: ["=", "!="]
   },
   {
     type: "field",
     key: "has",
     value: "has",
-    description: "pattern featuring data of [value]",
+    description: "having data of [value]",
     operators: ["=", "!="]
   },
-  {
+  /* {
     type: "field",
     key: "provides",
     value: "provides",
     description: "patterns providing for id",
     operators: ["=", "!=", "^=", "~="]
-  },
+  }, */
   {
     type: "field",
     key: "tags",
     value: "tags",
-    description: "pattern manifest .tags",
+    description: "having a tag of [value]",
     operators: ["=", "!=", "^=", "~="]
   },
   {
     type: "field",
     key: "version",
     value: "version",
-    description: "semantic version of pattern",
-    operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
-  },
-  {
-    type: "field",
-    key: "flag",
-    value: "flag",
-    description: "stability flag of pattern",
+    description: "having version of [value]",
     operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
   }
 ];
@@ -103,7 +109,7 @@ const OPERATORS = [
 ];
 
 const selectSearch = createSelector(
-  selectPool,
+  selectPoolFlat,
   pool => createSearch(pool)
 )
 
@@ -193,14 +199,17 @@ const selectOpsHit = createSelector(
 );
 
 export const selectFound = createSelector(
-  selectPool,
+  selectPoolFlat,
   selectMatches,
   (pool, matches) => {
     const sorted = uniqBy(
       sortBy(matches.map(match => pool.find(p => p.id === match)), "contentType"),
       "id"
     );
-    return sorted.map((s, i) => Immutable.set(s, "index", i));
+    return sorted.map((s, i) => {
+      s.index = i;
+      return s;
+    });
   }
 );
 
@@ -208,7 +217,7 @@ export const selectPatterns = createSelector(selectFound, found =>
   found.filter(f => f.contentType === "pattern")
 );
 
-const selectPatternPool = createSelector(selectPool, pool =>
+const selectPatternPool = createSelector(selectPoolFlat, pool =>
   pool.filter(f => f.contentType === "pattern")
 );
 
@@ -229,9 +238,9 @@ const selectOptions = createSelector(
             type: "quality",
             key: "docs",
             value: [field.key, op.key, "docs"].join(""),
-            description: "patterns with documentation"
+            description: "colocated markdown"
           },
-          {
+          /* {
             type: "quality",
             key: "dependencies",
             value: [field.key, op.key, "dependencies"].join(""),
@@ -242,12 +251,36 @@ const selectOptions = createSelector(
             key: "dependents",
             value: [field.key, op.key, "dependents"].join(""),
             description: "patterns with dependents"
+          }, */
+          {
+            type: "quality",
+            key: "flag",
+            value: [field.key, op.key, "flag"].join(""),
+            description: "flag specified"
+          },
+          {
+            type: "quality",
+            key: "version",
+            value: [field.key, op.key, "version"].join(""),
+            description: "version specified"
+          },
+          {
+            type: "quality",
+            key: "description",
+            value: [field.key, op.key, "description"].join(""),
+            description: "description provided"
+          },
+          {
+            type: "quality",
+            key: "displayName",
+            value: [field.key, op.key, "displayName"].join(""),
+            description: "display name provided"
           },
           {
             type: "quality",
             key: "tags",
             value: [field.key, op.key, "tags"].join(""),
-            description: "patterns with tags"
+            description: "tag attached"
           }
         ];
       case "depends":
@@ -314,6 +347,21 @@ const selectOptions = createSelector(
           };
         });
       }
+      case "is":
+        return [
+          {
+            type: "is",
+            key: "pattern",
+            value: [field.key, op.key, "pattern"].join(""),
+            description: "is a pattern"
+          },
+          {
+            type: "is",
+            key: "doc",
+            value: [field.key, op.key, "doc"].join(""),
+            description: "is a doc"
+          }
+        ];
       default:
         return [];
     }
@@ -370,7 +418,7 @@ export const selectDocs = createSelector(selectFound, found =>
 
 export const selectSuggestion = createSelector(
   state => state.searchValue,
-  selectPool,
+  selectPoolFlat,
   selectLegend,
   (search, pool, legend) => {
     if (typeof search !== "string" || search.length === 0) {
@@ -409,10 +457,10 @@ export const selectActiveItem = createSelector(
       : i => i;
 
     return item
-      ? Immutable.merge(item, {
+      ? Object.assign({}, item, {
           index,
-          dependents: rel("dependents"),
-          dependencies: rel("dependencies")
+          dependents: [],// rel("dependents"),
+          dependencies: []//rel("dependencies")
         })
       : item;
   }

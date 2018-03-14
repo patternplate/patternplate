@@ -1,12 +1,8 @@
 {
   "name": "main-header",
   "displayName": "Main Header",
+  "description": "Fixed header with logo above main navigation",
   "version": "1.0.0",
-  "patterns": {
-    "../fonts": "fonts",
-    "../icon": "icon"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  }
+  "tags": ["Navigation"],
+  "flag": "stable"
 }

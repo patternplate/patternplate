@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/webpack-entry",
-  "version": "2.0.0-48",
+  "version": "2.0.0-59",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "scripts": {
     "start": "yarn build -w",
@@ -26,11 +26,12 @@
     "access": "public"
   },
   "dependencies": {
-    "common-dir": "^1.0.1",
+    "glob-parent": "^3.1.0",
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
     "path-exists": "^3.0.0",
+    "raw-loader": "^0.5.1",
     "require-from-string": "^2.0.1"
   },
   "babel": {
@@ -40,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-48",
+    "@patternplate/babel-preset": "^2.0.0-59",
     "fixturez": "^1.1.0"
   }
 }

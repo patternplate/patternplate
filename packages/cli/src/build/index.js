@@ -22,9 +22,12 @@ async function build({flags}) {
   const cwd = flags.cwd || process.cwd();
   const out = path.join(cwd, flags.out || "docs/patterns");
   const rel = path.relative(cwd, out);
-  const base = flags.base === "/"
-    ? flags.base
-    : `/${typeof flags.base === "undefined" ? path.basename(out) : "/"}`;
+
+  if (typeof flags.base !== "string" || flags.base.length === 0) {
+    throw new Error(`expected --base to be non-empty string, received "${flags.base}" of type "${typeof flags.base}"`);
+  }
+
+  const base = selectBase(flags.base);
 
   const spinner = ora(`Building to "${rel}"`).start();
 
@@ -87,6 +90,14 @@ async function build({flags}) {
   }));
 
   spinner.succeed(`Built to "${rel}"`);
+}
+
+function selectBase(base) {
+  if (base === "/") {
+    return base;
+  }
+
+  return `${base.charAt(0) === "/" ? "" : "/"}${base}`;
 }
 
 function bundle({ cwd, target }) {

@@ -1,5 +1,8 @@
 {
   "name": "icon",
   "displayName": "Icon",
-  "version": "1.0.0"
+  "description": "Vector graphics bundled with patternplate",
+  "version": "1.0.0",
+  "flag": "beta",
+  "tags": ["Primitives"]
 }

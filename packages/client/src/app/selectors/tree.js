@@ -52,12 +52,8 @@ export function sanitize(tree, context) {
 
 export function enrich(child, context) {
   const { id, prefix, search } = context;
-  const childid = child.virtual
-    ? ['pattern', child.id].join('/')
-    : [child.contentType, child.id].join('/');
-
-  child.active = (childid === id);
-
+  const childid = [child.contentType, child.id].join('/');
+  child.active = (childid === id) || `doc/${context.parent}/${childid}` === id;
   const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
 
   const q =
@@ -71,28 +67,12 @@ export function enrich(child, context) {
   });
 
   child.warnings = child.warnings || [];
+  child.type = child.contentType === "doc" && typeof ((child.manifest).options || {}).query === "string"
+    ? "folder"
+    : "item";
 
-  if (child.contentType === "doc") {
-    const {options = {}} = child.manifest;
-    const {query = ""} = options;
-
-    if (query) {
-      const virtual = query
-        ? search(query)
-        : [];
-
-      child.type = "folder";
-      child.children = virtual.map(v => {
-        const virtual = merge({}, v, {
-          id: [child.id, v.id].join("/"),
-          href: [v.contentType, child.id, v.id].join("/"),
-          virtual: true,
-          reference: child.id
-        });
-        return enrich(virtual, context);
-      });
-      child.active = child.active || child.children.some(c => c.active);
-    }
+  if (child.type === "folder") {
+    child.children = search(child.manifest.options.query);
   }
 
   if (

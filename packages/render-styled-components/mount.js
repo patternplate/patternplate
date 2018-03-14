@@ -3,9 +3,9 @@ var ReactDOM = require("react-dom"); // eslint-disable-line no-var
 
 module.exports = mount;
 
-function mount(Component, element) {
+function mount(input) {
   ReactDOM.hydrate(
-    React.createElement(Component.default || Component),
-    element
+    React.createElement(input.default || input),
+    input.element
   );
 }

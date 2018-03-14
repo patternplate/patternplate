@@ -116,25 +116,21 @@ function createShortcuts() {
 
   bind.up = new Shortcut({
     character: "arrow-up",
-    modifiers: [],
     action: () => actions.arrow("up")
   });
 
   bind.right = new Shortcut({
     character: "arrow-right",
-    modifiers: [],
     action: () => actions.arrow("right")
   });
 
   bind.down = new Shortcut({
     character: "arrow-down",
-    modifiers: [],
     action: () => actions.arrow("down")
   });
 
   bind.left = new Shortcut({
     character: "arrow-left",
-    modifiers: [],
     action: () => actions.arrow("left")
   });
 

@@ -71,12 +71,6 @@ const StyledId = styled(Text)`
   text-overflow: ellipsis;
 `;
 
-const StyledIcon = styled(Icon)`
-  flex: 0 0 auto;
-  fill: ${props => props.theme.color};
-  margin-right: 5px;
-`;
-
 const StyledData = styled.table`
   position: relative;
   z-index: 1;
@@ -202,7 +196,6 @@ function InnerInfoPane(props) {
   return (
     <StyledInnerPane standalone={props.standalone} className={props.className}>
       <StyledName>
-        <StyledIcon symbol={props.icon} />
         <StyledDisplayName>{props.name}</StyledDisplayName>
         <StyledId>{props.id}</StyledId>
       </StyledName>

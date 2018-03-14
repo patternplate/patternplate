@@ -1,4 +1,6 @@
 const React = require("react");
+const styled = require("styled-components").default;
+const Icon = require("../icon");
 const inject = require("../injection").inject;
 
 class Link extends React.Component {
@@ -15,7 +17,6 @@ class Link extends React.Component {
 
   render() {
     const { props } = this;
-
     return (
       <a
         target={props.external ? "_blank" : null}
@@ -27,7 +28,16 @@ class Link extends React.Component {
         title={props.title}
         data-id={props["data-id"]}
       >
-        {props.children}
+        <StyledLinkContainer grow={props.grow} external={props.external}>
+          <StyledLinkLabel grow={props.grow}>{props.children}</StyledLinkLabel>
+          {props.external && (
+            <Icon
+              symbol="external-link"
+              size={props.iconSize || "text"}
+              inline
+              />
+          )}
+        </StyledLinkContainer>
       </a>
     );
   }
@@ -40,3 +50,20 @@ Link.defaultProps = {
   external: false,
   onHover: () => {}
 };
+
+const StyledLinkContainer = styled.span`
+  display: inline-flex;
+  align-items: center;
+  flex-grow: ${props => props.grow ? 1 : 0};
+  > span {
+    display: inline-flex;
+    align-items: ${props => props.external ? 'baseline': 'center'};
+  }
+  > svg {
+    margin-left: .25em;
+  }
+`;
+
+const StyledLinkLabel = styled.span`
+  width: ${props => props.grow ? 'calc(100% - 40px)' : 'auto'};
+`;

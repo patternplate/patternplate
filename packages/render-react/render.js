@@ -3,12 +3,12 @@ const ReactDOMServer = require("react-dom/server");
 
 module.exports = render;
 
-function render(Component) {
-  const component = React.createElement(Component.default || Component);
+function render(input) {
+  const component = React.createElement(input.default || input);
   const html = ReactDOMServer.renderToString(component);
 
-  const css = typeof Component.css !== 'undefined' && Boolean(Component.css)
-    ? `<style>${Component.css}</style>`
+  const css = typeof input.css !== 'undefined' && Boolean(input.css)
+    ? input.css
     : undefined;
 
   return { html, css };

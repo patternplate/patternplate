@@ -14,9 +14,10 @@ function main() {
     errors.forEach(err => console.error(err));
     return;
   }
-  var element = document.querySelector('[data-patternplate-mount]');
+
   var component = getComponent(components, getData());
-  mount(component, element);
+  component.element = component.element || document.querySelector('[data-patternplate-mount]');
+  mount(component);
 }
 
 main();

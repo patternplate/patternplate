@@ -1,21 +1,24 @@
 // const { entries } = require("lodash");
 const path = require("path");
-const commonDir = require("common-dir");
 const exists = require("path-exists");
 const globby = require("globby");
+const globParent = require("glob-parent");
 const utils = require("loader-utils");
 const requireFromString = require("require-from-string");
+const debug = require("util").debuglog("patternplate");
 
 module.exports = async function webpackEntry() {
   const cb = this.async();
   const options = utils.getOptions(this);
 
   const files = await getFiles(options)
+  const parent = globParent(options.entry);
+  const parentFull = path.join(options.cwd, parent);
+  const rel = path.relative(process.cwd(), parentFull);
 
-  if (files.length > 0) {
-    const dir = commonDir(files);
-    this.addContextDependency(dir);
-  }
+  this.addContextDependency(parentFull);
+
+  debug("webpack context", parent, "=>", `./${rel}`);
 
   const reg = await Promise.all(files.map(async file => {
     const full = path.join(options.cwd, file);
@@ -23,6 +26,10 @@ module.exports = async function webpackEntry() {
     const exported = await getExported(full, {fs: this.fs});
 
     const mod = [`module.exports['${file}'] = require('./${rel}');`]
+
+    if (exported.indexOf("js") === -1) {
+      mod.push(`module.exports['${file}'].js = require('raw-loader!./${rel}')`);
+    }
 
     if (exported.indexOf("css") === -1 && await exists(ext('.css', full))) {
       mod.push(`module.exports['${file}'].css = require('./${ext('.css', rel)}')`);

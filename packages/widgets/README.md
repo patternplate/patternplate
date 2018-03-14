@@ -18,12 +18,12 @@ in `widget` blocks of `patternplate` docs.
 
 ```js
 const React = require("react");
-const { PatternDemo, PatternList } = require("@patternplate/widgets");
+const { ComponentDemo, ComponentList } = require("@patternplate/widgets");
 
 module.exports = () => (
   <React.Fragment>
-    <PatternDemo src="pattern-demo" />
-    <PatternList query="tags=widgets" />
+    <ComponentDemo src="pattern-demo" />
+    <ComponentList query="tags=widgets" />
   </React.Fragment>
 );
 ```

@@ -1,11 +1,8 @@
 {
   "name": "text",
   "displayName": "Text",
+  "description": "Style text according to patternplate rules",
   "version": "1.0.0",
-  "patterns": {
-    "../fonts": "fonts"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  }
+  "flag": "stable",
+  "tags": ["Primitives", "Typography"]
 }

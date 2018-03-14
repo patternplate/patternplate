@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.0.0-48",
+  "version": "2.0.0-59",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -13,7 +13,8 @@
     "clean:dev": "npx rimraf lib/build.js lib/create.js lib/start.js",
     "watch": "yarn babel -w",
     "webpack": "webpack",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "postpublish": "yarn clean:dev"
   },
   "xo": false,
   "babel": {
@@ -22,12 +23,13 @@
     ]
   },
   "dependencies": {
-    "@patternplate/compiler": "^2.0.0-48",
-    "@patternplate/demo-client": "^2.0.0-48",
-    "@patternplate/probe-client": "^2.0.0-48",
-    "@patternplate/render-default": "^2.0.0-48",
-    "@patternplate/webpack-entry": "^2.0.0-48",
+    "@patternplate/compiler": "^2.0.0-59",
+    "@patternplate/demo-client": "^2.0.0-59",
+    "@patternplate/probe-client": "^2.0.0-59",
+    "@patternplate/render-default": "^2.0.0-59",
+    "@patternplate/webpack-entry": "^2.0.0-59",
     "chalk": "^2.3.2",
+    "command-exists": "^1.2.2",
     "css-loader": "^0.28.10",
     "encoding": "^0.1.12",
     "errorhandler": "^1.5.0",
@@ -50,13 +52,13 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/runtime": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-48",
-    "@patternplate/client": "^2.0.0-48",
-    "@patternplate/compiler": "^2.0.0-48",
-    "@patternplate/create-default": "^2.0.0-48",
-    "@patternplate/load-config": "^2.0.0-48",
-    "@patternplate/load-docs": "^2.0.0-48",
-    "@patternplate/load-meta": "^2.0.0-48",
+    "@patternplate/babel-preset": "^2.0.0-59",
+    "@patternplate/client": "^2.0.0-59",
+    "@patternplate/compiler": "^2.0.0-59",
+    "@patternplate/create-default": "^2.0.0-59",
+    "@patternplate/load-config": "^2.0.0-59",
+    "@patternplate/load-docs": "^2.0.0-59",
+    "@patternplate/load-meta": "^2.0.0-59",
     "builtin-modules": "^2.0.0",
     "chalk": "^2.3.2",
     "errorhandler": "^1.5.0",

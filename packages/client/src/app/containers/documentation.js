@@ -1,15 +1,18 @@
 import { themes } from "@patternplate/components";
 import { connect } from "react-redux";
 import { createSelector } from "reselect";
+import { bindActionCreators } from "redux";
 
-import ConnectedPatternList from "./pattern-list-widget";
-import ConnectedPatternDemo from "./pattern-demo-widget";
+import * as actions from "../actions";
+
+import ConnectedComponentList from "./component-list-widget";
+import ConnectedComponentDemo from "./component-demo-widget";
 
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
-import selectPool from "../selectors/pool";
+import {flat as selectPool} from "../selectors/pool";
 
-export default connect(mapState)(Documentation);
+export default connect(mapState, mapDispatch)(Documentation);
 
 const selectNotFound = createSelector(
   state => state.routing.locationBeforeTransitions.pathname,
@@ -58,29 +61,45 @@ Some ideas on what to write into your pattern readme
 Help us to make this message more helpful on [GitHub](https://github.com/patternplate/patternplate).
 `;
 
-const selectDoc = createSelector(
+const selectDocItem = createSelector(
   selectItem,
-  state => state.id,
   selectPool,
-  selectNoDocs,
-  selectNotFound,
-  (match, id, pool, noDocs, notFound) => {
-    if (match && match.contents) {
-      return match.contents;
-    }
-
+  state => state.id,
+  (item, pool, id) => {
     if (id === "/") {
-      const first = pool.find(i => Boolean(i.contents) && i.type !== "pattern");
+      const first = pool.find(i => i.contentType === "doc");
       if (first) {
-        return first.contents;
+        return first;
       }
     }
+    return item;
+  }
+);
 
-    if (match && !match.contents) {
+const selectDoc = createSelector(
+  selectDocItem,
+  selectNoDocs,
+  selectNotFound,
+  (item, noDocs, notFound) => {
+    if (item && item.contents) {
+      return item.contents;
+    }
+
+    if (item && !item.contents) {
       return noDocs;
     }
 
     return notFound;
+  }
+);
+
+const selectDisplayName = createSelector(
+  selectDocItem,
+  item => {
+    if (!item) {
+      return 'patternpalte';
+    }
+    return item.manifest.displayName;
   }
 );
 
@@ -101,12 +120,24 @@ const selectThemes = createSelector(
 
 function mapState(state) {
   return {
+    displayName: selectDisplayName(state),
     doc: selectDoc(state),
     themes: selectThemes(state),
     type: selectType(state),
     widgets: {
-      PatternList: ConnectedPatternList,
-      PatternDemo: ConnectedPatternDemo
+      PatternList: ConnectedComponentList,
+      PatternDemo: ConnectedComponentDemo,
+      ComponentDemo: ConnectedComponentDemo,
+      ComponentList: ConnectedComponentList
     }
   };
+}
+
+function mapDispatch(dispatch) {
+  return bindActionCreators(
+    {
+      requestScroll: actions.scrollTo
+    },
+    dispatch
+  );
 }

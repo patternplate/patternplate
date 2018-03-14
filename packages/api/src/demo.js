@@ -114,8 +114,10 @@ function html(content, payload) {
       <head>
         <!-- content.head -->
         ${content.head || ""}
-        <!-- content.css -->
-        ${content.css || ""}
+        <style>
+          /* content.css */
+          ${content.css || ""}
+        </style>
       </head>
       <body>
         <textarea style="display: none;" data-patternplate-vault="data-patternplate-vault">${data}</textarea>
@@ -131,6 +133,10 @@ function html(content, payload) {
         <script src="../patternplate.web.probe.js"></script>
         <script src="../patternplate.web.mount.js"></script>
         <script src="../patternplate.web.demo.js"></script>
+        <script>
+          /* content.js */
+          ${content.js}
+        </script>
       </body>
     </html>
   `);
