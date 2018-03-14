@@ -1,6 +1,6 @@
 {
   "name": "@patternplate-example/react-typescript",
-  "version": "2.0.0-61",
+  "version": "2.0.0-62",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -16,8 +16,8 @@
   },
   "xo": false,
   "devDependencies": {
-    "@patternplate/cli": "^2.0.0-61",
-    "@patternplate/render-react": "^2.0.0-61",
+    "@patternplate/cli": "^2.0.0-62",
+    "@patternplate/render-react": "^2.0.0-62",
     "concurrently": "^3.5.1",
     "cpx": "^1.5.0",
     "typescript": "^2.7.2"
