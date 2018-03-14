@@ -31,6 +31,7 @@
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
     "path-exists": "^3.0.0",
+    "raw-loader": "^0.5.1",
     "require-from-string": "^2.0.1"
   },
   "babel": {
