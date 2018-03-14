@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-config",
-  "version": "2.0.0-57",
+  "version": "2.0.0-58",
   "description": "Load patternplate config",
   "scripts": {
     "start": "yarn build -w",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-57",
+    "@patternplate/babel-preset": "^2.0.0-58",
     "fixturez": "^1.1.0"
   }
 }

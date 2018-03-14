@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-docs",
-  "version": "2.0.0-57",
+  "version": "2.0.0-58",
   "description": "Load patternplate docs",
   "scripts": {
     "start": "yarn build -w",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/load-doc": "^2.0.0-57",
+    "@patternplate/load-doc": "^2.0.0-58",
     "cosmiconfig": "^3.1.0",
     "front-matter": "^2.2.0",
     "globby": "^6.1.0",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.0-57",
+    "@patternplate/babel-preset": "^2.0.0-58",
     "fixturez": "^1.1.0"
   }
 }
