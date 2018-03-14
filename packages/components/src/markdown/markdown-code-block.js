@@ -13,26 +13,27 @@ module.exports = styled(MarkdownCodeBlock)`
 `;
 
 function MarkdownCodeBlock(props) {
-  const lang = getLanguage(props.children);
+  const langs = getLanguages(props.children);
   const code = textContent(props.children);
   return (
-    <Code block className={props.className} language={lang}>
+    <Code block className={props.className} language={langs[0]}>
       {code}
     </Code>
   );
 }
 
-function getLanguage(children) {
+function getLanguages(children) {
   const [child] = children;
   if (!child) {
-    return null;
+    return [];
   }
   const className = child.props.className;
   if (!className) {
-    return null;
+    return [];
   }
   return className
     .split(" ")
     .map(n => n.replace("language-", ""))
-    .find(n => typeof n === "string" && n.length > 0);
+    .find(n => typeof n === "string" && n.length > 0)
+    .split(":");
 }

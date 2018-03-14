@@ -5,19 +5,21 @@ const low = require("lowlight/lib/core");
 const toh = require("hast-to-hyperscript");
 
 // Highlight.js modules
-const css = require("highlight.js/lib/languages/css.js");
-const less = require("highlight.js/lib/languages/less.js");
-const scss = require("highlight.js/lib/languages/scss.js");
-const stylus = require("highlight.js/lib/languages/stylus.js");
+const css = require("highlight.js/lib/languages/css");
+const less = require("highlight.js/lib/languages/less");
+const scss = require("highlight.js/lib/languages/scss");
+const stylus = require("highlight.js/lib/languages/stylus");
 
-const js = require("highlight.js/lib/languages/javascript.js");
-const ts = require("highlight.js/lib/languages/typescript.js");
-const json = require("highlight.js/lib/languages/json.js");
+const js = require("highlight.js/lib/languages/javascript");
+const ts = require("highlight.js/lib/languages/typescript");
+const json = require("highlight.js/lib/languages/json");
 
-const xml = require("highlight.js/lib/languages/xml.js");
-const md = require("highlight.js/lib/languages/markdown.js");
+const xml = require("highlight.js/lib/languages/xml");
+const md = require("highlight.js/lib/languages/markdown");
 
-const bash = require("highlight.js/lib/languages/bash.js");
+const bash = require("highlight.js/lib/languages/bash");
+const diff = require("highlight.js/lib/languages/diff");
+const patch = require("highlight.js/lib/languages/diff");
 
 module.exports = Code;
 module.exports.highlight = highlight;
@@ -25,9 +27,7 @@ module.exports.toElements = toElements;
 
 function Code(props) {
   const source = highlightCode(props.language, props.children);
-
   const code = <StyledCode className={props.className}>{source}</StyledCode>;
-
   return props.block ? <pre>{code}</pre> : code;
 }
 
@@ -178,6 +178,10 @@ low.registerLanguage("markdown", md);
 low.registerLanguage("bash", bash);
 // Low.registerLanguage('shell', bash);
 
+// diff
+low.registerLanguage("diff", diff);
+low.registerLanguage("patch", patch);
+
 const languages = [
   "css",
   "less",
@@ -194,7 +198,9 @@ const languages = [
   "xml",
   "md",
   "markdown",
-  "bash"
+  "bash",
+  "patch",
+  "diff"
 ];
 
 function highlight(language, source) {
