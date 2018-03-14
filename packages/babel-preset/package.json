@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/babel-preset",
-  "version": "2.0.0-y.0",
+  "version": "2.0.0-63",
   "description": "@babel preset for compilation of @patternplate projects",
   "xo": false,
   "repository": {
