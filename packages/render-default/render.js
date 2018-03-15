@@ -11,5 +11,5 @@ function render({ html, css }) {
     result.css = css();
   }
 
-  return { html, css };
+  return result;
 }
