@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 import {
   styled,
   themes,
-  Icon,
   Symbol,
   IconDefinitions
 } from "@patternplate/components";
@@ -90,7 +89,7 @@ function getSource(props) {
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <Symbol
           definition={IconDefinitions.patternplate}
-          emit={true}
+          emit
           style={{ fill: getFill(props) }}
         />
       </svg>
