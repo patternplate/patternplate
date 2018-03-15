@@ -36,12 +36,12 @@ function Cover () {
           <Stage>
             <div>
               <StageHeadline>
-                Draw the ultimate
-                map of your frontend
+                Draw a map for your
+                design adventures
               </StageHeadline>
               <StageText>
                 Connect the dots with patternplate and stop wasting time
-                with inconsistent design systems today.
+                getting lost in inconsistency, today.
               </StageText>
 
               <StageButton href="./doc/docs/guides/getting-started?guides-enabled=true">
