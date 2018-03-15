@@ -16,12 +16,14 @@ This allows you to bring your documenation to live with e.g. actual, real compon
 Placing the following code inside a `widget` code block creates a list
 of all patterns with the tag `Widget`.
 
-```js
+````md
+```widget
 const React = require("react");
 const {ComponentList} = require("@patternplate/widgets");
 
 module.exports = () =>  <ComponentList query="tags=Widget" />;
 ```
+````
 
 ```widget
 const React = require("react");
@@ -35,12 +37,15 @@ module.exports = () => <ComponentList query="tags=Widget" />;
 
 `<ComponentDemo />` displays the demo for the component referenced via `id`.
 
-```js
+````md
+```widget
 const React = require("react");
 const {ComponentDemo} = require("@patternplate/widgets");
 
 module.exports = () => <ComponentDemo id="button" />;
 ```
+````
+
 
 ```widget
 const React = require("react");

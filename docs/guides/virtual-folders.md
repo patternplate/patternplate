@@ -171,6 +171,11 @@ So we'll add a new file there:
   * content `*.md` files with defined `options.query` are not displayed in the interface
   * `patterns` and `docs` can be listed in multiple different virtual folders
 
+## Up next
+
+* [Guide: Enhance docs with widgets](./doc/docs/guides/use-widgets?guides-enabled=true)
+
+
 ## Related topics
 
 * [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
