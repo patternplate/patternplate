@@ -168,7 +168,7 @@ So we'll add a new file there:
   There are a number of things to note here:
 
   * `patterns` and `docs` can be listen in a folder, but folders can not
-  * content `*.md` files with defined `options.query` is not displayed in the interface
+  * content `*.md` files with defined `options.query` are not displayed in the interface
   * `patterns` and `docs` can be listed in multiple different virtual folders
 
 ## Related topics
