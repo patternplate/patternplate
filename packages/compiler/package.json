@@ -35,6 +35,7 @@
     "fixturez": "^1.1.0"
   },
   "dependencies": {
+    "@patternplate/cover-client": "^2.0.0-65",
     "@patternplate/demo-client": "^2.0.0-65",
     "@patternplate/load-config": "^2.0.0-65",
     "@patternplate/probe-client": "^2.0.0-65",
