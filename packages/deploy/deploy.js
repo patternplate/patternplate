@@ -41,20 +41,13 @@ async function main(cli) {
   await git(["add", "."], {cwd, stderr: "inherit"});
   await git(["commit", "-m", `Deploy "${hash}" at ${new Date()}`], {cwd, stderr: "inherit"});
 
-  const env = {};
+  const env = identity ? { GIT_SSH: `ssh -i ${identity}` } : {};
 
-  if (identity) {
-    const cp = await execa("ssh-agent", ["-s"]);
-    env.SSH_AUTH_SOCK = cp.stdout.split('SSH_AUTH_SOCK=')[1].split(';')[0];
-    env.SSH_AGENT_PID = cp.stdout.split('SSH_AGENT_PID=')[1].split(';')[0];
-    await execa.shell(`ssh-add ${identity}`, {stdout: "inherit", stdin: "inherit", env});
-  }
-
-  await git(["push", "-f", "--set-upstream", "target", "master"], {cwd, stderr: "inherit", env});
-
-  if (identity) {
-    await execa("ssh-add", ["-D"], {cwd, stderr: "inherit", env});
-  }
+  await git(["push", "-f", "--set-upstream", "target", "master"], {
+    cwd,
+    stderr: "inherit",
+    env
+  });
 }
 
 main(meow(`
