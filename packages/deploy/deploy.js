@@ -41,7 +41,7 @@ async function main(cli) {
   await git(["add", "."], {cwd, stderr: "inherit"});
   await git(["commit", "-m", `Deploy "${hash}" at ${new Date()}`], {cwd, stderr: "inherit"});
 
-  const env = identity ? { GIT_SSH: `ssh -i ${identity}` } : {};
+  const env = identity ? { GIT_SSH: `${process.env.GIT_SSH} -i ${identity}` } : {};
 
   await git(["push", "-f", "--set-upstream", "target", "master"], {
     cwd,
