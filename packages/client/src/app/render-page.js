@@ -47,7 +47,10 @@ async function renderPage(uri, { base, config, schema, isStatic }) {
     link: head.link,
     meta: head.meta,
     title: head.title,
-    scripts: [`${scriptBase}/static/vendors.js`, `${scriptBase}/static/client.js`, `${scriptBase}/api/patternplate.web.cover.js`]
+    scripts: [
+      `${scriptBase}/static/vendors.js`,
+      `${scriptBase}/static/client.js`
+    ]
   });
 }
 
