@@ -12,4 +12,7 @@ jobs:
       before_deploy:
         - ./.travis/decrypt.sh
       deploy:
-        - ./.travis/deploy.sh
+        - provider: script
+          script: bash ./.travis/deploy.sh
+          on:
+            branch: master
