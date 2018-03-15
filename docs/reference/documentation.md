@@ -11,7 +11,7 @@ options:
 
 Markdown in `patternplate` supports all features of [GitHub flavored markdown][github-flavored-markdown].
 
-Additionally you can configure the order and display of documentation [frontmatter][frontmatter] blocks.
+Additionally you can configure the order and display of documentation via [frontmatter][frontmatter] blocks.
 
 ## Global documentation
 
