@@ -1,11 +1,15 @@
 language: node_js
 node_js:
   - 8
-before_install:
-  - ./.travis/decrypt.sh
 script:
-  - >-
-    yarn test &&
-    yarn build &&
-    yarn components:build &&
-    ./.travis/deploy.sh
+  - yarn test --stream
+jobs:
+  include:
+    - stage: deploy
+      script:
+        - yarn build --scope=@patternplate/{cli,components} --include-filtered-dependencies --stream
+        - yarn components:build --stream
+      before_deploy:
+        - ./.travis/decrypt.sh
+      deploy:
+        - ./.travis/deploy.sh
