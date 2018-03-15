@@ -36,7 +36,7 @@ function Cover () {
           <Stage>
             <div>
               <StageHeadline>
-                Draw a map for your
+                Draw a map of your
                 design adventures
               </StageHeadline>
               <StageText>
