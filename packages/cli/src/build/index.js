@@ -54,7 +54,7 @@ async function build({flags}) {
   }
 
   const schema = { docs, meta: tree };
-  const state = { base, config, schema, isStatic: true, hasCover: typeof cover === "string"};
+  const state = { base, config, schema, isStatic: true};
 
   // Create api/state.json
   await sander.writeFile(out, 'api/state.json', JSON.stringify(schema));
@@ -80,16 +80,15 @@ async function build({flags}) {
   const bundles = getModule(BUNDLE_PATH);
 
   // Create /
-  const home = await render(base, state);
-  await sander.writeFile(out, 'index.html', home);
-
-  // Create cover.html
-  if (state.hasCover) {
+  if (typeof cover === "string") {
     const cover = getModule(COVER_PATH);
     const result = typeof cover.render === "function"
       ? cover.render(cover)
       : getModule(RENDER_PATH)(cover);
-    await sander.writeFile(out, 'cover.html', coverHtml(result, {base}));
+    await sander.writeFile(out, 'index.html', coverHtml(result, {base}));
+  } else {
+    const home = await render(base, state);
+    await sander.writeFile(out, 'index.html', home);
   }
 
   // Create demo.html files

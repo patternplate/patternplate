@@ -10,7 +10,7 @@ import navigate from "./utils/navigate";
 
 module.exports = renderPage;
 
-async function renderPage(uri, { base, config, schema, isStatic, hasCover }) {
+async function renderPage(uri, { base, config, schema, isStatic }) {
   const id = getId(uri);
   const pattern = navigate(id, schema.meta) || {};
   const startBase = base ? base : getBase(uri);
@@ -47,7 +47,6 @@ async function renderPage(uri, { base, config, schema, isStatic, hasCover }) {
     link: head.link,
     meta: head.meta,
     title: head.title,
-    hasCover,
     scripts: [`${scriptBase}/static/vendors.js`, `${scriptBase}/static/client.js`, `${scriptBase}/api/patternplate.web.cover.js`]
   });
 }
