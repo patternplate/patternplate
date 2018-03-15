@@ -7,7 +7,7 @@ function render({ html, css }) {
     result.html = html();
   }
 
-  if (typeof html === "function") {
+  if (typeof css === "function") {
     result.css = css();
   }
 
