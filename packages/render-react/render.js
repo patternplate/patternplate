@@ -7,9 +7,11 @@ function render(input) {
   const component = React.createElement(input.default || input);
   const html = ReactDOMServer.renderToString(component);
 
-  const css = typeof input.css !== 'undefined' && Boolean(input.css)
-    ? input.css
-    : undefined;
+  const result = { html };
 
-  return { html, css };
+  if (typeof input.css === "function") {
+    result.css = input.css();
+  }
+
+  return result;
 }

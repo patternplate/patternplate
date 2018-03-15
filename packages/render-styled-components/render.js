@@ -4,11 +4,12 @@ const styled = require("styled-components");
 
 module.exports = render;
 
-function render(Component) {
+function render(input) {
   const sheet = new styled.ServerStyleSheet();
-  const component = React.createElement(Component.default || Component);
-  const html = ReactDOMServer.renderToString(sheet.collectStyles(component)) || Component.html;
-  const styleTags = sheet.getStyleTags();
+  const component = React.createElement(input.default || input);
+  const html = typeof input.html === "function"
+    ? input.html()
+    : ReactDOMServer.renderToString(sheet.collectStyles(component));
 
-  return { head: styleTags, html };
+  return {html, head: sheet.getStyleTags()};
 }
