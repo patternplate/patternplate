@@ -34,8 +34,8 @@ async function renderPage(uri, { base, config, schema, isStatic }) {
   };
 
   const { html, css } = await router(uri, render);
-  const head = Helmet.rewind();
-  const icons = Icon.rewind();
+  const head = isStatic ? Helmet.peek() : Helmet.rewind();
+  const icons = isStatic ? Icon.peek() : Icon.rewind();
 
   return layout({
     attributes: head.htmlAttributes,
