@@ -84,7 +84,7 @@ automatically and add **Button** to the components list.
 
    ```js
    module.exports = {
-     html: '<button class="my-button">My first button</button>',
+     html: () => '<button class="my-button">My first button</button>',
      default: () => {
        // Nothing implemented yet
      }
@@ -100,8 +100,8 @@ automatically and add **Button** to the components list.
 
    ```js
    module.exports = {
-     html: '<button class="my-button">My first button</button>',
-     css: `
+     html: () => '<button class="my-button">My first button</button>',
+     css: () => `
       .my-button {
         padding: 10px 15px;
         font-size: 20px; 
@@ -127,8 +127,8 @@ Let's count up when clicking on **Button**.
 
    ```js
    module.exports = {
-     html: '<button class="my-button">My first button</button>',
-     css: `
+     html: () => '<button class="my-button">My first button</button>',
+     css: () => `
       .my-button {
         padding: 10px 15px;
         font-size: 20px; 
