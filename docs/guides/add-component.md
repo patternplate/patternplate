@@ -25,6 +25,7 @@ We will …
 
 ## You'll need
 
+* :white_check_mark: You are all set if you followed along [Guide: Getting Started](./doc/docs/guides/add-component?guides-enabled=true)
 * Text editor ([Atom](https://atom.io/) | [VSCode](https://code.visualstudio.com/))
 * patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
@@ -33,14 +34,16 @@ We will …
 Let's improve the component library and add a `Button` component. 
 Open a new terminal window or tab, then procceed with the steps below.
 
-1. Create a new directory `button` in `lib`.
+1. Make sure you have `patternplate` running on `localhost:1337`
+
+2. Create a new directory `button` in `lib`.
 
    ```bash
    # In a new terminal window
    mkdir lib/button
    ```
 
-2. Open a text editor and add a `package.json` to `lib/button`. 
+3. Open a text editor and add a `package.json` to `lib/button`. 
 
   ```bash
   # create "package.json"
@@ -59,7 +62,7 @@ Open a new terminal window or tab, then procceed with the steps below.
    }
    ```
 
-3. Create a `demo.js` file at `lib/button`. The interface will update
+4. Create a `demo.js` file at `lib/button`. The interface will update
 automatically and add **Button** to the components list. 
 
    ```bash
@@ -79,7 +82,7 @@ automatically and add **Button** to the components list.
 
    ![](https://patternplate.github.io/media/images/screenshot-button.png)
  
-4. Click on the **Button** item to display its (still blank) demo canvas.
+5. Click on the **Button** item to display its (still blank) demo canvas.
    Replace the contents of `lib/button/demo.js` with the code below:
 
    ```js
@@ -95,7 +98,7 @@ automatically and add **Button** to the components list.
 
    ![](https://patternplate.github.io/media/images/screenshot-button-markup.png)
 
-5. Let's throw some `CSS` into the mix.
+6. Let's throw some `CSS` into the mix.
    Replace the contents of `lib/button/demo.js` with the code below:
 
    ```js
@@ -120,7 +123,7 @@ automatically and add **Button** to the components list.
 
    ![](https://patternplate.github.io/media/images/screenshot-button-styled.png)
 
-6. We'll wrap up this tutorial by adding some user interaction to the button. 
+7. We'll wrap up this tutorial by adding some user interaction to the button. 
 Let's count up when clicking on **Button**.
    Replace the contents of `lib/button/demo.js` with the code below:
 

@@ -44,13 +44,15 @@ Demos for your components are a great way to document them, but some things need
 E.g. the **Hello World** component has a hidden feature: clicking on it
 counts up. Let's tell the consumers of our component library about this.
 
-1. Open your terminal and create a new file `lib/hello-world/readme.md` 
+1. Make sure you have `patternplate` running on `localhost:1337`
+
+2. Open your terminal and create a new file `lib/hello-world/readme.md` 
 
   ```bash
   touch lib/hello-world/readme.md
   ```
 
-2. Copy the following code into `lib/hello-world/readme.md`
+3. Copy the following code into `lib/hello-world/readme.md`
 
   ```md
   <!-- lib/hello-world/readme.md -->
@@ -59,11 +61,11 @@ counts up. Let's tell the consumers of our component library about this.
   Clicking on a the text will count up from 1
   ```
 
-3. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true) and scroll down: Your small description has been rendered below the component demo.
+4. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true) and scroll down: Your small description has been rendered below the component demo.
 
 ![](https://patternplate.github.io/media/images/screenshot-doc-pattern-markdown.png)
 
-4. You can also provide structured meta data for a pattern, e.g.
+5. You can also provide structured meta data for a pattern, e.g.
 
   * **name** - unique identifier for this pattern, e.g. `fancy-button`
   * **displayName** - human-readable name of the pattern, e.g. `Fancy Button`

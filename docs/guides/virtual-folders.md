@@ -44,8 +44,9 @@ We will …
 
 Let's add some tags to the items in Getting Started.
 
+1. Make sure you have `patternplate` running on `localhost:1337`
 
-1. Add tags to `README.md`. Modify the leading **frontmatter** block
+2. Add tags to `README.md`. Modify the leading **frontmatter** block
    to look like this:
 
   ```md
@@ -57,7 +58,7 @@ Let's add some tags to the items in Getting Started.
   ---
   ```
 
-2. Open `./lib/hello-world/package.json` and attach some tags:
+3. Open `./lib/hello-world/package.json` and attach some tags:
 
   ```json
   {
@@ -70,7 +71,7 @@ Let's add some tags to the items in Getting Started.
   }
   ```
 
-3. Now edit and save `./lib/button/package.json` to look like this:
+4. Now edit and save `./lib/button/package.json` to look like this:
 
   ```json
   {
