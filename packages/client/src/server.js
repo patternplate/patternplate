@@ -24,6 +24,11 @@ async function client(options) {
     config: options.config
   });
 
+  const coverRoute = await cover({
+    cwd: options.cwd,
+    config: options.config
+  });
+
   const apiStatic = path.join(options.cwd, "static");
 
   const app = express()
@@ -31,6 +36,7 @@ async function client(options) {
     .use("/api/", apiRoute)
     .get("/pattern/*", mainRoute)
     .get("/doc/*", mainRoute)
+    .get("/cover.html", coverRoute)
     .get("/", mainRoute);
 
   if (process.env.BUNDLE === "@patternplate/cli") {
@@ -71,8 +77,7 @@ async function main(options) {
       const base = options.base || "/";
 
       if (req.path === base && typeof cover === "string") {
-        const response = await fetch(`${req.protocol}://${req.get("host")}/api/cover.html?base=${base}`);
-        return res.send(await response.text());
+        return res.redirect(`${base}cover.html`);
       }
 
       const docs = await loadDocsTree({
@@ -100,4 +105,13 @@ async function main(options) {
       next(err);
     }
   };
+}
+
+async function cover(options) {
+  return async function coverRoute(req, res, next) {
+    const base = options.base || "/";
+    const response = await fetch(`${req.protocol}://${req.get("host")}/api/cover.html?base=${base}`);
+    res.status(response.status);
+    return res.send(await response.text());
+  }
 }

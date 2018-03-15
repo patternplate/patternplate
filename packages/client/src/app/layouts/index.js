@@ -21,8 +21,17 @@ function Layout(props) {
   const scripts = Array.isArray(props.scripts) ? props.scripts : [];
 
   return (
-    <StyledDocument {...attributes}>
+    <StyledDocument data-base={props.base} {...attributes}>
       <head>
+        {
+          props.hasCover &&
+            <script dangerouslySetInnerHTML={{__html: `
+              var base = document.documentElement.getAttribute("data-base");
+              if (window.location.pathname === base) {
+                window.location.pathname = base + "cover.html";
+              }
+            `}}/>
+        }
         {props.title && props.title.toComponent()}
         {props.meta && props.meta.toComponent()}
         {props.link && props.link.toComponent()}
