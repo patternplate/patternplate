@@ -44,13 +44,13 @@ Demos for your components are a great way to document them, but some things need
 E.g. the **Hello World** component has a hidden feature: clicking on it
 counts up. Let's tell the consumers of our component library about this.
 
-1. Open your terminal and create a new file `lib/button/readme.md` 
+1. Open your terminal and create a new file `lib/hello-world/readme.md` 
 
   ```bash
   touch lib/hello-world/readme.md
   ```
 
-2. Copy the following code into `lib/button/readme.md`
+2. Copy the following code into `lib/hello-world/readme.md`
 
   ```md
   <!-- lib/hello-world/readme.md -->
