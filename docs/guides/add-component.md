@@ -63,7 +63,7 @@ Open a new terminal window or tab, then procceed with the steps below.
 automatically and add **Button** to the components list. 
 
    ```bash
-   # create "package.json"
+   # create "demo.js"
    touch lib/button/demo.js
    ```
 
