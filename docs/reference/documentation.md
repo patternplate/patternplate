@@ -62,6 +62,35 @@ options:
 –––
 ```
 
+## Syntax highlighting
+
+Markdown codeblocks with an explicit language are hightlighted automatically. 
+
+E.g. the following markdown snippet
+
+````md
+```js
+console.log("Hello world");
+```
+````
+
+renders to the following code block with syntax highlighting.
+
+```js
+console.log("Hello world");
+```
+
+Markdown in `patternplate` can highlight the following languages:
+
+* HTML: `html`, `xml`
+* CSS: `css`
+* JavaScript: `js`, `jsx`
+* TypeScript: `ts`, `tsx`
+* JSON: `json`
+* Markdown: `md`
+* Bash: `bash`
+* Diff: `diff`, `patch`
+
 ## Related
 
 * [Reference: Configuration](./doc/docs/reference/configuration)
