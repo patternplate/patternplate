@@ -11,6 +11,7 @@ module.exports = compiler;
 const TO_STRING_LOADER = require.resolve("to-string-loader");
 const CSS_LOADER = require.resolve("css-loader");
 const HTML_LOADER = require.resolve("html-loader");
+const COVER = require.resolve("@patternplate/cover-client");
 const DEMO = require.resolve("@patternplate/demo-client");
 const PROBE = require.resolve("@patternplate/probe-client");
 
@@ -31,6 +32,12 @@ async function compiler(options) {
     entry.mount = cascadeResolve(config.mount, {bases});
     entry.demo = DEMO;
     entry.probe = PROBE;
+    entry["cover-client"] =  COVER;
+
+  }
+
+  if (config.cover) {
+    entry.cover = cascadeResolve(config.cover, {bases});
   }
 
   const compiler = webpack({
@@ -55,16 +62,17 @@ async function compiler(options) {
       path: "/",
       filename: `patternplate.${options.target}.[name].js`
     },
-    plugins:
-      options.target === "web"
-        ? [
-            new webpack.optimize.CommonsChunkPlugin({
-              name: "vendors",
-              minChunks: mod =>
-                mod.context && mod.context.indexOf("node_modules") > -1
-            })
-          ]
-        : []
+    // Disabled due to inconsistencies with chunking
+    // plugins:
+    //   options.target === "web"
+    //     ? [
+    //         new webpack.optimize.CommonsChunkPlugin({
+    //           name: "vendors",
+    //           minChunks: mod =>
+    //             mod.context && mod.context.indexOf("node_modules") > -1
+    //         })
+    //       ]
+    //     : []
   });
 
   compiler.outputFileSystem = fs;

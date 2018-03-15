@@ -6,6 +6,7 @@ const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 const express = require("express");
 const serve = require("serve-static");
+const fetch = require("isomorphic-fetch");
 
 const renderPage = require("./app/render-page");
 
@@ -32,11 +33,7 @@ async function client(options) {
     .get("/doc/*", mainRoute)
     .get("/", mainRoute);
 
-  if (process.env.BUNDLE !== "@patternplate/cli") {
-    // regular node environment
-    const appStatic = path.join(__dirname, "static");
-    app.use("/static", serve(appStatic))
-  } else {
+  if (process.env.BUNDLE === "@patternplate/cli") {
     // bundled via @patternplate/cli
     const efs = require("./eject")();
 
@@ -54,10 +51,13 @@ async function client(options) {
           next();
       }
     });
+  } else {
+    // regular node environment
+    const appStatic = path.join(__dirname, "static");
+    app.use("/static", serve(appStatic));
   }
 
   app.subscribe = apiRoute.subscribe;
-
   return app;
 }
 
@@ -66,8 +66,14 @@ async function main(options) {
     try {
       const result = (await loadConfig({ cwd: options.cwd })) || {};
       const { config = {}, filepath } = result;
-      const { entry = [] } = config;
+      const { entry = [], cover } = config;
       const cwd = filepath ? path.dirname(filepath) : process.cwd();
+      const base = options.base || "/";
+
+      if (req.path === base && typeof cover === "string") {
+        const response = await fetch(`${req.protocol}://${req.get("host")}/api/cover.html?base=${base}`);
+        return res.send(await response.text());
+      }
 
       const docs = await loadDocsTree({
         cwd,
@@ -87,7 +93,7 @@ async function main(options) {
         await renderPage(req.url, {
           schema: { meta: tree, docs },
           config,
-          base: options.base || "/"
+          base
         })
       );
     } catch (err) {

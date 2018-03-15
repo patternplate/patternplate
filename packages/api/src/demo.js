@@ -50,6 +50,7 @@ async function demo(options) {
   };
 }
 
+// Todo: Provide basic description
 function wait(observable) {
   return new Promise((resolve, reject) => {
     const [message = {}] = observable.queue;

@@ -7,12 +7,13 @@ options:
   order: 4
 ---
 
-# Guide: Divide and Conquer with Virtual Folders
+# Divide and Conquer with Virtual Folders
 
 As your component library grows you'll find it increasingly difficult 
 to find all the sweet components you built. 
 
-Learn how the search and tagging system in `patternplate` helps you stay ahead of your component librarie's complexity.
+Learn how the search and tagging system in `patternplate` helps you to 
+get a grip on the size and complexity of your component library.
 
 * **Time invest**: 5 Minutes
 * **Level**: Intermediate - Expert

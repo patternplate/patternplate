@@ -1,4 +1,5 @@
 const path = require("path");
+const url = require("url");
 const eject = require("@patternplate/client/eject");
 const render = require("@patternplate/client/render");
 const compiler = require("@patternplate/compiler");
@@ -14,6 +15,7 @@ const stringHash = require("string-hash");
 module.exports = build;
 
 const BUNDLE_PATH = "/patternplate.node.components.js";
+const COVER_PATH = "/patternplate.node.cover.js";
 const RENDER_PATH = "/patternplate.node.render.js";
 
 // TODO: provide a lib version of this that
@@ -31,8 +33,8 @@ async function build({flags}) {
 
   const spinner = ora(`Building to "${rel}"`).start();
 
-  const { config, filepath } = await loadConfig({ cwd });
-  const { entry = [] } = config;
+  const { config } = await loadConfig({ cwd });
+  const { entry = [], cover } = config;
 
   const docs = await loadDocsTree({
     cwd,
@@ -57,10 +59,6 @@ async function build({flags}) {
   // Create api/state.json
   await sander.writeFile(out, 'api/state.json', JSON.stringify(schema));
 
-  // Create /
-  const home = await render(base, state);
-  await sander.writeFile(out, 'index.html', home);
-
   // Create pages
   const pool = [...flatten(docs.children), ...flatten(patterns)];
 
@@ -81,10 +79,24 @@ async function build({flags}) {
   const getModule = fromFs(bundleFs);
   const bundles = getModule(BUNDLE_PATH);
 
+  // Create /
+  if (typeof cover === "string") {
+    const cover = getModule(COVER_PATH);
+    const result = typeof cover.render === "function"
+      ? cover.render(cover)
+      : getModule(RENDER_PATH)(cover);
+    await sander.writeFile(out, 'index.html', coverHtml(result, {base}));
+  } else {
+    const home = await render(base, state);
+    await sander.writeFile(out, 'index.html', home);
+  }
+
   // Create demo.html files
   await Promise.all(patterns.map(async pattern => {
     const component = getComponent(bundles, pattern);
-    const result = component.render || getModule(RENDER_PATH)(component);
+    const result = typeof component.render === "function"
+      ? component.render(component)
+      : getModule(RENDER_PATH)(component);
     await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
   }));
 
@@ -147,6 +159,40 @@ function demo(content, payload) {
         <script src="../patternplate.web.probe.js"></script>
         <script src="../patternplate.web.mount.js"></script>
         <script src="../patternplate.web.demo.js"></script>
+      </body>
+    </html>
+  `);
+}
+
+function coverHtml(content, options) {
+  const prefix = url.resolve(options.base, "api");
+
+  return unindent(`
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <!-- content.head -->
+        ${content.head || ""}
+        <style>
+          /* content.css */
+          ${content.css || ""}
+        </style>
+      </head>
+      <body>
+        <!-- content.before -->
+        ${content.before || ""}
+        <!-- content.html -->
+        <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
+        <!-- content.after -->
+        ${content.after || ""}
+        <script src="${prefix}/patternplate.web.probe.js"></script>
+        <script src="${prefix}/patternplate.web.cover.js"></script>
+        <script src="${prefix}/patternplate.web.mount.js"></script>
+        <script src="${prefix}/patternplate.web.cover-client.js"></script>
+        <script>
+          /* content.js */
+          ${content.js || ""}
+        </script>
       </body>
     </html>
   `);
