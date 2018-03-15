@@ -124,20 +124,44 @@ function Application(props) {
             <StyledContent>
             <StyledBrowserWarning navigationEnabled={props.navigationEnabled} data-browser-warning>
               <StyledBrowserContainer>
-                <div>
+                <StyledBrowserContent>
                   <StyledWarningLabel>
                     Nice browser. Is it antique?
                   </StyledWarningLabel>
-                  <Text>
+                  <StyledBrowserText>
                     No, seriously - your browser is so old that some features of patternplate don't work as expected.
-                  </Text>
-                  <Text>
+                  </StyledBrowserText>
+                  <StyledBrowserText>
                     Don't worry - you can either continue with a restricted version or install an up-to-date browser.
-                  </Text>
-                </div>
+                  </StyledBrowserText>
+                </StyledBrowserContent>
                 <StyledBrowserContainerClose
                   title={`Close browser warning`}
                   query={{"browser-warning": false}}
+                  >
+                  <Icon symbol="close"/>
+                </StyledBrowserContainerClose>
+              </StyledBrowserContainer>
+            </StyledBrowserWarning>
+            <StyledBrowserWarning navigationEnabled={props.navigationEnabled} data-js-warning>
+              <StyledBrowserContainer>
+                <StyledBrowserContent>
+                  <StyledWarningLabel>
+                    We messed up.
+                  </StyledWarningLabel>
+                  <StyledBrowserText>
+                    Sorry, but your user experience might be affected.
+                  </StyledBrowserText>
+                  <Text>
+                    - Try reloading the page
+                  </Text>
+                  <Text>
+                    - Report the problem at github.com/patternplate/patternplate
+                  </Text>
+                </StyledBrowserContent>
+                <StyledBrowserContainerClose
+                  title={`Close browser warning`}
+                  query={{"js-warning": false}}
                   >
                   <Icon symbol="close"/>
                 </StyledBrowserContainerClose>
@@ -174,6 +198,7 @@ const TOOLBAR_HEIGHT = 60;
 
 const StyledWarningLabel = styled(Text)`
   font-weight: bold;
+  margin-bottom: 1.3em;
 `;
 
 const StyledBrowserWarning = styled.div`
@@ -185,7 +210,7 @@ const StyledBrowserWarning = styled.div`
   right: 0;
   left: ${props => props.navigationEnabled ? WIDTH : 0}px;
   width: 100%;
-  padding: 20px 15px;
+  padding: 15px 20px;
   padding-left: ${props => props.navigationEnabled ? 20 : 60}px;
   background: ${props => props.theme.warning};
 `;
@@ -194,9 +219,18 @@ const StyledBrowserContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1240px;
   margin: 0 auto;
+  justify-content: space-between;
 `;
+
+const StyledBrowserContent = styled.div`
+
+`;
+
+const StyledBrowserText = styled(Text)`
+  margin-bottom: 1.3em;
+`
 
 const StyledBrowserContainerClose = styled(Link)`
   flex-shrink: 0;

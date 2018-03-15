@@ -39,6 +39,13 @@ function Layout(props) {
             el.style.display = "block";
           }
 
+          if (supported() && window.location.search.indexOf("js-warning=false") === -1) {
+            window.addEventListener("error", function() {
+              var el = document.querySelector("[data-js-warning]");
+              el.style.display = "block";
+            });
+          }
+
           function supported() {
             try {
               eval("async () => {}");
