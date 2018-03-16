@@ -14,7 +14,7 @@ function MarkdownLink(props) {
   const query = abs ? {} : queryString.parse(parsed.query);
 
   return (
-    <StyledLink external={abs} href={href} query={query}>
+    <StyledLink external={abs} hint href={href} query={query}>
       {props.children}
     </StyledLink>
   );
