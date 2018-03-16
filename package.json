@@ -88,6 +88,7 @@
   },
   "devDependencies": {
     "@patternplate/deploy-site": "file:./packages/deploy",
+    "dom-to-image": "^2.6.0",
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.4.0",
     "eslint-config-xo-react": "^0.13.0",

@@ -140,6 +140,10 @@ const StyledNavigationTree = styled.div`
   & > *:last-child {
     margin-bottom: ${PASSAGE_HEIGHT}px;
   }
+  @media screen {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
 `;
 
 const StyledNavigationToolbar = styled.div`
