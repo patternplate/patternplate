@@ -20,6 +20,7 @@ const svgo = new SVGO({
 
 const scrollParentSource = fs.readFileSync(require.resolve("scrollparent"));
 const REQUIRED = ['url'];
+const NS = "http://www.w3.org/2000/svg";
 
 async function main(cli) {
   const missing = REQUIRED.filter(flag => typeof cli.flags[flag] !== "string");
@@ -66,27 +67,36 @@ async function main(cli) {
   const svg = (await svgo.optimize(fs.readFileSync(svgPath), {path: svgPath})).data;
   const doc = domParser.parseFromString(svg, "image/svg+xml");
 
+  // pdf2svg places the "background" as first <path>element
+  for (let i = 0; i < doc.documentElement.childNodes.length; i++) {
+    const c = doc.documentElement.childNodes[i];
+    if (c.tagName === "path" && c.getAttribute("fill") === "#fff") {
+      doc.documentElement.removeChild(c);
+      break;
+    }
+  }
+
   if (typeof cli.flags.viewBox === "string") {
-    doc.documentElement.setAttribute("viewBox", cli.flags.viewBox);
+    doc.documentElement.setAttributeNS(NS, "viewBox", cli.flags.viewBox);
   }
 
   if (typeof cli.flags.preserveAspectRatio === "string") {
-    doc.documentElement.setAttribute("preserveAspectRatio", cli.flags.preserveAspectRatio);
+    doc.documentElement.setAttributeNS(NS, "preserveAspectRatio", cli.flags.preserveAspectRatio);
   }
 
-  if (typeof cli.flags.width === "string") {
-    doc.documentElement.setAttribute("width", cli.flags.width);
+  if (cli.flags.hasOwnProperty("outWidth") && cli.flags.outWidth !== false) {
+    doc.documentElement.setAttributeNS(NS, "width",  JSON.stringify(cli.flags.outWidth));
   }
 
-  if (cli.flags.width === false) {
+  if (cli.flags.outWidth === false) {
     doc.documentElement.removeAttribute("width");
   }
 
-  if (typeof cli.flags.height === "string") {
-    doc.documentElement.setAttribute("height", cli.flags.height);
+  if (cli.flags.hasOwnProperty("outHeight") && cli.flags.outHeight !== false) {
+    doc.documentElement.setAttributeNS(NS, "height", JSON.stringify(cli.flags.outHeight));
   }
 
-  if (cli.flags.height === false) {
+  if (cli.flags.outHeight === false) {
     doc.documentElement.removeAttribute("height");
   }
 
