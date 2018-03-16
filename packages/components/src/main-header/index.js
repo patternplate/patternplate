@@ -8,15 +8,9 @@ const FONTS = fonts();
 module.exports = MainHeader;
 
 function MainHeader(props) {
-  const icon = props.image ? (
-    props.image
-  ) : (
-    <StyledHeaderLogo symbol="patternplate" size="l" />
-  );
-
   return (
     <StyledMainHeader className={props.className} title={props.title}>
-      {icon}
+      {props.image}
       {props.title && <StyledTitle>{props.title}</StyledTitle>}
     </StyledMainHeader>
   );
@@ -35,17 +29,6 @@ const StyledMainHeader = styled.div`
 		color: ${props.theme.active};
 		align-items: center;
 		justify-content: center;
-	`};
-`;
-
-const StyledHeaderLogo = styled(Icon)`
-  fill: currentColor;
-  stroke: currentColor;
-  stroke-width: 0;
-  ${props =>
-    props.title &&
-    `
-		margin-right: 5px;
 	`};
 `;
 

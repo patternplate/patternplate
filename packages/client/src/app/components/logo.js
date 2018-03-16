@@ -1,25 +1,39 @@
 import React from "react";
-import { styled } from "@patternplate/components";
+import { Link, styled, Icon } from "@patternplate/components";
 import * as svg from "../utils/svg";
+
+const StyledLink = styled(Link)`
+  display: block;
+  margin: 0 auto;
+  &:link,
+  &:visited {
+    color: ${props => props.theme.active};
+  }
+`;
 
 class Logo extends React.Component {
   render() {
     const { props } = this;
 
-    if (typeof props.source !== "string") {
-      return null;
-    }
+    const child = typeof props.source === "string"
+      ? svg.render(svg.sanitize(svg.purge([svg.parse(props.source)]))[0])
+      : <Icon symbol="patternplate" size="l"/>;
 
-    const [sanitized] = svg.sanitize(svg.purge([svg.parse(props.source)]));
-
-    return <div className={props.className}>{svg.render(sanitized)}</div>;
+    return (
+      <div className={props.className}>
+        <StyledLink external href="/" query={null} target="_self">
+          {child}
+        </StyledLink>
+      </div>
+    );
   }
 }
 
 export default styled(Logo)`
+  display: flex;
   width: 100%;
   height: auto;
-  stroke: ${props => props.theme.color};
+  fill: currentColor;
+  stroke: currentColor;
   stroke-width: 0;
-  fill: ${props => props.theme.color};
 `;

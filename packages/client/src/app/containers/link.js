@@ -51,28 +51,30 @@ function getHref(props, context) {
 
   parsed.query = queryString.parse(parsed.query);
 
-  const query = pickBy(
-    Object.assign(
-      {},
-      context.location.query,
-      parsed.query,
-      props.query || context.location.query
-    ),
-    (value, key) => {
-      // TODO: deduce this for all keys from reduce config
-      // special case "navigation-enabled", invert logic
-      if (key === "navigation-enabled") {
-        return value !== true && value !== "true";
-      }
+  const query = props.query === null
+    ? {}
+    : pickBy(
+      Object.assign(
+        {},
+        context.location.query,
+        parsed.query,
+        props.query || context.location.query
+      ),
+      (value, key) => {
+        // TODO: deduce this for all keys from reduce config
+        // special case "navigation-enabled", invert logic
+        if (key === "navigation-enabled") {
+          return value !== true && value !== "true";
+        }
 
-      // if the key is not in the current query, add it
-      if (!context.location.query.hasOwnProperty(key)) {
-        return true;
+        // if the key is not in the current query, add it
+        if (!context.location.query.hasOwnProperty(key)) {
+          return true;
+        }
+        // omit "falsy" values to keep url shorter
+        return value !== "false" && value !== "0" && !!(value);
       }
-      // omit "falsy" values to keep url shorter
-      return value !== "false" && value !== "0" && !!(value);
-    }
-  );
+    );
 
   const pathname =
     typeof parsed.pathname === "string"

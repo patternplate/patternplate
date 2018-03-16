@@ -15,14 +15,10 @@ import {
 } from "@patternplate/components";
 
 import * as actions from "../actions";
-import * as item from "../selectors/item";
 import * as demo from "../selectors/demo";
 
-import CodePane from "./code-pane";
-import DocPane from "./doc-pane";
 import Favicon from "./favicon";
 import Indicator from "./indicator";
-import InfoPane from "./info-pane";
 import ConnectedLink from "./link";
 import Logo from "./logo";
 import Message from "./message";
@@ -105,11 +101,9 @@ function Application(props) {
               <StyledNavigationBox enabled={props.navigationEnabled}>
                 {props.navigationEnabled && (
                   <Navigation>
-                    {props.logo && (
-                      <NavigationHeader>
-                        <Logo />
-                      </NavigationHeader>
-                    )}
+                    <NavigationHeader>
+                      <Logo />
+                    </NavigationHeader>
                     <NavigationToolbar>
                       <div/>
                       <ToggleSearch />

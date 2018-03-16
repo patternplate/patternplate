@@ -17,10 +17,11 @@ class Link extends React.Component {
 
   render() {
     const { props } = this;
+    const target = selectTarget(props);
     return (
       <a
-        target={props.external ? "_blank" : null}
-        rel={props.external ? "noopener noreferrer" : null}
+        target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : null}
         className={props.className}
         href={props.href}
         onClick={this.handleClick}
@@ -30,7 +31,7 @@ class Link extends React.Component {
       >
         <StyledLinkContainer grow={props.grow} external={props.external}>
           <StyledLinkLabel grow={props.grow}>{props.children}</StyledLinkLabel>
-          {props.external && (
+          {props.external && props.hint && (
             <Icon
               symbol="external-link"
               size={props.iconSize || "text"}
@@ -67,3 +68,10 @@ const StyledLinkContainer = styled.span`
 const StyledLinkLabel = styled.span`
   width: ${props => props.grow ? 'calc(100% - 40px)' : 'auto'};
 `;
+
+function selectTarget(props) {
+  if (props.target) {
+    return props.target;
+  }
+  return props.external ? "_blank" : null;
+};
