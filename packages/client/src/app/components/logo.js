@@ -30,10 +30,13 @@ class Logo extends React.Component {
 }
 
 export default styled(Logo)`
+  box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: auto;
   fill: currentColor;
   stroke: currentColor;
   stroke-width: 0;
+  align-items: center;
+  padding: 10px;
+  background: ${props => props.theme.backgroundSecondary};
 `;
