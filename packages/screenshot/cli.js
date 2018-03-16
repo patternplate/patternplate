@@ -8,6 +8,11 @@ const tempy = require("tempy");
 const execa = require("execa");
 const SVGO = require("svgo");
 const plugins = require("./plugins");
+const DOMParser = require("xmldom").DOMParser;
+const XMLSerializer = require("xmldom").XMLSerializer;
+
+const domParser = new DOMParser();
+const serializer = new XMLSerializer();
 
 const svgo = new SVGO({
   plugins
@@ -59,11 +64,38 @@ async function main(cli) {
   await execa("pdf2svg", [pdfPath, svgPath], {stdin: "inherit", stdout: "inherit"});
 
   const svg = (await svgo.optimize(fs.readFileSync(svgPath), {path: svgPath})).data;
+  const doc = domParser.parseFromString(svg, "image/svg+xml");
+
+  if (typeof cli.flags.viewBox === "string") {
+    doc.documentElement.setAttribute("viewBox", cli.flags.viewBox);
+  }
+
+  if (typeof cli.flags.preserveAspectRatio === "string") {
+    doc.documentElement.setAttribute("preserveAspectRatio", cli.flags.preserveAspectRatio);
+  }
+
+  if (typeof cli.flags.width === "string") {
+    doc.documentElement.setAttribute("width", cli.flags.width);
+  }
+
+  if (cli.flags.width === false) {
+    doc.documentElement.removeAttribute("width");
+  }
+
+  if (typeof cli.flags.height === "string") {
+    doc.documentElement.setAttribute("height", cli.flags.height);
+  }
+
+  if (cli.flags.height === false) {
+    doc.documentElement.removeAttribute("height");
+  }
+
+  const result = serializer.serializeToString(doc);
 
   if (cli.flags.out) {
-    fs.writeFileSync(cli.flags.out, svg);
+    fs.writeFileSync(cli.flags.out, result);
   } else {
-    console.log(svg);
+    console.log(result);
   }
 }
 

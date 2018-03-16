@@ -17,10 +17,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">= 4",
-    "npm": ">= 3"
-  },
   "xo": false,
   "dependencies": {
     "execa": "^0.10.0",
@@ -30,5 +26,8 @@
     "svgo": "^1.0.5",
     "tempy": "^0.2.1",
     "yargs-parser": "^9.0.2"
+  },
+  "devDependencies": {
+    "xmldom": "^0.1.27"
   }
 }
