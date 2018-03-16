@@ -17,10 +17,6 @@ function Cover () {
         title="patternplate"
         link={[
           {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1.0, user-scalable=yes"
-          },
-          {
             rel: "icon",
             type: "text/svg",
             href: Favicon.svg
@@ -29,6 +25,12 @@ function Cover () {
             rel: "icon",
             type: "image/png",
             href: Favicon.png
+          }
+        ]}
+        meta={[
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0, user-scalable=yes"
           }
         ]}
         />
@@ -106,6 +108,7 @@ const StageContainer = styled.div`
   background-image: linear-gradient(-45deg, #4504DA, #FF0353);
   min-height: calc(100vh + 100px);
   color: #FFFFFF;
+  overflow: hidden;
 `;
 
 const Logo = styled.svg.attrs({
