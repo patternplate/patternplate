@@ -63,7 +63,7 @@ counts up. Let's tell the consumers of our component library about this.
 
 4. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true) and scroll down: Your small description has been rendered below the component demo.
 
-![](https://patternplate.github.io/media/images/screenshot-doc-pattern-markdown.png)
+![](https://patternplate.github.io/media/images/screenshot-doc-pattern-markdown.svg)
 
 5. You can also provide structured meta data for a pattern, e.g.
 
@@ -81,9 +81,9 @@ counts up. Let's tell the consumers of our component library about this.
   {
     "name": "hello-world",
     "version": "2.0.0",
-    "flag": "stable",
-    "tag": ["Getting Started"],
+    "tags": ["Getting Started"],
     "patternplate": {
+      "flag": "stable",
       "displayName": "Hello World"
     }
   }
@@ -92,32 +92,29 @@ counts up. Let's tell the consumers of our component library about this.
   This structured meta data lends itself to indexing nicely and powers much of 
   `patternplate`'s search engine.
 
-![](https://patternplate.github.io/media/images/screenshot-doc-pattern-json.png)
+  ![](https://patternplate.github.io/media/images/screenshot-doc-pattern-json.svg)
 
 
 ## Add documentation for a generic topic
 
 You may have noticed the **my-patternplate** item in the Getting Started project:
 
-![](https://patternplate.github.io/media/images/screenshot-doc-global.png)
+![](https://patternplate.github.io/media/images/screenshot-button.svg)
 
 This represents the `README.md`, which is picked up by `patternplate` automatically.
 
 1. Click on `my-patternplate` to reveal is rendered contents. 
 
 2. Also open a text editor.
-
-  Having both windows side by side gives you the optimal editing experience:
-
-  ![](https://patternplate.github.io/media/images/screenshot-doc-global-side-by-side.png)
+  Open both windows side by side gives for an optimal editing experience.
 
 3. Change the text of `README.md` to your liking. Notice how the rendered page
-update immediately when you save the file.
+updates immediately when you save the file.
 
-4. We'll change the page name in the sidebar next. It is controlled by the block
+4. We'll change the page name in the sidebar next. It is controlled by the `frontmatter` block
 at the beginning of `README.md`. 
 
-  Change the frontmatter block at the top of the file to something like this
+  Change the `frontmatter` block at the top of the file to something like this
 
   ```md
   ---
@@ -131,7 +128,7 @@ at the beginning of `README.md`.
 
   The interface updates automatically to display your changes:
 
-  ![](https://patternplate.github.io/media/images/screenshot-doc-global-introduction.png)
+  ![](https://patternplate.github.io/media/images/screenshot-doc-global.svg)
 
 
 ## Up next
