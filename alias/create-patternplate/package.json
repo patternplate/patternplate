@@ -1,6 +1,6 @@
 {
   "name": "create-patternplate",
-  "version": "2.0.0-71",
+  "version": "2.0.0-72",
   "description": "Create new patternplate projects",
   "bin": {
     "create-patternplate": "./create-patternplate.js"
@@ -27,7 +27,7 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@patternplate/cli": "^2.0.0-71",
+    "@patternplate/cli": "^2.0.0-72",
     "execa": "^0.9.0",
     "read-pkg": "^3.0.0",
     "resolve-pkg": "^1.0.0"

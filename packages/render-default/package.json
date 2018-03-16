@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/render-default",
-  "version": "2.0.0-71",
+  "version": "2.0.0-72",
   "description": "Default patternplate render package",
   "xo": false,
   "repository": {
