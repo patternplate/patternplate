@@ -71,6 +71,9 @@ const StyledPatternLoader = styled.div`
   right: 0;
   left: 0;
   height: 3px;
+  @media print {
+    display: none;
+  }
   &::after {
     position: absolute;
     top: 0;

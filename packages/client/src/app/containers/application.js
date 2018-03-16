@@ -11,7 +11,8 @@ import {
   injection,
   Text,
   ThemeProvider,
-  themes
+  themes,
+  injectGlobal
 } from "@patternplate/components";
 
 import * as actions from "../actions";
@@ -87,6 +88,20 @@ const injections = [
 ];
 
 function Application(props) {
+  // Special mode for automated screenshots
+  if (props.location.query.screenshot === "true") {
+    injectGlobal`
+      body {
+        height: calc(100vh - 100px)!important;
+        width: calc(100vw - 100px)!important;
+        margin: 50px!important;
+        border-radius: 10px!important;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.15)!important;
+        overflow: hidden!important;
+      }
+    `;
+  }
+
   return (
     <injection.InjectionProvider injections={injections}>
       <ThemeProvider theme={props.themes[props.theme]}>
@@ -237,6 +252,7 @@ const StyledBrowserContainerClose = styled(Link)`
 `;
 
 const StyledApplication = styled.div`
+  position: relative;
   box-sizing: border-box;
   display: flex;
   width: 100%;
@@ -324,7 +340,7 @@ const NavigationControl = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  position: absolute;
   z-index: 5;
   top: 0;
   left: ${props => props.enabled ? 300 : 0}px;
