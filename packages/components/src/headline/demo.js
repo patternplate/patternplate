@@ -1,7 +1,7 @@
 const React = require("react");
 const Headline = require(".");
 
-module.exports = HeadlineDemo;
+module.exports.default = HeadlineDemo;
 
 const TEXT = `Lorem ipsum dolor sit amet, consectetur adipisicing elit`;
 

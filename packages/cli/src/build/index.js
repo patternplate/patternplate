@@ -189,10 +189,6 @@ function coverHtml(content, options) {
         <script src="${prefix}/patternplate.web.cover.js"></script>
         <script src="${prefix}/patternplate.web.mount.js"></script>
         <script src="${prefix}/patternplate.web.cover-client.js"></script>
-        <script>
-          /* content.js */
-          ${content.js || ""}
-        </script>
       </body>
     </html>
   `);

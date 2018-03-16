@@ -9,6 +9,7 @@ const Link = require("../link");
 const Text = require("../text");
 
 module.exports.default = Cover;
+module.exports.head = () => Helmet.rewind();
 
 function Cover () {
   return (

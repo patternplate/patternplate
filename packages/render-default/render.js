@@ -1,15 +1,36 @@
+const {merge, pick} = require("lodash");
+
+const SLOTS = ["head", "css", "before", "html", "after", "js"];
+
 module.exports = render;
+module.exports.SLOTS = SLOTS;
 
-function render({ html, css }) {
-  const result = {};
+function render(input) {
+  return SLOTS
+    .reduce((output, slot) => {
+      execute(input, output, {name: slot});
+      return output;
+    }, {});
+}
 
-  if (typeof html === "function") {
-    result.html = html();
+function execute(input, output, {name}) {
+  const fn = input[name];
+
+  if (typeof fn !== "function") {
+    return output;
   }
 
-  if (typeof css === "function") {
-    result.css = css();
+  const result = fn();
+
+  if (typeof result === "string" || result === null) {
+    output[name] = result;
+    return output;
   }
 
-  return result;
+  if (typeof result === "object" && !Array.isArray(result)) {
+    merge(output, pick(result, SLOTS));
+    return output;
+  }
+
+  throw new Error(`render fn "${name}" returned a result of type "${typeof result}". Expected string or object.`);
 }

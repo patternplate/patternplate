@@ -1,7 +1,7 @@
 const React = require("react");
 const PatternList = require(".");
 
-module.exports = PatternListDemo;
+module.exports.default = PatternListDemo;
 
 const ITEMS = [
   {

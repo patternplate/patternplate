@@ -5,7 +5,7 @@ const React = require("react");
 const styled = require("styled-components").default;
 const Themer = require("../demo-themer");
 
-module.exports = () => (
+module.exports.default = () => (
   <Themer>
     <InfoPaneDemo />
   </Themer>

@@ -2,7 +2,7 @@ const React = require("react");
 const styled = require("styled-components").default;
 const Icon = require(".");
 
-module.exports = IconDemo;
+module.exports.default = IconDemo;
 
 function DemoIcon(props) {
   return (

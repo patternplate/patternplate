@@ -1,7 +1,7 @@
 const React = require("react");
 const Link = require(".");
 
-module.exports = function LinkDemo() {
+module.exports.default = function LinkDemo() {
   return (
     <React.Fragment>
       <div>

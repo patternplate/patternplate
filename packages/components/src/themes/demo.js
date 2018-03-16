@@ -64,7 +64,7 @@ class ThemesDemo extends Component {
   }
 }
 
-module.exports = ThemesDemo;
+module.exports.default = ThemesDemo;
 
 const StyledDemo = styled.div`
   padding: 2em 1em 1em;

@@ -1,7 +1,7 @@
 const React = require("react");
 const PatternDemo = require(".");
 
-module.exports = PatternDemoDemo;
+module.exports.default = PatternDemoDemo;
 
 function PatternDemoDemo() {
   return (

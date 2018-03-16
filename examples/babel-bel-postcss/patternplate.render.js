@@ -1,9 +1,14 @@
+const renderDefault = require("@patternplate/render-default/render");
+
 module.exports = render;
 
-function render(component) {
-  const comp = component.default || component;
-  return {
-    html: component.html || comp().toString(),
-    css: component.css ? `<style>${component.css}</style>` : ''
-  };
+function render(input) {
+  const component = input.default;
+  const copy = Object.assign({}, input, {
+    html: typeof input.html === "function"
+      ? input.html
+      : () => component().toString()
+  });
+
+  return renderDefault(copy);
 }

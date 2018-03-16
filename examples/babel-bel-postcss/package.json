@@ -37,6 +37,7 @@
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@patternplate/cli": "^2.0.0-69",
+    "@patternplate/render-default": "^2.0.0-69",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0"
   }

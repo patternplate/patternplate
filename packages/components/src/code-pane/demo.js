@@ -3,7 +3,7 @@ const CodePane = require(".");
 const styled = require("styled-components").default;
 const Themer = require("../demo-themer");
 
-module.exports = function CodeDemo() {
+module.exports.default = function CodeDemo() {
   return (
     <Themer>
       <StyledDemoBox>

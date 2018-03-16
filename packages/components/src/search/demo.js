@@ -4,7 +4,7 @@ const React = require("react");
 const Themer = require("../demo-themer");
 const SearchField = require("../search-field");
 
-module.exports = () => (
+module.exports.default = () => (
   <Themer>
     <SearchComponent
       legend={{

@@ -1,7 +1,7 @@
 module.exports = mount;
 
-function mount(component, element) {
-  const comp = component.default || component;
-  element.innerHTML = '';
-  element.appendChild(comp());
+function mount(component) {
+  const comp = component.default;
+  component.element.innerHTML = '';
+  component.element.appendChild(comp());
 }

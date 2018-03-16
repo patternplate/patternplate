@@ -20,6 +20,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@patternplate/render-default": "^2.0.0-69",
+    "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }

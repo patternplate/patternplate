@@ -3,7 +3,7 @@ const styled = require("styled-components").default;
 const DemoThemer = require("../demo-themer");
 const Flag = require(".");
 
-module.exports = FlagDemo;
+module.exports.default = FlagDemo;
 
 function FlagDemo() {
   return (

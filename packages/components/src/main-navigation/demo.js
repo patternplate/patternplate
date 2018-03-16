@@ -156,7 +156,7 @@ const docs = {
   ]
 };
 
-module.exports = function MainNavigationDemo() {
+module.exports.default = function MainNavigationDemo() {
   return (
     <Themer>
       <MainNavigation

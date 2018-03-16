@@ -1,6 +1,6 @@
 const {button} = require(".");
 
-module.exports = ButtonDemo;
+module.exports.default = ButtonDemo;
 
 function ButtonDemo() {
   const onClick = () => console.log(`Button clicked`);

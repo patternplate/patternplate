@@ -107,7 +107,7 @@ const data = [
   }
 ];
 
-module.exports = function NavigationTreeDemo() {
+module.exports.default = function NavigationTreeDemo() {
   return (
     <StyledDemoContainer>
       <Pattern data={data} id="" active="atoms" prefix="" />

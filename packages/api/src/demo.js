@@ -133,10 +133,6 @@ function html(content, payload) {
         <script src="../patternplate.web.probe.js"></script>
         <script src="../patternplate.web.mount.js"></script>
         <script src="../patternplate.web.demo.js"></script>
-        <script>
-          /* content.js */
-          ${content.js}
-        </script>
       </body>
     </html>
   `);

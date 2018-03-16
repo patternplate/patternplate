@@ -5,7 +5,7 @@ module.exports = mount;
 
 function mount(input) {
   ReactDOM.hydrate(
-    React.createElement(input.default || input),
+    React.createElement(input.default),
     input.element
   );
 }

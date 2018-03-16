@@ -2,7 +2,7 @@ const React = require("react");
 const Text = require(".");
 const Themer = require("../demo-themer");
 
-module.exports = function TextDemo() {
+module.exports.default = function TextDemo() {
   return (
     <Themer>
       <Text>

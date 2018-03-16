@@ -2,7 +2,7 @@ const React = require("react");
 const styled = require("styled-components").default;
 const fonts = require(".");
 
-module.exports = FontsDemo;
+module.exports.default = FontsDemo;
 
 const FONTS = fonts();
 
