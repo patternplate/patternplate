@@ -56,7 +56,7 @@ We will …
 
   If everything worked `patternplate` greets you with this screen:
 
-  ![](https://patternplate.github.io/media/images/screenshot-hello-world.png)
+  ![](https://patternplate.github.io/media/images/screenshot-hello-world.svg)
 
 
 ## Up next

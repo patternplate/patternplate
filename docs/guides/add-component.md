@@ -80,7 +80,7 @@ automatically and add **Button** to the components list.
    }
    ```
 
-   ![](https://patternplate.github.io/media/images/screenshot-button.png)
+   ![](https://patternplate.github.io/media/images/screenshot-button.svg)
  
 5. Click on the **Button** item to display its (still blank) demo canvas.
    Replace the contents of `lib/button/demo.js` with the code below:
@@ -96,7 +96,7 @@ automatically and add **Button** to the components list.
 
    Saving the file signals the **Button** demo to reload automatically and display the `HTML` you just added.
 
-   ![](https://patternplate.github.io/media/images/screenshot-button-markup.png)
+   ![](https://patternplate.github.io/media/images/screenshot-button-markup.svg)
 
 6. Let's throw some `CSS` into the mix.
    Replace the contents of `lib/button/demo.js` with the code below:
@@ -121,7 +121,7 @@ automatically and add **Button** to the components list.
 
    Saving the changes will update your demo to look like this:
 
-   ![](https://patternplate.github.io/media/images/screenshot-button-styled.png)
+   ![](https://patternplate.github.io/media/images/screenshot-button-styled.svg)
 
 7. We'll wrap up this tutorial by adding some user interaction to the button. 
 Let's count up when clicking on **Button**.
