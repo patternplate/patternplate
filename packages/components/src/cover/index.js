@@ -65,7 +65,7 @@ function Cover () {
                   </ButtonRow>
                 </div>
                 <div>
-                  <StageImage src="https://patternplate.github.io/media/images/screenshot-site.png"/>
+                  <StageImage src="https://patternplate.github.io/media/images/screenshot-site.svg"/>
                 </div>
               </Stage>
             </div>
@@ -157,6 +157,9 @@ const StageImage = styled.img`
   top: auto;
   width: 600px;
   top: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, .15);
 
   @media screen and (min-width: 480px) {
     top: 85%;
