@@ -18,12 +18,17 @@ const CROSSES = props => btoa(`
 
 const StyledPattern = styled(tag(["checkers", "navigationEnabled"])("div"))`
   position: fixed;
+  width: ${props => props.navigationEnabled ? 'calc(100% - 300px)' : '100%'};
+  left: ${props => props.navigationEnabled ? 300 : 0}px;
+  @media print {
+    position: absolute;
+    width: 100%;
+    left: 0;
+  }
   top: 0;
   right: 0;
-  left: ${props => props.navigationEnabled ? 300 : 0}px;
   box-sizing: border-box;
   height: 100%;
-  width: ${props => props.navigationEnabled ? 'calc(100% - 300px)' : '100%'};
   &::before {
     content: "";
     display: ${VISIBILITY};

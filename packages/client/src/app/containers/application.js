@@ -213,7 +213,7 @@ const StyledWarningLabel = styled(Text)`
 const StyledBrowserWarning = styled.div`
   display: none; /* overridden by separate js if needed */
   box-sizing: border-box;
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 4;
   right: 0;
@@ -225,6 +225,7 @@ const StyledBrowserWarning = styled.div`
 `;
 
 const StyledBrowserContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -280,7 +281,6 @@ const StyledMessageBox = styled.div`
 const StyledContent = styled.div`
   flex: 1 1 100%;
   width: 100%;
-  position: relative;
 `;
 
 const StyledContentContainer = styled.div`
@@ -288,10 +288,11 @@ const StyledContentContainer = styled.div`
   width: calc(100% - ${NAVIGATION_WIDTH}px);
   flex-direction: column;
   overflow: auto;
+  position: relative;
 `;
 
 const StyledSearchBox = styled.div`
-  position: fixed;
+  position: absolute;
   top: 12.5vh;
   bottom: 10vh;
   right: 0;

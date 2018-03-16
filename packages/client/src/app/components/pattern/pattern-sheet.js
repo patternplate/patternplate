@@ -124,7 +124,7 @@ const StyledDescription = styled(Text)`
 `;
 
 const StyledPatternSheet = styled.div`
-  position: relative;
+/*   position: relative; */
   z-index: 2;
   box-sizing: border-box;
   width: 100%;
