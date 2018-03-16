@@ -1,6 +1,6 @@
 {
   "name": "@patternplate-exmaple/lerna",
-  "version": "2.0.0-70",
+  "version": "2.0.0-71",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "xo": false,
   "devDependencies": {
-    "@patternplate/cli": "^2.0.0-70",
-    "@patternplate/render-default": "^2.0.0-70"
+    "@patternplate/cli": "^2.0.0-71",
+    "@patternplate/render-default": "^2.0.0-71"
   }
 }
