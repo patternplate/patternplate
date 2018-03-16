@@ -25,9 +25,7 @@
     "scrollparent": "^2.0.1",
     "svgo": "^1.0.5",
     "tempy": "^0.2.1",
+    "xmldom": "^0.1.27",
     "yargs-parser": "^9.0.2"
-  },
-  "devDependencies": {
-    "xmldom": "^0.1.27"
   }
 }
