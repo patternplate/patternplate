@@ -17,7 +17,8 @@ function NavigationTree(props) {
           const hidden = options.hidden || false;
           const icon = selectSymbol(item);
           const iconActive = selectActiveSymbol(item);
-          const name = (item.manifest.name ? String(item.manifest.name) : '').toLowerCase();
+          const name = selectName(item);
+
           const enabled = (props.query || {})[`${name}-enabled`] === "true";
 
           switch (item.type) {
@@ -122,4 +123,14 @@ function selectSymbol(item) {
   }
 
   return null;
+}
+
+function selectName(item) {
+  if (typeof item.manifest.name === "string" && item.manifest.name) {
+    return item.manifest.name;
+  }
+  if (typeof item.manifest.displayName === "string" && item.manifest.displayName) {
+    return encodeURIComponent(item.manifest.displayName.replace(/[^\w]/g, '-').toLowerCase());
+  }
+  return encodeURIComponent(item.id.replace(/[^\w]/g, '-').toLowerCase());
 }

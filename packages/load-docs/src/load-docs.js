@@ -34,7 +34,7 @@ async function loadDocs(options) {
       const b = path.basename(file, path.extname(file)).toLowerCase();
       const name = b === "readme" ? path.dirname(file) : b;
 
-      manifest.name = first ? (first.children[0].value || '').split(/\s/g, '-') : (manifest.name || shortid.generate()).toLowerCase();
+      manifest.name = manifest.name || (first ? (first.children[0].value || '').replace(/[^\w]/g, '-') : (manifest.name || shortid.generate())).toLowerCase();
       manifest.displayName = manifest.displayName || (first ? first.children[0].value : name);
 
       return {
