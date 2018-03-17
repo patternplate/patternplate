@@ -101,7 +101,7 @@ in a second.
 
    This should give you a result list like below. 
 
-   ![](https://patternplate.github.io/media/images/screenshot-search-fuzzy.png)
+   ![](https://patternplate.github.io/media/images/screenshot-virtual.svg)
 
    Look closely: In this case the search query matched all items - **my-patternplate**, **Button**
    and **Hello-World**. 
@@ -119,7 +119,7 @@ in a second.
    This will search for all items that have the tag `world` attached. This results
    in a list like this:
 
-   ![](https://patternplate.github.io/media/images/screenshot-search-structured.png)
+   ![](https://patternplate.github.io/media/images/screenshot-virtual-search.svg)
 
    This time around we matched only **Button** and **Hello-World**. That happens because they have both
    the tag `world` attached, while the **my-patternplate** item does not.
@@ -156,11 +156,11 @@ So we'll add a new file there:
 
    This will create a new folder called **My Virtual Folder** in the sidebar:
 
-  ![](https://patternplate.github.io/media/images/screenshot-virtual-folder.png)
+  ![](https://patternplate.github.io/media/images/screenshot-virtual-folder.svg)
 
 3. Click on the folder to reveal its contents:
 
-  ![](https://patternplate.github.io/media/images/screenshot-virtual-folder-open.png)
+  ![](https://patternplate.github.io/media/images/screenshot-virtual-folder-open.svg)
 
   The folder will hold a list of all patterns matching the search we entered as `options.query`.
   Using this functionality you can define any number of different virtual folders.

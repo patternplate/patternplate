@@ -44,9 +44,7 @@ for a number of common web languages. Let's try this:
 1. Make sure you have `patternplate` running on `localhost:1337`
 
 2. Open `./README.md` with your text editor. We recommend opening the patternplate interface
-next to your text editor like this:
-
-  ![](https://patternplate.github.io/media/images/screenshot-doc-global-side-by-side.png)
+next to your text editor.
 
 3. Append the following code to `./README.md`. Don't worry about the contents too much for
    now, we just test out sytax highlighting with this:
@@ -68,7 +66,7 @@ next to your text editor like this:
   `patternplate` updates automatically and renders your code block like this at the bottom
   of the `my-patternplate` rendering. Notice the lovely syntax highlighting. :nail_care:
 
-  ![](https://patternplate.github.io/media/images/screenshot-code-block.png)
+  ![](https://patternplate.github.io/media/images/screenshot-widgets.svg)
 
 
 ## Create dynamic lists with ComponentList
@@ -109,7 +107,7 @@ supports this:
   This renders a `ComponentList` widget into the document. The
   result should look like this:
 
-  ![](https://patternplate.github.io/media/images/screenshot-component-list.png)
+  ![](https://patternplate.github.io/media/images/screenshot-widgets-list.svg)
 
   `ComponentList` creates a list of components matching the search query
   given in its `query` prop. 
@@ -134,7 +132,7 @@ supports this:
 
   We expect `ComponentList` to list all items that are a `"pattern"` now:
 
-  ![](https://patternplate.github.io/media/images/screenshot-components-all-list.png)
+  ![](https://patternplate.github.io/media/images/screenshot-widgets-list-pattern.svg)
 
 
 ## Embed components with ComponentDemo
@@ -157,7 +155,7 @@ supports this:
 
 2. Scroll to the very end of `./README.md` and see a live demo of `Button` embeded directly:
 
-  ![](https://patternplate.github.io/media/images/screenshot-component-demo.png)
+  ![](https://patternplate.github.io/media/images/screenshot-widgets-demo.svg)
 
 
 ## Related topics
