@@ -42,8 +42,8 @@ function Cover () {
               <Stage>
                 <div>
                   <StageHeadline>
-                    Draw a map of your
-                    design adventures.
+                    A shared space for system
+                    design and engineering.
                   </StageHeadline>
                   <StageText>
                     Connect the dots with patternplate and stop
