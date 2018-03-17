@@ -43,10 +43,13 @@ async function main(cli) {
   const demo = frames.find(frame => url.parse(frame.url()).pathname.startsWith("/api/demo"));
 
   if (demo) {
-    const frame = await page.$(`iframe[src="${url.parse(demo.url()).pathname}"]`);
-    await frame.boundingBox(); // wait for paint on iframe
-    const contentFrame = await frame.contentFrame();
-    await contentFrame.waitForFunction("document.readyState === 'complete'");
+    const frame = await page.$(`iframe`);
+    if (frame) {
+      const contentFrame = await frame.contentFrame();
+      if (contentFrame) {
+        await contentFrame.waitForFunction("document.readyState === 'complete'");
+      }
+    }
   }
 
   if (selector) {
