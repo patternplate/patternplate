@@ -18,7 +18,7 @@ const svgo = new SVGO({
   plugins
 });
 
-const scrollParentSource = fs.readFileSync(require.resolve("scrollparent"));
+const scrollParentSource = String(fs.readFileSync(require.resolve("scrollparent")));
 const REQUIRED = ['url'];
 const NS = "http://www.w3.org/2000/svg";
 
@@ -32,22 +32,34 @@ async function main(cli) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
+  page.on("console", message => console.log(message.text()));
+
   await page.goto(cli.flags.url);
   const parsed = url.parse(cli.flags.url);
   const selector = parsed.hash ? parsed.hash.slice(1) : null;
 
-  if (selector) {
-    await page.evaluate(selector => {
-      const element = document.querySelector(selector);
+  const frames = await page.frames();
 
+  const demo = frames.find(frame => url.parse(frame.url()).pathname.startsWith("/api/demo"));
+
+  if (demo) {
+    const frame = await page.$(`iframe[src="${url.parse(demo.url()).pathname}"]`);
+    await frame.boundingBox(); // wait for paint on iframe
+    const contentFrame = await frame.contentFrame();
+    await contentFrame.waitForFunction("document.readyState === 'complete'");
+  }
+
+  if (selector) {
+    await page.evaluate(({selector, scrollParentSource}) => {
+      const element = document.querySelector(`#${selector}`);
       if (!element) {
         return;
       }
 
       eval(scrollParentSource);
-      const parent = Scrollparent(element);
+      const parent = window.Scrollparent(element);
       parent.scrollTop = element.offsetParent.offsetTop;
-    }, selector);
+    }, {selector, scrollParentSource});
   }
 
   const pdfPath = tempy.file();
