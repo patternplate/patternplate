@@ -63,7 +63,7 @@ counts up. Let's tell the consumers of our component library about this.
 
 4. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true) and scroll down: Your small description has been rendered below the component demo.
 
-![](https://patternplate.github.io/media/images/screenshot-doc-pattern-markdown.svg)
+![](https://patternplate.github.io/media/images/screenshot-docs.svg)
 
 5. You can also provide structured meta data for a pattern, e.g.
 
@@ -92,7 +92,7 @@ counts up. Let's tell the consumers of our component library about this.
   This structured meta data lends itself to indexing nicely and powers much of 
   `patternplate`'s search engine.
 
-  ![](https://patternplate.github.io/media/images/screenshot-doc-pattern-json.svg)
+  ![](https://patternplate.github.io/media/images/screenshot-docs-json.svg)
 
 
 ## Add documentation for a generic topic
