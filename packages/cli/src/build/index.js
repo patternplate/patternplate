@@ -22,8 +22,9 @@ const RENDER_PATH = "/patternplate.node.render.js";
 // writes to a virtual fs / union fs
 async function build({flags}) {
   const cwd = flags.cwd || process.cwd();
-  const out = path.join(cwd, flags.out || "docs/patterns");
+  const out = path.resolve(cwd, flags.out || "docs/patterns");
   const rel = path.relative(cwd, out);
+  const upath = out.length >= rel ? rel : out;
 
   if (typeof flags.base !== "string" || flags.base.length === 0) {
     throw new Error(`expected --base to be non-empty string, received "${flags.base}" of type "${typeof flags.base}"`);
@@ -31,7 +32,7 @@ async function build({flags}) {
 
   const base = selectBase(flags.base);
 
-  const spinner = ora(`Building to "${rel}"`).start();
+  const spinner = ora(`Building to "${upath}"`).start();
 
   const { config } = await loadConfig({ cwd });
   const { entry = [], cover } = config;
@@ -100,7 +101,7 @@ async function build({flags}) {
     await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
   }));
 
-  spinner.succeed(`Built to "${rel}"`);
+  spinner.succeed(`Built to "${upath}"`);
 }
 
 function selectBase(base) {
