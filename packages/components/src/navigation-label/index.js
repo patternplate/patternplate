@@ -3,6 +3,10 @@ const styled = require("styled-components").default;
 const fonts = require("../fonts");
 const Icon = require("../icon");
 const Link = require("../link");
+const remark = require("remark");
+const emoji = require("remark-gemoji-to-emoji");
+
+const processor = remark().use(emoji);
 
 const FONTS = fonts();
 
@@ -20,7 +24,7 @@ function NavigationLabel(props) {
             <StyledLabelIcon enabled={props.enabled}>
               <Icon symbol="arrow-right" />
             </StyledLabelIcon>
-            {props.children}
+            {processor.processSync(props.children).contents}
         </StyledLabelLink>
       </StyledLabel>
     </StyledLabelContainer>

@@ -98,6 +98,8 @@
     "redux-freeze": "^0.1.5",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
+    "remark": "^9.0.0",
+    "remark-gemoji-to-emoji": "^1.1.0",
     "reselect": "^3.0.1",
     "scrollparent": "^1.0.0",
     "semver": "^5.4.1",

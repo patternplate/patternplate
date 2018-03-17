@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
 import React from "react";
+import remark from "remark";
+import emoji from "remark-gemoji-to-emoji";
+
 import { Flag, Headline, Link, Markdown, styled, Tag, Text, ThemeProvider, themes } from "@patternplate/components";
 
 import * as item from "../../selectors/item";
@@ -7,6 +10,8 @@ import Fullscreen from "../../containers/trigger-fullscreen";
 import ToggleOpacity from "../../containers/toggle-opacity";
 import ConnectedComponentList from "../../containers/component-list-widget";
 import ConnectedComponentDemo from "../../containers/component-demo-widget";
+
+const processor = remark().use(emoji);
 
 export default connect(mapProps)(PatternSheet);
 
@@ -32,7 +37,7 @@ function PatternSheet(props) {
           </StyledControlsBox>
           {props.description &&
             <StyledDescription>
-              {props.description}
+              {processor.processSync(props.description).contents}
             </StyledDescription>
           }
           <StyledBoxLine>

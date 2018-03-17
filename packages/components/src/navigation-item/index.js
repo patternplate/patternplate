@@ -2,12 +2,16 @@ const React = require("react");
 const tag = require("tag-hoc").default;
 const color = require("color");
 const styled = require("styled-components").default;
+const remark = require("remark");
+const emoji = require("remark-gemoji-to-emoji");
 
 const fonts = require("../fonts");
 const Icon = require("../icon");
 const Link = require("../link");
 
 const FONTS = fonts();
+
+const processor = remark().use(emoji);
 
 class NavigationItem extends React.Component {
   constructor(...args) {
@@ -40,6 +44,7 @@ class NavigationItem extends React.Component {
     const { props } = this;
     const title = props.title || `Navigate to ${props.name} ${props.type}`;
     const symbol = props.active ? props.symbolActive : props.symbol;
+    const name = processor.processSync(props.name).contents;
 
     return (
       <StyledNavigationItem
