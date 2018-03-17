@@ -128,7 +128,7 @@ at the beginning of `README.md`.
 
   The interface updates automatically to display your changes:
 
-  ![](https://patternplate.github.io/media/images/screenshot-doc-global.svg)
+  ![](https://patternplate.github.io/media/images/screenshot-docs-global.svg)
 
 
 ## Up next
