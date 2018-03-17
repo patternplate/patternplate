@@ -58,7 +58,7 @@ class Navigation extends React.Component {
                 <NavigationLabel
                   enabled={props.componentsEnabled}
                   name="components"
-                  highlight={true}
+                  highlight
                   onClick={props.onLabelClick}>
                   Components
                 </NavigationLabel>
