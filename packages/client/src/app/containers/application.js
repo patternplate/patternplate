@@ -214,10 +214,11 @@ const StyledBrowserWarning = styled.div`
   display: none; /* overridden by separate js if needed */
   box-sizing: border-box;
   position: absolute;
+  position: sticky;
   top: 0;
   z-index: 4;
   right: 0;
-  left: ${props => props.navigationEnabled ? WIDTH : 0}px;
+  left: 0;
   width: 100%;
   padding: 15px 20px;
   padding-left: ${props => props.navigationEnabled ? 20 : 60}px;
@@ -296,8 +297,8 @@ const StyledSearchBox = styled.div`
   top: 12.5vh;
   bottom: 10vh;
   right: 0;
-  left: ${props => props.navigationEnabled ? 300 : 0}px;
-  width: ${props => props.navigationEnabled ? `calc(100% - 300px)` : `100%`};
+  left: 0;
+  width: 100%;
   pointer-events: none;
 `;
 
