@@ -99,7 +99,7 @@ counts up. Let's tell the consumers of our component library about this.
 
 You may have noticed the **my-patternplate** item in the Getting Started project:
 
-![](https://patternplate.github.io/media/images/screenshot-button.svg)
+![](https://patternplate.github.io/media/images/screenshot-component.svg)
 
 This represents the `README.md`, which is picked up by `patternplate` automatically.
 
