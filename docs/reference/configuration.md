@@ -95,3 +95,18 @@ module.exports = {
   render: "./mount.js"
 };
 ```
+
+### cover
+
+An absolute or relative module id `string`, resolved relative to `patternplate.config.js`.
+The exports of the resolved module are used as a specialized demo that is displayed independently
+of the patternplate web interface on `/`
+
+**Examples**
+
+```js
+module.exports = {
+  // use the file cover.js next to patternplate.config.js
+  render: "./cover.js"
+};
+```
