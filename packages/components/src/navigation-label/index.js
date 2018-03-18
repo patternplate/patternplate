@@ -15,7 +15,11 @@ module.exports = NavigationLabel;
 function NavigationLabel(props) {
   return (
     <StyledLabelContainer highlight={props.highlight}>
-      <StyledLabel highlight={props.highlight} enabled={props.enabled}>
+      <StyledLabel
+        highlight={props.highlight}
+        enabled={props.enabled}
+        size={props.size}
+        >
         <StyledLabelLink
           highlight={props.highlight}
           title={`${props.enabled ? 'Close' : 'Expand'} ${props.children} list`}
@@ -30,6 +34,11 @@ function NavigationLabel(props) {
     </StyledLabelContainer>
   );
 }
+
+const SIZES = {
+  S: 0.9,
+  M: 1
+};
 
 const StyledLabelContainer = styled.div`
   position: sticky;
@@ -51,7 +60,7 @@ const StyledLabel = styled.div`
   display: flex;
   align-items: center;
   font-family: ${FONTS.default};
-  font-size: .8em;
+  font-size: ${({size, theme}) => SIZES[size] * theme.fontSizeNumber}px;
   color: ${props => props.theme.color};
   background-color: ${({enabled, theme}) => enabled ? theme.backgroundTertiary : theme.background};
   border-style: solid;

@@ -59,7 +59,9 @@ class Navigation extends React.Component {
                   enabled={props.componentsEnabled}
                   name="components"
                   highlight
-                  onClick={props.onLabelClick}>
+                  onClick={props.onLabelClick}
+                  size="S"
+                  >
                   Components
                 </NavigationLabel>
                 {

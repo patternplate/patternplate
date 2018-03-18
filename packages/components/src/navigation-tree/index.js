@@ -29,6 +29,7 @@ function NavigationTree(props) {
                     enabled={enabled}
                     name={name}
                     highlight={false}
+                    size="M"
                     >
                     {item.manifest.displayName || item.manifest.name}
                   </NavigationLabel>

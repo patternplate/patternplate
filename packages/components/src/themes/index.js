@@ -35,7 +35,8 @@ module.exports = function getThemes(passed) {
     dark: "rgba(15, 15, 15, 1)",
     light: "rgba(220, 220, 220, 1)",
     fontWeight: "100",
-    fontSize: "14px"
+    fontSize: "14px",
+    fontSizeNumber: 14
   };
 
   const dark = merge({}, common, {
