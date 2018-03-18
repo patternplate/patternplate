@@ -158,6 +158,11 @@ you do that!
   ![](https://patternplate.github.io/media/images/screenshot-widgets-demo.svg)
 
 
+## Up next
+
+* [Guide: Convince with a cover](./doc/docs/guides/cover?guides-enabled=true)
+
+
 ## Related topics
 
 * [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
