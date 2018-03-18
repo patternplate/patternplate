@@ -72,12 +72,11 @@ next to your text editor.
 
 ## Create dynamic lists with ComponentList
 
-Let's take the idea of fusing together documenation and code and run with it. 
-What if you could execute code inside our docs? Turns out `patternplate`
-supports this:
+The idea of fusing code and docs is powerful, can we take it even further?
+What if you could execute code inside our docs? Turns out `patternplate` lets 
+you do that!
 
 1. Copy your new code block again and replace its language with `widget`.
-   The result should be a `./README.md` that ends like this:
 
   ````md
   ## My first code block
@@ -112,10 +111,10 @@ supports this:
 
   `ComponentList` creates a list of components matching the search query
   given in its `query` prop. 
-  We'll make the all components item show up in the list next:
+  Let's make all components show up in the list next.
 
 
-2. Change the `query` prop of `ComponentList` to `"is=pattern"`, like this:
+2. Change the `query` prop of `ComponentList` to `"is=pattern"`
 
   ````md
   ## My first widget
