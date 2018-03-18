@@ -21,8 +21,10 @@ const cover = require("./cover");
 module.exports = api;
 
 async function api({ server, cwd }) {
-  const clientQueue = await createCompiler({ cwd, target: "web" });
-  const serverQueue = await createCompiler({ cwd, target: "node" });
+  let [clientQueue, serverQueue] = await Promise.all([
+    createCompiler({ cwd, target: "web" }),
+    createCompiler({ cwd, target: "node" })
+  ]);
 
   const watcher = await createWatcher({cwd});
 
@@ -59,7 +61,18 @@ async function api({ server, cwd }) {
       send({type: message.type});
     });
 
-    watcher.subscribe(send);
+    watcher.subscribe(message => {
+      if (message.type === "change" && message.payload.contentType === "config") {
+        (async () => {
+          [clientQueue, serverQueue] = await Promise.all([
+            createCompiler({ cwd, target: "web" }),
+            createCompiler({ cwd, target: "node" })
+          ])
+        })();
+      }
+
+      send(message);
+    });
   };
 
   return mw;
@@ -91,10 +104,13 @@ async function createWatcher(options) {
           meta.errors.forEach(error => next({ type: "error", payload: error }));
         }
 
+        const configPath = filepath ? filepath : path.join(cwd, "patternplate.config.js");
+
         const parents = [
           ...(meta.patterns.length > 0 ? [commonDir(meta.patterns.map(m => path.join(cwd, m.path)))] : []),
           ...docs.map(d => path.join(cwd, globParent(d))),
-          ...entry.map(e => path.join(cwd, globParent(e)))
+          ...entry.map(e => path.join(cwd, globParent(e))),
+          configPath
         ];
 
         const watcher = chokidar.watch(parents, {
@@ -105,6 +121,10 @@ async function createWatcher(options) {
 
         watcher.on('all', async (e, p) => {
           const rel = path.relative(cwd, p);
+
+          if (p === configPath) {
+            next({ type: "change", payload: { file: p, contentType: "config" }});
+          }
 
           if (path.extname(rel) === ".md") {
             next({ type: "change", payload: { file: p, contentType: "pattern" }});
