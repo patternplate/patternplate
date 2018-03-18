@@ -51,11 +51,18 @@ We will …
    Started on http://localhost:1337
    ```
 
-3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/pattern/hello-world?guides-enabled=true).
+3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/?guides-enabled=true).
 
   If everything worked `patternplate` greets you with this screen:
 
   ![](https://patternplate.github.io/media/images/screenshot-hello-world.svg)
+
+
+## Take aways
+
+* There is `create-patternplate`, a command line program that helps with boostrapping patternplate quickly.
+
+* `patternplate` provides a command line interface. The default command is `start`, which brings up the web interface on [localhost:1337](http://localhost:1337/?guides-enabled=true).
 
 
 ## Up next

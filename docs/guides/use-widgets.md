@@ -158,6 +158,14 @@ you do that!
   ![](https://patternplate.github.io/media/images/screenshot-widgets-demo.svg)
 
 
+## Take aways
+
+* Code blocks for selected languages (`js`, `html`, `css`) are syntax-highlighted
+* A special `widget` code block enables inline code execution
+* There is a well-defined set of patternplate widgets for use in Markdown
+* `ComponentList` displays lists of patterns
+* `ComponentDemo` shows a pattern demo
+
 ## Up next
 
 * [Guide: Convince with a cover](./doc/docs/guides/cover?guides-enabled=true)

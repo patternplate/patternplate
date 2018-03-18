@@ -113,9 +113,11 @@ in a second.
 
    Let's try to be more structured about our search.
 
-3. Delete our previous search by clicking on the `x` the search field
+## Structured search
 
-4. Enter a structured search query like this: `tags=world`. 
+1. Delete our previous search by clicking on the `x` the search field
+
+2. Enter a structured search query like this: `tags=world`. 
    Don't worry if you don't know what that means just yet.
  
    This will search for all items that have the tag `world` attached. This results
@@ -172,6 +174,13 @@ So we'll add a new file there:
   * `patterns` and `docs` can be listen in a folder, but folders can not
   * content `*.md` files with defined `options.query` are not displayed in the interface
   * `patterns` and `docs` can be listed in multiple different virtual folders
+
+## Take aways
+
+* Meta data can be added to documentation in `frontmatter` blocks 
+* Tags, flags, etc. mcan be used to search trough both components and docs
+* There is fuzzy and structured search in patternplate
+* Structured search queries can be used to crate **Virtual Folders**
 
 ## Up next
 

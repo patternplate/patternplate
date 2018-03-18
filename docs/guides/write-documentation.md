@@ -133,6 +133,20 @@ at the beginning of `README.md`.
 
   ![](https://patternplate.github.io/media/images/screenshot-docs-global.svg)
 
+## Take aways
+
+* Documentation in `patternplate` is written in Markdown.
+
+* Meta data in `pattern.json` and `package.json` is an important piece of the documentation puzzle.
+
+* There is a distinction between **local** `lib/**/readme.md` and **global** `docs/**/*.md`
+  documentation. 
+  
+* Local docs are displayed under their pattern's demo.
+
+* Global docs show up in the sidebar.
+
+* Sidebar entries can be controlled via `frontmatter` blocks
 
 ## Up next
 

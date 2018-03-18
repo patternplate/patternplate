@@ -95,6 +95,10 @@ automatically and add **Button** to the components list.
      }
    }
    ```
+  
+  > :information_source: You might think: HTML in JavaScript. What is this, sorcery? 
+  > Don't worry, you can place your HTML in distinct files (demo.html) just fine, too.
+  > The same goes for your CSS (demo.css). See [Demos](./doc/docs/reference/demos?guides-enabled=true&reference-enabled=true#multi-file-demos) for details.
 
    Saving the file signals the **Button** demo to reload automatically and display the `HTML` you just added.
 
@@ -156,6 +160,17 @@ Let's count up when clicking on **Button**.
   Click the button to see our program in action
 
   ![](https://patternplate.github.io/media/images/screencast-button-programmed.gif)
+
+## Take aways
+
+* Demos are the entry to components
+* `demo.js` and `pattern.json` or `package.json` are required to display a component
+* `demo.js` provides `HTML`, `CSS` and JavaScript via the `html`, `css` and `default` exports 
+
+  > :information_source: Traditional multi file components work, too. 
+  > See [Demos](./doc/docs/reference/demos?guides-enabled=true&reference-enabled=true#multi-file-demos) for details.
+
+* Changes on source files cause demos to reload automatically
 
 ## Up next
 

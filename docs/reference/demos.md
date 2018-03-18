@@ -17,7 +17,7 @@ A component `demo` is a `JavaScript` file, that provides
 * an executable function on `module.exports`: demo.js
 * meta data in a `package.json` or `pattern.json` file
 
-## Demo file
+## Single file demos
 
 Demo files are assumend to be executable JavaScript according to your
 browser targets, as `patternplate` does not perform additional transpilation
@@ -37,7 +37,8 @@ module.exports.default = () => React.createElement("h1", {children: ["Hello worl
 ```
 
 Alternatively you can provide `HTML` and `CSS` via exports directly.
-`patternplate` will use the `html` and `css` exports by default.
+By convention `patternplate` will use `html` and `css` exports before considering
+any output produced by `default`.
 
 ```js
 module.exports = {
@@ -45,7 +46,22 @@ module.exports = {
   html: `<h1 class="hello-world">Hello World</h1>`,
   css: `.hello-world { font-family: sans-serif; color: cornflowerblue; }`
 }
-``` 
+```
+
+## Multi file demos
+
+You can also place `HTML` and `CSS` in `demo.html` and `demo.css`, so
+the following is equivalent to the single file demo above:
+
+```bash
+❯ tree lib
+lib
+└── hello-world
+    ├── demo.css # .hello-world { font-family: sans-serif; color: cornflowerblue; }
+    ├── demo.html # <h1 class="hello-world">Hello World</h1>
+    ├── demo.js # module.exports = {default: () => {}};
+    └── pattern.json # {name: "hello-world", version: "1.0.0"}
+```
 
 
 ## Meta data
