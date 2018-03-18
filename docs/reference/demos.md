@@ -14,7 +14,7 @@ identify your components correctly.
 
 A component `demo` is a `JavaScript` file, that provides
 
-* an executable function on `module.exports`: demo.js
+* a function on `module.exports.default`
 * meta data in a `package.json` or `pattern.json` file
 
 ## Single file demos
