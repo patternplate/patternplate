@@ -40,7 +40,7 @@ function Cover () {
             <div>
               <Logo/>
               <Stage>
-                <div>
+                <StageSlot>
                   <StageHeadline>
                     A shared space for system
                     design and engineering.
@@ -63,10 +63,10 @@ function Cover () {
                       </ButtonRowContent>
                     </Frame>
                   </ButtonRow>
-                </div>
-                <div>
+                </StageSlot>
+                <StageSlot>
                   <StageImage src="https://patternplate.github.io/media/images/screenshot-site.svg"/>
-                </div>
+                </StageSlot>
               </Stage>
             </div>
           </Frame>
@@ -102,6 +102,10 @@ const Stage = styled.div`
   @media screen and (min-width: 840px) {
     grid-template-columns: 1fr 1.3fr;
   }
+`;
+
+const StageSlot = styled.div`
+  position: relative;
 `;
 
 const StageContainer = styled.div`
@@ -205,7 +209,8 @@ const GithubButton = styled(Link)`
   width: 40px;
   fill: color;
   color: #100133;
-  > svg {
+  svg {
+    width: 100%;
     pointer-events: none;
   }
 `;
