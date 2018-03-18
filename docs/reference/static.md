@@ -7,6 +7,8 @@ options:
 
 # Reference: Static Files
 
+> :woman_student: **Level**: Beginner
+
 Static files such as images, fonts, videos etc. can
 be saved into the `./static` folder and referenced
 from other resources in `patternplate` via the 

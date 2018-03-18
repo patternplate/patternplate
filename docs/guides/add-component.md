@@ -9,8 +9,7 @@ options:
 
 # Build your first component in patternplate
 
-* **Time invest**: 10 Minutes
-* **Level**: Beginner - Expert
+> :timer_clock: **Time invest**: 10 Minutes ––– :woman_student: **Level**: Beginner
 
 ## What to expect
 
@@ -26,8 +25,11 @@ We will …
 ## You'll need
 
 * :white_check_mark: You are all set if you followed along [Guide: Getting Started](./doc/docs/guides/add-component?guides-enabled=true)
-* Text editor ([Atom](https://atom.io/) | [VSCode](https://code.visualstudio.com/))
-* patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+
+---
+
+* :writing_hand: Text editor
+* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
 ## Create a new pattern
 

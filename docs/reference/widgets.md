@@ -7,6 +7,8 @@ options:
 
 # Reference: Widgets
 
+> :woman_student: **Level**: Expert
+
 `patternplate` provides components that can be used in Markdown.
 This allows you to bring your documenation to live with e.g. actual, real component demos.
 

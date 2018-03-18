@@ -7,6 +7,8 @@ options:
 
 # Reference: CLI
 
+> :woman_student: **Level**: Intermediate
+
 The `patternplate` command line interface is the default
 way of interacting with `patternplate` functionality.
 

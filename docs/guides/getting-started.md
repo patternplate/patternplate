@@ -9,8 +9,7 @@ options:
 
 # Your kickstart into patternplate
 
-* **Time invest**: 5 Minutes
-* **Level**: Beginner - Expert
+> :timer_clock: **Time invest**: 5 Minutes ––– :woman_student: **Level**: Beginner
 
 ## What to expect
 
@@ -24,8 +23,8 @@ We will …
 
 ## You'll need
 
-* Terminal (MacOS: [iTerm](https://www.iterm2.com/) | Windows: [cmder](http://cmder.net/))
-* Node.js `>=6` ([Install](https://nodejs.org/en/))
+* :computer: Terminal (MacOS: [iTerm](https://www.iterm2.com/) | Windows: [cmder](http://cmder.net/))
+* :turtle: Node.js `>=6` ([Install](https://nodejs.org/en/))
 
 ## Initialize a new project
 

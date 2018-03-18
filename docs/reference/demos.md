@@ -7,6 +7,8 @@ options:
 
 # Reference: Demos
 
+> :woman_student: **Level**: Expert
+
 Demo files provide the necessary entry points for `patternplate` to
 identify your components correctly. 
 

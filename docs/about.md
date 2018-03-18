@@ -1,16 +1,26 @@
-# About 
+# How to use the docs 
 
-`patternplate` documentation is categorized into **Guides** and **References**.
+> :woman_student: **Level**: Beginner
 
-* **Guides** are instructions for common use cases that can be followed step by step.
-  You can expect every guide to state the intended audience, recommended skill level and the 
-  time it will take to complete the guide. Most guides are written **for beginners**.
+`patternplate` documentation is categorized into [Guides](#guides) and [References](#references). 
+All doc items state the recommended [skill level](#levels):woman_student:. 
+Guides will also state the time :timer_clock: it will take to complete them.
   
-* **References** are detailed technical documentation about various `patternplate` features
-and its API. The reference section will become your go-to place for docs as you grow more familiar
-with `patternplate`. References are written with **intermediate users** and **developers** in mind. 
+## Levels
+
+> :information_source: Don't be put off by the levels, they are only meant to help. Ask your colleagues for help and [post an issue on GitHub](https://github.com/patternplate/patternplate/issues/new) if something is hard to understand in our docs. Thank you! :bow:
+
+The recommended levels for the instructions in this documentation are structured according to the technical knowledge required. 
+
+* **Beginners**: No technical knowledge required. We'll guide you through everything.
+* **Intermediate**: Basic knowledge of Markdown, JSON and YAML is required. Experience with using the command line helps.
+* **Expert**: Safe handling of data formats. Basic knowledge of HTML, CSS JavaScript
 
 ## Guides
+
+Instructions for common use cases that can be followed step by step. 
+This is where you'll want to begin when exploring patternplate and its features.
+Most guides are written **for beginners**.
 
 ```widget
 const React = require("react");
@@ -19,6 +29,10 @@ module.exports = () => <PatternList query="tags=Guide AND is=doc" />;
 ```
 
 ## References
+
+Detailed technical documentation about various `patternplate` features
+and its API. The reference section will become your go-to place for docs as you grow more familiar
+with `patternplate`. References are written with **intermediate users** and **developers** in mind. 
 
 ```widget
 const React = require("react");

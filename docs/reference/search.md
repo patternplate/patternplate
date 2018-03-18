@@ -7,6 +7,8 @@ options:
 
 # Reference: Search
 
+> :woman_student: **Level**: Beginner
+
 `patternplate` provides a powerful search engine on top of your component library.
 
 Access the search panel by clicking on the :mag_right: icon in the bottom

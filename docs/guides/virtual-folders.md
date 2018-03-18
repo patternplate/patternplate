@@ -9,16 +9,16 @@ options:
 
 # Divide and Conquer with Virtual Folders
 
+> :timer_clock: **Time invest**: 5 Minutes ––– :woman_student: **Level**: Intermediate
+
+
+## What to expect
+
 As your component library grows you'll find it increasingly difficult 
 to find all the sweet components you built. 
 
 Learn how the search and tagging system in `patternplate` helps you to 
 get a grip on the size and complexity of your component library.
-
-* **Time invest**: 5 Minutes
-* **Level**: Intermediate - Expert
-
-## What to expect
 
 We will …
 
@@ -29,8 +29,10 @@ We will …
 ## You'll need
 
 * :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
-* Text editor
-* patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+---
+
+* :writing_hand: Text editor
+* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
 ## Before you start
 

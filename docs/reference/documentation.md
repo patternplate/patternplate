@@ -7,6 +7,8 @@ options:
 
 # Reference: Documentation
 
+> :woman_student: **Level**: Intermediate
+
 `patternplate` supports Markdown for global as well as component documentation.
 
 Markdown in `patternplate` supports all features of [GitHub flavored markdown][github-flavored-markdown].

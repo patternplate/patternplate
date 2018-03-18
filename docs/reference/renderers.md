@@ -7,6 +7,8 @@ options:
 
 # Reference: Renderers
 
+> :woman_student: **Level**: Expert
+
 `patternplate` renderer packages provide necessary glue 
 code to produce code a browser understands (`HTML`, `CSS` and `JavaScript`)
 from your components. 

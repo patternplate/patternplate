@@ -9,8 +9,8 @@ options:
 
 # Explain your work with Markdown
 
-* **Time invest**: 10 Minutes
-* **Level**: Intermediate - Expert
+> :timer_clock: **Time invest**: 15 Minutes ––– :woman_student: **Level**: Intermediate
+
 
 ## What to expect
 
@@ -29,8 +29,11 @@ We will …
 ## You'll need
 
 * :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
-* Text editor
-* patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+
+---
+
+* :writing_hand: Text editor
+* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
 
 ## Before you start
 

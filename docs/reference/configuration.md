@@ -7,6 +7,8 @@ options:
 
 # Reference: Configuration
 
+> :woman_student: **Level**: Expert
+
 `patternplate` can be configured via `patternplate.config.js`.
 
 In absence of a `patternplate.config.js` file the defaults are:
