@@ -74,7 +74,6 @@ function PatternSheet(props) {
 }
 
 
-
 const StyledSearchTrigger = styled.span`
   &:not(:first-child) {
     margin-left: 10px;
