@@ -38,6 +38,12 @@ We will …
    npx create-patternplate --out my-patternplate --guide
    ```
 
+  This will create a project for you and install the relevant dependencies.
+  Depending on the quality of your network connection this may take a while.
+
+  ![](https://patternplate.github.io/media/casts/cast-create.svg)
+
+
 2. Let's start `patternplate` next:
 
    Like `npx`, `npm` is available if you installed Node.js.
