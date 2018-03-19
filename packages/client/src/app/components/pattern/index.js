@@ -116,7 +116,7 @@ const StyledPatternLoader = styled.div`
 
 const PatternContainer = styled.div`
   height: 100%;
-  padding-left: 60px;
+  padding-left: ${props => props.navigationEnabled ? 0 : 60}px;
 `;
 
 export default class Pattern extends React.Component {
@@ -167,7 +167,7 @@ export default class Pattern extends React.Component {
             )}
           </Transition>
           <StyledPatternDemo>
-            <PatternContainer>
+            <PatternContainer navigationEnabled={props.navigationEnabled}>
               <PatternDemo
                 src={props.src}
                 contents={props.contents}
