@@ -171,7 +171,6 @@ function demo(content, payload) {
         <!-- content.after -->
         ${content.after || ""}
         <!-- ../ -> /api/ -->
-        <script src="../patternplate.web.vendors.js"></script>
         <script src="../patternplate.web.components.js"></script>
         <script src="../patternplate.web.probe.js"></script>
         <script src="../patternplate.web.mount.js"></script>
