@@ -24,6 +24,7 @@ class PatternContainer extends React.Component {
         type={props.type}
         updated={props.updated}
         navigationEnabled={props.navigationEnabled}
+        screenshot={props.screenshot}
       />
     );
   }
@@ -87,7 +88,8 @@ function mapState(state) {
     type: items.selectType(state),
     contentType: items.selectContentType(state),
     updated: state.demo.updated,
-    navigationEnabled: state.navigationEnabled
+    navigationEnabled: state.navigationEnabled,
+    screenshot: state.routing.locationBeforeTransitions.query.screenshot === "true"
   };
 }
 

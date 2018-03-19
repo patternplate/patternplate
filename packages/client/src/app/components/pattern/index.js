@@ -16,17 +16,17 @@ const CROSSES = props => btoa(`
 </svg>
 `);
 
-const StyledPattern = styled(tag(["checkers", "navigationEnabled"])("div"))`
+const PAD = props => props.padded ? 50 : 0;
+const OFF = props => props.navigationEnabled ? 300 : 0;
+const OFFSET = props => PAD(props) + OFF(props);
+
+const StyledPattern = styled(tag(["checkers", "navigationEnabled", "padded"])("div"))`
   position: fixed;
-  width: ${props => props.navigationEnabled ? 'calc(100% - 300px)' : '100%'};
-  left: ${props => props.navigationEnabled ? 300 : 0}px;
-  @media print {
-    position: absolute;
-    width: 100%;
-    left: 0;
-  }
-  top: 0;
-  right: 0;
+  width: calc(100% - ${props => OFFSET(props) + PAD(props)}px);
+  top: ${PAD}px;
+  left: ${props => OFFSET(props)}px;
+  right: ${PAD}px;
+  bottom: ${PAD}px;
   box-sizing: border-box;
   height: 100%;
   &::before {
@@ -76,9 +76,7 @@ const StyledPatternLoader = styled.div`
   right: 0;
   left: 0;
   height: 3px;
-  @media print {
-    display: none;
-  }
+  ${props => props.hidden ? 'display: none;' : ''}
   &::after {
     position: absolute;
     top: 0;
@@ -146,7 +144,11 @@ export default class Pattern extends React.Component {
 
     return (
       <React.Fragment>
-        <StyledPattern checkers={props.opacity} navigationEnabled={props.navigationEnabled}>
+        <StyledPattern
+          padded={props.screenshot}
+          checkers={props.opacity}
+          navigationEnabled={props.navigationEnabled}
+          >
           <Helmet
             title={[getPrefix(props), props.displayName]
               .filter(Boolean)
@@ -157,7 +159,11 @@ export default class Pattern extends React.Component {
             timeout={{ enter: 1000, exit: 850 }}
           >
             {status => (
-              <StyledPatternLoader status={status} error={props.error} />
+              <StyledPatternLoader
+                hidden={props.screenshot}
+                status={status}
+                error={props.error}
+                />
             )}
           </Transition>
           <StyledPatternDemo>
