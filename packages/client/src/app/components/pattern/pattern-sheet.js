@@ -80,10 +80,14 @@ const StyledSearchTrigger = styled.span`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 function SearchTrigger(props) {
   return (
     <StyledSearchTrigger>
-      <Link
+      <StyledLink
         className={props.className}
         query={{
           "search-enabled": true,
@@ -92,7 +96,7 @@ function SearchTrigger(props) {
         title={`Search other patterns with ${props.field} "${props.search}"`}
       >
         {props.children}
-      </Link>
+      </StyledLink>
     </StyledSearchTrigger>
   );
 }
