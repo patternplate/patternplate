@@ -271,7 +271,6 @@ EOF
   The `patternplate` demo updates as soon as `babel` has built the changes from
   `src` to `lib`: 
 
-
   ![](https://patternplate.github.io/media/images/screenshot-build-changed.svg)
 
 
