@@ -113,11 +113,17 @@ async function build({flags}) {
 }
 
 function selectBase(base) {
-  if (base === "/") {
+  if (base === "/" || base === "") {
     return base;
   }
 
-  return `${base.charAt(0) === "/" ? "" : "/"}${base}`;
+  return [
+    base.charAt(0) === "/" ? "" : "/",
+    base,
+    base.charAt(base.length - 1) === "/" ? "" : "/"
+  ]
+  .filter(Boolean)
+  .join('');
 }
 
 function bundle({ cwd, target }) {
