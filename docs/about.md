@@ -1,10 +1,14 @@
+---
+options:
+  order: 4
+---
 # How to use the docs 
 
 > :woman_student: **Level**: Beginner
 
-`patternplate` documentation is categorized into [Guides](#guides) and [References](#references). 
+`patternplate` documentation is categorized into [Guides](#guides), [Advanced](#advanced) and [References](#references). 
 All doc items state the recommended [skill level](#levels):woman_student:. 
-Guides will also state the time :timer_clock: it will take to complete them.
+Guides and Advanced topics will also state the time :timer_clock: it will take to complete them.
   
 ## Levels
 
@@ -26,6 +30,18 @@ Most guides are written **for beginners**.
 const React = require("react");
 const {PatternList} = require("@patternplate/widgets");
 module.exports = () => <PatternList query="tags=Guide AND is=doc" />;
+```
+
+## Advanced
+
+Advanced topics usually require technical knowledge at the level of a professional software developer. 
+
+Most users will rarely read this section unless they are entrusted with the technical setup of a patternplate project.
+
+```widget
+const React = require("react");
+const {PatternList} = require("@patternplate/widgets");
+module.exports = () => <PatternList query="tags=Advanced AND is=doc" />;
 ```
 
 ## References

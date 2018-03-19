@@ -22,15 +22,19 @@ const RENDER_PATH = "/patternplate.node.render.js";
 // writes to a virtual fs / union fs
 async function build({flags}) {
   const cwd = flags.cwd || process.cwd();
-  const out = path.resolve(cwd, flags.out || "docs/patterns");
-  const rel = path.relative(cwd, out);
-  const upath = out.length >= rel ? rel : out;
+
+  if (typeof flags.out !== "string" || flags.out.length === 0) {
+    throw new Error(`expected --out to be non-empty string, received "${flags.out}" of type "${typeof flags.out}"`);
+  }
 
   if (typeof flags.base !== "string" || flags.base.length === 0) {
     throw new Error(`expected --base to be non-empty string, received "${flags.base}" of type "${typeof flags.base}"`);
   }
 
+  const out = path.resolve(cwd, flags.out);
   const base = selectBase(flags.base);
+  const rel = path.relative(cwd, out);
+  const upath = out.length >= rel ? rel : out;
 
   const spinner = ora(`Building to "${upath}"`).start();
 
