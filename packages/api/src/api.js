@@ -14,9 +14,9 @@ const Observable = require("zen-observable");
 
 const createCompiler = require("./compiler");
 const demo = require("./demo");
-const pack = require("./pack");
 const main = require("./main");
 const cover = require("./cover");
+const scripts = require("./scripts");
 
 module.exports = api;
 
@@ -33,7 +33,7 @@ async function api({ server, cwd }) {
     .get("/state.json", await main({ cwd }))
     .get("/demo/*.html", await demo({ cwd, queue: serverQueue }))
     .get("/cover.html", await cover({ cwd, queue: serverQueue }))
-    .use(await pack({ compiler: clientQueue.compiler }));
+    .use(await scripts({ queue: clientQueue }));
 
   mw.subscribe = handler => {
     debug("subscribing to webpack and fs events");
@@ -65,6 +65,9 @@ async function api({ server, cwd }) {
     watcher.subscribe(message => {
       if (message.type === "change" && message.payload.contentType === "config") {
         (async () => {
+          clientQueue.stop();
+          serverQueue.stop();
+
           [clientQueue, serverQueue] = await Promise.all([
             createCompiler({ cwd, target: "web" }),
             createCompiler({ cwd, target: "node" })

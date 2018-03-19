@@ -1,51 +1,58 @@
-const path = require("path");
-const compiler = require("@patternplate/compiler");
+// const path = require("path");
+// const compiler = require("@patternplate/compiler");
+const ARSON = require("arson");
+const {fork} = require("child_process");
+const dargs = require("dargs");
 const Observable = require("zen-observable");
+const MemoryFilesystem = require("memory-fs");
 
 module.exports = createCompiler;
 
 const debug = require("util").debuglog("PATTERNPLATE");
 
+const WORKER = require.resolve("./compiler-worker");
+const OPTS = { stdio: ["inherit", "inherit", "inherit", "ipc"] };
+
 async function createCompiler({ cwd, target = "" }) {
-  const c = await compiler({cwd, target});
-  const fs = c.outputFileSystem;
+  const worker = fork(WORKER, dargs({cwd, target}), OPTS);
+
+  let watching = false;
 
   const queue = [];
   let listeners = [];
   const next = (message) => listeners.forEach(listener => listener.next(message));
 
-  c.plugin("compile", () => {
-    debug("compile", target);
-    queue.unshift({type: 'start', target, payload: {}});
-    next(queue);
-  });
+  worker.on("message", envelope => {
+    const {type, target, payload} = ARSON.parse(envelope);
 
-  c.plugin("done", (stats) => {
-    if (stats.compilation.errors && stats.compilation.errors.length > 0) {
-      stats.compilation.errors.forEach(err => {
-        debug("error", {err, target});
-      });
-
-      queue.unshift({type: 'error', target, payload: stats.compilation.errors});
-      return next(queue);
+    switch (type) {
+      case "ready": {
+        return worker.send(ARSON.stringify({type: "start"}));
+      }
+      case "done": {
+        debug({type, target});
+        const fs = new MemoryFilesystem(payload);
+        queue.unshift({type, target, payload: {fs}});
+        return next(queue);
+      }
+      case "start": {
+        debug({type, target});
+        queue.unshift({type, target, payload});
+        return next(queue);
+      }
+      case "error": {
+        if (Array.isArray(payload)) {
+          return payload.forEach(p => console.error(p.message))
+        }
+        console.error(payload.message);
+      }
     }
-    debug("done", target);
-    queue.unshift({type: 'done', target, payload: {fs}});
-    next(queue);
   });
-
-  c.plugin("failed", err => {
-    debug("failed", target);
-    queue.unshift({type: 'error', target, payload: err});
-    next(queue);
-  });
-
-  let watching = false;
 
   const observable = new Observable(observer => {
     if (!watching) {
       watching = true;
-      c.watch({ignored: "**/pattern.json"}, () => {});
+      worker.send(ARSON.stringify({type: "watch"}));
     }
 
     listeners.push(observer);
@@ -54,8 +61,9 @@ async function createCompiler({ cwd, target = "" }) {
     }
   });
 
-  observable.compiler = c;
   observable.queue = queue;
-
+  observable.stop = () => {
+    worker.send(ARSON.stringify({type: "stop"}));
+  }
   return observable;
 }
