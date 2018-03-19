@@ -293,12 +293,12 @@ const StyledContentContainer = styled.div`
 `;
 
 const StyledSearchBox = styled.div`
-  position: absolute;
+  position: fixed;
   top: 12.5vh;
   bottom: 10vh;
   right: 0;
-  left: 0;
-  width: 100%;
+  left: ${props => props.navigationEnabled ? 300 : 0}px;
+  width: ${props => props.navigationEnabled ? `calc(100% - 300px)` : `100%`};
   pointer-events: none;
 `;
 
