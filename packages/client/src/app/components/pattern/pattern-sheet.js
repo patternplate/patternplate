@@ -17,7 +17,7 @@ export default connect(mapProps)(PatternSheet);
 
 function PatternSheet(props) {
   return (
-    <StyledPatternSheet>
+    <StyledPatternSheet screenshot={props.screenshot}>
       <StyledPatternSheetContainer>
           <StyledControlsBox>
             <StyledName>
@@ -111,7 +111,8 @@ function mapProps(state) {
     name: item.selectName(state),
     flag: item.selectFlag(state),
     tags: item.selectTags(state),
-    version: item.selectVersion(state)
+    version: item.selectVersion(state),
+    screenshot: state.routing.locationBeforeTransitions.query.screenshot === "true"
   };
 }
 
@@ -133,7 +134,7 @@ const StyledDescription = styled(Text)`
 `;
 
 const StyledPatternSheet = styled.div`
-/*   position: relative; */
+  position: relative;
   z-index: 2;
   box-sizing: border-box;
   width: 100%;
