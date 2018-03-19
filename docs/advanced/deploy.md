@@ -1,6 +1,6 @@
 ---
-displayName: "Advanced: Deploy to GHPages"
-description: "Learn how to deploy a static build of your component library to Github Pages"
+displayName: "Advanced: Deploy to GitHub"
+description: "Learn how to deploy a static build of your component library to GitHub Pages"
 tags: 
  - Advanced
 options:
@@ -52,7 +52,7 @@ of your component librarie's interface
   yarn patternplate build --out=docs/patterns --base=/patterns/
   ```
 
-![](https://patternplate.github.io/media/casts/cast-build.svg)
+  ![](https://patternplate.github.io/media/casts/cast-build.svg)
 
 3. `patternplate` creates a bunch of files in `docs/patterns` for you
 
