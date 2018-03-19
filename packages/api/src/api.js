@@ -26,6 +26,7 @@ async function api({ server, cwd }) {
     createCompiler({ cwd, target: "node" })
   ]);
 
+
   const watcher = await createWatcher({cwd});
 
   const mw = express()
@@ -39,7 +40,7 @@ async function api({ server, cwd }) {
     const wss = new WebSocket.Server({ server });
 
     // Prevent client errors (frequently caused by Chrome disconnecting on reload)
-    // from bubbling up and killing the server, ref: https://github.com/websockets/ws/issues/1256
+    // from bubbling up and making the server fail, ref: https://github.com/websockets/ws/issues/1256
     wss.on("connection", ws => {
       ws.on("error", err => {
         if (err.errno === 'ECONNRESET') {
@@ -106,18 +107,21 @@ async function createWatcher(options) {
 
         const configPath = filepath ? filepath : path.join(cwd, "patternplate.config.js");
 
-        const parents = [
-          ...(meta.patterns.length > 0 ? [commonDir(meta.patterns.map(m => path.join(cwd, m.path)))] : []),
-          ...docs.map(d => path.join(cwd, globParent(d))),
-          ...entry.map(e => path.join(cwd, globParent(e))),
-          configPath
-        ];
+        const parents = getParents({
+          globs: [...entry, ...docs],
+          paths: [
+            configPath,
+            meta.patterns.length > 0
+                ? commonDir(meta.patterns.map(m => path.join(cwd, m.path)))
+                : null
+          ].filter(Boolean)
+        }, {cwd});
+
+        debug(`subscribing to changes on: ${parents.map(p => path.relative(cwd, p)).join(', ')}`);
 
         const watcher = chokidar.watch(parents, {
           ignoreInitial: true
         });
-
-        debug("subscribing to meta data and documentation changes");
 
         watcher.on('all', async (e, p) => {
           const rel = path.relative(cwd, p);
@@ -162,3 +166,11 @@ function getSender(wss, handler) {
   }
 }
 
+function getParents({globs = [], paths = []}, {cwd}) {
+  return [
+    ...paths,
+    ...globs
+      .filter(g => g.charAt(0) !== "!")
+      .map(g =>  path.join(cwd, globParent(g)))
+  ];
+}
