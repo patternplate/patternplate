@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/demo-client",
-  "version": "2.0.0-83",
+  "version": "2.0.0-84",
   "description": "patternplate browser script for demo startup",
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
   },
   "xo": false,
   "dependencies": {
-    "@patternplate/websocket-client": "^2.0.0-83"
+    "@patternplate/websocket-client": "^2.0.0-84"
   }
 }
