@@ -137,19 +137,19 @@ the ubiquitous in the JavaScript ecosystem at the time of writing.
   ```
   mkdir -p src/button
   
-cat > src/button/demo.js << EOF
-module.exports = {
-  default: () => console.log("Button"),
-  html: () => \`<button>ES2015 Button</button>\`,
-  css: () => \`button {
-    padding: 10px 15px;
-    font-size: 20px; 
-    background: none; 
-    color: cornflowerblue; 
-    border: 1px solid currentColor;
-  }\`
-};
-EOF
+  cat > src/button/demo.js << EOF
+  module.exports = {
+    default: () => console.log("Button"),
+    html: () => \`<button>ES2015 Button</button>\`,
+    css: () => \`button {
+      padding: 10px 15px;
+      font-size: 20px; 
+      background: none; 
+      color: cornflowerblue; 
+      border: 1px solid currentColor;
+    }\`
+  };
+  EOF
   
   cat > src/button/pattern.json << EOF
   {
