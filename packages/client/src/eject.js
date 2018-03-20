@@ -12,7 +12,7 @@ function eject() {
   if (process.env.BUNDLE === "@patternplate/cli") {
     const ctx = require.context("raw-loader!./static", true, /.js$/);
 
-    ctx.keys().forEach(key => vfs.writeFileSync(path.join("/static", key), ctx(key)));
+    ctx.keys().forEach(key => vfs.writeFileSync(path.posix.join("/static", key), ctx(key)));
 
   } else {
     const files = globby.sync(["*.js"], {cwd: path.join(__dirname, "static")});
