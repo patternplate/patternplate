@@ -41,7 +41,7 @@ We will …
   This will create a project for you and install the relevant dependencies.
   Depending on the quality of your network connection this may take a while.
 
-  ![](https://patternplate.github.io/media/casts/cast-create.svg)
+<!--  ![](https://patternplate.github.io/media/casts/cast-create.svg) -->
 
 
 2. Let's start `patternplate` next:
