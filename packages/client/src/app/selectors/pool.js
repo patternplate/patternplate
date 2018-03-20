@@ -27,7 +27,7 @@ export const selectFlatPool = createSelector(
 const selectSearch = createSelector(
   selectFlatPool,
   flatPool => {
-    const search = createSearch(flatPool);
+    const search = () => [];
     return term => {
       const matches = search(term);
       return matches.map(item => flatPool.find(p => p.id === item));

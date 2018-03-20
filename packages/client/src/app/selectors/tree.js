@@ -72,7 +72,8 @@ export function enrich(child, context) {
     : "item";
 
   if (child.type === "folder") {
-    child.children = search(child.manifest.options.query);
+    child.children = search(child.manifest.options.query)
+      .filter(item => item.id !== child.id);
   }
 
   if (

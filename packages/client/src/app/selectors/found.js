@@ -110,7 +110,7 @@ const OPERATORS = [
 
 const selectSearch = createSelector(
   selectPoolFlat,
-  pool => createSearch(pool)
+  pool => () => [pool]
 )
 
 const selectMatches = createSelector(

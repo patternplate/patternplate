@@ -13,7 +13,7 @@ const sd = createSelector(
   () => () => [],
   (tree, id, hide, location, base, search) => {
     const context = { hide, id, prefix: "doc", location, base, search };
-    return flatten(sanitize(merge({}, tree), context));
+    return flatten(sanitize(merge({}, tree), context)).filter(item => item.type !== "folder");
   }
 );
 
@@ -29,14 +29,13 @@ const selectFlatPool = createSelector(
     search: () => []
   }),
   (docs, nav, context) => {
-    const enriched = docs.map(d => {
-      return enrich(d, context);
-    });
-    return enriched.concat(nav)
+    return docs
+      .map(d => enrich(d, context))
+      .concat(nav)
       .filter(item => Boolean(item.id) && Boolean(item.contentType))
   });
 
-const selectSearch = createSelector(
+const selectSubSearch = createSelector(
   selectFlatPool,
   flatPool => {
     const search = createSearch(flatPool);
@@ -53,7 +52,7 @@ const selectDocsTree = createSelector(
   state => state.hideEnabled,
   state => state.routing.locationBeforeTransitions,
   state => state.base,
-  selectSearch,
+  selectSubSearch,
   (tree, id, hide, location, base, search) => {
     const context = { hide, id, prefix: "doc", location, base, search };
     return sanitize(merge({}, tree), context);
