@@ -3,7 +3,6 @@ import { flatten, uniq, uniqBy, sortBy } from "lodash";
 import { createSelector } from "reselect";
 import semver from "semver";
 import {flat as selectPoolFlat} from "./pool";
-import createRelationSelector from "./relation";
 
 const FLAGS = {
   alpha: 0,
@@ -110,7 +109,7 @@ const OPERATORS = [
 
 const selectSearch = createSelector(
   selectPoolFlat,
-  pool => () => [pool]
+  createSearch
 )
 
 const selectMatches = createSelector(
@@ -451,16 +450,11 @@ export const selectActiveItem = createSelector(
   (state, found, preview) => {
     const index = Math.min(preview, found.length - 1);
     const item = found[index];
-    const selectItem = () => item;
-    const rel = item
-      ? key => createRelationSelector(key, selectItem)(state)
-      : i => i;
-
     return item
       ? Object.assign({}, item, {
           index,
           dependents: [],// rel("dependents"),
-          dependencies: []//rel("dependencies")
+          dependencies: [] // rel("dependencies")
         })
       : item;
   }
