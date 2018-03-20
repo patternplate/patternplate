@@ -538,13 +538,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.0.0-77"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-
 "@patternplate/pack@^2.0.0-19":
   version "2.0.0-19"
   resolved "https://registry.npmjs.org/@patternplate/pack/-/pack-2.0.0-19.tgz#c349ca728394c208d120ab5ceb2c7fbcf9b2590e"
