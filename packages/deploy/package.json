@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/deploy-site",
-  "version": "2.0.0-84",
+  "version": "2.0.0-85",
   "description": "patternplate static site deployment",
   "bin": {
     "patternplate-deploy": "./deploy.js"
