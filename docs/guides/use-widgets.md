@@ -48,7 +48,7 @@ for a number of common web languages. Let's try this:
 next to your text editor.
 
 3. Append the following code to `./README.md`. Don't worry about the contents too much for
-   now, we just test out sytax highlighting with this:
+   now, we just test out syntax highlighting with this:
 
   ````md
   ## My first code block
