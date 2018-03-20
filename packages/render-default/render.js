@@ -1,12 +1,12 @@
 const {merge, pick} = require("lodash");
 
-const SLOTS = ["head", "css", "before", "html", "after", "js"];
+const IN_SLOTS = ["html", "css", "js", "md", "json"];
+const OUT_SLOTS = [...IN_SLOTS, "head", "before", "after", "script"];
 
 module.exports = render;
-module.exports.SLOTS = SLOTS;
 
 function render(input) {
-  return SLOTS
+  return IN_SLOTS
     .reduce((output, slot) => {
       execute(input, output, {name: slot});
       return output;
@@ -28,7 +28,7 @@ function execute(input, output, {name}) {
   }
 
   if (typeof result === "object" && !Array.isArray(result)) {
-    merge(output, pick(result, SLOTS));
+    merge(output, pick(result, OUT_SLOTS));
     return output;
   }
 
