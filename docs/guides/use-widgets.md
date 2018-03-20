@@ -153,7 +153,7 @@ you do that!
   ```
   ````
 
-2. Scroll to the very end of `./README.md` and see a live demo of `Button` embeded directly:
+2. Scroll to the very end of `./README.md` and see a live demo of `Button` embedded directly:
 
   ![](https://patternplate.github.io/media/images/screenshot-widgets-demo.svg)
 
