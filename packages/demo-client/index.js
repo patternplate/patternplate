@@ -37,10 +37,12 @@ function getData() {
 }
 
 function getComponent(components, data) {
-  const top = components[data.artifact];
+  const fileId = data.artifact.split(path.sep).join('/');
+  const top = components[fileId];
 
-  if (top[data.source]) {
-    return top[data.source];
+  const moduleId = data.source.split(path.sep).join('/');
+  if (top[moduleId]) {
+    return top[moduleId];
   }
 
   return top;

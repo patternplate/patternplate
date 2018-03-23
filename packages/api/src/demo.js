@@ -23,7 +23,7 @@ async function demo(options) {
       const id = req.params[0];
 
       // TODO: Send errors to central observer
-      const {patterns} = await loadMeta({
+      const { patterns } = await loadMeta({
         cwd,
         entry
       });
@@ -34,12 +34,12 @@ async function demo(options) {
         return res.sendStatus(404);
       }
 
-      const {fs} = await wait(options.queue);
+      const { fs } = await wait(options.queue);
 
       const getModule = fromFs(fs);
       const bundle = getModule(BUNDLE_PATH);
       const component = getComponent(bundle, found);
-      const render =  component.render || getModule(RENDER_PATH);
+      const render = component.render || getModule(RENDER_PATH);
       const content = render(component);
       res.send(html(content, found));
     } catch (err) {
@@ -77,10 +77,12 @@ function wait(observable) {
 }
 
 function getComponent(components, data) {
-  const top = components[data.artifact];
+  const fileId = data.artifact.split(path.sep).join('/');
+  const top = components[fileId];
 
-  if (top[data.source]) {
-    return top[data.source];
+  const moduleId = data.source.split(path.sep).join('/');
+  if (top[moduleId]) {
+    return top[moduleId];
   }
 
   return top;
@@ -95,7 +97,7 @@ function fromFs(fs) {
 
 const exportsCache = new Map();
 
-function getExports(source, {filename}) {
+function getExports(source, { filename }) {
   const hash = stringHash(source);
 
   if (!exportsCache.has(hash)) {
