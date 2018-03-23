@@ -38,7 +38,7 @@ function mapDispatch(dispatch, ownProps) {
 }
 
 function getHref(props, context) {
-  if (props.external || !context.location) {
+  if (props.external === true || !context.location) {
     return props.href;
   }
 
@@ -91,6 +91,10 @@ function getHref(props, context) {
 function prefix(base, pathname) {
   const b = norm(base);
   const p = norm(pathname);
+
+  if (p === '') {
+    return `/${b}/`;
+  }
 
   if (p.startsWith(b)) {
     return `/${p}`;

@@ -21,7 +21,7 @@ class Logo extends React.Component {
 
     return (
       <div className={props.className}>
-        <StyledLink external href="/" query={null} target="_self">
+        <StyledLink external="base" href="/" query={null} target="_self">
           {child}
         </StyledLink>
       </div>
