@@ -22,8 +22,8 @@ module.exports = async function webpackEntry() {
 
   const reg = await Promise.all(files.map(async file => {
     const full = path.join(options.cwd, file);
-    const rel = path.relative(process.cwd(), full);
-    const exported = await getExported(full, {fs: this.fs});
+    const rel = path.relative(process.cwd(), full).split(path.sep).join('/');
+    const exported = await getExported(full, { fs: this.fs });
 
     const mod = [`module.exports['${file}'] = require('./${rel}');`]
 
@@ -52,7 +52,7 @@ module.exports = async function webpackEntry() {
 function getFiles(options) {
   const entries = Array.isArray(options.entry) ? options.entry : [options.entry];
   const cwd = options.cwd || process.cwd();
-  return globby(entries, {cwd});
+  return globby(entries, { cwd });
 }
 
 function ext(e, ...input) {
@@ -62,7 +62,7 @@ function ext(e, ...input) {
   return path.format(parsed);
 }
 
-async function getExported(modulePath, {fs}) {
+async function getExported(modulePath, { fs }) {
   const code = String(fs.readFileSync(modulePath));
 
   try {
