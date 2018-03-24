@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.0.0-90",
+  "version": "2.0.0-91",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -23,11 +23,11 @@
     ]
   },
   "dependencies": {
-    "@patternplate/compiler": "^2.0.0-90",
-    "@patternplate/demo-client": "^2.0.0-90",
-    "@patternplate/probe-client": "^2.0.0-90",
-    "@patternplate/render-default": "^2.0.0-90",
-    "@patternplate/webpack-entry": "^2.0.0-90",
+    "@patternplate/compiler": "^2.0.0-91",
+    "@patternplate/demo-client": "^2.0.0-91",
+    "@patternplate/probe-client": "^2.0.0-91",
+    "@patternplate/render-default": "^2.0.0-91",
+    "@patternplate/webpack-entry": "^2.0.0-91",
     "arson": "^0.2.6",
     "chalk": "^2.3.2",
     "command-exists": "^1.2.2",
@@ -54,12 +54,12 @@
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/runtime": "^7.0.0-beta.40",
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/babel-preset": "^2.0.0-90",
-    "@patternplate/client": "^2.0.0-90",
-    "@patternplate/create-default": "^2.0.0-90",
-    "@patternplate/load-config": "^2.0.0-90",
-    "@patternplate/load-docs": "^2.0.0-90",
-    "@patternplate/load-meta": "^2.0.0-90",
+    "@patternplate/babel-preset": "^2.0.0-91",
+    "@patternplate/client": "^2.0.0-91",
+    "@patternplate/create-default": "^2.0.0-91",
+    "@patternplate/load-config": "^2.0.0-91",
+    "@patternplate/load-docs": "^2.0.0-91",
+    "@patternplate/load-meta": "^2.0.0-91",
     "builtin-modules": "^2.0.0",
     "chalk": "^2.3.2",
     "errorhandler": "^1.5.0",
