@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cover-client",
-  "version": "2.0.0-88",
+  "version": "2.0.0-89",
   "description": "patternplate browser script for cover startup",
   "repository": {
     "type": "git",
@@ -20,6 +20,6 @@
   },
   "xo": false,
   "dependencies": {
-    "@patternplate/websocket-client": "^2.0.0-88"
+    "@patternplate/websocket-client": "^2.0.0-89"
   }
 }
