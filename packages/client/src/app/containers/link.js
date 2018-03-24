@@ -93,7 +93,7 @@ function prefix(base, pathname) {
   const p = norm(pathname);
 
   if (p === '') {
-    return `/${b}/`;
+    return `/${b}`;
   }
 
   if (p.startsWith(b)) {
