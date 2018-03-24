@@ -4,7 +4,7 @@ const flags = yargsParser(process.argv.slice(2));
 const createCompiler = require("@patternplate/compiler");
 const debug = require("util").debuglog("PATTERNPLATE");
 
-const send = m => process.send(ARSON.stringify(m));
+const send = process.send ? m => process.send(ARSON.stringify(m)) : () => {};
 
 (async () => {
   const {cwd, target} = flags;

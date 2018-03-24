@@ -1,3 +1,4 @@
+const ARSON = require("ARSON");
 const http = require("http");
 const errorhandler = require("errorhandler");
 const express = require("express");
@@ -27,6 +28,13 @@ async function patternplate(options) {
     .use(slash());
 
   await start({ app, port, server });
+
+  if (typeof process.send === "function") {
+    process.send(ARSON.stringify({
+      type: "patternplate:started",
+      payload: options
+    }));
+  }
 
   return {
     app,

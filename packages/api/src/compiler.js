@@ -30,6 +30,7 @@ async function createCompiler({ cwd, target = "" }) {
   debug(`starting compiler worker at ${workerPath}`);
 
   const worker = fork(workerPath, dargs({cwd, target}), OPTS);
+  const send = worker.send ? payload => worker.send(ARSON.stringify(payload)) : () => {};
 
   let watching = false;
 
@@ -46,7 +47,7 @@ async function createCompiler({ cwd, target = "" }) {
 
     switch (type) {
       case "ready": {
-        return worker.send(ARSON.stringify({type: "start"}));
+        return send({type: "start"});
       }
       case "done": {
         debug({type, target});
@@ -71,7 +72,7 @@ async function createCompiler({ cwd, target = "" }) {
   const observable = new Observable(observer => {
     if (!watching) {
       watching = true;
-      worker.send(ARSON.stringify({type: "watch"}));
+      send({type: "watch"});
     }
 
     listeners.push(observer);
@@ -82,7 +83,7 @@ async function createCompiler({ cwd, target = "" }) {
 
   observable.queue = queue;
   observable.stop = () => {
-    worker.send(ARSON.stringify({type: "stop"}));
+    send({type: "stop"});
   }
   return observable;
 }
