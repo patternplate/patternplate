@@ -28,6 +28,7 @@
     "@patternplate/probe-client": "^2.0.0-90",
     "@patternplate/render-default": "^2.0.0-90",
     "@patternplate/webpack-entry": "^2.0.0-90",
+    "arson": "^0.2.6",
     "chalk": "^2.3.2",
     "command-exists": "^1.2.2",
     "css-loader": "^0.28.10",
