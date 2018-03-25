@@ -1,4 +1,4 @@
-const ARSON = require("ARSON");
+const ARSON = require("arson");
 const http = require("http");
 const errorhandler = require("errorhandler");
 const express = require("express");
