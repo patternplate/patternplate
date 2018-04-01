@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/webpack-entry",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "scripts": {
     "start": "yarn build -w",

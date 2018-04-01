@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/client",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Universal javascript client application for patternplate",
   "main": "./server.js",
   "scripts": {
@@ -56,7 +56,7 @@
   "dependencies": {
     "@marionebl/react-router": "^2.6.2",
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/api": "^2.0.3",
+    "@patternplate/api": "^2.0.4",
     "@patternplate/components": "^2.0.0",
     "@patternplate/load-config": "^2.0.0",
     "@patternplate/load-docs": "^2.0.0",

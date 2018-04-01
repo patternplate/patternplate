@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Patternplate JSON API",
   "scripts": {
     "start": "yarn build -w",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/compiler": "^2.0.0",
+    "@patternplate/compiler": "^2.0.4",
     "@patternplate/load-config": "^2.0.0",
     "@patternplate/load-docs": "^2.0.0",
     "@patternplate/load-meta": "^2.0.3",
