@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -21,7 +21,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.40",
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/client": "^2.0.1",
+    "@patternplate/client": "^2.0.2",
     "@patternplate/compiler": "^2.0.0",
     "@patternplate/create-default": "^2.0.0",
     "@patternplate/demo-client": "^2.0.0",
@@ -38,8 +38,8 @@
     "encoding": "^0.1.12",
     "errorhandler": "^1.5.0",
     "execa": "^0.9.0",
-    "express-slash": "^2.0.1",
     "express": "^4.16.2",
+    "express-slash": "^2.0.1",
     "html-loader": "^0.5.5",
     "import-from": "^2.1.0",
     "loader-runner": "^2.3.0",
@@ -55,8 +55,8 @@
     "to-string-loader": "^1.1.5",
     "unindent": "^2.0.0",
     "use": "^3.1.0",
-    "webpack-dev-middleware": "1",
     "webpack": "3",
+    "webpack-dev-middleware": "1",
     "ws": "^5.0.0"
   },
   "devDependencies": {
