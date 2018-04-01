@@ -9,20 +9,13 @@ function eject() {
   const vfs = new MemoryFileSystem();
   vfs.mkdirpSync("/static");
 
-  if (process.env.BUNDLE === "@patternplate/cli") {
-    const ctx = require.context("raw-loader!./static", true, /.js$/);
+  const files = globby.sync(["*.js"], {cwd: path.join(__dirname, "static")});
 
-    ctx.keys().forEach(key => vfs.writeFileSync(path.posix.join("/static", key), ctx(key)));
-
-  } else {
-    const files = globby.sync(["*.js"], {cwd: path.join(__dirname, "static")});
-
-    files.forEach(file => {
-      const source = path.join(__dirname, "static", file); ;
-      const target = path.join("/static", file);
-      vfs.writeFileSync(target, fs.readFileSync(source));
-    });
-  }
+  files.forEach(file => {
+    const source = path.join(__dirname, "static", file); ;
+    const target = path.join("/static", file);
+    vfs.writeFileSync(target, fs.readFileSync(source));
+  });
 
   return vfs;
 }

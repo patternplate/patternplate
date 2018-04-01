@@ -15,20 +15,7 @@ const OPTS = { stdio: ["inherit", "inherit", "inherit", "ipc"] };
 module.exports = createCompiler;
 
 async function createCompiler({ cwd, target = "" }) {
-  const workerSource = process.env.BUNDLE === "@patternplate/cli"
-    ? require("raw-loader!./compiler-worker")
-    : fs.readFileSync(path.join(__dirname, "compiler-worker.js"));
-
-  const hash = crypto.createHash("sha256").update(workerSource).digest("hex");
-
-  const workerBase = process.env.BUNDLE === "@patternplate/cli" ? resolvePkg(process.env.BUNDLE) : null;
-
-  const workerPath = workerBase
-    ? path.join(workerBase, `${hash}.js`)
-    : path.join(__dirname, `${hash}.js`);
-
-  fs.writeFileSync(workerPath, workerSource);
-
+  const workerPath = path.join(__dirname, "compiler-worker.js");
   debug(`starting compiler worker at ${workerPath}`);
 
   const worker = fork(workerPath, dargs({cwd, target}), OPTS);

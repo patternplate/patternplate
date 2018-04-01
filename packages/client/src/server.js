@@ -33,29 +33,8 @@ async function client(options) {
     .get("/doc/*", mainRoute)
     .get("/", mainRoute);
 
-  if (process.env.BUNDLE === "@patternplate/cli") {
-    // bundled via @patternplate/cli
-    const efs = require("./eject")();
-
-    app.use("/static", (req, res, next) => {
-      switch (req.url) {
-        case "/vendors.js": {
-          res.type("js");
-          return res.send(efs.readFileSync("/static/vendors.js"));
-        }
-        case "/client.js": {
-          res.type("js");
-          return res.send(efs.readFileSync("/static/client.js"));
-        }
-        default:
-          next();
-      }
-    });
-  } else {
-    // regular node environment
-    const appStatic = path.join(__dirname, "static");
-    app.use("/static", serve(appStatic));
-  }
+  const appStatic = path.join(__dirname, "static");
+  app.use("/static", serve(appStatic));
 
   app.subscribe = apiRoute.subscribe;
   return app;
