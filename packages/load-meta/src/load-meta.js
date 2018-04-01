@@ -80,7 +80,7 @@ async function loadMeta(options) {
   return await pairs.reduce(async (accing, pair) => {
     const acc = await accing;
     const { source, artifact } = pair;
-    const cwd = path.dirname(source);
+    const cwd = path.join(options.cwd, path.dirname(source));
     const [err, result] = await json({cwd});
 
     if (err) {

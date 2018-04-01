@@ -26,8 +26,7 @@ async function api({ server, cwd }) {
     createCompiler({ cwd, target: "node" })
   ]);
 
-
-  const watcher = await createWatcher({cwd});
+  const watcher = await createWatcher({ cwd });
 
   const mw = express()
     .get("/state.json", await main({ cwd }))

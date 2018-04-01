@@ -8,7 +8,7 @@ module.exports = async options => {
     try {
       const { config, filepath } = await loadConfig({ cwd: options.cwd });
       const { entry = [] } = config;
-      const cwd = filepath ? path.dirname(filepath) : process.cwd();
+      const cwd = filepath ? path.dirname(filepath) : options.cwd;
 
       const [docs, {patterns}] = await Promise.all([
         loadDocsTree({

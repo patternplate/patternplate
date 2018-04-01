@@ -67,7 +67,7 @@ async function main(options) {
       const result = (await loadConfig({ cwd: options.cwd })) || {};
       const { config = {}, filepath } = result;
       const { entry = [], cover } = config;
-      const cwd = filepath ? path.dirname(filepath) : process.cwd();
+      const cwd = filepath ? path.dirname(filepath) : options.cwd;
       const base = options.base || "/";
 
       if (req.path === base && typeof cover === "string") {
