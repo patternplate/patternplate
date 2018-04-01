@@ -21,8 +21,10 @@ async function createCompiler({ cwd, target = "" }) {
 
   const hash = crypto.createHash("sha256").update(workerSource).digest("hex");
 
-  const workerPath = process.env.BUNDLE === "@patternplate/cli"
-    ? path.join(resolvePkg(process.env.BUNDLE), `${hash}.js`)
+  const workerBase = process.env.BUNDLE === "@patternplate/cli" ? resolvePkg(process.env.BUNDLE) : null;
+
+  const workerPath = workerBase
+    ? path.join(workerBase, `${hash}.js`)
     : path.join(__dirname, `${hash}.js`);
 
   fs.writeFileSync(workerPath, workerSource);
