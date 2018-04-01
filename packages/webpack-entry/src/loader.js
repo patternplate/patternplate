@@ -7,6 +7,8 @@ const utils = require("loader-utils");
 const requireFromString = require("require-from-string");
 const debug = require("util").debuglog("patternplate");
 
+const rawLoader = require.resolve("raw-loader");
+
 module.exports = async function webpackEntry() {
   const cb = this.async();
   const options = utils.getOptions(this);
@@ -28,7 +30,7 @@ module.exports = async function webpackEntry() {
     const mod = [`module.exports['${file}'] = require('./${rel}');`]
 
     if (exported.indexOf("js") === -1) {
-      mod.push(`module.exports['${file}'].js = () => require('raw-loader!./${rel}')`);
+      mod.push(`module.exports['${file}'].js = () => require('${rawLoader}!./${rel}')`);
     }
 
     if (exported.indexOf("css") === -1 && await exists(ext('.css', full))) {
