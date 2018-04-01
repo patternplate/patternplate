@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/render-styled-components",
-  "version": "2.0.0-93",
+  "version": "2.0.0",
   "description": "patternplate render package for React and styled-components",
   "xo": false,
   "repository": {
@@ -20,7 +20,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@patternplate/render-react": "^2.0.0-93",
+    "@patternplate/render-react": "^2.0.0",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
