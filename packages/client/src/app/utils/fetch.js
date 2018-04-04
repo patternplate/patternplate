@@ -10,7 +10,7 @@ const defaultHeaders = {
 
 function fetch(uri, userHeaders) {
   const headers =
-    userHeaders === false ? {} : merge({}, userHeaders, defaultHeaders);
+    userHeaders === false ? defaultHeaders : merge({}, userHeaders, defaultHeaders);
 
   return global.fetch(uri, headers);
 }
