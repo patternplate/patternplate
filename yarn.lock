@@ -3562,6 +3562,10 @@ dom-to-image@^2.6.0:
   version "2.6.0"
   resolved "https://registry.npmjs.org/dom-to-image/-/dom-to-image-2.6.0.tgz#8a503608088c87b1c22f9034ae032e1898955867"
 
+dom4@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/dom4/-/dom4-2.0.1.tgz#03000cbea1ec33b3dde8cfd7a0cf77587d27e9d5"
+
 domain-browser@^1.1.1:
   version "1.1.7"
   resolved "https://registry.npmjs.org/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
