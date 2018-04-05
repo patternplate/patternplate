@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/deploy-site",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "patternplate static site deployment",
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
