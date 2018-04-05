@@ -39,6 +39,7 @@ async function build({flags}) {
   const spinner = ora(`Building to "${upath}"`).start();
 
   const { config, filepath } = await loadConfig({ cwd });
+  const configCwd = filepath ? path.dirname(filepath) : cwd;
   const { entry = [], cover } = config;
 
   const docs = await loadDocsTree({
@@ -106,8 +107,8 @@ async function build({flags}) {
   }));
 
   // Copy /static/
-  if (await sander.exists(filepath || cwd, "static")) {
-    await sander.copydir(filepath || cwd, "static").to(out, "api/static");
+  if (await sander.exists(configCwd, "static")) {
+    await sander.copydir(configCwd, "static").to(out, "api/static");
   }
   spinner.succeed(`Built to "${upath}"`);
 }
