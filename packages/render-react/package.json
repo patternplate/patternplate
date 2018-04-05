@@ -3,6 +3,9 @@
   "version": "2.0.8",
   "description": "patternplate render package for React",
   "xo": false,
+  "scripts": {
+    "deps": "dependency-check . render.js mount.js --missing && dependency-check . render.js mount.js --extra --no-dev"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -24,5 +27,8 @@
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
   }
 }

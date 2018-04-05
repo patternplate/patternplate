@@ -3,6 +3,9 @@
   "version": "2.0.8",
   "description": "patternplate render package for React and styled-components",
   "xo": false,
+  "scripts": {
+    "deps": "dependency-check . render.js mount.js --missing && dependency-check . render.js mount.js --extra --no-dev"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -25,5 +28,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "styled-components": "^3.1.6"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
   }
 }

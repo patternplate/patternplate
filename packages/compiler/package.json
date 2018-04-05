@@ -5,7 +5,8 @@
   "scripts": {
     "start": "yarn build -w",
     "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
-    "watch": "yarn build -w"
+    "watch": "yarn build -w",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/cover-client -i @patternplate/demo-client -i @patternplate/probe-client -i css-loader -i html-loader -i to-string-loader"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@patternplate/babel-preset": "^2.0.8",
+    "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   },
   "dependencies": {
@@ -43,6 +45,7 @@
     "css-loader": "^0.28.10",
     "html-loader": "^0.5.5",
     "memory-fs": "^0.4.1",
+    "resolve-from": "^4.0.0",
     "to-string-loader": "^1.1.5",
     "webpack": "3",
     "webpack-node-externals": "^1.6.0"

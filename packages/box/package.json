@@ -7,7 +7,8 @@
     "start": "yarn build -w",
     "test": "jest",
     "build": "tsc",
-    "watch": "yarn build -w"
+    "watch": "yarn build -w",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "repository": {
     "type": "git",
@@ -46,15 +47,12 @@
     "@types/jest": "^22.2.0",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",
+    "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
     "jest": "^22.4.2",
     "jest-cli": "^22.4.2",
     "rimraf": "^2.6.2",
     "ts-jest": "^22.4.1",
     "typescript": "^2.7.2"
-  },
-  "dependencies": {
-    "@marionebl/sander": "^0.6.1",
-    "load-json-file": "^4.0.0"
   }
 }

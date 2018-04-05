@@ -3,6 +3,9 @@
   "version": "2.0.8",
   "description": "@babel preset for compilation of @patternplate projects",
   "xo": false,
+  "scripts": {
+    "deps": "dependency-check . --missing"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -33,5 +36,8 @@
     "fast-async": "^6.3.1",
     "lodash.merge": "^4.6.1",
     "nodent-runtime": "^3.2.1"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
   }
 }

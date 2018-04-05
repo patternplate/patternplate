@@ -5,7 +5,8 @@
   "scripts": {
     "start": "yarn build -w",
     "build": "babel -D src -d lib --source-maps",
-    "watch": "yarn build -w"
+    "watch": "yarn build -w",
+    "deps": "dependency-check . cover.js --missing && dependency-check . cover.js --extra --no-dev -i @patternplate/widgets -i iframe-resizer -i react-iframe-resizer-super"
   },
   "repository": {
     "type": "git",
@@ -52,7 +53,9 @@
     "@babel/core": "^7.0.0-beta.40",
     "@patternplate/babel-preset": "^2.0.8",
     "@patternplate/render-styled-components": "^2.0.8",
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "dependency-check": "^3.1.0",
+    "react-clipboard.js": "^1.1.3"
   },
   "dependencies": {
     "@patternplate/widgets": "^2.0.8",
@@ -68,7 +71,6 @@
     "query-string": "^6.0.0",
     "react": "16.2.0",
     "react-addons-text-content": "^0.0.4",
-    "react-clipboard.js": "^1.1.3",
     "react-dom": "16.2.0",
     "react-helmet": "^5.2.0",
     "react-iframe-resizer-super": "^0.2.0",
@@ -76,6 +78,7 @@
     "remark": "^8.0.0",
     "remark-gemoji-to-emoji": "^1.1.0",
     "remark-react": "^4.0.1",
+    "semver": "^5.5.0",
     "styled-components": "^3.1.6",
     "tag-hoc": "^1.0.0"
   }

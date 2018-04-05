@@ -6,7 +6,8 @@
     "start": "yarn build -w",
     "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
     "clean": "rimraf lib",
-    "watch": "yarn build -w"
+    "watch": "yarn build -w",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "xo": false,
   "repository": {
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@patternplate/babel-preset": "^2.0.8",
+    "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   }
 }

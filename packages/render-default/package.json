@@ -3,6 +3,9 @@
   "version": "2.0.8",
   "description": "Default patternplate render package",
   "xo": false,
+  "scripts": {
+    "deps": "dependency-check . render.js mount.js --missing && dependency-check . render.js mount.js --extra --no-dev"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -21,5 +24,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
   }
 }

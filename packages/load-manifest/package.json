@@ -7,7 +7,8 @@
     "start": "yarn build -w",
     "test": "jest",
     "build": "babel -D src -d lib -s --ignore '**/*.test.js'",
-    "watch": "yarn build -w"
+    "watch": "yarn build -w",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "@patternplate/babel-preset": "^2.0.8",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",
+    "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
     "jest": "^22.4.2",
     "jest-cli": "^22.4.2"

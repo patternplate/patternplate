@@ -6,7 +6,8 @@
     "start": "yarn build -w",
     "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
     "clean": "rimraf lib",
-    "watch": "yarn build -w"
+    "watch": "yarn build -w",
+    "deps": "dependency-check . lib/loader.js --missing && dependency-check . lib/loader.js --extra --no-dev -i raw-loader"
   },
   "xo": false,
   "repository": {
@@ -29,10 +30,10 @@
     "glob-parent": "^3.1.0",
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
-    "lodash": "^4.17.4",
     "path-exists": "^3.0.0",
     "raw-loader": "^0.5.1",
-    "require-from-string": "^2.0.1"
+    "require-from-string": "^2.0.1",
+    "resolve-from": "^4.0.0"
   },
   "babel": {
     "presets": [
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@patternplate/babel-preset": "^2.0.8",
+    "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   }
 }

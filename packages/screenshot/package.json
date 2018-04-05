@@ -5,6 +5,9 @@
   "bin": {
     "patternplate-screenshot": "./cli.js"
   },
+  "scripts": {
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/patternplate/patternplate.git"
@@ -22,10 +25,12 @@
     "execa": "^0.10.0",
     "lodash": "^4.17.5",
     "puppeteer": "^1.2.0",
-    "scrollparent": "^2.0.1",
     "svgo": "^1.0.5",
     "tempy": "^0.2.1",
     "xmldom": "^0.1.27",
     "yargs-parser": "^9.0.2"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
   }
 }

@@ -3,6 +3,9 @@
   "version": "2.0.8",
   "description": "Create a default patternplate project via patternplate create",
   "xo": false,
+  "scripts": {
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -18,5 +21,8 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
   }
 }
