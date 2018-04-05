@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/components",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "ui component library for patternplate-client",
   "scripts": {
     "start": "yarn build -w",
@@ -51,14 +51,14 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/core": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.0.8",
-    "@patternplate/render-styled-components": "^2.0.8",
+    "@patternplate/babel-preset": "^2.0.9",
+    "@patternplate/render-styled-components": "^2.0.9",
     "concurrently": "^3.5.1",
     "dependency-check": "^3.1.0",
     "react-clipboard.js": "^1.1.3"
   },
   "dependencies": {
-    "@patternplate/widgets": "^2.0.8",
+    "@patternplate/widgets": "^2.0.9",
     "buble": "^0.19.3",
     "color": "^2.0.0",
     "front-matter": "^2.3.0",
