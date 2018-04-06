@@ -16,6 +16,11 @@ const cli = meow(
   Start options
     --cwd        - Working directory to search patternplate.config.js in
     --port       - Port to start patternplate server on, defaults to 1337, $PORT
+    --listen     - Listen adress to start patternplate server on, defaults to localhost, $LISTEN
+    --privateKeyFname - Filename of the PrivateKey(pem) $PRIVATEKEYFNAME
+    --certChainFname  - Filename of the CertChain(pem) $CERTCHAINFNAME
+    --httpsRedirectPort - If set serve http to redirect to port, needed force https, $HTTPSREDIRECTPORT
+    --hostName          - Hostname of the httpsRedirectPort, $HOSTNAME
 
   Build options
     --base       - [REQUIRED] Base path to assume for static hosting, e.g. "patternplate" in git.io/patternplate
@@ -36,6 +41,15 @@ const cli = meow(
 
     patternplate --port 1338
     ✔ Started on http://localhost:1338
+
+    patternplate --port 1338 --listen 0.0.0.0
+    ✔ Started on http://0.0.0.0:1338
+
+    patternplate --port 1338 --listen 0.0.0.0 \\
+        --httpsRedirectPort 8080 --hostName patternplate.....com \\
+        --privateKeyFname /etc/letsencrypt/.../privkey.pem \\
+        --certChainFname /etc/letsencrypt/.../fullchain.pem
+    ✔ Started on http://0.0.0.0:1338
 
     patterplate build --base="/"
     ✔ Built to ./docs
