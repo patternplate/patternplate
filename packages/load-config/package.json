@@ -7,9 +7,14 @@
     "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
     "clean": "rimraf lib",
     "watch": "yarn build -w",
-    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/render-default"
   },
   "xo": false,
+  "babel": {
+    "presets": [
+      "module:@patternplate/babel-preset"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -27,12 +32,9 @@
     "access": "public"
   },
   "dependencies": {
-    "cosmiconfig": "^3.1.0"
-  },
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
+    "@patternplate/render-default": "^2.0.10",
+    "cosmiconfig": "^3.1.0",
+    "resolve-from": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
