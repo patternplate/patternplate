@@ -39,7 +39,7 @@ function focus(next) {
   }
 
   setTimeout(() => {
-    const el = global.document.query("input[data-search]");
+    const el = global.document.querySelector("input[data-search]");
 
     if (!el) {
       return;
@@ -59,7 +59,7 @@ function value() {
     return;
   }
 
-  const el = global.document.query("input[data-search]");
+  const el = global.document.querySelector("input[data-search]");
 
   if (!el) {
     return;
