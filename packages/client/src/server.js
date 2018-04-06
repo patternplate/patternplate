@@ -50,7 +50,7 @@ async function main(options) {
       const base = options.base || "/";
 
       if (req.path === base && typeof cover === "string") {
-        const response = await fetch(`${req.protocol}://${req.get("host")}/api/cover.html?base=${base}`);
+        const response = await fetch(`${req.protocol}://${req.get("host")}/api/cover.html?base=${base}`, {credentials: "include"});
         return res.send(await response.text());
       }
 
