@@ -3,10 +3,10 @@ import { fill } from "lodash";
 import { Icon } from "@patternplate/components";
 import Helmet from "react-helmet";
 
-import router from "./server";
-import layout from "./layouts";
-import getIdByPathname from "./utils/get-id-by-pathname";
-import navigate from "./utils/navigate";
+import router from "../server";
+import layout from "../layouts";
+import getIdByPathname from "../utils/get-id-by-pathname";
+import navigate from "../utils/navigate";
 
 module.exports = renderPage;
 
