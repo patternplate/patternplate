@@ -70,16 +70,17 @@ function error(message) {
   return err;
 }
 
-main(cli).catch(err => {
-  if (err.patternplate) {
-    console.log(cli.help);
-    console.error(chalk.red(err.message));
-    process.exit(1);
-  }
-  setTimeout(() => {
-    throw err;
+main(cli)
+  .catch(err => {
+    if (err && err.patternplate) {
+      console.log(cli.help);
+      console.error(chalk.red(err.message));
+      process.exit(1);
+    }
+    setTimeout(() => {
+      throw err;
+    });
   });
-});
 
 process.on("unhandledRejection", reason => {
   throw reason;

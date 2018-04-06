@@ -37,7 +37,9 @@ async function create({flags, pkg}) {
     throw error(`create: target "${flags.out}" already exists at "${rel}", aborting.`);
   }
 
-  const installer = (await Promise.all(INSTALLERS.map(i => commandExists(i)))).filter(Boolean)[0];
+  const installer = (await Promise.all(INSTALLERS.map(i => {
+    return commandExists(i).catch(() => null);
+  }))).filter(Boolean)[0];
 
   if (flags.install !== false) {
     if (!installer) {
