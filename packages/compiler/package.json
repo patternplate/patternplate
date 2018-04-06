@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/compiler",
-  "version": "2.0.10",
+  "version": "2.0.12",
   "description": "Create a compiler to create browser-compatible code from patternplate entries",
   "scripts": {
     "start": "yarn build -w",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@patternplate/cover-client": "^2.0.10",
     "@patternplate/demo-client": "^2.0.10",
-    "@patternplate/load-config": "^2.0.10",
+    "@patternplate/load-config": "^2.0.12",
     "@patternplate/probe-client": "^2.0.10",
     "@patternplate/webpack-entry": "^2.0.10",
     "css-loader": "^0.28.10",
