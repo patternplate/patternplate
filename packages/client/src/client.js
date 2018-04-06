@@ -34,7 +34,7 @@ async function getData(vault) {
 }
 
 async function getStateData(base) {
-  return (await fetch(`${prefix(base)}/api/state.json`)).json();
+  return (await fetch(`${prefix(base)}/api/state.json`, {credentials: "include"})).json();
 }
 
 function prefix(base) {
