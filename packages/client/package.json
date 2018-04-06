@@ -98,7 +98,6 @@
     "babel-loader": "8.0.0-beta.0",
     "concurrently": "^3.5.0",
     "dependency-check": "^3.1.0",
-    "dom4": "^2.0.1",
     "fast-async": "^6.3.0",
     "front-matter": "^2.1.2",
     "fuse.js": "^2.2.0",

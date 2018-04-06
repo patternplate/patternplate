@@ -1,5 +1,3 @@
-require("dom4"); // eslint-disable-line import/no-unassigned-import
-
 const ARSON = require("arson");
 const url = require("url");
 const fetch = require("isomorphic-fetch");
@@ -14,8 +12,8 @@ main().catch(err => {
 });
 
 async function main() {
-  const slot = document.query('[data-application-el="patternplate"]');
-  const vault = document.query('[data-application-state="patternplate"]');
+  const slot = document.querySelector('[data-application-el="patternplate"]');
+  const vault = document.querySelector('[data-application-state="patternplate"]');
   const data = await getData(vault);
 
   if (data.isStatic) {
