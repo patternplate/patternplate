@@ -1,10 +1,42 @@
 const ora = require("ora");
 const patternplate = require("./serve");
+const debug = require("util").debuglog("PATTERNPLATE");
 
 module.exports = start;
 
 async function start({flags}) {
   const spinner = ora({ text: "Starting patternplate server" }).start();
+
+  let beat = Date.now();
+  let failures = 0;
+
+  if (process.connected) {
+    setInterval(() => {
+      const age = Date.now() - beat;
+      if (age >= 1000) {
+        failures++;
+        console.log(`start: beat is ${age}ms old, failure ${failures}/3.`);
+      } else if (failures !== 0) {
+        console.log(`start: beat limit met, reset failure to 0/3.`);
+        failures = 0;
+      }
+      if (failures >= 3) {
+        console.log(`start: beat failed ${failures} times, shutting down.`);
+        process.exit(0);
+      }
+    }, 1000);
+  }
+
+  process.on("message", (envelope) => {
+    try {
+      const message = JSON.parse(envelope);
+      if (message.type === "heartbeat") {
+        beat = Date.now();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
   const port = selectPort(flags);
 

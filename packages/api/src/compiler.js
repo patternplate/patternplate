@@ -19,13 +19,21 @@ async function createCompiler({ cwd, target = "" }) {
   debug(`starting compiler worker at ${workerPath}`);
 
   const worker = fork(workerPath, dargs({cwd, target}), OPTS);
-  const send = worker.send ? payload => worker.send(ARSON.stringify(payload)) : () => {};
+  const send = typeof worker.send === "function"
+    ? payload => {
+      if (worker.connected) {
+        worker.send(ARSON.stringify(payload));
+      }
+    }
+    : () => {};
 
   let watching = false;
 
   const queue = [];
   let listeners = [];
   const next = (message) => listeners.forEach(listener => listener.next(message));
+
+  setInterval(() => send({type: "heartbeat"}), 500);
 
   worker.on("error", err => {
     console.error(err);
