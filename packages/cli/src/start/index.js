@@ -15,9 +15,9 @@ async function start({flags}) {
       const age = Date.now() - beat;
       if (age >= 1000) {
         failures++;
-        console.log(`start: beat is ${age}ms old, failure ${failures}/3.`);
+        debug(`start: beat is ${age}ms old, failure ${failures}/3.`);
       } else if (failures !== 0) {
-        console.log(`start: beat limit met, reset failure to 0/3.`);
+        debug(`start: beat limit met, reset failure to 0/3.`);
         failures = 0;
       }
       if (failures >= 3) {

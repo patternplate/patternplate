@@ -20,9 +20,9 @@ const send = typeof process.send === "function" && process.connected
     const age = Date.now() - beat;
     if (age >= 1000) {
       failures++;
-      console.log(`worker: ${target} beat is ${age}ms old, failure ${failures}/3.`);
+      debug(`worker: ${target} beat is ${age}ms old, failure ${failures}/3.`);
     } else if (failures !== 0) {
-      console.log(`worker: ${target} beat limit met, reset failure to 0/3.`);
+      debug(`worker: ${target} beat limit met, reset failure to 0/3.`);
       failures = 0;
     }
     if (failures >= 3) {
