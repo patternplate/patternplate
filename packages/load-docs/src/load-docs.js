@@ -37,8 +37,11 @@ async function loadDocs(options) {
       manifest.name = manifest.name || (first ? (first.children[0].value || '').replace(/[^\w]/g, '-') : (manifest.name || shortid.generate())).toLowerCase();
       manifest.displayName = manifest.displayName || (first ? first.children[0].value : name);
 
+      const rawPath = path.join(path.dirname(file), path.basename(file, path.extname(file)));
+      const id = rawPath.split(path.sep).join("/");
+
       return {
-        id: path.join(path.dirname(file), path.basename(file, path.extname(file))),
+        id,
         contents,
         contentType: "doc",
         path: file,
