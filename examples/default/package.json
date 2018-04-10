@@ -1,6 +1,6 @@
 {
   "name": "@patternplate-example/default",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "xo": false,
   "devDependencies": {
-    "@patternplate/cli": "^2.1.4",
+    "@patternplate/cli": "^2.1.5",
     "@patternplate/render-default": "^2.1.1",
     "dependency-check": "^3.1.0"
   }
