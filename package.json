@@ -12,6 +12,8 @@
     "components:build": "yarn patternplate build --out .tmp --base '/'",
     "components:serve": "yarn serve .tmp",
     "components:deploy": "yarn patternplate-deploy --source .tmp --identity=./patternplate-deploy --target=git@github.com:patternplate/patternplate.github.io.git",
+    "patternplate:build": "lerna run build --stream --filter='@patternplate/components'",
+    "patternplate:watch": "lerna run watch --stream --filter='@patternplate/components'",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
     "start": "yarn lerna run watch --stream --parallel --include-filtered-dependencies",
     "test": "yarn lerna run test --stream --parallel --include-filtered-dependencies"
