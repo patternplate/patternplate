@@ -6,8 +6,9 @@ const globParent = require("glob-parent");
 const utils = require("loader-utils");
 const requireFromString = require("require-from-string");
 const debug = require("util").debuglog("patternplate");
+const resolveFrom = require("resolve-from");
 
-const rawLoader = require.resolve("raw-loader");
+const rawLoader = path.relative(process.cwd(), resolveFrom(__dirname, "raw-loader")).split(path.sep).join("/");
 
 module.exports = async function webpackEntry() {
   const cb = this.async();
@@ -30,7 +31,7 @@ module.exports = async function webpackEntry() {
     const mod = [`module.exports['${file}'] = require('./${rel}');`]
 
     if (exported.indexOf("js") === -1) {
-      mod.push(`module.exports['${file}'].js = () => require('${rawLoader}!./${rel}')`);
+      mod.push(`module.exports['${file}'].js = () => require('./${rawLoader}!./${rel}')`);
     }
 
     if (exported.indexOf("css") === -1 && await exists(ext('.css', full))) {
