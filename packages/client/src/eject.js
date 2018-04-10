@@ -1,7 +1,9 @@
 const fs = require("fs");
-const path = require("path");
+const p = require("path");
 const MemoryFileSystem = require("memory-fs");
 const globby = require("globby");
+
+const path = p.posix || p;
 
 module.exports = eject;
 

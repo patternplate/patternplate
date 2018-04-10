@@ -86,7 +86,7 @@ function createDefault(data, fs) {
 function list(fs, base) {
   return fs.readdirSync(base)
     .reduce((acc, name) => {
-      const p = path.join(base, name);
+      const p = (path.posix || path).join(base, name);
       const stat = fs.statSync(p);
       if (stat.isFile()) {
         acc.push(p);

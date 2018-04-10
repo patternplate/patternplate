@@ -109,7 +109,7 @@ async function dump(fs, base, target) {
 function list(fs, base) {
   return fs.readdirSync(base)
     .reduce((acc, name) => {
-      const p = path.join(base, name);
+      const p = (path.posix || path).join(base, name);
       const stat = fs.statSync(p);
       if (stat.isFile()) {
         acc.push(p);

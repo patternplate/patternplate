@@ -114,6 +114,8 @@ async function build({flags}) {
 }
 
 function selectBase(base) {
+  base = base.split(/["']/g).join("");
+
   if (base === "/" || base === "") {
     return base;
   }
@@ -221,7 +223,7 @@ async function dump(fs, base, target) {
 function list(fs, base) {
   return fs.readdirSync(base)
     .reduce((acc, name) => {
-      const p = path.join(base, name);
+      const p = (path.posix || path).join(base, name);
       const stat = fs.statSync(p);
       if (stat.isFile()) {
         acc.push(p);
@@ -236,10 +238,12 @@ function list(fs, base) {
 // TODO: Duplicate of function in @patternplate/api/demo.js,
 // move to own package
 function getComponent(components, data) {
-  const top = components[data.artifact];
+  const fileId = data.artifact.split(path.sep).join('/');
+  const top = components[fileId];
 
-  if (top[data.source]) {
-    return top[data.source];
+  const moduleId = data.source.split(path.sep).join('/');
+  if (top[moduleId]) {
+    return top[moduleId];
   }
 
   return top;
