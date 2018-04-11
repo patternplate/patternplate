@@ -278,7 +278,7 @@ the ubiquitous in the JavaScript ecosystem at the time of writing.
 
 * `patternplate` works with all build systems that can emit JavaScript. 
 
-* Configure you build to produce artifacts in `lib` to pick them up with patternplate by default
+* Configure your build to produce artifacts in `lib` and to pick them up with patternplate by default
 
 * The `patternplate` development watcher works with the results of e.g. the Babel watch mode.
 

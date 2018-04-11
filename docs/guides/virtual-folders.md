@@ -178,9 +178,9 @@ So we'll add a new file there:
 ## Take aways
 
 * Meta data can be added to documentation in `frontmatter` blocks 
-* Tags, flags, etc. mcan be used to search trough both components and docs
+* Tags, flags, etc. can be used to search through both components and docs
 * There is fuzzy and structured search in patternplate
-* Structured search queries can be used to crate **Virtual Folders**
+* Structured search queries can be used to create **Virtual Folders**
 
 ## Up next
 

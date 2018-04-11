@@ -6,8 +6,16 @@ We love pull requests. And following this guidelines will make your pull request
 
 * If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
 * Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses correct settings.
-* Fork the repository and clone your fork.
-* Install dependencies: `npm install`.
+
+```sh
+git clone https://github.com/patternplate/patternplate.git
+cd patternplate
+yarn
+yarn start
+
+# start the local component library
+yarn patternplate start
+```
 
 ## Development workflow
 

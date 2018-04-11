@@ -140,7 +140,7 @@ you do that!
 1. Create a second widget block in `./README.md` by adding this code at the end of the file:
 
   ````md
-    ## My second widget
+  ## My second widget
   ```widget
   const React = require("react");
   const {ComponentDemo} = require("@patternplate/widgets");
