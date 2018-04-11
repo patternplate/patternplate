@@ -132,7 +132,7 @@ scroll down to the **GitHub Pages** section.
 5. Click on the dropdown under **Source** and select `master branch docs folder`. Make sure
 to hit the save button next to the dropdown.
 
-6. Navigate your browser to `https://[username].github.com/my-patternplate/`. You should the very same interface you create locally earlier. 
+6. Navigate your browser to `https://[username].github.com/my-patternplate/`. You should see the very same interface you created locally earlier. 
 
 ![](https://patternplate.github.io/media/images/screenshot-hello-world.svg)
 
