@@ -49,7 +49,7 @@ We will …
 of your component librarie's interface
 
   ```bash
-  yarn patternplate build --out=docs/patterns --base=/patterns/
+  yarn patternplate build --out='docs/patterns' --base='/patterns/'
   ```
 
   ![](https://patternplate.github.io/media/casts/cast-build.svg)
