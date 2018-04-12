@@ -23,45 +23,62 @@ We will …
 
 ## You'll need
 
-* :computer: Terminal (MacOS: [iTerm](https://www.iterm2.com/) | Windows: [cmder](http://cmder.net/))
+* :computer: Terminal (MacOS: `Terminal.app` or [iTerm](https://www.iterm2.com/) | Windows: [cmder](http://cmder.net/))
 * :turtle: Node.js `>=6` ([Install](https://nodejs.org/en/))
 
-## Initialize a new project
 
-1. Open your terminal emulator and enter the following command.
+## 1. Create a project on the CLI
 
-   Don't worry if you did not install `npx` explicitly, it is installed with Node.js automatically.
+Open your terminal emulator and enter the following command.
 
-   ```bash
-   # - Creates a new patternplate project at my-patternplate
-   # - Installs dependencies
-   npx create-patternplate --out my-patternplate --guide
-   ```
+Type the following command into your terminal. You can also
+copy and paste it directly. Press `Enter` to execute the command.
 
-  This will create a project for you and install the relevant dependencies.
-  Depending on the quality of your network connection this may take a while.
+Don't worry if you did not install `npx` explicitly, it is installed with Node.js automatically.
+
+```bash
+npx create-patternplate --out my-patternplate --guide
+```
+
+This will create a project for you and install the relevant dependencies.
+Depending on the quality of your network connection this may take a while.
 
 <!--  ![](https://patternplate.github.io/media/casts/cast-create.svg) -->
 
 
-2. Let's start `patternplate` next:
+## 2. Start patternplate via CLI 
 
-   Like `npx`, `npm` is available if you installed Node.js.
 
-   ```bash
-   # Change into `my-patternplate`
-   cd my-patternplate
-   
-   # Start a patternplate server
-   npm start
-   Started on http://localhost:1337
-   ```
+Type the following command into your terminal. 
 
-3. You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/?guides-enabled=true).
+```
+cd my-patternplate
+```
 
-  If everything worked `patternplate` greets you with this screen:
+This will navigate your terminal into the `my-patternplate` directory.
 
-  ![](https://patternplate.github.io/media/images/screenshot-hello-world.svg)
+Let's spin up a `patternplate` dev server:
+
+Like `npx`, `npm` is available if you installed Node.js.
+
+```bash
+npm start
+```
+
+You should see a small loading spinner in your terminal. 
+`patternplate` prints the following when it started successfully:
+
+```bash
+✔ Started on http://localhost:1337
+```
+
+## 3. Access the web interface
+
+You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/?guides-enabled=true).
+
+If everything worked `patternplate` greets you with this screen:
+
+![](https://patternplate.github.io/media/images/screenshot-hello-world.svg)
 
 
 ## Take aways
