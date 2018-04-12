@@ -4,7 +4,7 @@ description: "Learn how to catch and convince users with a patternplate cover pa
 tags: 
  - Guide
 options:
-  order: 6
+  order: 7
 ---
 
 # Catch and convice with a cover page

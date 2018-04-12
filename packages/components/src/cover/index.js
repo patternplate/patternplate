@@ -42,17 +42,16 @@ function Cover () {
               <Stage>
                 <StageSlot>
                   <StageHeadline>
-                    A shared space for system
-                    design and engineering.
+                    Systems design for everyone.
                   </StageHeadline>
                   <StageText>
-                    Connect the dots with patternplate and stop
-                    getting lost in inconsistency.
+                    Create industrial-grade component libraries
+                    in a tool shared by design and engineering.
                   </StageText>
                   <ButtonRow>
                     <Frame>
                       <ButtonRowContent>
-                        <StageButton href="./doc/docs/guides/getting-started?guides-enabled=true">
+                        <StageButton href="./doc/docs/why?guides-enabled=true">
                           <Text>Show me how</Text>
                         </StageButton>
                         <GithubButton target="_blank" href="https://github.com/patternplate/patternplate">

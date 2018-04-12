@@ -4,7 +4,7 @@ description: "Learn how to use patternplate for living documentation"
 tags: 
  - Guide
 options:
-  order: 1
+  order: 4
 ---
 
 # Explain your work with Markdown

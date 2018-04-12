@@ -4,7 +4,7 @@ description: "Bring order to chaos with search and virtual folders"
 tags: 
  - Guide
 options:
-  order: 4
+  order: 5
 ---
 
 # Divide and Conquer with Virtual Folders

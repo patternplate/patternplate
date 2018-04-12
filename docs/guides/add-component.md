@@ -4,7 +4,7 @@ description: "Learn how to build components in patternplate"
 tags: 
  - Guide
 options:
-  order: 1
+  order: 3
 ---
 
 # Build your first component in patternplate
