@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/render-react",
-  "version": "2.1.1",
+  "version": "2.1.6",
   "description": "patternplate render package for React",
   "xo": false,
   "scripts": {
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@patternplate/render-default": "^2.1.1",
+    "@patternplate/render-default": "^2.1.6",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"

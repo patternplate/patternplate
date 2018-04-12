@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-config",
-  "version": "2.1.1",
+  "version": "2.1.6",
   "description": "Load patternplate config",
   "scripts": {
     "start": "yarn build -w",
@@ -32,13 +32,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@patternplate/render-default": "^2.1.1",
+    "@patternplate/render-default": "^2.1.6",
     "cosmiconfig": "^3.1.0",
     "resolve-from": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.1.1",
+    "@patternplate/babel-preset": "^2.1.6",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   }

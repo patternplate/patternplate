@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/websocket-client",
-  "version": "2.1.1",
+  "version": "2.1.6",
   "description": "Websocket client with automatic retries",
   "scripts": {
     "start": "yarn build -w",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.1.1",
+    "@patternplate/babel-preset": "^2.1.6",
     "dependency-check": "^3.1.0"
   }
 }

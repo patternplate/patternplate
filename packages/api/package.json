@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "2.1.4",
+  "version": "2.1.6",
   "description": "Patternplate JSON API",
   "scripts": {
     "start": "yarn build -w",
@@ -37,16 +37,16 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.1.1",
+    "@patternplate/babel-preset": "^2.1.6",
     "dependency-check": "^3.1.0",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/compiler": "^2.1.2",
-    "@patternplate/load-config": "^2.1.1",
-    "@patternplate/load-docs": "^2.1.4",
-    "@patternplate/load-meta": "^2.1.1",
+    "@patternplate/compiler": "^2.1.6",
+    "@patternplate/load-config": "^2.1.6",
+    "@patternplate/load-docs": "^2.1.6",
+    "@patternplate/load-meta": "^2.1.6",
     "@patternplate/pack": "^2.0.0-19",
     "aggregate-error": "^1.0.0",
     "arson": "^0.2.6",

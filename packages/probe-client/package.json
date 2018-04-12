@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/probe-client",
-  "version": "2.1.1",
+  "version": "2.1.6",
   "description": "patternplate browser script for demo resizing and reloading",
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
@@ -23,7 +23,7 @@
   },
   "xo": false,
   "dependencies": {
-    "@patternplate/websocket-client": "^2.1.1",
+    "@patternplate/websocket-client": "^2.1.6",
     "arson": "^0.2.6",
     "iframe-resizer": "^3.5.16"
   },
