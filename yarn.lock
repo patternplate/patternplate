@@ -539,13 +539,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.0.10"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-
 "@patternplate/pack@^2.0.0-19":
   version "2.0.0-19"
   resolved "https://registry.npmjs.org/@patternplate/pack/-/pack-2.0.0-19.tgz#c349ca728394c208d120ab5ceb2c7fbcf9b2590e"
@@ -564,6 +557,17 @@
 "@types/react@^16.0.40":
   version "16.0.40"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.0.40.tgz#caabc2296886f40b67f6fc80f0f3464476461df9"
+
+"@webpack-contrib/schema-utils@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.npmjs.org/@webpack-contrib/schema-utils/-/schema-utils-1.0.0-beta.0.tgz#bf9638c9464d177b48209e84209e23bee2eb4f65"
+  dependencies:
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
+    chalk "^2.3.2"
+    strip-ansi "^4.0.0"
+    text-table "^0.2.0"
+    webpack-log "^1.1.2"
 
 "@zeit/check-updates@1.1.0":
   version "1.1.0"
@@ -7005,6 +7009,10 @@ logic-query-parser@^0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.org/logic-query-parser/-/logic-query-parser-0.0.5.tgz#56edf7c012f594c8236fd5175079ef5da1bea93c"
 
+loglevelnext@^1.0.1:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/loglevelnext/-/loglevelnext-1.0.4.tgz#0d991d9998180991dac8bd81e73a596a8720a645"
+
 longest-streak@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/longest-streak/-/longest-streak-1.0.0.tgz#d06597c4d4c31b52ccb1f5d8f8fe7148eafd6965"
@@ -11194,6 +11202,15 @@ webpack-dev-middleware@^1.12.0:
     path-is-absolute "^1.0.0"
     range-parser "^1.0.3"
     time-stamp "^2.0.0"
+
+webpack-log@^1.1.2:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/webpack-log/-/webpack-log-1.2.0.tgz#a4b34cda6b22b518dbb0ab32e567962d5c72a43d"
+  dependencies:
+    chalk "^2.1.0"
+    log-symbols "^2.1.0"
+    loglevelnext "^1.0.1"
+    uuid "^3.1.0"
 
 webpack-node-externals@^1.6.0:
   version "1.6.0"
