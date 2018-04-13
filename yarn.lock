@@ -539,13 +539,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.1.6"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-
 "@types/classnames@^2.2.3":
   version "2.2.3"
   resolved "https://registry.npmjs.org/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"

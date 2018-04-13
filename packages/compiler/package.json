@@ -45,6 +45,7 @@
     "css-loader": "^0.28.10",
     "html-loader": "^0.5.5",
     "memory-fs": "^0.4.1",
+    "read-pkg": "^3.0.0",
     "resolve-from": "^4.0.0",
     "to-string-loader": "^1.1.5",
     "webpack": "3",
