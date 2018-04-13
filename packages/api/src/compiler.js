@@ -47,12 +47,14 @@ async function createCompiler({ cwd, target = "" }) {
   });
 
   worker.once("close", (code) => {
-    queue.unshift({type: "exception", payload: {
-      code,
-      stdout,
-      stderr: [`Could not start compiler worker for "${target}"`, stderr].join("\n")
-    }});
-    next(queue);
+    if (code !== 0) {
+      queue.unshift({type: "exception", payload: {
+        code,
+        stdout,
+        stderr: [`Could not start compiler worker for "${target}"`, stderr].join("\n")
+      }});
+      next(queue);
+    }
   });
 
   worker.on("message", envelope => {

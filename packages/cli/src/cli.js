@@ -2,9 +2,8 @@
 const path = require("path");
 const chalk = require("chalk");
 const meow = require("meow");
-const schemaUtilsValidate = require("@webpack-contrib/schema-utils");
 const loadConfig = require("@patternplate/load-config");
-const schema = require("@patternplate/schema-config");
+const {validate} = require("@patternplate/validate-config");
 
 const cli = meow(
   `
@@ -59,9 +58,13 @@ async function main({ input, flags, pkg }) {
       const userPath = relativePath.length < filepath.length ? relativePath : filepath;
       const [error, valid] = validate({ target: config, name: filepath });
 
-      if (!valid) {
-        console.log(`\nInvalid config at ${chalk.bold(userPath)}:`);
-        console.error(error.format());
+      if (!valid && error) {
+        if (typeof error.format === "function") {
+          console.log(`\nInvalid config at ${chalk.bold(userPath)}:`);
+          console.error(error.format());
+        } else {
+          console.error(error);
+        }
         return process.exit(1);
       }
     }
@@ -90,23 +93,6 @@ function error(message) {
   const err = new Error(message);
   err.patternplate = true;
   return err;
-}
-
-function validate({ target, name }) {
-  try {
-    schemaUtilsValidate({
-      name,
-      schema,
-      target,
-      log: false,
-      exit: false,
-      throw: true
-    });
-  } catch (err) {
-    return [err, false];
-  }
-
-  return [null, true];
 }
 
 main(cli).catch(err => {

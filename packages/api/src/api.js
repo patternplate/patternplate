@@ -11,6 +11,7 @@ const micromatch = require("micromatch");
 const WebSocket = require("ws");
 const debug = require("util").debuglog("PATTERNPLATE");
 const Observable = require("zen-observable");
+const {validate} = require("@patternplate/validate-config");
 
 const createCompiler = require("./compiler");
 const demo = require("./demo");
@@ -61,17 +62,35 @@ async function api({ server, cwd }) {
       send({type: message.type, payload: message.payload});
     });
 
+    let configError = false;
+
     watcher.subscribe(message => {
       if (message.type === "change" && message.payload.contentType === "config") {
         (async () => {
+          const {config, filepath} = await loadConfig({ cwd });
+          const [error, valid] = validate({target: config, name: filepath});
+
+          if (error) {
+            configError = true;
+            send({type: "error", payload: error});
+          }
+
+          if (configError) {
+            console.log(`Resolved config error, applying ${filepath}`);
+            configError = false;
+          }
+
           clientQueue.stop();
           serverQueue.stop();
 
           [clientQueue, serverQueue] = await Promise.all([
             createCompiler({ cwd, target: "web" }),
             createCompiler({ cwd, target: "node" })
-          ])
-        })();
+          ]);
+        })().catch(err => {
+          configError = true;
+          send({type: "error", payload: err});
+        });
       }
 
       send(message);
