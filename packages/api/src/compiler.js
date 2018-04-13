@@ -40,10 +40,12 @@ async function createCompiler({ cwd, target = "" }) {
 
   worker.stdout.on("data", data => {
     stdout += String(data);
+    debug(`stdout ${workerPath}: ${data}`);
   });
 
   worker.stderr.on("data", data => {
     stderr += String(data);
+    debug(`stderr ${workerPath}: ${data}`);
   });
 
   worker.once("close", (code) => {
