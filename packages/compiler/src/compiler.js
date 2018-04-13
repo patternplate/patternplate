@@ -33,7 +33,6 @@ async function compiler(options) {
     entry.demo = DEMO;
     entry.probe = PROBE;
     entry["cover-client"] =  COVER;
-
   }
 
   if (config.cover) {
@@ -61,18 +60,7 @@ async function compiler(options) {
       libraryTarget: options.target === "node" ? "commonjs2" : "window",
       path: "/",
       filename: `patternplate.${options.target}.[name].js`
-    },
-    // Disabled due to inconsistencies with chunking
-    // plugins:
-    //   options.target === "web"
-    //     ? [
-    //         new webpack.optimize.CommonsChunkPlugin({
-    //           name: "vendors",
-    //           minChunks: mod =>
-    //             mod.context && mod.context.indexOf("node_modules") > -1
-    //         })
-    //       ]
-    //     : []
+    }
   });
 
   compiler.outputFileSystem = fs;

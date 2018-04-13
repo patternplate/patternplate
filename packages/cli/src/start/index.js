@@ -49,6 +49,13 @@ async function start({flags}) {
     spinner.text = `Started on http://localhost:${app.port}`;
     spinner.succeed();
     app.subscribe(message => {
+      if (message.type === "exception") {
+        spinner.text = `Could not start patternplate`;
+        spinner.fail();
+        console.error(message.payload.stderr);
+        process.exit(1);
+      }
+
       if (message.type === "error" && message.payload && typeof message.payload.message === "string") {
         spinner.text = message.payload.message;
         spinner.fail();

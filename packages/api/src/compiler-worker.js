@@ -8,7 +8,14 @@ const send = typeof process.send === "function" && process.connected
   ? m => process.send(ARSON.stringify(m))
   : () => {};
 
-(async () => {
+startCompilerWorker()
+  .catch(err => {
+    setTimeout(() => {
+      throw err;
+    })
+  });
+
+async function startCompilerWorker() {
   const {cwd, target} = flags;
   const compiler = await createCompiler({cwd, target});
   const fs = compiler.outputFileSystem;
@@ -69,4 +76,4 @@ const send = typeof process.send === "function" && process.connected
   });
 
   send({type: "ready"});
-})();
+}

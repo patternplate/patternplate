@@ -53,12 +53,12 @@ async function api({ server, cwd }) {
 
     clientQueue.subscribe(queue => {
       const [message] = queue;
-      send({type: message.type});
+      send({type: message.type, payload: message.payload});
     });
 
     serverQueue.subscribe(queue => {
       const [message] = queue;
-      send({type: message.type});
+      send({type: message.type, payload: message.payload});
     });
 
     watcher.subscribe(message => {

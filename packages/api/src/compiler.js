@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const debug = require("util").debuglog("PATTERNPLATE");
 const resolvePkg = require("resolve-pkg");
 
-const OPTS = { stdio: ["inherit", "inherit", "inherit", "ipc"] };
+const OPTS = { stdio: ["pipe", "pipe", "pipe", "ipc"] };
 
 module.exports = createCompiler;
 
@@ -35,8 +35,24 @@ async function createCompiler({ cwd, target = "" }) {
 
   setInterval(() => send({type: "heartbeat"}), 500);
 
-  worker.on("error", err => {
-    console.error(err);
+  let stderr = ``;
+  let stdout = ``;
+
+  worker.stdout.on("data", data => {
+    stdout += String(data);
+  });
+
+  worker.stderr.on("data", data => {
+    stderr += String(data);
+  });
+
+  worker.once("close", (code) => {
+    queue.unshift({type: "exception", payload: {
+      code,
+      stdout,
+      stderr: [`Could not start compiler worker for "${target}"`, stderr].join("\n")
+    }});
+    next(queue);
   });
 
   worker.on("message", envelope => {
