@@ -1,6 +1,7 @@
 const ora = require("ora");
 const patternplate = require("./serve");
 const debug = require("util").debuglog("PATTERNPLATE");
+const loadConfig = require("@patternplate/load-config");
 
 module.exports = start;
 
@@ -38,12 +39,13 @@ async function start({flags}) {
     }
   });
 
+  const cwd = flags.cwd || process.cwd();
   const port = selectPort(flags);
 
   try {
     const app = await patternplate({
       port,
-      cwd: flags.cwd || process.cwd()
+      cwd
     });
 
     spinner.text = `Started on http://localhost:${app.port}`;

@@ -1,6 +1,10 @@
 #!/usr/bin/env node
+const path = require("path");
 const chalk = require("chalk");
 const meow = require("meow");
+const schemaUtilsValidate = require("@webpack-contrib/schema-utils");
+const loadConfig = require("@patternplate/load-config");
+const schema = require("@patternplate/schema-config");
 
 const cli = meow(
   `
@@ -45,19 +49,37 @@ const cli = meow(
 async function main({ input, flags, pkg }) {
   const [command] = input;
 
+  if (command !== "help") {
+    const { config, filepath } = await loadConfig({
+      cwd: flags.cwd || process.cwd()
+    });
+
+    if (filepath) {
+      const relativePath = path.relative(process.cwd(), filepath);
+      const userPath = relativePath.length < filepath.length ? relativePath : filepath;
+      const [error, valid] = validate({ target: config, name: filepath });
+
+      if (!valid) {
+        console.log(`\nInvalid config at ${chalk.bold(userPath)}:`);
+        console.error(error.format());
+        return process.exit(1);
+      }
+    }
+  }
+
   switch (command) {
-    case 'help':
+    case "help":
       return cli.showHelp(0);
-    case 'build':
+    case "build":
       const build = require("./build");
-      return build({input, flags});
-    case 'create':
+      return build({ input, flags });
+    case "create":
       const create = require("./create");
-      return create({input, flags, pkg});
-    case 'start':
+      return create({ input, flags, pkg });
+    case "start":
     case undefined:
       const start = require("./start");
-      return start({input, flags});
+      return start({ input, flags });
     default: {
       throw error(`Unknown command "${command}"`);
     }
@@ -70,19 +92,34 @@ function error(message) {
   return err;
 }
 
-main(cli)
-  .catch(err => {
-    if (err && err.patternplate) {
-      console.log(cli.help);
-      console.error(chalk.red(err.message));
-      process.exit(1);
-    }
-    setTimeout(() => {
-      throw err;
+function validate({ target, name }) {
+  try {
+    schemaUtilsValidate({
+      name,
+      schema,
+      target,
+      log: false,
+      exit: false,
+      throw: true
     });
+  } catch (err) {
+    return [err, false];
+  }
+
+  return [null, true];
+}
+
+main(cli).catch(err => {
+  if (err && err.patternplate) {
+    console.log(cli.help);
+    console.error(chalk.red(err.message));
+    process.exit(1);
+  }
+  setTimeout(() => {
+    throw err;
   });
+});
 
 process.on("unhandledRejection", reason => {
   throw reason;
 });
-

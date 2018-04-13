@@ -24,18 +24,21 @@ async function compiler(options) {
   const entry = { components };
   const bases = [cwd, process.cwd()].filter(Boolean);
 
+  const render = cascadeResolve(config.render, {bases});
+  const mount = cascadeResolve(config.mount, {bases});
+
   if (options.target === "node") {
-    entry.render = cascadeResolve(config.render, {bases});
+    entry.render = render;
   }
 
   if (options.target === "web") {
-    entry.mount = cascadeResolve(config.mount, {bases});
+    entry.mount = mount;
     entry.demo = DEMO;
     entry.probe = PROBE;
     entry["cover-client"] =  COVER;
   }
 
-  if (config.cover) {
+  if (typeof config.cover === "string") {
     entry.cover = cascadeResolve(config.cover, {bases});
   }
 

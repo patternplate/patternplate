@@ -1,0 +1,36 @@
+{
+  "name": "@patternplate/validate-config",
+  "version": "2.1.6",
+  "description": "Validate schema for patternplate.config.js",
+  "scripts": {
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
+  "xo": false,
+  "babel": {
+    "presets": [
+      "module:@patternplate/babel-preset"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternplate/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternplate/patternplate/issues"
+  },
+  "homepage": "https://github.com/patternplate/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0"
+  },
+  "dependencies": {
+    "@webpack-contrib/schema-utils": "^1.0.0-beta.0"
+  }
+}
