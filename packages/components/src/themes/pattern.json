@@ -1,0 +1,8 @@
+{
+  "name": "themes",
+  "displayName": "Theme",
+  "description": "Color, font and logo config for patternplate",
+  "version": "1.0.0",
+  "flag": "stable",
+  "tags": ["Primitives"]
+}

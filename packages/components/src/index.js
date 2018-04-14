@@ -12,6 +12,7 @@ module.exports = {
   injection: require("./injection"),
   keyframes: require("styled-components").keyframes,
   Link: require("./link"),
+  Logo: require("./logo"),
   MainHeader: require("./main-header"),
   MainNavigation: require("./main-navigation"),
   Markdown: require("./markdown"),
@@ -37,5 +38,6 @@ module.exports = {
   Tag: require("./tag"),
   ThemeProvider: require("styled-components").ThemeProvider,
   Text: require("./text"),
-  themes: require("./themes")
+  themes: require("./themes"),
+  svg: require("./svg")
 };

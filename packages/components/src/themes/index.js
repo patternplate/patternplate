@@ -73,20 +73,20 @@ module.exports = function getThemes(ui = {}) {
     ? color(ui.colorRecessDark)
     : colorGroups.gray[400];
 
-  const backgroundLight = ui.backgroundLight
-    ? color(ui.backgroundLight)
+  const backgroundLight = ui.colorBackgroundLight
+    ? color(ui.colorBackgroundLight)
     : color.hsl(255, 0, 100);
 
-  const backgroundSecondaryLight = ui.backgroundSecondaryLight
-    ? color(ui.backgroundSecondaryLight)
+  const backgroundSecondaryLight = ui.colorBackgroundSecondaryLight
+    ? color(ui.colorBackgroundSecondaryLight)
     : color.rgb(246, 248, 250);
 
-  const backgroundTertiaryLight = ui.backgroundTertiaryLight
-    ? color(ui.backgroundTertiaryLight)
+  const backgroundTertiaryLight = ui.colorBackgroundTertiaryLight
+    ? color(ui.colorBackgroundTertiaryLight)
     : color.rgb(246, 248, 250);
 
-  const borderLight = ui.borderLight
-    ? color(ui.borderLight)
+  const borderLight = ui.colorBorderLight
+    ? color(ui.colorBorderLight)
     : color.rgb(228, 228, 228);
 
   const colorLight = ui.colorTextLight
@@ -97,8 +97,8 @@ module.exports = function getThemes(ui = {}) {
     ? color(ui.colorTextLightNegated)
     : color.rgb(238, 238, 238);
 
-  const colorLightRecess = ui.colorLightRecess
-    ? color(ui.colorLightRecess)
+  const colorRecessLight = ui.colorRecessLight
+    ? color(ui.colorRecessLight)
     : color.rgb(106, 115, 125, 1);
 
   const fontFaces = fonts();
@@ -142,7 +142,7 @@ module.exports = function getThemes(ui = {}) {
       border: borderLight.string(),
       color: colorLight.string(),
       colorNegated: colorLightNegated.string(),
-      recess: colorLightRecess.string()
+      recess: colorRecessLight.string()
     }
   });
 

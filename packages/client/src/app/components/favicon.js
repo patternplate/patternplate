@@ -5,9 +5,10 @@ import {
   styled,
   themes,
   Symbol,
-  IconDefinitions
+  IconDefinitions,
+  svg
 } from "@patternplate/components";
-import * as svg from "../utils/svg";
+
 import platform from "platform";
 
 const THEMES = themes();

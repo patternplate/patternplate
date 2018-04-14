@@ -18,10 +18,10 @@ import {
 import * as actions from "../actions";
 import * as demo from "../selectors/demo";
 
+import Logo from "./logo";
 import Favicon from "./favicon";
 import Indicator from "./indicator";
 import ConnectedLink from "./link";
-import Logo from "./logo";
 import Message from "./message";
 import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
 import ToggleNavigation from "./toggle-navigation";

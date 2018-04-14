@@ -11,12 +11,12 @@ function Themer(props) {
   return (
     <StyledThemer>
       <ThemeProvider key="dark" theme={themes.dark}>
-        <StyledThemeContainer spacing={props.spacing}>
+        <StyledThemeContainer spacing={props.spacing} full={props.full}>
           {props.children}
         </StyledThemeContainer>
       </ThemeProvider>
       <ThemeProvider key="light" theme={themes.light}>
-        <StyledThemeContainer spacing={props.spacing}>
+        <StyledThemeContainer spacing={props.spacing} full={props.full}>
           {props.children}
         </StyledThemeContainer>
       </ThemeProvider>
@@ -27,6 +27,7 @@ function Themer(props) {
 const StyledThemeContainer = styled.div`
   background: ${props => props.theme.colors.background};
   padding: ${props => props.spacing ? 15 : 0}px;
+  width: ${props => props.full ? "100%" : "auto"};
 `;
 
 

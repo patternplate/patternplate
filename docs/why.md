@@ -8,7 +8,7 @@ options:
 > * [Develop in patternplate with the CLI](./doc/docs/guides/getting-started?guides-enabled=true)
 > * [View your component library via @patternplate/app](./doc/docs/guides/getting-started-app?guides-enabled=true)
 
-# Systems design for everyone
+# Create better Design Systems
 
 ## :construction: This document is Work in Progress :construction:
 

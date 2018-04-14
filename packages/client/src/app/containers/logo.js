@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import Logo from "../components/logo";
+import { Logo } from "@patternplate/components";
 
 export default connect(mapState)(Logo);
 

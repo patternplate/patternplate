@@ -1,6 +1,9 @@
-import React from "react";
-import { Link, styled, Icon } from "@patternplate/components";
-import * as svg from "../utils/svg";
+const React = require("react");
+const styled = require("styled-components").default;
+
+const Link = require("./link");
+const Icon = require("./icon");
+const svg = require("./svg");
 
 const StyledLink = styled(Link)`
   display: block;
@@ -41,7 +44,7 @@ class Logo extends React.Component {
   }
 }
 
-export default styled(Logo)`
+module.exports = styled(Logo)`
   box-sizing: border-box;
   display: flex;
   width: 100%;

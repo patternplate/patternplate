@@ -1,6 +1,6 @@
 import {renderToString} from "react-dom/server";
 import {merge} from "lodash";
-import * as svg from "../utils/svg";
+import {svg} from "@patternplate/components";
 
 export default (state, action) => {
   let copy;

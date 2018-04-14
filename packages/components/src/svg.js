@@ -1,8 +1,8 @@
-import b from "btoa";
-import { createElement as h } from "react";
-import { styled } from "@patternplate/components";
-import { DOMParser, XMLSerializer } from "xmldom";
-import { camelCase } from "lodash";
+const h = require("react").createElement;
+const b = require("btoa");
+const styled = require("styled-components").default;
+const { DOMParser, XMLSerializer } = require("xmldom");
+const { camelCase } = require("lodash");
 
 const parser = new DOMParser();
 const serializer = new XMLSerializer();

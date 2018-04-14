@@ -59,7 +59,9 @@
   },
   "dependencies": {
     "@patternplate/widgets": "^2.2.0",
+    "btoa": "^1.1.2",
     "buble": "^0.19.3",
+    "codemirror": "^5.36.0",
     "color": "^2.0.0",
     "front-matter": "^2.3.0",
     "hast-to-hyperscript": "^3.0.2",
@@ -71,6 +73,7 @@
     "query-string": "^6.0.0",
     "react": "16.2.0",
     "react-addons-text-content": "^0.0.4",
+    "react-codemirror2": "^4.2.1",
     "react-dom": "16.2.0",
     "react-helmet": "^5.2.0",
     "react-iframe-resizer-super": "^0.2.0",
@@ -80,6 +83,7 @@
     "remark-react": "^4.0.1",
     "semver": "^5.5.0",
     "styled-components": "^3.1.6",
-    "tag-hoc": "^1.0.0"
+    "tag-hoc": "^1.0.0",
+    "xmldom": "^0.1.27"
   }
 }
