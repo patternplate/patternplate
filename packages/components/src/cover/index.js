@@ -325,7 +325,10 @@ const StageImage = styled.img`
 `;
 
 const ButtonRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   position: sticky;
+  z-index: 2;
   top: calc(100vh - 100px);
   background: ${props => props.theme.colors.background};
   box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
@@ -334,12 +337,20 @@ const ButtonRow = styled.div`
 
 const ButtonRowContent = styled.div`
   display: flex;
+  flex-shrink: 0;
   align-items: center;
 `;
 
 const ButtonRowRight = styled.div`
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
   margin-left: auto;
-  line-height: .8;
+  padding-left: 15px;
+  @media screen and (min-width: 550px) {
+    display: flex;
+  }
 `;
 
 const StageButton = styled(Link)`
@@ -353,6 +364,7 @@ const StageButton = styled(Link)`
   color: ${props => props.theme.colors.background};
   border-radius: 3px;
   margin-right: 20px;
+  white-space: nowrap;
 `;
 
 const StageButtonText = styled(Text)`
@@ -360,6 +372,7 @@ const StageButtonText = styled(Text)`
 `;
 
 const GithubButton = styled(Link)`
+  flex-shrink: 0;
   height: 40px;
   width: 40px;
   fill: color;
