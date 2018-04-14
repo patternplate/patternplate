@@ -71,8 +71,6 @@ class ThemeDemo extends React.Component {
       ? renderToString(svg.render(svg.sanitize(svg.purge([svg.parse(config.ui.logo)]))[0]))
       : "";
 
-    console.log(themes.light);
-
     return (
       <ThemeConfigurator>
         <Box>
