@@ -33,7 +33,9 @@ async function startCompilerWorker() {
       failures = 0;
     }
     if (failures >= 3) {
-      console.log(`worker: ${target} beat failed ${failures} times, shutting down.`);
+      send({
+        type: "shutdown", target
+      });
       process.exit(0);
     }
   }, 1000);

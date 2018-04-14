@@ -22,7 +22,11 @@ module.exports = async options => {
         })
       ]);
 
-      res.send({ docs, meta: {id: "root", children: patterns} });
+      res.send({
+        config,
+        docs,
+        meta: {id: "root", children: patterns}
+      });
     } catch (err) {
       return res.json(err);
     }

@@ -81,7 +81,11 @@ async function createCompiler({ cwd, target = "" }) {
         if (Array.isArray(payload)) {
           return payload.forEach(p => console.error(p.message))
         }
-        console.error(payload.message);
+        return console.error(payload.message);
+      }
+      case "shutdown": {
+        console.warn(`compiler-worker for ${target} at ${workerPath} shut down.`);
+        return send({type: "stop"});
       }
     }
   });
