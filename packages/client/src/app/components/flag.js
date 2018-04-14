@@ -1,7 +1,6 @@
 import React from "react";
 import text from "react-addons-text-content";
 import { styled , Text} from "@patternplate/components";
-import Text from "./text";
 
 export default Flag;
 
