@@ -22,7 +22,7 @@ function FlagDemo() {
 const FlagDemoContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.colors.background};
   padding: 30px;
   > * {
     margin-left: 10px;

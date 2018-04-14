@@ -124,12 +124,12 @@ const StyledName = styled(props => <Headline {...props} is="h1" order={1}/>)`
 
 const StyledVersion = styled(props => <Headline {...props} is="small" order={3}/>)`
   display: inline-block;
-  color: ${props => props.theme.dark};
+  color: ${props => props.theme.colors.color};
   margin: 0;
 `;
 
 const StyledDescription = styled(Text)`
-  color: ${props => props.theme.recess};
+  color: ${props => props.theme.colors.recess};
   margin-bottom: 20px;
 `;
 
@@ -141,8 +141,8 @@ const StyledPatternSheet = styled.div`
   min-height: 30vh;
   margin-top: 70vh;
   padding: 30px 60px;
-  border-top: 1px solid ${props => props.theme.border};
-  background: ${props => props.theme.background};
+  border-top: 1px solid ${props => props.theme.colors.border};
+  background: ${props => props.theme.colors.background};
 `;
 
 const ORIENTATION = props => {
@@ -180,7 +180,7 @@ const StyledTagList = styled.div`
   display: inline-block;
   margin-left: 10px;
   padding: 2px 10px;
-  border-left: 1px solid ${props => props.theme.border};
+  border-left: 1px solid ${props => props.theme.colors.border};
 `;
 
 const StyledBoxLine = styled.div`

@@ -4,7 +4,7 @@ const Themer = require("../demo-themer");
 
 module.exports.default = function TextDemo() {
   return (
-    <Themer>
+    <Themer spacing>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
         dignissimos, iure? Odit sapiente earum officia similique distinctio

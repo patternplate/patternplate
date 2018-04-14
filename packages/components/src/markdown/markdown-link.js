@@ -23,11 +23,11 @@ function MarkdownLink(props) {
 const StyledLink = styled(Link)`
   font-size: 18px;
   line-height: 27px;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   text-decoration: none;
   &:link,
   &:visited {
-    color: ${props => props.theme.active};
+    color: ${props => props.theme.colors.active};
   }
   &:hover,
   &:active {

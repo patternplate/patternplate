@@ -7,27 +7,31 @@ import { camelCase } from "lodash";
 const parser = new DOMParser();
 const serializer = new XMLSerializer();
 
-const TAG_NAMES = ["circle", "g", "path", "polygon", "rect", "svg"];
-
 /**
  * These attributes are valid on all SVG elements and accepted by this
  * renderer.
  * All attributes will be converted to their camelCase version.
- * This allows using valid SVG strings. 
+ * This allows using valid SVG strings.
  * Extend this list to allow additional default SVG attributes.
- * 
+ *
  * @type {Array}
  */
-const SHARED_ATTRIBUTES = ["fill", "stroke", "stroke-width"];
+const SHARED_ATTRIBUTES = ["fill", "filter", "stroke", "stroke-width"];
 
 const ATTRIBUTES = {
+  defs: [...SHARED_ATTRIBUTES],
+  symbol: ["id"],
+  linearGradient: [...SHARED_ATTRIBUTES, "id", "x1", "y1", "x2", "y2"],
+  stop: ["offset", "stop-color"],
   circle: [...SHARED_ATTRIBUTES, "cx", "cy", "r", "style"],
   g: [...SHARED_ATTRIBUTES, "x", "y"],
   path: [...SHARED_ATTRIBUTES, "d", "style"],
   polygon: [...SHARED_ATTRIBUTES, "points"],
   rect: [...SHARED_ATTRIBUTES, "x", "y", "width", "height", "style"],
-  svg: ["width", "height", "viewBox", "x", "y", "style", "xmlns"]
+  svg: ["width", "height", "viewBox", "x", "y", "style", "xmlns", "xmlns:xlink"]
 };
+
+const TAG_NAMES = Object.keys(ATTRIBUTES);
 
 function attributes(node, key) {
   return (ATTRIBUTES[node.tagName] || []).reduce(

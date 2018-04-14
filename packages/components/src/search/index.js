@@ -116,7 +116,7 @@ const StyledResultList = styled.div`
   flex: 1 0 40%;
   overflow: scroll;
   -webkit-touch-scroll: auto;
-  border-right: 1px solid ${props => props.theme.border};
+  border-right: 1px solid ${props => props.theme.colors.border};
 `;
 
 const StyledResultHeading = styled(Text)`
@@ -130,14 +130,14 @@ const StyledResultHeading = styled(Text)`
   padding:3px 15px;
   border-width:1px 0;
   border-style:solid;
-  border-color: ${props => props.theme.border};
-  color: ${props => props.theme.color};
-  background: ${props => props.theme.background};
+  border-color: ${props => props.theme.colors.border};
+  color: ${props => props.theme.colors.color};
+  background: ${props => props.theme.colors.background};
 `;
 
 const StyledIcon = styled(tag(["active"])(Icon))`
   flex:0 0 auto;
-  fill: ${props => props.active ? props.theme.active : props.theme.color};
+  fill: ${props => props.active ? props.theme.colors.active : props.theme.colors.color};
   margin-right:10px;
 `;
 
@@ -149,35 +149,42 @@ const StyledPreviewLink = styled(Linkable)`
   top:50%;
   transform:translateY(-50%);
   text-decoration:none;
-  color: ${props => props.theme.border};
+  color: ${props => props.theme.colors.border};
   opacity:0;
   &:hover{
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colors.color};
     text-decoration:underline;
   }
 `;
 
 const StyledResultLink = styled(Linkable)`
-  display:flex;
-  align-items:center;
-  width:100%;
-  padding:10px 15px;
-  line-height:20px;
-  color: ${props => props.active ? props.theme.active : props.theme.color};
-  text-decoration:none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  &:link, &:visited, &:active {
+    color: ${props => props.active ? props.theme.colors.active : props.theme.colors.color};
+    text-decoration: none;
+  }
+`;
+
+const StyledResultLinkText = styled(Text)`
+  line-height: 20px;
+  color: ${props => props.active ? props.theme.colors.active : props.theme.colors.color};
+  text-decoration: none;
 `;
 
 const StyledResult = styled.div`
-  position:relative;
-  box-sizing:border-box;
-  display:flex;
-  align-items:center;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   &:hover{
-    mask-image:linear-gradient( to left,rgba(0,0,0,0) 75px,rgba(0,0,0,1) 125px );
-    -webkit-mask-image:linear-gradient( to left,rgba(0,0,0,0) 75px,rgba(0,0,0,1) 125px );
+    mask-image: linear-gradient( to left,rgba(0,0,0,0) 75px,rgba(0,0,0,1) 125px);
+    -webkit-mask-image: linear-gradient( to left,rgba(0,0,0,0) 75px,rgba(0,0,0,1) 125px);
   }
   &:hover {
-    opacity:1;
+    opacity: 1;
   }
 `;
 
@@ -212,12 +219,12 @@ class SearchResult extends React.Component {
           href={props.href}
           query={{ "search-enabled": false }}
         >
-          <Text
+          <StyledResultLinkText
             active={props.active}
             size="l"
           >
             {props.name}
-          </Text>
+          </StyledResultLinkText>
         </StyledResultLink>
         <StyledPreviewLink
           active={props.active}
@@ -251,7 +258,7 @@ const StyledClose = styled(Link)`
 `;
 
 const StyledCloseIcon = styled(Icon)`
-  fill: ${props => props.theme.color};
+  fill: ${props => props.theme.colors.color};
 `;
 
 function Close(props) {
@@ -282,8 +289,8 @@ const StyledSearchLegend = styled.div`
   box-sizing: border-box;
   width: 100%;
   padding: 0 15px;
-  border: 1px solid ${props => props.theme.border};
-  color: ${props => props.theme.border};
+  border: 1px solid ${props => props.theme.colors.border};
+  color: ${props => props.theme.colors.border};
   ${props => withTint(props)};
 `;
 
@@ -301,7 +308,7 @@ const StyledSearchLegendBox = styled.div`
 
 const StyledField = styled(Text)`
   padding:0 10px;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   &:first-child{
     padding-left:0;
   }
@@ -310,7 +317,7 @@ const StyledField = styled(Text)`
 const StyledLegendName = styled(StyledField)`
   padding-right:20px;
   font-weight:bold;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   position:relative;z-index:1;
 `;
 
@@ -320,7 +327,7 @@ const StyledFieldLink = styled(Link)`
   &:active,
   &:visited,
   &:hover {
-    color: ${props => props.theme.color
+    color: ${props => props.theme.colors.color
   }
 `;
 
@@ -367,7 +374,7 @@ function withTint(props) {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: ${props.theme.background};
+			background: ${props.theme.colors.background};
 			opacity: 0.975;
 		}
 	`;

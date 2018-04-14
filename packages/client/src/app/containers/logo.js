@@ -6,6 +6,6 @@ export default connect(mapState)(Logo);
 
 function mapState(state) {
   return {
-    source: state.config.logo
+    source: state.config.ui.renderedLogo
   };
 }

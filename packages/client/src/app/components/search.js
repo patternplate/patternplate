@@ -8,13 +8,13 @@ import {
   Icon,
   Link,
   Markdown,
-  styled
+  styled,
+  Text
 } from "@patternplate/components";
 import tag from "tag-hoc";
 
 import Outside from "./outside";
 import SearchField from "./search-field";
-import Text from "./text";
 import withToggleStates from "../connectors/with-toggle-states";
 import PassThrough from "../containers/pass-through";
 

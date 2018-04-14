@@ -5,16 +5,8 @@ const Themer = require("../demo-themer");
 
 module.exports.default = function CodeDemo() {
   return (
-    <Themer>
-      <StyledDemoBox>
-        <Code language="js">const foo = bar</Code>
-      </StyledDemoBox>
+    <Themer spacing={true}>
+      <Code language="js">const foo = bar</Code>
     </Themer>
   );
 };
-
-const StyledDemoBox = styled.div`
-   {
-    margin: 10px 0 0 10px;
-  }
-`;

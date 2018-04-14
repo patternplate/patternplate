@@ -1,9 +1,6 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const fonts = require("../fonts");
 const Icon = require("../icon");
-
-const FONTS = fonts();
 
 module.exports = MainHeader;
 
@@ -33,5 +30,5 @@ const StyledMainHeader = styled.div`
 `;
 
 const StyledTitle = styled.span`
-  font-family: ${FONTS.default};
+  font-family: ${props => props.theme.fonts.default};
 `;

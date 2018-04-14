@@ -1,8 +1,0 @@
-{
-  "name": "navigation-item",
-  "displayName": "Navigation Item",
-  "description": "Leaf node of navigation-tree",
-  "version": "1.0.0",
-  "tags": ["Navigation", "Interaction"],
-  "flag": "stable"
-}

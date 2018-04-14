@@ -86,7 +86,7 @@ const StyledPatternLoader = styled.div`
     width: 100%;
     height: 100%;
     background: ${props =>
-      props.error ? props.theme.error : props.theme.active};
+      props.error ? props.theme.colors.error : props.theme.colors.active};
     opacity: 1;
     transition: ${props => (props.error ? "none" : "transform 1s ease-in-out")};
     ${props => {

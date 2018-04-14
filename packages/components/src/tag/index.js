@@ -8,14 +8,14 @@ module.exports = styled(props => <Text className={props.className}>{props.childr
   padding: 2px 4px;
   margin-top: 1.5px;
   margin-bottom: 1.5px;
-  color: ${props => props.theme.color};
-  border: 1px solid ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
+  border: 1px solid ${props => props.theme.colors.color};
   border-radius: 3px;
   &:link,
   &:visited,
   &:active {
     text-decoration: none;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colors.color};
   }
   &:nth-child(2n) {
     margin-left: 3px;

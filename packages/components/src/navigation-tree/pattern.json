@@ -1,8 +1,0 @@
-{
-  "name": "navigation-tree",
-  "displayName": "Navigation Tree",
-  "description": "Nestable tree of navigation-items",
-  "version": "1.0.0",
-  "tags": ["Navigation"],
-  "flag": "stable"
-}

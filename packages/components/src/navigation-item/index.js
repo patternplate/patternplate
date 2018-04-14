@@ -5,11 +5,8 @@ const styled = require("styled-components").default;
 const remark = require("remark");
 const emoji = require("remark-gemoji-to-emoji");
 
-const fonts = require("../fonts");
 const Icon = require("../icon");
 const Link = require("../link");
-
-const FONTS = fonts();
 
 const processor = remark().use(emoji);
 
@@ -84,8 +81,8 @@ module.exports = NavigationItem;
 
 const StyledIcon = styled(Icon)`
   flex: 0 0 auto;
-  fill: ${props => props.theme.color};
-  ${props => props.active && `fill: ${color(props.theme.active)}`};
+  fill: ${props => props.theme.colors.color};
+  ${props => props.active && `fill: ${color(props.theme.colors.active)}`};
   padding: 10px 0 10px 9px;
 `;
 
@@ -114,14 +111,14 @@ const StyledNavigationLink = styled(LinkTag)`
   width: 100%;
   align-items: center;
   text-decoration: none;
-  font-size: ${props => props.theme.fontSize};
+  font-size: ${props => props.theme.fonts.fontSize}px;
   line-height: 20px;
-  font-family: ${FONTS.default};
-  font-weight: ${props => props.theme.fontWeight};
+  font-family: ${props => props.theme.fonts.default};
+  font-weight: ${props => props.theme.fonts.fontWeight};
   padding-left: ${props => props.nested ? 30 : 0}px;
   :link,
   :visited {
-    color: ${props => props.theme.color};
-    ${props => props.active && `color: ${color(props.theme.active)}`};
+    color: ${props => props.theme.colors.color};
+    ${props => props.active && `color: ${color(props.theme.colors.active)}`};
   }
 `;

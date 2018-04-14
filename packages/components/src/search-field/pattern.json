@@ -1,8 +1,0 @@
-{
-  "name": "search-field",
-  "displayName": "Search Field",
-  "version": "1.0.0",
-  "description": "Search field with autocompletion",
-  "flag": "beta",
-  "tags": ["Search"]
-}

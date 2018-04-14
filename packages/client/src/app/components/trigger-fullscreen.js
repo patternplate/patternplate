@@ -16,7 +16,7 @@ function Fullscreen(props) {
 }
 
 const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.background};
+  fill: ${props => props.theme.colors.background};
 `;
 
 const StyledLink = styled(Link)`

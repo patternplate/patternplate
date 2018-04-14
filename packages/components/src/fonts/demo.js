@@ -10,6 +10,7 @@ function FontsDemo() {
   return (
     <div>
       <FontFace name="Default" face={FONTS.default} />
+      <FontFace name="Code" face={FONTS.code} />
     </div>
   );
 }
@@ -32,4 +33,6 @@ const StyledName = styled.div`
 
 const StyledParagraph = styled.div`
   font-family: ${props => props.face};
+  padding: 15px;
+  max-width: 60ch;
 `;

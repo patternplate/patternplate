@@ -6,7 +6,7 @@ const styled = require("styled-components").default;
 const Themer = require("../demo-themer");
 
 module.exports.default = () => (
-  <Themer>
+  <Themer spacing>
     <InfoPaneDemo />
   </Themer>
 );

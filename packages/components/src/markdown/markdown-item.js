@@ -6,7 +6,7 @@ const Text = require('../text');
 module.exports = styled(MarkdownItem)`
   font-size: 18px;
   line-height: 27px;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   margin-top: 4.5px;
 `;
 

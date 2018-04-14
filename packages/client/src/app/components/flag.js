@@ -1,6 +1,6 @@
 import React from "react";
 import text from "react-addons-text-content";
-import { styled } from "@patternplate/components";
+import { styled , Text} from "@patternplate/components";
 import Text from "./text";
 
 export default Flag;
@@ -12,10 +12,10 @@ function Flag(props) {
 const StyledText = styled(Text)`
   display: inline-block;
   padding: 2px 4px;
-  border: 1px solid ${props => props.theme.border};
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 3px;
   ${props => {
-    const color = getFlagColor(text(props.children), props.theme);
+    const color = getFlagColor(text(props.children), props.theme.colors);
     return `
 			border-color: ${color};
 			color: ${color};

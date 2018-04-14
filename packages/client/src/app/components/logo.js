@@ -7,7 +7,7 @@ const StyledLink = styled(Link)`
   margin: 0 auto;
   &:link,
   &:visited {
-    color: ${props => props.theme.active};
+    color: ${props => props.theme.colors.active};
   }
 `;
 
@@ -15,14 +15,26 @@ class Logo extends React.Component {
   render() {
     const { props } = this;
 
-    const child = typeof props.source === "string"
-      ? svg.render(svg.sanitize(svg.purge([svg.parse(props.source)]))[0])
-      : <Icon symbol="patternplate" size="l"/>;
+    if (props.source) {
+      return (
+        <div className={props.className}>
+          <StyledLink
+            dangerouslySetInnerHTML={{__html: props.source}}
+            external="base"
+            href="/"
+            query={null}
+            target="_self"
+            >
+            <div dangerouslySetInnerHTML={{__html: props.source}}/>
+          </StyledLink>
+        </div>
+      );
+    }
 
     return (
       <div className={props.className}>
         <StyledLink external="base" href="/" query={null} target="_self">
-          {child}
+          <Icon symbol="patternplate" size="l"/>
         </StyledLink>
       </div>
     );
@@ -38,5 +50,5 @@ export default styled(Logo)`
   stroke-width: 0;
   align-items: center;
   padding: 10px;
-  background: ${props => props.theme.backgroundSecondary};
+  background: ${props => props.theme.colors.backgroundSecondary};
 `;

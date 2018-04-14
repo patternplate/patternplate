@@ -27,9 +27,9 @@ const CURSOR = props => (props.active ? "pointer" : "not-allowed");
 
 const COLOR = props => {
   if (props.active) {
-    return props.enabled ? props.theme.active : props.theme.color;
+    return props.enabled ? props.theme.colors.active : props.theme.colors.color;
   }
-  return props.theme.border;
+  return props.theme.colors.border;
 };
 
 const StyledIcon = styled(Icon)`

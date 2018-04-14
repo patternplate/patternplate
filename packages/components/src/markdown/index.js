@@ -99,21 +99,21 @@ const StyledMarkdown = styled.div`
       sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   & tr {
-    color: ${props => props.theme.color};
-    border-top: 1px solid ${props => props.theme.border};
+    color: ${props => props.theme.colors.color};
+    border-top: 1px solid ${props => props.theme.colors.border};
     background: transparent;
   }
   & tr:nth-child(2n) {
-    background: ${props => props.theme.backgroundTertiary};
+    background: ${props => props.theme.colors.backgroundTertiary};
   }
   & th {
     padding: 6px 13px;
-    border: 1px solid ${props => props.theme.border};
+    border: 1px solid ${props => props.theme.colors.border};
     font-weight: 600;
   }
   & td {
     padding: 6px 13px;
-    border: 1px solid ${props => props.theme.border};
+    border: 1px solid ${props => props.theme.colors.border};
   }
 `;
 
@@ -129,7 +129,7 @@ function WidgetError(props) {
 }
 
 const StyledWidgetError = styled.div`
-  background: ${props => props.theme.error};
+  background: ${props => props.theme.colors.error};
   color: #fff;
   padding: 10px 15px;
   font-family: monospace;

@@ -2,11 +2,8 @@ const React = require("react");
 const styled = require("styled-components").default;
 const tag = require("tag-hoc").default;
 
-const fonts = require("../fonts");
 const Icon = require("../icon");
 const Link = require("../link");
-
-const FONTS = fonts();
 
 function Button(props) {
   const OuterElement =
@@ -34,14 +31,14 @@ Button.defaultProps = {
 };
 
 const StyledLabel = styled.span`
-  font-family: ${FONTS.default};
+  font-family: ${props => props.theme.fonts.default};
 `;
 
 const FRAME = props =>
   !props.frameless &&
   `
   padding: 4px;
-  border: 1px solid currentColor;
+  border: 1px solid currentColor
 `;
 
 const TRANSPARENCY = props =>
@@ -59,12 +56,13 @@ const StyledButton = styled(Button)`
   padding: 5px;
   border: none;
   outline: 0;
-  background: ${props => props.theme.background};
-  color: ${props => props.theme.color};
+  background: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.color};
   font: inherit;
   box-sizing: border-box;
   vertical-align: top;
-  ${FRAME} ${TRANSPARENCY};
+  ${FRAME};
+  ${TRANSPARENCY};
 `;
 
 const StyledIcon = styled(Icon)`

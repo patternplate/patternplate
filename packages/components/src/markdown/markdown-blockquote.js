@@ -8,8 +8,8 @@ module.exports = styled(MarkdownBlockquote)`
   font-size: 18px;
   line-height: 27px;
   padding-left: 18px;
-  border-left: 4.5px solid ${props => props.theme.recess};
-  color: ${props => props.theme.recess};
+  border-left: 4.5px solid ${props => props.theme.colors.recess};
+  color: ${props => props.theme.colors.recess};
 `;
 
 function MarkdownBlockquote(props) {

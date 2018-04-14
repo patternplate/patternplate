@@ -32,7 +32,7 @@ function PatternDemoError(props) {
 }
 
 const StyledPatternDemoError = styled.div`
-  background: ${props => props.theme.error};
+  background: ${props => props.theme.colors.error};
   color: #fff;
   padding: 10px 15px;
   font-family: monospace;

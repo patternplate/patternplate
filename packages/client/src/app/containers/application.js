@@ -29,8 +29,8 @@ import ToggleSearch from "./toggle-search";
 import Search from "./search";
 
 const selectThemes = createSelector(
-  state => state.config.color,
-  color => themes(color)
+  state => state.config.ui,
+  ui => themes(ui)
 );
 
 const selectLines = createSelector(
@@ -58,7 +58,7 @@ function mapProps(state) {
     lightbox: state.lightbox,
     location: state.routing.locationBeforeTransitions,
     networkEnabled: state.networkEnabled,
-    logo: state.config.logo,
+    logo: state.config.ui.renderedLogo,
     navigationEnabled: state.navigationEnabled,
     searchEnabled: state.searchEnabled,
     theme: state.theme,
@@ -223,7 +223,7 @@ const StyledBrowserWarning = styled.div`
   width: 100%;
   padding: 15px 20px;
   padding-left: ${props => props.navigationEnabled ? 20 : 60}px;
-  background: ${props => props.theme.warning};
+  background: ${props => props.theme.colors.warning};
 `;
 
 const StyledBrowserContainer = styled.div`
@@ -250,7 +250,7 @@ const StyledBrowserContainerClose = styled(Link)`
   &:link,
   &:visited,
   &:active {
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colors.color};
   }
 `;
 
@@ -260,7 +260,7 @@ const StyledApplication = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.colors.background};
 
   ${props => !props.screenshot
     ? ''
@@ -376,9 +376,17 @@ const NavigationControl = styled.div`
   top: 0;
   left: ${props => props.enabled ? 300 : 0}px;
   transform: translate(-${props => props.enabled ? 100 : 0}%);
-  color: ${props => props.enabled ? props.theme.color : props.theme.background};
+  color: ${props => props.enabled ? props.theme.colors.color : props.theme.colors.background};
   width: 60px;
   height: 60px;
+  background: ${props => props.enabled ? props.theme.colors.backgroundSecondary : "#fff"};
+
+  @media screen and (min-width: 720px) {
+    background: transparent;
+    &::before {
+      display: none;
+    }
+  }
 `;
 
 function meta(props) {

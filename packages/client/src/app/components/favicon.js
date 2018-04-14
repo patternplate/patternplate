@@ -78,9 +78,9 @@ class FavIcon extends React.Component {
 export default styled(FavIcon)`
   width: 100%;
   height: auto;
-  stroke: ${props => props.theme.color};
+  stroke: ${props => props.theme.colors.color};
   stroke-width: 0;
-  fill: ${props => props.theme.color};
+  fill: ${props => props.theme.colors.color};
 `;
 
 function getSource(props) {

@@ -17,8 +17,9 @@ const Headline = props => {
 };
 
 module.exports = styled(Headline)`
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   font-size: ${props => ORDERS[props.order]}px;
+  font-family: ${props => props.theme.fonts.headline};
   margin: 60px 0 16px 0;
   font-weight: 300;
   line-height: 1.25;

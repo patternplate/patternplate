@@ -1,8 +1,0 @@
-{
-  "name": "themes",
-  "displayName": "Themes",
-  "description": "Colors used in patternplate",
-  "version": "1.0.0",
-  "flag": "beta",
-  "tags": ["Primitives", "Color"]
-}

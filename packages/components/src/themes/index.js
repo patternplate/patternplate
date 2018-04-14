@@ -1,20 +1,21 @@
 const color = require("color");
 const { merge } = require("lodash");
+const fonts = require("../fonts");
 
-module.exports = function getThemes(passed) {
-  const mainColorTone = passed ? color(passed) : color.hsl(210, 100, 100);
+module.exports = function getThemes(ui = {}) {
+  const defaultMainColor = color.rgb(51, 153, 255);
   const grayBaseTone = color.hsl(0, 0, 100);
 
   const colorGroups = {
     lightBlue: {
-      300: mainColorTone.darken(0.3),
-      600: mainColorTone.darken(0.4)
+      300: defaultMainColor.darken(0.3),
+      600: defaultMainColor.darken(0.4)
     },
     marine: {
-      500: mainColorTone.desaturate(0.5).darken(0.5),
-      700: mainColorTone.desaturate(0.5).darken(0.8),
-      800: mainColorTone.desaturate(0.5).darken(0.85),
-      900: mainColorTone.desaturate(0.5).darken(0.9)
+      500: defaultMainColor.desaturate(0.5).darken(0.5),
+      700: defaultMainColor.desaturate(0.5).darken(0.8),
+      800: defaultMainColor.desaturate(0.5).darken(0.85),
+      900: defaultMainColor.desaturate(0.5).darken(0.9)
     },
     gray: {
       50: grayBaseTone.darken(0.05),
@@ -24,47 +25,129 @@ module.exports = function getThemes(passed) {
     }
   };
 
-  const main = colorGroups.lightBlue[600].string();
+  const active = ui.colorActive
+    ? color(ui.colorActive)
+    : defaultMainColor;
+
+  const error = ui.colorError
+    ? color(ui.colorError)
+    : color.rgb(250, 63, 69);
+
+  const warning = ui.colorWarning
+    ? color(ui.colorWarning)
+    : color.rgb(255, 189, 46);
+
+  const info = ui.colorInfo
+    ? color(ui.colorInfo)
+    : color.rgb(80, 179, 221);
+
+  const success = ui.colorSuccess
+    ? color(ui.colorSuccess)
+    : color.rgb(74, 165, 74);
+
+  const background = ui.colorBackgroundDark
+    ? color(ui.colorBackgroundDark)
+    : colorGroups.marine[900];
+
+  const backgroundSecondary = ui.colorBackgroundSecondaryDark
+    ? color(ui.colorBackgroundSecondaryDark)
+    : colorGroups.marine[800];
+
+  const backgroundTertiary = ui.colorBackgroundTertiaryDark
+    ? color(ui.colorBackgroundTertiaryDark)
+    : colorGroups.marine[700];
+
+  const border = ui.colorBorderDark
+    ? color(ui.colorBorderDark)
+    : colorGroups.marine[800];
+
+  const textColor = ui.colorTextDark
+    ? color(ui.colorTextDark)
+    : colorGroups.gray[50];
+
+  const textColorNegated = ui.colorTextNegatedDark
+    ? color(ui.colorTextNegatedDark)
+    : colorGroups.gray[700];
+
+  const recess = ui.colorRecessDark
+    ? color(ui.colorRecessDark)
+    : colorGroups.gray[400];
+
+  const backgroundLight = ui.backgroundLight
+    ? color(ui.backgroundLight)
+    : color.hsl(255, 0, 100);
+
+  const backgroundSecondaryLight = ui.backgroundSecondaryLight
+    ? color(ui.backgroundSecondaryLight)
+    : color.rgb(246, 248, 250);
+
+  const backgroundTertiaryLight = ui.backgroundTertiaryLight
+    ? color(ui.backgroundTertiaryLight)
+    : color.rgb(246, 248, 250);
+
+  const borderLight = ui.borderLight
+    ? color(ui.borderLight)
+    : color.rgb(228, 228, 228);
+
+  const colorLight = ui.colorTextLight
+    ? color(ui.colorTextLight)
+    : color.rgb(68, 68, 68, 1);
+
+  const colorLightNegated = ui.colorTextLightNegated
+    ? color(ui.colorTextLightNegated)
+    : color.rgb(238, 238, 238);
+
+  const colorLightRecess = ui.colorLightRecess
+    ? color(ui.colorLightRecess)
+    : color.rgb(106, 115, 125, 1);
+
+  const fontFaces = fonts();
 
   const common = {
-    active: main,
-    error: "rgba(205, 63, 69, 1)", // Errors, alpha, deprecated
-    warning: "rgba(255, 189, 46, 1)", // Warnings, beta
-    info: "rgba(80, 179, 221, 1)", // Rc
-    success: "rgba(74, 165, 74, 1)", // Stable
-    dark: "rgba(15, 15, 15, 1)",
-    light: "rgba(220, 220, 220, 1)",
-    fontWeight: "100",
-    fontSize: "14px",
-    fontSizeNumber: 14
+    colors: {
+      active: active.string(),
+      error: error.string(),
+      warning: warning.string(),
+      info: info.string(),
+      success: success.string(),
+    },
+    fonts: {
+      fontWeight: 100,
+      fontSize: 14,
+      default: ui.fontDefault || fontFaces.default,
+      code: ui.fontCode || fontFaces.code,
+      headline: ui.fontHeadline || fontFaces.default
+    }
   };
 
   const dark = merge({}, common, {
     name: "dark",
-    background: colorGroups.marine[900].string(),
-    backgroundSecondary: colorGroups.marine[800].string(),
-    backgroundTertiary: colorGroups.marine[700].string(),
-    border: colorGroups.marine[800].string(),
-    color: colorGroups.gray[50].string(),
-    colorNegated: colorGroups.gray[700].string(),
-    recess: colorGroups.gray[400].string()
+    colors: {
+      background: background.string(),
+      backgroundSecondary: backgroundSecondary.string(),
+      backgroundTertiary: backgroundTertiary.string(),
+      border: border.string(),
+      color: textColor.string(),
+      colorNegated: textColorNegated.string(),
+      recess: recess.string()
+    }
   });
 
   const light = merge({}, common, {
     name: "light",
-    background: "hsl(255, 0%, 100%)",
-    backgroundSecondary: "rgba(246, 248, 250, 1)",
-    backgroundTertiary: "rgba(246, 248, 250, 1)",
-    border: "rgba(228, 228, 228, 1)",
-    color: "rgba(68, 68, 68, 1)",
-    colorNegated: "rgba(238, 238, 238, 1)",
-    recess: "rgba(106, 115, 125, 1)",
-    fontWeight: "initial"
+    colors: {
+      background: backgroundLight.string(),
+      backgroundSecondary: backgroundSecondaryLight.string(),
+      backgroundTertiary: backgroundTertiaryLight.string(),
+      border: borderLight.string(),
+      color: colorLight.string(),
+      colorNegated: colorLightNegated.string(),
+      recess: colorLightRecess.string()
+    }
   });
 
   return {
     dark,
-    light,
-    colorGroups
+    light
   };
 };

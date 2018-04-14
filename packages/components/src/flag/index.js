@@ -1,9 +1,6 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const text = require("react-addons-text-content");
-const fonts = require("../fonts");
-
-const FONTS = fonts();
 
 module.exports = Flag;
 
@@ -14,11 +11,11 @@ function Flag(props) {
 const StyledText = styled.span`
   display: inline-block;
   padding: 2px 4px;
-  border: 1px solid ${props => props.theme.border};
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 3px;
-  font-family: ${FONTS.default};
+  font-family: ${props => props.theme.fonts.default};
   ${props => {
-    const color = getFlagColor(text(props.children), props.theme);
+    const color = getFlagColor(text(props.children), props.theme.colors);
     return `
 			border-color: ${color};
 			color: ${color};

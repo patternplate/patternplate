@@ -32,7 +32,7 @@ const StyledDocPane = styled.div`
       props.hermit
         ? `${BORDER_RADIUS}px`
         : `0 ${BORDER_RADIUS}px ${BORDER_RADIUS}px 0`};
-    background: ${props => props.theme.background};
+    background: ${props => props.theme.colors.background};
   }
 `;
 

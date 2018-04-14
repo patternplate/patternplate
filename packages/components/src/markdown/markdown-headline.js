@@ -20,12 +20,12 @@ const ThemedIcon = styled(Icon)`
   top: 50%;
   transform: translateY(-50%);
   padding-right: 10px;
-  fill: ${props => props.theme.color};
+  fill: ${props => props.theme.colors.color};
   opacity: 0;
 `;
 
 const StyledLink = styled(Link)`
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   text-decoration: none;
   &:hover ${ThemedIcon} {
     opacity: 1;
@@ -37,9 +37,13 @@ const StyledTarget = styled.div`
   height: 0;
 `;
 
+const StyledHeadline = styled(Headline)`
+  font-family: ${props => props.theme.fonts.headline};
+`;
+
 module.exports = styled(MarkdownHeadline)`
   position: relative;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   margin: 60px 0 16px 0;
   font-weight: 300;
   line-height: 1.25;
@@ -57,7 +61,7 @@ function MarkdownHeadline(props) {
   );
 
   return (
-    <Headline is={props.is} order={ORDER[props.is]} className={props.className} id={id}>
+    <StyledHeadline is={props.is} order={ORDER[props.is]} className={props.className} id={id}>
       {props.linkable ? (
         <MarkdownHeadlineLink name={children} id={id}>
           {props.children}
@@ -65,7 +69,7 @@ function MarkdownHeadline(props) {
       ) : (
         props.children
       )}
-    </Headline>
+    </StyledHeadline>
   );
 }
 

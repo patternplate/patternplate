@@ -11,14 +11,24 @@ function Themer(props) {
   return (
     <StyledThemer>
       <ThemeProvider key="dark" theme={themes.dark}>
-        {props.children}
+        <StyledThemeContainer spacing={props.spacing}>
+          {props.children}
+        </StyledThemeContainer>
       </ThemeProvider>
       <ThemeProvider key="light" theme={themes.light}>
-        {props.children}
+        <StyledThemeContainer spacing={props.spacing}>
+          {props.children}
+        </StyledThemeContainer>
       </ThemeProvider>
     </StyledThemer>
   );
 }
+
+const StyledThemeContainer = styled.div`
+  background: ${props => props.theme.colors.background};
+  padding: ${props => props.spacing ? 15 : 0}px;
+`;
+
 
 const StyledThemer = styled.div`
   display: flex;

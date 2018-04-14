@@ -1,5 +1,6 @@
 const React = require("react");
 const PatternList = require(".");
+const DemoThemer = require("../../demo-themer");
 
 module.exports.default = PatternListDemo;
 
@@ -23,8 +24,8 @@ const ITEMS = [
 
 function PatternListDemo() {
   return (
-    <div>
+    <DemoThemer spacing>
       <PatternList search={() => ITEMS}/>
-    </div>
+    </DemoThemer>
   );
 }

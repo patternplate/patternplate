@@ -50,8 +50,7 @@ const StyledCode = styled.code`
   overflow-x: auto;
   padding: 0.5em;
   color: ${themed("mono1")};
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
+  font-family: ${props => props.theme.fonts.code};
 
   .hljs-comment,
   .hljs-quote {

@@ -4,7 +4,7 @@ const styled = require("styled-components").default;
 const Code = require('../code');
 
 module.exports = styled(MarkdownCodeBlock)`
-  background: ${props => props.theme.backgroundSecondary};
+  background: ${props => props.theme.colors.backgroundSecondary};
   border-radius: 3px;
   font-size: 15.3px;
   line-height: 23px;

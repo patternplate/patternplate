@@ -5,7 +5,7 @@ const Themer = require("../demo-themer");
 
 module.exports.default = function ButtonDemo() {
   return (
-    <Themer>
+    <Themer spacing={true}>
       <StyledDemoBox>
         <Button
           symbol="reload"
@@ -31,6 +31,6 @@ module.exports.default = function ButtonDemo() {
 
 const StyledDemoBox = styled.div`
   ${Button} {
-    margin: 10px 0 0 10px;
+    margin-right: 10px;
   }
 `;

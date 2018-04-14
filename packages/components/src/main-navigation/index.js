@@ -1,14 +1,11 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const fonts = require("../fonts");
 const Link = require("../link");
 const Header = require("../main-header");
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
 const NavigationLabel = require("../navigation-label");
 const Icon = require("../icon");
-
-const FONTS = fonts();
 
 class Navigation extends React.Component {
   constructor(...args) {
@@ -96,8 +93,14 @@ Navigation.defaultProps = {
 };
 
 function NavigationHeader(props) {
-  return <div>{props.children}</div>;
+  return <StyledNavigatHeader>{props.children}</StyledNavigatHeader>;
 }
+
+const StyledNavigatHeader = styled.div`
+  box-sizing: border-box;
+  min-height: 60px;
+  background: ${props => props.theme.colors.backgroundSecondary};
+`;
 
 function getPadding(el) {
   const style = global.getComputedStyle(el, null);
@@ -117,7 +120,7 @@ const StyledNavigation = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  background-color: ${props => props.theme.background};
+  background-color: ${props => props.theme.colors.background};
 `;
 
 const PASSAGE_HEIGHT = 50;

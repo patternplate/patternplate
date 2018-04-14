@@ -14,7 +14,7 @@ function ToggleNetwork(props) {
 }
 
 const StyledIcon = styled(Icon)`
-  fill: ${props => props.theme.color};
+  fill: ${props => props.theme.colors.color};
 `;
 
 const StyledToggleButton = styled(ToggleButton)`

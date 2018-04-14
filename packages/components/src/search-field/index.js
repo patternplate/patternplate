@@ -12,7 +12,7 @@ const StyledSearchField = styled.label`
 const StyledIcon = styled(Icon)`
   flex-grow: 0;
   flex-shrink: 0;
-  fill: ${props => props.theme.color};
+  fill: ${props => props.theme.colors.color};
 `;
 
 const StyledInput = styled.input`
@@ -23,7 +23,7 @@ const StyledInput = styled.input`
   border-radius: 0;
   background: transparent;
   font-size: 16px;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   padding: 0;
   appearance: none;
   border-radius: 0;

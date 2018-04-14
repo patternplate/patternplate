@@ -1,14 +1,11 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const fonts = require("../fonts");
 const Icon = require("../icon");
 const Link = require("../link");
 const remark = require("remark");
 const emoji = require("remark-gemoji-to-emoji");
 
 const processor = remark().use(emoji);
-
-const FONTS = fonts();
 
 module.exports = NavigationLabel;
 
@@ -48,7 +45,7 @@ const StyledLabelContainer = styled.div`
 
 const StyledLabelLink = styled(Link)`
   display: block;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   cursor: pointer;
   text-decoration: none;
   width: 100%;
@@ -59,13 +56,13 @@ const StyledLabel = styled.div`
   padding: 10px 10px;
   display: flex;
   align-items: center;
-  font-family: ${FONTS.default};
-  font-size: ${({size, theme}) => SIZES[size] * theme.fontSizeNumber}px;
-  color: ${props => props.theme.color};
-  background-color: ${({enabled, theme}) => enabled ? theme.backgroundTertiary : theme.background};
+  font-family: ${props => props.theme.fonts.default};
+  font-size: ${({size, theme}) => SIZES[size] * theme.fonts.fontSize}px;
+  color: ${props => props.theme.colors.color};
+  background-color: ${({enabled, theme}) => enabled ? theme.colors.backgroundTertiary : theme.colors.background};
   border-style: solid;
-  border-top-color: ${({enabled, theme}) => enabled ? theme.backgroundSecondary : theme.border};
-  border-bottom-color: ${props => props.enabled ? 'transparent' : props.theme.border};
+  border-top-color: ${({enabled, theme}) => enabled ? theme.colors.backgroundSecondary : theme.colors.border};
+  border-bottom-color: ${props => props.enabled ? 'transparent' : props.theme.colors.border};
   border-width: ${props => props.highlight ? 1 : 0}px 0;
   width: 100%;
 `;

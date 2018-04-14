@@ -12,53 +12,105 @@ const schema = {
   "properties": {
     "docs": {
       "type": "array",
-      "title": "docs glob patterns",
       "items": {
-        "$id": "/properties/docs/items",
-        "type": "string",
-        "title": "docs glob pattern",
-        "examples": [
-          "*.md",
-          "README.md",
-          "docs/**/*.md"
-        ]
+        "type": "string"
       }
     },
     "entry": {
       "type": "array",
-      "title": "entry glob patterns",
       "items": {
-        "$id": "/properties/entry/items",
-        "type": "string",
-        "title": "entry glob pattern",
-        "examples": [
-          "**/*.demo.js",
-          "demo.js"
-        ]
+        "type": "string"
       }
     },
     "mount": {
-      "type": "string",
-      "title": "Mount Method ID",
-      "examples": [
-        "./mount.js",
-        "renderer/mount"
-      ]
+      "type": "string"
     },
     "render": {
-      "type": "string",
-      "title": "Render Method ID",
-      "examples": [
-        "./render.js",
-        "renderer/render"
-      ]
+      "type": "string"
     },
     "cover": {
       "type": "string",
-      "title": "cover ID",
       "examples": [
         "./cover.js"
       ]
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logo": {
+          "type": "string"
+        },
+        "favicon": {
+          "type": "string"
+        },
+        "colorActive": {
+          "type": "string"
+        },
+        "colorError": {
+          "type": "string"
+        },
+        "colorWarning": {
+          "type": "string"
+        },
+        "colorInfo": {
+          "type": "string"
+        },
+        "colorSucess": {
+          "type": "string"
+        },
+        "colorBackgroundDark": {
+          "type": "string"
+        },
+        "colorBackgroundSecondaryDark": {
+          "type": "string"
+        },
+        "colorBackgroundTertiaryDark": {
+          "type": "string"
+        },
+        "colorBorderDark": {
+          "type": "string"
+        },
+        "colorTextDark": {
+          "type": "string"
+        },
+        "colorTextNegatedDark": {
+          "type": "string"
+        },
+        "colorRecessDark": {
+          "type": "string"
+        },
+        "colorBackgroundLight": {
+          "type": "string"
+        },
+        "colorBackgroundSecondaryLight": {
+          "type": "string"
+        },
+        "colorBackgroundTertiaryLight": {
+          "type": "string"
+        },
+        "colorBorderLight": {
+          "type": "string"
+        },
+        "colorTextLight": {
+          "type": "string"
+        },
+        "colorTextNegatedLight": {
+          "type": "string"
+        },
+        "colorRecessLight": {
+          "type": "string"
+        },
+        "fontDefault": {
+          "type": "string"
+        },
+        "fontHeadline": {
+          "type": "string"
+        },
+        "fontCode": {
+          "type": "string"
+        }
+      }
     }
   }
 }

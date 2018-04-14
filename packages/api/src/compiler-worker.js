@@ -15,6 +15,8 @@ startCompilerWorker()
     })
   });
 
+const FAILURE_COUNT = 5;
+
 async function startCompilerWorker() {
   const {cwd, target} = flags;
   const compiler = await createCompiler({cwd, target});
@@ -25,14 +27,14 @@ async function startCompilerWorker() {
 
   setInterval(() => {
     const age = Date.now() - beat;
-    if (age >= 1000) {
+    if (age >= 2000) {
       failures++;
-      debug(`worker: ${target} beat is ${age}ms old, failure ${failures}/3.`);
+      debug(`worker: ${target} beat is ${age}ms old, failure ${failures}/${FAILURE_COUNT}.`);
     } else if (failures !== 0) {
-      debug(`worker: ${target} beat limit met, reset failure to 0/3.`);
+      debug(`worker: ${target} beat limit met, reset failure to 0/${FAILURE_COUNT}.`);
       failures = 0;
     }
-    if (failures >= 3) {
+    if (failures >= FAILURE_COUNT) {
       send({
         type: "shutdown", target
       });

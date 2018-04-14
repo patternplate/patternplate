@@ -158,7 +158,7 @@ const docs = {
 
 module.exports.default = function MainNavigationDemo() {
   return (
-    <Themer>
+    <Themer spacing>
       <MainNavigation
         docs={docs}
         navigation={navigation}

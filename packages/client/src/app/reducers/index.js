@@ -1,6 +1,7 @@
 import activeBlock from "./active-block";
 import activeNode from "./active-node";
 import base from "./base";
+import config from "./config";
 import codeEnabled from "./code-enabled";
 import connection from "./connection";
 import depth from "./depth";
@@ -36,7 +37,7 @@ export default {
   activeNode,
   base,
   codeEnabled,
-  config: ident,
+  config,
   connection,
   demo,
   dependenciesEnabled,

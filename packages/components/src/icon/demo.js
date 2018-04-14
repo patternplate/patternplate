@@ -1,6 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const Icon = require(".");
+const DemoThemer = require("../demo-themer");
 
 module.exports.default = IconDemo;
 
@@ -14,11 +15,13 @@ function DemoIcon(props) {
 
 function IconDemo() {
   return (
-    <StyledIconDemo>
-      {Icon.symbols.map(symbol => (
-        <DemoIcon key={symbol} symbol={symbol} title={symbol} />
-      ))}
-    </StyledIconDemo>
+    <DemoThemer spacing={true}>
+      <StyledIconDemo>
+        {Icon.symbols.map(symbol => (
+          <DemoIcon key={symbol} symbol={symbol} title={symbol} />
+        ))}
+      </StyledIconDemo>
+    </DemoThemer>
   );
 }
 
@@ -30,6 +33,7 @@ const StyledDemoIcon = styled.div`
   justify-content: center;
   position: relative;
   margin: 10px;
+  color: ${props => props.theme.colors.color};
   &::after {
     content: '${TITLE}';
     display: block;
@@ -41,4 +45,5 @@ const StyledDemoIcon = styled.div`
 const StyledIconDemo = styled.div`
   display: flex;
   flex-wrap: wrap;
+  color: ${props => props.theme.colors.color};
 `;

@@ -7,7 +7,7 @@ module.exports = styled(MarkdownCopy)`
   margin: 0 0 16px 0;
   font-size: 18px;
   line-height: 27px;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
 `;
 
 function MarkdownCopy(props) {

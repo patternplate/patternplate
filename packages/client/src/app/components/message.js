@@ -20,7 +20,7 @@ function Message(props) {
 }
 
 const StyledMessage = styled.div`
-  background: ${props => props.theme.error};
+  background: ${props => props.theme.colors.error};
   box-sizing: border-box;
   width: 100%;
   padding: 10px 20px;

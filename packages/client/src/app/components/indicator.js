@@ -1,6 +1,5 @@
 import React from "react";
-import { styled, css, keyframes } from "@patternplate/components";
-import Text from "./text";
+import { styled, css, keyframes, Text } from "@patternplate/components";
 
 export default Indicator;
 
@@ -31,7 +30,7 @@ const StyledDot = styled.div`
   background: ${props =>
     props.status === "error" || props.status === "offline"
       ? "rgb(205, 63, 69)"
-      : props.theme.active};
+      : props.theme.colors.active};
   transition: background 0.4s ease-in-out, opacity 0.5s ease-in;
   opacity: ${props => (props.status ? 1 : 0)};
   cursor: ${props => (props.status ? "pointer" : "")};
@@ -48,7 +47,7 @@ const StyledIndicator = styled.div`
 const StyledLabel = styled(Text)`
   position: absolute;
   right: 20px;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   ${props => getOut(props)};
 `;
 

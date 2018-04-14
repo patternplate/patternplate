@@ -25,17 +25,17 @@ const StyledInfoPane = styled.div`
     props.hermit
       ? `${BORDER_RADIUS}px`
       : `${BORDER_RADIUS}px 0 0 ${BORDER_RADIUS}px`};
-  border-right: 1px solid ${props => props.theme.border};
+  border-right: 1px solid ${props => props.theme.colors.border};
   border-right-width: ${props => (props.hermit ? 0 : 1)}px;
   overflow: scroll;
   overflow-x: hidden;
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.colors.background};
 `;
 
 const StyledInnerPane = styled.div`
   position: relative;
   z-index: 1;
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.colors.background};
 `;
 
 const StyledName = styled.div`
@@ -58,13 +58,13 @@ const StyledToolbar = styled.div`
 
 const StyledDisplayName = styled(Text)`
   flex: 1 0 auto;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   margin-right: 10px;
 `;
 
 const StyledId = styled(Text)`
   flex: 0 1 auto;
-  color: ${props => props.theme.recess};
+  color: ${props => props.theme.colors.recess};
   text-align: right;
   white-space: nowrap;
   overflow: hidden;
@@ -84,7 +84,7 @@ const StyledDataCell = styled.td`
   box-sizing: border-box;
   height: 30px;
   padding: 4px 6px;
-  border-top: 1px solid ${props => props.theme.border};
+  border-top: 1px solid ${props => props.theme.colors.border};
   &:first-child {
     padding-left: 20px;
   }
@@ -96,7 +96,7 @@ const StyledDataCell = styled.td`
 
 const StyledKey = styled(Text)`
   font-weight: bold;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
 `;
 
 function SearchTrigger(props) {
@@ -117,15 +117,15 @@ function SearchTrigger(props) {
 const VERSION_COLOR = props => {
   const v = text(props.children);
   if (!semver.valid(v)) {
-    return props.theme.error;
+    return props.theme.colors.error;
   }
   if (semver.satisfies(v, "<=0.1")) {
-    return props.theme.error;
+    return props.theme.colors.error;
   }
   if (semver.satisfies(v, "> 0.1 < 1")) {
-    return props.theme.color;
+    return props.theme.colors.color;
   }
-  return props.theme.success;
+  return props.theme.colors.success;
 };
 
 const StyledVersion = styled(Version)`
@@ -142,13 +142,13 @@ const StyledTag = styled(Tag)`
   padding: 2px 4px;
   margin-top: 1.5px;
   margin-bottom: 1.5px;
-  border: 1px solid ${props => props.theme.color};
+  border: 1px solid ${props => props.theme.colors.color};
   border-radius: 3px;
   &:link,
   &:visited,
   &:active {
     text-decoration: none;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colors.color};
   }
   &:nth-child(2n) {
     margin-left: 3px;
@@ -160,21 +160,21 @@ const StyledToggleHead = styled(ToggleHead)`
   align-items: center;
   height: 30px;
   font-weight: bold;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   padding: 3px 15px 3px 20px;
   box-sizing: border-box;
-  border-top: 1px solid ${props => props.theme.border};
+  border-top: 1px solid ${props => props.theme.colors.border};
   cursor: pointer;
 `;
 
 const StyledToggleBody = styled.div`
   display: flex;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   box-sizing: border-box;
   width: 100%;
   padding: 5px 15px 5px 20px;
   box-sizing: border-box;
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.colors.background};
 `;
 
 const StyledCode = styled(Code)`
@@ -323,7 +323,7 @@ const StyledSelectContainer = styled.div`
     z-index: 1;
     content: "▼";
     font-size: 0.8em;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colors.color};
     transform: translateY(-50%);
   }
 `;
@@ -332,7 +332,7 @@ const StyledSelect = styled.select`
   position: relative;
   z-index: 2;
   appearance: none;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   background: transparent;
   font-size: 16px;
   border: none;
@@ -409,7 +409,7 @@ function PatternList(props) {
 
 const StyledPatternItem = styled(Link)`
   display: block;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.colors.color};
   text-decoration: none;
   padding: 3px 0;
 `;

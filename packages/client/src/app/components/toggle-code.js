@@ -14,7 +14,7 @@ function CodeButton(props) {
   );
 }
 
-const COLOR = props => (props.enabled ? props.theme.active : props.theme.color);
+const COLOR = props => (props.enabled ? props.theme.colors.active : props.theme.colors.color);
 
 const StyledIcon = styled(Icon)`
   fill: ${COLOR};
