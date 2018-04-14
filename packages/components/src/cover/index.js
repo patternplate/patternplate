@@ -76,7 +76,7 @@ function Cover() {
               </Principle>
               <Principle>
                 <Principle.Title order={2}>
-                  A Living <nobr>Single Source of Truth</nobr>
+                  Establish a Source of Truth
                 </Principle.Title>
                 <Principle.Text>
                   <p>Your work is so much more than its parts.</p>
@@ -95,7 +95,7 @@ function Cover() {
                   <p>Make sense of your design universe with meta data.</p>
                   <p>
                     Describe your tokens and components with a fixed schema to
-                    help everyone to find, evaluate and understand your work.
+                    help everyone to understand, use and remix your work.
                   </p>
                 </Principle.Text>
               </Principle>
@@ -106,8 +106,39 @@ function Cover() {
                 <Principle.Text>
                   <p>Manipulate your design system directly.</p>
                   <p>
-                    Edit your components, tokens and documentation and see your
-                    changes reflected directly in patternplate interface.
+                    Edit your components, tokens and documentation and see how patternplate
+                    updates your Design System without reloading.
+                  </p>
+                </Principle.Text>
+              </Principle>
+              <Principle>
+                <Principle.Title order={2}>
+                  Be as free as the web
+                </Principle.Title>
+                <Principle.Text>
+                  <p> HTML, CSS and JavaScript – that's all it takes.</p>
+                  <p>
+                    We supports component-specific stacks,
+                    so you don't have to commit to a single technology.<br/>
+                    Wan't to integrate a Vue component in a React Design Sytem?
+                    Thats perfectly possible with patternplate.
+                  </p>
+                </Principle.Text>
+              </Principle>
+              <Principle>
+                <Principle.Title order={2}>
+                  Real components. Period.
+                </Principle.Title>
+                <Principle.Text>
+                  <p>Show and tell with code instead of faking it.</p>
+                  <p>
+                    patternplate uses real-world, production-level code
+                    components for demos and examples.
+                  </p>
+                  <p>
+                    This saves you from wasting time polishing
+                    components that never see the light of day and
+                    makes the relation between Design System and product transparent.
                   </p>
                 </Principle.Text>
               </Principle>
