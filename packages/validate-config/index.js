@@ -44,6 +44,15 @@ const schema = {
         "favicon": {
           "type": "string"
         },
+        "fontDefault": {
+          "type": "string"
+        },
+        "fontHeadline": {
+          "type": "string"
+        },
+        "fontCode": {
+          "type": "string"
+        },
         "colorActive": {
           "type": "string"
         },
@@ -56,7 +65,7 @@ const schema = {
         "colorInfo": {
           "type": "string"
         },
-        "colorSucess": {
+        "colorSuccess": {
           "type": "string"
         },
         "colorBackgroundDark": {
@@ -99,15 +108,6 @@ const schema = {
           "type": "string"
         },
         "colorRecessLight": {
-          "type": "string"
-        },
-        "fontDefault": {
-          "type": "string"
-        },
-        "fontHeadline": {
-          "type": "string"
-        },
-        "fontCode": {
           "type": "string"
         }
       }
