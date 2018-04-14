@@ -196,9 +196,12 @@ const Logo = styled.svg.attrs({
   max-width: 240px;
   min-height: 80px;
   max-height: 240px;
-  margin-bottom: 40px;
   fill: currentColor;
   color: inherit;
+  margin: 15px 0 0 15px;
+  @media screen and (min-width: 1024px) {
+    margin: 15px 0 0 5px;
+  }
 `;
 
 const StageHeadline = styled(Headline)`
