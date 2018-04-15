@@ -19,7 +19,7 @@ var observer = new MutationObserver(function(mutations) {
         continue;
       }
 
-      if (node.matches("[data-toggle-name]")) {
+      if (matches(node, "[data-toggle-name]")) {
         // Force open all toggles if browser is unsupported
         if (!SUPPORTED) {
           node.setAttribute("data-toggle-enabled", true);
@@ -27,6 +27,10 @@ var observer = new MutationObserver(function(mutations) {
 
         var name = node.getAttribute("data-toggle-name");
         node.setAttribute("data-toggle-enabled", query[name + "-enabled"]);
+      }
+
+      if (matches(node, "[data-browser-warning]")) {
+        node.style.display = !SUPPORTED && query["browser-warning"] !== "false" ? "block" : "none";
       }
     }
   }
@@ -66,11 +70,27 @@ document.documentElement.addEventListener("click", function (e) {
     var href = link.getAttribute("href");
 
     if (href.charAt(0) === "." || href.charAt(0) === "/") {
+      var lq = parseQueryString(link.search);
       e.preventDefault();
-      window.location.href = link.origin + link.pathname + "?" + stringifyQuery(query);
+      window.location.href = link.pathname + "?" + stringifyQuery(merge(lq, query));
     }
   }
 });
+
+function matches(node, selector) {
+  if (typeof node.matches === "function") {
+    return node.matches(selector);
+  }
+
+  return node.msMatchesSelector(selector);
+}
+
+function merge(o, p) {
+  var r = {};
+  for (var attrname in o) { r[attrname] = o[attrname] }
+  for (var attrname in p) { r[attrname] = p[attrname] }
+  return r;
+}
 
 function supported() {
   try {
@@ -83,7 +103,9 @@ function supported() {
 
 function stringifyQuery(map) {
   return Object.keys(map)
-    .map(key => [key, map[key]].join("="))
+    .map(function(key) {
+      return [key, map[key]].join("=")
+    })
     .join("&");
 }
 
@@ -103,7 +125,7 @@ function parseQueryString(search) {
 
 function inside(el, selector) {
   while (el) {
-    if (el.nodeType === 1 && el.matches(selector)) {
+    if (el.nodeType === 1 && matches(el, selector)) {
       return el;
     }
 
