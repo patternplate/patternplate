@@ -10,7 +10,8 @@ jobs:
         - yarn test --stream
       script:
         - >-
-          yarn build --scope=@patternplate/cli --include-filtered-dependencies --stream &&
+          yarn build --scope=@patternplate/cli &&
+          yarn run pack &&
           yarn components:build --stream &&
           ./.travis/decrypt.sh &&
           ./.travis/deploy.sh
