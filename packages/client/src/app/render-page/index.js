@@ -11,7 +11,7 @@ import navigate from "../utils/navigate";
 
 module.exports = renderPage;
 
-async function renderPage(uri, { base, config, schema, isStatic } = {}, manifest = {}) {
+async function renderPage(uri, { base, config, schema, isStatic, scripts } = {}, manifest = {}) {
   const id = getId(uri);
   const pattern = navigate(id, schema.meta) || {};
   const startBase = base ? base : getBase(uri);
@@ -48,10 +48,12 @@ async function renderPage(uri, { base, config, schema, isStatic } = {}, manifest
     link: head.link,
     meta: head.meta,
     title: head.title,
-    scripts: [
-      `${scriptBase}/static/${manifest["vendors~client.js"]}`,
-      `${scriptBase}/static/${manifest["client.js"]}`
-    ]
+    scripts: scripts
+      ? [
+        `${scriptBase}/static/${manifest["vendors~client.js"]}`,
+        `${scriptBase}/static/${manifest["client.js"]}`
+      ]
+      : []
   });
 }
 

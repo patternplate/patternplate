@@ -29,7 +29,9 @@ class Navigation extends React.Component {
     const header = children.find(child => child.type === NavigationHeader);
 
     return (
-      <StyledNavigation onKeyDown={this.handleKeyDown}>
+      <StyledNavigation
+        onKeyDown={this.handleKeyDown}
+        >
         {header ? (
           header
         ) : (
@@ -39,42 +41,35 @@ class Navigation extends React.Component {
           />
         )}
         <StyledNavigationTree innerRef={this.getRef}>
-          {props.docs.children.length > 0 &&
-            <Documentation
-              active={props.active}
-              docs={props.docs}
-              onItemClick={props.onItemClick}
-              onLabelClick={props.onLabelClick}
-              onScrollRequest={this.handleScrollRequest}
-              query={props.query}
-              />
-          }
-          {
-            props.navigation.children.length > 0 && (
-              <React.Fragment>
-                <NavigationLabel
-                  enabled={props.componentsEnabled}
-                  name="components"
-                  highlight
-                  onClick={props.onLabelClick}
-                  size="S"
-                  >
-                  Components
-                </NavigationLabel>
-                {
-                  props.componentsEnabled &&
-                    <NavigationTree
-                      active={props.active}
-                      data={props.navigation.children}
-                      onItemClick={props.onItemClick}
-                      onScrollRequest={this.handleScrollRequest}
-                      prefix="/component"
-                      query={props.query}
-                      />
-                }
-              </React.Fragment>
-            )
-          }
+          <Documentation
+            visible={props.docs.children.length > 0}
+            active={props.active}
+            docs={props.docs}
+            onItemClick={props.onItemClick}
+            onLabelClick={props.onLabelClick}
+            onScrollRequest={this.handleScrollRequest}
+            query={props.query}
+            />
+          <NavigationLabel
+            visible={props.navigation.children.length > 0}
+            enabled={props.componentsEnabled}
+            name="components"
+            highlight
+            onClick={props.onLabelClick}
+            size="S"
+            >
+            Components
+          </NavigationLabel>
+          <NavigationTree
+            name="components"
+            visible={props.componentsEnabled && props.navigation.children.length > 0}
+            active={props.active}
+            data={props.navigation.children}
+            onItemClick={props.onItemClick}
+            onScrollRequest={this.handleScrollRequest}
+            prefix="/component"
+            query={props.query}
+            />
         </StyledNavigationTree>
         {toolbar && (
           <StyledNavigationToolbar>{toolbar}</StyledNavigationToolbar>
@@ -159,8 +154,8 @@ const StyledNavigationToolbar = styled.div`
 function Documentation(props) {
   return (
     <StyledDocumentationTree
+      visible={props.visible}
       active={props.active}
-      className="docs-navigation"
       data={props.docs.children}
       onItemClick={props.onItemClick}
       onLabelClick={props.onLabelClick}

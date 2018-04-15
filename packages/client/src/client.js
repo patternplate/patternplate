@@ -21,6 +21,8 @@ async function main() {
   }
 
   router(data, slot);
+
+  document.body.setAttribute("data-mounted", true);
 }
 
 async function getData(vault) {

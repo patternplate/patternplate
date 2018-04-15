@@ -1,4 +1,6 @@
 const React = require("react");
+const styled = require("styled-components").default;
+const tag = require("tag-hoc").default;
 const NavigationLabel = require("../navigation-label");
 const NavigationItem = require("../navigation-item");
 const Flag = require("../flag");
@@ -7,7 +9,11 @@ module.exports = NavigationTree;
 
 function NavigationTree(props) {
   return (
-    <div className={props.className}>
+    <StyledNavigationTree
+      visible={props.visible}
+      data-toggle-name={props.name}
+      data-toggle-enabled={props.visible}
+      >
       {props.children}
       {(props.data || [])
         .filter(item => typeof item.manifest === "object")
@@ -26,6 +32,7 @@ function NavigationTree(props) {
               return (
                 <React.Fragment key={item.id}>
                   <NavigationLabel
+                    visible={(item.children || []).length > 0}
                     enabled={enabled}
                     name={name}
                     highlight={false}
@@ -33,9 +40,12 @@ function NavigationTree(props) {
                     >
                     {item.manifest.displayName || item.manifest.name}
                   </NavigationLabel>
-                  {
-                    (enabled &&
-                      item.children.map((child, index) => {
+                  <NavigationItemList
+                    data-toggle-name={name}
+                    data-toggle-enabled={(item.children || []).length > 0 && enabled}
+                    visible={(item.children || []).length > 0 && enabled}>
+                    {
+                      (item.children || []).map((child, index) => {
                         return (
                           <NavigationItem
                             key={child.id}
@@ -55,8 +65,9 @@ function NavigationTree(props) {
                             type={child.type}
                             />
                         );
-                    }))
-                  }
+                      })
+                    }
+                  </NavigationItemList>
                 </React.Fragment>
               );
             case "item":
@@ -82,9 +93,29 @@ function NavigationTree(props) {
               );
           }
         })}
-    </div>
+    </StyledNavigationTree>
   );
 }
+
+const StyledNavigationTree = styled(tag(["visible"])("div"))`
+  display: ${props => props.visible ? "block": "none"};
+  &[data-toggle-enabled="false"] {
+    display: none;
+  }
+  &[data-toggle-enabled="true"] {
+    display: block;
+  }
+`;
+
+const NavigationItemList = styled(tag(["visible"])("div"))`
+  display: ${props => props.visible ? "block": "none"};
+  &[data-toggle-enabled="false"] {
+    display: none;
+  }
+  &[data-toggle-enabled="true"] {
+    display: block;
+  }
+`;
 
 function NavigationMeta(props) {
   switch (props.warning.type) {

@@ -28,10 +28,7 @@ import ToggleNavigation from "./toggle-navigation";
 import ToggleSearch from "./toggle-search";
 import Search from "./search";
 
-const selectThemes = createSelector(
-  state => state.config.ui,
-  ui => themes(ui)
-);
+const selectThemes = createSelector(state => state.config.ui, ui => themes(ui));
 
 const selectLines = createSelector(
   state => state.messages,
@@ -65,7 +62,8 @@ function mapProps(state) {
     themes: selectThemes(state),
     title: state.config.title || state.schema.name,
     hasMessage: selectHasMessage(state),
-    screenshot: state.routing.locationBeforeTransitions.query.screenshot === "true"
+    screenshot:
+      state.routing.locationBeforeTransitions.query.screenshot === "true"
   };
 }
 
@@ -88,15 +86,15 @@ const injections = [
 
 class Application extends React.Component {
   componentDidMount() {
-    document.body.style.overflow = this.props.screenshot ? 'hidden' : 'auto';
+    document.body.style.overflow = this.props.screenshot ? "hidden" : "auto";
   }
 
   componentDidUpdate() {
-    document.body.style.overflow = this.props.screenshot ? 'hidden' : 'auto';
+    document.body.style.overflow = this.props.screenshot ? "hidden" : "auto";
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
     return (
       <injection.InjectionProvider injections={injections}>
         <ThemeProvider theme={props.themes[props.theme]}>
@@ -105,86 +103,96 @@ class Application extends React.Component {
             <Favicon />
             <ThemeProvider theme={props.themes.dark}>
               <React.Fragment>
-                <NavigationControl enabled={props.navigationEnabled}>
+                <NavigationControl
+                  data-toggle-name="navigation"
+                  data-trigger-name="navigation"
+                  data-toggle-enabled={props.navigationEnabled}
+                  enabled={props.navigationEnabled}
+                >
                   <ToggleNavigation />
                 </NavigationControl>
-                <StyledNavigationBox enabled={props.navigationEnabled}>
-                  {props.navigationEnabled && (
-                    <Navigation>
-                      <NavigationHeader>
-                        <Logo />
-                      </NavigationHeader>
-                      <NavigationToolbar>
-                        <div/>
-                        <ToggleSearch />
-                        <Indicator />
-                      </NavigationToolbar>
-                    </Navigation>
-                  )}
+                <StyledNavigationBox
+                  data-toggle-name="navigation"
+                  data-toggle-enabled={props.visible}
+                  enabled={props.navigationEnabled}
+                  >
+                  <Navigation>
+                    <NavigationHeader>
+                      <Logo />
+                    </NavigationHeader>
+                    <NavigationToolbar>
+                      <div />
+                      <ToggleSearch />
+                      <Indicator />
+                    </NavigationToolbar>
+                  </Navigation>
                 </StyledNavigationBox>
               </React.Fragment>
             </ThemeProvider>
             <StyledContentContainer>
               <StyledContent>
-              <StyledBrowserWarning navigationEnabled={props.navigationEnabled} data-browser-warning>
-                <StyledBrowserContainer>
-                  <StyledBrowserContent>
-                    <StyledWarningLabel>
-                      Nice browser. Is it antique?
-                    </StyledWarningLabel>
-                    <StyledBrowserText>
-                      No, seriously - your browser is so old that some features of patternplate don't work as expected.
-                    </StyledBrowserText>
-                    <StyledBrowserText>
-                      Don't worry - you can either continue with a restricted version or install an up-to-date browser.
-                    </StyledBrowserText>
-                  </StyledBrowserContent>
-                  <StyledBrowserContainerClose
-                    title={`Close browser warning`}
-                    query={{"browser-warning": false}}
+                <StyledBrowserWarning
+                  navigationEnabled={props.navigationEnabled}
+                  data-browser-warning
+                >
+                  <StyledBrowserContainer>
+                    <StyledBrowserContent>
+                      <StyledWarningLabel>
+                        Nice browser. Is it antique?
+                      </StyledWarningLabel>
+                      <StyledBrowserText>
+                        No, seriously - your browser is so old that some
+                        features of patternplate don't work as expected.
+                      </StyledBrowserText>
+                      <StyledBrowserText>
+                        Don't worry - you can either continue with a restricted
+                        version or install an up-to-date browser.
+                      </StyledBrowserText>
+                    </StyledBrowserContent>
+                    <StyledBrowserContainerClose
+                      title={`Close browser warning`}
+                      query={{ "browser-warning": false }}
                     >
-                    <Icon symbol="close"/>
-                  </StyledBrowserContainerClose>
-                </StyledBrowserContainer>
-              </StyledBrowserWarning>
-              <StyledBrowserWarning navigationEnabled={props.navigationEnabled} data-js-warning>
-                <StyledBrowserContainer>
-                  <StyledBrowserContent>
-                    <StyledWarningLabel>
-                      We messed up.
-                    </StyledWarningLabel>
-                    <StyledBrowserText>
-                      Sorry, but your user experience might be affected.
-                    </StyledBrowserText>
-                    <Text>
-                      - Try reloading the page
-                    </Text>
-                    <Text>
-                      - Report the problem at github.com/patternplate/patternplate
-                    </Text>
-                  </StyledBrowserContent>
-                  <StyledBrowserContainerClose
-                    title={`Close browser warning`}
-                    query={{"js-warning": false}}
+                      <Icon symbol="close" />
+                    </StyledBrowserContainerClose>
+                  </StyledBrowserContainer>
+                </StyledBrowserWarning>
+                <StyledBrowserWarning
+                  navigationEnabled={props.navigationEnabled}
+                  data-js-warning
+                >
+                  <StyledBrowserContainer>
+                    <StyledBrowserContent>
+                      <StyledWarningLabel>We messed up.</StyledWarningLabel>
+                      <StyledBrowserText>
+                        Sorry, but your user experience might be affected.
+                      </StyledBrowserText>
+                      <Text>- Try reloading the page</Text>
+                      <Text>
+                        - Report the problem at
+                        github.com/patternplate/patternplate
+                      </Text>
+                    </StyledBrowserContent>
+                    <StyledBrowserContainerClose
+                      title={`Close browser warning`}
+                      query={{ "js-warning": false }}
                     >
-                    <Icon symbol="close"/>
-                  </StyledBrowserContainerClose>
-                </StyledBrowserContainer>
-              </StyledBrowserWarning>
-                {
-                  props.hasMessage && (
-                    <StyledMessageBox>
-                      <Message />
-                    </StyledMessageBox>
-                  )
-                }
+                      <Icon symbol="close" />
+                    </StyledBrowserContainerClose>
+                  </StyledBrowserContainer>
+                </StyledBrowserWarning>
+                {props.hasMessage && (
+                  <StyledMessageBox>
+                    <Message />
+                  </StyledMessageBox>
+                )}
                 {props.children}
                 {props.searchEnabled && (
                   <ThemeProvider theme={props.themes.dark}>
                     <StyledSearchBox
                       navigationEnabled={props.navigationEnabled}
                       screenshot={props.screenshot}
-                      >
+                    >
                       <StyledSearchFrame>
                         <Search />
                       </StyledSearchFrame>
@@ -222,7 +230,7 @@ const StyledBrowserWarning = styled.div`
   left: 0;
   width: 100%;
   padding: 15px 20px;
-  padding-left: ${props => props.navigationEnabled ? 20 : 60}px;
+  padding-left: ${props => (props.navigationEnabled ? 20 : 60)}px;
   background: ${props => props.theme.colors.warning};
 `;
 
@@ -236,13 +244,11 @@ const StyledBrowserContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledBrowserContent = styled.div`
-
-`;
+const StyledBrowserContent = styled.div``;
 
 const StyledBrowserText = styled(Text)`
   margin-bottom: 1.3em;
-`
+`;
 
 const StyledBrowserContainerClose = styled(Link)`
   flex-shrink: 0;
@@ -262,16 +268,17 @@ const StyledApplication = styled.div`
   height: 100%;
   background: ${props => props.theme.colors.background};
 
-  ${props => !props.screenshot
-    ? ''
-    : css`
-      height: calc(100vh - 100px);
-      width: calc(100vw - 100px);
-      margin: 50px;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-    `};
+  ${props =>
+    !props.screenshot
+      ? ""
+      : css`
+          height: calc(100vh - 100px);
+          width: calc(100vw - 100px);
+          margin: 50px;
+          border-radius: 10px;
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+        `};
 `;
 
 const StyledNavigationBox = styled(tag(["enabled"])("div"))`
@@ -280,6 +287,13 @@ const StyledNavigationBox = styled(tag(["enabled"])("div"))`
   height: 100%;
   width: ${NAVIGATION_WIDTH}px;
   flex: 0 0 ${NAVIGATION_WIDTH}px;
+  overflow: hidden;
+  &[data-toggle-enabled="true"] {
+    display: block;
+  }
+  &[data-toggle-enabled="false"] {
+    display: none;
+  }
 `;
 
 const StyledMessageBox = styled.div`
@@ -309,17 +323,16 @@ const WITH_SCREENSHOT_OFFSET = factor => props => {
     return factor * 50;
   }
   return 0;
-}
+};
 
 const WITH_NAVIGATION_OFFSET = factor => props => {
   if (props.navigationEnabled) {
     return factor * 300;
   }
   return 0;
-}
+};
 
 const SUM = (...args) => props => args.reduce((acc, fn) => acc + fn(props), 0);
-
 
 const StyledSearchBox = styled.div`
   position: fixed;
@@ -327,7 +340,9 @@ const StyledSearchBox = styled.div`
   bottom: 10vh;
   right: ${WITH_SCREENSHOT_OFFSET(1)}px;
   left: ${SUM(WITH_NAVIGATION_OFFSET(1), WITH_SCREENSHOT_OFFSET(1))}px;
-  width: calc(100% - ${SUM(WITH_NAVIGATION_OFFSET(1), WITH_SCREENSHOT_OFFSET(2))}px);
+  width: calc(
+    100% - ${SUM(WITH_NAVIGATION_OFFSET(1), WITH_SCREENSHOT_OFFSET(2))}px
+  );
   pointer-events: none;
 `;
 
@@ -374,12 +389,28 @@ const NavigationControl = styled.div`
   position: absolute;
   z-index: 5;
   top: 0;
-  left: ${props => props.enabled ? 300 : 0}px;
-  transform: translate(-${props => props.enabled ? 100 : 0}%);
-  color: ${props => props.enabled ? props.theme.colors.color : props.theme.colors.background};
+  left: ${props => (props.enabled ? 300 : 0)}px;
+  transform: translate(-${props => (props.enabled ? 100 : 0)}%);
+  color: ${props =>
+    props.enabled ? props.theme.colors.color : props.theme.colors.background};
   width: 60px;
   height: 60px;
-  background: ${props => props.enabled ? props.theme.colors.backgroundSecondary : "#fff"};
+  background: ${props =>
+    props.enabled ? props.theme.colors.backgroundSecondary : "#fff"};
+
+  &[data-toggle-enabled="true"] {
+    left: 300;
+    transform: translate(-100%);
+    color: ${props => props.theme.colors.color};
+    background: ${props => props.theme.colors.backgroundSecondary};
+  }
+
+  &[data-toggle-enabled="false"] {
+    left: 0;
+    transform: translate(0);
+    color: ${props => props.theme.colors.background};
+    background: #fff;
+  }
 
   @media screen and (min-width: 720px) {
     background: transparent;
