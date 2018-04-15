@@ -6,6 +6,7 @@ module.exports = [
     entry: {
       client: "./src/client.js"
     },
+    mode: "development",
     module: {
       rules: [
         {
@@ -40,19 +41,19 @@ module.exports = [
       path: path.join(__dirname, "lib", "static"),
       filename: "[name].js"
     },
-    plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
+    optimization: {
+      splitChunks: {
         name: "vendors",
-        minChunks: mod =>
-          mod.context && mod.context.indexOf("node_modules") > -1
-      })
-    ]
+        minChunks: 2
+      },
+    }
   },
   {
     entry: {
       "render-page": "./src/app/render-page"
     },
     target: "node",
+    mode: "development",
     module: {
       rules: [
         {

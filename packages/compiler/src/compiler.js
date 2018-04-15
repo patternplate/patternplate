@@ -48,6 +48,7 @@ async function compiler(options) {
     entry,
     target: options.target,
     externals: options.target === "node" ? [nodeExternals()] : [],
+    mode: "development",
     module: {
       rules: [
         {
