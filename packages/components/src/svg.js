@@ -74,7 +74,6 @@ export function png(source) {
       resolve(canvas.toDataURL("image/png"));
     };
 
-    img.onerror = err => reject(err);
     img.src = btoa(source);
   });
 }
