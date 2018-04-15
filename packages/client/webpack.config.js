@@ -110,6 +110,9 @@ module.exports = [
       libraryTarget: "commonjs2",
       path: path.join(__dirname, "lib", "app"),
       filename: "[name]/index.js"
+    },
+    optimization: {
+      minimizer: []
     }
   }
 ];
