@@ -1,3 +1,4 @@
+import Path from "path";
 import url from "url";
 import { fill } from "lodash";
 import { Icon } from "@patternplate/components";
@@ -10,7 +11,7 @@ import navigate from "../utils/navigate";
 
 module.exports = renderPage;
 
-async function renderPage(uri, { base, config, schema, isStatic }) {
+async function renderPage(uri, { base, config, schema, isStatic } = {}, manifest = {}) {
   const id = getId(uri);
   const pattern = navigate(id, schema.meta) || {};
   const startBase = base ? base : getBase(uri);
@@ -48,8 +49,8 @@ async function renderPage(uri, { base, config, schema, isStatic }) {
     meta: head.meta,
     title: head.title,
     scripts: [
-      `${scriptBase}/static/vendors.js`,
-      `${scriptBase}/static/client.js`
+      `${scriptBase}/static/${manifest["vendors~client.js"]}`,
+      `${scriptBase}/static/${manifest["client.js"]}`
     ]
   });
 }

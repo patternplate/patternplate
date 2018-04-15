@@ -14,9 +14,9 @@ const Observable = require("zen-observable");
 const {validate} = require("@patternplate/validate-config");
 
 const createCompiler = require("./compiler");
+const cover = require("./cover");
 const demo = require("./demo");
 const main = require("./main");
-const cover = require("./cover");
 const scripts = require("./scripts");
 
 module.exports = api;

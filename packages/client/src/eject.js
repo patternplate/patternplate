@@ -11,7 +11,7 @@ function eject() {
   const vfs = new MemoryFileSystem();
   vfs.mkdirpSync("/static");
 
-  const files = globby.sync(["*.js"], {cwd: path.join(__dirname, "static")});
+  const files = globby.sync(["*"], {cwd: path.join(__dirname, "static")});
 
   files.forEach(file => {
     const source = path.join(__dirname, "static", file); ;

@@ -8,7 +8,7 @@ const express = require("express");
 const serve = require("serve-static");
 const fetch = require("isomorphic-fetch");
 
-const renderPage = require("./app/render-page");
+const render = require("./render");
 
 module.exports = client;
 
@@ -69,10 +69,10 @@ async function main(options) {
       const tree = {id: "root", children: patterns};
 
       res.send(
-        await renderPage(req.url, {
+        await render(req.url, {
           schema: { meta: tree, docs },
           config,
-          base
+          base,
         })
       );
     } catch (err) {

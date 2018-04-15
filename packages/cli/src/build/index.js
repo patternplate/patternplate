@@ -60,7 +60,7 @@ async function build({flags}) {
   }
 
   const schema = { docs, meta: tree };
-  const state = { base, config, schema, isStatic: true};
+  const state = { base, config, schema, isStatic: true };
 
   // Create api/state.json
   await sander.writeFile(out, 'api/state.json', JSON.stringify(schema));
