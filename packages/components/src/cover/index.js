@@ -458,7 +458,7 @@ Connection.Text = styled(Text)`
   }
 `;
 
-Connection.List = styled.li`
+Connection.List = styled.ul`
   list-style: none;
   text-align: left;
   line-height: 2;
