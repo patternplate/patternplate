@@ -30,6 +30,7 @@ yarn clean
 yarn
 yarn test
 yarn build
+yarn run pack
 yarn lerna publish 
 yarn lerna run clean:dev # remove publishing bundles
 ```

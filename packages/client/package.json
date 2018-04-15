@@ -6,10 +6,10 @@
   "scripts": {
     "start": "yarn watch",
     "babel": "babel src -d lib --source-maps",
-    "build": "concurrently \"webpack --mode production\" \"yarn babel\" && rimraf lib/app/render-page",
+    "build": "babel src -d lib --source-maps",
+    "pack": "webpack --mode production",
     "clean": "npx rimraf lib",
-    "watch": "concurrently \"webpack -w\" \"yarn babel -w\"",
-    "prepublishOnly": "yarn build",
+    "watch": "concurrently \"webpack -w\" \"babel src -d lib --source-maps -w\"",
     "deps": "dependency-check . render.js eject.js . --missing && dependency-check . render.js eject.js --extra --no-dev -i @babel/runtime"
   },
   "xo": false,
