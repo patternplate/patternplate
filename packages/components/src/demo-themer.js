@@ -1,6 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const { ThemeProvider } = require("styled-components");
+const tag = require("tag-hoc").default;
 const getThemes = require("./themes");
 
 const themes = getThemes();
@@ -24,7 +25,7 @@ function Themer(props) {
   );
 }
 
-const StyledThemeContainer = styled.div`
+const StyledThemeContainer = styled(tag("spacing", "full")("div"))`
   background: ${props => props.theme.colors.background};
   padding: ${props => props.spacing ? 15 : 0}px;
   width: ${props => props.full ? "100%" : "auto"};
