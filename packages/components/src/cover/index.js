@@ -52,7 +52,7 @@ function Cover() {
                   </StageHeadline>
                   <StageText>
                     patternplate connects Design and Engineering to establish a
-                    real Source of Truth for your team.
+                    real source of truth for your team.
                   </StageText>
                   <ThemeProvider theme={themes.light}>
                     <StageButton variant="big" href="./doc/docs/why?guides-enabled=true">
@@ -91,7 +91,7 @@ function Cover() {
                   <p>Your work is so much more than its parts.</p>
                   <p>
                     Meld code and documentation into something more valuable – a
-                    real <nobr>Source of Truth</nobr> that is always up to date
+                    real <nobr>source of truth</nobr> that is always up to date
                     by design.
                   </p>
                 </Principle.Text>
