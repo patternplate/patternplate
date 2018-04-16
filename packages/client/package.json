@@ -10,7 +10,7 @@
     "pack": "cross-env NODE_ENV=production webpack --mode production",
     "clean": "npx rimraf lib",
     "watch": "concurrently \"webpack -w\" \"babel src -d lib --source-maps -w\"",
-    "deps": "dependency-check . render.js eject.js . --missing && dependency-check . render.js eject.js --extra --no-dev -i @babel/runtime"
+    "deps": "dependency-check . render.js eject.js lib/client.js lib/widgets.js --missing && dependency-check . render.js eject.js lib/client.js lib/widgets.js --extra --no-dev -i @babel/runtime"
   },
   "xo": false,
   "babel": {

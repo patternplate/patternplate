@@ -8,6 +8,7 @@ jobs:
     - stage: test
       script:
         - yarn test --stream
+        - yarn lerna run deps --stream
       script:
         - >-
           yarn build --scope=@patternplate/cli &&

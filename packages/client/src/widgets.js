@@ -1,13 +1,12 @@
+const vm = require("vm");
 const React = require("react");
 const ReactDOM = require("react-dom");
-const {ThemeProvider} = require("styled-components");
 const buble = require("buble");
 
 const widgets = require("@patternplate/widgets");
 const { createSearch } = require("@patternplate/search");
-const vm = require("vm");
+const {ThemeProvider} = require("@patternplate/components");
 
-console.warn = () => {};
 require("iframe-resizer");
 
 document.addEventListener("DOMContentLoaded", () => {
