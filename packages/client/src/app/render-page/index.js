@@ -48,7 +48,7 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     link: head.link,
     meta: head.meta,
     title: head.title,
-    scripts: scripts
+    scripts: scripts !== false
       ? [
         `${scriptBase}/static/${manifest["vendors~client.js"]}`,
         `${scriptBase}/static/${manifest["client.js"]}`
