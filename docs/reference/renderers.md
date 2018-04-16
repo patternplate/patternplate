@@ -75,6 +75,14 @@ type Input {
   element?: Node
 }
 
+type Context {
+  /**
+   * The project relative base path
+   * to the processed pattern
+   */
+  dirname: string;
+}
+
 type Output {
   /**
    * HTML fragment to inject into <head>
@@ -102,7 +110,7 @@ type Output {
   js?: string;
 }
 
-function render(Input): Output;
+function render(Input, Context): Output;
 ```
 
 ### mount
