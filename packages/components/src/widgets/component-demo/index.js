@@ -1,7 +1,7 @@
 const querystring = require("querystring");
 const React = require("react");
-const ResizingIframe = require("react-iframe-resizer-super").default;
 const styled = require("styled-components").default;
+const resizer = require("iframe-resizer");
 
 module.exports = class PatternDemo extends React.Component {
   render() {
@@ -14,7 +14,7 @@ module.exports = class PatternDemo extends React.Component {
     }
 
     const q = querystring.stringify({ resize: true, reload: props.reload });
-    return <ResizingIframe iframeResizerOptions={{log: false}} src={`${src}?${q}`}/>;
+    return <PatternFrame src={`${src}?${q}`}/>;
   }
 }
 
@@ -30,6 +30,31 @@ function PatternDemoError(props) {
     </StyledPatternDemoError>
   );
 }
+
+class PatternFrame extends React.Component {
+  componentDidMount() {
+    if (this.ref && !this.resizer) {
+      resizer.iframeResizer({
+        warningTimeout: 0,
+        log: false
+      }, this.ref);
+    }
+  }
+
+  render() {
+    const {props} = this;
+    return <StyledPatternFrame
+      innerRef={ref => this.ref = ref}
+      {...props}
+      />;
+  }
+}
+
+const StyledPatternFrame = styled.iframe`
+  width: 100%;
+  min-width: 100%;
+  border: 0;
+`;
 
 const StyledPatternDemoError = styled.div`
   background: ${props => props.theme.colors.error};

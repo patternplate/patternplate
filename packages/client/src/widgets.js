@@ -4,8 +4,8 @@ const ReactDOM = require("react-dom");
 const buble = require("buble");
 
 const widgets = require("@patternplate/widgets");
-const { createSearch } = require("@patternplate/search");
-const {ThemeProvider} = require("@patternplate/components");
+const {createSearch} = require("@patternplate/search");
+const {styled, ThemeProvider} = require("@patternplate/components");
 
 require("iframe-resizer");
 

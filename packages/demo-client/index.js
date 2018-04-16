@@ -1,5 +1,7 @@
 /* eslint-env browser */
 /* eslint-disable no-var */
+require("iframe-resizer");
+
 function main() {
   var components = window['patternplate-components'];
   var errors = [];
