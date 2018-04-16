@@ -60,7 +60,6 @@
   "dependencies": {
     "@patternplate/widgets": "^2.3.3",
     "btoa": "^1.1.2",
-    "buble": "^0.19.3",
     "codemirror": "^5.36.0",
     "color": "^2.0.0",
     "front-matter": "^2.3.0",

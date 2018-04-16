@@ -4,7 +4,6 @@ const remark = require('remark');
 const emoji = require('remark-gemoji-to-emoji');
 const reactRenderer = require('remark-react');
 const styled = require("styled-components").default;
-const buble = require("buble");
 const vm = require("vm");
 const resizer = require("iframe-resizer");
 
@@ -60,13 +59,6 @@ class Markdown extends React.Component {
                         return null;
                       }
 
-                      const [terr, code] = transpile(childProps.children.join('\n'));
-
-                      if (terr) {
-                        console.error(terr);
-                        return <WidgetError message={terr.message} snippet={terr.snippet}/>
-                      }
-
                       const srcdoc= [
                         `<!doctype html>`,
                         `<html>`,
@@ -78,7 +70,7 @@ class Markdown extends React.Component {
                         `<textarea data-widget-state style="display: none;">`,
                           encodeURIComponent(JSON.stringify({
                             state: props.widgetState,
-                            code
+                            code: childProps.children.join('\n')
                           })),
                         `</textarea>`,
                         `</body>`,
@@ -161,39 +153,12 @@ const StyledMarkdown = styled.div`
   }
 `;
 
-function WidgetError(props) {
-  return (
-    <StyledWidgetError>
-      <div>{props.message}</div>
-      <pre>
-        {props.snippet}
-      </pre>
-    </StyledWidgetError>
-  );
-}
-
-const StyledWidgetError = styled.div`
-  background: ${props => props.theme.colors.error};
-  color: #fff;
-  padding: 10px 15px;
-  font-family: monospace;
-`;
-
 function is(is) {
   return Component => props => <Component is={is} {...props} />;
 }
 
 function prop(name, value) {
   return Component => props => <Component {...props} {...{ [name]: value }} />;
-}
-
-function transpile(source) {
-  try {
-    const {code} = buble.transform(source);
-    return [null, code];
-  } catch (err) {
-    return [err];
-  }
 }
 
 module.exports = Markdown;

@@ -1,6 +1,7 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
 const {ThemeProvider} = require("styled-components");
+const buble = require("buble");
 
 const widgets = require("@patternplate/widgets");
 const { createSearch } = require("@patternplate/search");
@@ -10,24 +11,54 @@ console.warn = () => {};
 require("iframe-resizer");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const mountEl = document.querySelector("[data-widget-mount]");
   const stateEl = document.querySelector("[data-widget-state]");
-  const {state, code} = JSON.parse(decodeURIComponent(stateEl.textContent));
+  const {state, code: source} = JSON.parse(decodeURIComponent(stateEl.textContent));
+
+  const result = render(source, state);
+
+  const mountEl = document.querySelector("[data-widget-mount]");
+  ReactDOM.render(result, mountEl);
+});
+
+function render(source, state) {
+  const [terr, code] = transpile(source);
+
+  if (terr) {
+    return (
+      <ThemeProvider theme={state.themes.light}>
+        <WidgetError message={terr.message} snippet={terr.snippet}/>
+      </ThemeProvider>
+    );
+  }
 
   const [err, result] = execute(code, connect(widgets, state));
 
   if (err) {
-    console.log(err);
-    return;
+    return (
+      <ThemeProvider theme={state.themes.light}>
+        <WidgetError message={err.message} snippet={err.snippet}/>
+      </ThemeProvider>
+    );
   }
 
-  ReactDOM.render(result, mountEl);
-});
+  return result;
+}
 
 function connect(widgets, state) {
   const search = selectSearch(state);
   const get = selectGet(state);
   const src = selectSrc(state);
+
+  const onListClick = (e) => {
+    e.preventDefault();
+    const link = getMatch(e.target, "[data-id]");
+
+    if (link) {
+      const id = link.getAttribute("data-id");
+      const itemType = link.getAttribute("data-type");
+      window.parent.postMessage(JSON.stringify({type: "navigate", id, itemType}), "*");
+    }
+  };
 
   return {
     PatternList: (props) => {
@@ -37,16 +68,7 @@ function connect(widgets, state) {
             base={state.base}
             search={search}
             query={props.query}
-            onClick={(e) => {
-              e.preventDefault();
-              const link = getMatch(e.target, "[data-id]");
-
-              if (link) {
-                const id = link.getAttribute("data-id");
-                const itemType = link.getAttribute("data-type");
-                window.parent.postMessage(JSON.stringify({type: "navigate", id, itemType}), "*");
-              }
-            }}
+            onClick={onListClick}
             />
         </ThemeProvider>
       );
@@ -58,10 +80,7 @@ function connect(widgets, state) {
             base={state.base}
             search={search}
             query={props.query}
-            onClick={(e) => {
-              e.preventDefault();
-              console.log(e);
-            }}
+            onClick={onListClick}
             />
         </ThemeProvider>
       );
@@ -135,6 +154,15 @@ function selectSrc(state) {
   };
 }
 
+function transpile(source) {
+  try {
+    const {code} = buble.transform(source);
+    return [null, code];
+  } catch (err) {
+    return [err];
+  }
+}
+
 function execute(code, widgets = {}) {
   try {
     const mod = {exports: {}};
@@ -171,3 +199,21 @@ function prefix(base) {
     ? base.slice(0, base.length - 1)
     : base;
 }
+
+function WidgetError(props) {
+  return (
+    <StyledWidgetError>
+      <div>{props.message}</div>
+      <pre>
+        {props.snippet}
+      </pre>
+    </StyledWidgetError>
+  );
+}
+
+const StyledWidgetError = styled.div`
+  background: ${props => props.theme.colors.error};
+  color: #fff;
+  padding: 10px 15px;
+  font-family: monospace;
+`;
