@@ -33,14 +33,36 @@ function connect(widgets, state) {
     PatternList: (props) => {
       return (
         <ThemeProvider theme={state.themes.light}>
-          <widgets.PatternList base={state.base} search={search} query={props.query}/>
+          <widgets.PatternList
+            base={state.base}
+            search={search}
+            query={props.query}
+            onClick={(e) => {
+              e.preventDefault();
+              const link = getMatch(e.target, "[data-id]");
+
+              if (link) {
+                const id = link.getAttribute("data-id");
+                const itemType = link.getAttribute("data-type");
+                window.parent.postMessage(JSON.stringify({type: "navigate", id, itemType}), "*");
+              }
+            }}
+            />
         </ThemeProvider>
       );
     },
     ComponentList: (props) => {
       return (
         <ThemeProvider theme={state.themes.light}>
-          <widgets.ComponentList base={state.base} search={search} query={props.query}/>
+          <widgets.ComponentList
+            base={state.base}
+            search={search}
+            query={props.query}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(e);
+            }}
+            />
         </ThemeProvider>
       );
     },
@@ -69,6 +91,23 @@ function connect(widgets, state) {
       );
     }
   };
+}
+
+function getMatch(el, selector) {
+  while (el) {
+    if (el.nodeType !== 1) {
+      el = el.parentNode;
+      continue;
+    }
+
+    if (el.matches(selector)) {
+      return el;
+    }
+
+    el = el.parentNode;
+  }
+
+  return null;
 }
 
 function selectSearch(state) {

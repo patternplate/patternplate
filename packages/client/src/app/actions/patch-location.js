@@ -11,7 +11,7 @@ function patchLocation(payload) {
     const location = state.routing.locationBeforeTransitions;
 
     if (payload.hasOwnProperty("pathname")) {
-      payload.pathname = payload.pathname.indexOf(state.base)
+      payload.pathname = payload.pathname.indexOf(state.base) === 0
         ? payload.pathname
         : `${prefix(state.base)}/${payload.pathname}`;
     }

@@ -8,8 +8,11 @@ module.exports = PatternList;
 function PatternList(props) {
   const matches = props.search(props.query);
   return (
-    <MarkdownList>
-      {matches.map(item => <PatternItem key={item.id} {...item}/>)}
+    <MarkdownList onClick={props.onClick}>
+      {matches.map(item => <PatternItem
+        key={item.id}
+        {...item}
+        />)}
     </MarkdownList>
   );
 }
@@ -22,11 +25,14 @@ function PatternItem(props) {
   const name = props.manifest.displayName || props.manifest.name;
   return (
     <MarkdownItem>
-      <MarkdownLink
-        href={props.href}
-        title={`Open pattern ${name}`}>
-        {name}
-      </MarkdownLink>
+      <div data-type={props.contentType} data-id={props.id}>
+        <MarkdownLink
+          href={props.href}
+          title={`Open pattern ${name}`}
+          >
+          {name}
+        </MarkdownLink>
+      </div>
     </MarkdownItem>
   );
 }

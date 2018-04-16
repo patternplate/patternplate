@@ -4,6 +4,8 @@ import ARSON from "arson";
 import { createPromiseThunkAction } from "./promise-thunk-action";
 import loadPatternDemo from "./load-pattern-demo";
 import loadSchema from "./load-schema";
+import {flat as selectPool} from "../selectors/pool";
+import { patchLocation } from "./";
 
 export default createPromiseThunkAction(
   "LISTEN",
@@ -15,6 +17,19 @@ export default createPromiseThunkAction(
     }
 
     const state = getState();
+
+    window.addEventListener("message", envelope => {
+      if (envelope.data.indexOf("[iFrameSizer]") === 0) {
+        return;
+      }
+
+      const message = JSON.parse(envelope.data);
+      if (message.type === "navigate") {
+        dispatch(patchLocation({
+          pathname: [message.itemType, message.id].join("/")
+        }));
+      }
+    });
 
     if (state.isStatic) {
       return;
