@@ -61,6 +61,7 @@
     "@patternplate/load-meta": "^2.1.6",
     "express": "^4.16.2",
     "globby": "^8.0.1",
+    "iframe-resizer": "^3.6.0",
     "isomorphic-fetch": "^2.0.2",
     "load-json-file": "^4.0.0",
     "memory-fs": "^0.4.1",

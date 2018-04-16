@@ -8,8 +8,6 @@ import { Flag, Headline, Link, Markdown, styled, Tag, Text, ThemeProvider, theme
 import * as item from "../../selectors/item";
 import Fullscreen from "../../containers/trigger-fullscreen";
 import ToggleOpacity from "../../containers/toggle-opacity";
-import ConnectedComponentList from "../../containers/component-list-widget";
-import ConnectedComponentDemo from "../../containers/component-demo-widget";
 
 const processor = remark().use(emoji);
 
@@ -59,12 +57,6 @@ function PatternSheet(props) {
               <Markdown
                 linkable={true}
                 source={props.doc}
-                widgets={{
-                  PatternList: ConnectedComponentList,
-                  PatternDemo: ConnectedComponentDemo,
-                  ComponentList: ConnectedComponentList,
-                  ComponentDemo: ConnectedComponentDemo
-                }}
               />
             </StyledMarkdownBox>
           }

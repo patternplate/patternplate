@@ -15,7 +15,7 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
   const id = getId(uri);
   const pattern = navigate(id, schema.meta) || {};
   const startBase = base ? base : getBase(uri);
-  const scriptBase = base === "/" ? "" : startBase;
+  const staticBase = (base === "/" ? "" : startBase) + "/static";
 
   const render = {
     base,
@@ -23,7 +23,9 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     pattern,
     schema,
     startBase,
-    isStatic
+    staticBase,
+    isStatic,
+    manifest
   };
 
   const transfer = {
@@ -31,7 +33,9 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     config,
     pattern: { id },
     startBase,
-    isStatic
+    staticBase,
+    isStatic,
+    manifest
   };
 
   const { html, css } = await router(uri, render);
@@ -50,8 +54,8 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     title: head.title,
     scripts: scripts !== false
       ? [
-        `${scriptBase}/static/${manifest["vendors~client.js"]}`,
-        `${scriptBase}/static/${manifest["client.js"]}`
+        `${staticBase}/${manifest["vendors~client.js"]}`,
+        `${staticBase}/${manifest["client.js"]}`
       ]
       : []
   });

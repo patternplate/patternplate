@@ -5544,6 +5544,10 @@ iframe-resizer@^3.5.16:
   version "3.5.16"
   resolved "https://registry.npmjs.org/iframe-resizer/-/iframe-resizer-3.5.16.tgz#a09ac6afcff6233d96b1865e47c93be7d359dcdf"
 
+iframe-resizer@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/iframe-resizer/-/iframe-resizer-3.6.0.tgz#02646fc0dfe411c10bbc26dd40e6cd5d4f883867"
+
 ignore@^3.2.0, ignore@^3.2.6:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.5.tgz#c4e715455f6073a8d7e5dae72d2fc9d71663dba6"
@@ -11300,6 +11304,10 @@ uuid@^2.0.1:
 uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
+
+uuid@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.npmjs.org/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
 v8-compile-cache@^1.1.2:
   version "1.1.2"

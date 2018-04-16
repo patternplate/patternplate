@@ -6,6 +6,7 @@ const reactRenderer = require('remark-react');
 const styled = require("styled-components").default;
 const buble = require("buble");
 const vm = require("vm");
+const resizer = require("iframe-resizer");
 
 const MarkdownBlockQuote = require('./markdown-blockquote');
 const MarkdownCode = require('./markdown-code');
@@ -55,6 +56,10 @@ class Markdown extends React.Component {
 
                   switch (type) {
                     case 'widget': {
+                      if (typeof props.widgetSrc !== "string") {
+                        return null;
+                      }
+
                       const [terr, code] = transpile(childProps.children.join('\n'));
 
                       if (terr) {
@@ -62,13 +67,28 @@ class Markdown extends React.Component {
                         return <WidgetError message={terr.message} snippet={terr.snippet}/>
                       }
 
-                      const [err, result] = execute(code, props.widgets);
-                      if (err) {
-                        console.error(err);
-                        return <WidgetError message={err.message} snippet={err.snippet}/>
-                      }
+                      const srcdoc= [
+                        `<!doctype html>`,
+                        `<html>`,
+                        `<head>`,
+                        `<script src="${props.widgetSrc}"></script>`,
+                        `</head>`,
+                        `<body>`,
+                        `<div data-widget-mount></div>`,
+                        `<textarea data-widget-state style="display: none;">`,
+                          encodeURIComponent(JSON.stringify({
+                            state: props.widgetState,
+                            code
+                          })),
+                        `</textarea>`,
+                        `</body>`,
+                        `</html>`
+                      ].join("");
 
-                      return result;
+                      return <WidgetFrame
+                        srcDoc={srcdoc}
+                        src="/"
+                        />;
                     }
                     default:
                       return <MarkdownCodeBlock {...preProps}/>;
@@ -84,6 +104,30 @@ class Markdown extends React.Component {
     );
   }
 }
+
+class WidgetFrame extends React.Component {
+  componentDidMount() {
+    if (this.ref && !this.resizer) {
+      resizer.iframeResizer({
+        warningTimeout: 0,
+        log: false
+      }, this.ref);
+    }
+  }
+
+  render() {
+    const {props} = this;
+    return <StyledWidgetFrame
+      innerRef={ref => this.ref = ref}
+      {...props}
+      />;
+  }
+}
+
+const StyledWidgetFrame = styled.iframe`
+  width: 100%;
+  border: none;
+`;
 
 const StyledMarkdown = styled.div`
   & table {
@@ -147,37 +191,6 @@ function transpile(source) {
   try {
     const {code} = buble.transform(source);
     return [null, code];
-  } catch (err) {
-    return [err];
-  }
-}
-
-function execute(code, widgets = {}) {
-  try {
-    const mod = {exports: {}};
-
-    vm.runInNewContext(`(function() {${code}})();`, {
-      module: mod,
-      require(id) {
-        if (id === 'react') {
-          return React;
-        }
-        if ('@patternplate/widgets') {
-          return widgets;
-        }
-        throw new Error(`Could not resolve ${id}`);
-      }
-    });
-
-    const result = mod.exports;
-
-    if (typeof result !== "function") {
-      const err = new Error(`widget blocks must export a function, but found "${typeof result}". Make sure to export a function e.g.:`);
-      err.snippet = `module.exports = () => <div>Hello World</div>;`;
-      throw err;
-    }
-
-    return [null, result()];
   } catch (err) {
     return [err];
   }

@@ -24,7 +24,6 @@ export default class Documentation extends React.Component {
         <Markdown
           linkable
           source={props.doc}
-          widgets={props.widgets}
           />
       </StyledDocumentation>
     );

@@ -5,9 +5,6 @@ import { bindActionCreators } from "redux";
 
 import * as actions from "../actions";
 
-import ConnectedComponentList from "./component-list-widget";
-import ConnectedComponentDemo from "./component-demo-widget";
-
 import Documentation from "../components/documentation";
 import selectItem from "../selectors/item";
 import {flat as selectPool} from "../selectors/pool";
@@ -124,12 +121,7 @@ function mapState(state) {
     doc: selectDoc(state),
     themes: selectThemes(state),
     type: selectType(state),
-    widgets: {
-      PatternList: ConnectedComponentList,
-      PatternDemo: ConnectedComponentDemo,
-      ComponentDemo: ConnectedComponentDemo,
-      ComponentList: ConnectedComponentList
-    }
+    isStatic: state.isStatic
   };
 }
 

@@ -33,26 +33,18 @@ const ident = state => state || {};
 const getDependencies = (reducer = {}) => reducer.dependencies || [];
 
 export default {
-  activeBlock,
-  activeNode,
   base,
-  codeEnabled,
   config,
   connection,
   demo,
-  dependenciesEnabled,
-  dependentsEnabled,
   depth,
-  docEnabled,
   fetching,
   hideEnabled,
   id,
   isStatic,
-  infoEnabled,
-  manifestEnabled,
+  manifest: ident,
   messages,
   navigationEnabled,
-  networkEnabled,
   opacity,
   componentsEnabled,
   schema,
@@ -62,6 +54,7 @@ export default {
   searchValue,
   shortcuts,
   startBase: ident,
+  staticBase: ident,
   theme,
   window
 };

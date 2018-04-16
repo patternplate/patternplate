@@ -12,7 +12,11 @@ function PatternDemo(props) {
     ? `${props.src}?reload=${props.updated}`
     : props.src;
 
-  return <StyledDemo src={src} />;
+  return <StyledDemo
+    src={src}
+    referrerpolicy="no-referrer"
+    sandbox="allow-scripts"
+    />;
 }
 
 export default PatternDemo;

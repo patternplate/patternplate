@@ -1,7 +1,6 @@
 import url from "url";
 import { values } from "lodash";
 import React from "react";
-import {Disabled} from "@patternplate/widgets";
 import {
   Search as SearchComponents,
   InnerInfoPane,
@@ -89,12 +88,6 @@ export default class Search extends React.Component {
           <SearchResultPreview {...this.props}>
             <Markdown
               source={item.contents}
-              widgets={{
-                PatternList: Disabled,
-                PatternDemo: Disabled,
-                ComponentList: Disabled,
-                ComponentDemo: Disabled
-              }}
               />
           </SearchResultPreview>
         );
