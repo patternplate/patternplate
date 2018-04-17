@@ -187,7 +187,7 @@ function Cover() {
               <p>
               We created patternplate to connect things and people
               that belong together. Reaching out and understanding each
-              other often is the best way to improve.
+              other is the best way to improve.
               </p>
               <Connection.List>
                 <li>The Abstract and The Concrete</li>
