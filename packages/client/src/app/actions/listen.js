@@ -19,6 +19,10 @@ export default createPromiseThunkAction(
     const state = getState();
 
     window.addEventListener("message", envelope => {
+      if (typeof envelope.data !== "string") {
+        return;
+      }
+
       if (envelope.data.indexOf("[iFrameSizer]") === 0) {
         return;
       }
