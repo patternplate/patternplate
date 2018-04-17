@@ -4,13 +4,13 @@ import ARSON from "arson";
 import { createPromiseThunkAction } from "./promise-thunk-action";
 import loadPatternDemo from "./load-pattern-demo";
 import loadSchema from "./load-schema";
-import {flat as selectPool} from "../selectors/pool";
+import { flat as selectPool } from "../selectors/pool";
 import { patchLocation } from "./";
 
 export default createPromiseThunkAction(
   "LISTEN",
   (payload, dispatch, getState) => {
-    const {WebSocket} = global;
+    const { WebSocket } = global;
 
     if (!WebSocket) {
       return;
@@ -25,9 +25,11 @@ export default createPromiseThunkAction(
 
       const message = JSON.parse(envelope.data);
       if (message.type === "navigate") {
-        dispatch(patchLocation({
-          pathname: [message.itemType, message.id].join("/")
-        }));
+        dispatch(
+          patchLocation({
+            pathname: [message.itemType, message.id].join("/")
+          })
+        );
       }
     });
 
@@ -45,13 +47,13 @@ export default createPromiseThunkAction(
 
     ws.open();
 
-    ws.onOpen(() => dispatch({ type: "LISTEN_HEARTBEAT", payload: {}}));
-    ws.onClose(() => dispatch({ type: "ERROR_HEARTBEAT", payload: {}}));
-    ws.onError(() => dispatch({ type: "ERROR_HEARTBEAT", payload: {}}));
+    ws.onOpen(() => dispatch({ type: "LISTEN_HEARTBEAT", payload: {} }));
+    ws.onClose(() => dispatch({ type: "ERROR_HEARTBEAT", payload: {} }));
+    ws.onError(() => dispatch({ type: "ERROR_HEARTBEAT", payload: {} }));
 
     ws.onMessage(async envelope => {
       const message = ARSON.parse(envelope.data);
-      const {type, payload} = message;
+      const { type, payload } = message;
 
       switch (type) {
         case "error":
@@ -62,7 +64,7 @@ export default createPromiseThunkAction(
         case "start": {
           dispatch(loadSchema());
           // TODO: only reload pattern if the current pattern is affected
-          return dispatch(loadPatternDemo({force: false}));
+          return dispatch(loadPatternDemo({ force: false }));
         }
         case "done": {
           return dispatch({
