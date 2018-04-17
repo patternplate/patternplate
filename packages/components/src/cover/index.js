@@ -51,8 +51,8 @@ function Cover() {
                     Create better <nobr>Design Systems</nobr>
                   </StageHeadline>
                   <StageText>
-                    patternplate connects Design and Engineering to establish a
-                    real source of truth for your team.
+                    patternplate connects design and engineering to establish a
+                    single source of truth for your team.
                   </StageText>
                   <ThemeProvider theme={themes.light}>
                     <StageButton variant="big" href="./doc/docs/why?guides-enabled=true">
@@ -85,13 +85,13 @@ function Cover() {
               </Principle>
               <Principle>
                 <Principle.Title order={2}>
-                  Establish a Source of Truth
+                  Establish a Single Source of Truth
                 </Principle.Title>
                 <Principle.Text>
                   <p>Your work is so much more than its parts.</p>
                   <p>
                     Meld code and documentation into something more valuable – a
-                    real <nobr>source of truth</nobr> that is always up to date
+                    <nobr>single source of truth</nobr> that is always up to date
                     by design.
                   </p>
                 </Principle.Text>
@@ -116,7 +116,7 @@ function Cover() {
                   <p>Manipulate your design system directly.</p>
                   <p>
                     Edit your components, tokens and documentation and see how patternplate
-                    updates your Design System without reloading.
+                    updates your design system without reloading.
                   </p>
                 </Principle.Text>
               </Principle>
@@ -128,9 +128,9 @@ function Cover() {
                   <p> HTML, CSS and JavaScript – that's all it takes.</p>
                   <p>
                     We supports component-specific stacks,
-                    so you don't have to commit to a single technology.<br/>
-                    Wan't to integrate a Vue component in a React Design Sytem?
-                    Thats perfectly possible with patternplate.
+                    so you don't have to commit to a single technology.
+                    Want to integrate a Vue component into a React design system?
+                    That's perfectly possible with patternplate.
                   </p>
                 </Principle.Text>
               </Principle>
@@ -143,11 +143,9 @@ function Cover() {
                   <p>
                     patternplate uses real-world, production-level code
                     components for demos and examples.
-                  </p>
-                  <p>
                     This saves you from wasting time polishing
                     components that never see the light of day and
-                    makes the relation between Design System and product transparent.
+                    makes the relation between design system and product transparent.
                   </p>
                 </Principle.Text>
               </Principle>
@@ -189,20 +187,20 @@ function Cover() {
               <p>
               We created patternplate to connect things and people
               that belong together. Reaching out and understanding each
-              other often is the best way to improve.
+              other is the best way to improve.
               </p>
               <Connection.List>
                 <li>The Abstract and The Concrete</li>
-                <li>Documenation and Implemenation</li>
+                <li>Documentation and Implementation</li>
                 <li>Principles and Examples</li>
                 <li>Designers and Engineers</li>
               </Connection.List>
               <p>
                 Learn how we use patternplate to create better
-                Design Systems and products at SinnerSchrader:
+                design systems and products at SinnerSchrader.
               </p>
               <Connection.Button href="#">
-                Read the Story on Medium
+                Read the story on Medium
               </Connection.Button>
             </Connection.Text>
           </Connection>
