@@ -39,8 +39,9 @@ async function demo(options) {
       const getModule = fromFs(fs);
       const bundle = getModule(BUNDLE_PATH);
       const component = getComponent(bundle, found);
+      const context = getContext(found);
       const render = component.render || getModule(RENDER_PATH);
-      const content = render(component);
+      const content = render(component, context);
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
@@ -86,6 +87,12 @@ function getComponent(components, data) {
   }
 
   return top;
+}
+
+function getContext(pattern) {
+  return {
+    dirname: path.dirname(pattern.path)
+  };
 }
 
 function fromFs(fs) {
