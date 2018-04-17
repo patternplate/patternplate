@@ -197,7 +197,7 @@ function Cover() {
               </Connection.List>
               <p>
                 Learn how we use patternplate to create better
-                design systems and products at SinnerSchrader:
+                design systems and products at SinnerSchrader.
               </p>
               <Connection.Button href="#">
                 Read the story on Medium
