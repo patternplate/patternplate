@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/components",
-  "version": "2.3.3",
+  "version": "2.4.0",
   "description": "ui component library for patternplate-client",
   "scripts": {
     "start": "yarn build -w",
