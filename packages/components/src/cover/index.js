@@ -191,7 +191,7 @@ function Cover() {
               </p>
               <Connection.List>
                 <li>The Abstract and The Concrete</li>
-                <li>Documenation and Implemenation</li>
+                <li>Documentation and Implementation</li>
                 <li>Principles and Examples</li>
                 <li>Designers and Engineers</li>
               </Connection.List>
@@ -200,7 +200,7 @@ function Cover() {
                 design systems and products at SinnerSchrader:
               </p>
               <Connection.Button href="#">
-                Read the Story on Medium
+                Read the story on Medium
               </Connection.Button>
             </Connection.Text>
           </Connection>
