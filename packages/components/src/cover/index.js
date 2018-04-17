@@ -143,8 +143,6 @@ function Cover() {
                   <p>
                     patternplate uses real-world, production-level code
                     components for demos and examples.
-                  </p>
-                  <p>
                     This saves you from wasting time polishing
                     components that never see the light of day and
                     makes the relation between design system and product transparent.
