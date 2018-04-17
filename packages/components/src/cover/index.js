@@ -116,7 +116,7 @@ function Cover() {
                   <p>Manipulate your design system directly.</p>
                   <p>
                     Edit your components, tokens and documentation and see how patternplate
-                    updates your Design System without reloading.
+                    updates your design system without reloading.
                   </p>
                 </Principle.Text>
               </Principle>
@@ -147,7 +147,7 @@ function Cover() {
                   <p>
                     This saves you from wasting time polishing
                     components that never see the light of day and
-                    makes the relation between Design System and product transparent.
+                    makes the relation between design system and product transparent.
                   </p>
                 </Principle.Text>
               </Principle>
@@ -199,7 +199,7 @@ function Cover() {
               </Connection.List>
               <p>
                 Learn how we use patternplate to create better
-                Design Systems and products at SinnerSchrader:
+                design systems and products at SinnerSchrader:
               </p>
               <Connection.Button href="#">
                 Read the Story on Medium
