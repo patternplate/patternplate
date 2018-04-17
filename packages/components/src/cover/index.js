@@ -51,7 +51,7 @@ function Cover() {
                     Create better <nobr>Design Systems</nobr>
                   </StageHeadline>
                   <StageText>
-                    patternplate connects Design and Engineering to establish a
+                    patternplate connects design and engineering to establish a
                     real source of truth for your team.
                   </StageText>
                   <ThemeProvider theme={themes.light}>
