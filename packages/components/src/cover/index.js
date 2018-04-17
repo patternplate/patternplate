@@ -128,9 +128,9 @@ function Cover() {
                   <p> HTML, CSS and JavaScript – that's all it takes.</p>
                   <p>
                     We supports component-specific stacks,
-                    so you don't have to commit to a single technology.<br/>
-                    Wan't to integrate a Vue component in a React Design Sytem?
-                    Thats perfectly possible with patternplate.
+                    so you don't have to commit to a single technology.
+                    Want to integrate a Vue component into a React design system?
+                    That's perfectly possible with patternplate.
                   </p>
                 </Principle.Text>
               </Principle>
