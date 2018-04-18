@@ -180,29 +180,31 @@ function Cover() {
         </ThemeProvider>
         <ThemeProvider theme={themes.dark}>
           <Connection>
-            <Connection.Title>
-              Built to connect
-            </Connection.Title>
-            <Connection.Text>
-              <p>
-              We created patternplate to connect things and people
-              that belong together. Reaching out and understanding each
-              other is the best way to improve.
-              </p>
-              <Connection.List>
-                <li>The Abstract and The Concrete</li>
-                <li>Documentation and Implementation</li>
-                <li>Principles and Examples</li>
-                <li>Designers and Engineers</li>
-              </Connection.List>
-              <p>
-                Learn how we use patternplate to create better
-                design systems and products at SinnerSchrader.
-              </p>
-              <Connection.Button href="#">
-                Read the story on Medium
-              </Connection.Button>
-            </Connection.Text>
+            <Frame>
+              <Connection.Title>
+                Built to connect
+              </Connection.Title>
+              <Connection.Text>
+                <p>
+                We created patternplate to connect things and people
+                that belong together. Reaching out and understanding each
+                other is the best way to improve.
+                </p>
+                <Connection.List>
+                  <li>The Abstract and The Concrete</li>
+                  <li>Documentation and Implementation</li>
+                  <li>Principles and Examples</li>
+                  <li>Designers and Engineers</li>
+                </Connection.List>
+                <p>
+                  Learn how we use patternplate to create better
+                  design systems and products at SinnerSchrader.
+                </p>
+                <Connection.Button href="#">
+                  Read the story on Medium
+                </Connection.Button>
+              </Connection.Text>
+            </Frame>
           </Connection>
         </ThemeProvider>
       </React.Fragment>
@@ -486,7 +488,7 @@ Connection.List = styled.ul`
     font-size: ${props => props.theme.fonts.fontSize * 3}px;
   }
 
-  @media screen and (min-width: 1024) {
+  @media screen and (min-width: 1024px) {
     font-size: ${props => props.theme.fonts.fontSize * 4}px;
     margin-left: 50%;
   }
