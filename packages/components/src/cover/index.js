@@ -37,7 +37,7 @@ function Cover() {
             {
               name: "viewport",
               content:
-                "width=device-width, initial-scale=1.0, user-scalable=yes"
+                "width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes"
             }
           ]}
         />
@@ -213,6 +213,7 @@ function Cover() {
 injectGlobal`
   body {
     margin: 0 0 100px 0;
+    width: 100vw;
     overflow-x: hidden;
   }
 `;
@@ -247,6 +248,10 @@ const Stage = styled.div`
 const StageSlot = styled.div`
   position: relative;
   padding: 20px 30px;
+
+  @supports (padding: env(safe-area-inset-left)) {
+    padding-left: calc(env(safe-area-inset-left) + 10px);
+  }
 `;
 
 const StageContainer = styled.div`
@@ -279,6 +284,12 @@ const Logo = styled.svg.attrs({
   fill: currentColor;
   color: inherit;
   margin: 15px 0 0 15px;
+  @supports (margin: env(safe-area-inset-top)) {
+    margin-left: calc(env(safe-area-inset-top) + 10px);
+  }
+  @supports (margin: env(safe-area-inset-left)) {
+    margin-left: calc(env(safe-area-inset-left) + 5px);
+  }
   @media screen and (min-width: 1024px) {
     margin: 15px 0 0 5px;
   }
@@ -434,6 +445,9 @@ const PrincipleContainer = styled.div`
 `;
 
 const Connection = styled.div`
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
   padding: 20px 60px 120px 60px;
   background: ${props => props.theme.colors.background};
 `;
@@ -461,11 +475,21 @@ Connection.List = styled.ul`
   text-align: left;
   line-height: 2;
   font-weight: 100;
-  font-size: ${props => props.theme.fonts.fontSize * 4}px;
   white-space: nowrap;
-  margin-left: 50%;
   opacity: .75;
   margin-bottom: 1em;
+  margin-left: -.75em;
+  padding: 0;
+  font-size: ${props => props.theme.fonts.fontSize * 2.5}px;
+
+  @media screen and (min-width: 480px) {
+    font-size: ${props => props.theme.fonts.fontSize * 3}px;
+  }
+
+  @media screen and (min-width: 1024) {
+    font-size: ${props => props.theme.fonts.fontSize * 4}px;
+    margin-left: 50%;
+  }
 `;
 
 Connection.Button = styled(Link)`
