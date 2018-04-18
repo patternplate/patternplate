@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/widgets",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Markdown widgets available in patternplate",
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
@@ -23,7 +23,7 @@
   },
   "xo": false,
   "dependencies": {
-    "@patternplate/components": "^2.4.0"
+    "@patternplate/components": "^2.4.1"
   },
   "devDependencies": {
     "dependency-check": "^3.1.0"

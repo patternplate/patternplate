@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.40",
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/client": "^2.4.0",
+    "@patternplate/client": "^2.4.1",
     "@patternplate/compiler": "^2.4.0",
     "@patternplate/create-default": "^2.1.6",
     "@patternplate/load-config": "^2.1.6",
