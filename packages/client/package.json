@@ -60,6 +60,7 @@
     "@patternplate/load-docs": "^2.1.6",
     "@patternplate/load-meta": "^2.1.6",
     "buble": "^0.19.3",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "globby": "^8.0.1",
     "iframe-resizer": "^3.6.0",

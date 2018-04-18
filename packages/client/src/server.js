@@ -7,6 +7,7 @@ const loadMeta = require("@patternplate/load-meta");
 const express = require("express");
 const serve = require("serve-static");
 const fetch = require("isomorphic-fetch");
+const cors = require("cors");
 
 const render = require("./render");
 
@@ -27,7 +28,7 @@ async function client(options) {
   const apiStatic = path.join(options.cwd, "static");
 
   const app = express()
-    .use("/api/static", serve(apiStatic))
+    .use("/api/static", cors(), serve(apiStatic))
     .use("/api/", apiRoute)
     .get("/pattern/*", mainRoute)
     .get("/doc/*", mainRoute)
