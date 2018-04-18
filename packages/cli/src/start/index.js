@@ -1,7 +1,6 @@
 const ora = require("ora");
 const patternplate = require("./serve");
 const debug = require("util").debuglog("PATTERNPLATE");
-const loadConfig = require("@patternplate/load-config");
 
 module.exports = start;
 
@@ -45,6 +44,7 @@ async function start({flags}) {
   try {
     const app = await patternplate({
       port,
+      server: flags.server,
       cwd
     });
 
