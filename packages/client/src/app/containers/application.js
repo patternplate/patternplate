@@ -49,6 +49,8 @@ const selectHasMessage = createSelector(
 );
 
 function mapProps(state) {
+  const q = state.routing.locationBeforeTransitions.query;
+
   return {
     base: state.base,
     description: state.schema.description,
@@ -62,8 +64,9 @@ function mapProps(state) {
     themes: selectThemes(state),
     title: state.config.title || state.schema.name,
     hasMessage: selectHasMessage(state),
-    screenshot:
-      state.routing.locationBeforeTransitions.query.screenshot === "true"
+    screenshot: q.screenshot === "true",
+    jsWarningEnabled: q["js-warning-enabled"] !== "false" && q["js-warning-enabled"] !== false,
+    browserWarningEnabled: q["browser-warning-enabled"] !== "false" && q["browser-warning-enabled"] !== false,
   };
 }
 
@@ -131,56 +134,60 @@ class Application extends React.Component {
             </ThemeProvider>
             <StyledContentContainer>
               <StyledContent>
-                <StyledBrowserWarning
-                  navigationEnabled={props.navigationEnabled}
-                  data-browser-warning
-                >
-                  <StyledBrowserContainer>
-                    <StyledBrowserContent>
-                      <StyledWarningLabel>
-                        Nice browser. Is it antique?
-                      </StyledWarningLabel>
-                      <StyledBrowserText>
-                        No, seriously - your browser is so old that some
-                        features of patternplate don't work as expected.
-                      </StyledBrowserText>
-                      <StyledBrowserText>
-                        Don't worry - you can either continue with a restricted
-                        version or install an up-to-date browser.
-                      </StyledBrowserText>
-                    </StyledBrowserContent>
-                    <StyledBrowserContainerClose
-                      title={`Close browser warning`}
-                      query={{ "browser-warning": false }}
-                    >
-                      <Icon symbol="close" />
-                    </StyledBrowserContainerClose>
-                  </StyledBrowserContainer>
-                </StyledBrowserWarning>
-                <StyledBrowserWarning
-                  navigationEnabled={props.navigationEnabled}
-                  data-js-warning
-                >
-                  <StyledBrowserContainer>
-                    <StyledBrowserContent>
-                      <StyledWarningLabel>We messed up.</StyledWarningLabel>
-                      <StyledBrowserText>
-                        Sorry, but your user experience might be affected.
-                      </StyledBrowserText>
-                      <Text>- Try reloading the page</Text>
-                      <Text>
-                        - Report the problem at
-                        github.com/patternplate/patternplate
-                      </Text>
-                    </StyledBrowserContent>
-                    <StyledBrowserContainerClose
-                      title={`Close browser warning`}
-                      query={{ "js-warning": false }}
-                    >
-                      <Icon symbol="close" />
-                    </StyledBrowserContainerClose>
-                  </StyledBrowserContainer>
-                </StyledBrowserWarning>
+                {props.browserWarningEnabled &&
+                  <StyledBrowserWarning
+                    navigationEnabled={props.navigationEnabled}
+                    data-browser-warning
+                  >
+                    <StyledBrowserContainer>
+                      <StyledBrowserContent>
+                        <StyledWarningLabel>
+                          Nice browser. Is it antique?
+                        </StyledWarningLabel>
+                        <StyledBrowserText>
+                          No, seriously - your browser is so old that some
+                          features of patternplate don't work as expected.
+                        </StyledBrowserText>
+                        <StyledBrowserText>
+                          Don't worry - you can either continue with a restricted
+                          version or install an up-to-date browser.
+                        </StyledBrowserText>
+                      </StyledBrowserContent>
+                      <StyledBrowserContainerClose
+                        title={`Close browser warning`}
+                        query={{ "browser-warning-enabled": false }}
+                      >
+                        <Icon symbol="close" />
+                      </StyledBrowserContainerClose>
+                    </StyledBrowserContainer>
+                  </StyledBrowserWarning>
+                }
+                {props.jsWarningEnabled &&
+                  <StyledBrowserWarning
+                    navigationEnabled={props.navigationEnabled}
+                    data-js-warning
+                  >
+                    <StyledBrowserContainer>
+                      <StyledBrowserContent>
+                        <StyledWarningLabel>We messed up.</StyledWarningLabel>
+                        <StyledBrowserText>
+                          Sorry, but your user experience might be affected.
+                        </StyledBrowserText>
+                        <Text>- Try reloading the page</Text>
+                        <Text>
+                          - Report the problem at
+                          github.com/patternplate/patternplate
+                        </Text>
+                      </StyledBrowserContent>
+                      <StyledBrowserContainerClose
+                        title={`Close browser warning`}
+                        query={{ "js-warning-enabled": false }}
+                      >
+                        <Icon symbol="close" />
+                      </StyledBrowserContainerClose>
+                    </StyledBrowserContainer>
+                  </StyledBrowserWarning>
+                }
                 {props.hasMessage && (
                   <StyledMessageBox>
                     <Message />

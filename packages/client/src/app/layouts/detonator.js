@@ -10,6 +10,15 @@
 var query = parseQueryString(window.location.search);
 var SUPPORTED = supported();
 
+window.addEventListener("error", function () {
+  if (SUPPORTED && query["js-warning-enabled"] !== "false") {
+    var el = document.querySelector("[data-js-warning]");
+    if (el) {
+      el.style.display = "block";
+    }
+  }
+});
+
 var observer = new MutationObserver(function(mutations) {
   for (var i=0; i < mutations.length; i++){
     for (var j=0; j < mutations[i].addedNodes.length; j++){
@@ -30,7 +39,7 @@ var observer = new MutationObserver(function(mutations) {
       }
 
       if (matches(node, "[data-browser-warning]")) {
-        node.style.display = !SUPPORTED && query["browser-warning"] !== "false" ? "block" : "none";
+        node.style.display = !SUPPORTED && query["browser-warning-enabled"] !== "false" ? "block" : "none";
       }
     }
   }
@@ -40,13 +49,6 @@ observer.observe(document.documentElement, {
   childList: true,
   subtree: true
 });
-
-if (SUPPORTED && query["js-warning"] !== "false") {
-  window.addEventListener("error", function () {
-    var el = document.querySelector("[data-js-warning]");
-    el.style.display = "block";
-  });
-}
 
 document.documentElement.addEventListener("click", function (e) {
   if (document.body.getAttribute("data-mounted")) {
