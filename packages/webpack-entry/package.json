@@ -9,6 +9,10 @@
     "watch": "yarn build -w",
     "deps": "dependency-check . lib/loader.js --missing && dependency-check . lib/loader.js --extra --no-dev -i raw-loader"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "xo": false,
   "repository": {
     "type": "git",

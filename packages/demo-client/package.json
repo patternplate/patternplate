@@ -5,6 +5,9 @@
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/patternplate/patternplate.git"

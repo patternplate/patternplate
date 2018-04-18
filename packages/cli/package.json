@@ -13,6 +13,10 @@
     "watch": "yarn babel -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @babel/runtime"
   },
+  "files": [
+    "cli.js",
+    "lib"
+  ],
   "xo": false,
   "babel": {
     "presets": [

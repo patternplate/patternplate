@@ -5,6 +5,10 @@
   "bin": {
     "patternplate-screenshot": "./cli.js"
   },
+  "files": [
+    "cli.js",
+    "plugins.js"
+  ],
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },

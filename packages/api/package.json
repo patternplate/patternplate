@@ -9,6 +9,10 @@
     "watch": "yarn build -w",
     "deps": "dependency-check . lib/compiler-worker.js --missing && dependency-check . lib/compiler-worker.js --extra --no-dev"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "xo": false,
   "repository": {
     "type": "git",

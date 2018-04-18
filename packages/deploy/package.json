@@ -5,6 +5,9 @@
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
+  "files": [
+    "deploy.js"
+  ],
   "bin": {
     "patternplate-deploy": "./deploy.js"
   },

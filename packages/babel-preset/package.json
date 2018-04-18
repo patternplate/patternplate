@@ -6,6 +6,9 @@
   "scripts": {
     "deps": "dependency-check . --missing"
   },
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"

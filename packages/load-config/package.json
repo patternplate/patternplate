@@ -9,6 +9,10 @@
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/render-default"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "xo": false,
   "babel": {
     "presets": [

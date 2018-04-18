@@ -13,6 +13,12 @@
     "deps": "dependency-check . render.js eject.js lib/client.js lib/widgets.js --missing && dependency-check . render.js eject.js lib/client.js lib/widgets.js --extra --no-dev -i @babel/runtime",
     "prepack": "./.scripts/prune.js --base=lib/static --manifest=lib/static/manifest.json"
   },
+  "files": [
+    "eject.js",
+    "render.js",
+    "server.js",
+    "lib"
+  ],
   "xo": false,
   "babel": {
     "presets": [

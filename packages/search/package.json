@@ -9,6 +9,10 @@
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "xo": false,
   "repository": {
     "type": "git",

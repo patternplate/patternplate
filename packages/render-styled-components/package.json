@@ -6,6 +6,10 @@
   "scripts": {
     "deps": "dependency-check . render.js mount.js --missing && dependency-check . render.js mount.js --extra --no-dev"
   },
+  "files": [
+    "mount.js",
+    "render.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"

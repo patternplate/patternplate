@@ -2,6 +2,9 @@
   "name": "patternplate",
   "version": "2.4.1",
   "description": "Documentation and development interface for component libraries",
+  "files": [
+    "patternplate.js"
+  ],
   "bin": {
     "patternplate": "./patternplate.js"
   },

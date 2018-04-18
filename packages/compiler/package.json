@@ -8,6 +8,10 @@
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/cover-client -i @patternplate/demo-client -i @patternplate/probe-client -i css-loader -i html-loader -i to-string-loader"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"

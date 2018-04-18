@@ -5,6 +5,9 @@
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
+  "files": [
+    "index.js"
+  ],
   "xo": false,
   "babel": {
     "presets": [
