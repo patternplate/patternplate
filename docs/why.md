@@ -91,17 +91,17 @@ in patternplate to match your design requirements.
 ### Real-time updates
 
 You'll never have to reload your browser –
-just edit files in your text editor and save, everyhting in your design system will update automatically.
+just edit files in your text editor and save, everything in your design system will update automatically.
 
-### Give context with markdown docs
+### Give context with Markdown docs
 
 Write documentation both for overarching principles and related directly to your components in the well-known Markdown format.
 
 ### Stay flexible with labels
 
 Instead of pressing components and documentation into an inflexible hierarchy of 
-directories, patternplate provides a labeling system - combined with virtual folders
-base on our search engine you can create lists and item trees for every conceivable
+directories, patternplate provides a labeling system – combined with virtual folders
+based on our search engine you can create lists and item trees for every conceivable
 use case very quickly.
 
 ### Inline demos
@@ -118,7 +118,7 @@ design system.
 ### Your system, your technologies
 
 If it works on the web, it works with patternplate. By fundamentally using just
-HTML, CSS and JavaScript we can accept any input that may be rendered or built into the common web technologies. 
+HTML, CSS and JavaScript, we can accept any input that may be rendered or built into the common web technologies. 
 
 This includes popular rendering libraries like React, Angular and Vue.js, transpilers likes Babel or TypeScript and preprocessors like SASS, PostCSS or less.js.
 
