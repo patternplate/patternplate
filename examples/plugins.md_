@@ -1,0 +1,40 @@
+---
+displayName: "Reference: Plugins"
+tags: 
+  - Reference
+options:
+  order: 18
+---
+
+# Plugins
+
+## Contribution Points
+
+### contributes.menus
+
+Add an item to one of patternplate's menus.  
+Specify a `command` to execute when clicked 
+and a title to show.
+
+Dedice `when` to show to item, e.g. `dev`, `static`.
+
+You can contribute menu items to:
+
+* Documentation tree in sidebar `sidebar/documentation`
+* Component list in sidebar `sidebar/components`
+* Pattern toolbar `pattern/toolbar`
+
+```js
+module.exports.contributes = {
+  menus: {
+    'sidebar/documentation': {
+      command() {
+        console.log('Hello world');
+      },
+      title: 'Export to Sketch'
+    }
+  }
+};
+```
+
+## Commands

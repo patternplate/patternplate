@@ -3,6 +3,7 @@ const path = require("path");
 const api = require("@patternplate/api");
 const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
+const { loadPlugins } = require("@patternplate/load-plugins");
 const loadMeta = require("@patternplate/load-meta");
 const express = require("express");
 const serve = require("serve-static");
@@ -55,23 +56,29 @@ async function main(options) {
         return res.send(await response.text());
       }
 
-      const docs = await loadDocsTree({
-        cwd,
-        docs: config.docs,
-        readme: config.readme
-      });
+      const pluginPaths = Array.isArray(config.plugins) ? config.plugins : [];
 
-      // TODO: Send errors to central observer
-      const {patterns} = await loadMeta({
-        cwd,
-        entry
-      });
+      const [docs, {patterns}, plugins] = await Promise.all([
+        loadDocsTree({
+          cwd,
+          docs: config.docs,
+          readme: config.readme
+        }),
+        loadMeta({
+          cwd,
+          entry
+        }),
+        (await loadPlugins(pluginPaths, {
+          cwd
+        }))
+        .map(p => p.plugin)
+      ]);
 
       const tree = {id: "root", children: patterns};
 
       res.send(
         await render(req.url, {
-          schema: { meta: tree, docs },
+          schema: { meta: tree, docs, plugins },
           config,
           base,
         })

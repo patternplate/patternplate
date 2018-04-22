@@ -539,6 +539,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@patternplate/deploy-site@file:./packages/deploy":
+  version "2.5.2"
+  dependencies:
+    "@marionebl/sander" "^0.6.1"
+    execa "^0.9.0"
+    meow "^4.0.0"
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -550,6 +557,10 @@
 "@types/jest@^22.2.0":
   version "22.2.0"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-22.2.0.tgz#55ce83139f7ad1b48b414c3927746614c6963c0f"
+
+"@types/node@^9.6.6":
+  version "9.6.6"
+  resolved "https://registry.npmjs.org/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
 
 "@types/react@^16.0.40":
   version "16.0.40"

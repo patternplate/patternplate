@@ -4,6 +4,8 @@ const chalk = require("chalk");
 const meow = require("meow");
 const loadConfig = require("@patternplate/load-config");
 const {validate} = require("@patternplate/validate-config");
+const {loadPlugins} = require("@patternplate/load-plugins");
+const {validatePlugin} = require("@patternplate/validate-plugin");
 
 const cli = meow(
   `
@@ -67,6 +69,38 @@ async function main({ input, flags, pkg }) {
         }
         return process.exit(1);
       }
+    }
+
+    const plugins = Array.isArray(config.plugins)
+      ? await loadPlugins(config.plugins)
+      : [];
+
+    const invalidPlugins = plugins
+      .map(p => {
+        p.validation = validatePlugin({
+          target: p.plugin,
+          name: p.path
+        });
+        return p;
+      })
+      .filter(p => {
+        const [err] = p.validation;
+        return err !== null;
+      });
+
+    if (invalidPlugins.length > 0) {
+      invalidPlugins.forEach((plugin) => {
+        const [error] = plugin.validation;
+
+        if (typeof error.format === "function") {
+          console.log(`\nInvalid plugin at ${chalk.bold(plugin.path)}:`);
+          console.error(error.format());
+        } else {
+          console.error(error);
+        }
+      });
+
+      process.exit(1);
     }
   }
 

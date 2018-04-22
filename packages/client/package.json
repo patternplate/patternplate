@@ -66,6 +66,7 @@
     "@patternplate/load-config": "^2.5.2",
     "@patternplate/load-docs": "^2.5.2",
     "@patternplate/load-meta": "^2.5.2",
+    "@patternplate/load-plugins": "^2.5.2",
     "buble": "^0.19.3",
     "cors": "^2.8.4",
     "express": "^4.16.2",

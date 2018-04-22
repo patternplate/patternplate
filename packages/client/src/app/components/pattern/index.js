@@ -5,7 +5,7 @@ import tag from "tag-hoc";
 import Transition from "react-transition-group/Transition";
 
 import PatternDemo from "./pattern-demo";
-import PatternSheet from "./pattern-sheet";
+import * as PatternSheet from "./pattern-sheet";
 
 const btoa = global.btoa ? global.btoa : input => Buffer.from(input).toString('base64');
 
@@ -177,11 +177,17 @@ export default class Pattern extends React.Component {
             </PatternContainer>
           </StyledPatternDemo>
         </StyledPattern>
-        <PatternSheet/>
+        <PatternSheet.default>
+          <PatternSheet.Toolbar>
+            {React.Children.toArray(props.children).filter(child => child.type === Pattern.Toolbar)}
+          </PatternSheet.Toolbar>
+        </PatternSheet.default>
       </React.Fragment>
     );
   }
 }
+
+Pattern.Toolbar = props => <React.Fragment>{props.children}</React.Fragment>;
 
 function getPrefix(props) {
   if (props.loading) {

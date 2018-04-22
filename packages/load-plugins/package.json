@@ -1,12 +1,12 @@
 {
-  "name": "@patternplate/box",
+  "name": "@patternplate/load-plugins",
   "version": "2.5.2",
-  "description": "Wrap an async function to return a boxed result",
+  "description": "Load patternplate plugins",
   "scripts": {
     "clean": "rimraf lib",
     "start": "yarn build -w",
     "test": "jest",
-    "build": "tsc --preserveWatchOutput",
+    "build": "tsc",
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
@@ -31,32 +31,16 @@
     "access": "public"
   },
   "xo": false,
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(\\.|/)test\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.2",
     "@types/jest": "^22.2.0",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0",
-    "jest": "^22.4.2",
-    "jest-cli": "^22.4.2",
     "rimraf": "^2.6.2",
-    "ts-jest": "^22.4.1",
     "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "@marionebl/sander": "^0.6.1",
+    "@types/node": "^9.6.6",
+    "resolve-from": "^4.0.0"
   }
 }

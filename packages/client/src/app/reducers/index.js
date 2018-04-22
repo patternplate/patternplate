@@ -34,6 +34,7 @@ const getDependencies = (reducer = {}) => reducer.dependencies || [];
 
 export default {
   base,
+  componentsEnabled,
   config,
   connection,
   demo,
@@ -46,7 +47,7 @@ export default {
   messages,
   navigationEnabled,
   opacity,
-  componentsEnabled,
+  plugins: state => state || [],
   schema,
   search,
   searchEnabled,
