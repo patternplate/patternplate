@@ -74,9 +74,9 @@ We created patternplate to connect things and people that belong together. Reach
 ## A tool worthy of your best work
 
 patternplate builds on our experience
-with massive, production-grade component libraries worked on by dozens of designers and engineers for their work on products that serve millions of users every day.
+with massive, production-grade component libraries worked on by dozens of designers and engineers to build products that serve millions of users every day.
 
-Their diverse needs went into the design of feature set of patternplate – we like to think that after years of refining it we hit a sweet spot between expert-level tool and approachability.
+Their diverse needs went into the design of the feature set of patternplate – we like to think that after years of refining, we hit a sweet spot between expert-level tool and approachability.
 
 ### Super-powered search system
 
