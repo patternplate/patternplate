@@ -129,7 +129,7 @@ You can even mix your tools and decide to use different technologies for differe
 patternplate is built with open source and standard technologies from the ground up. 
 Leveraging the Node.js ecosystem and web standards it ensures you always can take full control if you need to.
 
-Licensed under the MIT license nothing bars you from forking and adapting patternplate to your needs.
+Licensed under the MIT license, nothing bars you from forking and adapting patternplate to your needs.
 
 
 
