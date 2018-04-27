@@ -89,7 +89,7 @@ export default createPromiseThunkAction(
 
 function safeParse(data) {
   try {
-    JSON.parse(data);
+    return JSON.parse(data);
   } catch (err) {
     return {};
   }
