@@ -27,7 +27,7 @@ export default createPromiseThunkAction(
         return;
       }
 
-      const message = JSON.parse(envelope.data);
+      const message = safeParse(envelope.data);
       if (message.type === "navigate") {
         dispatch(
           patchLocation({
@@ -86,3 +86,11 @@ export default createPromiseThunkAction(
     });
   }
 );
+
+function safeParse(data) {
+  try {
+    JSON.parse(data);
+  } catch (err) {
+    return {};
+  }
+}
