@@ -8,6 +8,7 @@ module.exports.WebSocketClient = class WebSocketClient {
     this.opened = false;
     this.ended = false;
     this.ee = new EventEmitter();
+    this.queue = [];
   }
 
   open() {
@@ -78,5 +79,18 @@ module.exports.WebSocketClient = class WebSocketClient {
   onMessage(handler) {
     this.ee.on("message", handler);
     this.instance.addEventListener("message", handler);
+  }
+
+  send(message) {
+    const send = () => {
+      this.instance.send(message)
+      this.ee.removeListener("open", send);
+    };
+
+    if (!this.opened) {
+      this.ee.on("open", send);
+    } else {
+      send();
+    }
   }
 }

@@ -128,13 +128,15 @@ class Application extends React.Component {
                     <NavigationBody>
                       <PluginMenu
                         anchor="sidebar"
-                        render={(contribution) => (
-                          <NavigationItem
-                            name={contribution.title}
+                        render={(contribution, handlers) => (
+                          <button
+                            type="button"
                             title={`Execute ${contribution.command}`}
                             key={JSON.stringify(contribution)}
-                            href="#"
-                            />
+                            onClick={handlers.onClick}
+                            >
+                            {contribution.title}
+                          </button>
                         )}
                         />
                     </NavigationBody>

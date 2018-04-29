@@ -48,6 +48,17 @@ async function api({ server, cwd }) {
         }
         console.error(err);
       });
+
+      ws.on("message", (envelope) => {
+        const message = ARSON.parse(envelope);
+        switch (message.type) {
+          case 'plugin':
+            console.log(message);
+            break;
+          default:
+            console.log(`Received unknown message from client: ${plugin.type}`);
+        }
+      });
     });
 
     const send = getSender(wss, handler);
@@ -194,4 +205,12 @@ function getParents({globs = [], paths = []}, {cwd}) {
       .filter(g => g.charAt(0) !== "!")
       .map(g =>  path.join(cwd, globParent(g)))
   ];
+}
+
+function safeParse(message) {
+  try {
+    return ARSON.parse(message);
+  } catch (err) {
+    return {};
+  }
 }

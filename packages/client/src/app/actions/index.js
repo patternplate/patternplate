@@ -10,6 +10,7 @@ import dismissMessage from "./dismiss-message";
 import listen from "./listen";
 import loadPatternDemo from "./load-pattern-demo";
 import loadSchema from "./load-schema";
+import pluginCommand from "./plugin-command";
 import openDocumentation from "./open-documentation";
 import openFullscreen from "./open-fullscreen";
 import patchLocation from "./patch-location";
@@ -54,6 +55,7 @@ export {
   openDocumentation,
   openFullscreen,
   patchLocation,
+  pluginCommand,
   reload,
   resizeDemo,
   scrollDemo,

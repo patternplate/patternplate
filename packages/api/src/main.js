@@ -28,7 +28,7 @@ module.exports = async options => {
         config,
         docs,
         meta: {id: "root", children: patterns},
-        plugins: plugins.map(p => p.plugin)
+        plugins: plugins.map(p => Object.assign(p.plugin, {id: p.id}))
       });
     } catch (err) {
       res.status(500);

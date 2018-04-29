@@ -1,14 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { createSelector } from "reselect";
+import * as actions from "../actions";
 
-export default connect(mapState)((props) => {
-  const items = props.contributions.filter(contribution => contribution.anchor === props.anchor);
+export default connect(mapState, mapDispatch)((props) => {
+  const items = props.contributions
+    .filter(contribution => contribution.anchor === props.anchor);
 
   return (
     <React.Fragment>
-      {typeof props.render === "function" ? items.map(item => props.render(item)) : null}
+      {typeof props.render === "function" ? items.map(item => props.render(item, {
+        onClick(e) {
+          e.stopPropagation();
+          props.onClick(item);
+        }
+      })) : null}
     </React.Fragment>
   );
 });
@@ -26,7 +32,18 @@ function mapState(state) {
         return acc;
       }
 
-      return menus;
+      return menus.map(menu => {
+        menu.plugin = plugin.id;
+        return menu;
+      });
     }, [])
+  };
+}
+
+function mapDispatch(dispatch) {
+  return {
+    onClick(menu) {
+      dispatch(actions.pluginCommand(menu));
+    }
   };
 }

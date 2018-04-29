@@ -33,10 +33,15 @@ class PatternContainer extends React.Component {
         <Pattern.Toolbar>
           <PluginMenu
             anchor="toolbar"
-            render={contribution => (
-              <StyledToggleButton key={JSON.stringify(contribution)} title={contribution.title}>
+            render={(contribution, handlers) => (
+              <button
+                type="button"
+                key={JSON.stringify(contribution)}
+                title={contribution.title}
+                onClick={handlers.onClick}
+                >
                 <Icon symbol="placeholder"/>
-              </StyledToggleButton>
+              </button>
             )}
           />
         </Pattern.Toolbar>
