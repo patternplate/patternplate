@@ -20,7 +20,7 @@ module.exports = {
     "packages/components/lib/**/demo.js"
   ],
   plugins: [
-    "./sketch-export-plugin"
+    "@patternplate/plugin-sketch-export"
   ],
   render: "@patternplate/render-styled-components/render",
   mount: "@patternplate/render-styled-components/mount",
