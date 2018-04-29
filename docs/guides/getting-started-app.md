@@ -17,7 +17,7 @@ options:
 
 ## What to expect
 
-`patternplate` bridges the gaps between engineering and design. Whiule there is a command line interface, it also provides a macOS application to download and view patternplate projects.
+`patternplate` bridges the gaps between engineering and design. While there is a command line interface, it also provides a macOS application to download and view patternplate projects.
 
 We will …
 
