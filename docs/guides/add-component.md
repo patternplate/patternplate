@@ -13,8 +13,11 @@ options:
 
 ## What to expect
 
-Components are, well components - but also the bread of butter of every 
-component library. Let's learn about the default way to add components to `patternplate`.
+In `patternplate` production-grade components form the backbone of your design system. 
+This means there will be coding and cooperation between design and engineering involved
+while working in `patternplate`.
+
+Don't worry, we will walk you through the entire process.
 
 We will …
 
