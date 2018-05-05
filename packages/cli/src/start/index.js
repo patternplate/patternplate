@@ -57,31 +57,48 @@ async function start({flags}) {
 
     let rlcount = 0;
 
-    rl.on("line", async line => {
+    const restart = async () => {
       Object.keys(require.cache).forEach(id => { delete require.cache[id] });
+      readline.moveCursor(process.stdin, 0, -1);
+      readline.clearLine(process.stdin);
 
+      spinner.text = spinner.text.replace('Started', 'Reloading patternplate');
+      spinner.start();
+      app.unsubscribe();
+
+      ++rlcount;
+
+      app = await startPatternplate({
+        cwd,
+        port,
+        spinner,
+        count: rlcount,
+        reloading: app,
+        server: flags.server
+      });
+    };
+
+    rl.on("line", async line => {
       if (line.endsWith("rs")) {
         readline.moveCursor(process.stdin, 0, -1);
         readline.clearLine(process.stdin);
-        readline.moveCursor(process.stdin, 0, -1);
-        readline.clearLine(process.stdin);
-
-        spinner.text = spinner.text.replace('Started', 'Reloading patternplate');
-        spinner.start();
-        app.unsubscribe();
-
-        ++rlcount;
-
-        app = await startPatternplate({
-          cwd,
-          port,
-          spinner,
-          count: rlcount,
-          reloading: app,
-          server: flags.server
-        });
+        await restart();
       }
     });
+
+    if (flags.hot) {
+      const chokidar = require("chokidar");
+
+      const watcher = chokidar.watch([...getModules()], {
+        ignoreInitial: true,
+        ignorePermissionErrors: true,
+      });
+
+      watcher.on("all", async (_, path) => {
+        await restart();
+        watcher.add([...getModules()]);
+      });
+    }
   } catch (err) {
     switch (err.code) {
       case "EADDRINUSE":
@@ -142,4 +159,14 @@ async function startPatternplate(context) {
   });
 
   return app;
+}
+
+function getModules(mod = module, mods = new Set()) {
+  if (mods.has(mod.filename)) {
+    return mods;
+  }
+
+  mods.add(mod.filename);
+  mod.children.forEach(child => getModules(child, mods));
+  return mods;
 }
