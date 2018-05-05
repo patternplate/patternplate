@@ -39,6 +39,8 @@ async function client(options) {
   app.use("/static", serve(appStatic));
 
   app.subscribe = apiRoute.subscribe;
+  app.unsubscribe = apiRoute.unsubscribe;
+
   return app;
 }
 
