@@ -28,6 +28,7 @@ async function api({ server, cwd }) {
   ]);
 
   const watcher = await createWatcher({ cwd });
+  const wss = new WebSocket.Server({ server });
 
   const mw = express()
     .get("/state.json", await main({ cwd }))
@@ -37,7 +38,6 @@ async function api({ server, cwd }) {
 
   mw.subscribe = handler => {
     debug("subscribing to webpack and fs events");
-    const wss = new WebSocket.Server({ server });
 
     // Prevent client errors (frequently caused by Chrome disconnecting on reload)
     // from bubbling up and making the server fail, ref: https://github.com/websockets/ws/issues/1256
@@ -97,15 +97,27 @@ async function api({ server, cwd }) {
     });
   };
 
+  mw.unsubscribe = () => {
+    watcher.stop();
+    serverQueue.stop();
+    clientQueue.stop();
+    wss.clients.forEach(client => {
+      client.close();
+    });
+  };
+
   return mw;
 }
 
 async function createWatcher(options) {
   let watching = false;
+  let stopped = false;
   let subscribers = [];
+  let watcher;
+
   const next = message => subscribers.forEach(subs => subs.next(message));
 
-  return new Observable(subs => {
+  const obs = new Observable(subs => {
     if (!watching) {
       watching = true;
 
@@ -140,9 +152,15 @@ async function createWatcher(options) {
 
         debug(`subscribing to changes on: ${parents.map(p => path.relative(cwd, p)).join(', ')}`);
 
-        const watcher = chokidar.watch(parents, {
+        if (stopped) {
+          return;
+        }
+
+        watcher = chokidar.watch(parents, {
           ignoreInitial: true
         });
+
+        obs.watcher = watcher;
 
         watcher.on('all', async (e, p) => {
           const rel = path.relative(cwd, p);
@@ -172,6 +190,15 @@ async function createWatcher(options) {
       subscribers = subscribers.filter(s => s !== subs);
     };
   });
+
+  obs.stop = () => {
+    stopped = true;
+    if (watcher) {
+      watcher.close();
+    }
+  };
+
+  return obs;
 }
 
 function getSender(wss, handler) {
