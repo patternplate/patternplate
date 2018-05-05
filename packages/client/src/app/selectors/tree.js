@@ -16,7 +16,7 @@ export function flatten(tree) {
 export function sanitize(tree, context) {
   const { id, config = {}, prefix, base, location, search } = context;
 
-  tree.children = tree.children
+  tree.children = (tree.children || [])
     .map(child => {
       const enriched = enrich(child, {
         base,
@@ -54,7 +54,7 @@ export function enrich(child, context) {
   const { id, prefix, search } = context;
   const childid = [child.contentType, child.id].join('/');
   child.active = (childid === id) || `doc/${context.parent}/${childid}` === id;
-  const parsed = url.parse(child.href || path.join(prefix, child.id || child.path));
+  const parsed = url.parse(child.href || [prefix, child.id || child.path].join('/'));
 
   const q =
     typeof parsed.query === "string"

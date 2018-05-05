@@ -10,6 +10,7 @@ import selectDocs from "../selectors/docs";
 
 export default connect(mapProps, mapDispatch)(MainNavigation);
 export const NavigationHeader = MainNavigation.NavigationHeader;
+export const NavigationBody = MainNavigation.NavigationBody;
 export const NavigationToolbar = MainNavigation.NavigationToolbar;
 
 function mapProps(state) {

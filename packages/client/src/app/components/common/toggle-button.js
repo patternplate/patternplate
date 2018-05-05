@@ -20,7 +20,7 @@ function ToggleButton(props) {
     <Link
       className={props.className}
       title={title}
-      query={{ [props.shortcut.key]: !props.enabled }}
+      query={props.shortcut ? { [props.shortcut.key]: !props.enabled } : null}
     >
       {props.children}
     </Link>

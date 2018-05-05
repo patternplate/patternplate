@@ -19,6 +19,9 @@ module.exports = {
   entry: [
     "packages/components/lib/**/demo.js"
   ],
+  plugins: [
+    "@patternplate/plugin-sketch-export"
+  ],
   render: "@patternplate/render-styled-components/render",
   mount: "@patternplate/render-styled-components/mount",
   cover: "@patternplate/components/cover",

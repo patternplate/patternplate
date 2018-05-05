@@ -50,6 +50,11 @@ class Navigation extends React.Component {
             onScrollRequest={this.handleScrollRequest}
             query={props.query}
             />
+          <div>
+            {
+              React.Children.toArray(props.children).filter(child => child.type === NavigationBody)
+            }
+          </div>
           <NavigationLabel
             visible={props.navigation.children.length > 0}
             enabled={props.componentsEnabled}
@@ -81,11 +86,16 @@ class Navigation extends React.Component {
 
 module.exports = Navigation;
 module.exports.NavigationToolbar = NavigationToolbar;
+module.exports.NavigationBody = NavigationBody;
 module.exports.NavigationHeader = NavigationHeader;
 
 Navigation.defaultProps = {
   tools: []
 };
+
+function NavigationBody(props) {
+  return <React.Fragment>{props.children}</React.Fragment>;
+}
 
 function NavigationHeader(props) {
   return <StyledNavigatHeader>{props.children}</StyledNavigatHeader>;

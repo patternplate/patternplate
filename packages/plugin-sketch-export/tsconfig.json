@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib/",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "esnext",
+    "declaration": true,
+    "importHelpers": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.test.ts"
+  ]
+}

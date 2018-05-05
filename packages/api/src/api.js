@@ -2,6 +2,7 @@
 const path = require("path");
 const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
+const {loadPlugins} = require("@patternplate/load-plugins");
 const ARSON = require("arson");
 const chokidar = require("chokidar");
 const commonDir = require("common-dir");
@@ -12,6 +13,7 @@ const WebSocket = require("ws");
 const debug = require("util").debuglog("PATTERNPLATE");
 const Observable = require("zen-observable");
 const {validate} = require("@patternplate/validate-config");
+const {PluginApi} = require("./plugin-api");
 
 const createCompiler = require("./compiler");
 const cover = require("./cover");
@@ -47,6 +49,48 @@ async function api({ server, cwd }) {
           return;
         }
         console.error(err);
+      });
+
+      ws.on("message", async (envelope) => {
+        const message = ARSON.parse(envelope);
+        switch (message.type) {
+          case 'plugin': {
+            // TODO: Refine message struct type here
+            const {config, filepath} = await loadConfig({ cwd });
+            const base = filepath ? path.dirname(filepath) : cwd;
+
+            const plugins = Array.isArray(config.plugins)
+              ? await loadPlugins(config.plugins, {cwd: base, validate: true})
+              : [];
+
+            const target = plugins.find(p => p.id === message.payload.plugin);
+
+            if (!target) {
+              console.log(`Received message for unknown plugin: ${message.payload.id}`);
+              return;
+            }
+
+            const {plugin} = target;
+
+            if (!plugin.commands.hasOwnProperty(message.payload.command)) {
+              console.log(`Received unknown command: ${message.payload.command} for plugin ${target.id}. Available commands: ${Object.keys(target.plugin.commands || {}).join(', ')}`);
+              return;
+            }
+
+            const command = plugin.commands[message.payload.command];
+
+            if (typeof command.command !== "function") {
+              console.log(`Command: ${message.payload.command} for plugin ${target.id} is malformed.`);
+              return;
+            }
+
+            const address = server.address();
+            command.command(PluginApi.from(message.state, {cwd, address}));
+            return;
+          }
+          default:
+            console.log(`Received unknown message from client: ${plugin.type}`);
+        }
       });
     });
 
@@ -221,4 +265,12 @@ function getParents({globs = [], paths = []}, {cwd}) {
       .filter(g => g.charAt(0) !== "!")
       .map(g =>  path.join(cwd, globParent(g)))
   ];
+}
+
+function safeParse(message) {
+  try {
+    return ARSON.parse(message);
+  } catch (err) {
+    return {};
+  }
 }

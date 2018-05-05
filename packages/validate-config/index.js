@@ -29,10 +29,7 @@ const schema = {
       "type": "string"
     },
     "cover": {
-      "type": "string",
-      "examples": [
-        "./cover.js"
-      ]
+      "type": "string"
     },
     "ui": {
       "type": "object",
@@ -111,9 +108,15 @@ const schema = {
           "type": "string"
         }
       }
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
-}
+};
 
 module.exports.schema = schema;
 

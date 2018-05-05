@@ -2,9 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { createSelector } from "reselect";
+import { Icon, styled } from "@patternplate/components";
+
 import * as demo from "../selectors/demo";
 import selectItem, * as items from "../selectors/item";
 import Pattern from "../components/pattern";
+import ToggleButton from "../components/common/toggle-button";
+import PluginMenu from "./plugin-menu";
 
 import * as actions from "../actions";
 
@@ -25,7 +29,23 @@ class PatternContainer extends React.Component {
         updated={props.updated}
         navigationEnabled={props.navigationEnabled}
         screenshot={props.screenshot}
-      />
+      >
+        <Pattern.Toolbar>
+          <PluginMenu
+            anchor="toolbar"
+            render={(contribution, handlers) => (
+              <button
+                type="button"
+                key={JSON.stringify(contribution)}
+                title={contribution.title}
+                onClick={handlers.onClick}
+                >
+                <Icon symbol="placeholder"/>
+              </button>
+            )}
+          />
+        </Pattern.Toolbar>
+      </Pattern>
     );
   }
 }
@@ -66,7 +86,7 @@ const selectDocs = createSelector(
   items.selectType,
   items.selectContents,
   (pattern, type, contents) => {
-    if (pattern && pattern.type === 'folder') {
+    if (pattern && pattern.type === "folder") {
       return contents;
     }
     if (type === "not-found") {
@@ -89,7 +109,8 @@ function mapState(state) {
     contentType: items.selectContentType(state),
     updated: state.demo.updated,
     navigationEnabled: state.navigationEnabled,
-    screenshot: state.routing.locationBeforeTransitions.query.screenshot === "true"
+    screenshot:
+      state.routing.locationBeforeTransitions.query.screenshot === "true"
   };
 }
 
@@ -101,3 +122,7 @@ function mapDispatch(dispatch) {
     dispatch
   );
 }
+
+const StyledToggleButton = styled(ToggleButton)`
+  margin-right: 10px;
+`;

@@ -11,7 +11,7 @@ jobs:
         - yarn lerna run deps --stream
       script:
         - >-
-          yarn build --scope=@patternplate/cli &&
+          yarn build --scope=@patternplate/cli --scope="@patternplate/plugin-*" &&
           yarn run pack &&
           yarn components:build --stream &&
           ./.travis/decrypt.sh &&

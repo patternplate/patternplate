@@ -12,6 +12,7 @@ import ToggleOpacity from "../../containers/toggle-opacity";
 const processor = remark().use(emoji);
 
 export default connect(mapProps)(PatternSheet);
+export const Toolbar = props => <React.Fragment>{props.children}</React.Fragment>;
 
 function PatternSheet(props) {
   return (
@@ -24,6 +25,10 @@ function PatternSheet(props) {
             </StyledName>
             <ThemeProvider theme={themes().dark}>
               <StyledControlsArea orient="right">
+                {
+                  React.Children.toArray(props.children)
+                    .filter(child => child.type === Toolbar)
+                }
                 <StyledControlsItem>
                   <ToggleOpacity />
                 </StyledControlsItem>
@@ -64,7 +69,6 @@ function PatternSheet(props) {
     </StyledPatternSheet>
   );
 }
-
 
 const StyledSearchTrigger = styled.span`
   &:not(:first-child) {

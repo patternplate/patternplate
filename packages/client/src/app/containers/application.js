@@ -9,6 +9,7 @@ import {
   Icon,
   styled,
   injection,
+  NavigationItem,
   Text,
   ThemeProvider,
   themes,
@@ -23,10 +24,11 @@ import Favicon from "./favicon";
 import Indicator from "./indicator";
 import ConnectedLink from "./link";
 import Message from "./message";
-import Navigation, { NavigationHeader, NavigationToolbar } from "./navigation";
+import Navigation, { NavigationBody, NavigationHeader, NavigationToolbar } from "./navigation";
 import ToggleNavigation from "./toggle-navigation";
 import ToggleSearch from "./toggle-search";
 import Search from "./search";
+import PluginMenu from "./plugin-menu";
 
 const selectThemes = createSelector(state => state.config.ui, ui => themes(ui));
 
@@ -123,6 +125,21 @@ class Application extends React.Component {
                     <NavigationHeader>
                       <Logo />
                     </NavigationHeader>
+                    <NavigationBody>
+                      <PluginMenu
+                        anchor="sidebar"
+                        render={(contribution, handlers) => (
+                          <button
+                            type="button"
+                            title={`Execute ${contribution.command}`}
+                            key={JSON.stringify(contribution)}
+                            onClick={handlers.onClick}
+                            >
+                            {contribution.title}
+                          </button>
+                        )}
+                        />
+                    </NavigationBody>
                     <NavigationToolbar>
                       <div />
                       <ToggleSearch />
