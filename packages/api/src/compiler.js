@@ -15,80 +15,98 @@ const OPTS = { stdio: ["pipe", "pipe", "pipe", "ipc"] };
 module.exports = createCompiler;
 
 async function createCompiler({ cwd, target = "" }) {
-  const workerPath = path.join(__dirname, "compiler-worker.js");
-  debug(`starting compiler worker at ${workerPath}`);
+  let worker;
 
-  const worker = fork(workerPath, dargs({cwd, target}), OPTS);
-  const send = typeof worker.send === "function"
-    ? payload => {
-      if (worker.connected) {
-        worker.send(ARSON.stringify(payload));
-      }
+  const send = payload => {
+    if (!worker || !worker.send || !worker.connected) {
+      return;
     }
-    : () => {};
+    worker.send(ARSON.stringify(payload));
+  }
 
   let watching = false;
 
   const queue = [];
   let listeners = [];
+
   const next = (message) => listeners.forEach(listener => listener.next(message));
+
+  const start = () => {
+    const workerPath = path.join(__dirname, "compiler-worker.js");
+    debug(`starting compiler worker at ${workerPath}`);
+    const cp = fork(workerPath, dargs({cwd, target}), OPTS);
+
+    let stderr = ``;
+    let stdout = ``;
+
+    cp.stdout.on("data", data => {
+      stdout += String(data);
+      debug(`stdout ${workerPath}: ${data}`);
+    });
+
+    cp.stderr.on("data", data => {
+      stderr += String(data);
+      debug(`stderr ${workerPath}: ${data}`);
+    });
+
+    cp.once("close", (code) => {
+      if (code !== 0) {
+        queue.unshift({type: "exception", payload: {
+          code,
+          stdout,
+          stderr: [`Could not start compiler worker for "${target}"`, stderr].join("\n")
+        }});
+        next(queue);
+      }
+    });
+
+    return cp;
+  };
+
+  worker = start();
 
   setInterval(() => send({type: "heartbeat"}), 500);
 
-  let stderr = ``;
-  let stdout = ``;
+  const onMessage = envelope => {
+      const {type, target, payload} = ARSON.parse(envelope);
 
-  worker.stdout.on("data", data => {
-    stdout += String(data);
-    debug(`stdout ${workerPath}: ${data}`);
-  });
-
-  worker.stderr.on("data", data => {
-    stderr += String(data);
-    debug(`stderr ${workerPath}: ${data}`);
-  });
-
-  worker.once("close", (code) => {
-    if (code !== 0) {
-      queue.unshift({type: "exception", payload: {
-        code,
-        stdout,
-        stderr: [`Could not start compiler worker for "${target}"`, stderr].join("\n")
-      }});
-      next(queue);
-    }
-  });
-
-  worker.on("message", envelope => {
-    const {type, target, payload} = ARSON.parse(envelope);
-
-    switch (type) {
-      case "ready": {
-        return send({type: "start"});
-      }
-      case "done": {
-        debug({type, target});
-        const fs = new MemoryFilesystem(payload);
-        queue.unshift({type, target, payload: {fs}});
-        return next(queue);
-      }
-      case "start": {
-        debug({type, target});
-        queue.unshift({type, target, payload});
-        return next(queue);
-      }
-      case "error": {
-        if (Array.isArray(payload)) {
-          return payload.forEach(p => console.error(p.message))
+      switch (type) {
+        case "ready": {
+          return send({type: "start"});
         }
-        return console.error(payload.message);
-      }
-      case "shutdown": {
-        console.warn(`compiler-worker for ${target} at ${workerPath} shut down.`);
-        return send({type: "stop"});
-      }
+        case "done": {
+          debug({type, target});
+          const fs = new MemoryFilesystem(payload);
+          queue.unshift({type, target, payload: {fs}});
+          return next(queue);
+        }
+        case "start": {
+          debug({type, target});
+          queue.unshift({type, target, payload});
+          return next(queue);
+        }
+        case "error": {
+          if (Array.isArray(payload)) {
+            return payload.forEach(p => console.error(p.message))
+          }
+          return console.error(payload.message);
+        }
+        case "shutdown": {
+          debug({type, target});
+          send({type: "stop"});
+
+          worker = start();
+
+          worker.on("message", onMessage);
+
+          if (watching) {
+            send({type: "watch"});
+          }
+        }
     }
-  });
+  };
+
+  worker.on("message", onMessage);
 
   const observable = new Observable(observer => {
     if (!watching) {
