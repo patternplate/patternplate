@@ -1,5 +1,4 @@
 const path = require("path");
-const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
 const AggregateError = require("aggregate-error");
 const fromString = require("require-from-string");
@@ -15,11 +14,9 @@ const RENDER_PATH = "/patternplate.node.render.js";
 async function demo(options) {
   return async function demoRoute(req, res) {
     try {
-      const result = await loadConfig({ cwd: options.cwd });
-      const { config = {}, filepath } = result;
-      const { entry = [] } = config;
+      const { entry = [] } = options.config;
+      const { cwd } = options;
 
-      const cwd = filepath ? path.dirname(filepath) : options.cwd;
       const id = req.params[0];
 
       // TODO: Send errors to central observer

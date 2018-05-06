@@ -1,7 +1,9 @@
+const Path = require("path");
 const ora = require("ora");
 const debug = require("util").debuglog("PATTERNPLATE");
 const importFresh = require("import-fresh");
 const readline = require("readline");
+const loadConfig = require("@patternplate/load-config");
 
 module.exports = start;
 
@@ -134,10 +136,15 @@ async function startPatternplate(context) {
   const verb = context.reloading ? `reload` : `start`;
   const doneVerb = context.reloading ? `Reloaded` : `Started`;
 
+  const result = await loadConfig({ cwd: context.cwd });
+  const { config = {}, filepath } = result;
+  const base = filepath ? Path.dirname(filepath) : context.cwd;
+
   const app = await patternplate({
     port,
     server,
-    cwd
+    config,
+    cwd: base
   });
 
   spinner.text = `${doneVerb} on http://localhost:${app.port} ${count}`;

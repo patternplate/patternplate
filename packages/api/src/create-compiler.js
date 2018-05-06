@@ -12,9 +12,7 @@ const resolvePkg = require("resolve-pkg");
 
 const OPTS = { stdio: ["pipe", "pipe", "pipe", "ipc"] };
 
-module.exports = createCompiler;
-
-async function createCompiler({ cwd, target = "" }) {
+module.exports.createCompiler = async function createCompiler({ config, cwd, target = "" }) {
   let worker;
 
   const send = payload => {
@@ -34,7 +32,7 @@ async function createCompiler({ cwd, target = "" }) {
   const start = () => {
     const workerPath = path.join(__dirname, "compiler-worker.js");
     debug(`starting compiler worker at ${workerPath}`);
-    const cp = fork(workerPath, dargs({cwd, target}), OPTS);
+    const cp = fork(workerPath, dargs({cwd, target, config: ARSON.stringify(config)}), OPTS);
 
     let stderr = ``;
     let stdout = ``;

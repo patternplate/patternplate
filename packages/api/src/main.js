@@ -1,14 +1,12 @@
 const path = require("path");
-const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 
 module.exports = async options => {
   return async function main(req, res) {
     try {
-      const { config, filepath } = await loadConfig({ cwd: options.cwd });
-      const { entry = [] } = config;
-      const cwd = filepath ? path.dirname(filepath) : options.cwd;
+      const { config, cwd } = options;
+      const { entry = [] } = options.config;
 
       const [docs, {patterns}] = await Promise.all([
         loadDocsTree({

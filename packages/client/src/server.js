@@ -1,7 +1,6 @@
 const path = require("path");
 
 const api = require("@patternplate/api");
-const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const loadMeta = require("@patternplate/load-meta");
 const express = require("express");
@@ -46,10 +45,7 @@ async function client(options) {
 async function main(options) {
   return async function mainRoute(req, res, next) {
     try {
-      const result = (await loadConfig({ cwd: options.cwd })) || {};
-      const { config = {}, filepath } = result;
-      const { entry = [], cover } = config;
-      const cwd = filepath ? path.dirname(filepath) : options.cwd;
+      const { entry = [], cover } = options.config;
       const base = options.base || "/";
 
       if (req.path === base && typeof cover === "string") {
@@ -57,24 +53,24 @@ async function main(options) {
         return res.send(await response.text());
       }
 
-      const docs = await loadDocsTree({
-        cwd,
-        docs: config.docs,
-        readme: config.readme
-      });
-
-      // TODO: Send errors to central observer
-      const {patterns} = await loadMeta({
-        cwd,
-        entry
-      });
+      const [docs, {patterns}] = await Promise.all([
+        loadDocsTree({
+          cwd: options.cwd,
+          docs: options.config.docs,
+          readme: options.config.readme
+        }),
+        loadMeta({
+          cwd: options.cwd,
+          entry
+        })
+      ]);
 
       const tree = {id: "root", children: patterns};
 
       res.send(
         await render(req.url, {
           schema: { meta: tree, docs },
-          config,
+          config: options.config,
           base,
         })
       );

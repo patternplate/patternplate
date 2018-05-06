@@ -79,9 +79,9 @@ async function build({flags}) {
   await dump(eject(), "/static", out);
 
   // Create component bundles
-  await dump(await bundle({ cwd, target: "web" }), "/", path.join(out, 'api'));
+  await dump(await bundle({ cwd, config, target: "web" }), "/", path.join(out, 'api'));
 
-  const bundleFs = await bundle({ cwd, target: "node" });
+  const bundleFs = await bundle({ cwd, config, target: "node" });
   const getModule = fromFs(bundleFs);
   const bundles = getModule(BUNDLE_PATH);
 
@@ -129,8 +129,8 @@ function selectBase(base) {
   .join('');
 }
 
-function bundle({ cwd, target }) {
-  return compiler({ cwd, target })
+function bundle({ cwd, config, target }) {
+  return compiler({ cwd, config, target })
     .then(c => {
       return new Promise((resolve, reject) => {
         c.run((err, stats) => {

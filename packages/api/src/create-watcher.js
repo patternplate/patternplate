@@ -1,5 +1,4 @@
 const Path = require("path");
-const loadConfig = require("@patternplate/load-config");
 const loadMeta = require("@patternplate/load-meta");
 const Observable = require("zen-observable");
 const chokidar = require("chokidar");
@@ -15,6 +14,11 @@ module.exports.createWatcher = async function createWatcher(options) {
   let subscribers = [];
   let watcher;
 
+  const {config = {}} = options;
+  const {entry = [], docs = []} = config;
+  const {cwd} = options;
+  const configPath = Path.join(cwd, "patternplate.config.js");
+
   const next = message => subscribers.forEach(subs => subs.next(message));
 
   const obs = new Observable(subs => {
@@ -22,11 +26,6 @@ module.exports.createWatcher = async function createWatcher(options) {
       watching = true;
 
       (async () => {
-        const result = await loadConfig({ cwd: options.cwd });
-        const { config = {}, filepath = options.cwd } = result;
-        const { entry = [], docs = [] } = config;
-        const cwd = filepath ? Path.dirname(filepath) : options.cwd;
-
         // TODO: only **list** relevant manifest paths
         // instead of reading them
         const meta = await loadMeta({
@@ -37,10 +36,6 @@ module.exports.createWatcher = async function createWatcher(options) {
         if (meta.errors && meta.errors.length > 0) {
           meta.errors.forEach(error => next({ type: "error", payload: error }));
         }
-
-        const configPath = filepath
-          ? filepath
-          : Path.join(cwd, "patternplate.config.js");
 
         const parents = getParents(
           {
