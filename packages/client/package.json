@@ -63,7 +63,6 @@
   },
   "dependencies": {
     "@patternplate/api": "^2.5.2",
-    "@patternplate/load-config": "^2.5.2",
     "@patternplate/load-docs": "^2.5.2",
     "@patternplate/load-meta": "^2.5.2",
     "@patternplate/load-plugins": "^2.5.2",
@@ -75,7 +74,8 @@
     "isomorphic-fetch": "^2.0.2",
     "load-json-file": "^4.0.0",
     "memory-fs": "^0.4.1",
-    "serve-static": "^1.13.2"
+    "serve-static": "^1.13.2",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",

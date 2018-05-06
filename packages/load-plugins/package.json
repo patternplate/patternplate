@@ -34,13 +34,16 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@types/jest": "^22.2.0",
+    "@types/node": "^9.6.6",
+    "@types/read-pkg": "^3.0.0",
     "dependency-check": "^3.1.0",
     "rimraf": "^2.6.2",
     "typescript": "^2.7.2"
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@types/node": "^9.6.6",
+    "import-from": "^2.1.0",
+    "read-pkg": "^3.0.0",
     "resolve-from": "^4.0.0"
   }
 }

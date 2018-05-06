@@ -2,14 +2,16 @@
   "name": "@patternplate/plugin-sketch-export",
   "version": "2.5.2",
   "description": "Export patternplate components to Sketch",
+  "browser": "./browser.js",
   "scripts": {
     "clean": "rimraf lib",
     "start": "concurrently \"tsc -w --preserveWatchOutput\" \"webpack -w\"",
     "build": "concurrently \"tsc\" \"webpack\"",
     "watch": "yarn start",
-    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+    "deps": "#dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [
+    "browser.js",
     "index.js",
     "lib"
   ],

@@ -60,7 +60,6 @@
     "dargs": "^5.1.0",
     "express": "^4.16.2",
     "glob-parent": "^3.1.0",
-    "import-from": "^2.1.0",
     "ip-address": "^5.8.9",
     "memory-fs": "^0.4.1",
     "micromatch": "^3.1.8",

@@ -6,7 +6,7 @@
     "start": "yarn build -w",
     "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
     "watch": "yarn build -w",
-    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/cover-client -i @patternplate/demo-client -i @patternplate/probe-client -i css-loader -i html-loader -i to-string-loader"
+    "deps": "dependency-check . ./lib/plugin-loader --missing && dependency-check . ./lib/plugin-loader --extra --no-dev -i @patternplate/cover-client -i @patternplate/demo-client -i @patternplate/probe-client -i css-loader -i html-loader -i to-string-loader"
   },
   "files": [
     "index.js",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@patternplate/cover-client": "^2.5.2",
     "@patternplate/demo-client": "^2.5.2",
-    "@patternplate/load-config": "^2.5.2",
+    "@patternplate/load-plugins": "^2.5.2",
     "@patternplate/probe-client": "^2.5.2",
     "@patternplate/webpack-entry": "^2.5.2",
     "css-loader": "^0.28.10",
