@@ -53,4 +53,8 @@ class PatternApi {
     const ip = new Address(context.address.address);
     return `${ip.href(context.address.port)}api/demo/${id}.html`;
   }
+
+  send() {
+
+  }
 }
