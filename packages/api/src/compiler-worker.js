@@ -19,7 +19,9 @@ const FAILURE_COUNT = 5;
 
 async function startCompilerWorker() {
   const {cwd, target} = flags;
-  const compiler = await createCompiler({cwd, target});
+  const config = ARSON.parse(flags.config);
+
+  const compiler = await createCompiler({config, cwd, target});
   const fs = compiler.outputFileSystem;
 
   let beat = Date.now();

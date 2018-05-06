@@ -1,12 +1,13 @@
 const fs = require("fs");
 const path = require("path");
-const loadConfig = require("@patternplate/load-config");
+const {loadPlugins} = require("@patternplate/load-plugins");
 const webpackEntry = require("@patternplate/webpack-entry");
 const MemoryFS = require("memory-fs");
 const resolveFrom = require("resolve-from");
 const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const readPkg = require("read-pkg");
+const querystring = require("querystring");
 
 module.exports = compiler;
 
@@ -19,8 +20,10 @@ const PROBE = require.resolve("@patternplate/probe-client");
 
 async function compiler(options) {
   const fs = new MemoryFS();
-  const { config, filepath } = await loadConfig({ cwd: options.cwd });
-  const cwd = typeof filepath === "string" ? path.dirname(filepath) : options.cwd;
+  const {config, cwd} = options;
+
+  const plugins = (await loadPlugins(config.plugins || [], {cwd, validate: false}));
+  const pluginsEntry = pluginEntry(plugins, { cwd });
 
   const components = await webpackEntry(config.entry, { cwd });
   const entry = { components };
@@ -34,10 +37,11 @@ async function compiler(options) {
   }
 
   if (options.target === "web") {
-    entry.mount = mount;
-    entry.demo = DEMO;
-    entry.probe = PROBE;
     entry["cover-client"] =  COVER;
+    entry.demo = DEMO;
+    entry.mount = mount;
+    entry.plugins = pluginsEntry;
+    entry.probe = PROBE;
   }
 
   if (typeof config.cover === "string") {
@@ -122,4 +126,13 @@ const getPkg = (...args) => {
   } catch (err) {
     return null;
   }
+}
+
+function pluginEntry(plugins) {
+  const entry = JSON.stringify(plugins.map(p => ({
+    id: p.id,
+    path: p.browserPath
+  })));
+
+  return `${require.resolve("./plugin-loader")}?${querystring.stringify({ entry })}!`;
 }

@@ -29,6 +29,10 @@ export class PluginHub {
 
     ws.open();
 
+    ws.onMessage((message) => {
+      console.log(message);
+    });
+
     SCOPE.set(this, {ws});
   }
 

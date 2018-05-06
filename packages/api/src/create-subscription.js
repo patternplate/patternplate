@@ -2,6 +2,7 @@ const Path = require("path");
 const ARSON = require("arson");
 const { validate } = require("@patternplate/validate-config");
 const WebSocket = require("ws");
+const loadConfig = require("@patternplate/load-config");
 
 const createCompiler = require("./compiler");
 const { PluginApi } = require("./plugin-api");
@@ -9,7 +10,7 @@ const { PluginApi } = require("./plugin-api");
 const debug = require("util").debuglog("PATTERNPLATE");
 
 module.exports.createSubscription = function createSubscription(context) {
-  const { queues, cwd, wss, server, watcher } = context;
+  const { queues, config, cwd, wss, server, watcher } = context;
 
   return handler => {
     debug("subscribing to webpack and fs events");
@@ -28,12 +29,8 @@ module.exports.createSubscription = function createSubscription(context) {
         const message = ARSON.parse(envelope);
         switch (message.type) {
           case "plugin": {
-            // TODO: Refine message struct type here
-            const { config, filepath } = await loadConfig({ cwd });
-            const base = filepath ? Path.dirname(filepath) : cwd;
-
             const plugins = Array.isArray(config.plugins)
-              ? await loadPlugins(config.plugins, { cwd: base, validate: true })
+              ? await loadPlugins(config.plugins, { cwd, validate: true })
               : [];
 
             const target = plugins.find(p => p.id === message.payload.plugin);
@@ -70,7 +67,7 @@ module.exports.createSubscription = function createSubscription(context) {
             }
 
             const address = server.address();
-            command.command(PluginApi.from(message.state, { cwd, address }));
+            command.command(PluginApi.from(message.state, { config, cwd, address }));
             return;
           }
           default:

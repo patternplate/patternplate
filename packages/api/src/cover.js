@@ -1,5 +1,4 @@
 const url = require("url");
-const loadConfig = require("@patternplate/load-config");
 const AggregateError = require("aggregate-error");
 const unindent = require("unindent");
 const stringHash = require("string-hash");
@@ -9,10 +8,10 @@ const RENDER_PATH = "/patternplate.node.render.js";
 const COVER_PATH = "/patternplate.node.cover.js";
 
 module.exports = async options => {
+  const {config} = options;
+
   return async function main(req, res) {
     try {
-      const { config } = await loadConfig({ cwd: options.cwd });
-
       if (!config.cover) {
         return res.sendStatus(404);
       }

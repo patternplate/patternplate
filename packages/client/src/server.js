@@ -1,7 +1,6 @@
 const path = require("path");
 
 const api = require("@patternplate/api");
-const loadConfig = require("@patternplate/load-config");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const { loadPlugins } = require("@patternplate/load-plugins");
 const loadMeta = require("@patternplate/load-meta");
@@ -47,10 +46,7 @@ async function client(options) {
 async function main(options) {
   return async function mainRoute(req, res, next) {
     try {
-      const result = (await loadConfig({ cwd: options.cwd })) || {};
-      const { config = {}, filepath } = result;
-      const { entry = [], cover } = config;
-      const cwd = filepath ? path.dirname(filepath) : options.cwd;
+      const { entry = [], cover } = options.config;
       const base = options.base || "/";
 
       if (req.path === base && typeof cover === "string") {
@@ -58,20 +54,20 @@ async function main(options) {
         return res.send(await response.text());
       }
 
-      const pluginPaths = Array.isArray(config.plugins) ? config.plugins : [];
+      const pluginPaths = Array.isArray(options.config.plugins) ? options.config.plugins : [];
 
       const [docs, {patterns}, plugins] = await Promise.all([
         loadDocsTree({
-          cwd,
-          docs: config.docs,
-          readme: config.readme
+          cwd: options.cwd,
+          docs: options.config.docs,
+          readme: options.config.readme
         }),
         loadMeta({
-          cwd,
+          cwd: options.cwd,
           entry
         }),
         (await loadPlugins(pluginPaths, {
-          cwd
+          cwd: options.cwd
         }))
         .map(p => p.plugin)
       ]);
@@ -81,7 +77,7 @@ async function main(options) {
       res.send(
         await render(req.url, {
           schema: { meta: tree, docs, plugins },
-          config,
+          config: options.config,
           base,
         })
       );

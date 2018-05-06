@@ -55,6 +55,7 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     scripts: scripts !== false
       ? [
         `${staticBase}/${manifest["vendors~client.js"]}`,
+        `${startBase}api/patternplate.web.plugins.js`,
         `${staticBase}/${manifest["client.js"]}`
       ]
       : []
