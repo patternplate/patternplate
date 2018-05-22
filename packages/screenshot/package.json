@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/screenshot",
-  "version": "2.5.2",
+  "version": "2.5.9",
   "description": "Create SVG screenshots from websites",
   "bin": {
     "patternplate-screenshot": "./cli.js"
