@@ -4,7 +4,7 @@ const { validate } = require("@patternplate/validate-config");
 const WebSocket = require("ws");
 const loadConfig = require("@patternplate/load-config");
 
-const createCompiler = require("./create-compiler");
+const { createCompiler } = require("./create-compiler");
 
 const debug = require("util").debuglog("PATTERNPLATE");
 
