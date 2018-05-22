@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/client",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "description": "Universal javascript client application for patternplate",
   "main": "./server.js",
   "scripts": {
@@ -62,7 +62,7 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@patternplate/api": "^2.5.5",
+    "@patternplate/api": "^2.5.6",
     "@patternplate/load-config": "^2.5.2",
     "@patternplate/load-docs": "^2.5.2",
     "@patternplate/load-meta": "^2.5.2",
