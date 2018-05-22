@@ -13,7 +13,7 @@ export const schema = {
             "additionalProperties": false,
             "required": [
               "anchor",
-              "command",
+              "handler",
               "title"
             ],
             "properties": {
@@ -24,22 +24,37 @@ export const schema = {
                   "toolbar"
                 ]
               },
-              "command": {
-                "type": "string"
-              },
+              "handler": {},
               "title": {
                 "type": "string"
               }
             }
           }
-        }
-      }
-    },
-    "commands": {
-      "patternProperties": {
-        "^.*$": {
-          "type": "object",
-          "additionalProperties": true
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "anchor",
+              "handler",
+              "path"
+            ],
+            "properties": {
+              "anchor": {
+                "type": "string",
+                "enum": [
+                  "api",
+                  "client"
+                ]
+              },
+              "path": {
+                "type": "string"
+              },
+              "handler": {}
+            }
+          }
         }
       }
     }

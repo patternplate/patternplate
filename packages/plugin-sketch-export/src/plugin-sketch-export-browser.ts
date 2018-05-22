@@ -1,31 +1,5 @@
-import * as Fs from "fs";
-import * as puppeteer from "puppeteer";
-
-const HTML_SKETCHAPP = require.resolve("./html-sketchapp.bundle");
-
-module.exports.contributes = {
-  menus: [
-    {
-      anchor: 'toolbar',
-      title: 'Export demo to Sketch',
-      handler: () => {
-
-      },
-    }
-  ],
-  routes: [
-    {
-      anchor: 'api',
-      path: '/export/*.json',
-      handler: (req, res) => {
-        res.send('ping');
-      }
-    }
-  ]
-};
-
-/* module.exports.commands = {
-  exportLibrary: {
+module.exports.commands = {
+  /* exportLibrary: {
     command() {
 
     }
@@ -59,6 +33,5 @@ module.exports.contributes = {
         return JSON.stringify(sketchPage.toJSON(), null, '\t');
       }, state);
     }
-  }
-};*/
-
+  } */
+};

@@ -31,7 +31,7 @@ async function api({ server, config, cwd }) {
     .get("/state.json", await main({ config, cwd }))
     .get("/demo/*.html", await demo({ config, cwd, queue: queues.server }))
     .get("/cover.html", await cover({ config, cwd, queue: queues.server }))
-    .use("/plugin/*", await plugins({ cwd }))
+    .use("/plugins/*", await plugins({ config, cwd }))
     .use(await scripts({ queue: queues.client }));
 
   mw.subscribe = createSubscription({
