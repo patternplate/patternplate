@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/compiler",
-  "version": "2.5.2",
+  "version": "2.5.5",
   "description": "Create a compiler to create browser-compatible code from patternplate entries",
   "scripts": {
     "start": "yarn build -w",
