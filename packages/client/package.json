@@ -63,7 +63,6 @@
   },
   "dependencies": {
     "@patternplate/api": "^2.5.6",
-    "@patternplate/components": "^2.5.3",
     "@patternplate/load-config": "^2.5.2",
     "@patternplate/load-docs": "^2.5.2",
     "@patternplate/load-meta": "^2.5.2",
@@ -82,6 +81,7 @@
     "@marionebl/react-router": "2.6.3",
     "@marionebl/sander": "^0.6.1",
     "@patternplate/babel-preset": "^2.5.2",
+    "@patternplate/components": "^2.5.3",
     "@patternplate/search": "^2.5.2",
     "@patternplate/websocket-client": "^2.5.2",
     "@patternplate/widgets": "^2.5.3",
