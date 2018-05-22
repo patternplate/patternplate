@@ -94,7 +94,7 @@ const selectDisplayName = createSelector(
   selectDocItem,
   item => {
     if (!item) {
-      return 'patternpalte';
+      return 'patternplate';
     }
     return item.manifest.displayName;
   }
