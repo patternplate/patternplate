@@ -40,7 +40,7 @@ module.exports = {
     // Dark context colors
     colorBackgroundDark: "rgb(8, 15, 23)",
     colorBackgroundSecondaryDark: "rgb(11, 23, 34)",
-    colorBackgroundSecondaryTertiaryDark: "rgb(11, 23, 34)",
+    colorBackgroundTertiaryDark: "rgb(11, 23, 34)",
     colorBorderDark: "rgb(11, 23, 34)",
     colorTextDark: "rgb(242, 242, 242)",
     colorRecessDark: "rgb(153, 153, 153)",
