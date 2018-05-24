@@ -4,6 +4,7 @@ node_modules
 .serverless
 package-lock.json
 .yarn-metadata.json
+.DS_Store
 
 # boilerplate-server based apps
 /packages/**/yarn.lock
