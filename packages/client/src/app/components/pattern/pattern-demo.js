@@ -15,7 +15,6 @@ function PatternDemo(props) {
   return <StyledDemo
     src={src}
     referrerpolicy="no-referrer"
-    sandbox="allow-scripts"
     />;
 }
 
