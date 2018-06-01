@@ -32,7 +32,7 @@ export function sanitize(tree, context) {
     })
     .sort((a, b) => {
       const order =
-        (a.manifest.options.order || 0) - (b.manifest.options.order || 0);
+        ((((a.manifest || {}).options || {}).order || 0) - (((b.manifest || {}).options || {}).order || 0));
       const weight = (WEIGHTS[a.type] || 0) - (WEIGHTS[b.type] || 0);
       const comp = a.manifest.displayName.localeCompare(b.manifest.displayName);
 
