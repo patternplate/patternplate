@@ -9,7 +9,10 @@ function main() {
     errors.push(new Error('No patternplate components found. There might be errors during bundling.'))
   }
   if (errors.length > 0) {
-    errors.forEach(err => console.error(err));
+    errors.forEach(function (err) {
+      console.error(err)
+    });
+
     return;
   }
 

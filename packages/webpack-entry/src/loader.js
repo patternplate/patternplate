@@ -31,15 +31,15 @@ module.exports = async function webpackEntry() {
     const mod = [`module.exports['${file}'] = require('./${rel}');`]
 
     if (exported.indexOf("js") === -1) {
-      mod.push(`module.exports['${file}'].js = () => require('./${rawLoader}!./${rel}')`);
+      mod.push(`module.exports['${file}'].js = function() { return require('./${rawLoader}!./${rel}'); };`);
     }
 
     if (exported.indexOf("css") === -1 && await exists(ext('.css', full))) {
-      mod.push(`module.exports['${file}'].css = () => require('./${ext('.css', rel)}')`);
+      mod.push(`module.exports['${file}'].css = function() { return require('./${ext('.css', rel)}'); };`);
     }
 
     if (exported.indexOf("html") === -1 && await exists(ext('.html', full))) {
-      mod.push(`module.exports['${file}'].html = () => require('./${ext('.html', rel)}')`);
+      mod.push(`module.exports['${file}'].html = function() { return require('./${ext('.html', rel)}'); };`);
     }
 
     return mod.join('\n');
