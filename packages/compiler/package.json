@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/compiler",
-  "version": "2.5.13",
+  "version": "2.5.15",
   "description": "Create a compiler to create browser-compatible code from patternplate entries",
   "scripts": {
     "start": "yarn build -w",
@@ -36,16 +36,16 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.9",
+    "@patternplate/babel-preset": "^2.5.15",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   },
   "dependencies": {
-    "@patternplate/cover-client": "^2.5.9",
-    "@patternplate/demo-client": "^2.5.13",
-    "@patternplate/load-config": "^2.5.9",
-    "@patternplate/probe-client": "^2.5.9",
-    "@patternplate/webpack-entry": "^2.5.13",
+    "@patternplate/cover-client": "^2.5.15",
+    "@patternplate/demo-client": "^2.5.15",
+    "@patternplate/load-config": "^2.5.15",
+    "@patternplate/probe-client": "^2.5.15",
+    "@patternplate/webpack-entry": "^2.5.15",
     "css-loader": "^0.28.10",
     "html-loader": "^0.5.5",
     "loader-utils": "^1.1.0",

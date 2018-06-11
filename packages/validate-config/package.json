@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/validate-config",
-  "version": "2.5.9",
+  "version": "2.5.15",
   "description": "Validate schema for patternplate.config.js",
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
