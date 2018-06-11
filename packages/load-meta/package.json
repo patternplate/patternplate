@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-meta",
-  "version": "2.5.9",
+  "version": "2.5.14",
   "description": "Load patternplate meta data",
   "scripts": {
     "start": "yarn build -w",
