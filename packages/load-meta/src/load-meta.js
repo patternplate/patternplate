@@ -77,60 +77,67 @@ async function loadMeta(options) {
     return acc;
   }, Promise.resolve([]));
 
-  return await pairs.reduce(async (accing, pair) => {
-    const acc = await accing;
-    const { source, artifact } = pair;
-    const cwd = path.resolve(options.cwd, path.dirname(source));
-    const [err, result] = await json({cwd});
+  return await pairs
+    .filter(({source}) => {
+      const extname = path.extname(source);
+      const dirname = path.dirname(source);
+      return path.basename(source, path.extname(source)) === 'demo'
+        || !pairs.some(p => path.dirname(p.source) === dirname);
+    })
+    .reduce(async (accing, pair) => {
+      const acc = await accing;
+      const { source, artifact } = pair;
+      const cwd = path.resolve(options.cwd, path.dirname(source));
+      const [err, result] = await json({cwd});
 
-    if (err) {
-      if (err.errno !== PATTERNPLATE_ERR_NO_MANIFEST) {
-        acc.errors.push(err);
+      if (err) {
+        if (err.errno !== PATTERNPLATE_ERR_NO_MANIFEST) {
+          acc.errors.push(err);
+        }
+        return acc;
       }
+
+      const {file, manifest: data, raw} = result;
+      const base = path.dirname(path.relative(options.cwd, cwd));
+      const relativeManifestPath = path.relative(options.cwd, file);
+
+      if (acc.patterns.some(p => relativeManifestPath === p.path)) {
+        return acc;
+      }
+
+      data.displayName = data.displayName || data.name || null;
+      const manifest = Object.assign({}, DEFAULT_MANIFEST, data);
+
+      const previous = acc.patterns.find(pattern => pattern.id === manifest.name);
+
+      if (previous) {
+        const relPath = path.relative(process.cwd(), file);
+        const err = new Error(`Found duplicated pattern "${previous.id}" at "${relPath}" already present at "${previous.path}"`);
+        err.errno = PATTERNPLATE_ERROR_DUPE_PATTERN;
+        acc.errors.push(err);
+        return acc;
+      }
+
+      const {contents} = await loadDoc({cwd});
+
+      acc.patterns.push({
+        id: manifest.name,
+        artifact,
+        contents: contents ? String(contents) : null,
+        contentType: "pattern",
+        source: path.relative(options.cwd, source),
+        files: await getFiles(source, { cwd: options.cwd }),
+        path: relativeManifestPath,
+        manifest,
+        rawManifest: raw,
+        errors: []
+      });
+
       return acc;
-    }
-
-    const {file, manifest: data, raw} = result;
-    const base = path.dirname(path.relative(options.cwd, cwd));
-    const relativeManifestPath = path.relative(options.cwd, file);
-
-    if (acc.patterns.some(p => relativeManifestPath === p.path)) {
-      return acc;
-    }
-
-    data.displayName = data.displayName || data.name || null;
-    const manifest = Object.assign({}, DEFAULT_MANIFEST, data);
-
-    const previous = acc.patterns.find(pattern => pattern.id === manifest.name);
-
-    if (previous) {
-      const relPath = path.relative(process.cwd(), file);
-      const err = new Error(`Found duplicated pattern "${previous.id}" at "${relPath}" already present at "${previous.path}"`);
-      err.errno = PATTERNPLATE_ERROR_DUPE_PATTERN;
-      acc.errors.push(err);
-      return acc;
-    }
-
-    const {contents} = await loadDoc({cwd});
-
-    acc.patterns.push({
-      id: manifest.name,
-      artifact,
-      contents: contents ? String(contents) : null,
-      contentType: "pattern",
-      source: path.relative(options.cwd, source),
-      files: await getFiles(source, { cwd: options.cwd }),
-      path: relativeManifestPath,
-      manifest,
-      rawManifest: raw,
-      errors: []
-    });
-
-    return acc;
-  }, Promise.resolve({
-    errors: [],
-    patterns: []
-  }));
+    }, Promise.resolve({
+      errors: [],
+      patterns: []
+    }));
 }
 
 async function getFiles(source, options) {
