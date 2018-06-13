@@ -21,7 +21,7 @@ module.exports = async options => {
 
       const cover = getModule(COVER_PATH);
       const render = typeof cover.render === "function" ? cover.render : getModule(RENDER_PATH);
-      res.send(html(render(cover), {base: req.params.base || "/"}));
+      res.send(html(render(cover), {base: req.params.base || "/", scripts: typeof cover.default === 'function'}));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);
@@ -99,9 +99,11 @@ function html(content, options) {
         <!-- content.after -->
         ${content.after || ""}
         <script src="${prefix}/patternplate.web.probe.js"></script>
-        <script src="${prefix}/patternplate.web.cover.js"></script>
-        <script src="${prefix}/patternplate.web.mount.js"></script>
-        <script src="${prefix}/patternplate.web.cover-client.js"></script>
+        ${options.scripts ? `
+          <script src="${prefix}/patternplate.web.cover.js"></script>
+          <script src="${prefix}/patternplate.web.mount.js"></script>
+          <script src="${prefix}/patternplate.web.cover-client.js"></script>
+        ` : ''}
         <script>
           /* content.js */
           ${content.js || ""}
