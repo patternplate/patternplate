@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cover-client",
-  "version": "2.5.17",
+  "version": "2.5.18",
   "description": "patternplate browser script for cover startup",
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
