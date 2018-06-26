@@ -38,7 +38,7 @@ async function demo(options) {
       const component = getComponent(bundle, found);
       const context = getContext(found);
       const render = component.render || getModule(RENDER_PATH);
-      const content = render(component, context);
+      const content = await render(component, context);
       res.send(html(content, found));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
