@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "2.5.18",
+  "version": "2.5.19",
   "description": "Patternplate JSON API",
   "scripts": {
     "start": "yarn build -w",
