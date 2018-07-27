@@ -100,8 +100,9 @@ async function build({flags}) {
   // Create demo.html files
   await Promise.all(patterns.map(async pattern => {
     const component = getComponent(bundles, pattern);
+    const context = getContext(pattern);
     const result = typeof component.render === "function"
-      ? component.render(component)
+      ? component.render(component, context)
       : getModule(RENDER_PATH)(component);
     await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
   }));
@@ -147,6 +148,12 @@ function bundle({ cwd, config, target }) {
         })
       });
     });
+}
+
+function getContext(pattern) {
+  return {
+    dirname: path.dirname(pattern.path)
+  };
 }
 
 // TODO: Duplicate of function in @patternplate/api/demo.js,
