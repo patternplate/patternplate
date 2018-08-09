@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "2.5.21",
+  "version": "2.5.22",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
