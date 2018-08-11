@@ -1,3 +1,4 @@
+const path = require("path");
 const url = require("url");
 const AggregateError = require("aggregate-error");
 const unindent = require("unindent");
@@ -20,8 +21,10 @@ module.exports = async options => {
       const getModule = fromFs(fs);
 
       const cover = getModule(COVER_PATH);
+      const context = getContext(config);
       const render = typeof cover.render === "function" ? cover.render : getModule(RENDER_PATH);
-      res.send(html(render(cover), {base: req.params.base || "/", scripts: typeof cover.default === 'function'}));
+      const content = await Promise.resolve(render(cover, context));
+      res.send(html(content, {base: req.params.base || "/", scripts: typeof cover.default === 'function'}));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);
@@ -56,6 +59,12 @@ function wait(observable) {
         );
     }
   });
+}
+
+function getContext(config) {
+  return {
+    dirname: path.dirname(config.cover)
+  };
 }
 
 function fromFs(fs) {

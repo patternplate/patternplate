@@ -88,9 +88,10 @@ async function build({flags}) {
   // Create /
   if (typeof cover === "string") {
     const cover = getModule(COVER_PATH);
+    const context = getCoverContext(config);
     const result = typeof cover.render === "function"
-      ? cover.render(cover)
-      : getModule(RENDER_PATH)(cover);
+      ? cover.render(cover, context)
+      : getModule(RENDER_PATH)(cover, context);
     await sander.writeFile(out, 'index.html', coverHtml(result, {base}));
   } else {
     const home = await render(base, state);
@@ -100,10 +101,10 @@ async function build({flags}) {
   // Create demo.html files
   await Promise.all(patterns.map(async pattern => {
     const component = getComponent(bundles, pattern);
-    const context = getContext(pattern);
+    const context = getPatternContext(pattern);
     const result = typeof component.render === "function"
       ? component.render(component, context)
-      : getModule(RENDER_PATH)(component);
+      : getModule(RENDER_PATH)(component, context);
     await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
   }));
 
@@ -150,9 +151,15 @@ function bundle({ cwd, config, target }) {
     });
 }
 
-function getContext(pattern) {
+function getPatternContext(pattern) {
   return {
     dirname: path.dirname(pattern.path)
+  };
+}
+
+function getCoverContext(config) {
+  return {
+    dirname: path.dirname(config.cover)
   };
 }
 
