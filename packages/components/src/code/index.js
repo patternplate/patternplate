@@ -1,25 +1,26 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const { includes } = require("lodash");
-const low = require("lowlight/lib/core");
+
+const refractor = require("refractor/core.js");
 const toh = require("hast-to-hyperscript");
 
-// Highlight.js modules
-const css = require("highlight.js/lib/languages/css");
-const less = require("highlight.js/lib/languages/less");
-const scss = require("highlight.js/lib/languages/scss");
-const stylus = require("highlight.js/lib/languages/stylus");
+// in core: css
+refractor.register(require("refractor/lang/less.js"));
+refractor.register(require("refractor/lang/scss.js"));
+refractor.register(require("refractor/lang/stylus.js"));
 
-const js = require("highlight.js/lib/languages/javascript");
-const ts = require("highlight.js/lib/languages/typescript");
-const json = require("highlight.js/lib/languages/json");
+// in core: js
+refractor.register(require("refractor/lang/jsx.js"));
+refractor.register(require("refractor/lang/typescript.js"));
+refractor.register(require("refractor/lang/tsx.js"));
+refractor.register(require("refractor/lang/json.js"));
 
-const xml = require("highlight.js/lib/languages/xml");
-const md = require("highlight.js/lib/languages/markdown");
+// in core: xml, html, svg
+refractor.register(require("refractor/lang/markdown.js"));
 
-const bash = require("highlight.js/lib/languages/bash");
-const diff = require("highlight.js/lib/languages/diff");
-const patch = require("highlight.js/lib/languages/diff");
+refractor.register(require("refractor/lang/bash.js"));
+refractor.register(require("refractor/lang/diff.js"));
 
 module.exports = Code;
 module.exports.highlight = highlight;
@@ -39,11 +40,11 @@ const themes = {
     hue1: "#56b6c2",
     hue2: "#61aeee",
     hue3: "#c678dd",
-    hue4: "#98c379",
-    hue5: "#e06c75",
+    hue4: "#7ec699",
+    hue5: "#e2777a",
     hue52: "#be5046",
-    hue6: "#d19a66",
-    hue62: "#e6c07b"
+    hue6: "#f8c555",
+    hue62: "#f08d49"
   },
   light: {
     mono1: "#383a42",
@@ -55,7 +56,7 @@ const themes = {
     hue4: "#50a14f",
     hue5: "#e45649",
     hue52: "#c91243",
-    hue6: "#986801",
+    hue6: "#f08d49",
     hue62: "#c18401"
   }
 };
@@ -69,73 +70,79 @@ const StyledCode = styled.code`
   color: ${themed("mono1")};
   font-family: ${props => props.theme.fonts.code};
 
-  .hljs-comment,
-  .hljs-quote {
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
     color: ${themed("mono3")};
-    font-style: italic;
   }
 
-  .hljs-doctag,
-  .hljs-keyword,
-  .hljs-formula {
-    color: ${themed("hue3")};
+  .token.punctuation {
+    color: ${themed("mono1")};
   }
 
-  .hljs-section,
-  .hljs-name,
-  .hljs-selector-tag,
-  .hljs-deletion,
-  .hljs-subst {
+  .token.tag,
+  .token.attr-name,
+  .token.namespace,
+  .token.deleted {
     color: ${themed("hue5")};
   }
 
-  .hljs-literal {
-    color: ${themed("hue1")};
+  .token.function-name {
+    color: #6196cc;
   }
 
-  .hljs-string,
-  .hljs-regexp,
-  .hljs-addition,
-  .hljs-attribute,
-  .hljs-meta-string {
-    color: ${themed("hue4")};
-  }
-
-  .hljs-built_in,
-  .hljs-class .hljs-title {
+  .token.boolean,
+  .token.number,
+  .token.function {
     color: ${themed("hue62")};
   }
 
-  .hljs-attr,
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-type,
-  .hljs-selector-class,
-  .hljs-selector-attr,
-  .hljs-selector-pseudo,
-  .hljs-number {
+  .token.property,
+  .token.class-name,
+  .token.constant,
+  .token.symbol {
     color: ${themed("hue6")};
   }
 
-  .hljs-symbol,
-  .hljs-bullet,
-  .hljs-link,
-  .hljs-meta,
-  .hljs-selector-id,
-  .hljs-title {
+  .token.selector,
+  .token.important,
+  .token.atrule,
+  .token.keyword,
+  .token.builtin {
     color: ${themed("hue2")};
   }
 
-  .hljs-emphasis {
-    font-style: italic;
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .token.regex,
+  .token.variable {
+    color: ${themed("hue4")};
   }
 
-  .hljs-strong {
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: ${themed("hue5")};
+  }
+
+  .token.important,
+  .token.bold {
     font-weight: bold;
   }
 
-  .hljs-link {
-    text-decoration: underline;
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .token.inserted {
+    color: green;
   }
 `;
 
@@ -150,64 +157,19 @@ function highlightCode(language, source = "") {
   return toElements(hast);
 }
 
-// Highlight configuration
-
-// CSS and friends
-low.registerLanguage("css", css);
-low.registerLanguage("less", less);
-low.registerLanguage("scss", scss);
-low.registerLanguage("stylus", stylus);
-
-// JS and friends
-low.registerLanguage("js", js);
-low.registerLanguage("javascript", js);
-low.registerLanguage("jsx", js);
-low.registerLanguage("ts", ts);
-low.registerLanguage("tsx", ts);
-low.registerLanguage("typescript", ts);
-low.registerLanguage("json", json);
-
-// HTML and friends
-low.registerLanguage("html", xml);
-low.registerLanguage("xml", xml);
-low.registerLanguage("md", md);
-low.registerLanguage("markdown", md);
-
-// (s)hell(ish)s
-low.registerLanguage("bash", bash);
-// Low.registerLanguage('shell', bash);
-
-// diff
-low.registerLanguage("diff", diff);
-low.registerLanguage("patch", patch);
-
-const languages = [
-  "css",
-  "less",
-  "scss",
-  "stylus",
-  "js",
-  "javascript",
-  "jsx",
-  "ts",
-  "tsx",
-  "typescript",
-  "json",
-  "html",
-  "xml",
-  "md",
-  "markdown",
-  "bash",
-  "patch",
-  "diff"
-];
+const ALIASES = {
+  md: 'markdown',
+  sh: 'bash'
+};
 
 function highlight(language, source) {
-  if (!includes(languages, language)) {
+  const lang = ALIASES[language] || language;
+
+  if (!refractor.registered(lang)) {
     return source;
   }
-  const { value: children } = low.highlight(language, source);
-  return children;
+
+  return refractor.highlight(source, lang);
 }
 
 function toElements(children) {
