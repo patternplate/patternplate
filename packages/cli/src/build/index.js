@@ -89,10 +89,11 @@ async function build({flags}) {
   if (typeof cover === "string") {
     const cover = getModule(COVER_PATH);
     const context = getCoverContext(config);
-    const result = typeof cover.render === "function"
-      ? cover.render(cover, context)
-      : getModule(RENDER_PATH)(cover, context);
-    await sander.writeFile(out, 'index.html', coverHtml(result, {base}));
+    const renderCover = typeof cover.render === "function"
+      ? cover.render
+      : getModule(RENDER_PATH);
+    const content = await Promise.resolve(renderCover(cover, context));
+    await sander.writeFile(out, 'index.html', coverHtml(content, {base}));
   } else {
     const home = await render(base, state);
     await sander.writeFile(out, 'index.html', home);
@@ -102,10 +103,11 @@ async function build({flags}) {
   await Promise.all(patterns.map(async pattern => {
     const component = getComponent(bundles, pattern);
     const context = getPatternContext(pattern);
-    const result = typeof component.render === "function"
-      ? component.render(component, context)
-      : getModule(RENDER_PATH)(component, context);
-    await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(result, pattern));
+    const renderComponent = typeof component.render === "function"
+      ? component.render
+      : getModule(RENDER_PATH);
+    const content = await Promise.resolve(renderComponent(component, context));
+    await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(content, pattern));
   }));
 
   // Copy /static/
