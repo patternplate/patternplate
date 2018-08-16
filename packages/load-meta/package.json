@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-meta",
-  "version": "2.5.18",
+  "version": "3.0.0-alpha.0",
   "description": "Load patternplate meta data",
   "scripts": {
     "start": "yarn build -w",
@@ -32,15 +32,15 @@
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/load-doc": "^2.5.18",
-    "@patternplate/load-manifest": "^2.5.18",
+    "@patternplate/load-doc": "^3.0.0-alpha.0",
+    "@patternplate/load-manifest": "^3.0.0-alpha.0",
     "globby": "^6.1.0",
     "load-source-map": "^1.0.0",
     "p-filter": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@patternplate/babel-preset": "^3.0.0-alpha.0",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   }

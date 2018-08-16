@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/webpack-entry",
-  "version": "2.5.18",
+  "version": "3.0.0-alpha.0",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "scripts": {
     "start": "yarn build -w",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@patternplate/babel-preset": "^3.0.0-alpha.0",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0"
   }
