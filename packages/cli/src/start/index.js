@@ -1,9 +1,9 @@
 const Path = require("path");
 const ora = require("ora");
 const debug = require("util").debuglog("PATTERNPLATE");
-const importFresh = require("import-fresh");
 const readline = require("readline");
 const loadConfig = require("@patternplate/load-config");
+const requireUncached = require("require-uncached");
 
 module.exports = start;
 
@@ -129,9 +129,9 @@ function selectPort(flags) {
 
 async function startPatternplate(context) {
   const {port, cwd, spinner, server} = context;
-  const count = context.count > 0 ?  `(${context.count})` : '';
+  const count = context.count > 0 ?  `(${context.count})` : "";
 
-  const patternplate = importFresh("./serve");
+  const patternplate = requireUncached("./serve");
 
   const verb = context.reloading ? `reload` : `start`;
   const doneVerb = context.reloading ? `Reloaded` : `Started`;

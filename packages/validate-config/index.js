@@ -1,4 +1,4 @@
-const validate = require("@webpack-contrib/schema-utils");
+const validate = require("./validate");
 
 const schema = {
   "type": "object",

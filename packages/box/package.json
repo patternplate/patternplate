@@ -46,7 +46,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
     "@patternplate/babel-preset": "^2.5.18",
     "@types/jest": "^22.2.0",
     "babel-core": "^7.0.0-0",

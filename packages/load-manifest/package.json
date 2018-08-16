@@ -31,13 +31,8 @@
     "access": "public"
   },
   "xo": false,
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/cli": "^7.0.0-rc.1",
     "@patternplate/babel-preset": "^2.5.18",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",
