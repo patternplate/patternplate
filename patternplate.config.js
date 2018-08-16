@@ -21,7 +21,7 @@ module.exports = {
   ],
   render: "@patternplate/render-styled-components/render",
   mount: "@patternplate/render-styled-components/mount",
-  cover: "@patternplate/components/cover",
+  // cover: "@patternplate/components/cover",
   ui: {
     logo,
     favicon: logo,

@@ -1,6 +1,6 @@
 {
   "name": "@patternplate-example/webpack-react-less",
-  "version": "2.5.25",
+  "version": "3.0.0-alpha.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -16,12 +16,12 @@
   },
   "xo": false,
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "@babel/preset-react": "^7.0.0-beta.40",
-    "@patternplate/cli": "^2.5.25",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "@patternplate/cli": "^3.0.0-alpha.0",
     "@patternplate/render-react": "^2.5.18",
-    "@patternplate/webpack-entry": "^2.5.18",
+    "@patternplate/webpack-entry": "^3.0.0-alpha.0",
     "babel-loader": "8.0.0-beta.0",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.7",

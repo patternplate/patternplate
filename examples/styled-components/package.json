@@ -1,6 +1,6 @@
 {
   "name": "@examples/styled-components",
-  "version": "2.5.25",
+  "version": "3.0.0-alpha.0",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -28,11 +28,11 @@
     "styled-components": "^3.1.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "@babel/preset-react": "^7.0.0-beta.40",
-    "@patternplate/cli": "^2.5.25",
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "@patternplate/cli": "^3.0.0-alpha.0",
     "concurrently": "^3.5.1",
     "dependency-check": "^3.1.0"
   }

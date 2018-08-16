@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/babel-preset",
-  "version": "2.5.18",
+  "version": "3.0.0-alpha.0",
   "description": "@babel preset for compilation of @patternplate projects",
   "xo": false,
   "scripts": {
@@ -30,13 +30,12 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "@babel/preset-react": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
     "babel-plugin-styled-components": "^1.5.1",
-    "fast-async": "^6.3.1",
     "lodash.merge": "^4.6.1",
     "nodent-runtime": "^3.2.1"
   },

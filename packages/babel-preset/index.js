@@ -43,7 +43,6 @@ function selectPresets(options) {
 
 function selectPlugins(options) {
   const plugins = [
-    "module:fast-async",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread"
   ];
@@ -59,11 +58,14 @@ function selectTargets(options) {
   const targets = {};
 
   if (options.targets.indexOf("web") > -1) {
-    targets.browsers = ["last 2 versions"];
+    targets.browsers = [
+      "last 1 versions",
+      "not ie > 0"
+    ];
   }
 
   if (options.targets.indexOf("node") > -1) {
-    targets.node = "6";
+    targets.node = "8";
   }
 
   return targets;

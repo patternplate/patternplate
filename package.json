@@ -98,7 +98,7 @@
     "eslint-plugin-patternplate": "^1.0.1",
     "eslint-plugin-react": "^7.3.0",
     "husky": "^0.14.3",
-    "lerna": "^2.8.0",
+    "lerna": "3",
     "lint-staged": "^4.2.3",
     "prettier": "^1.6.1",
     "rimraf": "^2.6.2",
