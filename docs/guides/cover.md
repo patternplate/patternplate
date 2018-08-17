@@ -98,7 +98,7 @@ in the next step.
 
   Add a `.css` export to your `./cover.js` file
 
-  ```js
+  ```js{3-13}
   // cover.js
   module.exports = {
     css: () => {
@@ -124,7 +124,7 @@ in the next step.
 
 2. Add a background gradient to spice things up:
 
-  ```js
+  ```js{7,16}
   // cover.js
   module.exports = {
     css: () => {
@@ -157,7 +157,7 @@ in the next step.
 3. Finally, make the message a link to your component library:
 
 
-  ```js
+  ```js{17-26,33-35}
   // cover.js
   module.exports = {
     css: () => {

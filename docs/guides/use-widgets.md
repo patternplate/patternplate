@@ -78,7 +78,7 @@ you do that!
 
 1. Copy your new code block again and replace its language with `widget`.
 
-  ````md
+  ````md{14}
   ## My first code block
   ```js
   const React = require("react");
@@ -116,7 +116,7 @@ you do that!
 
 2. Change the `query` prop of `ComponentList` to `"is=pattern"`
 
-  ````md
+  ````md{8}
   ## My first widget
   ```widget
   const React = require("react");
