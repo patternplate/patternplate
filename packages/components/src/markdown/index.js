@@ -1,28 +1,25 @@
-const frontmatter = require('front-matter');
-const React = require('react');
-const remark = require('remark');
-const emoji = require('remark-gemoji-to-emoji');
-const reactRenderer = require('remark-react');
+const frontmatter = require("front-matter");
+const React = require("react");
+const remark = require("remark");
+const emoji = require("remark-gemoji-to-emoji");
+const reactRenderer = require("remark-react");
 const styled = require("styled-components").default;
 const vm = require("vm");
 const resizer = require("iframe-resizer");
+const rangeParser = require("parse-numeric-range");
 
-const MarkdownBlockQuote = require('./markdown-blockquote');
-const MarkdownCode = require('./markdown-code');
-const MarkdownCodeBlock = require('./markdown-code-block');
-const MarkdownCopy = require('./markdown-copy');
-const MarkdownHeadline = require('./markdown-headline');
-const MarkdownHr = require('./markdown-hr');
-const MarkdownImage = require('./markdown-image');
-const MarkdownItem = require('./markdown-item');
-const MarkdownList = require('./markdown-list');
-const MarkdownLink = require('./markdown-link');
+const MarkdownBlockQuote = require("./markdown-blockquote");
+const MarkdownCode = require("./markdown-code");
+const MarkdownCodeBlock = require("./markdown-code-block");
+const MarkdownCopy = require("./markdown-copy");
+const MarkdownHeadline = require("./markdown-headline");
+const MarkdownHr = require("./markdown-hr");
+const MarkdownImage = require("./markdown-image");
+const MarkdownItem = require("./markdown-item");
+const MarkdownList = require("./markdown-list");
+const MarkdownLink = require("./markdown-link");
 
 class Markdown extends React.Component {
-  shouldComponentUpdate(next) {
-    return this.props.source !== next.source;
-  }
-
   render() {
     const { props } = this;
     const Headline = prop("linkable", props.linkable)(MarkdownHeadline);
@@ -48,18 +45,18 @@ class Markdown extends React.Component {
                 li: MarkdownItem,
                 p: MarkdownCopy,
                 pre: preProps => {
-                  const [child = {}] = preProps.children;
+                  const [child = {}] = preProps.children || [];
                   const {props: childProps = {}} = child;
-                  const {className = ''} = childProps;
-                  const type = className.replace(/^language-/, '');
+                  const language = getLanguages(preProps)[0];
+                  const highlights = getHighlights(preProps)[0];
 
-                  switch (type) {
-                    case 'widget': {
+                  switch (language) {
+                    case "widget": {
                       if (typeof props.widgetSrc !== "string") {
                         return null;
                       }
 
-                      const srcdoc= [
+                      const srcdoc = [
                         `<!doctype html>`,
                         `<html>`,
                         `<head>`,
@@ -68,22 +65,27 @@ class Markdown extends React.Component {
                         `<body>`,
                         `<div data-widget-mount></div>`,
                         `<textarea data-widget-state style="display: none;">`,
-                          encodeURIComponent(JSON.stringify({
+                        encodeURIComponent(
+                          JSON.stringify({
                             state: props.widgetState,
-                            code: childProps.children.join('\n')
-                          })),
+                            code: childProps.children.join("\n")
+                          })
+                        ),
                         `</textarea>`,
                         `</body>`,
                         `</html>`
                       ].join("");
 
-                      return <WidgetFrame
-                        srcDoc={srcdoc}
-                        src="/"
-                        />;
+                      return <WidgetFrame srcDoc={srcdoc} src="/" />;
                     }
                     default:
-                      return <MarkdownCodeBlock {...preProps}/>;
+                      return (
+                        <MarkdownCodeBlock
+                          {...preProps}
+                          language={language}
+                          highlights={highlights}
+                        />
+                      );
                   }
                 },
                 ul: is("ul")(MarkdownList),
@@ -100,19 +102,19 @@ class Markdown extends React.Component {
 class WidgetFrame extends React.Component {
   componentDidMount() {
     if (this.ref && !this.resizer) {
-      resizer.iframeResizer({
-        warningTimeout: 0,
-        log: false
-      }, this.ref);
+      resizer.iframeResizer(
+        {
+          warningTimeout: 0,
+          log: false
+        },
+        this.ref
+      );
     }
   }
 
   render() {
-    const {props} = this;
-    return <StyledWidgetFrame
-      innerRef={ref => this.ref = ref}
-      {...props}
-      />;
+    const { props } = this;
+    return <StyledWidgetFrame innerRef={ref => (this.ref = ref)} {...props} />;
   }
 }
 
@@ -160,6 +162,41 @@ function is(is) {
 
 function prop(name, value) {
   return Component => props => <Component {...props} {...{ [name]: value }} />;
+}
+
+function getLanguagePayload({ children }) {
+  const [child] = children;
+
+  if (!child) {
+    return [];
+  }
+
+  const className = child.props.className;
+
+  if (!className) {
+    return [];
+  }
+
+  return className.split(" ").map(n => n.replace("language-", ""));
+}
+
+function getLanguages({ children }) {
+  const payload = getLanguagePayload({ children })
+    .map(n => n.replace(/\{[\d\-,\s]*\}$/, ""))
+    .find(n => typeof n === "string" && n.length > 0)
+
+  if (!payload) {
+    return [];
+  }
+
+  return payload.split(":");
+}
+
+function getHighlights({ children }) {
+  return getLanguagePayload({ children })
+    .map(n => n.match(/\{([\d\-,\s]*)\}$/, ""))
+    .map(n => (n !== null ? n[1] : ""))
+    .map(n => rangeParser.parse(n));
 }
 
 module.exports = Markdown;

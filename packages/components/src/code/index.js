@@ -28,8 +28,27 @@ module.exports.toElements = toElements;
 
 function Code(props) {
   const source = highlightCode(props.language, props.children);
-  const code = <StyledCode className={props.className}>{source}</StyledCode>;
-  return props.block ? <pre>{code}</pre> : code;
+
+  const highlights = Array.isArray(props.highlights) ? props.highlights : [];
+
+  return props.block ? (
+    <StyledPre>
+      <StyledCode className={props.className}>{source}</StyledCode>
+      {highlights.length > 0 && (
+        <StyledLines position="absolute">
+          {props.children
+            .split("\n")
+            .map((line, index) => (
+              <StyledLine key={index} highlight={highlights.includes(index + 1)}>
+                {line || <span> </span>}
+              </StyledLine>
+            ))}
+        </StyledLines>
+      )}
+    </StyledPre>
+  ) : (
+    <StyledCode className={props.className}>{source}</StyledCode>
+  );
 }
 
 const themes = {
@@ -63,18 +82,60 @@ const themes = {
 
 const themed = key => props => themes[props.theme.name][key];
 
+const StyledPre = styled.pre`
+  position: relative;
+  white-space: pre-wrap;
+`;
+
+const BACKGROUND = props => {
+  if (!props.highlight) {
+    return "transparent";
+  }
+
+  return props.theme.name === "dark"
+    ? "rgba(0, 0, 0, .5)"
+    : "rgba(0, 0, 0, .075)";
+};
+
+const StyledLine = styled.div`
+  position: relative;
+  color: transparent;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: -50%;
+    top: 0;
+    background: ${BACKGROUND};
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -50%;
+    right: 50%;
+    top: 0;
+    background: ${BACKGROUND};
+  }
+`;
+
 const StyledCode = styled.code`
+  position: ${props => (props.position ? props.position : "relative")};
+  z-index: 2;
   display: block;
-  overflow-x: auto;
   padding: 0.5em;
   color: ${themed("mono1")};
   font-family: ${props => props.theme.fonts.code};
-
-  .token.comment,
-  .token.block-comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
+  box-sizing: border-box;
+  font-size: 15.3px;
+  line-height: 23px;
+  overflow: hidden;
+  ${props => props.css} .token.comment,
+    .token.block-comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
     color: ${themed("mono3")};
   }
 
@@ -146,6 +207,16 @@ const StyledCode = styled.code`
   }
 `;
 
+const StyledLines = StyledCode.extend`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: visible;
+`;
+
 function highlightCode(language, source = "") {
   if (!language) {
     return source;
@@ -158,8 +229,8 @@ function highlightCode(language, source = "") {
 }
 
 const ALIASES = {
-  md: 'markdown',
-  sh: 'bash'
+  md: "markdown",
+  sh: "bash"
 };
 
 function highlight(language, source) {

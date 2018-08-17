@@ -90,7 +90,7 @@ automatically and add **Button** to the components list.
 5. Click on the **Button** item to display its (still blank) demo canvas.
    Replace the contents of `lib/button/demo.js` with the code below:
 
-   ```js
+   ```js{2}
    module.exports = {
      html: () => '<button class="my-button">My first button</button>',
      default: () => {
@@ -110,7 +110,7 @@ automatically and add **Button** to the components list.
 6. Let's throw some `CSS` into the mix.
    Replace the contents of `lib/button/demo.js` with the code below:
 
-   ```js
+   ```js{4-10}
    module.exports = {
      html: () => '<button class="my-button">My first button</button>',
      css: () => `
@@ -137,7 +137,7 @@ Let's count up when clicking on **Button**.
    Replace the contents of `lib/button/demo.js` with the code below:
 
 
-   ```js
+   ```js{13-18}
    module.exports = {
      html: () => '<button class="my-button">My first button</button>',
      css: () => `

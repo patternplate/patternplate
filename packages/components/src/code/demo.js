@@ -3,6 +3,10 @@ const Code = require(".");
 const styled = require("styled-components").default;
 const Themer = require("../demo-themer");
 
+const BASH = `
+npm start
+`;
+
 const JSX = `
 export function Component() {
   // Some comment
@@ -46,7 +50,10 @@ const JSON = `
 module.exports.default = function CodeDemo() {
   return (
     <Themer spacing={true}>
-      <Code block language="jsx">
+      <Code block language="sh">
+        {BASH}
+      </Code>
+      <Code block language="jsx" highlights={[1, 5, 6, 7]}>
         {JSX}
       </Code>
       <Code block language="html">
