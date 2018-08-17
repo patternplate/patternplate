@@ -131,6 +131,7 @@ const StyledMarkdown = styled.div`
     border-spacing: 0;
     border-collapse: collapse;
     font-size: 18px;
+    line-height: 24px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
       sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
@@ -139,17 +140,17 @@ const StyledMarkdown = styled.div`
     border-top: 1px solid ${props => props.theme.colors.border};
     background: transparent;
   }
-  & tr:nth-child(2n) {
+  & tbody tr:nth-child(odd) {
     background: ${props => props.theme.colors.backgroundTertiary};
   }
   & th {
-    padding: 6px 13px;
-    border: 1px solid ${props => props.theme.colors.border};
     font-weight: 600;
   }
+  & th,
   & td {
-    padding: 6px 13px;
+    padding: 20px 16px;
     border: 1px solid ${props => props.theme.colors.border};
+    vertical-align: top;
   }
 `;
 
