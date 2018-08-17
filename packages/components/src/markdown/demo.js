@@ -3,6 +3,19 @@ const Themer = require("../demo-themer");
 const Markdown = require(".");
 
 const demoMarkdown = `
+\`\`\`jsx{1,5-7}
+export function Component() {
+  // Some comment
+  return (
+    <div>
+      <div attr="value" attr={value}>
+        <div>Hello there</div>
+      </div>
+    </div>
+  );
+}
+\`\`\`
+
 # This is an h1 tag
 ## This is an h2 tag
 ###### This is an <h6> tag
