@@ -101,22 +101,23 @@ const StyledLine = styled.div`
   position: relative;
   color: transparent;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    right: -50%;
-    top: 0;
-    background: ${BACKGROUND};
-  }
-
+  &::after,
   &::before {
     content: "";
     position: absolute;
+    top: 0;
+    height: 100%;
+    background: ${BACKGROUND};
+  }
+
+  &::after {
+    left: 50%;
+    right: -50%;
+  }
+
+  &::before {
     left: -50%;
     right: 50%;
-    top: 0;
-    background: ${BACKGROUND};
   }
 `;
 
