@@ -14,10 +14,6 @@ const TO_STRING_LOADER = require.resolve("to-string-loader");
 const CSS_LOADER = require.resolve("css-loader");
 const HTML_LOADER = require.resolve("html-loader");
 
-const HMR_CLIENT = require.resolve("./client");
-const HMR = `${HMR_CLIENT}?path=/api/hmr`;
-const WITH_HMR = require.resolve("./with-hmr");
-
 const COVER_LOADER = require.resolve("./cover-loader");
 const DEMO_LOADER = require.resolve("./demo-loader");
 
