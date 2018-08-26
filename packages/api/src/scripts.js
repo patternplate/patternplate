@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = scripts;
 
 async function scripts(options) {
+  // TODO: Speed things up by invalidating on a per-file basis
   return async function scriptsRoutes(req, res) {
     try {
       if (path.extname(req.path) === ".json") {
