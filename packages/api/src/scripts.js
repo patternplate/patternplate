@@ -1,11 +1,27 @@
+const path = require("path");
+
 module.exports = scripts;
 
 async function scripts(options) {
+  // TODO: Speed things up by invalidating on a per-file basis
   return async function scriptsRoutes(req, res) {
     try {
-      const {fs} = await wait(options.queue);
+      if (path.extname(req.path) === ".json") {
+        res.type("json");
+        await wait(options.queue, ["stats", "error"]);
+        res.send(options.fs.readFileSync(req.path));
+        return;
+      }
+
+      if (req.path.includes('hot-update') && options.fs.existsSync(req.path)) {
+        res.type("js");
+        res.send(options.fs.readFileSync(req.path));
+        return;
+      }
+
       res.type("js");
-      res.send(fs.readFileSync(req.url));
+      await wait(options.queue, ["done", "error"]);
+      res.send(options.fs.readFileSync(req.path));
     } catch (err) {
       if (err.code === "ENOENT") {
         return res.sendStatus(404);
@@ -17,13 +33,13 @@ async function scripts(options) {
 }
 
 
-function wait(observable) {
+function wait(observable, [sucess, error]) {
   return new Promise((resolve, reject) => {
     const [message = {}] = observable.queue;
     switch (message.type) {
-      case 'done':
+      case sucess:
         return resolve(message.payload);
-      case 'error':
+      case error:
         return reject(message.payload);
     }
 
@@ -31,9 +47,9 @@ function wait(observable) {
       queue => {
         const [message] = queue;
         switch (message.type) {
-          case 'done':
+          case sucess:
             return resolve(message.payload);
-          case 'error':
+          case '':
             return reject(message.payload);
         }
       },

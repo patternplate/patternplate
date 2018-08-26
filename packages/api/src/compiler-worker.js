@@ -44,11 +44,17 @@ async function startCompilerWorker() {
     }
   }, 1000);
 
-  compiler.plugin("compile", () => {
+  compiler.hooks.invalid.tap(`patternplate-${target}-worker`, () => {
+    send({type: "invalid", target, payload: {}});
+  });
+
+  compiler.hooks.compile.tap(`patternplate-${target}-worker`, () => {
     send({type: "start", target, payload: {}});
   });
 
-  compiler.plugin("done", (stats) => {
+  compiler.hooks.done.tap(`patternplate-${target}-worker`, (stats) => {
+    send({type: "stats", target, payload: stats.toJson() });
+
     if (stats.compilation.errors && stats.compilation.errors.length > 0) {
       stats.compilation.errors.forEach(err => {
         return send({type: "error", target, payload: err});
@@ -58,9 +64,16 @@ async function startCompilerWorker() {
     send({type: "done", target, payload: fs.data});
   });
 
-  compiler.plugin("failed", err => {
+  compiler.hooks.failed.tap(`patternplate-${target}-worker`, err => {
     send({type: "error", target, payload: err});
   });
+
+  const writeFile = fs.writeFile.bind(fs);
+
+  fs.writeFile = (...args) => {
+    send({type: "file", target, payload: args});
+    writeFile(...args);
+  }
 
   process.on("message", async envelope => {
     const message = ARSON.parse(envelope);

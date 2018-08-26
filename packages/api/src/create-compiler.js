@@ -12,7 +12,7 @@ const resolvePkg = require("resolve-pkg");
 
 const OPTS = { stdio: ["pipe", "pipe", "pipe", "ipc"] };
 
-module.exports.createCompiler = async function createCompiler({ config, cwd, target = "" }) {
+module.exports.createCompiler = async function createCompiler({ config, cwd, target = "", fs }) {
   let worker;
 
   const send = payload => {
@@ -78,10 +78,17 @@ module.exports.createCompiler = async function createCompiler({ config, cwd, tar
           queue.unshift({type, target, payload: {fs}});
           return next(queue);
         }
-        case "start": {
+        case "invalid":
+        case "start":
+        case "stats": {
           debug({type, target});
           queue.unshift({type, target, payload});
           return next(queue);
+        }
+        case "file": {
+          debug({type, target});
+          fs.writeFileSync(payload[0], payload[1]);
+          return;
         }
         case "error": {
           if (Array.isArray(payload)) {
