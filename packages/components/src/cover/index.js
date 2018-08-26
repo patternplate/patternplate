@@ -10,6 +10,7 @@ const Link = require("../link");
 const Text = require("../text");
 const getThemes = require("../themes");
 
+module.exports.canary = '1';
 module.exports.default = Cover;
 module.exports.head = () => Helmet.rewind();
 
@@ -43,12 +44,12 @@ function Cover() {
         />
         <StageContainer>
           <Frame>
-            <div style={{ minHeight: "100vh" }}>
+            <div style={{ minHeight: "200vh" }}>
               <Logo />
               <Stage>
                 <StageSlot>
                   <StageHeadline>
-                    Create better <nobr>Design Systems</nobr>
+                    Create better <nobr>Design Systems.</nobr>
                   </StageHeadline>
                   <StageText>
                     patternplate connects design and engineering to establish a
@@ -75,7 +76,7 @@ function Cover() {
               <Principle>
                 <Principle.Title order={2}>Come as you are</Principle.Title>
                 <Principle.Text>
-                  <p>Not a CLI, not an app. Both.</p>
+                  <p>Not a CLI, not an app. Both...</p>
                   <p>
                     Work in the environment you are comfortable with and expend
                     your time for great design and engineering work instead of

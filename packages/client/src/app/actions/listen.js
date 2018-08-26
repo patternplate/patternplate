@@ -66,9 +66,7 @@ export default createPromiseThunkAction(
             payload
           });
         case "start": {
-          dispatch(loadSchema());
-          // TODO: only reload pattern if the current pattern is affected
-          return dispatch(loadPatternDemo({ force: false }));
+          return dispatch(loadSchema());
         }
         case "done": {
           return dispatch({
@@ -78,9 +76,6 @@ export default createPromiseThunkAction(
         }
         case "change": {
           return dispatch(loadSchema());
-        }
-        default: {
-          throw new TypeError(`Received unknown message of type ${type}`);
         }
       }
     });

@@ -45,11 +45,7 @@ module.exports = async function webpackEntry() {
     return mod.join('\n');
   }));
 
-  const result = `
-    ${reg.join('\n')}
-  `;
-
-  cb(null, result);
+  cb(null, reg.join('\n'));
 };
 
 function getFiles(options) {

@@ -38,7 +38,8 @@ const FRAME = props =>
   !props.frameless &&
   `
   padding: 4px;
-  border: 1px solid currentColor
+  border: 1px solid currentColor;
+  background: green;
 `;
 
 const TRANSPARENCY = props =>

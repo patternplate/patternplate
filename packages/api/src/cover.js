@@ -1,9 +1,9 @@
 const path = require("path");
 const url = require("url");
 const AggregateError = require("aggregate-error");
-const unindent = require("unindent");
 const stringHash = require("string-hash");
 const fromString = require("require-from-string");
+const renderPage = require("./render-page");
 
 const RENDER_PATH = "/patternplate.node.render.js";
 const COVER_PATH = "/patternplate.node.cover.js";
@@ -24,7 +24,7 @@ module.exports = async options => {
       const context = getContext(config);
       const render = typeof cover.render === "function" ? cover.render : getModule(RENDER_PATH);
       const content = await Promise.resolve(render(cover, context));
-      res.send(html(content, {base: req.params.base || "/", scripts: typeof cover.default === 'function'}));
+      res.send(renderPage(content, {base: req.params.base || "/", scripts: typeof cover.default === 'function'}));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);
@@ -84,40 +84,4 @@ function getExports(source, {filename}) {
   }
 
   return exportsCache.get(hash);
-}
-
-function html(content, options) {
-  const prefix = url.resolve(options.base, "api");
-
-  return unindent(`
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <!-- content.head -->
-        ${content.head || ""}
-        <style>
-          /* content.css */
-          ${content.css || ""}
-        </style>
-      </head>
-      <body>
-        <!-- content.before -->
-        ${content.before || ""}
-        <!-- content.html -->
-        <div data-patternplate-mount="data-patternplate-mount">${content.html || ""}</div>
-        <!-- content.after -->
-        ${content.after || ""}
-        <script src="${prefix}/patternplate.web.probe.js"></script>
-        ${options.scripts ? `
-          <script src="${prefix}/patternplate.web.cover.js"></script>
-          <script src="${prefix}/patternplate.web.mount.js"></script>
-          <script src="${prefix}/patternplate.web.cover-client.js"></script>
-        ` : ''}
-        <script>
-          /* content.js */
-          ${content.js || ""}
-        </script>
-      </body>
-    </html>
-  `);
 }

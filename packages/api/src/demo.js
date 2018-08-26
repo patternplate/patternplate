@@ -134,10 +134,7 @@ function html(content, payload) {
         <!-- content.after -->
         ${content.after || ""}
         <!-- ../ -> /api/ -->
-        <script src="../patternplate.web.components.js"></script>
-        <script src="../patternplate.web.probe.js"></script>
-        <script src="../patternplate.web.mount.js"></script>
-        <script src="../patternplate.web.demo.js"></script>
+        <script src="../patternplate.web.demo-client.js"></script>
       </body>
     </html>
   `);
