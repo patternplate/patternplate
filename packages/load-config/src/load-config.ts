@@ -12,7 +12,6 @@ const DEFAULTS = {
 export interface LoadInput {
   cwd: string;
   sanitize?: boolean;
-  validate?: boolean;
 }
 
 export interface LoadOutput<T = string | null, V = unknown> {
