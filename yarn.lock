@@ -674,6 +674,12 @@
   version "2.2.3"
   resolved "https://registry.npmjs.org/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
 
+"@types/cosmiconfig@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.npmjs.org/@types/cosmiconfig/-/cosmiconfig-5.0.3.tgz#880644bb155d4038d3b752159684b777b0a159dd"
+  dependencies:
+    "@types/node" "*"
+
 "@types/jest@^22.2.0":
   version "22.2.0"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-22.2.0.tgz#55ce83139f7ad1b48b414c3927746614c6963c0f"
@@ -682,13 +688,23 @@
   version "23.3.1"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-23.3.1.tgz#a4319aedb071d478e6f407d1c4578ec8156829cf"
 
-"@types/node@^10.9.4":
+"@types/node@*", "@types/node@^10.9.4":
   version "10.9.4"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
 "@types/react@^16.0.40":
   version "16.0.40"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.0.40.tgz#caabc2296886f40b67f6fc80f0f3464476461df9"
+
+"@types/resolve-from@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.npmjs.org/@types/resolve-from/-/resolve-from-0.0.18.tgz#a8ccb7ce3fb1db75c95eb7dea7ed51b8d060385d"
+
+"@types/uuid@^3.4.4":
+  version "3.4.4"
+  resolved "https://registry.npmjs.org/@types/uuid/-/uuid-3.4.4.tgz#7af69360fa65ef0decb41fd150bf4ca5c0cefdf5"
+  dependencies:
+    "@types/node" "*"
 
 "@zeit/schemas@1.1.2":
   version "1.1.2"
@@ -4671,6 +4687,10 @@ fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
 
+fast-extend@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/fast-extend/-/fast-extend-0.0.2.tgz#f5ec42cf40b9460f521a6387dfb52deeed671dbd"
+
 fast-glob@^2.0.2:
   version "2.1.0"
   resolved "https://registry.npmjs.org/fast-glob/-/fast-glob-2.1.0.tgz#50ee95e6a112f09e886cfff5215de69ca4a6a861"
@@ -4981,6 +5001,10 @@ fs-minipass@^1.2.5:
   resolved "https://registry.npmjs.org/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
   dependencies:
     minipass "^2.2.1"
+
+fs-monkey@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.npmjs.org/fs-monkey/-/fs-monkey-0.3.3.tgz#7960bb2b1fa2653731b9d0e2e84812a7e8b3664a"
 
 fs-readdir-recursive@^1.0.0:
   version "1.0.0"
@@ -6886,6 +6910,12 @@ jest-mock@^23.2.0:
   version "23.2.0"
   resolved "https://registry.npmjs.org/jest-mock/-/jest-mock-23.2.0.tgz#ad1c60f29e8719d47c26e1138098b6d18b261134"
 
+jest-plugin-fs@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.npmjs.org/jest-plugin-fs/-/jest-plugin-fs-2.9.0.tgz#74f96a4aa122bb665fa49299235aa359ecd989d6"
+  dependencies:
+    memfs "^2.5.5"
+
 jest-regex-util@^22.1.0:
   version "22.1.0"
   resolved "https://registry.npmjs.org/jest-regex-util/-/jest-regex-util-22.1.0.tgz#5daf2fe270074b6da63e5d85f1c9acc866768f53"
@@ -7260,6 +7290,10 @@ json-loader@^0.5.4:
 json-parse-better-errors@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/json-parse-better-errors/-/json-parse-better-errors-1.0.1.tgz#50183cd1b2d25275de069e9e71b467ac9eab973a"
+
+json-schema-filter@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.npmjs.org/json-schema-filter/-/json-schema-filter-0.1.5.tgz#f7936de557d6dc683583cc485fc98e12e37ce87e"
 
 json-schema-traverse@^0.3.0:
   version "0.3.1"
@@ -7956,6 +7990,13 @@ mem@^1.1.0:
   resolved "https://registry.yarnpkg.com/mem/-/mem-1.1.0.tgz#5edd52b485ca1d900fe64895505399a0dfa45f76"
   dependencies:
     mimic-fn "^1.0.0"
+
+memfs@^2.5.5, memfs@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.npmjs.org/memfs/-/memfs-2.9.4.tgz#2ca9d8088d61ab27376174f0ae68ea7084ac7214"
+  dependencies:
+    fast-extend "0.0.2"
+    fs-monkey "^0.3.3"
 
 memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
   version "0.4.1"
@@ -9949,10 +9990,6 @@ redux@^3.5.2:
     lodash-es "^4.2.1"
     loose-envify "^1.1.0"
     symbol-observable "^1.0.3"
-
-reflect-metadata@^0.1.12:
-  version "0.1.12"
-  resolved "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.12.tgz#311bf0c6b63cd782f228a81abe146a2bfa9c56f2"
 
 refractor@^2.6.0:
   version "2.6.0"

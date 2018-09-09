@@ -1,11 +1,11 @@
-import { getSchema } from './get-schema';
+import { schema } from './schema';
 import { ValidationInput } from './types';
 
 const validateOptions = require("schema-utils");
 
 export function validate({ target, name }: ValidationInput): [Error, false] | [null, true] {
   try {
-    validateOptions(getSchema(), target, name);
+    validateOptions(schema, target, name);
   } catch (err) {
     return [err, false];
   }
