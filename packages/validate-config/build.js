@@ -1,2 +1,2 @@
-const getSchema = require('./lib/get-schema').getSchema;
-process.stdout.write(JSON.stringify(getSchema(), null, '  '));
+const {schema} = require('./lib/schema');
+process.stdout.write(JSON.stringify(schema, null, '  '));

@@ -4,21 +4,17 @@
   "description": "Load patternplate config",
   "scripts": {
     "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "build": "tsc",
     "clean": "rimraf lib",
     "watch": "yarn build -w",
-    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/render-default"
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/render-default",
+    "test": "jest"
   },
   "files": [
     "index.js",
     "lib"
   ],
   "xo": false,
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -37,13 +33,26 @@
   },
   "dependencies": {
     "@patternplate/render-default": "^2.5.18",
+    "@patternplate/validate-config": "^2.5.18",
+    "@types/cosmiconfig": "^5.0.3",
+    "@types/resolve-from": "^0.0.18",
+    "@types/uuid": "^3.4.4",
     "cosmiconfig": "^3.1.0",
+    "json-schema-filter": "^0.1.5",
     "resolve-from": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.9.4",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0"
+    "fixturez": "^1.1.0",
+    "jest": "^23.5.0",
+    "jest-plugin-fs": "^2.9.0",
+    "memfs": "^2.9.4",
+    "ts-jest": "^23.1.4",
+    "ts-node": "^7.0.1",
+    "typescript": "3"
   }
 }
