@@ -11,9 +11,9 @@ export default connect(mapState, mapDispatch)(Link.RawLink);
 
 function mapState(state, own) {
   const location = state.routing.locationBeforeTransitions;
-  return Object.assign({}, own,
-    {href: getHref(own, { base: state.base, location })}
-  );
+  return Object.assign({}, own, {
+    href: getHref(own, { base: state.base, location })
+  });
 }
 
 function mapDispatch(dispatch, ownProps) {
@@ -51,30 +51,31 @@ function getHref(props, context) {
 
   parsed.query = queryString.parse(parsed.query);
 
-  const query = props.query === null
-    ? {}
-    : pickBy(
-      Object.assign(
-        {},
-        context.location.query,
-        parsed.query,
-        props.query || context.location.query
-      ),
-      (value, key) => {
-        // TODO: deduce this for all keys from reduce config
-        // special case "navigation-enabled", invert logic
-        if (key === "navigation-enabled") {
-          return value !== true && value !== "true";
-        }
+  const query =
+    props.query === null
+      ? {}
+      : pickBy(
+          Object.assign(
+            {},
+            context.location.query,
+            parsed.query,
+            props.query || context.location.query
+          ),
+          (value, key) => {
+            // TODO: deduce this for all keys from reduce config
+            // special case "navigation-enabled", invert logic
+            if (key === "navigation-enabled") {
+              return value !== true && value !== "true";
+            }
 
-        // if the key is not in the current query, add it
-        if (!context.location.query.hasOwnProperty(key)) {
-          return true;
-        }
-        // omit "falsy" values to keep url shorter
-        return value !== "false" && value !== "0" && !!(value);
-      }
-    );
+            // if the key is not in the current query, add it
+            if (!context.location.query.hasOwnProperty(key)) {
+              return true;
+            }
+            // omit "falsy" values to keep url shorter
+            return value !== "false" && value !== "0" && !!value;
+          }
+        );
 
   const pathname =
     typeof parsed.pathname === "string"
@@ -82,7 +83,7 @@ function getHref(props, context) {
       : context.location.pathname;
 
   return url.format({
-    pathname,
+    pathname: pathname + "/",
     query,
     hash: props.hash || (parsed.hash || "#").slice(1)
   });
@@ -92,7 +93,7 @@ function prefix(base, pathname) {
   const b = norm(base);
   const p = norm(pathname);
 
-  if (p === '') {
+  if (p === "") {
     return `/${b}`;
   }
 
@@ -104,5 +105,8 @@ function prefix(base, pathname) {
 }
 
 function norm(p) {
-  return p.split("/").filter(Boolean).join("/");
+  return p
+    .split("/")
+    .filter(Boolean)
+    .join("/");
 }
