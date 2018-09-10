@@ -9,7 +9,7 @@ const { createCompiler } = require("./create-compiler");
 const debug = require("util").debuglog("PATTERNPLATE");
 
 module.exports.createSubscription = function createSubscription(context) {
-  const { queues, config, cwd, wss, server, watcher } = context;
+  const { queues, config, cwd, wss, watcher } = context;
 
   return handler => {
     debug("subscribing to webpack and fs events");
@@ -45,18 +45,21 @@ module.exports.createSubscription = function createSubscription(context) {
         message.payload.contentType === "config"
       ) {
         (async () => {
-          const { config, filepath } = await loadConfig({ cwd });
-          const [error, valid] = validate({ target: config, name: filepath });
+          const { config: loadedConfig, filepath } = await loadConfig({ cwd });
+          const [error] = validate({ target: config, name: filepath });
 
           if (error) {
             configError = true;
             send({ type: "error", payload: error });
+            return;
           }
 
           if (configError) {
             console.log(`Resolved config error, applying ${filepath}`);
             configError = false;
           }
+
+          Object.assign(config, loadedConfig);
 
           queues.client.stop();
           queues.server.stop();
