@@ -6,7 +6,8 @@
     "target": "es2015",
     "declaration": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "strict": true
   },
   "include": [
     "src/**/*.ts"
