@@ -6,7 +6,7 @@
     "clean": "rimraf lib",
     "start": "yarn build -w",
     "test": "jest",
-    "build": "babel -D src -d lib -s --ignore '**/*.test.js'",
+    "build": "tsc",
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
@@ -31,20 +31,16 @@
     "access": "public"
   },
   "xo": false,
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.2",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
-    "jest": "^22.4.2",
-    "jest-cli": "^22.4.2"
+    "jest": "^23.6.0",
+    "jest-cli": "^22.4.2",
+    "ts-jest": "^23.1.4",
+    "typescript": "^3.0.3"
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
