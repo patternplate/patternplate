@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "2.6.1-0",
+  "version": "2.6.2-0",
   "description": "Patternplate JSON API",
   "scripts": {
     "start": "yarn build -w",
@@ -51,7 +51,7 @@
     "@patternplate/load-config": "^2.5.18",
     "@patternplate/load-docs": "^2.5.18",
     "@patternplate/load-meta": "^2.5.18",
-    "@patternplate/validate-config": "^2.6.1-0",
+    "@patternplate/validate-config": "^2.6.2-0",
     "aggregate-error": "^1.0.0",
     "arson": "^0.2.6",
     "chokidar": "^1.7.0",
