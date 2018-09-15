@@ -4,8 +4,9 @@
   "description": "Load a markdown index docs",
   "scripts": {
     "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "build": "tsc",
     "clean": "rimraf lib",
+    "test": "jest",
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
@@ -31,18 +32,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@marionebl/sander": "^0.6.1",
+    "@types/globby": "^8.0.0",
     "globby": "^6.1.0"
   },
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0"
+    "fixturez": "^1.1.0",
+    "jest": "^23.6.0",
+    "jest-cli": "^22.4.2",
+    "ts-jest": "^23.1.4",
+    "typescript": "^3.0.3"
   }
 }

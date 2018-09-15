@@ -26,7 +26,7 @@ yarn start
 ## Usage
 
 ```js
-const loadDoc = require("@patternplate/load-doc");
+const { loadDoc } = require("@patternplate/load-doc");
 
 (async () => {
   const doc = await loadDoc({cwd: process.cwd()});

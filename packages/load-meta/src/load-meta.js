@@ -5,7 +5,7 @@ const loadSourceMap = require("load-source-map");
 const pFilter = require("p-filter");
 const sander = require("@marionebl/sander");
 const {loadManifest, PATTERNPLATE_ERR_NO_MANIFEST} = require("@patternplate/load-manifest");
-const loadDoc = require("@patternplate/load-doc");
+const { loadDoc } = require("@patternplate/load-doc");
 
 const PATTERNPLATE_ERROR_DUPE_PATTERN = 'PATTERNPLATE_ERROR_DUPE_PATTERN';
 
