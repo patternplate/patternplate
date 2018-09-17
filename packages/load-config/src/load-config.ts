@@ -19,9 +19,6 @@ export interface LoadOutput<T = string | null, V = unknown> {
   config: V;
 }
 
-/** Backwards compat with other pp packages */
-module.exports = load;
-
 export default load;
 export const loadConfig = load;
 

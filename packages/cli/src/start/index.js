@@ -3,7 +3,7 @@ const ora = require("ora");
 const debug = require("util").debuglog("PATTERNPLATE");
 const importFresh = require("import-fresh");
 const readline = require("readline");
-const loadConfig = require("@patternplate/load-config");
+const { loadConfig } = require("@patternplate/load-config");
 
 module.exports = start;
 

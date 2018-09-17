@@ -2,7 +2,7 @@ const Path = require("path");
 const ARSON = require("arson");
 const { validate } = require("@patternplate/validate-config");
 const WebSocket = require("ws");
-const loadConfig = require("@patternplate/load-config");
+const { loadConfig } = require("@patternplate/load-config");
 
 const { createCompiler } = require("./create-compiler");
 

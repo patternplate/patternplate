@@ -2,7 +2,7 @@
 const path = require("path");
 const chalk = require("chalk");
 const meow = require("meow");
-const loadConfig = require("@patternplate/load-config");
+const { loadConfig } = require("@patternplate/load-config");
 const {validate} = require("@patternplate/validate-config");
 
 const cli = meow(
