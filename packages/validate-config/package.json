@@ -3,9 +3,12 @@
   "version": "2.5.18",
   "description": "Validate schema for patternplate.config.js",
   "scripts": {
+    "watch": "concurrently \"yarn tsc -w\" \"yarn watch:schema\"",
+    "watch:schema": "chokidar \"lib/(schema).js\" \"yarn build\"",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
-    "build": "tsc && node build > lib/schema.json && yarn strip",
-    "strip": "NODE_ENV=production babel lib/schema.js -o lib/schema.js --plugins transform-node-env-inline --plugins minify-dead-code-elimination",
+    "build": "tsc && yarn build:schema",
+    "build:schema": "node build > lib/schema.json && yarn strip",
+    "strip": "cross-env NODE_ENV=production babel lib/schema.js -o lib/schema.js --plugins transform-node-env-inline --plugins minify-dead-code-elimination",
     "test": "jest",
     "test:integration": "jest --config jest.integration.js",
     "prepublishOnly": "yarn build && yarn test:integration"
@@ -40,6 +43,7 @@
     "babel-jest": "^23.4.2",
     "babel-plugin-minify-dead-code-elimination": "^0.4.3",
     "babel-plugin-transform-node-env-inline": "^0.4.3",
+    "cross-env": "^5.2.0",
     "dependency-check": "^3.1.0",
     "jest": "^23.5.0",
     "ts-jest": "^23.1.4",
