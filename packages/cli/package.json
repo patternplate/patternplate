@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cli",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Documentation and development interface for component libraries",
   "bin": {
     "patternplate": "./cli.js"
@@ -26,13 +26,13 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.40",
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/client": "^3.0.0",
-    "@patternplate/compiler": "^3.0.0",
+    "@patternplate/client": "^3.0.1",
+    "@patternplate/compiler": "^3.0.1",
     "@patternplate/create-default": "^2.5.18",
-    "@patternplate/load-config": "^3.0.0",
+    "@patternplate/load-config": "^3.0.1",
     "@patternplate/load-docs": "^2.5.18",
     "@patternplate/load-meta": "^3.0.0",
-    "@patternplate/validate-config": "^3.0.0",
+    "@patternplate/validate-config": "^3.0.1",
     "arson": "^0.2.6",
     "chalk": "^2.3.2",
     "command-exists": "^1.2.2",
