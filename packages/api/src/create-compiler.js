@@ -37,15 +37,8 @@ module.exports.createCompiler = async function createCompiler({ config, cwd, tar
     let stderr = ``;
     let stdout = ``;
 
-    cp.stdout.on("data", data => {
-      stdout += String(data);
-      debug(`stdout ${workerPath}: ${data}`);
-    });
-
-    cp.stderr.on("data", data => {
-      stderr += String(data);
-      debug(`stderr ${workerPath}: ${data}`);
-    });
+    cp.stdout.pipe(process.stdout);
+    cp.stderr.pipe(process.stderr);
 
     cp.once("close", (code) => {
       if (code !== 0) {

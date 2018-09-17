@@ -44,11 +44,11 @@ async function startCompilerWorker() {
     }
   }, 1000);
 
-  compiler.plugin("compile", () => {
+  compiler.hooks.compile.tap("patternpalte", () => {
     send({type: "start", target, payload: {}});
   });
 
-  compiler.plugin("done", (stats) => {
+  compiler.hooks.done.tap("patternplate", (stats) => {
     if (stats.compilation.errors && stats.compilation.errors.length > 0) {
       stats.compilation.errors.forEach(err => {
         return send({type: "error", target, payload: err});
@@ -58,7 +58,7 @@ async function startCompilerWorker() {
     send({type: "done", target, payload: fs.data});
   });
 
-  compiler.plugin("failed", err => {
+  compiler.hooks.failed.tap("patternplate",  err => {
     send({type: "error", target, payload: err});
   });
 
