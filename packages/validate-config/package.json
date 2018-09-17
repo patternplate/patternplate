@@ -15,6 +15,7 @@
   },
   "typings": "lib/index.d.ts",
   "files": [
+    "index.js",
     "lib"
   ],
   "xo": false,
