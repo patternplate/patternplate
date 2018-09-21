@@ -666,13 +666,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.5.18"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -733,6 +726,12 @@
 "@types/resolve-from@^0.0.18":
   version "0.0.18"
   resolved "https://registry.npmjs.org/@types/resolve-from/-/resolve-from-0.0.18.tgz#a8ccb7ce3fb1db75c95eb7dea7ed51b8d060385d"
+
+"@types/source-map@^0.5.7":
+  version "0.5.7"
+  resolved "https://registry.npmjs.org/@types/source-map/-/source-map-0.5.7.tgz#165eeb583c1ef00196fe4ef4da5d7832b03b275b"
+  dependencies:
+    source-map "*"
 
 "@types/uuid@^3.4.4":
   version "3.4.4"
@@ -9007,12 +9006,6 @@ p-each-series@^1.0.0:
   dependencies:
     p-reduce "^1.0.0"
 
-p-filter@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/p-filter/-/p-filter-1.0.0.tgz#629d317150209c8fd508ba137713ef4bb920e9db"
-  dependencies:
-    p-map "^1.0.0"
-
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
@@ -9047,7 +9040,7 @@ p-locate@^3.0.0:
   dependencies:
     p-limit "^2.0.0"
 
-p-map@^1.0.0, p-map@^1.1.1:
+p-map@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-1.2.0.tgz#e4e94f311eabbc8633a1e79908165fca26241b6b"
 
@@ -11193,6 +11186,10 @@ source-map-support@^0.5.6:
 source-map-url@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/source-map-url/-/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
+
+source-map@*, source-map@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.npmjs.org/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
 
 source-map@0.5.x, source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.0, source-map@~0.5.1, source-map@~0.5.3:
   version "0.5.7"

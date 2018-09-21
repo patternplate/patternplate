@@ -25,7 +25,7 @@ yarn start
 ## Usage
 
 ```js
-const loadMeta = require("@patternplate/load-meta");
+const { loadMeta } = require("@patternplate/load-meta");
 
 (async () => {
   const meta = await loadMeta({

@@ -1,6 +1,6 @@
 const path = require("path");
 const { loadDocsTree } = require("@patternplate/load-docs");
-const loadMeta = require("@patternplate/load-meta");
+const { loadMeta } = require("@patternplate/load-meta");
 
 module.exports = async options => {
   return async function main(req, res) {

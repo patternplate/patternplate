@@ -1,5 +1,5 @@
 const path = require("path");
-const loadMeta = require("@patternplate/load-meta");
+const { loadMeta } = require("@patternplate/load-meta");
 const AggregateError = require("aggregate-error");
 const fromString = require("require-from-string");
 const sander = require("@marionebl/sander");

@@ -2,7 +2,7 @@ const path = require("path");
 
 const api = require("@patternplate/api");
 const { loadDocsTree } = require("@patternplate/load-docs");
-const loadMeta = require("@patternplate/load-meta");
+const { loadMeta } = require("@patternplate/load-meta");
 const express = require("express");
 const serve = require("serve-static");
 const fetch = require("isomorphic-fetch");
