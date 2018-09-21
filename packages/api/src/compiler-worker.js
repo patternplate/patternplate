@@ -3,6 +3,7 @@ const yargsParser = require("yargs-parser");
 const flags = yargsParser(process.argv.slice(2));
 const createCompiler = require("@patternplate/compiler");
 const debug = require("util").debuglog("PATTERNPLATE");
+const { validate } = require("@patternplate/validate-config");
 
 const send = typeof process.send === "function" && process.connected
   ? m => process.send(ARSON.stringify(m))
@@ -20,6 +21,13 @@ const FAILURE_COUNT = 5;
 async function startCompilerWorker() {
   const {cwd, target} = flags;
   const config = ARSON.parse(flags.config);
+
+  const [err, valid] = validate({ target: config, name: `${target}-worker` });
+
+  if (!valid) {
+    console.error(err);
+    return;
+  }
 
   const compiler = await createCompiler({config, cwd, target});
   const fs = compiler.outputFileSystem;
