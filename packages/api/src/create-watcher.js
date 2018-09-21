@@ -1,5 +1,5 @@
 const Path = require("path");
-const loadMeta = require("@patternplate/load-meta");
+const { loadMeta } = require("@patternplate/load-meta");
 const Observable = require("zen-observable");
 const chokidar = require("chokidar");
 const globParent = require("glob-parent");
