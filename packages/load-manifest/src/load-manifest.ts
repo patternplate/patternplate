@@ -4,9 +4,6 @@ import { normalize } from "./normalize";
 import * as Types from "./types";
 import { loadJSON } from "./load-json";
 import * as Errors from "./errors";
-import * as Util from "util";
-
-const exists = Util.promisify(Fs.exists);
 
 /**
  * Legacy, remove around 8.x
@@ -18,17 +15,14 @@ export const PATTERNPLATE_ERR_MALFORMED_MANIFEST =
 export async function loadManifest({
   cwd
 }: Types.LoadManifestOptions): Promise<Types.LoadedManifest> {
-  const map = <T>(fn: (file: string) => Promise<T | null>) =>
-    Promise.all(["package.json", "pattern.json"].map(fn));
-
   if (typeof cwd !== "string") {
     throw new Error(
       `load-manifest cwd expects string, received ${cwd}, typeof ${cwd}`
     );
   }
 
-  const read = async (f: string): Promise<string | null> => ((await exists(Path.join(cwd, f))) ? f : null);
-  const files = (await map(read)).filter((p): p is string => typeof p === 'string');
+  const files = ["package.json", "pattern.json"].filter(file => Fs.existsSync(Path.join(cwd, file)));
+
   const file = files[0];
 
   if (!file) {
