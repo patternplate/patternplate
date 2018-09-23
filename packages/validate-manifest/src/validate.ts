@@ -15,3 +15,11 @@ export function validate(
 
   return [null, true];
 }
+
+export function validatePatternJson(input: ValidationInput): [Error, false] | [null, true] {
+  return validate(input, Schema.pattern);
+}
+
+export function validatePackage(input: ValidationInput): [Error, false] | [null, true] {
+  return validate(input, Schema.pkg);
+}

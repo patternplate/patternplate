@@ -4,6 +4,7 @@ import { normalize } from "./normalize";
 import * as Types from "./types";
 import { loadJSON } from "./load-json";
 import * as Errors from "./errors";
+import * as ValidateManifest from "@patternplate/validate-manifest";
 
 /**
  * Legacy, remove around 8.x
@@ -37,6 +38,7 @@ export async function loadManifest({
   const isPkg = Path.basename(file) === "package.json";
   const isPatternPkg =
     typeof data === "object" && typeof (data as any).patternplate === "object";
+
   const needsPattern = isPkg && !isPatternPkg;
 
   if (needsPattern && files.length === 1) {
@@ -52,11 +54,25 @@ export async function loadManifest({
     const data = await loadJSON(fullPath);
     const manifest = normalize(data, { isPatternPkg, withDefaults: false });
 
+    const validate = isPatternPkg ? ValidateManifest.validatePackage : ValidateManifest.validatePatternJson;
+    const [validationError, valid] = validate({ target: data, name: Path.basename(file) });
+
+    if (!valid) {
+      throw validationError;
+    }
+
     return {
       file: fullPath,
       manifest,
       raw: manifest
     };
+  }
+
+  const validate = isPatternPkg ? ValidateManifest.validatePackage : ValidateManifest.validatePatternJson;
+  const [validationError, valid] = validate({ target: data, name: Path.basename(file) });
+
+  if (!valid) {
+    throw validationError;
   }
 
   return {

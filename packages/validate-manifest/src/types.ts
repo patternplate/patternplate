@@ -22,7 +22,7 @@ export interface PatternJson {
    * @maxLength 214
    * @pattern ^\d+\.\d+\.\d+(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?
    */
-  version: string;
+  version?: string;
 
   /**
    * The name used for display of the pattern
@@ -58,7 +58,7 @@ export interface PackageJson {
    * @maxLength 214
    * @pattern ^\d+\.\d+\.\d+(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?
    */
-  version: string;
+  version?: string;
 
   /**
    * The name used for display of the pattern
@@ -76,5 +76,5 @@ export interface PackageJson {
   /**
    * Fields specific for patternplate
    */
-  patternplate: PatternJson;
+  patternplate: Partial<PatternJson>;
 }

@@ -1,168 +1,281 @@
-const path = require("path");
-const fixturez = require("fixturez");
-const errors = require("./load-manifest");
-const {loadManifest} = require("./load-manifest");
+import * as Path from "path";
+import * as LoadManifest from "./load-manifest";
+import * as Fs from "fs";
 
-const f = fixturez(__dirname);
+jest.mock("fs", (): Partial<typeof Fs> => {
+  const MemFs = require("memfs");
+  MemFs.fs.set = (data: any) => {
+    MemFs.vol.reset();
+    MemFs.vol.fromJSON(data);
+  };
+  return MemFs.fs;
+});
+
+const MockFs = Fs as typeof Fs & { set(data: any): void };
 
 test("throws for missing input", async () => {
-  await expect(loadManifest({cwd: null})).rejects.toMatchObject({
+  await expect(LoadManifest.loadManifest({ cwd: null })).rejects.toMatchObject({
     message: expect.stringContaining("expects string")
   });
 });
 
 test("throws for missing file", async () => {
-  const cwd = f.copy("missing-pattern");
+  MockFs.set({
+    "/package.json": JSON.stringify({ name: "pkg" })
+  });
 
-  await expect(loadManifest({cwd})).rejects.toMatchObject({
+  await expect(LoadManifest.loadManifest({ cwd: "/" })).rejects.toMatchObject({
     message: expect.stringContaining("could not find"),
-    errno: errors.PATTERNPLATE_ERR_NO_MANIFEST
+    errno: LoadManifest.PATTERNPLATE_ERR_NO_MANIFEST
   });
 });
 
 test("throws for malformed file", async () => {
-  const cwd = f.copy("malformed");
+  MockFs.set({
+    "/package.json": '{ "some": "thing", }'
+  });
 
-  await expect(loadManifest({cwd})).rejects.toMatchObject({
+  await expect(LoadManifest.loadManifest({ cwd: "/" })).rejects.toMatchObject({
     message: expect.stringContaining("Unexpected token"),
-    errno: errors.PATTERNPLATE_ERR_MALFORMED_MANIFEST
+    errno: LoadManifest.PATTERNPLATE_ERR_MALFORMED_MANIFEST
   });
 });
 
 test("throws for empty file", async () => {
-  const cwd = f.copy("empty");
+  MockFs.set({
+    "/pattern.json": ""
+  });
 
-  await expect(loadManifest({cwd})).rejects.toMatchObject({
+  await expect(LoadManifest.loadManifest({ cwd: "/" })).rejects.toMatchObject({
     message: expect.stringContaining("Unexpected end"),
-    errno: errors.PATTERNPLATE_ERR_MALFORMED_MANIFEST
+    errno: LoadManifest.PATTERNPLATE_ERR_MALFORMED_MANIFEST
   });
 });
 
-test("throws for missing pattern.json next to package.json without options", async () => {
+/* test("throws for missing pattern.json next to package.json without options", async () => {
   const cwd = f.copy("missing-pattern");
 
-  await expect(loadManifest({cwd})).rejects.toMatchObject({
+  await expect(LoadManifest.loadManifest({ cwd })).rejects.toMatchObject({
     message: expect.stringContaining("contains no patternplate"),
-    errno: errors.PATTERNPLATE_ERR_NO_MANIFEST
+    errno: LoadManifest.PATTERNPLATE_ERR_NO_MANIFEST
   });
-});
+}); */
 
-test("returns default data for empty data", async () => {
-  const cwd = f.copy("empty-data");
-  const result = await loadManifest({cwd});
+test("throws for empty data", async () => {
+  MockFs.set({
+    "/pattern.json": JSON.stringify({})
+  });
 
-  expect(result.manifest).toMatchObject({
-    version: "1.0.0",
-    flag: "alpha"
+  await expect(LoadManifest.loadManifest({ cwd: "/" })).rejects.toMatchObject({
+    message: expect.stringContaining("required property 'name'")
   });
 });
 
 test("ignores package.json if not decorated", async () => {
-  const cwd = f.copy("pkg-undecorated");
-  const result = await loadManifest({cwd});
+  MockFs.set({
+    "/package.json": JSON.stringify({ name: "pkg" }),
+    "/pattern.json": JSON.stringify({ name: "pattern" })
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "name": "pattern"
+    name: "pattern"
   });
 });
 
 test("honors package.json if decorated", async () => {
-  const cwd = f.copy("pkg");
-  const result = await loadManifest({cwd});
+  MockFs.set({
+    "/package.json": JSON.stringify({ name: "pkg", patternplate: {} }),
+    "/pattern.json": JSON.stringify({ name: "pattern" })
+  });
 
-  expect(result.file).toBe(path.join(cwd, "package.json"));
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
+  expect(result.file).toBe("/package.json");
 });
 
 test("uses version from package.json", async () => {
-  const cwd = f.copy("pkg-version");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    version: "2.0.0",
+    patternplate: {}
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "version": "2.0.0"
+    version: data.version
   });
 });
 
 test("discards other data from package.json", async () => {
-  const cwd = f.copy("pkg-discard");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    patternplate: {},
+    dependencies: {
+      "@patternplate/cli": "1.0.0"
+    }
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).not.toMatchObject({
-    "dependencies": {
+    dependencies: {
       "@patternplate/cli": "1.0.0"
     }
   });
 });
 
 test("uses displayName from package.json[patternplate]", async () => {
-  const cwd = f.copy("pkg-display-name");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    patternplate: {
+      displayName: "Package"
+    }
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "displayName": "Package"
+    displayName: "Package"
   });
 });
 
 test("uses options from package.json[patternplate]", async () => {
-  const cwd = f.copy("pkg-options");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    patternplate: {
+      options: {
+        some: "thing"
+      }
+    }
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "options": { "some": "thing" }
+    options: { some: "thing" }
   });
 });
 
 test("uses tags from pattern.json[tags]", async () => {
-  const cwd = f.copy("pattern-tags");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    tags: ["a", "b", "c"]
+  };
+
+  MockFs.set({
+    "/pattern.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "tags": expect.arrayContaining(["a", "b", "c"])
+    tags: expect.arrayContaining(["a", "b", "c"])
   });
 });
 
-
 test("uses tags from package.json[tags]", async () => {
-  const cwd = f.copy("pkg-tags");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    tags: ["a", "b", "c"],
+    patternplate: {}
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "tags": expect.arrayContaining(["a", "b", "c"])
+    tags: expect.arrayContaining(["a", "b", "c"])
   });
 });
 
 test("uses description from pattern.json[description]", async () => {
-  const cwd = f.copy("pattern-description");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    description: "pattern"
+  };
+
+  MockFs.set({
+    "/pattern.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "description": "pattern"
+    description: "pattern"
   });
 });
 
-
 test("uses description from package.json[description]", async () => {
-  const cwd = f.copy("pkg-description");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    description: "pkg",
+    patternplate: {}
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "description": "pkg"
+    description: "pkg"
   });
 });
 
 test("uses flag from pattern.json[flag]", async () => {
-  const cwd = f.copy("pattern-flag");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    flag: "beta"
+  };
+
+  MockFs.set({
+    "/pattern.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "flag": "beta"
+    flag: data.flag
   });
 });
 
 test("uses flag from package.json[patternplate][flag]", async () => {
-  const cwd = f.copy("pkg-flag");
-  const result = await loadManifest({cwd});
+  const data = {
+    name: "pkg",
+    patternplate: {
+      flag: "beta"
+    }
+  };
+
+  MockFs.set({
+    "/package.json": JSON.stringify(data)
+  });
+
+  const result = await LoadManifest.loadManifest({ cwd: "/" });
 
   expect(result.manifest).toMatchObject({
-    "flag": "beta"
+    flag: "beta"
   });
 });
