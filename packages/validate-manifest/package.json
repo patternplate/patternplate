@@ -1,0 +1,58 @@
+{
+  "name": "@patternplate/validate-manifest",
+  "version": "3.0.1",
+  "description": "Validate schema for pattern.json",
+  "scripts": {
+    "watch": "concurrently \"yarn tsc -w\" \"yarn watch:schema\"",
+    "watch:schema": "chokidar \"lib/(schema).js\" \"yarn build\"",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
+    "build": "tsc && yarn build:schema",
+    "build:schema": "node build && yarn strip",
+    "strip": "cross-env NODE_ENV=production babel lib/schema.js -o lib/schema.js --plugins transform-node-env-inline --plugins minify-dead-code-elimination",
+    "test": "jest",
+    "test:integration": "jest --config jest.integration.js",
+    "prepublishOnly": "yarn build && yarn test:integration"
+  },
+  "typings": "lib/index.d.ts",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "xo": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternplate/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternplate/patternplate/issues"
+  },
+  "homepage": "https://github.com/patternplate/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.9.4",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-minify-dead-code-elimination": "^0.4.3",
+    "babel-plugin-transform-node-env-inline": "^0.4.3",
+    "cross-env": "^5.2.0",
+    "dependency-check": "^3.1.0",
+    "jest": "^23.5.0",
+    "ts-jest": "^23.1.4",
+    "ts-node": "^7.0.1",
+    "typescript": "3",
+    "typescript-json-schema": "^0.32.0"
+  },
+  "dependencies": {
+    "schema-utils": "^1.0.0"
+  }
+}
