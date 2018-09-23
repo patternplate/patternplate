@@ -34,7 +34,7 @@ test('should fail for missing name', () => {
   expect(err.message).toContain('required property \'name\'');
 });
 
-test('should fail for missing version', () => {
+test('should suceed despite missing version', () => {
   const [err, valid] = validate({
     name: 'test',
     target: {
@@ -42,8 +42,7 @@ test('should fail for missing version', () => {
     }
   });
 
-  expect(valid).toBe(false);
-  expect(err.message).toContain('required property \'version\'');
+  expect(valid).toBe(true);
 });
 test('should fail for mismatched version', () => {
   const [err, valid] = validate({
