@@ -20,8 +20,8 @@ test("should succeed as expected with built json schema", () => {
   const [err, valid] = validate({
     name: "test",
     target: {
-      name: "",
-      version: ""
+      name: "A",
+      version: "1.0.0"
     }
   });
 
