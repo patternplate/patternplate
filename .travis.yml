@@ -3,12 +3,10 @@ node_js:
   - 8
 script:
   - echo "no main script"
-branches:
-  only:
-  - master
 jobs:
   include:
     - stage: test
+      if: branch = master
       script:
         - yarn test --stream
         - yarn lerna run deps --stream

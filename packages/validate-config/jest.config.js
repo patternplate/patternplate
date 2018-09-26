@@ -4,9 +4,10 @@ module.exports = {
   },
   testRegex: "src/.*\\.test\\.ts$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  testEnvironment: "node",
   globals: {
     "ts-jest": {
-      skipBabel: true
+      compiler: '@marionebl/ttypescript'
     }
   }
 };

@@ -6,7 +6,19 @@
     "target": "es2015",
     "declaration": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "plugins": [
+      {
+        "transform": "ts-transform-json-schema",
+        "type": "program",
+        "options": {
+          "refs": true,
+          "noExtraProps": true,
+          "strictNullChecks": true,
+          "required": true
+        }
+      }
+    ]
   },
   "include": [
     "src/**/*.ts"
