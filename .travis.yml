@@ -12,4 +12,4 @@ script:
     ./.travis/deploy.sh
 branches:
   only:
-  - master
+    - master
