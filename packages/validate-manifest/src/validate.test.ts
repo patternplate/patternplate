@@ -99,3 +99,15 @@ test('should fail for empty displayName', () => {
 });
 
 
+test('should pass for name with uppercase chars', () => {
+  const [err, valid] = validate({
+    name: 'test',
+    target: {
+      name: 'Test',
+      version: '1.0.0'
+    }
+  });
+
+  expect(valid).toBe(true);
+});
+
