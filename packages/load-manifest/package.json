@@ -44,7 +44,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "@patternplate/validate-manifest": "3.0.1",
+    "@patternplate/validate-manifest": "3.0.3",
     "load-json-file": "^4.0.0"
   }
 }
