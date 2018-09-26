@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-meta",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Load patternplate meta data",
   "scripts": {
     "clean": "rimraf lib",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@patternplate/load-doc": "^3.0.3",
-    "@patternplate/load-manifest": "^3.0.3",
+    "@patternplate/load-manifest": "^3.0.4",
     "@types/globby": "^8.0.0",
     "@types/source-map": "^0.5.7",
     "globby": "^6.1.0",
