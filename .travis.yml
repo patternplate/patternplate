@@ -2,20 +2,14 @@ language: node_js
 node_js:
   - 8
 script:
-  - echo "no main script"
+  - yarn test --stream
+  - yarn lerna run deps --stream
+  - >-
+    yarn build --scope=@patternplate/cli &&
+    yarn run pack &&
+    yarn components:build --stream &&
+    ./.travis/decrypt.sh &&
+    ./.travis/deploy.sh
 branches:
   only:
   - master
-jobs:
-  include:
-    - stage: test
-      script:
-        - yarn test --stream
-        - yarn lerna run deps --stream
-      script:
-        - >-
-          yarn build --scope=@patternplate/cli &&
-          yarn run pack &&
-          yarn components:build --stream &&
-          ./.travis/decrypt.sh &&
-          ./.travis/deploy.sh
