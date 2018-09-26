@@ -659,6 +659,13 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+"@marionebl/ttypescript@^1.5.6":
+  version "1.5.6"
+  resolved "https://registry.npmjs.org/@marionebl/ttypescript/-/ttypescript-1.5.6.tgz#db1a5bcd659ff830c18b7201b9e948a88d31bd89"
+  dependencies:
+    resolve "^1.7.1"
+    ts-node "^6.0.2"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npmjs.org/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -666,12 +673,11 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.5.18"
+"@patternplate/validate-manifest@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/@patternplate/validate-manifest/-/validate-manifest-3.0.3.tgz#131c509e52991d9ec67c0dc3dbcf4a61b503fc6d"
   dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
+    schema-utils "^1.0.0"
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -726,13 +732,29 @@
   version "10.9.4"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
+"@types/normalize-package-data@*":
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
+
 "@types/react@^16.0.40":
   version "16.0.40"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.0.40.tgz#caabc2296886f40b67f6fc80f0f3464476461df9"
 
+"@types/read-pkg-up@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/@types/read-pkg-up/-/read-pkg-up-3.0.1.tgz#05911057c3be1aade38bfecbb9a8554dbd0582be"
+  dependencies:
+    "@types/normalize-package-data" "*"
+
 "@types/resolve-from@^0.0.18":
   version "0.0.18"
   resolved "https://registry.npmjs.org/@types/resolve-from/-/resolve-from-0.0.18.tgz#a8ccb7ce3fb1db75c95eb7dea7ed51b8d060385d"
+
+"@types/resolve@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/@types/resolve/-/resolve-0.0.8.tgz#f26074d238e02659e323ce1a13d041eee280e194"
+  dependencies:
+    "@types/node" "*"
 
 "@types/source-map@^0.5.7":
   version "0.5.7"
@@ -1351,10 +1373,6 @@ babel-helper-define-map@^6.24.1:
     babel-types "^6.26.0"
     lodash "^4.17.4"
 
-babel-helper-evaluate-path@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/babel-helper-evaluate-path/-/babel-helper-evaluate-path-0.4.3.tgz#0a89af702c06b217027fa371908dd4989d3e633f"
-
 babel-helper-explode-assignable-expression@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-helper-explode-assignable-expression/-/babel-helper-explode-assignable-expression-6.24.1.tgz#f25b82cf7dc10433c55f70592d5746400ac22caa"
@@ -1396,10 +1414,6 @@ babel-helper-hoist-variables@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-helper-mark-eval-scopes@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/babel-helper-mark-eval-scopes/-/babel-helper-mark-eval-scopes-0.4.3.tgz#d244a3bef9844872603ffb46e22ce8acdf551562"
-
 babel-helper-optimise-call-expression@^6.24.1:
   version "6.24.1"
   resolved "https://registry.npmjs.org/babel-helper-optimise-call-expression/-/babel-helper-optimise-call-expression-6.24.1.tgz#f7a13427ba9f73f8f4fa993c54a97882d1244257"
@@ -1424,10 +1438,6 @@ babel-helper-remap-async-to-generator@^6.24.1:
     babel-template "^6.24.1"
     babel-traverse "^6.24.1"
     babel-types "^6.24.1"
-
-babel-helper-remove-or-void@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/babel-helper-remove-or-void/-/babel-helper-remove-or-void-0.4.3.tgz#a4f03b40077a0ffe88e45d07010dee241ff5ae60"
 
 babel-helper-replace-supers@^6.24.1:
   version "6.24.1"
@@ -1512,15 +1522,6 @@ babel-plugin-jest-hoist@^22.4.1:
 babel-plugin-jest-hoist@^23.2.0:
   version "23.2.0"
   resolved "https://registry.npmjs.org/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-23.2.0.tgz#e61fae05a1ca8801aadee57a6d66b8cefaf44167"
-
-babel-plugin-minify-dead-code-elimination@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/babel-plugin-minify-dead-code-elimination/-/babel-plugin-minify-dead-code-elimination-0.4.3.tgz#73628265864f9008d0027506f58abeb3c1d02d98"
-  dependencies:
-    babel-helper-evaluate-path "^0.4.3"
-    babel-helper-mark-eval-scopes "^0.4.3"
-    babel-helper-remove-or-void "^0.4.3"
-    lodash.some "^4.6.0"
 
 babel-plugin-styled-components@^1.5.1:
   version "1.5.1"
@@ -1806,10 +1807,6 @@ babel-plugin-transform-flow-strip-types@^6.8.0:
   dependencies:
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-node-env-inline@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-node-env-inline/-/babel-plugin-transform-node-env-inline-0.4.3.tgz#8c84cd74d58f17b0fdf76144a3589f610c3c2497"
 
 babel-plugin-transform-object-rest-spread@^6.22.0:
   version "6.26.0"
@@ -2251,6 +2248,12 @@ browserslist@^3.0.0:
     caniuse-lite "^1.0.30000809"
     electron-to-chromium "^1.3.33"
 
+bs-logger@0.x:
+  version "0.2.5"
+  resolved "https://registry.npmjs.org/bs-logger/-/bs-logger-0.2.5.tgz#1d82f0cf88864e1341cd9262237f8d0748a49b22"
+  dependencies:
+    fast-json-stable-stringify "^2.0.0"
+
 bser@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/bser/-/bser-2.0.0.tgz#9ac78d3ed5d915804fd87acb158bc797147a1719"
@@ -2278,7 +2281,7 @@ buf-compare@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/buf-compare/-/buf-compare-1.0.1.tgz#fef28da8b8113a0a0db4430b0b6467b69730b34a"
 
-buffer-from@^1.0.0, buffer-from@^1.1.0:
+buffer-from@1.x, buffer-from@^1.0.0, buffer-from@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
 
@@ -4766,7 +4769,7 @@ fast-glob@^2.0.2:
     merge2 "^1.2.1"
     micromatch "^3.1.8"
 
-fast-json-stable-stringify@^2.0.0:
+fast-json-stable-stringify@2.x, fast-json-stable-stringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
 
@@ -7588,6 +7591,12 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
+json5@2.x:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/json5/-/json5-2.0.1.tgz#3d6d0d1066039eb50984e66a7840e4f4b7a2c660"
+  dependencies:
+    minimist "^1.2.0"
+
 json5@^0.5.0, json5@^0.5.1:
   version "0.5.1"
   resolved "https://registry.npmjs.org/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
@@ -8007,10 +8016,6 @@ lodash.snakecase@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.snakecase/-/lodash.snakecase-4.1.1.tgz#39d714a35357147837aefd64b5dcbb16becd8f8d"
 
-lodash.some@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.some/-/lodash.some-4.6.0.tgz#1bb9f314ef6b8baded13b549169b2a945eb68e4d"
-
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.npmjs.org/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -8145,7 +8150,7 @@ make-dir@^1.1.0:
   dependencies:
     pify "^3.0.0"
 
-make-error@^1.1.1:
+make-error@1.x, make-error@^1.1.1:
   version "1.3.5"
   resolved "https://registry.npmjs.org/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
 
@@ -8506,7 +8511,7 @@ mkdirp@0.5.0:
   dependencies:
     minimist "0.0.8"
 
-"mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
+mkdirp@0.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -10111,6 +10116,13 @@ read-pkg-up@^3.0.0:
     find-up "^2.0.0"
     read-pkg "^3.0.0"
 
+read-pkg-up@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/read-pkg-up/-/read-pkg-up-4.0.0.tgz#1b221c6088ba7799601c808f91161c66e58f8978"
+  dependencies:
+    find-up "^3.0.0"
+    read-pkg "^3.0.0"
+
 read-pkg@^1.0.0, read-pkg@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-1.1.0.tgz#f5ffaa5ecd29cb31c0474bca7d756b6bb29e3f28"
@@ -10718,6 +10730,12 @@ resolve@^1.1.7, resolve@^1.3.2:
   dependencies:
     path-parse "^1.0.5"
 
+resolve@^1.7.1, resolve@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.npmjs.org/resolve/-/resolve-1.8.1.tgz#82f1ec19a423ac1fbd080b0bab06ba36e84a7a26"
+  dependencies:
+    path-parse "^1.0.5"
+
 responselike@1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/responselike/-/responselike-1.0.2.tgz#918720ef3b631c5642be068f15ade5a46f4ba1e7"
@@ -10885,6 +10903,10 @@ semver-diff@^2.0.0:
 "semver@2 || 3 || 4 || 5", semver@^5.0.1, semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
+
+semver@5.x:
+  version "5.5.1"
+  resolved "https://registry.npmjs.org/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
 
 semver@^5.5.0:
   version "5.5.0"
@@ -11935,6 +11957,32 @@ ts-jest@^23.1.4:
     json5 "^0.5.0"
     lodash "^4.17.10"
 
+ts-jest@^23.10.2:
+  version "23.10.2"
+  resolved "https://registry.npmjs.org/ts-jest/-/ts-jest-23.10.2.tgz#10212ec4aba3cb6c75578b09460589ee80cf527a"
+  dependencies:
+    bs-logger "0.x"
+    buffer-from "1.x"
+    fast-json-stable-stringify "2.x"
+    json5 "2.x"
+    make-error "1.x"
+    mkdirp "0.x"
+    semver "5.x"
+    yargs-parser "10.x"
+
+ts-node@^6.0.2:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/ts-node/-/ts-node-6.2.0.tgz#65a0ae2acce319ea4fd7ac8d7c9f1f90c5da6baf"
+  dependencies:
+    arrify "^1.0.0"
+    buffer-from "^1.1.0"
+    diff "^3.1.0"
+    make-error "^1.1.1"
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map-support "^0.5.6"
+    yn "^2.0.0"
+
 ts-node@^7.0.1:
   version "7.0.1"
   resolved "https://registry.npmjs.org/ts-node/-/ts-node-7.0.1.tgz#9562dc2d1e6d248d24bc55f773e3f614337d9baf"
@@ -11947,6 +11995,16 @@ ts-node@^7.0.1:
     mkdirp "^0.5.1"
     source-map-support "^0.5.6"
     yn "^2.0.0"
+
+ts-transform-json-schema@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/ts-transform-json-schema/-/ts-transform-json-schema-1.1.1.tgz#061e59299ac916ee9926a74c7c72670f40a60828"
+  dependencies:
+    "@types/read-pkg-up" "^3.0.1"
+    "@types/resolve" "0.0.8"
+    read-pkg-up "^4.0.0"
+    resolve "^1.8.1"
+    typescript-json-schema "^0.32.0"
 
 tty-browserify@0.0.0:
   version "0.0.0"
@@ -12844,15 +12902,15 @@ yallist@^3.0.0, yallist@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
-yargs-parser@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.0.0.tgz#c737c93de2567657750cb1f2c00be639fd19c994"
+yargs-parser@10.x, yargs-parser@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.1.0.tgz#7202265b89f7e9e9f2e5765e0fe735a905edbaa8"
   dependencies:
     camelcase "^4.1.0"
 
-yargs-parser@^10.1.0:
-  version "10.1.0"
-  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.1.0.tgz#7202265b89f7e9e9f2e5765e0fe735a905edbaa8"
+yargs-parser@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-10.0.0.tgz#c737c93de2567657750cb1f2c00be639fd19c994"
   dependencies:
     camelcase "^4.1.0"
 
