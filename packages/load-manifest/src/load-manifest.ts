@@ -55,7 +55,7 @@ export async function loadManifest({
     const manifest = normalize(data, { isPatternPkg, withDefaults: false });
 
     const validate = isPatternPkg ? ValidateManifest.validatePackage : ValidateManifest.validatePatternJson;
-    const [validationError, valid] = validate({ target: data, name: Path.basename(file) });
+    const [validationError, valid] = validate({ target: data, name: fullPath });
 
     if (!valid) {
       throw validationError;
@@ -69,7 +69,7 @@ export async function loadManifest({
   }
 
   const validate = isPatternPkg ? ValidateManifest.validatePackage : ValidateManifest.validatePatternJson;
-  const [validationError, valid] = validate({ target: data, name: Path.basename(file) });
+  const [validationError, valid] = validate({ target: data, name: fullPath });
 
   if (!valid) {
     throw validationError;
