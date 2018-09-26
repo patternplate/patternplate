@@ -11,7 +11,7 @@
     "strip": "cross-env NODE_ENV=production babel lib/schema.js -o lib/schema.js --plugins transform-node-env-inline --plugins minify-dead-code-elimination",
     "test": "jest",
     "test:integration": "jest --config jest.integration.js",
-    "prepublishOnly": "yarn build && yarn test:integration"
+    "prepublishOnly": "yarn test:integration"
   },
   "typings": "lib/index.d.ts",
   "files": [
