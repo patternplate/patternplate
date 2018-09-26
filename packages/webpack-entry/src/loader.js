@@ -27,7 +27,7 @@ module.exports = async function webpackEntry() {
     const full = path.join(options.cwd, file);
     const rawRel = toUnix(path.relative(process.cwd(), full));
     const exported = await getExported(full, { fs: this.fs });
-    const rel = rawRel.charAt(0) === '.' ? rawRel : `./${rawRel}`;
+    const rel = toRel(rawRel);
 
     const mod = [`module.exports['${file}'] = require('${rel}');`]
 
@@ -36,11 +36,11 @@ module.exports = async function webpackEntry() {
     }
 
     if (exported.indexOf("css") === -1 && await exists(ext('.css', full))) {
-      mod.push(`module.exports['${file}'].css = function() { return require('${ext('.css', rel)}'); };`);
+      mod.push(`module.exports['${file}'].css = function() { return require('${toRel(ext('.css', rel))}'); };`);
     }
 
     if (exported.indexOf("html") === -1 && await exists(ext('.html', full))) {
-      mod.push(`module.exports['${file}'].html = function() { return require('${ext('.html', rel)}'); };`);
+      mod.push(`module.exports['${file}'].html = function() { return require('${toRel(ext('.html', rel))}'); };`);
     }
 
     return mod.join('\n');
@@ -61,6 +61,10 @@ function getFiles(options) {
 
 function toUnix(input) {
   return input.split(path.sep).join('/');
+}
+
+function toRel(rawRel) {
+  return rawRel.charAt(0) === '.' ? rawRel : `./${rawRel}`;
 }
 
 function ext(e, ...input) {
