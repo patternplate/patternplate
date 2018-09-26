@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-config",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "description": "Load patternplate config",
   "scripts": {
     "start": "yarn build -w",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@patternplate/render-default": "^2.5.18",
-    "@patternplate/validate-config": "^3.0.1",
+    "@patternplate/validate-config": "^3.0.3",
     "@types/cosmiconfig": "^5.0.3",
     "@types/resolve-from": "^0.0.18",
     "@types/uuid": "^3.4.4",

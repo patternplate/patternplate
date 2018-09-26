@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-doc",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Load a markdown index docs",
   "scripts": {
     "start": "yarn build -w",

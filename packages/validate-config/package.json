@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/validate-config",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "description": "Validate schema for patternplate.config.js",
   "scripts": {
     "watch": "concurrently \"yarn tsc -w\" \"yarn watch:schema\"",
