@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const webpackEntry = require("@patternplate/webpack-entry").default;
+const webpackEntry = require("@patternplate/webpack-entry");
 const MemoryFS = require("memory-fs");
 const resolveFrom = require("resolve-from");
 const webpack = require("webpack");

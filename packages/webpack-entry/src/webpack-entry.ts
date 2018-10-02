@@ -13,6 +13,6 @@ function webpackEntrySync(entry, opts: { cwd: string } = { cwd: process.cwd() })
   })}!`;
 }
 
+webpackEntry.sync = webpackEntrySync;
 
-export default webpackEntry;
-export const sync = webpackEntrySync;
+export = webpackEntry;
