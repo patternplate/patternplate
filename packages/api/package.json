@@ -6,7 +6,6 @@
     "start": "yarn build -w",
     "build": "tsc",
     "clean": "rimraf lib",
-    "test": "jest",
     "watch": "yarn build -w",
     "deps": "dependency-check . lib/compiler-worker.js --missing && dependency-check . lib/compiler-worker.js --extra --no-dev"
   },
