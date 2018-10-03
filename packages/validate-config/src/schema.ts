@@ -1,4 +1,4 @@
 import * as Schema from "ts-transform-json-schema";
-import { PatternplateConfig } from "./types";
+import * as Types from "@patternplate/types";
 
-export const schema = Schema.fromType<PatternplateConfig>();
+export const schema = Schema.fromType<Types.PatternplateConfig>();

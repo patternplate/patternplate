@@ -32,6 +32,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@patternplate/types": "3.0.3",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.9.4",
     "babel-core": "^6.26.3",
