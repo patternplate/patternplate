@@ -1,0 +1,22 @@
+{
+  "name": "@patternplate/types",
+  "version": "3.0.3",
+  "description": "Shared typings for patternplate packages",
+  "files": [ "index.d.ts" ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternplate/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternplate/patternplate/issues"
+  },
+  "homepage": "https://github.com/patternplate/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

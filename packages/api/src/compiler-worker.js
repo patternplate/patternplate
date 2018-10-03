@@ -1,7 +1,7 @@
 const ARSON = require("arson");
 const yargsParser = require("yargs-parser");
 const flags = yargsParser(process.argv.slice(2));
-const createCompiler = require("@patternplate/compiler");
+const createCompiler = require("@patternplate/compiler").default;
 const debug = require("util").debuglog("PATTERNPLATE");
 const { validate } = require("@patternplate/validate-config");
 

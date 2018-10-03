@@ -4,7 +4,9 @@
   "description": "Create a compiler to create browser-compatible code from patternplate entries",
   "scripts": {
     "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "test": "jest",
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/cover-client -i @patternplate/demo-client -i @patternplate/probe-client -i css-loader -i html-loader -i to-string-loader"
   },
@@ -35,10 +37,16 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0"
+    "fixturez": "^1.1.0",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.3",
+    "typescript": "^3.1"
   },
   "dependencies": {
     "@patternplate/cover-client": "^2.5.18",
@@ -46,6 +54,10 @@
     "@patternplate/load-config": "^3.0.3",
     "@patternplate/probe-client": "^2.5.18",
     "@patternplate/webpack-entry": "^3.0.3",
+    "@types/memory-fs": "^0.3.2",
+    "@types/read-pkg": "^3.0.0",
+    "@types/resolve-from": "^0.0.18",
+    "@types/webpack": "^4.4.13",
     "css-loader": "^0.28.10",
     "html-loader": "^0.5.5",
     "loader-utils": "^1.1.0",

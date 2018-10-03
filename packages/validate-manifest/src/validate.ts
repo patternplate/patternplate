@@ -1,10 +1,10 @@
 import * as Schema from "./schema";
-import { ValidationInput } from "./types";
+import * as Types from "@patternplate/types";
 
 const validateOptions = require("schema-utils");
 
 export function validate(
-  { target, name }: ValidationInput,
+  { target, name }: Types.ValidationInput,
   schema: unknown = Schema.schema
 ): [Error, false] | [null, true] {
   try {
@@ -16,10 +16,10 @@ export function validate(
   return [null, true];
 }
 
-export function validatePatternJson(input: ValidationInput): [Error, false] | [null, true] {
+export function validatePatternJson(input: Types.ValidationInput): [Error, false] | [null, true] {
   return validate(input, Schema.pattern);
 }
 
-export function validatePackage(input: ValidationInput): [Error, false] | [null, true] {
+export function validatePackage(input: Types.ValidationInput): [Error, false] | [null, true] {
   return validate(input, Schema.pkg);
 }
