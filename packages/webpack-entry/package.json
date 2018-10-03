@@ -3,14 +3,14 @@
   "version": "3.0.3",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
-    "clean": "rimraf lib",
-    "watch": "yarn build -w",
-    "deps": "dependency-check . lib/loader.js --missing && dependency-check . lib/loader.js --extra --no-dev -i raw-loader"
+    "watch": "tsc -w",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
+    "build": "ttsc",
+    "test": "jest"
   },
   "files": [
     "index.js",
+    "index.d.ts",
     "lib"
   ],
   "xo": false,
@@ -31,6 +31,13 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/glob-parent": "^3.1.0",
+    "@types/globby": "^8.0.0",
+    "@types/loader-utils": "^1.1.3",
+    "@types/path-exists": "^3.0.0",
+    "@types/require-from-string": "^1.2.0",
+    "@types/resolve-from": "^0.0.18",
+    "@types/webpack": "^4.4.13",
     "glob-parent": "^3.1.0",
     "globby": "^6.1.0",
     "loader-utils": "^1.1.0",
@@ -39,15 +46,17 @@
     "require-from-string": "^2.0.1",
     "resolve-from": "^4.0.0"
   },
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.9.4",
+    "@types/uuid": "^3.4.4",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0"
+    "jest": "^23.5.0",
+    "memfs": "^2.10.1",
+    "ts-jest": "^23.10.2",
+    "typescript": "^3.1",
+    "uuid": "^3.3.2"
   }
 }
