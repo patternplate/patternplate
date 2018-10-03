@@ -4,8 +4,9 @@
   "description": "Patternplate JSON API",
   "scripts": {
     "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "build": "tsc",
     "clean": "rimraf lib",
+    "test": "jest",
     "watch": "yarn build -w",
     "deps": "dependency-check . lib/compiler-worker.js --missing && dependency-check . lib/compiler-worker.js --extra --no-dev"
   },
@@ -40,10 +41,16 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
-    "rimraf": "^2.6.2"
+    "fixturez": "^1.1.0",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.3",
+    "typescript": "^3.1"
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
@@ -52,6 +59,15 @@
     "@patternplate/load-docs": "^2.5.18",
     "@patternplate/load-meta": "^3.0.4",
     "@patternplate/validate-config": "^3.0.3",
+    "@types/chokidar": "^1.7.5",
+    "@types/dargs": "^5.1.0",
+    "@types/express": "^4.16.0",
+    "@types/glob-parent": "^3.1.0",
+    "@types/memory-fs": "^0.3.2",
+    "@types/micromatch": "^3.1.0",
+    "@types/string-hash": "^1.1.1",
+    "@types/ws": "^6.0.1",
+    "@types/zen-observable": "^0.8.0",
     "aggregate-error": "^1.0.0",
     "arson": "^0.2.6",
     "chokidar": "^1.7.0",

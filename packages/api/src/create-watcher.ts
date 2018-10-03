@@ -1,34 +1,43 @@
-const Path = require("path");
-const { loadMeta } = require("@patternplate/load-meta");
-const Observable = require("zen-observable");
-const chokidar = require("chokidar");
-const globParent = require("glob-parent");
-const micromatch = require("micromatch");
+import * as Path from "path";
+import * as Observable from "zen-observable";
+import * as LoadMeta from "@patternplate/load-meta";
+import * as Util from "util";
+import * as chokidar from "chokidar";
+import * as micromatch from "micromatch";
+import * as T from "./types";
+import * as Types from "@patternplate/types";
+
+import globParent = require("glob-parent");
 const commonDir = require("common-dir");
 
-const debug = require("util").debuglog("PATTERNPLATE");
+export interface WatcherOptions {
+  config: Types.PatternplateConfig;
+  cwd: string;
+}
 
-module.exports.createWatcher = async function createWatcher(options) {
+export const createWatcher = async function createWatcher(options: WatcherOptions): Promise<T.ObservableWatcher> {
+  const debug = Util.debuglog("PATTERNPLATE");
+
   let watching = false;
   let stopped = false;
-  let subscribers = [];
-  let watcher;
+  let subscribers: ZenObservable.SubscriptionObserver<T.QueueMessage>[] = [];
+  let watcher: chokidar.FSWatcher;
 
-  const {config = {}} = options;
+  const {config = { entry: [], docs: [] }} = options;
   const {entry = [], docs = []} = config;
   const {cwd} = options;
   const configPath = Path.join(cwd, "patternplate.config.js");
 
-  const next = message => subscribers.forEach(subs => subs.next(message));
+  const next = (message: T.QueueMessage) => subscribers.forEach(subs => subs.next(message));
 
-  const obs = new Observable(subs => {
+  const rawObservable = new Observable(subs => {
     if (!watching) {
       watching = true;
 
       (async () => {
         // TODO: only **list** relevant manifest paths
         // instead of reading them
-        const meta = await loadMeta({
+        const meta = await LoadMeta.loadMeta({
           entry,
           cwd
         });
@@ -37,15 +46,17 @@ module.exports.createWatcher = async function createWatcher(options) {
           meta.errors.forEach(error => next({ type: "error", payload: error }));
         }
 
+        const paths = [
+          configPath,
+          meta.patterns.length > 0
+            ? commonDir(meta.patterns.map(m => Path.join(cwd, m.path))) as string
+            : undefined
+        ].filter((i): i is string => typeof i === 'string');
+
         const parents = getParents(
           {
             globs: [...entry, ...docs],
-            paths: [
-              configPath,
-              meta.patterns.length > 0
-                ? commonDir(meta.patterns.map(m => Path.join(cwd, m.path)))
-                : null
-            ].filter(Boolean)
+            paths
           },
           { cwd }
         );
@@ -72,14 +83,14 @@ module.exports.createWatcher = async function createWatcher(options) {
           if (p === configPath) {
             next({
               type: "change",
-              payload: { file: p, contentType: "config" }
+              payload: { file: p, contentType: T.ContentType.Config }
             });
           }
 
           if (Path.extname(rel) === ".md") {
             next({
               type: "change",
-              payload: { file: p, contentType: "pattern" }
+              payload: { file: p, contentType: T.ContentType.Pattern }
             });
           }
 
@@ -89,12 +100,12 @@ module.exports.createWatcher = async function createWatcher(options) {
           ) {
             next({
               type: "change",
-              payload: { file: p, contentType: "pattern" }
+              payload: { file: p, contentType: T.ContentType.Pattern }
             });
           }
 
           if (micromatch.some(rel, docs, { matchBase: true })) {
-            next({ type: "change", payload: { file: p, contentType: "doc" } });
+            next({ type: "change", payload: { file: p, contentType: T.ContentType.Doc } });
           }
         });
       })();
@@ -107,6 +118,8 @@ module.exports.createWatcher = async function createWatcher(options) {
     };
   });
 
+  const obs = rawObservable as T.ObservableWatcher;
+
   obs.stop = () => {
     stopped = true;
     if (watcher) {
@@ -117,7 +130,7 @@ module.exports.createWatcher = async function createWatcher(options) {
   return obs;
 }
 
-function getParents({ globs = [], paths = [] }, { cwd }) {
+function getParents({ globs = [], paths = [] }: { globs: string[], paths: string[] }, { cwd }: { cwd: string }): string[] {
   return [
     ...paths,
     ...globs

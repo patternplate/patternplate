@@ -1,6 +1,6 @@
 const path = require("path");
 
-const api = require("@patternplate/api");
+const { api } = require("@patternplate/api");
 const { loadDocsTree } = require("@patternplate/load-docs");
 const { loadMeta } = require("@patternplate/load-meta");
 const express = require("express");
@@ -28,7 +28,7 @@ async function client(options) {
 
   const app = express()
     .use("/api/static", cors(), serve(apiStatic))
-    .use("/api/", apiRoute)
+    .use("/api/", apiRoute.middleware)
     .get("/pattern/*", mainRoute)
     .get("/doc/*", mainRoute)
     .get("/", mainRoute);
