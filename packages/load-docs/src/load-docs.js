@@ -1,11 +1,12 @@
 const path = require("path");
-const frontmatter = require("front-matter");
 const globby = require("globby");
 const { merge } = require("lodash");
+const shortid = require("shortid");
+
+const frontmatter = require("front-matter");
 const remark = require("remark");
 const find = require("unist-util-find");
 const sander = require("@marionebl/sander");
-const shortid = require("shortid");
 
 const DEFAULT_MANIFEST = {
   version: "1.0.0",

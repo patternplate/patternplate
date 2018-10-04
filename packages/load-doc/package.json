@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "@types/globby": "^8.0.0",
+    "@types/lodash": "^4.14.116",
+    "@types/shortid": "^0.0.29",
     "globby": "^6.1.0"
   },
   "devDependencies": {
