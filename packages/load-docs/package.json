@@ -33,7 +33,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@patternplate/load-manifest": "3.0.3",
+    "@patternplate/load-manifest": "3.0.4",
     "@patternplate/types": "3.0.3",
     "front-matter": "^2.2.0",
     "globby": "^6.1.0",
