@@ -657,13 +657,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.5.18"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-
 "@patternplate/validate-manifest@3.0.3":
   version "3.0.3"
   resolved "https://registry.npmjs.org/@patternplate/validate-manifest/-/validate-manifest-3.0.3.tgz#131c509e52991d9ec67c0dc3dbcf4a61b503fc6d"
@@ -12066,7 +12059,7 @@ typescript-json-schema@^0.32.0:
     typescript "^3.0.1"
     yargs "^12.0.1"
 
-typescript@^3.0.1, typescript@^3.1:
+typescript@^3.0.1, typescript@^3.1, typescript@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/typescript/-/typescript-3.1.1.tgz#3362ba9dd1e482ebb2355b02dfe8bcd19a2c7c96"
 

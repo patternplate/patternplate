@@ -114,3 +114,9 @@ export interface ValidationInput<T = unknown> {
   target: T;
   name: string;
 }
+
+export enum ContentType {
+  Doc = "doc",
+  Config = "config",
+  Pattern = "pattern"
+}
