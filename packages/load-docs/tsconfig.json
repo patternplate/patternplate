@@ -6,9 +6,7 @@
     "target": "es2015",
     "declaration": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "allowSyntheticDefaultImports": true,
-    "lib": ["es2015"]
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts"

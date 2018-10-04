@@ -2,7 +2,14 @@
   "name": "@patternplate/types",
   "version": "3.0.3",
   "description": "Shared typings for patternplate packages",
-  "files": [ "index.d.ts" ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "start": "yarn build -w",
+    "build": "tsc",
+    "clean": "rimraf index.js",
+    "watch": "yarn build -w"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternplate/patternplate.git"
@@ -18,5 +25,8 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "typescript": "^3.1.1"
   }
 }
