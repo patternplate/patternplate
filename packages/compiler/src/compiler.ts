@@ -13,15 +13,10 @@ const COVER = require.resolve("@patternplate/cover-client");
 const DEMO = require.resolve("@patternplate/demo-client");
 const PROBE = require.resolve("@patternplate/probe-client");
 
-export enum CompilerTarget {
-  Node = "node",
-  Web = "web"
-}
-
 export interface CompilerOptions {
   cwd: string;
   config: Types.PatternplateConfig;
-  target: CompilerTarget;
+  target: Types.CompileTarget;
 }
 
 export async function compiler(options: CompilerOptions): Promise<webpack.Compiler> {

@@ -23,8 +23,8 @@ export interface ApiOptions {
 
 export async function api({ server, config, cwd }: ApiOptions): Promise<ApiApplication> {
   const [clientQueue, serverQueue] = await Promise.all([
-    createCompiler({ config, cwd, target: T.CompileTarget.Web }),
-    createCompiler({ config, cwd, target: T.CompileTarget.Node })
+    createCompiler({ config, cwd, target: Types.CompileTarget.Web }),
+    createCompiler({ config, cwd, target: Types.CompileTarget.Node })
   ]);
 
   const queues = {

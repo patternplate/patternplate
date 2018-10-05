@@ -11,7 +11,7 @@ const MemoryFilesystem = require("memory-fs");
 export interface CreateCompilerOptions {
   config: Types.PatternplateConfig;
   cwd: string;
-  target: T.CompileTarget;
+  target: Types.CompileTarget;
 }
 
 export const createCompiler = async function createCompiler({

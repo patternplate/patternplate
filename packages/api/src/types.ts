@@ -29,20 +29,9 @@ export type QueueMessage =
   | QueueWatchMessage
   | QueueChangeMessage;
 
-export enum CompileTarget {
-  Node = "node",
-  Web = "web"
-}
-
-export enum ContentType {
-  Config = "config",
-  Pattern = "pattern",
-  Doc = "doc"
-}
-
 export interface QueueStartMessage {
   type: "start";
-  target: CompileTarget;
+  target: Types.CompileTarget;
   payload: {};
 }
 
@@ -52,18 +41,18 @@ export interface QueueReadyMessage {
 
 export interface QueueShutDownMessage {
   type: "shutdown";
-  target: CompileTarget;
+  target: Types.CompileTarget;
 }
 
 export interface QueueDoneMessage {
   type: "done";
-  target: CompileTarget;
+  target: Types.CompileTarget;
   payload: { fs: typeof Fs };
 }
 
 export interface QueueErrorMessage {
   type: "error";
-  target?: CompileTarget;
+  target?: Types.CompileTarget;
   payload: Error | Error[];
 }
 
@@ -78,24 +67,24 @@ export interface QueueExceptionMessage {
 
 export interface QueueHeartbeatMessage {
   type: "heartbeat";
-  target: CompileTarget;
+  target: Types.CompileTarget;
 }
 
 export interface QueueStopMessage {
   type: "stop";
-  target: CompileTarget;
+  target: Types.CompileTarget;
 }
 
 export interface QueueWatchMessage {
   type: "watch";
-  target: CompileTarget;
+  target: Types.CompileTarget;
 }
 
 export interface QueueChangeMessage {
   type: "change";
   payload: {
     file: string;
-    contentType: ContentType;
+    contentType: Types.ContentType;
   };
 }
 

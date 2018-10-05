@@ -78,8 +78,8 @@ export const createSubscription = function createSubscription(context: Subscript
           queues.server.stop();
 
           const [clientQueue, serverQueue] = await Promise.all([
-            createCompiler({ config, cwd, target: T.CompileTarget.Web }),
-            createCompiler({ config, cwd, target: T.CompileTarget.Node })
+            createCompiler({ config, cwd, target: Types.CompileTarget.Web }),
+            createCompiler({ config, cwd, target: Types.CompileTarget.Node })
           ]);
 
           queues.client = clientQueue;
