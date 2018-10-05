@@ -657,13 +657,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "2.5.18"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-
 "@patternplate/validate-manifest@3.0.3":
   version "3.0.3"
   resolved "https://registry.npmjs.org/@patternplate/validate-manifest/-/validate-manifest-3.0.3.tgz#131c509e52991d9ec67c0dc3dbcf4a61b503fc6d"
@@ -8663,6 +8656,10 @@ neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
 
+nested-error-stacks@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
+
 nice-try@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
@@ -12019,6 +12016,26 @@ ts-transform-json-schema@^1.1.1:
     resolve "^1.8.1"
     typescript-json-schema "^0.32.0"
 
+ts-transform-json-schema@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/ts-transform-json-schema/-/ts-transform-json-schema-1.1.2.tgz#5457c6e36d87270b96ee33b3ee0bfbd4f27c3e96"
+  dependencies:
+    "@types/read-pkg-up" "^3.0.1"
+    "@types/resolve" "0.0.8"
+    read-pkg-up "^4.0.0"
+    resolve "^1.8.1"
+    typescript-json-schema "^0.32.0"
+
+tslib@^1.8.1:
+  version "1.9.3"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
+
+tsutils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/tsutils/-/tsutils-3.0.0.tgz#0c5070a17a0503e056da038c48b5a1870a50a9ad"
+  dependencies:
+    tslib "^1.8.1"
+
 tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
@@ -12056,6 +12073,10 @@ type-is@~1.6.15:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typescript-is@^0.7.8:
+  version "0.7.8"
+  resolved "https://registry.npmjs.org/typescript-is/-/typescript-is-0.7.8.tgz#bc4962515fa91debf6187e81137020f95d000484"
 
 typescript-json-schema@^0.32.0:
   version "0.32.0"

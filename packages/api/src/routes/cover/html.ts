@@ -1,22 +1,14 @@
 import * as Url from "url";
+import * as T from "../../types";
 
 const unindent = require("unindent");
-
-export interface HtmlContent {
-  head?: string;
-  css?: string;
-  before?: string;
-  html?: string;
-  after?: string;
-  js?: string;
-}
 
 export interface HtmlOptions {
   base: string;
   scripts?: boolean;
 }
 
-export function html(content: HtmlContent, options: HtmlOptions): string {
+export function html(content: T.HtmlContent, options: HtmlOptions): string {
   const prefix = Url.resolve(options.base, "api");
 
   return unindent(`

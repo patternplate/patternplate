@@ -1,20 +1,13 @@
-const unindent = require("unindent");
+import * as T from "../../types";
 
-export interface HtmlContent {
-  head?: string;
-  css?: string;
-  before?: string;
-  html?: string;
-  after?: string;
-  js?: string;
-}
+const unindent = require("unindent");
 
 export interface HtmlOptions {
   base: string;
   scripts?: boolean;
 }
 
-export function html(content: HtmlContent, payload: unknown): string {
+export function html(content: T.HtmlContent, payload: unknown): string {
   const data = encodeURIComponent(JSON.stringify(payload));
 
   return unindent(`
