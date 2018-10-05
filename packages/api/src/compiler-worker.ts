@@ -159,7 +159,9 @@ function validateFlags(flags: { [key: string]: unknown }): Validation {
 
 function send(m: T.QueueMessage): void {
   if (typeof process.send === "function" && process.connected) {
-    process.send(ARSON.stringify(m));
+    if (MessageValidation.isMessage(m)) {
+      process.send(ARSON.stringify(m));
+    }
   }
 };
 
