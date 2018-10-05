@@ -32,7 +32,6 @@ export type QueueMessage =
 export interface QueueStartMessage {
   type: "start";
   target: Types.CompileTarget;
-  payload: {};
 }
 
 export interface QueueReadyMessage {
@@ -47,7 +46,7 @@ export interface QueueShutDownMessage {
 export interface QueueDoneMessage {
   type: "done";
   target: Types.CompileTarget;
-  payload: { fs: typeof Fs };
+  payload: { fs: any } // typeof fs not compatible with JSONSchema Generator
 }
 
 export interface QueueErrorMessage {

@@ -5,8 +5,11 @@ import * as T from "./types";
 import * as Observable from "zen-observable";
 import * as Util from "util";
 import * as dargs from "dargs";
+import * as MessageValidation from "./is-message";
 
 const MemoryFilesystem = require("memory-fs");
+const ARSON = require("arson");
+const debug = Util.debuglog("PATTERNPLATE");
 
 export interface CreateCompilerOptions {
   config: Types.PatternplateConfig;
@@ -19,9 +22,6 @@ export const createCompiler = async function createCompiler({
   cwd,
   target
 }: CreateCompilerOptions ) {
-  const ARSON = require("arson");
-  const debug = Util.debuglog("PATTERNPLATE");
-
   let worker: ChildProcess.ChildProcess;
 
   const send = (payload: T.QueueMessage) => {
@@ -78,28 +78,25 @@ export const createCompiler = async function createCompiler({
 
   setInterval(() => send({ type: "heartbeat", target }), 500);
 
-  const onMessage = (envelope: string) => {
-    const { type, target, payload } = ARSON.parse(envelope);
-    debug(JSON.stringify({ type, target }));
-
-    switch (type) {
+  const onMessage = whenMessage((message: T.QueueMessage) => {
+    switch (message.type) {
       case "ready": {
-        return send({ type: "start", target, payload: {} });
+        return send({ type: "start", target });
       }
       case "done": {
-        const fs = new MemoryFilesystem(payload);
-        queue.unshift({ type, target, payload: { fs } });
+        const fs = new MemoryFilesystem(message.payload.fs);
+        queue.unshift({ type: "done", target, payload: { fs } });
         return next(queue);
       }
       case "start": {
-        queue.unshift({ type, target, payload });
+        queue.unshift({ type: "start", target });
         return next(queue);
       }
       case "error": {
-        if (Array.isArray(payload)) {
-          return payload.forEach(p => console.error(p.message));
+        if (Array.isArray(message.payload)) {
+          return message.payload.forEach(p => console.error(p.message));
         }
-        return console.error(payload.message);
+        return console.error(message.payload.message);
       }
       case "shutdown": {
         send({ type: "stop", target });
@@ -113,7 +110,7 @@ export const createCompiler = async function createCompiler({
         }
       }
     }
-  };
+  });
 
   worker.on("message", onMessage);
 
@@ -138,4 +135,14 @@ export const createCompiler = async function createCompiler({
   };
 
   return observable;
+};
+
+function whenMessage(handler: (message: T.QueueMessage) => void): (envelope: unknown) => void {
+  return (envelope: unknown) => {
+    const message = ARSON.parse(envelope);
+
+    if (MessageValidation.isMessage(message)) {
+      handler(message);
+    }
+  };
 };
