@@ -19,7 +19,8 @@
           "required": true
         }
       }
-    ]
+    ],
+
   },
   "include": [
     "src/**/*.ts"

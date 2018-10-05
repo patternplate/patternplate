@@ -80,7 +80,7 @@
     "require-from-string": "^2.0.1",
     "resolve-pkg": "^1.0.0",
     "string-hash": "^1.1.3",
-    "ts-transform-json-schema": "^1.1.1",
+    "ts-transform-json-schema": "^1.1.2",
     "unindent": "^2.0.0",
     "ws": "^4.0.0",
     "yargs-parser": "^9.0.2",

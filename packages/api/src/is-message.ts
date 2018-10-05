@@ -10,7 +10,7 @@ export function isMessage(data: unknown): data is T.QueueMessage {
   } catch (err) {
     const type = typeof data === "object" && data !== null ? (data as any).type || "unknown" : "unknown";
     console.error(`Message of type ${type} is invalid: ${err.message}`);
-    console.log(`Invalid Message: ${JSON.stringify(data)}`);
+    // console.log(`Invalid Message: ${JSON.stringify(data)}`);
     return false;
   }
 }

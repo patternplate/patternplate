@@ -92,3 +92,21 @@ export interface RouteOptions {
   config: Types.PatternplateConfig;
   queue: MsgQueue;
 }
+
+export interface Renderer {
+  head: () => string;
+  default: () => void;
+  css?: () => string;
+  html?: () => string;
+  js?: () => string;
+  render?(input: Renderer, ctx: { dirname: string }): HtmlContent;
+}
+
+export interface HtmlContent {
+  head?: string;
+  css?: string;
+  before?: string;
+  html?: string;
+  after?: string;
+  js?: string;
+}

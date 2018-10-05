@@ -1,10 +1,13 @@
 import * as Path from "path";
 import * as express from "express";
+import * as resolveFrom from "resolve-from";
+
 import { fromFs } from "../../from-fs";
-import { html, HtmlContent } from "./html";
+import { html } from "./html";
 import { wait } from "../../wait";
 import * as T from "../../types";
-import * as resolveFrom from "resolve-from";
+import { isContent } from "../../is-content";
+// import { isRenderer } from "../../is-renderer";
 
 const AggregateError = require("aggregate-error");
 
@@ -26,31 +29,26 @@ export const cover = async (
       const getModule = fromFs(fs);
 
       const coverFile = resolveFrom(cwd, options.config.render);
-      const rawCover = getModule(COVER_PATH, coverFile);
+      const cover = getModule(COVER_PATH, coverFile) as T.Renderer;
 
-      if (typeof rawCover !== "object") {
-        throw new Error(
-          `Expected ${config.cover} to export an object, received ${typeof rawCover}`
-        );
-      }
-
-      const cover = rawCover as { [key: string]: unknown };
+      // TODO: Enable when ts-transform-json-schema supports functions
+      // if (!isRenderer(cover)) {
+      //   return;
+      // }
 
       const renderFile = resolveFrom(cwd, options.config.render);
-
-      const render =
-        typeof cover.render === "function"
-          ? cover.render
-          : // TODO: Schema checks for renderer
-            getModule(RENDER_PATH, renderFile) as () => HtmlContent;
+      const render = cover.render || (getModule(RENDER_PATH, renderFile) as T.Renderer["render"]);
 
       const content = await Promise.resolve(
-        render(cover, {
+        render!(cover, {
           dirname: Path.dirname(config.cover)
         })
       );
 
-      // TODO: Schema checks for produced content
+      if (!isContent(content)) {
+        return;
+      }
+
       res.send(
         html(content, {
           base: req.params.base || "/",

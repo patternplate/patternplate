@@ -5,7 +5,8 @@ import * as resolveFrom from "resolve-from";
 import * as T from "../../types";
 import { wait } from "../../wait";
 import { fromFs } from "../../from-fs";
-import { html, HtmlContent } from "./html";
+import { html } from "./html";
+import { isContent } from "../../is-content";
 
 const AggregateError = require("aggregate-error");
 
@@ -37,25 +38,26 @@ export const demo = async function demo(options: T.RouteOptions): Promise<expres
       // TODO: verify bundle results
       const getModule = fromFs(fs);
       const bundle = getModule(BUNDLE_PATH, found.artifact) as { [id: string]: unknown };
-      const rawCompnent = getComponent(bundle, found);
+      const component = getComponent(bundle, found) as T.Renderer;
 
-      if (typeof rawCompnent !== "object") {
-        throw new Error(
-          `Expected ${found.artifact} to export an object, received ${typeof rawCompnent}`
-        );
-      }
-
-      const component = rawCompnent as { [key: string]: unknown };
+      // TODO: Enable when ts-transform-json-schema supports functions
+      // if (!isRenderer(rawCompnent)) {
+      //   return;
+      // }
 
       const renderFile = resolveFrom(cwd, options.config.render);
 
       const render = typeof component.render === "function"
         ? component.render
-        : getModule(RENDER_PATH, renderFile) as () => HtmlContent;
+        : getModule(RENDER_PATH, renderFile) as () => T.HtmlContent;
 
       const content = await Promise.resolve(
         render(component, { dirname: Path.dirname(found.path) })
       );
+
+      if (!isContent(content)) {
+        return;
+      }
 
       res.send(html(content, found));
     } catch (err) {
