@@ -4,8 +4,10 @@ import * as Util from "util";
 import * as T from "./types";
 import * as Types from "@patternplate/types";
 import * as webpack from "webpack";
+import * as MessageValidation from "./is-message";
 
 const ARSON = require("arson");
+const debug = Util.debuglog("PATTERNPLATE");
 
 startCompilerWorker().catch(err => {
   setTimeout(() => {
@@ -26,14 +28,6 @@ async function startCompilerWorker() {
 
   const flags = validation.result;
   const {target} = flags;
-
-  const debug = Util.debuglog("PATTERNPLATE");
-
-  const send = (m: T.QueueMessage) => {
-    if (typeof process.send === "function" && process.connected) {
-      process.send(ARSON.stringify(m));
-    }
-  };
 
   const compiler = await Compiler.compiler(flags);
   const fs = compiler.outputFileSystem;
@@ -63,8 +57,8 @@ async function startCompilerWorker() {
     }
   }, 1000);
 
-  compiler.hooks.compile.tap("patternpalte", () => {
-    send({ type: "start", target, payload: {} });
+  compiler.hooks.compile.tap("patternplate", () => {
+    send({ type: "start", target });
   });
 
   compiler.hooks.done.tap("patternplate", (stats: webpack.Stats) => {
@@ -74,17 +68,14 @@ async function startCompilerWorker() {
       });
       return send({ type: "error", target, payload: stats.compilation.errors });
     }
-    send({ type: "done", target, payload: (fs as any).data });
+    send({ type: "done", target, payload: { fs: (fs as any).data }});
   });
 
   compiler.hooks.failed.tap("patternplate", (err: Error) => {
     send({ type: "error", target, payload: err });
   });
 
-  process.on("message", async envelope => {
-    const ARSON = require("arson");
-    const message = ARSON.parse(envelope);
-
+  receive(async message => {
     switch (message.type) {
       case "heartbeat": {
         beat = Date.now();
@@ -164,4 +155,21 @@ function validateFlags(flags: { [key: string]: unknown }): Validation {
       config
     }
   }
+}
+
+function send(m: T.QueueMessage): void {
+  if (typeof process.send === "function" && process.connected) {
+    process.send(ARSON.stringify(m));
+  }
+};
+
+function receive(handler: (m: T.QueueMessage) => void): void {
+  process.on("message", async envelope => {
+    const ARSON = require("arson");
+    const message: unknown = ARSON.parse(envelope);
+
+    if (MessageValidation.isMessage(message)) {
+      handler(message);
+    }
+  });
 }
