@@ -90,12 +90,6 @@ export async function loadMeta(options: Types.LoadMetaOptions): Promise<Types.Lo
   }, Promise.resolve([]));
 
   return await pairs
-    .filter(({ source }) => {
-      return (
-        Path.basename(source, Path.extname(source)) === "demo" ||
-        !pairs.some(p => Path.dirname(p.source) ===  Path.dirname(source))
-      );
-    })
     .reduce<Promise<Types.LoadMetaResult>>(
       async (accing: Promise<Types.LoadMetaResult>, pair: Pair) => {
         const acc = await accing;

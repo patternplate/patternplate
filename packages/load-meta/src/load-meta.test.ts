@@ -86,5 +86,26 @@ test("returns errors for duplicate patterns", async () => {
       message: expect.stringContaining("duplicated pattern \"ab\""),
       errno: PATTERNPLATE_ERROR_DUPE_PATTERN
     })
-  ])
+  ]);
+});
+
+test("matches non-demo glob patterns", async () => {
+  const demo = uuid.v4();
+
+  MockFs.set({
+    "/a/demo.js": demo,
+    "/a/pattern.json": JSON.stringify({ name: "a" }),
+    "/b/pattern.js": demo,
+    "/b/pattern.json": JSON.stringify({ name: "b" }),
+  });
+
+  const result = await loadMeta({ entry: ["**/pattern.js"], cwd: "/" });
+
+  expect(result.patterns).toEqual([
+    expect.objectContaining({
+      manifest: expect.objectContaining({
+        name: "b"
+      })
+    })
+  ]);
 });
