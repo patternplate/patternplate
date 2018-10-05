@@ -83,14 +83,14 @@ export const createWatcher = async function createWatcher(options: WatcherOption
           if (p === configPath) {
             next({
               type: "change",
-              payload: { file: p, contentType: T.ContentType.Config }
+              payload: { file: p, contentType: Types.ContentType.Config }
             });
           }
 
           if (Path.extname(rel) === ".md") {
             next({
               type: "change",
-              payload: { file: p, contentType: T.ContentType.Pattern }
+              payload: { file: p, contentType: Types.ContentType.Pattern }
             });
           }
 
@@ -100,12 +100,12 @@ export const createWatcher = async function createWatcher(options: WatcherOption
           ) {
             next({
               type: "change",
-              payload: { file: p, contentType: T.ContentType.Pattern }
+              payload: { file: p, contentType: Types.ContentType.Pattern }
             });
           }
 
           if (micromatch.some(rel, docs, { matchBase: true })) {
-            next({ type: "change", payload: { file: p, contentType: T.ContentType.Doc } });
+            next({ type: "change", payload: { file: p, contentType: Types.ContentType.Doc } });
           }
         });
       })();

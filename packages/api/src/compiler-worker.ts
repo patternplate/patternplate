@@ -2,6 +2,10 @@ import * as Compiler from "@patternplate/compiler";
 import * as Config from "@patternplate/validate-config";
 import * as Util from "util";
 import * as T from "./types";
+import * as Types from "@patternplate/types";
+import * as webpack from "webpack";
+
+const ARSON = require("arson");
 
 startCompilerWorker().catch(err => {
   setTimeout(() => {
@@ -12,11 +16,17 @@ startCompilerWorker().catch(err => {
 const FAILURE_COUNT = 5;
 
 async function startCompilerWorker() {
-  const ARSON = require("arson");
   const yargsParser = require("yargs-parser");
+  const validation = validateFlags(yargsParser(process.argv.slice(2)));
 
-  // TODO: sanitize flags
-  const flags = yargsParser(process.argv.slice(2));
+  if (!validation.valid) {
+    console.error(validation.result);
+    return;
+  }
+
+  const flags = validation.result;
+  const {target} = flags;
+
   const debug = Util.debuglog("PATTERNPLATE");
 
   const send = (m: T.QueueMessage) => {
@@ -25,17 +35,7 @@ async function startCompilerWorker() {
     }
   };
 
-  const { cwd, target } = flags;
-  const config = ARSON.parse(flags.config);
-
-  const [err, valid] = Config.validate({ target: config, name: `${target}-worker` });
-
-  if (!valid) {
-    console.error(err);
-    return;
-  }
-
-  const compiler = await Compiler.compiler({ config, cwd, target });
+  const compiler = await Compiler.compiler(flags);
   const fs = compiler.outputFileSystem;
 
   let beat = Date.now();
@@ -67,7 +67,7 @@ async function startCompilerWorker() {
     send({ type: "start", target, payload: {} });
   });
 
-  compiler.hooks.done.tap("patternplate", stats => {
+  compiler.hooks.done.tap("patternplate", (stats: webpack.Stats) => {
     if (stats.compilation.errors && stats.compilation.errors.length > 0) {
       stats.compilation.errors.forEach(err => {
         return send({ type: "error", target, payload: err });
@@ -77,11 +77,12 @@ async function startCompilerWorker() {
     send({ type: "done", target, payload: (fs as any).data });
   });
 
-  compiler.hooks.failed.tap("patternplate", err => {
+  compiler.hooks.failed.tap("patternplate", (err: Error) => {
     send({ type: "error", target, payload: err });
   });
 
   process.on("message", async envelope => {
+    const ARSON = require("arson");
     const message = ARSON.parse(envelope);
 
     switch (message.type) {
@@ -101,4 +102,66 @@ async function startCompilerWorker() {
   });
 
   send({ type: "ready" });
+}
+
+interface Flags {
+  cwd: string;
+  target: Types.CompileTarget;
+  config: Types.PatternplateConfig;
+}
+
+type Validation =
+  | ValidationSuccess
+  | ValidationFailure;
+
+interface ValidationSuccess {
+  valid: true;
+  result: Flags;
+}
+
+interface ValidationFailure {
+  valid: false;
+  result: Error;
+}
+
+function validateFlags(flags: { [key: string]: unknown }): Validation {
+  const errors = [];
+
+  const { cwd: rawCwd, target: rawTarget } = flags;
+
+  if (typeof rawCwd !== 'string' || rawCwd.trim() === '') {
+    errors.push(`flag cwd must be of type string an non-empty, received "${rawCwd}" of type ${typeof rawCwd}`);
+  }
+
+  if (typeof rawCwd !== 'string' || ['node', 'web'].indexOf(rawCwd) > -1) {
+    errors.push(`flag target must be on of ["node", "web"], received "${rawCwd}"`);
+  }
+
+  const rawConfig = ARSON.parse(flags.config);
+
+  const [err, valid] = Config.validate({ target: rawConfig, name: `${rawTarget}-worker` });
+
+  if (err) {
+    errors.push(err.message);
+  }
+
+  if (errors.length > 0) {
+    return {
+      valid: false,
+      result: new Error(errors.join('\n'))
+    };
+  }
+
+  const config = rawConfig as Types.PatternplateConfig;
+  const cwd = rawCwd as string;
+  const target = rawTarget as Types.CompileTarget;
+
+  return {
+    valid: true,
+    result: {
+      cwd,
+      target,
+      config
+    }
+  }
 }

@@ -120,3 +120,8 @@ export enum ContentType {
   Config = "config",
   Pattern = "pattern"
 }
+
+export enum CompileTarget {
+  Node = "node",
+  Web = "web"
+}
