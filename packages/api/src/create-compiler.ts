@@ -28,6 +28,9 @@ export const createCompiler = async function createCompiler({
     if (!worker || !worker.send || !worker.connected) {
       return;
     }
+    if (!MessageValidation.isMessage(payload)) {
+      return;
+    }
     worker.send(ARSON.stringify(payload));
   };
 
