@@ -139,7 +139,7 @@ function validateFlags(flags: { [key: string]: unknown }): Validation {
 
   const rawConfig = ARSON.parse(flags.config);
 
-  const [err, valid] = Config.validate({ target: rawConfig, name: `${rawTarget}-worker` });
+  const [err] = Config.validate({ target: rawConfig, name: `${rawTarget}-worker` });
 
   if (err) {
     errors.push(err.message);
