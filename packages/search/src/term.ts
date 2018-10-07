@@ -1,10 +1,20 @@
-module.exports = {
-  parse
-};
-
 const OPERATORS = /([^!><^~\n=]+)?(?:(!)?(>|<|\^|~)?(=)?)([^!><^~\n=]+)?/;
 
-function parse(termString) {
+export interface Term {
+  field: string;
+  value: string;
+  raw: string;
+  operators: string;
+  negated: boolean;
+  greater: boolean;
+  lower: boolean;
+  startsWith: boolean;
+  includes: boolean;
+  equals: boolean;
+  valid: boolean;
+}
+
+export function parse(termString: string): Term {
   const found = termString.match(OPERATORS) || [];
   const [raw, field, negator, modifier, equality, value] = found;
 

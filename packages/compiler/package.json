@@ -53,6 +53,7 @@
     "@patternplate/demo-client": "^2.5.18",
     "@patternplate/load-config": "^3.0.3",
     "@patternplate/probe-client": "^2.5.18",
+    "@patternplate/types": "^3.0.3",
     "@patternplate/webpack-entry": "^3.0.3",
     "@types/memory-fs": "^0.3.2",
     "@types/read-pkg": "^3.0.0",

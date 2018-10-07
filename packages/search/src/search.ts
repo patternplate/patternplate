@@ -1,10 +1,6 @@
-const Fuse = require("fuse.js");
+import * as Fuse from "fuse.js";
 
-module.exports = {
-  create
-};
-
-function create(items) {
+export function create(items): Fuse {
   return new Fuse(items, {
     id: "id",
     keys: [
