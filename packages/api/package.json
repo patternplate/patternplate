@@ -58,6 +58,7 @@
     "@patternplate/load-config": "^3.0.3",
     "@patternplate/load-docs": "^2.5.18",
     "@patternplate/load-meta": "^3.0.4",
+    "@patternplate/types": "^3.0.3",
     "@patternplate/validate-config": "^3.0.3",
     "@types/chokidar": "^1.7.5",
     "@types/dargs": "^5.1.0",

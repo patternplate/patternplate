@@ -4,7 +4,7 @@
   "description": "Perform search queries on a list of patternplate items",
   "scripts": {
     "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps --ignore **/*.test.js",
+    "build": "tsc",
     "clean": "rimraf lib",
     "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
@@ -31,21 +31,24 @@
     "access": "public"
   },
   "dependencies": {
+    "@patternplate/types": "^3.0.3",
+    "@types/lodash": "^4.14.116",
+    "@types/semver": "^5.5.0",
     "fuse.js": "^3.2.0",
-    "lodash.flatten": "^4.4.0",
-    "lodash.intersection": "^4.4.0",
+    "lodash": "^4.17.11",
     "logic-query-parser": "^0.0.5",
     "semver": "^5.5.0"
   },
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@types/jest": "^23.3.2",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0"
+    "fixturez": "^1.1.0",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.3",
+    "typescript": "^3.1.1"
   }
 }

@@ -1,1 +1,1 @@
-module.exports = require("./lib/create-search");
+module.exports = require("./lib");
