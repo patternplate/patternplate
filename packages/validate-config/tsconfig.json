@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "composite": true,
+    "declarationMap": true,
+    "rootDir": "./src",
+    "moduleResolution": "node",
     "outDir": "lib",
     "sourceMap": true,
     "module": "commonjs",

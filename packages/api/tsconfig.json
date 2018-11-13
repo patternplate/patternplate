@@ -1,5 +1,12 @@
 {
+  "references": [
+    {"path": "../validate-config"}
+  ],
   "compilerOptions": {
+    "composite": true,
+    "declarationMap": true,
+    "moduleResolution": "node",
+    "rootDir": "./src",
     "outDir": "lib",
     "sourceMap": true,
     "module": "commonjs",
