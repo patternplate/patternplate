@@ -129,12 +129,17 @@ const StyledPatternSheet = styled.div`
   position: relative;
   z-index: 2;
   box-sizing: border-box;
-  width: 100%;
   min-height: 30vh;
+  margin: 0 auto;
   margin-top: 70vh;
-  padding: 30px 60px;
+  padding: 15px 60px;
   border-top: 1px solid ${props => props.theme.colors.border};
   background: ${props => props.theme.colors.background};
+  width: 100%;
+  max-width: 860px;
+  @media screen and (min-width: 720px) {
+    padding: 60px;
+  }
 `;
 
 const ORIENTATION = props => {
