@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/box",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Wrap an async function to return a boxed result",
   "scripts": {
     "clean": "rimraf lib",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^2.5.18",
+    "@patternplate/babel-preset": "^3.0.6",
     "@types/jest": "^22.2.0",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.1",

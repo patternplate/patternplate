@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/demo-client",
-  "version": "2.5.18",
+  "version": "3.0.6",
   "description": "patternplate browser script for demo startup",
   "scripts": {
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"

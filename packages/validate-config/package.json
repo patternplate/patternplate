@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/validate-config",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Validate schema for patternplate.config.js",
   "scripts": {
     "watch": "ttsc -w",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@marionebl/ttypescript": "^1.5.6",
-    "@patternplate/types": "^3.0.5",
+    "@patternplate/types": "^3.0.6",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.9.4",
     "babel-core": "^6.26.3",
