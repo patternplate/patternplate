@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Patternplate JSON API",
   "scripts": {
     "start": "yarn build -w",
@@ -54,12 +54,12 @@
   },
   "dependencies": {
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/compiler": "^3.0.3",
-    "@patternplate/load-config": "^3.0.3",
-    "@patternplate/load-docs": "^2.5.18",
-    "@patternplate/load-meta": "^3.0.4",
-    "@patternplate/types": "^3.0.3",
-    "@patternplate/validate-config": "^3.0.3",
+    "@patternplate/compiler": "^3.0.5",
+    "@patternplate/load-config": "^3.0.5",
+    "@patternplate/load-docs": "^3.0.5",
+    "@patternplate/load-meta": "^3.0.5",
+    "@patternplate/types": "^3.0.5",
+    "@patternplate/validate-config": "^3.0.5",
     "@types/chokidar": "^1.7.5",
     "@types/dargs": "^5.1.0",
     "@types/express": "^4.16.0",
