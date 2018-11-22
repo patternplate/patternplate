@@ -200,7 +200,7 @@ function Cover() {
                   Learn how we use patternplate to create better
                   design systems and products at SinnerSchrader.
                 </p>
-                <Connection.Button href="#">
+                <Connection.Button href="https://medium.com/still-day-one/how-to-build-and-maintain-massive-design-systems-3ce2898ac62f">
                   Read the story on Medium
                 </Connection.Button>
               </Connection.Text>
