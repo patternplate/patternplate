@@ -13,7 +13,7 @@
         "type": "program",
         "options": {
           "refs": true,
-          "noExtraProps": true,
+          "noExtraProps": false,
           "strictNullChecks": true,
           "required": true
         }

@@ -6,9 +6,9 @@ package-lock.json
 .yarn-metadata.json
 .DS_Store
 
-# boilerplate-server based apps
 /packages/**/yarn.lock
 
+/components/*/lib/
 /packages/*/lib/
 /packages/components/docs/patterns
 

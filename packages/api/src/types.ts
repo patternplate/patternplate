@@ -52,7 +52,7 @@ export interface QueueDoneMessage {
 export interface QueueErrorMessage {
   type: "error";
   target?: Types.CompileTarget;
-  payload: Error | Error[];
+  payload: any;
 }
 
 export interface QueueExceptionMessage {
@@ -85,6 +85,11 @@ export interface QueueChangeMessage {
     file: string;
     contentType: Types.ContentType;
   };
+}
+
+export interface QeueErrorMessage {
+  type: "error";
+  payload: any;
 }
 
 export interface RouteOptions {

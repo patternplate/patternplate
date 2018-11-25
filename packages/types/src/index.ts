@@ -7,7 +7,6 @@ export interface PatternJson {
    * The pattern's unique name
    * @minLength 1
    * @maxLength 214
-   * @pattern ^(?:\.[a-zA-Z0-9-~][a-z0-9-._~]*\/)?[a-zA-Z0-9-~][a-zA-Z0-9-._~]*$
    */
   name: string;
 
@@ -43,7 +42,6 @@ export interface PackageJson {
    * The pattern's unique name
    * @minLength 1
    * @maxLength 214
-   * @pattern ^(?:\.[a-zA-Z0-9-~][a-z0-9-._~]*\/)?[a-zA-Z0-9-~][a-zA-Z0-9-._~]*$
    */
   name: string;
 
