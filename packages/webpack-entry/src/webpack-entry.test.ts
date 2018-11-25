@@ -8,3 +8,7 @@ test('should create expected async output', async () => {
 test('should create expected sync output', () => {
   expect(Path.basename(webpackEntrySync(['a'], { cwd: 'b' }))).toBe("loader.ts?entry=a&cwd=b!")
 });
+
+test('should pass multiple entries', () => {
+  expect(Path.basename(webpackEntrySync(['a', 'b', 'c'], { cwd: 'b' }))).toBe("loader.ts?entry=a&entry=b&entry=c&cwd=b!")
+});

@@ -40,6 +40,10 @@ export const demo = async function demo(options: T.RouteOptions): Promise<expres
       const bundle = getModule(BUNDLE_PATH, found.artifact) as { [id: string]: unknown };
       const component = getComponent(bundle, found) as T.Renderer;
 
+      if (!component) {
+        throw new Error(`Could not get module ${found.artifact} from ${BUNDLE_PATH}. Available: ${Object.keys(bundle)}`);
+      }
+
       // TODO: Enable when ts-transform-json-schema supports functions
       // if (!isRenderer(rawCompnent)) {
       //   return;
@@ -68,13 +72,13 @@ export const demo = async function demo(options: T.RouteOptions): Promise<expres
   };
 };
 
-function getComponent<T>(components: { [id: string]: any }, data: LoadedPatternMeta): T {
+function getComponent<T>(components: { [id: string]: any }, data: LoadedPatternMeta): T | undefined {
   const fileId = data.artifact.split(Path.sep).join("/");
   const top = components[fileId];
 
   const moduleId = data.source.split(Path.sep).join("/");
 
-  if (top[moduleId]) {
+  if (top && top.hasOwnProperty(moduleId)) {
     return top[moduleId];
   }
 

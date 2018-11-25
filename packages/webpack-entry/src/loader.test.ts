@@ -80,3 +80,22 @@ test('picks up demo html', async () => {
     expect.stringContaining("module.exports['demo.js'].html")
   ]));
 });
+
+test('works with multiple entries', async () => {
+  const options = {
+    entry: ["a.js", "b.js"],
+    cwd: `/`
+  };
+
+  MockFs.set({
+    "/a.js": "module.exports.default = 'a'",
+    "/b.js": "module.exports.default = 'b"
+  });
+
+  const result = (await Test.load(Loader, options)).split('\n');
+
+  await expect(result).toEqual(expect.arrayContaining([
+    expect.stringContaining("module.exports['a.js']"),
+    expect.stringContaining("module.exports['b.js']"),
+  ]));
+});
