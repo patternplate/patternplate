@@ -1,7 +1,30 @@
 {
+  "references": [
+    {
+      "path": "../compiler"
+    },
+    {
+      "path": "../load-config"
+    },
+    {
+      "path": "../load-docs"
+    },
+    {
+      "path": "../load-meta"
+    },
+    {
+      "path": "../types"
+    },
+    {
+      "path": "../validate-config"
+    }
+  ],
   "compilerOptions": {
+    "composite": true,
     "outDir": "lib",
+    "rootDir": "src",
     "sourceMap": true,
+    "declarationMap": true,
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,

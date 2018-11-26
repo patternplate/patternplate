@@ -9,9 +9,8 @@ if (global.document) {
 }
 
 const getThemes = require(".");
-const Themer = require("../demo-themer");
 const { MainNavigationDemo } = require("../main-navigation/demo");
-const { MarkdownDemo } = require("../markdown/demo");
+const MarkdownDemo = require("@patternplate/component-markdown/lib/markdown.demo").default;
 const { FlagDemo } = require("../flag/demo");
 const svg = require("../svg");
 

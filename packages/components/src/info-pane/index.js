@@ -4,11 +4,10 @@ const semver = require("semver");
 const text = require("react-addons-text-content");
 const { omit } = require("lodash");
 
-const Code = require("../code");
-const Link = require("../link");
+const Code = require("@patternplate/component-code").Code;
+const Link = require("@patternplate/component-link").Link;
+const Text = require("@patternplate/component-text").Text;
 const Flag = require("../flag");
-const Icon = require("../icon");
-const Text = require("../text");
 
 module.exports = InfoPane;
 module.exports.InnerInfoPane = InnerInfoPane;

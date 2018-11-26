@@ -1,0 +1,90 @@
+{
+  "name": "@patternplate/component-markdown",
+  "version": "3.0.6",
+  "description": "Render markdown sources to rich HTML documents",
+  "main": "lib/markdown.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "test": "jest",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternplate/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "patternplate": {
+    "name": "component-markdown",
+    "displayName": "Component: Markdown",
+    "tags": [
+      "Documentation",
+      "Typography"
+    ],
+    "flag": "stable"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(\\.|/)test\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@patternplate/babel-preset": "^3.0.6",
+    "@types/jest": "^22.2.0",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.1",
+    "dependency-check": "^3.1.0",
+    "fixturez": "^1.1.0",
+    "jest": "^22.4.2",
+    "jest-cli": "^22.4.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^22.4.1",
+    "typescript": "^3.1"
+  },
+  "dependencies": {
+    "@patternplate/component-code": "3.0.6",
+    "@patternplate/component-headline": "3.0.6",
+    "@patternplate/component-icon": "3.0.6",
+    "@patternplate/component-utility": "3.0.6",
+    "@patternplate/component-text": "3.0.6",
+    "@patternplate/component-themes": "3.0.6",
+    "@types/iframe-resizer": "^3.5.6",
+    "@types/react": "16.7.7",
+    "@types/styled-components": "^4.1.1",
+    "front-matter": "^3.0.1",
+    "lodash": "^4.17.11",
+    "parse-numeric-range": "^0.0.2",
+    "react": "16.6.3",
+    "react-dom": "16.6.3",
+    "react-addons-text-content": "^0.0.4",
+    "remark": "^10.0.1",
+    "remark-gemoji-to-emoji": "^1.1.0",
+    "remark-react": "^4.0.3",
+    "styled-components": "^4.1.1",
+    "tag-hoc": "^1.0.0"
+  }
+}

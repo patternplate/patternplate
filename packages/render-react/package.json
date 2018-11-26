@@ -29,8 +29,8 @@
   "dependencies": {
     "@patternplate/render-default": "^3.0.6",
     "lodash": "^4.17.5",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "16.6.3",
+    "react-dom": "16.6.3"
   },
   "devDependencies": {
     "dependency-check": "^3.1.0"

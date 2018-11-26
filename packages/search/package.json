@@ -3,10 +3,7 @@
   "version": "3.0.6",
   "description": "Perform search queries on a list of patternplate items",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "tsc",
     "clean": "rimraf lib",
-    "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [

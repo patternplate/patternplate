@@ -44,7 +44,7 @@ class Logo extends React.Component {
   }
 }
 
-module.exports = styled(Logo)`
+const StyledLogo = styled(Logo)`
   box-sizing: border-box;
   display: flex;
   width: 100%;
@@ -55,3 +55,5 @@ module.exports = styled(Logo)`
   padding: 10px;
   background: ${props => props.theme.colors.backgroundSecondary};
 `;
+
+module.exports = () => <StyledLogo/>;

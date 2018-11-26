@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "include": [],
+  "references": [
+    {"path": "./code"},
+    {"path": "./headline"},
+    {"path": "./icon"},
+    {"path": "./link"},
+    {"path": "./markdown"},
+    {"path": "./text"},
+    {"path": "./themes"},
+    {"path": "./utility"},
+  ],
+  "compilerOptions": {
+    "composite": true
+  }
+}

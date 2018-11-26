@@ -3,9 +3,7 @@
   "version": "3.0.6",
   "description": "Validate schema for pattern.json",
   "scripts": {
-    "watch": "ttsc -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
-    "build": "ttsc",
     "test": "jest"
   },
   "typings": "lib/index.d.ts",
@@ -43,7 +41,8 @@
     "ts-jest": "^23.10.2",
     "ts-transform-json-schema": "^1.1.1",
     "typescript": "^3.1",
-    "typescript-json-schema": "^0.32.0"
+    "typescript-json-schema": "^0.32.0",
+    "ttypescript": "^1.5.5"
   },
   "dependencies": {
     "schema-utils": "^1.0.0"

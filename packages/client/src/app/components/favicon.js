@@ -76,13 +76,15 @@ class FavIcon extends React.Component {
   }
 }
 
-export default styled(FavIcon)`
+const StyledFavicon = styled(FavIcon)`
   width: 100%;
   height: auto;
   stroke: ${props => props.theme.colors.color};
   stroke-width: 0;
   fill: ${props => props.theme.colors.color};
 `;
+
+export default () => <StyledFavicon/>;
 
 function getSource(props) {
   if (!props.source) {

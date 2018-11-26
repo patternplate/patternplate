@@ -4,10 +4,7 @@
   "description": "Load patternplate meta data",
   "scripts": {
     "clean": "rimraf lib",
-    "start": "yarn build -w",
     "test": "jest",
-    "build": "tsc",
-    "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [

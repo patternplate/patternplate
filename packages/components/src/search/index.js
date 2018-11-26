@@ -276,11 +276,6 @@ function Close(props) {
   );
 }
 
-const StyledMarkdown = styled.div`
-  width: 80%;
-  margin: 0 auto;
-`;
-
 const StyledSearchLegend = styled.div`
   display: flex;
   align-items: center;

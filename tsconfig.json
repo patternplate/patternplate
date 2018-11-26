@@ -1,0 +1,22 @@
+{
+  "files": [],
+  "include": [],
+  "references": [
+    {"path": "./components"},
+    {"path": "./packages"}
+  ],
+  "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "ts-transform-json-schema",
+        "type": "program",
+        "options": {
+          "refs": true,
+          "noExtraProps": false,
+          "strictNullChecks": true,
+          "required": true
+        }
+      }
+    ]
+  }
+}

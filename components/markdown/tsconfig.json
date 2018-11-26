@@ -1,0 +1,40 @@
+{
+  "references": [
+    {
+      "path": "../code"
+    },
+    {
+      "path": "../headline"
+    },
+    {
+      "path": "../icon"
+    },
+    {
+      "path": "../utility"
+    },
+    {
+      "path": "../text"
+    },
+    {
+      "path": "../themes"
+    },
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react",
+    "outDir": "./lib/",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "src/**/*.test.ts"
+  ]
+}
