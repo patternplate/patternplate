@@ -8,7 +8,7 @@ export default function createRelationSelector(key, selectItem) {
       return [];
     }
     return (item[key] || [])
-      .map(id => find(patterns, `pattern/${id}`, { type: "pattern" }))
+      .map(id => find(patterns, `pattern/${id}.html`, { type: "pattern" }))
       .filter(Boolean);
   });
 }

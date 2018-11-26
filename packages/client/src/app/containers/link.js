@@ -1,4 +1,5 @@
 import url from "url";
+import Path from "path";
 import queryString from "querystring";
 import { Link } from "@patternplate/components";
 import { pickBy } from "lodash";
@@ -12,7 +13,7 @@ export default connect(mapState, mapDispatch)(Link.RawLink);
 function mapState(state, own) {
   const location = state.routing.locationBeforeTransitions;
   return Object.assign({}, own,
-    {href: getHref(own, { base: state.base, location })}
+    { href: getHref(own, { base: state.base, location }) }
   );
 }
 
@@ -45,9 +46,9 @@ function getHref(props, context) {
   const parsed = props.href
     ? url.parse(props.href)
     : {
-        pathname: context.location.pathname,
-        query: queryString.stringify(context.location.query)
-      };
+      pathname: context.location.pathname,
+      query: queryString.stringify(context.location.query)
+    };
 
   parsed.query = queryString.parse(parsed.query);
 
@@ -75,6 +76,17 @@ function getHref(props, context) {
         return value !== "false" && value !== "0" && !!(value);
       }
     );
+
+  if (
+    parsed.pathname &&
+    (parsed.pathname.includes("pattern") ||
+      parsed.pathname.includes("doc/docs"))
+  ) {
+    parsed.pathname = `${Path.dirname(parsed.pathname)}/${Path.basename(
+      parsed.pathname,
+      Path.extname(parsed.pathname)
+    )}.html`;
+  }
 
   const pathname =
     typeof parsed.pathname === "string"
