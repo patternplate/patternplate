@@ -71,7 +71,7 @@ async function build({flags}) {
   await Promise.all(pool.map(async item => {
     const full = `${base}${item.contentType}/${item.id}`;
     const html = await render(full, state);
-    const target = path.join(out, item.contentType, item.id, 'index.html');
+    const target = path.join(out, item.contentType, `${item.id}.html`);
     await sander.writeFile(target, html);
   }));
 
