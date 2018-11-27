@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/validate-manifest",
-  "version": "3.0.7-0",
+  "version": "3.0.7-1",
   "description": "Validate schema for pattern.json",
   "scripts": {
     "watch": "ttsc -w",
@@ -32,7 +32,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@patternplate/types": "^3.0.7-0",
+    "@patternplate/types": "^3.0.7-1",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.9.4",
     "babel-core": "^6.26.3",

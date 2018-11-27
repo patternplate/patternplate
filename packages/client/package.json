@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/client",
-  "version": "3.0.7-0",
+  "version": "3.0.7-1",
   "description": "Universal javascript client application for patternplate",
   "main": "./server.js",
   "scripts": {
@@ -62,10 +62,10 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@patternplate/api": "^3.0.7-0",
-    "@patternplate/load-config": "^3.0.7-0",
-    "@patternplate/load-docs": "^3.0.7-0",
-    "@patternplate/load-meta": "^3.0.7-0",
+    "@patternplate/api": "^3.0.7-1",
+    "@patternplate/load-config": "^3.0.7-1",
+    "@patternplate/load-docs": "^3.0.7-1",
+    "@patternplate/load-meta": "^3.0.7-1",
     "buble": "^0.19.3",
     "cors": "^2.8.4",
     "express": "^4.16.2",
@@ -81,10 +81,10 @@
     "@marionebl/react-router": "2.6.3",
     "@marionebl/sander": "^0.6.1",
     "@patternplate/babel-preset": "^3.0.6",
-    "@patternplate/components": "^3.0.7-0",
-    "@patternplate/search": "^3.0.7-0",
+    "@patternplate/components": "^3.0.7-1",
+    "@patternplate/search": "^3.0.7-1",
     "@patternplate/websocket-client": "^3.0.6",
-    "@patternplate/widgets": "^3.0.7-0",
+    "@patternplate/widgets": "^3.0.7-1",
     "arson": "^0.2.6",
     "babel-loader": "8.0.0-beta.0",
     "btoa": "^1.1.2",

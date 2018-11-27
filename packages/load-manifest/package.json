@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-manifest",
-  "version": "3.0.7-0",
+  "version": "3.0.7-1",
   "description": "Read pattern meta data from package.json or pattern.json",
   "scripts": {
     "clean": "rimraf lib",
@@ -44,7 +44,7 @@
     "typescript": "^3.1"
   },
   "dependencies": {
-    "@patternplate/validate-manifest": "^3.0.7-0",
+    "@patternplate/validate-manifest": "^3.0.7-1",
     "load-json-file": "^4.0.0"
   }
 }
