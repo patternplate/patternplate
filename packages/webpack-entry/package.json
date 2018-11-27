@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/webpack-entry",
-  "version": "3.0.6",
+  "version": "3.0.7-0",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "scripts": {
     "watch": "tsc -w",
