@@ -3,9 +3,7 @@
   "version": "3.0.6",
   "description": "Get webpack bundle entries suitable for patternplate consumption",
   "scripts": {
-    "watch": "tsc -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev",
-    "build": "ttsc",
     "test": "jest"
   },
   "files": [

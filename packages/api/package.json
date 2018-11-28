@@ -3,10 +3,7 @@
   "version": "3.0.6",
   "description": "Patternplate JSON API",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "ttsc",
     "clean": "rimraf lib",
-    "watch": "yarn build -w",
     "deps": "dependency-check . lib/compiler-worker.js --missing && dependency-check . lib/compiler-worker.js --extra --no-dev"
   },
   "files": [
