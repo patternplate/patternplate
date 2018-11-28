@@ -5,8 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "clean": "rimraf lib",
-    "test": "jest"
+    "clean": "rimraf lib"
   },
   "repository": {
     "type": "git",

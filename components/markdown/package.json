@@ -5,7 +5,6 @@
   "main": "lib/markdown.js",
   "scripts": {
     "clean": "rimraf lib",
-    "test": "jest",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [

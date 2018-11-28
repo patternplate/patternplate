@@ -4,6 +4,9 @@
       "path": "../load-manifest"
     },
     {
+      "path": "../load-doc",
+    },
+    {
       "path": "../types"
     }
   ],

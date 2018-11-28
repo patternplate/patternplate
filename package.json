@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build --stream --include-filtered-dependencies",
+    "build": "concurrently \"ttsc -b --verbose\" \"lerna run build --stream --include-filtered-dependencies\"",
     "pack": "lerna run pack --stream",
     "clean": "lerna clean --yes && lerna run clean && rimraf node_modules",
     "components:start": "patternplate start",
@@ -16,8 +16,8 @@
     "patternplate:build": "lerna run build --stream --filter='@patternplate/components'",
     "patternplate:watch": "lerna run watch --stream --filter='@patternplate/components'",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
-    "start": "concurrently \"tsc -b -w\" \"lerna run watch --stream --parallel --include-filtered-dependencies\"",
-    "test": "lerna run test --stream --parallel --include-filtered-dependencies"
+    "start": "concurrently \"ttsc -b -w\" \"lerna run watch --stream --parallel --include-filtered-dependencies\"",
+    "test": "jest"
   },
   "author": {
     "name": "Mario Nebl",
@@ -27,69 +27,8 @@
     "type": "git",
     "url": "patternplate/patternplate"
   },
-  "xo": {
-    "esnext": true,
-    "extends": [
-      "prettier",
-      "xo-react"
-    ],
-    "plugins": [
-      "patternplate"
-    ],
-    "rules": {
-      "ava/no-ignored-test-files": [
-        0
-      ],
-      "ava/no-async-fn-without-await": [
-        0
-      ],
-      "capitalized-comments": [
-        0
-      ],
-      "import/prefer-default-export": [
-        0
-      ],
-      "import/order": [
-        0
-      ],
-      "func-names": [
-        0
-      ],
-      "no-return-await": [
-        0
-      ],
-      "react/forbid-component-props": [
-        0
-      ],
-      "react/jsx-indent": [
-        0
-      ],
-      "react/jsx-indent-props": [
-        0
-      ],
-      "react/jsx-sort-props": [
-        0
-      ],
-      "react/jsx-tag-spacing": [
-        0
-      ],
-      "react/prop-types": [
-        0
-      ],
-      "react/jsx-closing-bracket-location": [
-        0
-      ]
-    },
-    "ignores": [
-      "distribution/**/*",
-      "packages/**/application/**",
-      "packages/**/binary/**",
-      "packages/**/library/**",
-      "packages/**/lib/**",
-      "**/*.bundle.js"
-    ]
-  },
   "devDependencies": {
+    "@marionebl/ttypescript": "^1.5.6",
     "@patternplate/deploy-site": "file:./packages/deploy",
     "dom-to-image": "^2.6.0",
     "eslint": "^4.9.0",
@@ -98,12 +37,13 @@
     "eslint-plugin-patternplate": "^1.0.1",
     "eslint-plugin-react": "^7.3.0",
     "husky": "^0.14.3",
+    "jest-cli": "^23.6.0",
     "lerna": "^2.8.0",
     "lint-staged": "^4.2.3",
     "prettier": "^1.6.1",
     "rimraf": "^2.6.2",
     "serve": "7",
-    "ttypescript": "^1.5.5",
+    "ts-jest": "^23.10.5",
     "typescript": "^3.1.6",
     "xo": "^0.18.2",
     "yarn": "^1.3.2"
