@@ -47,7 +47,7 @@ class NavigationItem extends React.Component {
       <StyledNavigationItem
         active={props.active}
         className={props.className}
-        innerRef={this.getRef}
+        ref={this.getRef}
         type={props.type}
       >
         <StyledNavigationLink

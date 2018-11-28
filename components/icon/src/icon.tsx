@@ -1,10 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import styled from "styled-components";
-import { uniq } from "lodash";
-import * as withSideEffect from "react-side-effect";
 import * as Icons from "./icons";
-import { IconRegistry } from "./registry";
+import { Symbol } from "./symbol";
 
 const SIZES = {
   s: "14px",
@@ -14,6 +11,7 @@ const SIZES = {
 };
 
 export interface IconProps {
+  className?: string;
   symbol: keyof typeof Icons.icons;
   size?: keyof typeof SIZES;
   title?: string;
@@ -24,38 +22,12 @@ const iconNames = Object.keys(Icons.icons);
 
 export * from './symbol';
 
-export const Icon: React.SFC<IconProps> = withSideEffect(toState, onChange)(InnerIcon);
+export const Icon: React.SFC<IconProps> = props => {
+  const creator = typeof Icons.icons[props.symbol] === 'function'
+    ? Icons.icons[props.symbol]
+    : Icons.icons.placeholder;
 
-export const symbols = iconNames;
 
-function toState(propsList: { symbol: keyof typeof Icons.icons }[]): React.ReactNode {
-  const list = propsList.map(item => item.symbol).sort();
-  const symbols = uniq(list);
-  return <IconRegistry symbols={symbols} />;
-}
-
-function onChange(registry) {
-  const element = getRegistryMountPoint();
-  ReactDOM.render(registry, element);
-}
-
-function getRegistryMountPoint() {
-  if (typeof window === "undefined") {
-    return;
-  }
-
-  const found = document.querySelector("[data-icon-registry]");
-  if (found) {
-    return found;
-  }
-
-  const created = document.createElement("div");
-  created.setAttribute("data-icon-registry", "true");
-  document.body.appendChild(created);
-  return created;
-}
-
-function InnerIcon(props) {
   return (
     <StyledIcon
       className={props.className}
@@ -63,10 +35,12 @@ function InnerIcon(props) {
       inline={props.inline}
       title={props.title}
     >
-      <use xlinkHref={`#${props.symbol || "placeholder"}`} />
+      <Symbol id={props.symbol} definition={creator()}/>
     </StyledIcon>
   );
 }
+
+export const symbols = iconNames;
 
 Icon.defaultProps = {
   size: "m",

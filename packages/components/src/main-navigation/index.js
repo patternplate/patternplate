@@ -40,7 +40,7 @@ class Navigation extends React.Component {
             symbol="patternplate"
           />
         )}
-        <StyledNavigationTree innerRef={this.getRef}>
+        <StyledNavigationTree ref={this.getRef}>
           <Documentation
             visible={props.docs.children.length > 0}
             active={props.active}

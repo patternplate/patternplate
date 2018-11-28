@@ -10,6 +10,7 @@ module.exports = NavigationTree;
 function NavigationTree(props) {
   return (
     <StyledNavigationTree
+      className={props.className}
       visible={props.visible}
       data-toggle-name={props.name}
       data-toggle-enabled={props.visible}

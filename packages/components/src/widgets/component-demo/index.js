@@ -44,7 +44,7 @@ class PatternFrame extends React.Component {
   render() {
     const {props} = this;
     return <StyledPatternFrame
-      innerRef={ref => this.ref = ref}
+      ref={ref => this.ref = ref}
       {...props}
       />;
   }

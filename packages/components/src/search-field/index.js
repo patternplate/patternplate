@@ -88,7 +88,7 @@ class SearchField extends React.Component {
             type="text"
             value={props.value}
             data-search={props.mark}
-            innerRef={this.saveRef}
+            ref={this.saveRef}
           />
         </StyledInputContainer>
         {props.children}
