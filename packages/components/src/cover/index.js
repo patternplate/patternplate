@@ -1,7 +1,7 @@
 const Helmet = require("react-helmet").default;
 const React = require("react");
 const styled = require("styled-components").default;
-const injectGlobal = require("styled-components").injectGlobal;
+const createGlobalStyle = require("styled-components").createGlobalStyle;
 const ThemeProvider = require("styled-components").ThemeProvider;
 
 const Headline = require("../headline");
@@ -12,6 +12,14 @@ const getThemes = require("../themes");
 
 module.exports.default = Cover;
 module.exports.head = () => Helmet.rewind();
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0 0 100px 0;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+`;
 
 function Cover() {
   const themes = getThemes();
@@ -41,6 +49,7 @@ function Cover() {
             }
           ]}
         />
+        <GlobalStyle/>
         <StageContainer>
           <Frame>
             <div style={{ minHeight: "100vh" }}>
@@ -200,7 +209,7 @@ function Cover() {
                   Learn how we use patternplate to create better
                   design systems and products at SinnerSchrader.
                 </p>
-                <Connection.Button href="https://medium.com/still-day-one/how-to-build-and-maintain-massive-design-systems-3ce2898ac62f">
+                <Connection.Button href="#">
                   Read the story on Medium
                 </Connection.Button>
               </Connection.Text>
@@ -211,14 +220,6 @@ function Cover() {
     </ThemeProvider>
   );
 }
-
-injectGlobal`
-  body {
-    margin: 0 0 100px 0;
-    width: 100vw;
-    overflow-x: hidden;
-  }
-`;
 
 const InlineLink = styled(Link)`
   color: ${props => props.theme.colors.active};

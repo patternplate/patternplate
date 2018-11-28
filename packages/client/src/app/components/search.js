@@ -185,7 +185,7 @@ export default class Search extends React.Component {
         suggestion={props.suggestion}
         legend={props.legend}
       >
-        <SearchResultList innerRef={this.getListRef}>
+        <SearchResultList ref={this.getListRef}>
           {withDocs > 0 && (
             <SearchResultHeading>Docs ({props.docs.length})</SearchResultHeading>
           )}

@@ -3,10 +3,7 @@
   "version": "3.0.6",
   "description": "Load patternplate config",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "tsc",
     "clean": "rimraf lib",
-    "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/render-default",
     "test": "jest"
   },

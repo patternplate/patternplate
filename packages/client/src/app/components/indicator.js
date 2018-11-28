@@ -52,7 +52,7 @@ const StyledLabel = styled(Text)`
 `;
 
 function getGlow(props) {
-  return `
+  return css`
 		&::before {
 			content: '';
 			position: absolute;

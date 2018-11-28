@@ -7,7 +7,7 @@ module.exports = {
   testEnvironment: "node",
   globals: {
     "ts-jest": {
-      compiler: '@marionebl/ttypescript'
+      compiler: '@marionebl/ttypescript',
     }
   }
 };

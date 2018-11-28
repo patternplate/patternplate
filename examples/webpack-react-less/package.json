@@ -34,6 +34,6 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "react": "^16.0.0"
+    "react": "16.6.3"
   }
 }

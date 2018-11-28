@@ -71,7 +71,7 @@ const SEARCH_HEIGHT = "55vh";
 const SEARCH_FIELD_HEIGHT = "80px";
 const SEARCH_LEGEND_HEIGHT = "30px";
 
-const StyledFormBox = styled.div`
+const StyledFormBox = styled(tag(["onClickOutside", "enabled"])("div"))`
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -209,7 +209,7 @@ class SearchResult extends React.Component {
 
     return (
       <StyledResult
-        innerRef={this.getRef}
+        ref={this.getRef}
         active={props.active}
         title={`Navigation to pattern ${props.name}`}
         data-id={props.id}
@@ -275,11 +275,6 @@ function Close(props) {
     </StyledClose>
   );
 }
-
-const StyledMarkdown = styled.div`
-  width: 80%;
-  margin: 0 auto;
-`;
 
 const StyledSearchLegend = styled.div`
   display: flex;

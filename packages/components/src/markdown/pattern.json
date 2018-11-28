@@ -1,8 +1,0 @@
-{
-  "name": "markdown",
-  "displayName": "Markdown",
-  "description": "Convert Markdown to styled text",
-  "version": "1.0.0",
-  "tags": ["Documentation", "Typography"],
-  "flag": "stable"
-}

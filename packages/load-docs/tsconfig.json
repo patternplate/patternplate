@@ -1,7 +1,21 @@
 {
+  "references": [
+    {
+      "path": "../load-manifest"
+    },
+    {
+      "path": "../load-doc",
+    },
+    {
+      "path": "../types"
+    }
+  ],
   "compilerOptions": {
+    "composite": true,
     "outDir": "lib",
+    "rootDir": "src",
     "sourceMap": true,
+    "declarationMap": true,
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,

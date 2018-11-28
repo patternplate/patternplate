@@ -1,7 +1,0 @@
-{
-  "name": "code-pane",
-  "displayName": "Code pane",
-  "description": "Display source code in an info pane",
-  "version": "1.0.0",
-  "flag": "deprecated"
-}

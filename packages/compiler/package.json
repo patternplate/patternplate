@@ -4,10 +4,7 @@
   "description": "Create a compiler to create browser-compatible code from patternplate entries",
   "scripts": {
     "start": "yarn build -w",
-    "build": "tsc",
     "clean": "rimraf lib",
-    "test": "jest",
-    "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @patternplate/cover-client -i @patternplate/demo-client -i @patternplate/probe-client -i css-loader -i html-loader -i to-string-loader"
   },
   "files": [

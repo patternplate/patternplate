@@ -1,7 +1,21 @@
 {
+  "references": [
+    {
+      "path": "../load-config"
+    },
+    {
+      "path": "../types"
+    },
+    {
+      "path": "../webpack-entry"
+    }
+  ],
   "compilerOptions": {
+    "composite": true,
     "outDir": "lib",
     "sourceMap": true,
+    "declarationMap": true,
+    "rootDir": "src",
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,

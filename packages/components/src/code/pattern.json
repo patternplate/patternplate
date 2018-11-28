@@ -1,7 +1,0 @@
-{
-  "name": "code",
-  "displayName": "Code",
-  "description": "Display source code with syntax highlighting",
-  "version": "1.0.0",
-  "flag": "stable"
-}

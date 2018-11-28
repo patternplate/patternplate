@@ -106,6 +106,7 @@ module.exports = [
     entry: {
       "render-page": "./src/app/render-page"
     },
+    devtool: "source-map",
     target: "node",
     node: {
       __dirname: false,

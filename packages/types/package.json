@@ -5,10 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "tsc",
-    "clean": "rimraf index.js",
-    "watch": "yarn build -w"
+    "clean": "rimraf lib"
   },
   "repository": {
     "type": "git",

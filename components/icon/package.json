@@ -1,0 +1,52 @@
+{
+  "name": "@patternplate/component-icon",
+  "version": "3.0.6",
+  "description": "Render svg icons",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternplate/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "patternplate": {
+    "name": "component-icon",
+    "displayName": "Component: Icon",
+    "tags": [
+      "Documentation",
+      "Typography"
+    ],
+    "flag": "stable"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0",
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1"
+  },
+  "dependencies": {
+    "@patternplate/component-utility": "3.0.6",
+    "@types/react": "16.7.7",
+    "@types/styled-components": "^4.1.1",
+    "react": "16.6.3",
+    "react-dom": "16.6.3",
+    "styled-components": "^4.1.1"
+  }
+}

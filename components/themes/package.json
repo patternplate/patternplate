@@ -1,0 +1,43 @@
+{
+  "name": "@patternplate/component-themes",
+  "version": "3.0.6",
+  "description": "Theme definitions for patternpalte components",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternplate/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0",
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1"
+  },
+  "dependencies": {
+    "@patternplate/types": "3.0.6",
+    "@types/color": "^3.0.0",
+    "react": "16.6.3",
+    "lodash": "^4.17.11",
+    "react-dom": "16.6.3",
+    "styled-components": "^4.1.1"
+  }
+}
