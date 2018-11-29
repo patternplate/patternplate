@@ -98,7 +98,7 @@ If everything worked `patternplate` greets you with this screen:
 
 ## Related topics
 
-* [CLI](./doc/docs/reference/cli?reference-enabled=true)
+* [CLI](./doc/docs/guides/add-component?reference-enabled=true&guides-enabled=true)
 
 ## Shortcut
 
