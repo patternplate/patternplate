@@ -17,8 +17,8 @@ module.exports = {
     "!docs/**/*/patterns"
   ],
   entry: [
-    "packages/components/lib/**/demo.js",
-    "components/*/demo.js"
+    "components/legacy/lib/**/demo.js",
+    "components/next-generation/*/demo.js"
   ],
   render: "@patternplate/render-styled-components/render",
   mount: "@patternplate/render-styled-components/mount",

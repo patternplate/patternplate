@@ -1,0 +1,1 @@
+{"version":3,"file":"markdown-blockquote.d.ts","sourceRoot":"","sources":["../src/markdown-blockquote.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,OAAO,CAAC;AAI/B,MAAM,WAAW,uBAAuB;IACtC,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,QAAQ,EAAE,KAAK,CAAC,SAAS,CAAC;CAC3B;AAUD,eAAO,MAAM,kBAAkB,+GAO9B,CAAC"}

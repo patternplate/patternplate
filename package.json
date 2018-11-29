@@ -55,6 +55,7 @@
   "workspaces": [
     "alias/*",
     "components/*",
+    "components/next-generation/*",
     "examples/*",
     "packages/*"
   ],
