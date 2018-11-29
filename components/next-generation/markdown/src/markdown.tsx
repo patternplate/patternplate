@@ -18,6 +18,7 @@ import { MarkdownImage } from "./markdown-image";
 import { MarkdownItem } from "./markdown-item";
 import { MarkdownList } from "./markdown-list";
 import { MarkdownLink } from "./markdown-link";
+import sanitization from "./sanitization";
 
 export interface MarkdownProps {
   linkable?: boolean;
@@ -37,7 +38,7 @@ export class Markdown extends React.Component<MarkdownProps> {
         {props.source &&
           remark()
             .use(reactRenderer, {
-              sanitize: false,
+              sanitize: sanitization,
               remarkReactComponents: {
                 a: MarkdownLink,
                 blockquote: MarkdownBlockquote,
