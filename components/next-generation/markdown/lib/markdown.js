@@ -2,12 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styled_components_1 = require("styled-components");
-const widget_frame_1 = require("./widget-frame");
-const frontmatter = require("front-matter");
+// import * as frontmatter from "front-matter";
 const remark = require("remark");
-const emoji = require("remark-gemoji-to-emoji");
-const reactRenderer = require("remark-react");
+const remarkRehype = require("remark-rehype");
+const rehypeRaw = require("rehype-raw");
+const rehypeReact = require("rehype-react");
+const rehypeSanitize = require("rehype-sanitize");
+const remarkFrontmatter = require("remark-frontmatter");
+const remarkEmoji = require("remark-gemoji-to-emoji");
 const rangeParser = require("parse-numeric-range");
+const sanitize_1 = require("./sanitize");
+const markdown_details_1 = require("./markdown-details");
 const markdown_blockquote_1 = require("./markdown-blockquote");
 const markdown_code_1 = require("./markdown-code");
 const markdown_code_block_1 = require("./markdown-code-block");
@@ -18,67 +23,42 @@ const markdown_image_1 = require("./markdown-image");
 const markdown_item_1 = require("./markdown-item");
 const markdown_list_1 = require("./markdown-list");
 const markdown_link_1 = require("./markdown-link");
+const processor = remark()
+    .use(remarkFrontmatter)
+    .use(remarkEmoji)
+    .use(remarkRehype, { allowDangerousHTML: true })
+    .use(rehypeRaw)
+    .use(rehypeSanitize, sanitize_1.sanitize)
+    .use(rehypeReact, {
+    createElement: React.createElement,
+    components: {
+        a: markdown_link_1.MarkdownLink,
+        blockquote: markdown_blockquote_1.MarkdownBlockquote,
+        code: markdown_code_1.MarkdownCode,
+        h1: is("h1")(markdown_headline_1.MarkdownHeadline),
+        h2: is("h2")(markdown_headline_1.MarkdownHeadline),
+        h3: is("h3")(markdown_headline_1.MarkdownHeadline),
+        h4: is("h4")(markdown_headline_1.MarkdownHeadline),
+        h5: is("h5")(markdown_headline_1.MarkdownHeadline),
+        h6: is("h6")(markdown_headline_1.MarkdownHeadline),
+        hr: markdown_hr_1.MarkdownHr,
+        img: markdown_image_1.MarkdownImage,
+        li: markdown_item_1.MarkdownItem,
+        p: markdown_copy_1.MarkdownCopy,
+        pre: props => {
+            const [language] = getLanguages(props);
+            const [highlights] = getHighlights(props);
+            return React.createElement(markdown_code_block_1.MarkdownCodeBlock, Object.assign({}, props, { language: language, highlights: highlights }));
+        },
+        ul: is("ul")(markdown_list_1.MarkdownList),
+        ol: is("ol")(markdown_list_1.MarkdownList),
+        details: markdown_details_1.MarkdownDetails
+    }
+});
 class Markdown extends React.Component {
     render() {
         const { props } = this;
-        const Headline = prop("linkable", props.linkable)(markdown_headline_1.MarkdownHeadline);
-        return (React.createElement(StyledMarkdown, { className: props.className }, props.source &&
-            remark()
-                .use(reactRenderer, {
-                sanitize: false,
-                remarkReactComponents: {
-                    a: markdown_link_1.MarkdownLink,
-                    blockquote: markdown_blockquote_1.MarkdownBlockquote,
-                    code: markdown_code_1.MarkdownCode,
-                    h1: is("h1")(Headline),
-                    h2: is("h2")(Headline),
-                    h3: is("h3")(Headline),
-                    h4: is("h4")(Headline),
-                    h5: is("h5")(Headline),
-                    h6: is("h6")(Headline),
-                    hr: markdown_hr_1.MarkdownHr,
-                    img: markdown_image_1.MarkdownImage,
-                    li: markdown_item_1.MarkdownItem,
-                    p: markdown_copy_1.MarkdownCopy,
-                    pre: preProps => {
-                        const [child = {}] = preProps.children || [];
-                        const { props: childProps = {} } = child;
-                        const language = getLanguages(preProps)[0];
-                        const highlights = getHighlights(preProps)[0];
-                        switch (language) {
-                            case "widget": {
-                                if (typeof props.widgetSrc !== "string") {
-                                    return null;
-                                }
-                                const srcdoc = [
-                                    `<!doctype html>`,
-                                    `<html>`,
-                                    `<head>`,
-                                    `<script src="${props.widgetSrc}"></script>`,
-                                    `</head>`,
-                                    `<body>`,
-                                    `<div data-widget-mount></div>`,
-                                    `<textarea data-widget-state style="display: none;">`,
-                                    encodeURIComponent(JSON.stringify({
-                                        state: props.widgetState,
-                                        code: childProps.children.join("\n")
-                                    })),
-                                    `</textarea>`,
-                                    `</body>`,
-                                    `</html>`
-                                ].join("");
-                                return React.createElement(widget_frame_1.WidgetFrame, { srcDoc: srcdoc, src: "/" });
-                            }
-                            default:
-                                return (React.createElement(markdown_code_block_1.MarkdownCodeBlock, Object.assign({}, preProps, { language: language, highlights: highlights })));
-                        }
-                    },
-                    ul: is("ul")(markdown_list_1.MarkdownList),
-                    ol: is("ol")(markdown_list_1.MarkdownList)
-                }
-            })
-                .use(emoji)
-                .processSync(frontmatter(props.source).body).contents));
+        return (React.createElement(StyledMarkdown, { className: props.className }, props.source && processor.processSync(props.source).contents));
     }
 }
 exports.Markdown = Markdown;

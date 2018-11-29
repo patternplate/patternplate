@@ -7,8 +7,9 @@ export interface HtmlOptions {
   scripts?: boolean;
 }
 
-export function html(content: T.HtmlContent, payload: unknown): string {
+export function html(content: T.HtmlContent, payload: unknown, ctx: { depth: number }): string {
   const data = encodeURIComponent(JSON.stringify(payload));
+  const relative = '../'.repeat(ctx.depth);
 
   return unindent(`
     <!doctype html>
@@ -30,10 +31,10 @@ export function html(content: T.HtmlContent, payload: unknown): string {
         <!-- content.after -->
         ${content.after || ""}
         <!-- ../ -> /api/ -->
-        <script src="../patternplate.web.components.js"></script>
-        <script src="../patternplate.web.probe.js"></script>
-        <script src="../patternplate.web.mount.js"></script>
-        <script src="../patternplate.web.demo.js"></script>
+        <script src="${relative}patternplate.web.components.js"></script>
+        <script src="${relative}patternplate.web.probe.js"></script>
+        <script src="${relative}patternplate.web.mount.js"></script>
+        <script src="${relative}patternplate.web.demo.js"></script>
       </body>
     </html>
   `);

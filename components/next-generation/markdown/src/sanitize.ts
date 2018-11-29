@@ -1,56 +1,24 @@
-export default {
-  "strip": [
-    "script"
-  ],
-  "clobberPrefix": "user-content-",
-  "clobber": [
-    "name",
-    "id"
-  ],
-  "ancestors": {
-    "li": [
-      "ol",
-      "ul"
-    ],
-    "tbody": [
-      "table"
-    ],
-    "tfoot": [
-      "table"
-    ],
-    "thead": [
-      "table"
-    ],
-    "td": [
-      "table"
-    ],
-    "th": [
-      "table"
-    ],
-    "tr": [
-      "table"
-    ]
+export const sanitize = {
+  strip: ["script"],
+  clobberPrefix: "user-content-",
+  clobber: ["name", "id"],
+  ancestors: {
+    li: ["ol", "ul"],
+    summary: ["details"],
+    tbody: ["table"],
+    tfoot: ["table"],
+    thead: ["table"],
+    td: ["table"],
+    th: ["table"],
+    tr: ["table"]
   },
-  "protocols": {
-    "href": [
-      "http",
-      "https",
-      "mailto"
-    ],
-    "cite": [
-      "http",
-      "https"
-    ],
-    "src": [
-      "http",
-      "https"
-    ],
-    "longDesc": [
-      "http",
-      "https"
-    ]
+  protocols: {
+    href: ["http", "https", "mailto"],
+    cite: ["http", "https"],
+    src: ["http", "https"],
+    longDesc: ["http", "https"]
   },
-  "tagNames": [
+  tagNames: [
     "h1",
     "h2",
     "h3",
@@ -100,35 +68,18 @@ export default {
     "s",
     "strike",
     "summary",
-    "details"
+    "details",
+    "summary"
   ],
-  "attributes": {
-    "a": [
-      "href"
-    ],
-    "code": [
-      "className"
-    ],
-    "img": [
-      "src",
-      "longDesc"
-    ],
-    "div": [
-      "itemScope",
-      "itemType"
-    ],
-    "blockquote": [
-      "cite"
-    ],
-    "del": [
-      "cite"
-    ],
-    "ins": [
-      "cite"
-    ],
-    "q": [
-      "cite"
-    ],
+  attributes: {
+    a: ["href"],
+    code: ["className"],
+    img: ["src", "longDesc"],
+    div: ["itemScope", "itemType"],
+    blockquote: ["cite"],
+    del: ["cite"],
+    ins: ["cite"],
+    q: ["cite"],
     "*": [
       "abbr",
       "accept",
@@ -200,4 +151,4 @@ export default {
       "itemProp"
     ]
   }
-}
+};

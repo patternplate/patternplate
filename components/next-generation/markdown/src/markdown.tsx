@@ -2,12 +2,18 @@ import * as React from "react";
 import styled from "styled-components";
 import { WidgetFrame } from "./widget-frame";
 
-import * as frontmatter from "front-matter";
+// import * as frontmatter from "front-matter";
 import * as remark from "remark";
-import * as emoji from "remark-gemoji-to-emoji";
-import * as reactRenderer from "remark-react";
+import * as remarkRehype from "remark-rehype";
+import * as rehypeRaw from "rehype-raw";
+import * as rehypeReact from "rehype-react";
+import * as rehypeSanitize from "rehype-sanitize";
+import * as remarkFrontmatter from "remark-frontmatter";
+import * as remarkEmoji from "remark-gemoji-to-emoji";
 import * as rangeParser from "parse-numeric-range";
+import { sanitize } from "./sanitize";
 
+import { MarkdownDetails } from "./markdown-details";
 import { MarkdownBlockquote } from "./markdown-blockquote";
 import { MarkdownCode } from "./markdown-code";
 import { MarkdownCodeBlock } from "./markdown-code-block";
@@ -18,7 +24,6 @@ import { MarkdownImage } from "./markdown-image";
 import { MarkdownItem } from "./markdown-item";
 import { MarkdownList } from "./markdown-list";
 import { MarkdownLink } from "./markdown-link";
-import sanitization from "./sanitization";
 
 export interface MarkdownProps {
   linkable?: boolean;
@@ -28,81 +33,46 @@ export interface MarkdownProps {
   widgetState?: unknown;
 }
 
+const processor = remark()
+  .use(remarkFrontmatter)
+  .use(remarkEmoji)
+  .use(remarkRehype, { allowDangerousHTML: true })
+  .use(rehypeRaw)
+  .use(rehypeSanitize, sanitize)
+  .use(rehypeReact, {
+    createElement: React.createElement,
+    components: {
+      a: MarkdownLink,
+      blockquote: MarkdownBlockquote,
+      code: MarkdownCode,
+      h1: is("h1")(MarkdownHeadline),
+      h2: is("h2")(MarkdownHeadline),
+      h3: is("h3")(MarkdownHeadline),
+      h4: is("h4")(MarkdownHeadline),
+      h5: is("h5")(MarkdownHeadline),
+      h6: is("h6")(MarkdownHeadline),
+      hr: MarkdownHr,
+      img: MarkdownImage,
+      li: MarkdownItem,
+      p: MarkdownCopy,
+      pre: props => {
+        const [language] = getLanguages(props);
+        const [highlights] = getHighlights(props);
+        return <MarkdownCodeBlock {...props} language={language} highlights={highlights}/>;
+      },
+      ul: is("ul")(MarkdownList),
+      ol: is("ol")(MarkdownList),
+      details: MarkdownDetails
+    }
+  });
+
 export class Markdown extends React.Component<MarkdownProps> {
   public render(): JSX.Element | null {
     const { props } = this;
-    const Headline = prop("linkable", props.linkable)(MarkdownHeadline);
 
     return (
       <StyledMarkdown className={props.className}>
-        {props.source &&
-          remark()
-            .use(reactRenderer, {
-              sanitize: sanitization,
-              remarkReactComponents: {
-                a: MarkdownLink,
-                blockquote: MarkdownBlockquote,
-                code: MarkdownCode,
-                h1: is("h1")(Headline),
-                h2: is("h2")(Headline),
-                h3: is("h3")(Headline),
-                h4: is("h4")(Headline),
-                h5: is("h5")(Headline),
-                h6: is("h6")(Headline),
-                hr: MarkdownHr,
-                img: MarkdownImage,
-                li: MarkdownItem,
-                p: MarkdownCopy,
-                pre: preProps => {
-                  const [child = {}] = preProps.children || [];
-                  const {props: childProps = {}} = child;
-                  const language = getLanguages(preProps)[0];
-                  const highlights = getHighlights(preProps)[0];
-
-                  switch (language) {
-                    case "widget": {
-                      if (typeof props.widgetSrc !== "string") {
-                        return null;
-                      }
-
-                      const srcdoc = [
-                        `<!doctype html>`,
-                        `<html>`,
-                        `<head>`,
-                        `<script src="${props.widgetSrc}"></script>`,
-                        `</head>`,
-                        `<body>`,
-                        `<div data-widget-mount></div>`,
-                        `<textarea data-widget-state style="display: none;">`,
-                        encodeURIComponent(
-                          JSON.stringify({
-                            state: props.widgetState,
-                            code: childProps.children.join("\n")
-                          })
-                        ),
-                        `</textarea>`,
-                        `</body>`,
-                        `</html>`
-                      ].join("");
-
-                      return <WidgetFrame srcDoc={srcdoc} src="/" />;
-                    }
-                    default:
-                      return (
-                        <MarkdownCodeBlock
-                          {...preProps}
-                          language={language}
-                          highlights={highlights}
-                        />
-                      );
-                  }
-                },
-                ul: is("ul")(MarkdownList),
-                ol: is("ol")(MarkdownList)
-              }
-            })
-            .use(emoji)
-            .processSync(frontmatter(props.source).body).contents}
+        {props.source && processor.processSync(props.source).contents}
       </StyledMarkdown>
     );
   }
