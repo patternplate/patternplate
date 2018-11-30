@@ -3,7 +3,7 @@
   "include": [],
   "references": [
     {"path": "./components"},
-    {"path": "./packages"}
+    {"path": "./packages"},
   ],
   "compilerOptions": {
     "sourceMap": true,

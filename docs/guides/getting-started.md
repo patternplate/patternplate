@@ -7,8 +7,8 @@ options:
   order: 0
 ---
 
-> :information_source: You don't want/need to use the CLI? 
-> 
+> :information_source: 
+> You don't want/need to use the CLI?  
 > [Check out our app and let the machine deal with Node.js and GIT](./doc/docs/guides/getting-started-app?guides-enabled=true).
 
 # Your kickstart into patternplate

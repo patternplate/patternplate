@@ -45,7 +45,8 @@ We will …
 
 2. Create a `./patternplate.config.js` and copy the following code into it. We are configuring `patternplate` with its defaults to prepare for the next step.
 
-  > :information_source: See [Reference: Configuration](./doc/docs/reference/configuration) for details about the config keys
+  > :information_source: 
+  > See [Reference: Configuration](./doc/docs/reference/configuration) for details about the config keys
 
 ```js
 // patternplate.config.js, default config

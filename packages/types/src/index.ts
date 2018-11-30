@@ -97,6 +97,13 @@ export interface PatternplateUiConfig {
   colorTextLight?: string;
   colorTextNegatedLight?: string;
   colorRecessLight?: string;
+  colorBackgroundNote?: string;
+  colorBackgroundInfoNote?: string;
+  colorBackgroundSuccessNote?: string;
+  colorBackgroundErrorNote?: string;
+  colorBackgroundWarningNote?: string;
+  colorNoteLight?: string;
+  colorNoteDark?: string;
   showComponents?: boolean;
 }
 

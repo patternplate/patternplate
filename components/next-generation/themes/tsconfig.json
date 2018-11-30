@@ -1,7 +1,7 @@
 {
   "references": [
     {
-      "path": "../../packages/types"
+      "path": "../../../packages/types"
     }
   ],
   "compilerOptions": {

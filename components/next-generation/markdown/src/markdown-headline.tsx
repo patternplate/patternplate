@@ -41,6 +41,7 @@ const StyledHeadline = styled(Headline)`
 `;
 
 export const MarkdownHeadline = styled(InnerMarkdownHeadline)`
+  grid-column: first / span 12;
   position: relative;
   color: ${props => props.theme.colors.color};
   margin: 60px 0 16px 0;

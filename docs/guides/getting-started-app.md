@@ -7,8 +7,9 @@ options:
   order: 1
 ---
 
-> :information_source: Looking to set up patternplate as a dev project? 
->
+> :information_source: 
+> Looking to set up patternplate as a dev project? 
+> 
 > [Give the CLI Getting Started Guide a go](./doc/docs/guides/getting-started?guides-enabled=true).
 
 # Get started with @patternplate/app
@@ -27,7 +28,8 @@ We will …
 
 * … start the Getting Started project via the app
 
-> :warning: `@patternplate/app` is a Technical Preview and might have bugs / unimplemented features. We are working hard to get the first stable version
+> :warning: 
+> `@patternplate/app` is a Technical Preview and might have bugs / unimplemented features. We are working hard to get the first stable version
 ready for delivery :crossed_fingers: 
 > 
 > During Alpha we build only macOS bundles, support for other platforms is planned.

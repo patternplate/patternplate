@@ -63,7 +63,8 @@ export const demo = async function demo(options: T.RouteOptions): Promise<expres
         return;
       }
 
-      res.send(html(content, found));
+      const depth = id.split('/').length;
+      res.send(html(content, found, { depth }));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);

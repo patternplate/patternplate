@@ -4,8 +4,9 @@ import tag from "tag-hoc";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { createSelector } from "reselect";
+import { Link } from "@patternplate/component-link";
 import {
-  Link,
+  Link as LegacyLink,
   Icon,
   styled,
   injection,
@@ -84,6 +85,10 @@ function mapDispatch(dispatch) {
 const injections = [
   {
     target: Link,
+    source: ConnectedLink
+  },
+  {
+    target: LegacyLink,
     source: ConnectedLink
   }
 ];

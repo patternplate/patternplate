@@ -2,14 +2,14 @@
   "files": [],
   "include": [],
   "references": [
-    {"path": "./code"},
-    {"path": "./headline"},
-    {"path": "./icon"},
-    {"path": "./link"},
-    {"path": "./markdown"},
-    {"path": "./text"},
-    {"path": "./themes"},
-    {"path": "./utility"},
+    {"path": "./next-generation/code"},
+    {"path": "./next-generation/headline"},
+    {"path": "./next-generation/icon"},
+    {"path": "./next-generation/link"},
+    {"path": "./next-generation/markdown"},
+    {"path": "./next-generation/text"},
+    {"path": "./next-generation/themes"},
+    {"path": "./next-generation/utility"},
   ],
   "compilerOptions": {
     "composite": true
