@@ -66,6 +66,7 @@ function mapProps(state) {
     title: state.config.title || state.schema.name,
     hasMessage: selectHasMessage(state),
     screenshot: q.screenshot === "true",
+    showComponents: state.config.ui.showComponents === undefined ? true : state.config.ui.showComponents,
     jsWarningEnabled: q["js-warning-enabled"] !== "false" && q["js-warning-enabled"] !== false,
     browserWarningEnabled: q["browser-warning-enabled"] !== "false" && q["browser-warning-enabled"] !== false,
   };
@@ -124,7 +125,7 @@ class Application extends React.Component {
                   data-toggle-enabled={props.visible}
                   enabled={props.navigationEnabled}
                   >
-                  <Navigation>
+                  <Navigation showComponents={props.showComponents}>
                     <NavigationHeader>
                       <Logo />
                     </NavigationHeader>

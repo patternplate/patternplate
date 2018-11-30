@@ -104,6 +104,7 @@ export interface PatternplateUiConfig {
   colorBackgroundWarningNote?: string;
   colorNoteLight?: string;
   colorNoteDark?: string;
+  showComponents?: boolean;
 }
 
 export interface PatternplateConfig {
