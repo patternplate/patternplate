@@ -7,8 +7,9 @@ options:
   order: 1
 ---
 
-> :information_source: Looking to set up patternplate as a dev project? 
->
+> :information_source: 
+> Looking to set up patternplate as a dev project? 
+> 
 > [Give the CLI Getting Started Guide a go](./doc/docs/guides/getting-started?guides-enabled=true).
 
 # Get started with @patternplate/app

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const styled_components_1 = require("styled-components");
 exports.MarkdownHr = styled_components_1.default.hr `
+  grid-column: first / span 12;
   height: 0.25em;
   padding: 0;
   margin: 24px 0;

@@ -1,4 +1,5 @@
 export const long = `
+
 \`\`\`jsx{1,5-7}
 export function Component() {
   // Some comment
@@ -56,7 +57,11 @@ Content in the first column | Content in the second column
 
 
 <details>
-<summary>This might be interesting, too</summary>
+<summary>
+
+# More Content
+
+</summary>
 
 First Header | Second Header
 ------------ | -------------
@@ -943,6 +948,62 @@ Content in the first column | Content in the second column
 :small_red_triangle:
 :small_red_triangle_down:
 <!-- :shipit: -->
+
+## patternplate flavoured Markdown
+
+### Layout
+
+<div grid="true">
+  <div column-start="5" column-end="9">
+
+  ![](https://patternplate.github.io/media/logo/class-photo.svg)
+
+  </div>
+</div>
+
+<div grid="true">
+  <div column-start="1" column-end="7">
+
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+  </div>
+  <div column-start="7" column-end="13">
+
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+  </div>
+</div>
+
+### Info boxes
+
+> :grey_question:
+> A generic grey box to indicate emphasis
+
+---
+
+> :grey_question:
+> ![](https://patternplate.github.io/media/logo/class-photo.svg)
+
+---
+
+> :information_source:
+> A blue box emphasising relevant information [and a link](#some-link)
+
+---
+
+> :white_check_mark:
+> A green box indicating something positive [and a link](#some-link)
+
+---
+
+> :warning:
+> A yellow box indicating a warning / heads up
+
+---
+
+> :x:
+> A red box that indicates something negative
+
 `;
 
 export const short = `
@@ -956,4 +1017,5 @@ First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
+
 `;

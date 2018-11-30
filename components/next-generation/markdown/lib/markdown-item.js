@@ -4,6 +4,7 @@ const React = require("react");
 const styled_components_1 = require("styled-components");
 const component_text_1 = require("@patternplate/component-text");
 exports.MarkdownItem = styled_components_1.default(InnerMarkdownItem) `
+  grid-column: first / span 12;
   font-size: 18px;
   line-height: 27px;
   color: ${props => props.theme.colors.color};

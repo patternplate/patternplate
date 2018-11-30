@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Text } from "@patternplate/component-text";
 
 export const MarkdownItem = styled(InnerMarkdownItem)`
+  grid-column: first / span 12;
   font-size: 18px;
   line-height: 27px;
   color: ${props => props.theme.colors.color};

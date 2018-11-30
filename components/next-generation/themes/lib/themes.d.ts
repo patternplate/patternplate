@@ -13,6 +13,13 @@ export interface Theme {
         color: string;
         colorNegated: string;
         recess: string;
+        colorBackgroundNote: string;
+        colorBackgroundInfoNote: string;
+        colorBackgroundSuccessNote: string;
+        colorBackgroundErrorNote: string;
+        colorBackgroundWarningNote: string;
+        colorNoteLight: string;
+        colorNoteDark: string;
     };
     fonts: {
         fontWeight: number;

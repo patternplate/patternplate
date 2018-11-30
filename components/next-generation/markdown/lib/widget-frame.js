@@ -18,7 +18,7 @@ class WidgetFrame extends React.Component {
 }
 exports.WidgetFrame = WidgetFrame;
 const StyledWidgetFrame = styled_components_1.default.iframe `
-  width: 100%;
   border: none;
+  grid-column: first / span 12;
 `;
 //# sourceMappingURL=widget-frame.js.map

@@ -75,7 +75,7 @@ export const sanitize = {
     a: ["href"],
     code: ["className"],
     img: ["src", "longDesc"],
-    div: ["itemScope", "itemType"],
+    div: ["itemScope", "itemType", "grid", "column-start", "column-end"],
     blockquote: ["cite"],
     del: ["cite"],
     ins: ["cite"],

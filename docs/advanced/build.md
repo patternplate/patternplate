@@ -35,7 +35,8 @@ We will …
 
 ## Set up Babel
 
-> :information_source: We are using Babel here as an example, mainly because it is
+> :information_source: 
+> We are using Babel here as an example, mainly because it is
 the ubiquitous in the JavaScript ecosystem at the time of writing. 
 >
 > The principles described below apply to any build system emitting JavaScript (optionally HTML and CSS).

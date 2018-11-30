@@ -12,6 +12,7 @@ const remarkFrontmatter = require("remark-frontmatter");
 const remarkEmoji = require("remark-gemoji-to-emoji");
 const rangeParser = require("parse-numeric-range");
 const sanitize_1 = require("./sanitize");
+const markdown_div_1 = require("./markdown-div");
 const markdown_details_1 = require("./markdown-details");
 const markdown_blockquote_1 = require("./markdown-blockquote");
 const markdown_code_1 = require("./markdown-code");
@@ -33,6 +34,7 @@ const processor = remark()
     createElement: React.createElement,
     components: {
         a: markdown_link_1.MarkdownLink,
+        div: markdown_div_1.MarkdownDiv,
         blockquote: markdown_blockquote_1.MarkdownBlockquote,
         code: markdown_code_1.MarkdownCode,
         h1: is("h1")(markdown_headline_1.MarkdownHeadline),
@@ -58,7 +60,9 @@ const processor = remark()
 class Markdown extends React.Component {
     render() {
         const { props } = this;
-        return (React.createElement(StyledMarkdown, { className: props.className }, props.source && processor.processSync(props.source).contents));
+        const elements = processor.processSync(props.source).contents;
+        const element = React.Children.only(elements);
+        return (React.createElement(StyledMarkdown, { className: props.className }, props.source && element.props.children));
     }
 }
 exports.Markdown = Markdown;

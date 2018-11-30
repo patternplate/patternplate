@@ -12,7 +12,8 @@ Guides and Advanced topics will also state the time :timer_clock: it will take t
   
 ## Levels
 
-> :information_source: Don't be put off by the levels, they are only meant to help. Ask your colleagues for help and [post an issue on GitHub](https://github.com/patternplate/patternplate/issues/new) if something is hard to understand in our docs. Thank you! :bow:
+> :information_source: 
+> Don't be put off by the levels, they are only meant to help. Ask your colleagues for help and [post an issue on GitHub](https://github.com/patternplate/patternplate/issues/new) if something is hard to understand in our docs. Thank you! :bow:
 
 The recommended levels for the instructions in this documentation are structured according to the technical knowledge required. 
 

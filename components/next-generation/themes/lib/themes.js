@@ -81,6 +81,23 @@ function getThemes(ui = {}) {
     const colorRecessLight = ui.colorRecessLight
         ? Color(ui.colorRecessLight)
         : Color.rgb(106, 115, 125, 1);
+    const backgroundNote = ui.colorBackgroundNote
+        ? Color(ui.colorBackgroundNote)
+        : backgroundSecondary;
+    const backgroundInfoNote = ui.colorBackgroundInfoNote
+        ? Color(ui.colorBackgroundInfoNote)
+        : info;
+    const backgroundSucessNote = ui.colorBackgroundSuccessNote
+        ? Color(ui.colorBackgroundSuccessNote)
+        : success;
+    const backgroundErrorNote = ui.colorBackgroundErrorNote
+        ? Color(ui.colorBackgroundErrorNote)
+        : error;
+    const backgroundWarningNote = ui.colorBackgroundWarningNote
+        ? Color(ui.colorBackgroundWarningNote)
+        : warning;
+    const noteLight = Color(ui.colorNoteLight) || colorLightNegated;
+    const noteDark = Color(ui.colorNoteDark) || colorLight;
     const fontFaces = fonts_1.fonts();
     const common = {
         colors: {
@@ -89,6 +106,13 @@ function getThemes(ui = {}) {
             warning: warning.string(),
             info: info.string(),
             success: success.string(),
+            colorBackgroundNote: backgroundNote.string(),
+            colorBackgroundInfoNote: backgroundInfoNote.string(),
+            colorBackgroundSuccessNote: backgroundSucessNote.string(),
+            colorBackgroundErrorNote: backgroundErrorNote.string(),
+            colorBackgroundWarningNote: backgroundWarningNote.string(),
+            colorNoteLight: noteLight.string(),
+            colorNoteDark: noteDark.string(),
         },
         fonts: {
             fontWeight: 100,

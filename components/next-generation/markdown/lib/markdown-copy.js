@@ -4,6 +4,7 @@ const React = require("react");
 const styled_components_1 = require("styled-components");
 const component_text_1 = require("@patternplate/component-text");
 exports.MarkdownCopy = styled_components_1.default(InnerMarkdownCopy) `
+  grid-column: first / span 12;
   margin: 0 0 16px 0;
   font-size: 18px;
   line-height: 27px;

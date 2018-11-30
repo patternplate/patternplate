@@ -25,6 +25,6 @@ export class WidgetFrame extends React.Component<WidgetFrameProps> {
 }
 
 const StyledWidgetFrame = styled.iframe`
-  width: 100%;
   border: none;
+  grid-column: first / span 12;
 `;

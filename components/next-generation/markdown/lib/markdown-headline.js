@@ -37,6 +37,7 @@ const StyledHeadline = styled_components_1.default(component_headline_1.Headline
   font-family: ${props => props.theme.fonts.headline};
 `;
 exports.MarkdownHeadline = styled_components_1.default(InnerMarkdownHeadline) `
+  grid-column: first / span 12;
   position: relative;
   color: ${props => props.theme.colors.color};
   margin: 60px 0 16px 0;

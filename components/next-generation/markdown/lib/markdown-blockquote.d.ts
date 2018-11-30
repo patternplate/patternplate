@@ -1,7 +1,12 @@
 import * as React from "react";
+import { Theme } from "@patternplate/component-themes";
 export interface MarkdownBlockquoteProps {
     className?: string;
-    children: React.ReactNode;
 }
-export declare const MarkdownBlockquote: import("styled-components").StyledComponent<React.FunctionComponent<MarkdownBlockquoteProps>, any, {}, never>;
+export interface MarkdownNoteProps {
+    symbol: string;
+}
+export declare const MarkdownBlockquote: React.SFC<MarkdownBlockquoteProps & {
+    theme: Theme;
+}>;
 //# sourceMappingURL=markdown-blockquote.d.ts.map

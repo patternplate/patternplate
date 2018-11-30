@@ -4,6 +4,7 @@ import * as textContent from 'react-addons-text-content';
 import { Code } from "@patternplate/component-code";
 
 const StyledMarkdownCodeBlock = styled.div`
+  grid-column: first / span 12;
   border-radius: 3px;
   font-size: 15.3px;
   line-height: 23px;

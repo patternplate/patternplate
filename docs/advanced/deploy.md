@@ -99,7 +99,8 @@ npx serve docs/ --open
 
 ## Deploy to GitHub Pages
 
-> :information_source: You may have noticed from our run of `npx serve`: `patternplate build` creates a document root suitable for deployment on any static webserver. This means there is nothing barring you from hosting it from your own systems.
+> :information_source: 
+> You may have noticed from our run of `npx serve`: `patternplate build` creates a document root suitable for deployment on any static webserver. This means there is nothing barring you from hosting it from your own systems.
 
 Replace `[username]` with your GitHub username in all commands of this section.
 

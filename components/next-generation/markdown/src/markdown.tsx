@@ -13,6 +13,7 @@ import * as remarkEmoji from "remark-gemoji-to-emoji";
 import * as rangeParser from "parse-numeric-range";
 import { sanitize } from "./sanitize";
 
+import { MarkdownDiv } from "./markdown-div";
 import { MarkdownDetails } from "./markdown-details";
 import { MarkdownBlockquote } from "./markdown-blockquote";
 import { MarkdownCode } from "./markdown-code";
@@ -43,6 +44,7 @@ const processor = remark()
     createElement: React.createElement,
     components: {
       a: MarkdownLink,
+      div: MarkdownDiv,
       blockquote: MarkdownBlockquote,
       code: MarkdownCode,
       h1: is("h1")(MarkdownHeadline),
@@ -69,10 +71,12 @@ const processor = remark()
 export class Markdown extends React.Component<MarkdownProps> {
   public render(): JSX.Element | null {
     const { props } = this;
+    const elements = processor.processSync(props.source).contents;
+    const element = React.Children.only(elements);
 
     return (
       <StyledMarkdown className={props.className}>
-        {props.source && processor.processSync(props.source).contents}
+        {props.source && element.props.children}
       </StyledMarkdown>
     );
   }
