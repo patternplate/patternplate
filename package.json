@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "concurrently \"ttsc -b --verbose\" \"lerna run build --stream --include-filtered-dependencies\"",
+    "build": "ttsc -b --verbose && lerna run build --stream --include-filtered-dependencies",
     "pack": "lerna run pack --stream",
     "clean": "lerna clean --yes && lerna run clean && rimraf node_modules",
     "components:start": "patternplate start",
@@ -16,7 +16,7 @@
     "patternplate:build": "lerna run build --stream --filter='@patternplate/components'",
     "patternplate:watch": "lerna run watch --stream --filter='@patternplate/components'",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
-    "start": "concurrently \"ttsc -b -w\" \"lerna run watch --stream --parallel --include-filtered-dependencies\"",
+    "start": "ttsc -b --verbose && concurrently \"ttsc -b -w\" \"lerna run watch --stream --parallel --include-filtered-dependencies\"",
     "test": "jest"
   },
   "author": {
