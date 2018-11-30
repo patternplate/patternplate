@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
-set -u
 
-ID=$(if [ "$CIRCLE_PR_NUMBER" != "false" ]; then echo "pr-$CIRCLE_PR_NUMBER"; else echo "commit-$CIRCLE_SHA1"; fi);
+ID=$(if [[ -z "$CIRCLE_PR_NUMBER" ]]; then echo "commit-$CIRCLE_SHA1"; else echo "pr-$CIRCLE_PR_NUMBER"; fi);
 
 patternplate-deploy --source .tmp --name="$CIRCLE_PROJECT_REPONAME-$ID" --provider=surge
