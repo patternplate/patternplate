@@ -8,8 +8,8 @@ package-lock.json
 
 /packages/**/yarn.lock
 
-/components/**/lib/
-/packages/*/lib/
+/components/**/lib
+/packages/*/lib
 /packages/components/docs/patterns
 
 /examples/*/lib

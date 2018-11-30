@@ -1,1 +1,0 @@
-{"version":3,"file":"widget-frame.d.ts","sourceRoot":"","sources":["../src/widget-frame.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,OAAO,CAAC;AAI/B,oBAAY,gBAAgB,GAAG,KAAK,CAAC,oBAAoB,CAAC,iBAAiB,CAAC,CAAC;AAE7E,qBAAa,WAAY,SAAQ,KAAK,CAAC,SAAS,CAAC,gBAAgB,CAAC;IAChE,OAAO,CAAC,GAAG,CAAqB;IAEzB,iBAAiB;IAWjB,MAAM,IAAI,GAAG,CAAC,OAAO,GAAG,IAAI;CAIpC"}
