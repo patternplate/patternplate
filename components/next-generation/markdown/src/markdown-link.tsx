@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import * as Url from "url";
 import * as queryString from "query-string";
-import * as Link from "@patternplate/components/lib/link";
+import { Link } from "@patternplate/component-link";
 
 export const MarkdownLink = (props) => {
   const parsed = Url.parse(props.href || "./");
