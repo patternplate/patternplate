@@ -682,6 +682,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@patternplate/deploy-site@file:./packages/deploy":
+  version "3.0.6"
+  dependencies:
+    "@marionebl/sander" "^0.6.1"
+    execa "^0.9.0"
+    meow "^4.0.0"
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
