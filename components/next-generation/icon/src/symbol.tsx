@@ -23,8 +23,8 @@ export const Symbol: React.SFC<SymbolProps> = (props) => {
   }
 
   return (
-    <symbol className={props.className} id={props.id} viewBox="0 0 24 24">
+    <>
       {paths.map(p => <Path key={p} definition={p} />)}
-    </symbol>
+    </>
   );
 }
