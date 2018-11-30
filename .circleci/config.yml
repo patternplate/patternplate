@@ -23,5 +23,7 @@ jobs:
 
       - run: yarn build
       - run: yarn test
-
+      - run: yarn run pack
+      - run: yarn build:components
+      - run: ./.circleci/deploy-pre.sh
 
