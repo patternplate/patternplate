@@ -97,6 +97,7 @@ export interface PatternplateUiConfig {
   colorTextLight?: string;
   colorTextNegatedLight?: string;
   colorRecessLight?: string;
+  showComponents?: boolean;
 }
 
 export interface PatternplateConfig {

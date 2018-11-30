@@ -445,3 +445,15 @@ module.exports = {
   }
 };
 ```
+
+### ui.showComponents
+
+A boolean value that switches the components on/off from the sidebar.
+
+```js
+module.exports = {
+  ui: {
+    showComponents: false
+  }
+};
+```

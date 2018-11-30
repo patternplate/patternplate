@@ -50,26 +50,30 @@ class Navigation extends React.Component {
             onScrollRequest={this.handleScrollRequest}
             query={props.query}
             />
-          <NavigationLabel
-            visible={props.navigation.children.length > 0}
-            enabled={props.componentsEnabled}
-            name="components"
-            highlight
-            onClick={props.onLabelClick}
-            size="S"
-            >
-            Components
-          </NavigationLabel>
-          <NavigationTree
-            name="components"
-            visible={props.componentsEnabled && props.navigation.children.length > 0}
-            active={props.active}
-            data={props.navigation.children}
-            onItemClick={props.onItemClick}
-            onScrollRequest={this.handleScrollRequest}
-            prefix="/component"
-            query={props.query}
-            />
+          {props.showComponents &&
+            <>
+            <NavigationLabel
+              visible={props.navigation.children.length > 0}
+              enabled={props.componentsEnabled}
+              name="components"
+              highlight
+              onClick={props.onLabelClick}
+              size="S"
+              >
+              Components
+            </NavigationLabel>
+            <NavigationTree
+              name="components"
+              visible={props.componentsEnabled && props.navigation.children.length > 0}
+              active={props.active}
+              data={props.navigation.children}
+              onItemClick={props.onItemClick}
+              onScrollRequest={this.handleScrollRequest}
+              prefix="/component"
+              query={props.query}
+              />
+            </>
+          }
         </StyledNavigationTree>
         {toolbar && (
           <StyledNavigationToolbar>{toolbar}</StyledNavigationToolbar>
