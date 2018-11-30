@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { WidgetFrame } from "./widget-frame";
+import * as PropTypes from "prop-types";
+import * as ReactAddonsTextContent from "react-addons-text-content";
 
-// import * as frontmatter from "front-matter";
 import * as remark from "remark";
 import * as remarkRehype from "remark-rehype";
 import * as rehypeRaw from "rehype-raw";
@@ -14,7 +14,7 @@ import * as rangeParser from "parse-numeric-range";
 import { sanitize } from "./sanitize";
 
 import { MarkdownDiv } from "./markdown-div";
-import { MarkdownDetails } from "./markdown-details";
+import { MarkdownDetails } from "./markdown-details";
 import { MarkdownBlockquote } from "./markdown-blockquote";
 import { MarkdownCode } from "./markdown-code";
 import { MarkdownCodeBlock } from "./markdown-code-block";
@@ -25,6 +25,7 @@ import { MarkdownImage } from "./markdown-image";
 import { MarkdownItem } from "./markdown-item";
 import { MarkdownList } from "./markdown-list";
 import { MarkdownLink } from "./markdown-link";
+import { MarkdownWidget } from "./markdown-widget";
 
 export interface MarkdownProps {
   linkable?: boolean;
@@ -33,45 +34,61 @@ export interface MarkdownProps {
   widgetSrc?: string;
   widgetState?: unknown;
 }
-
-const processor = remark()
-  .use(remarkFrontmatter)
-  .use(remarkEmoji)
-  .use(remarkRehype, { allowDangerousHTML: true })
-  .use(rehypeRaw)
-  .use(rehypeSanitize, sanitize)
-  .use(rehypeReact, {
-    createElement: React.createElement,
-    components: {
-      a: MarkdownLink,
-      div: MarkdownDiv,
-      blockquote: MarkdownBlockquote,
-      code: MarkdownCode,
-      h1: is("h1")(MarkdownHeadline),
-      h2: is("h2")(MarkdownHeadline),
-      h3: is("h3")(MarkdownHeadline),
-      h4: is("h4")(MarkdownHeadline),
-      h5: is("h5")(MarkdownHeadline),
-      h6: is("h6")(MarkdownHeadline),
-      hr: MarkdownHr,
-      img: MarkdownImage,
-      li: MarkdownItem,
-      p: MarkdownCopy,
-      pre: props => {
-        const [language] = getLanguages(props);
-        const [highlights] = getHighlights(props);
-        return <MarkdownCodeBlock {...props} language={language} highlights={highlights}/>;
-      },
-      ul: is("ul")(MarkdownList),
-      ol: is("ol")(MarkdownList),
-      details: MarkdownDetails
-    }
-  });
-
 export class Markdown extends React.Component<MarkdownProps> {
+  private processor = remark()
+    .use(remarkFrontmatter)
+    .use(remarkEmoji)
+    .use(remarkRehype, { allowDangerousHTML: true })
+    .use(rehypeRaw)
+    .use(rehypeSanitize, sanitize)
+    .use(rehypeReact, {
+      createElement: React.createElement,
+      components: {
+        a: MarkdownLink,
+        div: MarkdownDiv,
+        blockquote: MarkdownBlockquote,
+        code: MarkdownCode,
+        h1: is("h1")(MarkdownHeadline),
+        h2: is("h2")(MarkdownHeadline),
+        h3: is("h3")(MarkdownHeadline),
+        h4: is("h4")(MarkdownHeadline),
+        h5: is("h5")(MarkdownHeadline),
+        h6: is("h6")(MarkdownHeadline),
+        hr: MarkdownHr,
+        img: MarkdownImage,
+        li: MarkdownItem,
+        p: MarkdownCopy,
+        pre: props => {
+          const [language] = getLanguages(props);
+          const [highlights] = getHighlights(props);
+
+          if (language === "widget") {
+            return (
+              <MarkdownWidget
+                src={this.props.widgetSrc}
+                state={this.props.widgetState}
+                code={ReactAddonsTextContent(props.children)}
+              />
+            );
+          }
+
+          return (
+            <MarkdownCodeBlock
+              {...props}
+              language={language}
+              highlights={highlights}
+            />
+          );
+        },
+        ul: is("ul")(MarkdownList),
+        ol: is("ol")(MarkdownList),
+        details: MarkdownDetails
+      }
+    });
+
   public render(): JSX.Element | null {
     const { props } = this;
-    const elements = processor.processSync(props.source).contents;
+    const elements = this.processor.processSync(props.source).contents;
     const element = React.Children.only(elements);
 
     return (

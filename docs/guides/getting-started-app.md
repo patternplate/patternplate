@@ -28,7 +28,8 @@ We will …
 
 * … start the Getting Started project via the app
 
-> :warning: `@patternplate/app` is a Technical Preview and might have bugs / unimplemented features. We are working hard to get the first stable version
+> :warning: 
+> `@patternplate/app` is a Technical Preview and might have bugs / unimplemented features. We are working hard to get the first stable version
 ready for delivery :crossed_fingers: 
 > 
 > During Alpha we build only macOS bundles, support for other platforms is planned.
