@@ -11,14 +11,11 @@ export class MarkdownPre extends React.Component {
     const [highlights] = getHighlights(props);
 
     if (language === "widget") {
-      return null;
-      /* return (
+      return (
         <MarkdownWidget
-          src={this.props.widgetSrc}
-          state={this.props.widgetState}
           code={ReactAddonsTextContent(props.children)}
         />
-      ); */
+      );
     }
 
     return (

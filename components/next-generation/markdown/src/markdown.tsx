@@ -10,14 +10,20 @@ import * as rehypeReact from "rehype-react";
 import * as rehypeSanitize from "rehype-sanitize";
 import { sanitize } from "./sanitize";
 import * as Handlers from "./handlers";
-import * as M from "./markdown-components"
+import * as M from "./markdown-components";
+
+export { MarkdownList, MarkdownItem, MarkdownLink } from "./markdown-components";
+
+
+export const MarkdownWidgetSrc = React.createContext('');
+export const MarkdownWidgetState = React.createContext({});
 
 export interface MarkdownProps {
   linkable?: boolean;
   className?: string;
   source: string;
   widgetSrc?: string;
-  widgetState?: unknown;
+  widgetState?: object;
 }
 
 export class Markdown extends React.Component<MarkdownProps> {
@@ -74,10 +80,15 @@ export class Markdown extends React.Component<MarkdownProps> {
   public render(): JSX.Element | null {
     const { props } = this;
     const elements = this.processor.processSync(props.source).contents;
+    const context = { widgetState: this.props.widgetState, widgetSrc: this.props.widgetSrc };
 
     return (
       <StyledMarkdown className={props.className}>
-        {props.source && elements}
+        <MarkdownWidgetSrc.Provider value={this.props.widgetSrc}>
+          <MarkdownWidgetState.Provider value={this.props.widgetState}>
+            {props.source && elements}
+          </MarkdownWidgetState.Provider>
+        </MarkdownWidgetSrc.Provider>
       </StyledMarkdown>
     );
   }
