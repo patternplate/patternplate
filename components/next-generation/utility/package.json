@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/component-utility",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "description": "Render markdown sources to rich HTML documents",
   "main": "lib/index.js",
   "scripts": {
@@ -33,12 +33,12 @@
     "typescript": "^3.1"
   },
   "dependencies": {
-    "@patternplate/component-themes": "3.0.6",
+    "@patternplate/component-themes": "^3.1.0",
     "@types/prop-types": "^15.5.6",
     "@types/react": "16.7.7",
     "prop-types": "^15.6.2",
-    "react-dom": "16.6.3",
     "react": "16.6.3",
+    "react-dom": "16.6.3",
     "styled-components": "^4.1.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "patternplate",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "description": "Documentation and development interface for component libraries",
   "files": [
     "patternplate.js"
@@ -33,7 +33,7 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@patternplate/client": "^3.0.6",
+    "@patternplate/client": "^3.1.0",
     "read-pkg": "^3.0.0",
     "resolve-pkg": "^1.0.0"
   },

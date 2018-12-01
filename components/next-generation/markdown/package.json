@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/component-markdown",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "description": "Render markdown sources to rich HTML documents",
   "main": "lib/markdown.js",
   "scripts": {
@@ -65,12 +65,12 @@
     "typescript": "^3.1"
   },
   "dependencies": {
-    "@patternplate/component-code": "3.0.6",
-    "@patternplate/component-headline": "3.0.6",
-    "@patternplate/component-icon": "3.0.6",
-    "@patternplate/component-text": "3.0.6",
-    "@patternplate/component-themes": "3.0.6",
-    "@patternplate/component-utility": "3.0.6",
+    "@patternplate/component-code": "^3.1.0",
+    "@patternplate/component-headline": "^3.1.0",
+    "@patternplate/component-icon": "^3.1.0",
+    "@patternplate/component-text": "^3.1.0",
+    "@patternplate/component-themes": "^3.1.0",
+    "@patternplate/component-utility": "^3.1.0",
     "@types/iframe-resizer": "^3.5.6",
     "@types/react": "16.7.7",
     "@types/styled-components": "^4.1.1",
