@@ -72,5 +72,6 @@
   "engines": {
     "node": ">= 4",
     "npm": ">= 3"
-  }
+  },
+  "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }

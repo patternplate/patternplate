@@ -5,6 +5,7 @@ node_modules
 package-lock.json
 .yarn-metadata.json
 .DS_Store
+*.tgz
 
 /packages/**/yarn.lock
 

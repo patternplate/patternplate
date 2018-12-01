@@ -47,5 +47,6 @@
   },
   "dependencies": {
     "schema-utils": "^1.0.0"
-  }
+  },
+  "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }

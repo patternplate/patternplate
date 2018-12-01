@@ -52,5 +52,6 @@
     "ts-jest": "^23.1.4",
     "ts-node": "^7.0.1",
     "typescript": "^3.1"
-  }
+  },
+  "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }

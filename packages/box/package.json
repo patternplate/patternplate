@@ -55,5 +55,6 @@
     "rimraf": "^2.6.2",
     "ts-jest": "^22.4.1",
     "typescript": "^3.1"
-  }
+  },
+  "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }
