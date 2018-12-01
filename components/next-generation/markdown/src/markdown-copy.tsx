@@ -12,8 +12,6 @@ export const MarkdownCopy = styled(InnerMarkdownCopy)`
 
 function InnerMarkdownCopy(props) {
   return (
-    <Text is="p" className={props.className}>
-      {props.children}
-    </Text>
+    <Text as="p" className={props.className}>{props.children}</Text>
   );
 }

@@ -14,7 +14,7 @@ function PatternDemo(props) {
 
   return <StyledDemo
     src={src}
-    referrerpolicy="no-referrer"
+    referrerPolicy="no-referrer"
     />;
 }
 

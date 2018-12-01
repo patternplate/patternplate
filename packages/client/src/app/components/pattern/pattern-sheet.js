@@ -129,37 +129,12 @@ const StyledPatternSheet = styled.div`
   position: relative;
   z-index: 2;
   box-sizing: border-box;
-  min-height: 30vh;
-  margin: 0 auto;
-  margin-top: 70vh;
-  padding: 15px 60px;
-  background: ${props => props.theme.colors.background};
   width: 100%;
-  max-width: 860px;
-  @media screen and (min-width: 720px) {
-    padding: 60px;
-  }
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    right: -50vw;
-    left: -50vw;
-    border-top: 1px solid ${props => props.theme.colors.border};
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    width: 100vw;
-    top: 0;
-    right: -50vw;
-    bottom: 0;
-    left: -50vw;
-    background: inherit;
-  }
+  min-height: 30vh;
+  margin-top: 70vh;
+  padding: 30px 60px;
+  border-top: 1px solid ${props => props.theme.colors.border};
+  background: ${props => props.theme.colors.background};
 `;
 
 const ORIENTATION = props => {
@@ -169,7 +144,7 @@ const ORIENTATION = props => {
 
 const StyledPatternSheetContainer = styled.div`
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: 740px;
 `;
 
 const StyledControlsArea = styled.div`

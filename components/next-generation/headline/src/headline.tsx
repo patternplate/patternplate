@@ -23,7 +23,7 @@ interface InnerHeadlineProps {
 
 const InnerHeadline: React.SFC<InnerHeadlineProps> = props => {
   const is = props.is || 'h1';
-  return <Text is={is} className={props.className}>{props.children}</Text>;
+  return <Text is={is} className={props.className} id={props.id}>{props.children}</Text>;
 };
 
 export interface HeadlineProps {

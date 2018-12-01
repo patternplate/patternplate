@@ -49,7 +49,7 @@ const InnerMarkdownHeadline: React.SFC<MarkdownHeadlineProps> = (props) => {
   );
 
   return (
-    <StyledHeadline order={props.order} className={props.className} id={id}>
+    <StyledHeadline as={`h${props.order + 1}` as any} order={props.order} className={props.className} id={id}>
       {props.linkable ? (
         <MarkdownHeadlineLink name={children} id={id}>
           {props.children}
