@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-manifest",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Read pattern meta data from package.json or pattern.json",
   "scripts": {
     "clean": "rimraf lib",
@@ -41,7 +41,7 @@
     "typescript": "^3.1"
   },
   "dependencies": {
-    "@patternplate/validate-manifest": "^3.1.0",
+    "@patternplate/validate-manifest": "^3.1.1",
     "load-json-file": "^4.0.0"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"

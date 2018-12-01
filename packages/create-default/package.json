@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/create-default",
-  "version": "3.0.6",
+  "version": "3.1.1",
   "description": "Create a default patternplate project via patternplate create",
   "xo": false,
   "scripts": {

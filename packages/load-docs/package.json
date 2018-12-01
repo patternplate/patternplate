@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-docs",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Load patternplate docs",
   "scripts": {
     "clean": "rimraf lib",
@@ -30,8 +30,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@patternplate/load-manifest": "^3.1.0",
-    "@patternplate/types": "^3.1.0",
+    "@patternplate/load-manifest": "^3.1.1",
+    "@patternplate/types": "^3.1.1",
     "front-matter": "^2.2.0",
     "globby": "^6.1.0",
     "lodash": "^4.17.4",

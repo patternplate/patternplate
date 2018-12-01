@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-doc",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Load a markdown index docs",
   "scripts": {
     "clean": "rimraf lib",
