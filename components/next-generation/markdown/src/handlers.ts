@@ -1,7 +1,21 @@
 import * as Select from "unist-util-select";
 import * as toHast from "mdast-util-to-hast";
 
-export const gridHandler = (h, grid) => {
+export const videoHandler = (h, video) => {
+  return {
+    type: "element",
+    tagName: "x-video",
+    properties: {
+      ...video.config,
+      controls: typeof video.config.controls !== 'undefined' ? String(video.config.controls) : undefined,
+      src: video.src,
+      provider: video.provider
+    },
+    children: undefined
+  };
+};
+
+export const gridHandler = (_, grid) => {
   const node = {
     type: "element",
     tagName: "x-grid",
@@ -30,7 +44,8 @@ export const gridHandler = (h, grid) => {
           start: range[0],
           end: range[1]
         },
-        children: content.children.map(c => toHast(c))
+        children: content.children
+          .map(c => toHast(c, { handlers: { video: videoHandler } }))
       };
     })
   };

@@ -54,6 +54,33 @@ export function Component() {
 
 ## patternplate flavoured Markdown
 
+### Video
+
+[[grid]]
+| [[grid-column | 1 - 7 ]]
+| |
+| | **Video Local**
+| |
+| | !(video:https://media.meetalva.io/video/website-01.mp4)
+|
+| [[grid-column | 7 - 13 ]]
+| |
+| | **Video Local with Settings**
+| |
+| | !(video:{ "controls": false, "muted": true, "autoplay": true, "playsinline": true, "loop": true }:https://media.meetalva.io/video/website-01.mp4)
+
+
+[[details | External providers ]]
+|
+| ### Youtube
+|
+| !(youtube:https://www.youtube.com/embed/gZT13EKfZXg)
+|
+| ### Vimeo
+|
+| !(vimeo:https://vimeo.com/263660487)
+
+
 ### Conditional display
 
 [[details | More Content ]]
