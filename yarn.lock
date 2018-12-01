@@ -682,6 +682,14 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@patternplate/deploy-site@file:./packages/deploy":
+  version "3.0.6"
+  dependencies:
+    "@marionebl/sander" "^0.6.1"
+    execa "^0.9.0"
+    meow "^4.0.0"
+    surge "^0.20.1"
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -3682,6 +3690,11 @@ css-select@~1.3.0-rc0:
     css-what "2.1"
     domutils "1.5.1"
     nth-check "^1.0.1"
+
+css-selector-parser@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/css-selector-parser/-/css-selector-parser-1.3.0.tgz#5f1ad43e2d8eefbfdc304fcd39a521664943e3eb"
+  integrity sha1-XxrUPi2O77/cME/NOaUhZklD4+s=
 
 css-selector-tokenizer@^0.7.0:
   version "0.7.0"
@@ -9174,6 +9187,11 @@ normalize.css@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/normalize.css/-/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
 
+not@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/not/-/not-0.1.0.tgz#c9691c1746c55dcfbe54cbd8bd4ff041bc2b519d"
+  integrity sha1-yWkcF0bFXc++VMvYvU/wQbwrUZ0=
+
 npm-path@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/npm-path/-/npm-path-2.0.3.tgz#15cff4e1c89a38da77f56f6055b24f975dfb2bbe"
@@ -10854,6 +10872,13 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.npmjs.org/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
 
+remark-custom-blocks@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.npmjs.org/remark-custom-blocks/-/remark-custom-blocks-2.3.1.tgz#71ad7bcd8c34ab4ce58e25d81e28441405eabf37"
+  integrity sha512-/swSeGqTtTVJR7hWob3keoltWnqfk0eH3xXQ1/f6wEml1OXJIN+5kq+YLTatxHrlnZ+nO9pMJwhNiYfBJaPlGg==
+  dependencies:
+    space-separated-tokens "^1.1.1"
+
 remark-frontmatter@^1.3.1:
   version "1.3.1"
   resolved "https://registry.npmjs.org/remark-frontmatter/-/remark-frontmatter-1.3.1.tgz#bc28c0c913fa0b9dd26f17304bc47b856b2ea2de"
@@ -11777,6 +11802,13 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
 space-separated-tokens@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/space-separated-tokens/-/space-separated-tokens-1.1.1.tgz#9695b9df9e65aec1811d4c3f9ce52520bc2f7e4d"
+  dependencies:
+    trim "0.0.1"
+
+space-separated-tokens@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/space-separated-tokens/-/space-separated-tokens-1.1.2.tgz#e95ab9d19ae841e200808cd96bc7bd0adbbb3412"
+  integrity sha512-G3jprCEw+xFEs0ORweLmblJ3XLymGGr6hxZYTYZjIlvDti9vOBUjRQa1Rzjt012aRrocKstHwdNi+F7HguPsEA==
   dependencies:
     trim "0.0.1"
 
@@ -12920,6 +12952,18 @@ unist-util-remove-position@^1.0.0:
   dependencies:
     unist-util-visit "^1.1.0"
 
+unist-util-select@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/unist-util-select/-/unist-util-select-2.0.0.tgz#226b1a673eaf255302133ff94e450148a021c2c6"
+  integrity sha512-fRQqhrpgRIwdaeeZwbgDO84VyiyQP6cOcbzCao4saXuMuP3fLiWkssEI+o71OC2mASWqa9JEEYiGOV8EqpStPw==
+  dependencies:
+    css-selector-parser "^1.1.0"
+    debug "^3.1.0"
+    not "^0.1.0"
+    nth-check "^1.0.1"
+    unist-util-is "^2.1.2"
+    zwitch "^1.0.3"
+
 unist-util-stringify-position@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/unist-util-stringify-position/-/unist-util-stringify-position-1.1.1.tgz#3ccbdc53679eed6ecf3777dd7f5e3229c1b6aa3c"
@@ -13832,7 +13876,7 @@ zen-observable@^0.7.1:
   version "0.7.1"
   resolved "https://registry.npmjs.org/zen-observable/-/zen-observable-0.7.1.tgz#f84075c0ee085594d3566e1d6454207f126411b3"
 
-zwitch@^1.0.0:
+zwitch@^1.0.0, zwitch@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/zwitch/-/zwitch-1.0.3.tgz#159fae4b3f737db1e42bf321d3423e4c96688a18"
   integrity sha512-aynRpmJDw7JIq6X4NDWJoiK1yVSiG57ArWSg4HLC1SFupX5/bo0Cf4jpX0ifwuzBfxpYBuNSyvMlWNNRuy3cVA==

@@ -4,7 +4,7 @@ import { Markdown } from './markdown';
 import { Themer } from "@patternplate/component-utility";
 
 export default () => (
-  <Themer>
+  <Themer spacing>
     <Markdown source={Fixture.long} />
   </Themer>
 );

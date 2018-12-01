@@ -1,17 +1,17 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as PropTypes from "prop-types";
 import * as ReactAddonsTextContent from "react-addons-text-content";
 
 import * as remark from "remark";
-import * as remarkRehype from "remark-rehype";
-import * as rehypeRaw from "rehype-raw";
-import * as rehypeReact from "rehype-react";
-import * as rehypeSanitize from "rehype-sanitize";
 import * as remarkFrontmatter from "remark-frontmatter";
 import * as remarkEmoji from "remark-gemoji-to-emoji";
+import * as remarkCustomBlocks from "remark-custom-blocks";
+import * as remarkRehype from "remark-rehype";
+import * as rehypeReact from "rehype-react";
+import * as rehypeSanitize from "rehype-sanitize";
 import * as rangeParser from "parse-numeric-range";
 import { sanitize } from "./sanitize";
+import { gridHandler } from "./grid-handler";
 
 import { MarkdownDiv } from "./markdown-div";
 import { MarkdownDetails } from "./markdown-details";
@@ -34,12 +34,28 @@ export interface MarkdownProps {
   widgetSrc?: string;
   widgetState?: unknown;
 }
+
 export class Markdown extends React.Component<MarkdownProps> {
   private processor = remark()
     .use(remarkFrontmatter)
+    .use(remarkCustomBlocks, {
+      details: {
+        title: "optional",
+        details: true
+      },
+      grid: {
+        title: "optional"
+      },
+      ["grid-column"]: {
+        title: "required"
+      }
+    })
     .use(remarkEmoji)
-    .use(remarkRehype, { allowDangerousHTML: true })
-    .use(rehypeRaw)
+    .use(remarkRehype, {
+      handlers: {
+        gridCustomBlock: gridHandler
+      }
+    })
     .use(rehypeSanitize, sanitize)
     .use(rehypeReact, {
       createElement: React.createElement,
@@ -48,12 +64,12 @@ export class Markdown extends React.Component<MarkdownProps> {
         div: MarkdownDiv,
         blockquote: MarkdownBlockquote,
         code: MarkdownCode,
-        h1: is("h1")(MarkdownHeadline),
-        h2: is("h2")(MarkdownHeadline),
-        h3: is("h3")(MarkdownHeadline),
-        h4: is("h4")(MarkdownHeadline),
-        h5: is("h5")(MarkdownHeadline),
-        h6: is("h6")(MarkdownHeadline),
+        h1: (props) => <MarkdownHeadline order={1}>{props.children}</MarkdownHeadline>,
+        h2: (props) => <MarkdownHeadline order={2}>{props.children}</MarkdownHeadline>,
+        h3: (props) => <MarkdownHeadline order={3}>{props.children}</MarkdownHeadline>,
+        h4: (props) => <MarkdownHeadline order={4}>{props.children}</MarkdownHeadline>,
+        h5: (props) => <MarkdownHeadline order={4}>{props.children}</MarkdownHeadline>,
+        h6: (props) => <MarkdownHeadline order={4}>{props.children}</MarkdownHeadline>,
         hr: MarkdownHr,
         img: MarkdownImage,
         li: MarkdownItem,
@@ -74,15 +90,20 @@ export class Markdown extends React.Component<MarkdownProps> {
 
           return (
             <MarkdownCodeBlock
-              {...props}
               language={language}
               highlights={highlights}
-            />
+            >
+              {props.children}
+            </MarkdownCodeBlock>
           );
         },
         ul: is("ul")(MarkdownList),
         ol: is("ol")(MarkdownList),
-        details: MarkdownDetails
+        details: MarkdownDetails,
+        "x-grid": props => (
+          <MarkdownDiv grid={true}>{props.children}</MarkdownDiv>
+        ),
+        "x-grid-column": MarkdownDiv
       }
     });
 
@@ -133,11 +154,7 @@ const StyledMarkdown = styled.div`
 `;
 
 function is(is) {
-  return Component => props => <Component is={is} {...props} />;
-}
-
-function prop(name, value) {
-  return Component => props => <Component {...props} {...{ [name]: value }} />;
+  return Component => props => <Component as={is} {...props} />;
 }
 
 function getLanguagePayload({ children }) {

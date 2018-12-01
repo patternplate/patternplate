@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { getThemes, Theme } from "@patternplate/component-themes";
 import tag from "tag-hoc";
+import { Global } from "./global";
 
 export interface ThemerProps {
   spacing?: boolean;
@@ -23,13 +24,14 @@ export const Themer: React.SFC<ThemerProps> = props => {
 
   return (
     <StyledThemer>
+      <Global/>
       <ThemeProvider key="dark" theme={themes.dark}>
-        <StyledThemeContainer spacing={Boolean(props.spacing)} full={Boolean(props.full)}>
+        <StyledThemeContainer spacing={Boolean(props.spacing)} full={props.full ? "true" : undefined}>
           {props.children}
         </StyledThemeContainer>
       </ThemeProvider>
       <ThemeProvider key="light" theme={themes.light}>
-        <StyledThemeContainer spacing={Boolean(props.spacing)} full={Boolean(props.full)}>
+        <StyledThemeContainer spacing={Boolean(props.spacing)} full={props.full ? "true" : undefined}>
           {props.children}
         </StyledThemeContainer>
       </ThemeProvider>

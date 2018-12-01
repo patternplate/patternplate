@@ -10,7 +10,8 @@ export const sanitize = {
     thead: ["table"],
     td: ["table"],
     th: ["table"],
-    tr: ["table"]
+    tr: ["table"],
+    "x-grid-column": ["x-grid"]
   },
   protocols: {
     href: ["http", "https", "mailto"],
@@ -69,17 +70,20 @@ export const sanitize = {
     "strike",
     "summary",
     "details",
-    "summary"
+    "summary",
+    "x-grid",
+    "x-grid-column"
   ],
   attributes: {
     a: ["href"],
     code: ["className"],
     img: ["src", "longDesc"],
-    div: ["itemScope", "itemType", "grid", "column-start", "column-end"],
+    div: ["itemScope", "itemType"],
     blockquote: ["cite"],
     del: ["cite"],
     ins: ["cite"],
     q: ["cite"],
+    "x-grid-column": ["start", "end"],
     "*": [
       "abbr",
       "accept",

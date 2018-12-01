@@ -3,15 +3,7 @@ import styled from "styled-components";
 import { Headline } from "@patternplate/component-headline";
 import { Icon } from "@patternplate/component-icon";
 import { Link } from "@patternplate/component-link";
-
-const ORDER = {
-  h1: 1,
-  h2: 2,
-  h3: 3,
-  h4: 4,
-  h5: 4,
-  h6: 4
-};
+import * as reactAddonsTextContent from "react-addons-text-content";
 
 const ThemedIcon = styled(Icon)`
   position: absolute;
@@ -40,29 +32,24 @@ const StyledHeadline = styled(Headline)`
   font-family: ${props => props.theme.fonts.headline};
 `;
 
-export const MarkdownHeadline = styled(InnerMarkdownHeadline)`
-  grid-column: first / span 12;
-  position: relative;
-  color: ${props => props.theme.colors.color};
-  margin: 60px 0 16px 0;
-  font-weight: 300;
-  line-height: 1.25;
-`;
+export interface MarkdownHeadlineProps {
+  order: 1 | 2 | 3 | 4;
+  className?: string;
+  linkable?: boolean;
+}
 
-function InnerMarkdownHeadline(props) {
-  const children = Array.isArray(props.children)
-    ? props.children.join("")
-    : props.children;
+const InnerMarkdownHeadline: React.SFC<MarkdownHeadlineProps> = (props) => {
+  const children = reactAddonsTextContent(props);
 
   const id = encodeURIComponent(
-    (children || "")
+    children
       .split(" ")
       .join("-")
       .toLowerCase()
   );
 
   return (
-    <StyledHeadline is={props.is} order={ORDER[props.is]} className={props.className} id={id}>
+    <StyledHeadline order={props.order} className={props.className} id={id}>
       {props.linkable ? (
         <MarkdownHeadlineLink name={children} id={id}>
           {props.children}
@@ -73,6 +60,15 @@ function InnerMarkdownHeadline(props) {
     </StyledHeadline>
   );
 }
+
+export const MarkdownHeadline = styled(InnerMarkdownHeadline)`
+  grid-column: first / span 12;
+  position: relative;
+  color: ${props => props.theme.colors.color};
+  margin: 60px 0 16px 0;
+  font-weight: 300;
+  line-height: 1.25;
+`;
 
 function MarkdownHeadlineLink(props) {
   return (

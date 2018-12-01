@@ -34,6 +34,7 @@ export const Icon: React.SFC<IconProps> = props => {
       size={props.size}
       inline={props.inline}
       title={props.title}
+      viewBox="0 0 24 24"
     >
       <Symbol id={props.symbol} definition={creator()}/>
     </StyledIcon>
