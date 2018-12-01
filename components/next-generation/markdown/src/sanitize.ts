@@ -72,7 +72,8 @@ export const sanitize = {
     "details",
     "summary",
     "x-grid",
-    "x-grid-column"
+    "x-grid-column",
+    "x-video"
   ],
   attributes: {
     a: ["href"],
@@ -84,6 +85,19 @@ export const sanitize = {
     ins: ["cite"],
     q: ["cite"],
     "x-grid-column": ["start", "end"],
+    "x-video": [
+      "provider",
+      "src",
+      "autoPlay",
+      "autoplay",
+      "controls",
+      "playsInline",
+      "playsinline",
+      "muted",
+      "loop",
+      "color",
+      "poster"
+    ],
     "*": [
       "abbr",
       "accept",

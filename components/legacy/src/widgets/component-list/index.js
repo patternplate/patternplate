@@ -1,8 +1,6 @@
 const React = require("react");
-// TODO: split markdown component for reuse
-const MarkdownItem = require("@patternplate/component-markdown/lib/markdown-item").MarkdownItem;
-const MarkdownList = require("@patternplate/component-markdown/lib/markdown-list").MarkdownList;
-const MarkdownLink = require("@patternplate/component-markdown/lib/markdown-link").MarkdownLink;
+
+const { MarkdownItem, MarkdownList, MarkdownLink } = require("@patternplate/component-markdown");
 
 module.exports = PatternList;
 

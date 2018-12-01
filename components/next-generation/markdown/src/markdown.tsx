@@ -1,43 +1,35 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as ReactAddonsTextContent from "react-addons-text-content";
-
 import * as remark from "remark";
 import * as remarkFrontmatter from "remark-frontmatter";
 import * as remarkEmoji from "remark-gemoji-to-emoji";
 import * as remarkCustomBlocks from "remark-custom-blocks";
+import { remarkVideo } from "./remark-video";
 import * as remarkRehype from "remark-rehype";
 import * as rehypeReact from "rehype-react";
 import * as rehypeSanitize from "rehype-sanitize";
-import * as rangeParser from "parse-numeric-range";
 import { sanitize } from "./sanitize";
-import { gridHandler } from "./grid-handler";
+import * as Handlers from "./handlers";
+import * as M from "./markdown-components";
 
-import { MarkdownDiv } from "./markdown-div";
-import { MarkdownDetails } from "./markdown-details";
-import { MarkdownBlockquote } from "./markdown-blockquote";
-import { MarkdownCode } from "./markdown-code";
-import { MarkdownCodeBlock } from "./markdown-code-block";
-import { MarkdownCopy } from "./markdown-copy";
-import { MarkdownHeadline } from "./markdown-headline";
-import { MarkdownHr } from "./markdown-hr";
-import { MarkdownImage } from "./markdown-image";
-import { MarkdownItem } from "./markdown-item";
-import { MarkdownList } from "./markdown-list";
-import { MarkdownLink } from "./markdown-link";
-import { MarkdownWidget } from "./markdown-widget";
+export { MarkdownList, MarkdownItem, MarkdownLink } from "./markdown-components";
+
+
+export const MarkdownWidgetSrc = React.createContext('');
+export const MarkdownWidgetState = React.createContext({});
 
 export interface MarkdownProps {
   linkable?: boolean;
   className?: string;
   source: string;
   widgetSrc?: string;
-  widgetState?: unknown;
+  widgetState?: object;
 }
 
 export class Markdown extends React.Component<MarkdownProps> {
   private processor = remark()
     .use(remarkFrontmatter)
+    .use(remarkVideo)
     .use(remarkCustomBlocks, {
       details: {
         title: "optional",
@@ -53,68 +45,50 @@ export class Markdown extends React.Component<MarkdownProps> {
     .use(remarkEmoji)
     .use(remarkRehype, {
       handlers: {
-        gridCustomBlock: gridHandler
+        gridCustomBlock: Handlers.gridHandler,
+        video: Handlers.videoHandler
       }
     })
     .use(rehypeSanitize, sanitize)
     .use(rehypeReact, {
       createElement: React.createElement,
       components: {
-        a: MarkdownLink,
-        div: MarkdownDiv,
-        blockquote: MarkdownBlockquote,
-        code: MarkdownCode,
-        h1: (props) => <MarkdownHeadline order={1}>{props.children}</MarkdownHeadline>,
-        h2: (props) => <MarkdownHeadline order={2}>{props.children}</MarkdownHeadline>,
-        h3: (props) => <MarkdownHeadline order={3}>{props.children}</MarkdownHeadline>,
-        h4: (props) => <MarkdownHeadline order={4}>{props.children}</MarkdownHeadline>,
-        h5: (props) => <MarkdownHeadline order={4}>{props.children}</MarkdownHeadline>,
-        h6: (props) => <MarkdownHeadline order={4}>{props.children}</MarkdownHeadline>,
-        hr: MarkdownHr,
-        img: MarkdownImage,
-        li: MarkdownItem,
-        p: MarkdownCopy,
-        pre: props => {
-          const [language] = getLanguages(props);
-          const [highlights] = getHighlights(props);
-
-          if (language === "widget") {
-            return (
-              <MarkdownWidget
-                src={this.props.widgetSrc}
-                state={this.props.widgetState}
-                code={ReactAddonsTextContent(props.children)}
-              />
-            );
-          }
-
-          return (
-            <MarkdownCodeBlock
-              language={language}
-              highlights={highlights}
-            >
-              {props.children}
-            </MarkdownCodeBlock>
-          );
-        },
-        ul: is("ul")(MarkdownList),
-        ol: is("ol")(MarkdownList),
-        details: MarkdownDetails,
-        "x-grid": props => (
-          <MarkdownDiv grid={true}>{props.children}</MarkdownDiv>
-        ),
-        "x-grid-column": MarkdownDiv
+        a: M.MarkdownLink,
+        div: M.MarkdownDiv,
+        blockquote: M.MarkdownBlockquote,
+        code: M.MarkdownCode,
+        h1: prop({ order: 1, linkable: true })(M.MarkdownHeadline),
+        h2: prop({ order: 2, linkable: true })(M.MarkdownHeadline),
+        h3: prop({ order: 3, linkable: true })(M.MarkdownHeadline),
+        h4: prop({ order: 4 })(M.MarkdownHeadline),
+        h5: prop({ order: 4 })(M.MarkdownHeadline),
+        h6: prop({ order: 4 })(M.MarkdownHeadline),
+        hr: M.MarkdownHr,
+        img: M.MarkdownImage,
+        li: M.MarkdownItem,
+        p: M.MarkdownCopy,
+        pre: M.MarkdownPre,
+        ul: is("ul")(M.MarkdownList),
+        ol: is("ol")(M.MarkdownList),
+        details: M.MarkdownDetails,
+        "x-grid": (props) => <M.MarkdownDiv grid={true}>{props.children}</M.MarkdownDiv>,
+        "x-grid-column": M.MarkdownDiv,
+        "x-video": M.MarkdownVideo
       }
     });
 
   public render(): JSX.Element | null {
     const { props } = this;
     const elements = this.processor.processSync(props.source).contents;
-    const element = React.Children.only(elements);
+    const context = { widgetState: this.props.widgetState, widgetSrc: this.props.widgetSrc };
 
     return (
       <StyledMarkdown className={props.className}>
-        {props.source && element.props.children}
+        <MarkdownWidgetSrc.Provider value={this.props.widgetSrc}>
+          <MarkdownWidgetState.Provider value={this.props.widgetState}>
+            {props.source && elements}
+          </MarkdownWidgetState.Provider>
+        </MarkdownWidgetSrc.Provider>
       </StyledMarkdown>
     );
   }
@@ -157,6 +131,10 @@ function is(is) {
   return Component => props => <Component as={is} {...props} />;
 }
 
+function prop(p: { [key: string]: any }) {
+  return Component => props => <Component {...props} {...p} />;
+}
+
 function getLanguagePayload({ children }) {
   const [child] = children;
 
@@ -173,21 +151,3 @@ function getLanguagePayload({ children }) {
   return className.split(" ").map(n => n.replace("language-", ""));
 }
 
-function getLanguages({ children }) {
-  const payload = getLanguagePayload({ children })
-    .map(n => n.replace(/\{[\d\-,\s]*\}$/, ""))
-    .find(n => typeof n === "string" && n.length > 0);
-
-  if (!payload) {
-    return [];
-  }
-
-  return payload.split(":");
-}
-
-function getHighlights({ children }) {
-  return getLanguagePayload({ children })
-    .map(n => n.match(/\{([\d\-,\s]*)\}$/, ""))
-    .map(n => (n !== null ? n[1] : ""))
-    .map(n => rangeParser.parse(n));
-}

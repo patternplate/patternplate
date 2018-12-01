@@ -39,19 +39,18 @@ export interface MarkdownHeadlineProps {
 }
 
 const InnerMarkdownHeadline: React.SFC<MarkdownHeadlineProps> = (props) => {
-  const children = reactAddonsTextContent(props);
+  const name = reactAddonsTextContent(props.children);
 
-  const id = encodeURIComponent(
-    children
-      .split(" ")
-      .join("-")
-      .toLowerCase()
-  );
+  const id = name
+    .split(" ")
+    .map(word => encodeURIComponent(word))
+    .join("-")
+    .toLowerCase();
 
   return (
     <StyledHeadline as={`h${props.order + 1}` as any} order={props.order} className={props.className} id={id}>
       {props.linkable ? (
-        <MarkdownHeadlineLink name={children} id={id}>
+        <MarkdownHeadlineLink name={name} id={id}>
           {props.children}
         </MarkdownHeadlineLink>
       ) : (
