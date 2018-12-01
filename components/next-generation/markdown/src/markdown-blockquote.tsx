@@ -18,7 +18,7 @@ const symbols = ["❔", "ℹ️", "✅", "❌", "⚠️"];
 
 const InnerMarkdownBlockquote: React.SFC<MarkdownBlockquoteProps> = props => {
   return (
-    <Text className={props.className} is="blockquote">
+    <Text className={props.className} as="blockquote">
       {props.children}
     </Text>
   );

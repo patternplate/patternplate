@@ -110,11 +110,11 @@ function mapProps(state) {
 
 const TOOLBAR_HEIGHT = 60;
 
-const StyledName = styled(props => <Headline {...props} is="h1" order={1}/>)`
+const StyledName = styled(props => <Headline {...props} as="h1" order={1}/>)`
   margin: 0 0 10px 0;
 `;
 
-const StyledVersion = styled(props => <Headline {...props} is="small" order={3}/>)`
+const StyledVersion = styled(props => <Headline {...props} as="small" order={3}/>)`
   display: inline-block;
   color: ${props => props.theme.colors.color};
   margin: 0;
