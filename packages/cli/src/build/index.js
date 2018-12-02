@@ -70,9 +70,9 @@ async function build({flags}) {
 
   await Promise.all(pool.map(async item => {
     const full = `${base}${item.contentType}/${item.id}`;
-    const html = await render(full, state);
+    const rendering = await render(full, state);
     const target = path.join(out, item.contentType, `${item.id}.html`);
-    await sander.writeFile(target, html);
+    await sander.writeFile(target, rendering.contents);
   }));
 
   // Create required client js bundles

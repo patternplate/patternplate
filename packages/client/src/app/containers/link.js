@@ -12,8 +12,13 @@ export default connect(mapState, mapDispatch)(Link.RawLink);
 
 function mapState(state, own) {
   const location = state.routing.locationBeforeTransitions;
+
+  if (isAbsolute(own.href)) {
+    return {...own, external: true};
+  }
+
   return Object.assign({}, own,
-    { href: getHref(own, { base: state.base, location }) }
+    { href: getHref(own, { base: state.base, location  }) }
   );
 }
 
@@ -21,7 +26,7 @@ function mapDispatch(dispatch, ownProps) {
   return bindActionCreators(
     {
       onClick(e) {
-        if (ownProps.external) {
+        if (ownProps.external || isAbsolute(ownProps.href)) {
           return { type: null };
         }
         e.preventDefault();
@@ -77,24 +82,36 @@ function getHref(props, context) {
       }
     );
 
+  parsed.pathname = parsed.pathname !== null
+    ? replaceExt(parsed.pathname, '.html')
+    : null;
+
+  // Legacy:
+  // We used to require users to enter awkward relative/absolute paths
+  // - `./doc/:docPath:`
+  // - `./pattern/:patternId:`
+  //
+  // TODO: Deprecate this behaviour with next major version
   if (
     parsed.pathname &&
-    (parsed.pathname.includes("pattern") ||
-      parsed.pathname.includes("doc/docs"))
+    parsed.pathname !== null &&
+    (parsed.pathname.startsWith("./pattern") ||
+      parsed.pathname.startsWith("./doc"))
   ) {
-    parsed.pathname = `${Path.dirname(parsed.pathname)}/${Path.basename(
-      parsed.pathname,
-      Path.extname(parsed.pathname)
-    )}.html`;
-  }
-
-  const pathname =
+    const pathname =
     typeof parsed.pathname === "string"
       ? prefix(context.base, parsed.pathname)
       : context.location.pathname;
 
+    return url.format({
+      pathname,
+      query,
+      hash: props.hash || (parsed.hash || "#").slice(1)
+    });
+  }
+
   return url.format({
-    pathname,
+    pathname: parsed.pathname,
     query,
     hash: props.hash || (parsed.hash || "#").slice(1)
   });
@@ -117,4 +134,26 @@ function prefix(base, pathname) {
 
 function norm(p) {
   return p.split("/").filter(Boolean).join("/");
+}
+
+function replaceExt(href, ext) {
+  const parsed = url.parse(href);
+
+  if (typeof parsed.pathname === 'string' && parsed.pathname !== '/') {
+    parsed.pathname = [Path.dirname(parsed.pathname), `${Path.basename(parsed.pathname, Path.extname(parsed.path))}${ext}`].join('/');
+  }
+
+  return url.format(parsed);
+}
+
+function isAbsolute(href) {
+  const parsed = url.parse(href || "./");
+
+  if (parsed.protocol) {
+    return true;
+  }
+
+  if ((parsed.pathname || '').startsWith("/api/static/")) {
+    return true;
+  }
 }

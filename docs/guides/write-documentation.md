@@ -28,12 +28,12 @@ We will …
 
 ## You'll need
 
-* :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+* :white_check_mark: You are all set if you followed along [Guide: Build a component](./add-component?guides-enabled=true)
 
 ---
 
 * :writing_hand: Text editor
-* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+* :file_folder: patternplate project ([Getting Started Guide](./getting-started?guides-enabled=true))
 
 ## Before you start
 
@@ -64,7 +64,7 @@ counts up. Let's tell the consumers of our component library about this.
   Clicking on a the text will count up from 1
   ```
 
-4. Navigate to [localhost:1337/pattern/hello-world](http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true) and scroll down: Your small description has been rendered below the component demo.
+4. Navigate to `http://localhost:1337/pattern/hello-world?navigation-enabled=true&components-enabled=true` and scroll down: Your small description has been rendered below the component demo.
 
 ![](https://patternplate.github.io/media/images/screenshot-docs.svg)
 
@@ -150,10 +150,10 @@ at the beginning of `README.md`.
 
 ## Up next
 
-* [Guide: Create Virtual Folders](./doc/docs/guides/virtual-folders?guides-enabled=true)
+* [Guide: Create Virtual Folders](./virtual-folders?guides-enabled=true)
 
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
-* [Demos](./doc/docs/reference/demos?reference-enabled=true)
+* [Documentation](../reference/documentation?reference-enabled=true)
+* [Demos](../reference/demos?reference-enabled=true)

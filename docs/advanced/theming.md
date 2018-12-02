@@ -22,7 +22,7 @@ There are three types of theming configuration:
 
 ## Related topics
 
-* [Configuration](./doc/docs/reference/configuration?reference-enabled=true)
+* [Configuration](../reference/configuration?reference-enabled=true)
 
 
 ## Theming playground

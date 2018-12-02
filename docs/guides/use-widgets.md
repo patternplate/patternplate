@@ -24,11 +24,11 @@ We will …
 
 ## You'll need
 
-* :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+* :white_check_mark: You are all set if you followed along [Guide: Build a component](./add-component?guides-enabled=true)
 ---
 
 * :writing_hand: Text editor
-* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+* :file_folder: patternplate project ([Getting Started Guide](./getting-started?guides-enabled=true))
 
 ## Before you start
 
@@ -168,11 +168,11 @@ you do that!
 
 ## Up next
 
-* [Guide: Convince with a cover](./doc/docs/guides/cover?guides-enabled=true)
+* [Guide: Convince with a cover](./cover?guides-enabled=true)
 
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
-* [Search](./doc/docs/reference/search?reference-enabled=true)
-* [Widgets](./doc/docs/reference/widgets?reference-enabled=true)
+* [Documentation](../reference/documentation?reference-enabled=true)
+* [Search](../reference/search?reference-enabled=true)
+* [Widgets](../reference/widgets?reference-enabled=true)

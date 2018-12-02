@@ -1,4 +1,3 @@
-import Path from "path";
 import url from "url";
 import { fill } from "lodash";
 import { Icon } from "@patternplate/components";
@@ -7,20 +6,19 @@ import Helmet from "react-helmet";
 import router from "../server";
 import layout from "../layouts";
 import getIdByPathname from "../utils/get-id-by-pathname";
-import navigate from "../utils/navigate";
 
 module.exports = renderPage;
 
+// (uri: string; opts: { base: string; schema: unknown; isStatic: boolean; scripts: string[] }) => { contents: string; status: number }
 async function renderPage(uri, { base, config, schema, isStatic, scripts } = {}, manifest = {}) {
   const id = getId(uri);
-  const pattern = navigate(id, schema.meta) || {};
   const startBase = base ? base : getBase(uri);
   const staticBase = (base === "/" ? "" : startBase) + "/static";
 
   const render = {
     base,
     config,
-    pattern,
+    pattern: {}, // Legacy, remove asap
     schema,
     startBase,
     staticBase,
@@ -38,11 +36,11 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     manifest
   };
 
-  const { html, css } = await router(uri, render);
+  const { html, css, status } = await router(uri, render);
   const head = isStatic ? Helmet.peek() : Helmet.rewind();
   const icons = isStatic ? Icon.peek() : Icon.rewind();
 
-  return layout({
+  const contents = layout({
     attributes: head.htmlAttributes,
     base: startBase,
     css,
@@ -59,6 +57,11 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
       ]
       : []
   });
+
+  return {
+    contents,
+    status
+  };
 }
 
 function getBase(uri) {

@@ -17,9 +17,11 @@ function find(tree, id, { type }) {
     .filter(Boolean);
 
   const match = tree.children.find(
-    child =>
-      child.path.every((s, i) => frags[i] === s) &&
+    child => {
+      console.log(child);
+      (child.path || []).every((s, i) => frags[i] === s) &&
       (child.type === type || child.type === "folder")
+    }
   );
 
   return match;

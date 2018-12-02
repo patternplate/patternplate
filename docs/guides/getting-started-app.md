@@ -10,7 +10,7 @@ options:
 > :information_source: 
 > Looking to set up patternplate as a dev project? 
 > 
-> [Give the CLI Getting Started Guide a go](./doc/docs/guides/getting-started?guides-enabled=true).
+> [Give the CLI Getting Started Guide a go](./getting-started?guides-enabled=true).
 
 # Get started with @patternplate/app
 
@@ -104,8 +104,8 @@ That's it for this guide – you just cloned and started your very first `patte
 
 ## Up next
 
-* [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+* [Guide: Build a component](./add-component?guides-enabled=true)
 
 ## Related topics
 
-* [CLI](./doc/docs/reference/cli?reference-enabled=true)
+* [CLI](../reference/cli?reference-enabled=true)

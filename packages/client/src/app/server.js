@@ -11,6 +11,7 @@ import { ServerStyleSheet } from "@patternplate/components";
 
 import routes from "./routes";
 import configureStore from "./store";
+import selectItem from "./selectors/item";
 
 export default function(location, data) {
   const sheet = new ServerStyleSheet();
@@ -34,9 +35,13 @@ export default function(location, data) {
             <RouterContext {...props} />
           </Provider>
         );
+
+        const state = store.getState();
+        const item = selectItem(state);
+
         const html = renderToString(context);
         const css = sheet.getStyleElement();
-        resolve({ html, css });
+        resolve({ html, css, status: typeof item !== 'undefined' ? 200 : 404 });
       }
     );
   });

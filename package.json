@@ -30,6 +30,7 @@
   "devDependencies": {
     "@marionebl/ttypescript": "^1.5.6",
     "@patternplate/deploy-site": "file:./packages/deploy",
+    "broken-link-checker": "^0.7.8",
     "dom-to-image": "^2.6.0",
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.4.0",

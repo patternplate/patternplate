@@ -1,17 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
+import { Link } from "@patternplate/component-link";
 import * as Url from "url";
 import * as queryString from "query-string";
-import { Link } from "@patternplate/component-link";
 
 export const MarkdownLink = (props) => {
-  const parsed = Url.parse(props.href || "./");
   const abs = absolute(props.href);
-  const href = abs ? props.href : [parsed.pathname, parsed.hash].join("");
-  const query = abs ? {} : queryString.parse(parsed.query);
+  const query = abs ? {} : queryString.parse(Url.parse(props.href).query);
 
   return (
-    <StyledLink external={abs} hint href={href} query={query}>
+    <StyledLink hint href={props.href} query={query}>
       {props.children}
     </StyledLink>
   );
@@ -31,6 +29,7 @@ const StyledLink = styled(Link)`
     text-decoration: underline;
   }
 `;
+
 
 function absolute(href) {
   const parsed = Url.parse(href || "./");
