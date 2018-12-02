@@ -62,5 +62,6 @@
   ],
   "resolutions": {
     "**/react": "16.6.3"
-  }
+  },
+  "dependencies": {}
 }

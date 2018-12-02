@@ -8,6 +8,7 @@ export interface Searchable {
   contents?: string;
   dependencies?: string[];
   dependents?: string[];
+  path?: string;
   rawManifest: {
     name?: string;
     displayName?: string;
