@@ -96,7 +96,7 @@ async function build({flags}) {
     await sander.writeFile(out, 'index.html', coverHtml(content, {base}));
   } else {
     const home = await render(base, state);
-    await sander.writeFile(out, 'index.html', home);
+    await sander.writeFile(out, 'index.html', home.contents);
   }
 
   // Create demo.html files
