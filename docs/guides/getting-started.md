@@ -9,7 +9,7 @@ options:
 
 > :information_source: 
 > You don't want/need to use the CLI?  
-> [Check out our app and let the machine deal with Node.js and GIT](./doc/docs/guides/getting-started-app?guides-enabled=true).
+> [Check out our app and let the machine deal with Node.js and GIT](./getting-started-app?guides-enabled=true).
 
 # Your kickstart into patternplate
 
@@ -78,7 +78,7 @@ You should see a small loading spinner in your terminal.
 
 ## 3. Access the web interface
 
-You can access the web interface of your patternplate project at [localhost:1337](http://localhost:1337/?guides-enabled=true).
+You can access the web interface of your patternplate project at `http://localhost:1337/?guides-enabled=true`.
 
 If everything worked `patternplate` greets you with this screen:
 
@@ -89,16 +89,16 @@ If everything worked `patternplate` greets you with this screen:
 
 * There is `create-patternplate`, a command line program that helps with boostrapping patternplate quickly.
 
-* `patternplate` provides a command line interface. The default command is `start`, which brings up the web interface on [localhost:1337](http://localhost:1337/?guides-enabled=true).
+* `patternplate` provides a command line interface. The default command is `start`, which brings up the web interface on `http://localhost:1337/?guides-enabled=true`.
 
 
 ## Up next
 
-* [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+* [Guide: Build a component](./add-component?guides-enabled=true)
 
 ## Related topics
 
-* [CLI](./doc/docs/guides/add-component?reference-enabled=true&guides-enabled=true)
+* [CLI](../reference/cli?reference-enabled=true&guides-enabled=true)
 
 ## Shortcut
 

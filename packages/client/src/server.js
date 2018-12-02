@@ -7,7 +7,6 @@ const express = require("express");
 const serve = require("serve-static");
 const fetch = require("isomorphic-fetch");
 const cors = require("cors");
-
 const render = require("./render");
 
 module.exports = client;
@@ -67,13 +66,14 @@ async function main(options) {
 
       const tree = {id: "root", children: patterns};
 
-      res.send(
-        await render(req.url, {
-          schema: { meta: tree, docs },
-          config: options.config,
-          base,
-        })
-      );
+      const rendering = await render(req.url, {
+        schema: { meta: tree, docs },
+        config: options.config,
+        base,
+      });
+
+      res.status(rendering.status);
+      res.send(rendering.contents);
     } catch (err) {
       next(err);
     }

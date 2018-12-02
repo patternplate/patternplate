@@ -6,8 +6,8 @@ options:
 
 > :information_source: 
 > Already sold on patternplate and want to know **how** things work instead of **why** we built them? This way: 
-> * [Develop in patternplate with the CLI](./doc/docs/guides/getting-started?guides-enabled=true)
-> * [View your component library via @patternplate/app](./doc/docs/guides/getting-started-app?guides-enabled=true)
+> * [Develop in patternplate with the CLI](./guides/getting-started?guides-enabled=true)
+> * [View your component library via @patternplate/app](./guides/getting-started-app?guides-enabled=true)
 
 # Create better Design Systems
 

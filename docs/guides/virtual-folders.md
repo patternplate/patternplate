@@ -28,11 +28,11 @@ We will …
 
 ## You'll need
 
-* :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+* :white_check_mark: You are all set if you followed along [Guide: Build a component](./add-component?guides-enabled=true)
 ---
 
 * :writing_hand: Text editor
-* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+* :file_folder: patternplate project ([Getting Started Guide](./getting-started?guides-enabled=true))
 
 ## Before you start
 
@@ -128,7 +128,7 @@ in a second.
    This time around we matched only **Button** and **Hello-World**. That happens because they have both
    the tag `world` attached, while the **my-patternplate** item does not.
 
-   Visit the [search reference](./doc/docs/reference/search?reference-enabled=true) for detailed information about search queries.
+   Visit the [search reference](../reference/search?reference-enabled=true) for detailed information about search queries.
 
 ## Create a virtual folder
 
@@ -184,10 +184,10 @@ So we'll add a new file there:
 
 ## Up next
 
-* [Guide: Enhance docs with widgets](./doc/docs/guides/use-widgets?guides-enabled=true)
+* [Guide: Enhance docs with widgets](./use-widgets?guides-enabled=true)
 
 
 ## Related topics
 
-* [Documentation](./doc/docs/reference/documentation?reference-enabled=true)
-* [Search](./doc/docs/reference/search?reference-enabled=true)
+* [Documentation](../reference/documentation?reference-enabled=true)
+* [Search](../reference/search?reference-enabled=true)

@@ -100,7 +100,7 @@ const selectDisplayName = createSelector(
   }
 );
 
-const selectType = createSelector(selectItem, match => {
+export const selectType = createSelector(selectItem, match => {
   if (match && match.contents) {
     return "doc";
   }

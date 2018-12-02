@@ -28,12 +28,12 @@ We will …
 
 ## You'll need
 
-* :white_check_mark: You are all set if you followed along [Guide: Build a component](./doc/docs/guides/add-component?guides-enabled=true)
+* :white_check_mark: You are all set if you followed along [Guide: Build a component](./add-component?guides-enabled=true)
 
 ---
 
 * :writing_hand: Text editor
-* :file_folder: patternplate project ([Getting Started Guide](./doc/docs/guides/getting-started?guides-enabled=true))
+* :file_folder: patternplate project ([Getting Started Guide](./getting-started?guides-enabled=true))
 
 ## Before you start
 
@@ -41,12 +41,12 @@ We will …
 
 ## Configure patternplate
 
-1. Make sure `patternplate` runs on [localhost:1337](http://localhost:1337) 
+1. Make sure `patternplate` runs on `http://localhost:1337/`
 
 2. Create a `./patternplate.config.js` and copy the following code into it. We are configuring `patternplate` with its defaults to prepare for the next step.
 
   > :information_source: 
-  > See [Reference: Configuration](./doc/docs/reference/configuration) for details about the config keys
+  > See [Reference: Configuration](../reference/configuration) for details about the config keys
 
 ```js
 // patternplate.config.js, default config
@@ -84,7 +84,7 @@ module.exports = {
 };
 ```
 
-5. Navigate to [localhost:1337/?reload=true](http://localhost:1337/?reload=true) and see the main staple of  tutorial writers world wide, the all-popular **Hello world** message:
+5. Navigate to `http://localhost:1337/?reload=true` and see the main staple of  tutorial writers world wide, the all-popular **Hello world** message:
 
   ![](https://patternplate.github.io/media/images/screenshot-cover.svg)
 
@@ -212,8 +212,8 @@ in the next step.
 
   > :information_source: Conceptually covers are specialized demo entries. 
   > 
-  > See [Reference: Demos](./doc/docs/reference/demos) for more details about supported exports, etc.
+  > See [Reference: Demos](../reference/demos) for more details about supported exports, etc.
 
 ## Related topics
 
-* [Demos](./doc/docs/reference/demos?reference-enabled=true)
+* [Demos](../reference/demos?reference-enabled=true)

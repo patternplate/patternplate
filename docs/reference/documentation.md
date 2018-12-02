@@ -95,8 +95,8 @@ Markdown in `patternplate` can highlight the following languages:
 
 ## Related
 
-* [Reference: Configuration](./doc/docs/reference/configuration)
-* [Reference: Widgets](./doc/docs/reference/widgets)
+* [Reference: Configuration](../reference/configuration)
+* [Reference: Widgets](../reference/widgets)
 
 [frontmatter]: https://jekyllrb.com/docs/frontmatter/
 [github-flavored-markdown]: https://guides.github.com/features/mastering-markdown/

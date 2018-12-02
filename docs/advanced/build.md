@@ -243,7 +243,7 @@ the ubiquitous in the JavaScript ecosystem at the time of writing.
   yarn babel -w
   ```
 
-4. Access your button component at [localhost:1337/pattern/button](http://localhost:1337/pattern/button).
+4. Access your button component at `http://localhost:1337/pattern/button`.
    If you used `patternplate` before this should be familiar:
 
   ![](https://patternplate.github.io/media/images/screenshot-build.svg)
@@ -285,5 +285,5 @@ the ubiquitous in the JavaScript ecosystem at the time of writing.
 
 ## Related topics
 
-* [CLI](./doc/docs/reference/cli?reference-enabled=true)
+* [CLI](../reference/cli?reference-enabled=true)
 

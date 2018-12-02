@@ -1,6 +1,5 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const Link = require("../link");
 const Header = require("../main-header");
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
