@@ -63,7 +63,5 @@
   "resolutions": {
     "**/react": "16.6.3"
   },
-  "dependencies": {
-    "why-did-you-update-redux": "^1.0.3"
-  }
+  "dependencies": {}
 }
