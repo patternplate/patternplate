@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/components",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "ui component library for patternplate-client",
   "scripts": {
     "start": "yarn build -w",
@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@patternplate/component-link": "^3.1.1",
-    "@patternplate/component-markdown": "^3.1.1",
+    "@patternplate/component-markdown": "^3.2.0",
     "@patternplate/component-text": "^3.1.1",
     "btoa": "^1.1.2",
     "codemirror": "^5.36.0",
