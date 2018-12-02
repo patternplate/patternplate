@@ -1247,14 +1247,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./packages/deploy":
-  version "3.1.1"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-    surge "^0.20.1"
-
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -1368,6 +1360,11 @@
   version "23.3.1"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-23.3.1.tgz#a4319aedb071d478e6f407d1c4578ec8156829cf"
 
+"@types/jest@^23.3.10":
+  version "23.3.10"
+  resolved "https://registry.npmjs.org/@types/jest/-/jest-23.3.10.tgz#4897974cc317bf99d4fe6af1efa15957fa9c94de"
+  integrity sha512-DC8xTuW/6TYgvEg3HEXS7cu9OijFqprVDXXiOcdOKZCU/5PJNLZU37VVvmZHdtMiGOa8wAA/We+JzbdxFzQTRQ==
+
 "@types/jest@^23.3.2":
   version "23.3.2"
   resolved "https://registry.npmjs.org/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
@@ -1392,6 +1389,7 @@
 "@types/micromatch@^3.1.0":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@types/micromatch/-/micromatch-3.1.0.tgz#514c8a3d24b2680a9b838eeb80e6d7d724545433"
+  integrity sha512-06uA9V7v68RTOzA3ky1Oi0HmCPa+YJ050vM+sTECwkxnHUQnO17TAcNCGX400QT6bldUiPb7ux5oKy0j8ccEDw==
   dependencies:
     "@types/braces" "*"
 
@@ -2857,6 +2855,15 @@ bcrypt-pbkdf@^1.0.0:
   resolved "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.1.tgz#63bc5dcb61331b92bc05fd528953c33462a06f8d"
   dependencies:
     tweetnacl "^0.14.3"
+
+beautiful-react-redux@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/beautiful-react-redux/-/beautiful-react-redux-2.1.0.tgz#bc2c9b26ba0e816ad1456da8fcb298ef517974cb"
+  integrity sha512-TjLCErKBTBtEKHAGv+NfmHdwb8D4ymFhua+MeOgLkuyKMlFf0qxxqbvJfP+7iQV29oRTm5P5kiR0JORbquuG2w==
+  dependencies:
+    function-double "^1.0.4"
+    memoize-state "^2.0.1"
+    shallowequal "^1.0.2"
 
 bel@^5.1.5:
   version "5.1.5"
@@ -5166,7 +5173,7 @@ escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
 
-escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
+escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
@@ -6212,6 +6219,13 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
 function-bind@^1.0.2, function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
+
+function-double@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/function-double/-/function-double-1.0.4.tgz#46074f215a171594036d816fa963c2902b482c86"
+  integrity sha512-J+vMIwmWx/uY3Fc4TNeyPyQOjSbaWpHO/xj+tv8RbViLfPipFGohgOWN+kSkuWTwSZPZxMfYopECUA/9Tq8YJA==
+  dependencies:
+    util-arity "^1.1.0"
 
 functional-red-black-tree@^1.0.1:
   version "1.0.1"
@@ -8726,6 +8740,7 @@ jest@^23.5.0:
 jest@^23.6.0:
   version "23.6.0"
   resolved "https://registry.npmjs.org/jest/-/jest-23.6.0.tgz#ad5835e923ebf6e19e7a1d7529a432edfee7813d"
+  integrity sha512-lWzcd+HSiqeuxyhG+EnZds6iO3Y3ZEnMrfZq/OTGvF/C+Z4fPMCdhWTGSAiO2Oym9rbEXfwddHhh6jqrTF3+Lw==
   dependencies:
     import-local "^1.0.0"
     jest-cli "^23.6.0"
@@ -9523,6 +9538,13 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
+matcher@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/matcher/-/matcher-1.1.1.tgz#51d8301e138f840982b338b116bb0c09af62c1c2"
+  integrity sha512-+BmqxWIubKTRKNWx/ahnCkk3mG8m7OturVlqq6HiojGJTd5hVYbgZm6WzcYPCoB+KBT4Vd6R7WSRG2OADNaCjg==
+  dependencies:
+    escape-string-regexp "^1.0.4"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.npmjs.org/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -9645,6 +9667,14 @@ memoize-one@^4.0.0:
   resolved "https://registry.npmjs.org/memoize-one/-/memoize-one-4.0.3.tgz#cdfdd942853f1a1b4c71c5336b8c49da0bf0273c"
   integrity sha512-QmpUu4KqDmX0plH4u+tf0riMc1KHE1+lw95cMrLlXQAFOx/xnBtwhZ52XJxd9X2O6kwKBqX32kmhbhlobD0cuw==
 
+memoize-state@^2.0.1:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/memoize-state/-/memoize-state-2.0.4.tgz#2b357d124eb75667d9d750d0feaa0455b22b42c0"
+  integrity sha512-kwhPcTd6i3UcY3MB9P0JK0JN8rw4dVLb903mA/bF7HN+rsauxjg3BBOUSoh5KOAHghG0FDm2d2ZUKd4GlGV9UA==
+  dependencies:
+    function-double "^1.0.4"
+    proxyequal "^2.0.1"
+
 memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
   version "0.4.1"
   resolved "https://registry.npmjs.org/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -9724,6 +9754,7 @@ micromatch@^2.1.5, micromatch@^2.3.11, micromatch@^2.3.7:
 micromatch@^3.1.4:
   version "3.1.10"
   resolved "https://registry.npmjs.org/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
+  integrity sha512-MWikgl9n9M3w+bpsY3He8L+w9eF9338xRl8IAO5viDizwSzziFEyUzo2xrrloB64ADbTf8uA8vRqqttDTOmccg==
   dependencies:
     arr-diff "^4.0.0"
     array-unique "^0.3.2"
@@ -9957,7 +9988,8 @@ ms@^2.0.0:
 
 multimatch@^2.0.0, multimatch@^2.1.0:
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-2.1.0.tgz#9c7906a22fb4c02919e2f5f75161b4cdbd4b2a2b"
+  resolved "https://registry.npmjs.org/multimatch/-/multimatch-2.1.0.tgz#9c7906a22fb4c02919e2f5f75161b4cdbd4b2a2b"
+  integrity sha1-nHkGoi+0wCkZ4vX3UWG0zb1LKis=
   dependencies:
     array-differ "^1.0.0"
     array-union "^1.0.1"
@@ -11467,6 +11499,13 @@ proxy-from-env@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.0.0.tgz#33c50398f70ea7eb96d21f7b817630a55791c7ee"
 
+proxyequal@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/proxyequal/-/proxyequal-2.0.1.tgz#e568952784e2879d6ddc74c5c060eab191e52fb2"
+  integrity sha512-aUbQcpFhX6R4JMDx3GoyR6MfsS8FsHt++qIx9aUuzPQNYboP4l1W+X2xDqpBS0VwIJ0ipI5AbPBiee8zkfxMsQ==
+  dependencies:
+    search-trie "^1.0.0"
+
 prr@~0.0.0:
   version "0.0.0"
   resolved "https://registry.npmjs.org/prr/-/prr-0.0.0.tgz#1a84b85908325501411853d0081ee3fa86e2926a"
@@ -11682,6 +11721,11 @@ react-dom@16.6.3:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.11.2"
+
+react-fast-compare@^2.0.3:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
 react-helmet@^5.2.0:
   version "5.2.0"
@@ -12781,6 +12825,11 @@ scrollparent@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/scrollparent/-/scrollparent-1.0.2.tgz#6df02c7b231431eb0308364c9a9a3e5d278dc538"
 
+search-trie@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/search-trie/-/search-trie-1.0.0.tgz#9529e727a2267a5c9ef0c6910ef5a6e2de9bf188"
+  integrity sha512-VAb03XhLoxiA9/XFE/hoJCtI49TRXITk2OpPfebH4ZdJv2FPAowbYGLnfO0n0eiuYp4tP8zbq+KOm0T9jQEPRw==
+
 select@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
@@ -12949,6 +12998,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
 shallowequal@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/shallowequal/-/shallowequal-1.0.2.tgz#1561dbdefb8c01408100319085764da3fcf83f8f"
+
+shallowequal@^1.0.2:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
+  integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -14615,6 +14669,11 @@ useragent@^2.1.8:
     lru-cache "4.1.x"
     tmp "0.0.x"
 
+util-arity@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/util-arity/-/util-arity-1.1.0.tgz#59d01af1fdb3fede0ac4e632b0ab5f6ce97c9330"
+  integrity sha1-WdAa8f2z/t4KxOYysKtfbOl8kzA=
+
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -15003,6 +15062,21 @@ which@^1.2.10, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0:
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
   dependencies:
     isexe "^2.0.0"
+
+why-did-you-update-redux@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/why-did-you-update-redux/-/why-did-you-update-redux-1.0.3.tgz#00ca2c966bda86634acd02191441631fb1023b72"
+  integrity sha512-gfWID0s2tAJiJx+TQZnNR5uG3uwNEIT8Y7A3Aj2LzVku4U/vnVu2vz0TsqG+QNo0W/IMmVzVlRa3NbJnNdODIw==
+  dependencies:
+    beautiful-react-redux "^2.1.0"
+
+why-did-you-update@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/why-did-you-update/-/why-did-you-update-1.0.6.tgz#2e2c6a04291e715755ecdff1ac8272f721df6f04"
+  integrity sha512-XVrdHhdrPBDuSW8b/uH6DCb1/0984qv8KElpE8NZiRvWZX8nw49av577+ZyIrxSNesi6r2cQEhpxQTKFFHTj8A==
+  dependencies:
+    lodash "^4.17.11"
+    react-fast-compare "^2.0.3"
 
 wide-align@^1.1.0:
   version "1.1.2"

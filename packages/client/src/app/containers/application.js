@@ -349,6 +349,7 @@ const SUM = (...args) => props => args.reduce((acc, fn) => acc + fn(props), 0);
 
 const StyledSearchBox = styled.div`
   position: fixed;
+  z-index: 2;
   top: 12.5vh;
   bottom: 10vh;
   right: ${WITH_SCREENSHOT_OFFSET(1)}px;

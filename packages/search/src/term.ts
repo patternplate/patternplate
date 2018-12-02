@@ -1,4 +1,4 @@
-const OPERATORS = /([^!><^~\n=]+)?(?:(!)?(>|<|\^|~)?(=)?)([^!><^~\n=]+)?/;
+const OPERATORS = /([^!><^~\*\n=]+)?(?:(!)?(\*|>|<|\^|~)?(=)?)([^!><^~\n=]+)?/;
 
 export interface Term {
   field: string;
@@ -8,6 +8,7 @@ export interface Term {
   negated: boolean;
   greater: boolean;
   lower: boolean;
+  matches: boolean;
   startsWith: boolean;
   includes: boolean;
   equals: boolean;
@@ -26,6 +27,7 @@ export function parse(termString: string): Term {
     negated: negator === "!",
     greater: modifier === ">",
     lower: modifier === "<",
+    matches: equality === "=" && modifier === "*",
     startsWith: equality === "=" && modifier === "^",
     includes: equality === "=" && modifier === "~",
     equals: equality === "=",

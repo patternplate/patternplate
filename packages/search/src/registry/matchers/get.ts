@@ -9,6 +9,7 @@ export function get(field: string, value: string, options: T.Term): T.Matcher {
   const tags = M.matchTags(value, options);
   const version = M.matchVersion(value, options);
   const is = M.matchIs(value);
+  const path = M.matchPath(value, options);
 
   return item => {
     switch (field) {
@@ -29,6 +30,8 @@ export function get(field: string, value: string, options: T.Term): T.Matcher {
         return version(item);
       case "flag":
         return flag(item);
+      case "path":
+        return path(item);
       default:
         return item[field] === value || item.manifest[field] === value;
     }

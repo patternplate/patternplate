@@ -61,6 +61,13 @@ const FIELDS = [
     value: "version",
     description: "having version of [value]",
     operators: ["=", "!=", ">", ">=", "<", "<=", "^=", "~="]
+  },
+  {
+    type: "field",
+    key: "path",
+    value: "path",
+    description: "saved at [value] relative to patternplate.config.js",
+    operators: ["=", "*="]
   }
 ];
 
@@ -104,6 +111,11 @@ const OPERATORS = [
     type: "op",
     key: "~=",
     description: "contains"
+  },
+  {
+    type: "op",
+    key: "*=",
+    description: "matches"
   }
 ];
 

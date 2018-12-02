@@ -121,6 +121,18 @@ attached to them.
 * [version=1.0.0](?search-enabled=true&search=version=1.0.0)
 * [version>=0.1](?search-enabled=true&search=version>=0.1)
 
+## path
+
+> is located at `path`
+
+Supports the special match operator: `*=` for glob matching
+
+**Examples**
+
+* [path=docs/why.md](?search-enabled=true&search=path=docs/why.md)
+* [path*=components/next-generation/*](?search-enabled=true&search=path*=components/next-generation/*)
+* [path=docs/*w*](?search-enabled=true&search=path=docs/*w*)
+
 ## Logical operators
 
 Search queries can be filtered `AND`, expanded `OR` and grouped `()` with logical operators.
