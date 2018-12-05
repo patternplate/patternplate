@@ -2,7 +2,7 @@
 
 # patternplate
 
-## [Site][site] | [Getting started][getting-started]
+## [Site][site] | [Getting started][getting-started] | [Join us on Gitter][gitter]
 
 This is the contributor documentation for the `patternplate` mono-repository.
 For user docs see [patternplate.github.io](https://patternplate.github.io)
@@ -41,3 +41,4 @@ Copyright by SinnerSchrader. All `@patternplate` packages are released under the
 
 [site]: https://patternplate.github.io/
 [getting-started]: https://patternplate.github.io/doc/docs/guides/getting-started?guides-enabled=true
+[gitter]: https://gitter.im/patternplate/Lobby
