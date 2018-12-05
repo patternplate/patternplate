@@ -67,7 +67,7 @@ export default class Search extends React.Component {
   getSearchResult = (item, type) => (
     <SearchResult
       active={(this.props.activeItem || {}).id === item.id}
-      href={[item.contentType, item.id].join('/')}
+      href={item.href}
       id={item.id}
       index={item.index}
       icon={item.manifest.icon || item.type}
@@ -88,7 +88,7 @@ export default class Search extends React.Component {
           <SearchResultPreview {...this.props}>
             <Markdown
               source={item.contents}
-              />
+            />
           </SearchResultPreview>
         );
       default:
@@ -148,13 +148,13 @@ export default class Search extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const {props} = this;
+    const { props } = this;
 
     if (!props.activeItem) {
       return props.onSubmit(e);
     }
 
-    const {activeItem} = props;
+    const { activeItem } = props;
     props.onNavigate(activeItem);
   }
 

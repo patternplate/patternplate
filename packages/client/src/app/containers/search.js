@@ -9,8 +9,22 @@ function mapProps(state) {
   return {
     activeItem: found.selectActiveItem(state), // Used for highlight in list
     base: state.base,
-    components: found.selectPatterns(state), // List of components matching state.components
-    docs: found.selectDocs(state), // List of docs matching state.search
+    components: found.selectPatterns(state).map((pattern) => {
+      if (pattern.href.startsWith('.')) {
+        return pattern;
+      }
+
+      pattern.href = `.${pattern.href}`;
+      return pattern;
+    }), // List of components matching state.components
+    docs: found.selectDocs(state).map((doc) => {
+      if (doc.href.startsWith('.')) {
+        return doc;
+      }
+
+      doc.href = `.${doc.href}`;
+      return doc;
+    }), // List of docs matching state.search
     enabled: state.searchEnabled, // If search is to be displayed
     legend: found.selectLegend(state),
     shortcuts: state.shortcuts, // Reference to global shortcuts for help texts
