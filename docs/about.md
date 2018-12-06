@@ -13,7 +13,12 @@ Guides and Advanced topics will also state the time :timer_clock: it will take t
 ## Levels
 
 > :information_source: 
-> Don't be put off by the levels, they are only meant to help. Ask your colleagues for help and [post an issue on GitHub](https://github.com/patternplate/patternplate/issues/new) if something is hard to understand in our docs. Thank you! :bow:
+> The levels are meant to help you understand where to begin your journey with patternplate. Don't let them put you off!
+>
+> **Lost with a guide?** Come join us at our [Gitter Organization](https://gitter.im/patternplate/Lobby) and we'll help you. 
+> Also feel free to [post an issue on GitHub](https://github.com/patternplate/patternplate/issues/new) if something is hard to understand in our docs. 
+> 
+> Thank you! :bow:
 
 The recommended levels for the instructions in this documentation are structured according to the technical knowledge required. 
 
