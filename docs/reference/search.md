@@ -129,9 +129,9 @@ Supports the special match operator: `*=` for glob matching
 
 **Examples**
 
-* [path=docs/why.md](?search-enabled=true&search=path=docs/why.md)
-* [path*=components/next-generation/*](?search-enabled=true&search=path*=components/next-generation/*)
-* [path=docs/*w*](?search-enabled=true&search=path=docs/*w*)
+* [path=docs/why.md](?search-enabled=true&search=path%3Ddocs%2Fwhy.md)
+* [path\*=components/next-generation/\*](?search-enabled=true&search=search=path*%3Dcomponents%2Fnext-generation%2F*)
+* [path\*=docs/\*w\*](?search-enabled=true&search=path*%3Ddocs%2F*w*)
 
 ## Logical operators
 
