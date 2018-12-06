@@ -120,7 +120,7 @@ function getHref(props, context) {
   // Try to resolve other relative links from the currently selected item
   if (context.item && !(parsed.pathname || '').startsWith('/')) {
     const rawTargetPath = (Path.unix || Path)
-      .resolve(Path.dirname(context.item.path), parsed.pathname)
+      .resolve(Path.dirname(context.item.path), parsed.pathname || '')
       .slice(1);
 
     const targetPath = replaceExt(rawTargetPath, '.md');
