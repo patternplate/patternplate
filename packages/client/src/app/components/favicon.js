@@ -84,7 +84,7 @@ const StyledFavicon = styled(FavIcon)`
   fill: ${props => props.theme.colors.color};
 `;
 
-export default () => <StyledFavicon/>;
+export default props => <StyledFavicon {...props}/>;
 
 function getSource(props) {
   if (!props.source) {

@@ -3,7 +3,6 @@ const styled = require("styled-components").default;
 
 const Link = require("./link");
 const Icon = require("./icon");
-const svg = require("./svg");
 
 const StyledLink = styled(Link)`
   display: block;
@@ -22,7 +21,6 @@ class Logo extends React.Component {
       return (
         <div className={props.className}>
           <StyledLink
-            dangerouslySetInnerHTML={{__html: props.source}}
             external="base"
             href="/"
             query={null}
@@ -56,4 +54,5 @@ const StyledLogo = styled(Logo)`
   background: ${props => props.theme.colors.backgroundSecondary};
 `;
 
-module.exports = () => <StyledLogo/>;
+module.exports = props => <StyledLogo {...props}/>;
+

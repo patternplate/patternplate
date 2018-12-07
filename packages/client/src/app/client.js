@@ -9,6 +9,8 @@ import configureStore from "./store";
 
 export default function(data, el) {
   const store = configureStore(browserHistory, data);
+  window.store = store;
+
   const history = syncHistoryWithStore(browserHistory, store);
 
   const router = (
