@@ -10,9 +10,9 @@ import { scrollTo } from "../actions";
 import selectItem from "../selectors/item";
 import { flat as selectPool } from "../selectors/pool";
 
-export default connect(mapState, mapDispatch)(Link.RawLink);
+export default connect(mapLinkState, mapDispatch)(Link.RawLink);
 
-function mapState(state, own) {
+export function mapLinkState(state, own) {
   const location = state.routing.locationBeforeTransitions;
 
   if (isAbsolute(own.href)) {
@@ -50,7 +50,7 @@ function mapDispatch(dispatch, ownProps) {
   );
 }
 
-function getHref(props, context) {
+export function getHref(props, context) {
   if (props.external === true || !context.location) {
     return props.href;
   }
@@ -93,6 +93,33 @@ function getHref(props, context) {
   parsed.pathname =
     parsed.pathname !== null ? replaceExt(parsed.pathname, ".html") : null;
 
+  if (parsed.pathname === "/") {
+    return url.format({
+      pathname: context.base,
+      query,
+      hash: props.hash || (parsed.hash || "#").slice(1)
+    });
+  }
+
+  // Quirk: Search with prefix in static builds
+  if (
+    parsed.pathname &&
+    parsed.pathname !== null &&
+    (parsed.pathname.startsWith(`.${context.base}pattern/`) ||
+      parsed.pathname.startsWith(`.${context.base}doc/`))
+  ) {
+    const pathname =
+      typeof parsed.pathname === "string"
+        ? parsed.pathname.slice(1)
+        : context.location.pathname;
+
+    return url.format({
+      pathname,
+      query,
+      hash: props.hash || (parsed.hash || "#").slice(1)
+    });
+  }
+
   // Legacy:
   // We used to require users to enter awkward relative/absolute paths
   // - `./doc/:docPath:`
@@ -102,12 +129,16 @@ function getHref(props, context) {
   if (
     parsed.pathname &&
     parsed.pathname !== null &&
-    (parsed.pathname.startsWith("./pattern") ||
-      parsed.pathname.startsWith("./doc"))
+    // Older md documents might use the old linking format
+    (parsed.pathname.startsWith("./pattern/") ||
+      parsed.pathname.startsWith("./doc/") ||
+      // Quirk: Search with prefix in static builds
+      parsed.pathname.startsWith(`.${context.base}pattern/`) ||
+      parsed.pathname.startsWith(`.${context.base}doc/`))
   ) {
     const pathname =
       typeof parsed.pathname === "string"
-        ? prefix(context.base, parsed.pathname)
+        ? prefix(context.base, parsed.pathname.slice(1))
         : context.location.pathname;
 
     return url.format({
@@ -118,13 +149,16 @@ function getHref(props, context) {
   }
 
   // Try to resolve other relative links from the currently selected item
-  if (context.item && !(parsed.pathname || '').startsWith('/')) {
-    const rawTargetPath = (Path.unix || Path)
-      .resolve(Path.dirname(context.item.path), parsed.pathname || '')
-      .slice(1);
+  if (context.item && !(parsed.pathname || "").startsWith("/")) {
+    const rawTargetPath = (Path.unix || Path).join(
+      Path.dirname(context.item.path),
+      parsed.pathname || ""
+    );
 
-    const targetPath = replaceExt(rawTargetPath, '.md');
-    const match = context.pool.find(item => item.contentType === "doc" && item.path === targetPath);
+    const targetPath = replaceExt(rawTargetPath, ".md");
+    const match = context.pool.find(
+      item => item.contentType === "doc" && item.path === targetPath
+    );
 
     if (match) {
       const parsedMatch = url.parse(match.href);
@@ -135,8 +169,12 @@ function getHref(props, context) {
       });
     }
 
-    const patternTargetPath = replaceExt(rawTargetPath, '');
-    const patternMatch = context.pool.find(item => item.contentType === "pattern" && Path.dirname(item.path) === patternTargetPath);
+    const patternTargetPath = replaceExt(rawTargetPath, "");
+    const patternMatch = context.pool.find(
+      item =>
+        item.contentType === "pattern" &&
+        Path.dirname(item.path) === patternTargetPath
+    );
 
     if (patternMatch) {
       const parsedMatch = url.parse(patternMatch.href);
@@ -148,7 +186,6 @@ function getHref(props, context) {
       });
     }
   }
-
 
   return url.format({
     pathname: parsed.pathname,
