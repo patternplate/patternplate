@@ -97,6 +97,7 @@
     "globby": "^8.0.1",
     "hast-to-hyperscript": "^2.0.4",
     "highlight.js": "^9.6.0",
+    "jest": "^23.6.0",
     "lodash": "^4.15.0",
     "lowlight": "^1.2.0",
     "parse-json": "^4.0.0",
