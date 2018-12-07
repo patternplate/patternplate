@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/component-markdown",
-  "version": "3.2.0",
+  "version": "3.2.3",
   "description": "Render markdown sources to rich HTML documents",
   "main": "lib/markdown.js",
   "scripts": {
