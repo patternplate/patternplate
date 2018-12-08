@@ -14,16 +14,44 @@ jobs:
           - v1-dependencies-{{ checksum "yarn.lock" }}
           - v1-dependencies-
 
-      - run: yarn install --ignore-engines
+      - run:
+          name: Install dependencies
+          command: yarn install --ignore-engines
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
-      - run: yarn build
-      - run: yarn test
-      - run: yarn run pack
-      - run: yarn components:build
-      - run: ./.circleci/deploy-pre.sh
+      - run:
+          name: Build
+          command: yarn build
+
+      - run:
+          name: Run unit tests
+          command: yarn test
+
+      - run:
+          name: Create bundles
+          command: yarn run pack
+
+      - run:
+          name: Build examples
+          command: yarn lerna run pp:build --private --scope="@patternplate/example-*" --stream
+
+      - run:
+          name: Test examples
+          command: yarn lerna run pp:test --private --scope="@patternplate/example-*" --stream
+
+      - run:
+          name: Build page
+          command: yarn components:build
+
+      - run:
+          name: Test page
+          command: yarn components:test
+
+      - run:
+          name: Deploy page
+          command: ./.circleci/deploy-pre.sh
 

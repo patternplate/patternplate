@@ -11,14 +11,14 @@
     "clean": "lerna clean --yes && lerna run clean && rimraf node_modules",
     "components:start": "patternplate start",
     "components:build": "patternplate build --out .tmp --base '/'",
+    "components:test": "patternplate-test --project . --no-build --ignore=\"*/api/demo/doc/docs/*\"",
     "components:serve": "serve .tmp",
     "components:deploy": "patternplate-deploy --source .tmp --identity=./patternplate-deploy --target=git@github.com:patternplate/patternplate.github.io.git",
     "patternplate:build": "lerna run build --stream --filter='@patternplate/components'",
     "patternplate:watch": "lerna run watch --stream --filter='@patternplate/components'",
     "reinstall": "yarn clean && yarn && lerna bootstrap",
     "start": "ttsc -b --verbose && concurrently \"ttsc -b -w\" \"lerna run watch --stream --parallel --include-filtered-dependencies\"",
-    "test": "jest",
-    "test:links": "blc http://localhost:1337 & blc http://localhost:1337/doc/docs/why & blc http://localhost:1337/pattern/@patternplate/component-markdown.html"
+    "test": "jest"
   },
   "author": {
     "name": "Mario Nebl",
@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "@marionebl/ttypescript": "^1.5.6",
-    "@patternplate/deploy-site": "file:./packages/deploy",
+    "@patternplate/deploy-site": "file:./tools/deploy-site",
+    "@patternplate/test-example": "file:./tools/test-example",
     "broken-link-checker": "^0.7.8",
     "dom-to-image": "^2.6.0",
     "eslint": "^4.9.0",
@@ -60,7 +61,8 @@
     "components/*",
     "components/next-generation/*",
     "examples/*",
-    "packages/*"
+    "packages/*",
+    "tools/*"
   ],
   "resolutions": {
     "**/react": "16.6.3"

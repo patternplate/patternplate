@@ -11,6 +11,7 @@ package-lock.json
 
 /components/**/lib
 /packages/*/lib
+/tools/*/lib
 /packages/components/docs/patterns
 
 /examples/*/lib

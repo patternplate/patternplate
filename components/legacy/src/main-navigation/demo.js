@@ -16,7 +16,7 @@ const docs = {
       type: "item",
       contentType: "doc",
       id: "item",
-      href: "link",
+      href: "#link",
       manifest: {
         displayName: "Item"
       }
@@ -25,7 +25,7 @@ const docs = {
       active: true,
       type: "item",
       contentType: "doc",
-      href: "link",
+      href: "#link",
       id: "item-active",
       manifest: {
         displayName: "Active Item"
@@ -35,7 +35,7 @@ const docs = {
       type: "folder",
       contentType: "doc",
       id: "folder",
-      href: "link",
+      href: "#link",
       manifest: {
         displayName: "Folder",
         options: {}

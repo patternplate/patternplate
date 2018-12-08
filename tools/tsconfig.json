@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "include": [],
+  "references": [
+    {"path": "./test-example"},
+  ],
+  "compilerOptions": {
+    "composite": true
+  }
+}

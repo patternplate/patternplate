@@ -1,10 +1,14 @@
 {
-  "name": "@patternplate-example/react-typescript",
+  "name": "@patternplate/example-react-typescript",
   "version": "3.2.3",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"tsc -w\" \"cpx 'src/**/*.css' lib -w\" \"patternplate\""
+    "start": "concurrently \"tsc -w\" \"cpx 'src/**/*.css' lib -w\" \"patternplate\"",
+    "build": "concurrently \"tsc\" \"cpx 'src/**/*.css' lib\"",
+    "pp:build": "patternplate build --out .tmp --base '/'",
+    "pp:test": "patternplate-test --project . --no-build",
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-react-typescript\" --provider=surge"
   },
   "author": {
     "name": "Mario Nebl",

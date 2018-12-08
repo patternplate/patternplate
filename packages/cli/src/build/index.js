@@ -107,7 +107,9 @@ async function build({flags}) {
       ? component.render
       : getModule(RENDER_PATH);
     const content = await Promise.resolve(renderComponent(component, context));
-    await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(content, pattern));
+
+    const depth = pattern.id.split('/').length;
+    await sander.writeFile(out, 'api/demo', `${pattern.id}.html`, demo(content, pattern, { depth }));
   }));
 
   // Copy /static/
@@ -167,8 +169,9 @@ function getCoverContext(config) {
 
 // TODO: Duplicate of function in @patternplate/api/demo.js,
 // move to own package
-function demo(content, payload) {
+function demo(content, payload, context) {
   const data = encodeURIComponent(JSON.stringify(payload));
+  const rel = '../'.repeat(context.depth);
 
   return unindent(`
     <!doctype html>
@@ -190,10 +193,10 @@ function demo(content, payload) {
         <!-- content.after -->
         ${content.after || ""}
         <!-- ../ -> /api/ -->
-        <script src="../patternplate.web.components.js"></script>
-        <script src="../patternplate.web.probe.js"></script>
-        <script src="../patternplate.web.mount.js"></script>
-        <script src="../patternplate.web.demo.js"></script>
+        <script src="${rel}patternplate.web.components.js"></script>
+        <script src="${rel}patternplate.web.probe.js"></script>
+        <script src="${rel}patternplate.web.mount.js"></script>
+        <script src="${rel}patternplate.web.demo.js"></script>
       </body>
     </html>
 `);
