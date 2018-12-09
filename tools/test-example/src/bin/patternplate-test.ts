@@ -48,7 +48,13 @@ async function main(raw: unknown): Promise<void> {
     Fs.readFileSync(Path.join(outPath, "api", "state.json")).toString()
   );
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: [
+      '–no-sandbox',
+      '–disable-setuid-sandbox'
+    ]
+  });
+
   const page = await browser.newPage();
 
   const patternUrls = state.meta.children.map((pattern: any) => `http://localhost:${port}${flags.base}api/demo/${pattern.id}.html`);
