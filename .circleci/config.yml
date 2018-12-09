@@ -6,13 +6,8 @@ executors:
       - image: circleci/node:latest-browsers
     working_directory: ~/repo
 
-jobs:
-  install:
-    docker:
-      - image: circleci/node:latest-browsers
-
-    working_directory: ~/repo
-
+commands:
+  prepare:
     steps:
       - checkout
 
@@ -25,35 +20,46 @@ jobs:
           name: Install dependencies
           command: yarn install --ignore-engines
 
+  getbuild:
+      steps:
+        - restore_cache:
+            keys:
+            - v1-build-
+
+        - run:
+            name: Build
+            command: yarn build
+
+jobs:
+  install:
+    executor: browsers
+
+    steps:
+      - prepare
+
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-
-      - persist_to_workspace:
-          root: ~/repo
+          key: v1-dependencies-{{ checksum "yarn.lock" }
 
   build:
     executor: browsers
 
     steps:
-      - checkout
+      - prepare
+      - getbuild
 
-      - attach_workspace:
-          at: ~/repo
-
-      - run:
-          name: Build
-          command: yarn build
-
-      - persist_to_workspace:
-          root: ~/repo
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-build-
 
   test:
     executor: browsers
 
     steps:
-      - checkout
+      - prepare
+      - getbuild
 
       - attach_workspace:
           at: ~/repo
@@ -65,7 +71,7 @@ jobs:
     executor: browsers
 
     steps:
-      - checkout
+      - prepare
 
       - attach_workspace:
           at: ~/repo
@@ -80,7 +86,8 @@ jobs:
     executor: browsers
 
     steps:
-      - checkout
+      - prepare
+      - getbuild
 
       - attach_workspace:
           at: ~/repo
@@ -105,7 +112,8 @@ jobs:
     executor: browsers
 
     steps:
-      - checkout
+      - prepare
+      - getbuild
 
       - attach_workspace:
           at: ~/repo
