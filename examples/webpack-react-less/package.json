@@ -7,7 +7,7 @@
     "start": "concurrently \"yarn webpack -w\" \"patternplate\"",
     "build": "webpack",
     "pp:build": "patternplate build --out .tmp --base '/'",
-    "pp:test": "patternplate-test --project . --no-build",
+    "pp:test": "patternplate-test --project . --no-build --port=1442",
     "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-webpack-react-less\" --provider=surge"
   },
   "author": {

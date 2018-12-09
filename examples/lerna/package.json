@@ -6,7 +6,7 @@
   "scripts": {
     "start": "patternplate",
     "pp:build": "patternplate build --out .tmp --base '/'",
-    "pp:test": "patternplate-test --project . --no-build",
+    "pp:test": "patternplate-test --project . --no-build --port=1439",
     "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-lerna\" --provider=surge"
   },
   "author": {

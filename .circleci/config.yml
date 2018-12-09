@@ -40,20 +40,8 @@ jobs:
           command: yarn examples:build
 
       - run:
-          name: Patch @patternplate/test-example
-          command: rm -r node_modules/@patternplate/test-example && ln -s "$(realpath tools/test-example/)" node_modules/@patternplate
-
-      - run:
-          name: Test examples pages
-          command: yarn examples:test
-
-      - run:
           name: Build page
           command: yarn components:build
-
-      - run:
-          name: Test page
-          command: yarn components:test
 
       - run:
           name: Deploy page

@@ -25,7 +25,7 @@ async function main(raw: unknown): Promise<void> {
   const docRoot = flags.base !== "/" ? Path.dirname(outPath) : outPath;
 
   const port = await getPort({ port: flags.port });
-  const host = ip.address();
+  const host = process.env.TEST_HOST ? process.env.TEST_HOST : ip.address();
 
   if (!await Util.access(projectPath)) {
     console.error(`Could not read from ${projectPath}, does it exist?`);

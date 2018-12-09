@@ -9,7 +9,7 @@
     "postcss": "postcss 'src/**/demo.css' -d lib -b src",
     "build": "concurrently \"yarn babel\" \"yarn postcss\"",
     "pp:build": "patternplate build --out .tmp --base '/'",
-    "pp:test": "patternplate-test --project . --no-build",
+    "pp:test": "patternplate-test --project . --no-build --port=1437",
     "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-babel-bel-postcss\" --provider=surge"
   },
   "author": {

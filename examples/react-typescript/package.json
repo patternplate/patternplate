@@ -7,7 +7,7 @@
     "start": "concurrently \"tsc -w\" \"cpx 'src/**/*.css' lib -w\" \"patternplate\"",
     "build": "concurrently \"tsc\" \"cpx 'src/**/*.css' lib\"",
     "pp:build": "patternplate build --out .tmp --base '/'",
-    "pp:test": "patternplate-test --project . --no-build",
+    "pp:test": "patternplate-test --project . --no-build --port=1440",
     "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-react-typescript\" --provider=surge"
   },
   "author": {
