@@ -3,6 +3,9 @@ import * as Url from "url";
 import { uniq, memoize } from "lodash";
 import fetch from "node-fetch";
 import * as matcher from "matcher";
+import * as Utils from "util";
+
+const debug = Utils.debuglog('@patternplate/test-example');
 
 const throat = require("throat");
 const memFetch = memoize(fetch);
@@ -50,6 +53,7 @@ export async function check(
   { page, ignore }: { page: puppeteer.Page; ignore: string[] }
 ): Promise<CheckResult> {
   if (ignore.length > 0 && matcher([base], ignore).length > 0) {
+    debug(`Page ${base} was ignored via pattern ${ignore}`)
     return {
       base,
       valid: true,
@@ -57,8 +61,11 @@ export async function check(
     };
   }
 
+  debug(`Navigating to page ${base}`);
   await page.goto(base);
+  debug(`Navigated to page ${base}`);
 
+  debug(`Extracting references from page ${base}`);
   const pathnames = await page.evaluate(() => {
     const toArray = (i: NodeListOf<Element>): Element[] =>
       Array.prototype.slice.call(i, 0);
@@ -76,9 +83,10 @@ export async function check(
           !url.startsWith("https://")
       );
   }, base);
+  debug(`Extracted ${pathnames.length} references from page ${base}`);
 
   if (pathnames.length === 0) {
-    console.error(`Could not find urls at ${base}, that does not seem right.`);
+    console.error(`Could not references urls at ${base}, that does not seem right.`);
     process.exit(1);
   }
 
@@ -91,10 +99,20 @@ export async function check(
       )
   )
   .map((pathname: string) => Url.resolve(base, pathname === '/' ? '' : pathname))
-  .filter(url => ignore.length > 0 && matcher([url], ignore).length === 0);
+  .filter(url => {
+    const ignored = ignore.length > 0 && matcher([url], ignore).length > 0;
+    if (ignored) {
+      debug(`Reference ${url} was ignored via pattern ${ignore}`)
+    }
+    return ignored;
+  });
+
+  debug(`Fetching ${urls.length} references from ${base}`);
 
   const tasks = urls.map<{ url: string; valid: boolean; }>(throat(4, async (url: string) => {
+    debug(`Fetching ${url} reference from ${base}`);
     const response = await memFetch(url);
+    debug(`Fetched ${url} reference from ${base}`);
     return {
       url,
       valid: response.status === 200
@@ -102,7 +120,11 @@ export async function check(
   }));
 
   const results = await Promise.all(tasks);
+  debug(`Fetched ${urls.length} references from ${base}`);
+
+  debug(`Resetting page ${base}`);
   await page.goto('about:blank');
+  debug(`Resetted page ${base}`);
 
   return {
     base,

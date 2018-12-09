@@ -40,8 +40,20 @@ jobs:
           command: yarn examples:build
 
       - run:
+          name: Patch @patternplate/test-example
+          command: cd tools/test-example && yarn link && cd - && yarn link @patternplate/test-example
+
+      - run:
+          name: Test examples pages
+          command: NODE_DEBUG=@patternplate/test-example yarn examples:test
+
+      - run:
           name: Build page
           command: yarn components:build
+
+      - run:
+          name: Test page
+          command: yarn components:test
 
       - run:
           name: Deploy page

@@ -10,6 +10,9 @@ import * as puppeteer from "puppeteer";
 import * as TestExample from "../";
 import * as Util from "../utils";
 import { groupBy } from "lodash";
+import * as Utils from "util";
+
+const debug = Utils.debuglog('@patternplate/test-example');
 
 const ip = require("ip");
 const chalk = require("chalk");
@@ -41,29 +44,39 @@ async function main(raw: unknown): Promise<void> {
       ["build", "--out", outPath, "--base", flags.base],
       { stdio: "inherit" }
     );
+  } else {
+    debug(`Skipping build due to --no-build flag`);
   }
 
   const [stop] = await Promise.all([starting]);
   console.log(`Started test server on http://${host}:${port}`);
 
+  debug(`Reading state from ${Path.join(outPath, "api", "state.json")}`);
   const state = JSON.parse(
     Fs.readFileSync(Path.join(outPath, "api", "state.json")).toString()
   );
+  debug(`Read state from ${Path.join(outPath, "api", "state.json")}`);
 
+  debug(`Launching headless browser`);
   const browser = await puppeteer.launch({
     args: [
       '–no-sandbox',
       '–disable-setuid-sandbox'
     ]
   });
+  debug(`Launched headless browser`);
 
+  debug(`Creating browser page`);
   const page = await browser.newPage();
+  debug(`Created browser page`);
 
   const patternUrls = state.meta.children.map((pattern: any) => `http://${host}:${port}${flags.base}api/demo/${pattern.id}.html`);
   const docUrls = state.docs.children.map((doc: any) => `http://${host}:${port}${flags.base}doc/${doc.id}.html`);
   const urls = [`http://${host}:${port}`, ...patternUrls, ...docUrls];
 
+  debug(`Testing references on ${urls.length} pages`);
   const result = await TestExample.all(urls, { page, ignore: flags.ignore });
+  debug(`Tested references on ${urls.length} pages`);
 
   if (!result.valid) {
     const broken = groupBy(result.failed, 'base');
