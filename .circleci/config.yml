@@ -18,7 +18,7 @@ commands:
 
       - run:
           name: Install dependencies
-          command: if [ -d node_modules ]; then yarn install --ignore-engines; fi
+          command: if [ -d node_modules ]; then echo "Skipping install"; else yarn install --ignore-engines; fi
 
   getbuild:
       steps:
