@@ -18,7 +18,7 @@ commands:
 
       - run:
           name: Install dependencies
-          command: if [[ -d node_modules ]]; then  yarn install --ignore-engines else fi
+          command: if [ -d node_modules ]; then  yarn install --ignore-engines fi
 
   getbuild:
       steps:
@@ -35,7 +35,15 @@ jobs:
     executor: browsers
 
     steps:
-      - prepare
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: yarn install --ignore-engines
+
 
       - save_cache:
           paths:
