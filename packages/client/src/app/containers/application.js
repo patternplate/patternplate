@@ -138,7 +138,7 @@ class Application extends React.Component {
                 </StyledNavigationBox>
               </React.Fragment>
             </ThemeProvider>
-            <StyledContentContainer>
+            <StyledContentContainer data-scrolling>
               <StyledContent>
                 {props.browserWarningEnabled &&
                   <StyledBrowserWarning

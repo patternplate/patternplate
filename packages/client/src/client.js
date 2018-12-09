@@ -16,13 +16,28 @@ async function main() {
   const vault = document.querySelector('[data-application-state="patternplate"]');
   const data = await getData(vault);
 
-  if (data.isStatic) {
-    slot.innerHTML = '';
-  }
+  const beforeMount = data.isStatic ?
+    () => {
+      const scrollTop = document.querySelector('[data-scrolling]').scrollTop;
+      slot.innerHTML = '';
+      return { scrollTop };
+    }
+    : () => ({});
 
+  const afterMount = data.isStatic ?
+    ctx => {
+      const scrollElAfter = document.querySelector('[data-scrolling]');
+      scrollElAfter.scrollTop = ctx.scrollTop;
+      document.body.setAttribute("data-mounted", true);
+    }
+    : () => {
+      document.body.setAttribute("data-mounted", true);
+      return {};
+    }
+
+  const ctx = beforeMount();
   router(data, slot);
-
-  document.body.setAttribute("data-mounted", true);
+  afterMount(ctx);
 }
 
 async function getData(vault) {
