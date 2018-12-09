@@ -104,7 +104,7 @@ export async function check(
     if (ignored) {
       debug(`Reference ${url} was ignored via pattern ${ignore}`)
     }
-    return ignored;
+    return !ignored;
   });
 
   debug(`Fetching ${urls.length} references from ${base}`);
