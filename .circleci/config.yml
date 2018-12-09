@@ -23,6 +23,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
+      - persist_to_workspace:
+          root: ~/repo
+
   build:
     docker:
       - image: circleci/node:latest-browsers
@@ -30,9 +33,15 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - run:
           name: Build
           command: yarn build
+
+      - persist_to_workspace:
+          root: ~/repo
 
   test:
     docker:
@@ -41,6 +50,8 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Run unit tests
           command: yarn test
@@ -52,9 +63,14 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - run:
           name: Create bundles
           command: yarn run pack
+      - persist_to_workspace:
+          root: ~/repo
 
   examples:
     docker:
@@ -63,6 +79,9 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - run:
           name: Build example pages
           command: yarn examples:build
@@ -86,6 +105,9 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - run:
           name: Test page
           command: yarn components:test
