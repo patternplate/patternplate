@@ -151,6 +151,7 @@ workflows:
       - bundle:
           requires:
             - install
+            - build
       - test:
           requires:
             - build
