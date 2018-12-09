@@ -40,7 +40,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
   build:
     executor: browsers
