@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  prepare:
     docker:
       - image: circleci/node:latest-browsers
 
@@ -23,18 +23,46 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
+  build:
+    docker:
+      - image: circleci/node:latest-browsers
+
+    working_directory: ~/repo
+
+    steps:
       - run:
           name: Build
           command: yarn build
 
+  test:
+    docker:
+      - image: circleci/node:latest-browsers
+
+    working_directory: ~/repo
+
+    steps:
       - run:
           name: Run unit tests
           command: yarn test
 
+  bundle:
+    docker:
+      - image: circleci/node:latest-browsers
+
+    working_directory: ~/repo
+
+    steps:
       - run:
           name: Create bundles
           command: yarn run pack
 
+  examples:
+    docker:
+      - image: circleci/node:latest-browsers
+
+    working_directory: ~/repo
+
+    steps:
       - run:
           name: Build example pages
           command: yarn examples:build
@@ -51,6 +79,13 @@ jobs:
           name: Build page
           command: yarn components:build
 
+  page:
+    docker:
+      - image: circleci/node:latest-browsers
+
+    working_directory: ~/repo
+
+    steps:
       - run:
           name: Test page
           command: yarn components:test
@@ -59,3 +94,26 @@ jobs:
           name: Deploy page
           command: ./.circleci/deploy-pre.sh
 
+workflow:
+  version: 2
+  generic:
+    jobs:
+      - prepare
+      - build:
+          requires:
+            - prepare
+      - bundle:
+          requires:
+            - prepare
+      - test:
+          requires:
+            - build
+      - examples:
+          requires:
+            - build
+            - bundle
+      - page:
+          requires:
+            - test
+            - build
+            - bundle
