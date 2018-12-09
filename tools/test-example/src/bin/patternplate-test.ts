@@ -11,6 +11,7 @@ import * as TestExample from "../";
 import * as Util from "../utils";
 import { groupBy } from "lodash";
 
+const ip = require("ip");
 const chalk = require("chalk");
 
 async function main(raw: unknown): Promise<void> {
@@ -24,6 +25,7 @@ async function main(raw: unknown): Promise<void> {
   const docRoot = flags.base !== "/" ? Path.dirname(outPath) : outPath;
 
   const port = await getPort({ port: flags.port });
+  const host = ip.address();
 
   if (!await Util.access(projectPath)) {
     console.error(`Could not read from ${projectPath}, does it exist?`);
@@ -31,7 +33,7 @@ async function main(raw: unknown): Promise<void> {
   }
 
   const fileServer = new Static.Server(docRoot);
-  const starting = Util.start(fileServer, port);
+  const starting = Util.start(fileServer, host, port);
 
   if (flags.build) {
     await execa(
@@ -42,7 +44,7 @@ async function main(raw: unknown): Promise<void> {
   }
 
   const [stop] = await Promise.all([starting]);
-  console.log(`Started test server on http://localhost:${port}`);
+  console.log(`Started test server on http://${host}:${port}`);
 
   const state = JSON.parse(
     Fs.readFileSync(Path.join(outPath, "api", "state.json")).toString()
@@ -57,9 +59,9 @@ async function main(raw: unknown): Promise<void> {
 
   const page = await browser.newPage();
 
-  const patternUrls = state.meta.children.map((pattern: any) => `http://localhost:${port}${flags.base}api/demo/${pattern.id}.html`);
-  const docUrls = state.docs.children.map((doc: any) => `http://localhost:${port}${flags.base}doc/${doc.id}.html`);
-  const urls = [`http://localhost:${port}`, ...patternUrls, ...docUrls];
+  const patternUrls = state.meta.children.map((pattern: any) => `http://${host}:${port}${flags.base}api/demo/${pattern.id}.html`);
+  const docUrls = state.docs.children.map((doc: any) => `http://${host}:${port}${flags.base}doc/${doc.id}.html`);
+  const urls = [`http://${host}:${port}`, ...patternUrls, ...docUrls];
 
   const result = await TestExample.all(urls, { page, ignore: flags.ignore });
 
@@ -76,7 +78,7 @@ async function main(raw: unknown): Promise<void> {
   }
 
   if (flags.inspect && !result.valid) {
-    console.log(`Keeping server up for inspection at http://localhost:${port}`);
+    console.log(`Keeping server up for inspection at http://${host}:${port}`);
   } else {
     console.log(`No broken references found`);
     process.exit(result.valid ? 0 : 1);

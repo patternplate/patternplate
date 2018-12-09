@@ -51,6 +51,7 @@ export function access(path: string): Promise<boolean> {
 
 export function start(
   fileServer: Static.Server,
+  host: string,
   port: number
 ): Promise<() => Promise<void>> {
   return new Promise((resolve, reject) => {
@@ -58,7 +59,7 @@ export function start(
       req.addListener("end", () => fileServer.serve(req, res)).resume();
     });
 
-    server.listen(port, () => {
+    server.listen(port, host, () => {
       resolve(() => new Promise(res => server.close(res)));
     });
 
