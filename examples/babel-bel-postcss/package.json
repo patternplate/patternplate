@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/example-babel-bel-postcss",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -40,8 +40,8 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
-    "@patternplate/cli": "^3.2.3",
-    "@patternplate/render-default": "^3.1.1",
+    "@patternplate/cli": "^3.2.4",
+    "@patternplate/render-default": "^3.2.4",
     "dependency-check": "^3.1.0",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0"

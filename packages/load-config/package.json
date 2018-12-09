@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/load-config",
-  "version": "3.1.1",
+  "version": "3.2.4",
   "description": "Load patternplate config",
   "scripts": {
     "clean": "rimraf lib",
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@patternplate/render-default": "^3.1.1",
+    "@patternplate/render-default": "^3.2.4",
     "@patternplate/validate-config": "^3.1.1",
     "@types/cosmiconfig": "^5.0.3",
     "@types/resolve-from": "^0.0.18",
