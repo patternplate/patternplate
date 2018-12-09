@@ -114,4 +114,5 @@ export interface HtmlContent {
   html?: string;
   after?: string;
   js?: string;
+  script?: string;
 }
