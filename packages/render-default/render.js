@@ -1,7 +1,7 @@
 const {merge, pick} = require("lodash");
 
-const IN_SLOTS = ["html", "css", "js", "md", "json"];
-const OUT_SLOTS = [...IN_SLOTS, "head", "before", "after", "script"];
+const IN_SLOTS = ["head", "html", "css", "js", "md", "json"];
+const OUT_SLOTS = [...IN_SLOTS, "before", "after", "script"];
 
 module.exports = render;
 

@@ -11,7 +11,16 @@ const Text = require("../text");
 const getThemes = require("../themes");
 
 module.exports.default = Cover;
-module.exports.head = () => Helmet.rewind();
+module.exports.head = () => {
+  const head = Helmet.renderStatic();
+  return [
+    head.title.toString(),
+    head.meta.toString(),
+    head.link.toString(),
+    head.style.toString(),
+    head.script.toString(),
+  ].join('\n');
+};
 
 const GlobalStyle = createGlobalStyle`
   body {

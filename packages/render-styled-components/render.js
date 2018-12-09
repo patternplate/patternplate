@@ -13,7 +13,8 @@ function render(input) {
       const sheet = new styled.ServerStyleSheet();
       const component = React.createElement(input.default);
       const html = ReactDOMServer.renderToString(sheet.collectStyles(component));
-      const head = sheet.getStyleTags();
+      const addedHead = typeof input.head === 'function' ? input.head() : '';
+      const head = [addedHead, sheet.getStyleTags()].join('\n');
       return {html, head};
     };
 
