@@ -12,6 +12,7 @@ jobs:
           yarn build &&
           yarn run pack &&
           yarn examples:build &&
+          rm -r node_modules/@patternplate/test-example && ln -s "$(realpath tools/test-example/)" node_modules/@patternplate &&
           yarn examples:test &&
           yarn components:build --stream &&
           yarn components:test
@@ -25,6 +26,7 @@ jobs:
           yarn build &&
           yarn run pack &&
           yarn components:build --stream &&
+          rm -r node_modules/@patternplate/test-example && ln -s "$(realpath tools/test-example/)" node_modules/@patternplate &&
           yarn components:test &&
           ./.travis/decrypt.sh &&
           ./.travis/deploy.sh
