@@ -35,6 +35,8 @@ jobs:
     executor: browsers
 
     steps:
+      - checkout
+
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
