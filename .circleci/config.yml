@@ -18,7 +18,7 @@ commands:
 
       - run:
           name: Install dependencies
-          command: yarn install --ignore-engines
+          command: if [[ -d node_modules ]]; then  yarn install --ignore-engines else fi
 
   getbuild:
       steps:
@@ -51,7 +51,11 @@ jobs:
 
       - save_cache:
           paths:
-            - node_modules
+            - alias
+            - components
+            - examples
+            - packages
+            - tools
           key: v1-build-
 
   test:
