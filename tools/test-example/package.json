@@ -1,0 +1,62 @@
+{
+  "name": "@patternplate/test-example",
+  "version": "3.1.1",
+  "description": "Tooling to test @patternplate examples for basic functionality",
+  "bin": {
+    "patternplate-test": "./bin/patternplate-test.js"
+  },
+  "scripts": {
+    "deps": "dependency-check . --missing"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternplate/patternplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternplate/patternplate/issues"
+  },
+  "homepage": "https://github.com/patternplate/patternplate#readme",
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "dependencies": {
+    "@types/ajv": "^1.0.0",
+    "@types/execa": "^0.9.0",
+    "@types/get-port": "^4.0.0",
+    "@types/matcher": "^1.1.0",
+    "@types/node-static": "^0.7.2",
+    "@types/node-fetch": "2.1.4",
+    "@types/ora": "^1.3.4",
+    "@types/puppeteer": "^1.10.1",
+    "@types/yargs-parser": "^11.0.0",
+    "ajv": "^6.6.1",
+    "chalk": "^2.4.1",
+    "execa": "^1.0.0",
+    "ip": "^1.1.5",
+    "matcher": "^1.1.1",
+    "node-fetch": "^2.3.0",
+    "ora": "^3.0.0",
+    "puppeteer": " ^1.11.0",
+    "get-port": "^4.0.0",
+    "ts-transform-json-schema": "^1.1.1",
+    "yargs-parser": "^11.1.1"
+  },
+  "devDependencies": {
+    "@marionebl/ttypescript": "^1.5.6",
+    "dependency-check": "^3.1.0",
+    "typescript": "^3.2.2",
+    "typescript-json-schema": "^0.32.0"
+  }
+}

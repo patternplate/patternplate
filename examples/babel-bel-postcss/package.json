@@ -1,12 +1,16 @@
 {
-  "name": "@patternplate-example/babel-bel-postcss",
+  "name": "@patternplate/example-babel-bel-postcss",
   "version": "3.2.3",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"yarn babel -w\" \"yarn postcss -w\" \"yarn patternplate\"",
     "babel": "babel src -d lib -s",
-    "postcss": "postcss 'src/**/demo.css' -d lib -b src"
+    "postcss": "postcss 'src/**/demo.css' -d lib -b src",
+    "build": "concurrently \"yarn babel\" \"yarn postcss\"",
+    "pp:build": "patternplate build --out .tmp --base '/'",
+    "pp:test": "patternplate-test --project . --no-build --port=1437",
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-babel-bel-postcss\" --provider=surge"
   },
   "author": {
     "name": "Mario Nebl",

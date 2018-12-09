@@ -2,16 +2,11 @@ import { cascadeResolve } from "./cascade-resolve";
 import { webpackEntry } from "@patternplate/webpack-entry";
 import * as Types from "@patternplate/types";
 import * as webpack from "webpack";
+import * as resolveFrom from "resolve-from";
 
 import MemoryFS = require("memory-fs");
 const nodeExternals = require("webpack-node-externals");
-
-const TO_STRING_LOADER = require.resolve("to-string-loader");
-const CSS_LOADER = require.resolve("css-loader");
-const HTML_LOADER = require.resolve("html-loader");
-const COVER = require.resolve("@patternplate/cover-client");
-const DEMO = require.resolve("@patternplate/demo-client");
-const PROBE = require.resolve("@patternplate/probe-client");
+const resolve = ((resolveFrom as any).silent || resolveFrom);
 
 export interface CompilerOptions {
   cwd: string;
@@ -20,6 +15,13 @@ export interface CompilerOptions {
 }
 
 export async function compiler(options: CompilerOptions): Promise<webpack.Compiler> {
+  const TO_STRING_LOADER = resolve(__dirname, "to-string-loader");
+  const CSS_LOADER = resolve(__dirname, "css-loader");
+  const HTML_LOADER = resolve(__dirname, "html-loader");
+  const COVER = resolve(__dirname, "@patternplate/cover-client");
+  const DEMO = resolve(__dirname, "@patternplate/demo-client");
+  const PROBE = resolve(__dirname, "@patternplate/probe-client");
+
   const fs = new MemoryFS();
   const { config, cwd } = options;
 
@@ -37,7 +39,7 @@ export async function compiler(options: CompilerOptions): Promise<webpack.Compil
           "cover-client": COVER,
           demo: DEMO,
           mount: mount,
-          prope: PROBE
+          probe: PROBE
         };
 
   if (typeof config.cover === "string") {

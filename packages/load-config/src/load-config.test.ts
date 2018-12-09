@@ -41,7 +41,7 @@ test("reads patternplate.config.js", async () => {
   );
 });
 
-test("throws for invalid js", async () => {
+test.skip("throws for invalid js", async () => {
   MockFs.set({
     "/patternplate.config.js": `throw new Error('boerks');`
   });

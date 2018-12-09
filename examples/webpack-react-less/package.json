@@ -1,10 +1,14 @@
 {
-  "name": "@patternplate-example/webpack-react-less",
+  "name": "@patternplate/example-webpack-react-less",
   "version": "3.2.3",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"yarn webpack -w\" \"patternplate\""
+    "start": "concurrently \"yarn webpack -w\" \"patternplate\"",
+    "build": "webpack",
+    "pp:build": "patternplate build --out .tmp --base '/'",
+    "pp:test": "patternplate-test --project . --no-build --port=1442",
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-webpack-react-less\" --provider=surge"
   },
   "author": {
     "name": "Mario Nebl",

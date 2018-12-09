@@ -64,7 +64,7 @@ function Cover() {
                     single source of truth for your team.
                   </StageText>
                   <ThemeProvider theme={themes.light}>
-                    <StageButton variant="big" href="./doc/docs/why?guides-enabled=true">
+                    <StageButton variant="big" href="./doc/docs/why.html?guides-enabled=true">
                       <StageButtonText>
                         Show me how
                       </StageButtonText>
@@ -165,7 +165,7 @@ function Cover() {
           <ButtonRow>
             <Frame>
               <ButtonRowContent>
-                <StageButton href="./doc/docs/why?guides-enabled=true">
+                <StageButton href="./doc/docs/why.html?guides-enabled=true">
                   <StageButtonText>Show me how</StageButtonText>
                 </StageButton>
                 <GithubButton

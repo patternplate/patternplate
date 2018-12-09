@@ -5,7 +5,6 @@ displayName: Getting Started
 # @patternplate-example/lerna
 
 * Manage components as `npm` packages with `lerna`
-* Use patternplate defaults, als see [@patternplate-example/default](../default)
 
 ## Getting started
 

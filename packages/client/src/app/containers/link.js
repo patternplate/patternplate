@@ -163,7 +163,7 @@ export function getHref(props, context) {
     if (match) {
       const parsedMatch = url.parse(match.href);
       return url.format({
-        pathname: parsedMatch.pathname,
+        pathname: replaceExt(parsedMatch.pathname, ".html"),
         query,
         hash: props.hash || (parsedMatch.hash || "#").slice(1)
       });
@@ -180,7 +180,7 @@ export function getHref(props, context) {
       const parsedMatch = url.parse(patternMatch.href);
 
       return url.format({
-        pathname: parsedMatch.pathname,
+        pathname: replaceExt(parsedMatch.pathname, ".html"),
         query,
         hash: props.hash || (parsedMatch.hash || "#").slice(1)
       });

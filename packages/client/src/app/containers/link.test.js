@@ -1,4 +1,3 @@
-// @ts-check
 import { getHref } from "./link";
 
 test("external flag emits href as is", () => {

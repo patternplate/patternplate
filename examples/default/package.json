@@ -1,10 +1,13 @@
 {
-  "name": "@patternplate-example/default",
+  "name": "@patternplate/example-default",
   "version": "3.2.3",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "patternplate"
+    "start": "patternplate",
+    "pp:build": "patternplate build --out .tmp --base '/'",
+    "pp:test": "patternplate-test --project . --no-build --port=1438",
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-default\" --provider=surge"
   },
   "author": {
     "name": "Mario Nebl",

@@ -4,6 +4,7 @@
   "references": [
     {"path": "./components"},
     {"path": "./packages"},
+    {"path": "./tools"}
   ],
   "compilerOptions": {
     "sourceMap": true,

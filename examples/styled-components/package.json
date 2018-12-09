@@ -1,11 +1,15 @@
 {
-  "name": "@examples/styled-components",
+  "name": "@patternplate/example-styled-components",
   "version": "3.2.3",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"yarn babel -w\" \"patternplate\"",
-    "babel": "babel src -d lib -s -D"
+    "babel": "babel src -d lib -s -D",
+    "build": "babel src -d lib -s -D",
+    "pp:build": "patternplate build --out .tmp --base '/'",
+    "pp:test": "patternplate-test --project . --no-build --port=1441",
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-styled-components\" --provider=surge"
   },
   "author": {
     "name": "Mario Nebl",
