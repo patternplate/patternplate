@@ -1,110 +1,39 @@
-version: 2.1
-
-executors:
-  browsers:
+version: 2
+jobs:
+  build:
     docker:
       - image: circleci/node:latest-browsers
+
     working_directory: ~/repo
 
-commands:
-  prepare:
     steps:
       - checkout
 
       - restore_cache:
           keys:
-          - v2-dependencies-{{ checksum "yarn.lock" }}
-          - v2-dependencies-
-
-      - run:
-          name: Install dependencies
-          command: if [ -d node_modules ]; then echo "Skipping install"; else yarn install --ignore-engines; fi
-
-  getbuild:
-      steps:
-        - restore_cache:
-            keys:
-            - v2-build-
-
-        - run:
-            name: Build
-            command: yarn build
-
-jobs:
-  install:
-    executor: browsers
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-          - v2-dependencies-{{ checksum "yarn.lock" }}
-          - v2-dependencies-
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
 
       - run:
           name: Install dependencies
           command: yarn install --ignore-engines
 
-
       - save_cache:
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
-  build:
-    executor: browsers
+      - run:
+          name: Build
+          command: yarn build
 
-    steps:
-      - prepare
-      - getbuild
-
-      - save_cache:
-          paths:
-            - alias
-            - components
-            - examples
-            - packages
-            - tools
-          key: v2-build-
-
-  test:
-    executor: browsers
-
-    steps:
-      - prepare
-      - getbuild
-
-      - attach_workspace:
-          at: ~/repo
       - run:
           name: Run unit tests
           command: yarn test
 
-  bundle:
-    executor: browsers
-
-    steps:
-      - prepare
-
-      - attach_workspace:
-          at: ~/repo
-
       - run:
           name: Create bundles
           command: yarn run pack
-      - persist_to_workspace:
-          root: ~/repo
-
-  examples:
-    executor: browsers
-
-    steps:
-      - prepare
-      - getbuild
-
-      - attach_workspace:
-          at: ~/repo
 
       - run:
           name: Build example pages
@@ -122,16 +51,6 @@ jobs:
           name: Build page
           command: yarn components:build
 
-  page:
-    executor: browsers
-
-    steps:
-      - prepare
-      - getbuild
-
-      - attach_workspace:
-          at: ~/repo
-
       - run:
           name: Test page
           command: yarn components:test
@@ -140,27 +59,3 @@ jobs:
           name: Deploy page
           command: ./.circleci/deploy-pre.sh
 
-workflows:
-  version: 2.1
-  generic:
-    jobs:
-      - install
-      - build:
-          requires:
-            - install
-      - bundle:
-          requires:
-            - install
-            - build
-      - test:
-          requires:
-            - build
-      - examples:
-          requires:
-            - build
-            - bundle
-      - page:
-          requires:
-            - test
-            - build
-            - bundle
