@@ -36,12 +36,16 @@ jobs:
           command: yarn run pack
 
       - run:
-          name: Build examples
-          command: yarn lerna run pp:build --private --scope="@patternplate/example-*" --stream
+          name: Build example pages
+          command: yarn examples:build
 
       - run:
-          name: Test examples
-          command: yarn lerna run pp:test --private --scope="@patternplate/example-*" --stream
+          name: Patch @patternplate/test-example
+          command: rm -r node_modules/@patternplate/test-example && ln -s "$(realpath tools/test-example/)" node_modules/@patternplate
+
+      - run:
+          name: Test examples pages
+          command: yarn examples:test
 
       - run:
           name: Build page
