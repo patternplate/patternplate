@@ -60,8 +60,12 @@ async function main(raw: unknown): Promise<void> {
   debug(`Launching headless browser`);
   const browser = await puppeteer.launch({
     args: [
-      '–no-sandbox',
-      '–disable-setuid-sandbox'
+      '--disable-gpu',
+      '-–no-sandbox',
+      '--single-process',
+      '-–disable-setuid-sandbox',
+      '--disable-web-security',
+      '--disable-dev-profile'
     ]
   });
   debug(`Launched headless browser`);
