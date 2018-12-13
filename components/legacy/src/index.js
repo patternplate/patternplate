@@ -1,5 +1,5 @@
 module.exports = {
-  Button: require("./button"),
+  Button: require("@patternplate/component-button").Button,
   css: require("styled-components").css,
   Flag: require("@patternplate/component-flag").Flag,
   Headline: require("./headline"),

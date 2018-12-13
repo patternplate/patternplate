@@ -63,6 +63,7 @@
     "react-clipboard.js": "^1.1.3"
   },
   "dependencies": {
+    "@patternplate/component-button": "^3.1.1",
     "@patternplate/component-flag": "^3.1.1",
     "@patternplate/component-link": "^3.1.1",
     "@patternplate/component-markdown": "^3.2.3",

@@ -2,7 +2,7 @@ import * as React from "react";
 import styled, { css } from "styled-components";
 import tag from "tag-hoc";
 import { Icon, IconKey } from "@patternplate/component-icon";
-import * as Link from "@patternplate/component-link";
+import { Link } from "@patternplate/component-link";
 
 const InnerButton: React.SFC<ButtonProps> = props => {
   const { className, title, onClick, external, href, type, symbol, children } = props;
