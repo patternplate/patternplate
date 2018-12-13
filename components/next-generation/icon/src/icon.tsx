@@ -3,17 +3,19 @@ import styled from "styled-components";
 import * as Icons from "./icons";
 import { Symbol } from "./symbol";
 
-const SIZES = {
-  s: "14px",
-  m: "22px",
-  l: "38px",
-  text: ".8em"
+export enum SIZES {
+  s = "14px",
+  m = "22px",
+  l = "38px",
+  text = ".8em"
 };
+
+export type IconKey = keyof typeof Icons.icons;
 
 export interface IconProps {
   className?: string;
-  symbol: keyof typeof Icons.icons;
-  size?: keyof typeof SIZES;
+  symbol: IconKey;
+  size?: SIZES;
   title?: string;
   inline?: boolean;
 }
@@ -36,7 +38,7 @@ export const Icon: React.SFC<IconProps> = props => {
       title={props.title}
       viewBox="0 0 24 24"
     >
-      <Symbol id={props.symbol} definition={creator()}/>
+      <Symbol id={props.symbol} definition={creator()} />
     </StyledIcon>
   );
 }
@@ -44,11 +46,11 @@ export const Icon: React.SFC<IconProps> = props => {
 export const symbols = iconNames;
 
 Icon.defaultProps = {
-  size: "m",
+  size: SIZES.m,
   symbol: "placeholder"
 };
 
-const StyledIcon = styled.svg<{ inline?: boolean; size: keyof typeof SIZES; title?: string }>`
+const StyledIcon = styled.svg<{ inline?: boolean; size: SIZES; title?: string }>`
   display: ${props => (props.inline ? "inline-flex" : "flex")};
   flex-shrink: 0;
   width: ${props => SIZES[props.size]};
