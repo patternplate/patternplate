@@ -13,17 +13,7 @@ module.exports.default = () => (
 
 const MANIFEST = `{
   "name": "info-pane",
-  "displayName": "Info pane",
-  "patterns": {
-    "../icon": "icon",
-    "../text": "text",
-    "../link": "link",
-    "../flag": "flag",
-    "../code": "code"
-  },
-  "demoPatterns": {
-    "../demo-themer": "demo-themer"
-  }
+  "displayName": "Info pane"
 }`;
 
 class InfoPaneDemo extends React.Component {

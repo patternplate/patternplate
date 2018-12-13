@@ -2,33 +2,16 @@
   "files": [],
   "include": [],
   "references": [
-    {
-      "path": "./next-generation/button"
-    },
-    {
-      "path": "./next-generation/code"
-    },
-    {
-      "path": "./next-generation/headline"
-    },
-    {
-      "path": "./next-generation/icon"
-    },
-    {
-      "path": "./next-generation/link"
-    },
-    {
-      "path": "./next-generation/markdown"
-    },
-    {
-      "path": "./next-generation/text"
-    },
-    {
-      "path": "./next-generation/themes"
-    },
-    {
-      "path": "./next-generation/utility"
-    },
+    {"path": "./next-generation/button"},
+    {"path": "./next-generation/code"},
+    {"path": "./next-generation/flag"},
+    {"path": "./next-generation/headline"},
+    {"path": "./next-generation/icon"},
+    {"path": "./next-generation/link"},
+    {"path": "./next-generation/markdown"},
+    {"path": "./next-generation/text"},
+    {"path": "./next-generation/themes"},
+    {"path": "./next-generation/utility"},
   ],
   "compilerOptions": {
     "composite": true

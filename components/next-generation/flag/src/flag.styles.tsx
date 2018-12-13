@@ -1,14 +1,7 @@
-const React = require("react");
-const styled = require("styled-components").default;
-const text = require("react-addons-text-content");
+import styled from "styled-components";
+import * as text from "react-addons-text-content";
 
-module.exports = Flag;
-
-function Flag(props) {
-  return <StyledText className={props.className}>{props.children}</StyledText>;
-}
-
-const StyledText = styled.span`
+export const StyledText = styled.span`
   display: inline-block;
   padding: 2px 4px;
   border: 1px solid ${props => props.theme.colors.border};

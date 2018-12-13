@@ -1,7 +1,7 @@
 module.exports = {
   Button: require("./button"),
   css: require("styled-components").css,
-  Flag: require("./flag"),
+  Flag: require("@patternplate/component-flag").Flag,
   Headline: require("./headline"),
   Icon: require("./icon"),
   InfoPane: require("./info-pane"),

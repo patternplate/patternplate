@@ -1,20 +1,17 @@
-const React = require("react");
-const styled = require("styled-components").default;
-const DemoThemer = require("../demo-themer");
-const Flag = require(".");
+import * as React from "react";
+import styled from "styled-components";
+import { Themer } from "@patternplate/component-utility";
+import { Flag } from "./flag"
 
-module.exports.default = FlagDemo;
-module.exports.FlagDemo = WrappedFlagDemo;
-
-function FlagDemo() {
+export default () => {
   return (
-    <DemoThemer spacing={true}>
-      <WrappedFlagDemo/>
-    </DemoThemer>
+    <Themer spacing={true}>
+      <FlagDemo/>
+    </Themer>
   );
 }
 
-function WrappedFlagDemo() {
+export function FlagDemo() {
   return (
     <FlagDemoContainer>
       <Flag>alpha</Flag>
@@ -25,7 +22,6 @@ function WrappedFlagDemo() {
     </FlagDemoContainer>
   );
 }
-
 
 const FlagDemoContainer = styled.div`
   box-sizing: border-box;
