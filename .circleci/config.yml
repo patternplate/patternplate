@@ -23,18 +23,9 @@ jobs:
             - node_modules
           key: v2-dependencies-{{ checksum "yarn.lock" }}
 
-      - restore_cache:
-          keys:
-          - v2-build-
-
       - run:
           name: Build
           command: yarn build
-
-      - save_cache:
-          paths:
-            - components/next-generation/code/lib
-          key: v2-build-
 
       - run:
           name: Run unit tests

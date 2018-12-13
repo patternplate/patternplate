@@ -3,6 +3,7 @@
   "include": [],
   "references": [
     {"path": "./next-generation/code"},
+    {"path": "./next-generation/flag"},
     {"path": "./next-generation/headline"},
     {"path": "./next-generation/icon"},
     {"path": "./next-generation/link"},

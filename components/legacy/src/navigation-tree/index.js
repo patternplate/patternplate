@@ -3,7 +3,7 @@ const styled = require("styled-components").default;
 const tag = require("tag-hoc").default;
 const NavigationLabel = require("../navigation-label");
 const NavigationItem = require("../navigation-item");
-const Flag = require("../flag");
+const Flag = require("@patternplate/component-flag").Flag;
 
 module.exports = NavigationTree;
 

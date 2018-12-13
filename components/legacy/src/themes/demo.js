@@ -11,7 +11,8 @@ if (global.document) {
 const getThemes = require(".");
 const { MainNavigationDemo } = require("../main-navigation/demo");
 const MarkdownDemo = require("@patternplate/component-markdown/lib/markdown.demo").default;
-const { FlagDemo } = require("../flag/demo");
+const FlagDemo = require("@patternplate/component-flag/lib/flag.demo").FlagDemo;
+
 const svg = require("../svg");
 
 const DEFAULT_CONFIG = `

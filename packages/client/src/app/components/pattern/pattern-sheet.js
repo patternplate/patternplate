@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import React from "react";
 import remark from "remark";
 import emoji from "remark-gemoji-to-emoji";
-
 import { Flag, Headline, Link, Markdown, styled, Tag, Text, ThemeProvider, themes } from "@patternplate/components";
 
 import * as item from "../../selectors/item";

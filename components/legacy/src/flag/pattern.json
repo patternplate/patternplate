@@ -1,8 +1,0 @@
-{
-  "name": "flag",
-  "displayName": "Flag",
-  "description": "Display color-coded stability states",
-  "version": "1.0.0",
-  "flag": "stable",
-  "tags": ["Meta Data"]
-}
