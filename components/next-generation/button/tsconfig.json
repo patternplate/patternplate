@@ -1,14 +1,8 @@
 {
   "references": [
-    {
-      "path": "../utility"
-    },
-    {
-      "path": [
-        "../icon",
-        "../link"
-      ]
-    },
+    { "path": "../utility" },
+    { "path": "../icon" },
+    { "path": "../link" }
   ],
   "compilerOptions": {
     "composite": true,
