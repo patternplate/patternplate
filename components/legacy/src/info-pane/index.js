@@ -7,7 +7,7 @@ const { omit } = require("lodash");
 const Code = require("@patternplate/component-code").Code;
 const Link = require("@patternplate/component-link").Link;
 const Text = require("@patternplate/component-text").Text;
-const Flag = require("../flag");
+const Flag = require("@patternplate/component-flag").Flag;
 
 module.exports = InfoPane;
 module.exports.InnerInfoPane = InnerInfoPane;
