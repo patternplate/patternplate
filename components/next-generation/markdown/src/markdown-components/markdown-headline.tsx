@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Headline } from "@patternplate/component-headline";
-import { Icon, SIZES } from "@patternplate/component-icon";
+import { Icon } from "@patternplate/component-icon";
 import { Link } from "@patternplate/component-link";
 import * as reactAddonsTextContent from "react-addons-text-content";
 
@@ -73,7 +73,7 @@ function MarkdownHeadlineLink(props) {
   return (
     <StyledLink title={`Link to "${props.name}"`} hash={props.id}>
       <StyledTarget id={props.id} />
-      <ThemedIcon symbol="link" size={SIZES.m} />
+      <ThemedIcon symbol="link" size="m" />
       {props.children}
     </StyledLink>
   );
