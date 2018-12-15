@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { inject } from "@patternplate/component-utility";
-import { Icon } from "@patternplate/component-icon";
+import { inject } from "@patternplate/component-utility";
+import { Icon, IconSize } from "@patternplate/component-icon";
 
 export interface LinkProps {
   className?: string;
@@ -10,7 +10,7 @@ export interface LinkProps {
   grow?: boolean;
   external?: boolean;
   hint?: boolean;
-  iconSize: "s" | "m" | "l";
+  iconSize: IconSize;
   onClick?: React.MouseEventHandler<HTMLElement>;
   onHover?: React.MouseEventHandler<HTMLElement>;
 }
@@ -36,9 +36,9 @@ export class RawLink extends React.Component<LinkProps> {
           {props.external && props.hint && (
             <Icon
               symbol="external-link"
-              size={props.iconSize || "text"}
+              size={props.iconSize || 'text'}
               inline
-              />
+            />
           )}
         </StyledLinkContainer>
       </a>
@@ -54,7 +54,7 @@ const StyledLinkContainer = styled.span<{ grow?: boolean; external?: boolean; }>
   flex-grow: ${props => props.grow ? 1 : 0};
   > span {
     display: inline-flex;
-    align-items: ${props => props.external ? 'baseline': 'center'};
+    align-items: ${props => props.external ? 'baseline' : 'center'};
   }
   > svg {
     margin-left: .25em;

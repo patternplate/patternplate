@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Headline } from "@patternplate/component-headline";
+import { Headline } from "@patternplate/component-headline";
 import { Icon } from "@patternplate/component-icon";
 import { Link } from "@patternplate/component-link";
 import * as reactAddonsTextContent from "react-addons-text-content";
@@ -54,8 +54,8 @@ const InnerMarkdownHeadline: React.SFC<MarkdownHeadlineProps> = (props) => {
           {props.children}
         </MarkdownHeadlineLink>
       ) : (
-        props.children
-      )}
+          props.children
+        )}
     </StyledHeadline>
   );
 }

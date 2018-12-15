@@ -1,8 +1,0 @@
-{
-  "name": "button",
-  "displayName": "Button",
-  "description": "Primary interaction element for on/off states",
-  "version": "1.0.0",
-  "flag": "stable",
-  "tags": ["Interaction"]
-}

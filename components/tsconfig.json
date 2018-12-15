@@ -2,6 +2,7 @@
   "files": [],
   "include": [],
   "references": [
+    {"path": "./next-generation/button"},
     {"path": "./next-generation/code"},
     {"path": "./next-generation/flag"},
     {"path": "./next-generation/headline"},

@@ -10,9 +10,12 @@ const SIZES = {
   text: ".8em"
 };
 
+export type IconSize = keyof typeof SIZES;
+export type IconKey = keyof typeof Icons.icons;
+
 export interface IconProps {
   className?: string;
-  symbol: keyof typeof Icons.icons;
+  symbol: IconKey;
   size?: keyof typeof SIZES;
   title?: string;
   inline?: boolean;
@@ -27,7 +30,6 @@ export const Icon: React.SFC<IconProps> = props => {
     ? Icons.icons[props.symbol]
     : Icons.icons.placeholder;
 
-
   return (
     <StyledIcon
       className={props.className}
@@ -36,7 +38,7 @@ export const Icon: React.SFC<IconProps> = props => {
       title={props.title}
       viewBox="0 0 24 24"
     >
-      <Symbol id={props.symbol} definition={creator()}/>
+      <Symbol id={props.symbol} definition={creator()} />
     </StyledIcon>
   );
 }
@@ -48,7 +50,7 @@ Icon.defaultProps = {
   symbol: "placeholder"
 };
 
-const StyledIcon = styled.svg<{ inline?: boolean; size: keyof typeof SIZES; title?: string }>`
+const StyledIcon = styled.svg<{ inline?: boolean; size: IconSize; title?: string }>`
   display: ${props => (props.inline ? "inline-flex" : "flex")};
   flex-shrink: 0;
   width: ${props => SIZES[props.size]};

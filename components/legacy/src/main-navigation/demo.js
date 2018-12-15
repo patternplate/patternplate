@@ -2,7 +2,7 @@ const React = require("react");
 const MainNavigation = require(".");
 const { NavigationToolbar } = require(".");
 const Themer = require("../demo-themer");
-const Button = require("../button");
+const Button = require("@patternplate/component-button").Button;
 const Logo = require("../logo");
 
 const navigation = {
