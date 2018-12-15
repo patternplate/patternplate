@@ -35,6 +35,12 @@ yarn lerna publish
 yarn lerna run clean:dev # remove publishing bundles
 ```
 
+
+## Code of Conduct
+
+We want to build an open and welcoming environment for **everyone**. That is why we expect from **everyone** to follow our [Code of Conduct](https://github.com/patternplate/patternplate/blob/master/.github/CODE_OF_CONDUCT.md) 
+
+
 ## License
 
 Copyright by SinnerSchrader. All `@patternplate` packages are released under the MIT license.
