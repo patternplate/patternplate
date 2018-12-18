@@ -10,6 +10,7 @@
     "sourceMap": true,
     "module": "commonjs",
     "target": "es2015",
+    "lib": ["esnext", "dom"],
     "plugins": [
       {
         "transform": "ts-transform-json-schema",

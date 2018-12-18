@@ -8,7 +8,6 @@
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "lib": ["esnext", "dom"],
     "declarationMap": true
   },
   "include": [
