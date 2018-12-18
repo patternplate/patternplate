@@ -80,7 +80,7 @@ export function png(source: string): Promise<string> {
 
 export function purge(parsed: Element[]): Element[] {
   return Array.prototype.slice.call(parsed)
-    .filter(node => TAG_NAMES.includes(node.tagName))
+    .filter(node => TAG_NAMES.indexOf(node.tagName) > -1)
     .map(node => {
       node.childNodes = purge(node.childNodes);
 
@@ -88,7 +88,7 @@ export function purge(parsed: Element[]): Element[] {
 
       for (let i = 0; i < node.attributes.length; i++) {
         const attribute = node.attributes[i];
-        if (!attributes.includes(attribute.name)) {
+        if (attributes.indexOf(attribute.name) === -1) {
           node.removeAttribute(attribute.name);
         }
       }
