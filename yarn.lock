@@ -1648,11 +1648,6 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/xmldom@^0.1.29":
-  version "0.1.29"
-  resolved "https://registry.npmjs.org/@types/xmldom/-/xmldom-0.1.29.tgz#c4428b0ca86d3b881475726fd94980b38a27c381"
-  integrity sha1-xEKLDKhtO4gUdXJv2UmAs4onw4E=
-
 "@types/yargs-parser@^11.0.0":
   version "11.0.0"
   resolved "https://registry.npmjs.org/@types/yargs-parser/-/yargs-parser-11.0.0.tgz#514933c83ec38b8e06b8c9e5ffff637f20474f2e"

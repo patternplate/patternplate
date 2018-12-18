@@ -8,7 +8,7 @@
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
   },
   "include": [
     "src/**/*.ts",
