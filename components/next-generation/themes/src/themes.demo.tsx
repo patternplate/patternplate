@@ -1,19 +1,18 @@
-const React = require("react");
-const {renderToString} = require("react-dom/server");
-const styled = require("styled-components").default;
-const ThemeProvider = require("styled-components").ThemeProvider;
+import * as React from "react";
+import { renderToString } from "react-dom/server";
+import styled, { ThemeProvider } from "styled-components";
 const CodeMirror = require("react-codemirror2").Controlled;
+import { MarkdownDemo } from "@patternplate/component-markdown/demo";
+import { FlagDemo } from "@patternplate/component-flag/demo";
+import * as SVG from "@patternplate/component-svg";
+import { getThemes } from "./themes";
 
-if (global.document) {
+// TODO: Remove after lift
+const { MainNavigationDemo } = require("@patternplate/components/lib/main-navigation/demo");
+
+if ((global as any).document) {
   require("codemirror/mode/javascript/javascript");
 }
-
-const getThemes = require(".");
-const { MainNavigationDemo } = require("../main-navigation/demo");
-const MarkdownDemo = require("@patternplate/component-markdown/lib/markdown.demo").default;
-const FlagDemo = require("@patternplate/component-flag/lib/flag.demo").FlagDemo;
-
-const svg = require("../svg");
 
 const DEFAULT_CONFIG = `
 // patternplate.config.js
@@ -56,19 +55,22 @@ module.exports = {
 };
 `;
 
-class ThemeDemo extends React.Component {
+export interface ThemeDemoState {
+  config: string;
+}
+
+export class ThemeDemo extends React.Component<{}, ThemeDemoState> {
   constructor(props) {
     super(props);
     this.state = { config: DEFAULT_CONFIG };
   }
 
   render() {
-    const { props } = this;
     const config = getConfig(this.state.config);
     const themes = getFailsafeThemes(config.ui);
 
     const logo = config.ui.logo
-      ? renderToString(svg.render(svg.sanitize(svg.purge([svg.parse(config.ui.logo)]))[0]))
+      ? renderToString(SVG.fromSource(config.ui.logo))
       : "";
 
     return (
@@ -105,11 +107,9 @@ class ThemeDemo extends React.Component {
   }
 }
 
-module.exports.default = ThemeDemo;
-
-const getConfig = (source) => {
+const getConfig = (source: string): any => {
   try {
-    const module = {exports: {}};
+    const module = { exports: {} };
     return eval(source);
     return module.exports;
   } catch (err) {
@@ -118,19 +118,17 @@ const getConfig = (source) => {
       ui: {}
     };
   }
-}
+};
 
-const getFailsafeThemes = (ui) => {
+const getFailsafeThemes = ui => {
   try {
     return getThemes(ui);
   } catch (err) {
     return getThemes({});
   }
-}
+};
 
-const ThemeConfigurator = styled.div`
-
-`;
+const ThemeConfigurator = styled.div``;
 
 const Box = styled.div`
   display: flex;

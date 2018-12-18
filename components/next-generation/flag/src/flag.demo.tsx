@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Themer } from "@patternplate/component-utility";
 import { Flag } from "./flag"
 
-export default () => {
+export function ThemedFlagDemo() {
   return (
     <Themer spacing={true}>
       <FlagDemo/>

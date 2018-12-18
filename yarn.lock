@@ -1301,6 +1301,11 @@
   version "2.3.0"
   resolved "https://registry.npmjs.org/@types/braces/-/braces-2.3.0.tgz#d00ec0a76562b2acb6f29330be33a093e33ed25c"
 
+"@types/btoa@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@types/btoa/-/btoa-1.2.0.tgz#b7c477f0b0171b0e0d6ccad0ddd9376a9e734d0d"
+  integrity sha512-mRkSzBQqmikda80QjYWhsM7beHu2zo6jqkbqn6YH3XpOeUiw+7qhRuKtDRKLR4/rPAt7KEV9Iy40NeY5KKUVmA==
+
 "@types/chokidar@^1.7.5":
   version "1.7.5"
   resolved "https://registry.npmjs.org/@types/chokidar/-/chokidar-1.7.5.tgz#1fa78c8803e035bed6d98e6949e514b133b0c9b6"
@@ -1642,6 +1647,11 @@
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
+
+"@types/xmldom@^0.1.29":
+  version "0.1.29"
+  resolved "https://registry.npmjs.org/@types/xmldom/-/xmldom-0.1.29.tgz#c4428b0ca86d3b881475726fd94980b38a27c381"
+  integrity sha1-xEKLDKhtO4gUdXJv2UmAs4onw4E=
 
 "@types/yargs-parser@^11.0.0":
   version "11.0.0"
@@ -9553,6 +9563,7 @@ lodash@^4.17.10:
 lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -15477,6 +15488,7 @@ xml-name-validator@^3.0.0:
 xmldom@^0.1.27:
   version "0.1.27"
   resolved "https://registry.npmjs.org/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
+  integrity sha1-1QH5ezvbQDr4757MIFcxh6rawOk=
 
 xo-init@^0.5.0:
   version "0.5.0"

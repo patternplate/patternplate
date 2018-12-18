@@ -36,6 +36,6 @@ module.exports = {
   Tag: require("./tag"),
   ThemeProvider: require("styled-components").ThemeProvider,
   Text: require("./text"),
-  themes: require("./themes"),
-  svg: require("./svg")
+  themes: require("@patternplate/component-themes").getThemes,
+  svg: require("@patternplate/component-svg")
 };
