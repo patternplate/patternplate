@@ -1,13 +1,13 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const DemoThemer = require("../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 const Flag = require(".");
 
 module.exports.default = FlagDemo;
 
 function FlagDemo() {
   return (
-    <DemoThemer>
+    <Themer>
       <FlagDemoContainer>
         <Flag>alpha</Flag>
         <Flag>beta</Flag>
@@ -15,7 +15,7 @@ function FlagDemo() {
         <Flag>stable</Flag>
         <Flag>deprecated</Flag>
       </FlagDemoContainer>
-    </DemoThemer>
+    </Themer>
   );
 }
 

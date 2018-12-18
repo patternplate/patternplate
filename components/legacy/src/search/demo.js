@@ -1,7 +1,7 @@
 const SearchComponent = require(".").default;
 const Search = require(".");
 const React = require("react");
-const Themer = require("../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 const SearchField = require("../search-field");
 
 module.exports.default = () => (

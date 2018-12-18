@@ -1,2 +1,2 @@
-module.exports = require('./lib/flag.demo.js').ThemedFlagDemo;
-module.exports.FlagDemo = require('./lib/flag.demo.js').FlagDemo;
+module.exports.default = require('./lib/flag.demo').ThemedFlagDemo
+module.exports.FlagDemo = require('./lib/flag.demo').FlagDemo;

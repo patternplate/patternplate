@@ -1,7 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const Icon = require(".");
-const DemoThemer = require("../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 
 module.exports.default = IconDemo;
 
@@ -15,13 +15,13 @@ function DemoIcon(props) {
 
 function IconDemo() {
   return (
-    <DemoThemer spacing={true}>
+    < Themer spacing={true}>
       <StyledIconDemo>
         {Icon.symbols.map(symbol => (
           <DemoIcon key={symbol} symbol={symbol} title={symbol} />
         ))}
       </StyledIconDemo>
-    </DemoThemer>
+    </ Themer>
   );
 }
 
