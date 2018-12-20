@@ -3,7 +3,7 @@ const camelCase = require("lodash").camelCase;
 const InfoPane = require(".");
 const React = require("react");
 const styled = require("styled-components").default;
-const Themer = require("../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 
 module.exports.default = () => (
   <Themer spacing>

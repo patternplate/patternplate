@@ -3,7 +3,7 @@ import * as Fixture from './fixture';
 import { Markdown } from './markdown';
 import { Themer } from "@patternplate/component-utility";
 
-export default () => (
+export const ThemedMarkdownDemo = () => (
   <Themer spacing>
     <Markdown source={Fixture.long} />
   </Themer>

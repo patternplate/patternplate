@@ -3,12 +3,12 @@ const React = require("react");
 const styled = require("styled-components").default;
 const createGlobalStyle = require("styled-components").createGlobalStyle;
 const ThemeProvider = require("styled-components").ThemeProvider;
+const getThemes = require("@patternplate/component-themes").getThemes;
 
 const Headline = require("../headline");
 const Favicon = require("./favicon");
 const Link = require("../link");
 const Text = require("../text");
-const getThemes = require("../themes");
 
 module.exports.default = Cover;
 module.exports.head = () => {

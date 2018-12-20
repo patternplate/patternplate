@@ -1,6 +1,6 @@
 const React = require("react");
 const PatternList = require(".");
-const DemoThemer = require("../../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 
 module.exports.default = PatternListDemo;
 
@@ -24,8 +24,8 @@ const ITEMS = [
 
 function PatternListDemo() {
   return (
-    <DemoThemer spacing>
+    <Themer spacing>
       <PatternList search={() => ITEMS}/>
-    </DemoThemer>
+    </Themer>
   );
 }

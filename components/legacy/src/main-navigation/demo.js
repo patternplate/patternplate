@@ -1,7 +1,7 @@
 const React = require("react");
 const MainNavigation = require(".");
 const { NavigationToolbar } = require(".");
-const Themer = require("../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 const Button = require("@patternplate/component-button").Button;
 const Logo = require("../logo");
 

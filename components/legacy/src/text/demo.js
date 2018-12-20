@@ -1,6 +1,6 @@
 const React = require("react");
 const Text = require(".");
-const Themer = require("../demo-themer");
+const { Themer } = require("@patternplate/component-utility");
 
 module.exports.default = function TextDemo() {
   return (
