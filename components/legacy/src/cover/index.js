@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function Cover() {
-  const themes = Components.themes();
+  const themes = Components.themes.getThemes();
 
   return (
     <ThemeProvider theme={themes.dark}>

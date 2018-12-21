@@ -21,6 +21,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - */node_modules/
           key: v2-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
