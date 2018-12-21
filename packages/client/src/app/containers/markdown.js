@@ -13,7 +13,7 @@ const selectWidgetSrc = createSelector(
 
 const selectThemes = createSelector(
   state => state.config.ui,
-  ui => themes(ui)
+  ui => themes.getThemes(ui)
 );
 
 

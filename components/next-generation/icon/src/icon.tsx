@@ -24,6 +24,7 @@ export interface IconProps {
 const iconNames = Object.keys(Icons.icons);
 
 export * from './symbol';
+export { definitions } from './icons';
 
 export const Icon: React.SFC<IconProps> = props => {
   const creator = typeof Icons.icons[props.symbol] === 'function'

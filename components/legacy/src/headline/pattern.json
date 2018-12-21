@@ -1,8 +1,0 @@
-{
-  "name": "headline",
-  "displayName": "Headline",
-  "description": "Visual headline orders h1 - h4",
-  "version": "1.0.0",
-  "flag": "stable",
-  "tags": ["Typography"]
-}

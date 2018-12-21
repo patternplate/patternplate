@@ -1,6 +1,6 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const Icon = require("../icon");
+const Icon = require("@patternplate/component-icon").Icon;
 
 const StyledSearchField = styled.label`
   display: flex;

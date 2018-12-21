@@ -1,7 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
-const Text = require("../text");
+const Text = require("@patternplate/component-text").Text;
 
 module.exports = styled(props => <Text className={props.className}>{props.children}</Text>)`
   display: inline-block;

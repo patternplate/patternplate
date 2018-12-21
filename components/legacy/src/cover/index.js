@@ -5,10 +5,8 @@ const createGlobalStyle = require("styled-components").createGlobalStyle;
 const ThemeProvider = require("styled-components").ThemeProvider;
 const getThemes = require("@patternplate/component-themes").getThemes;
 
-const Headline = require("../headline");
 const Favicon = require("./favicon");
-const Link = require("../link");
-const Text = require("../text");
+const Components = require("../");
 
 module.exports.default = Cover;
 module.exports.head = () => {
@@ -31,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function Cover() {
-  const themes = getThemes();
+  const themes = Components.themes.getThemes();
 
   return (
     <ThemeProvider theme={themes.dark}>
@@ -198,11 +196,11 @@ function Cover() {
                   </svg>
                 </GitterButton>
                 <ButtonRowRight>
-                  <Text>
+                  <Components.Text>
                     Proudly powered by <InlineLink href="https://sinnerschrader.com" target="_blank">SinnerSchrader</InlineLink>
-                  </Text>
+                  </Components.Text>
                   <br/>
-                  <Text><InlineLink href="https://sinnerschrader.com/imprint/" target="_blank" g>Legal Notice</InlineLink></Text>
+                  <Components.Text><InlineLink href="https://sinnerschrader.com/imprint/" target="_blank" g>Legal Notice</InlineLink></Components.Text>
                 </ButtonRowRight>
               </ButtonRowContent>
             </Frame>
@@ -242,7 +240,7 @@ function Cover() {
   );
 }
 
-const InlineLink = styled(Link)`
+const InlineLink = styled(Components.Link)`
   color: ${props => props.theme.colors.active};
   text-decoration: underline;
   text-decoration-style: dotted;
@@ -319,7 +317,7 @@ const Logo = styled.svg.attrs({
   }
 `;
 
-const StageHeadline = styled(Headline)`
+const StageHeadline = styled(Components.Headline)`
   font-size: 40px;
   margin: 0 0 1em 0;
 
@@ -333,7 +331,7 @@ const StageHeadline = styled(Headline)`
   }
 `;
 
-const StageText = styled(Text)`
+const StageText = styled(Components.Text)`
   max-width: 25ch;
   font-weight: 200;
   line-height: 1.3em;
@@ -386,7 +384,7 @@ const ButtonRowRight = styled.div`
   }
 `;
 
-const StageButton = styled(Link)`
+const StageButton = styled(Components.Link)`
   display: inline-flex;
   align-items: center;
   font-size: ${props => props.variant === "big" ? 34 : 24}px;
@@ -400,11 +398,11 @@ const StageButton = styled(Link)`
   white-space: nowrap;
 `;
 
-const StageButtonText = styled(Text)`
+const StageButtonText = styled(Components.Text)`
   color: ${props => props.theme.colors.background};
 `;
 
-const GithubButton = styled(Link)`
+const GithubButton = styled(Components.Link)`
   flex-shrink: 0;
   height: 40px;
   width: 40px;
@@ -416,7 +414,7 @@ const GithubButton = styled(Link)`
   }
 `;
 
-const GitterButton = styled(Link)`
+const GitterButton = styled(Components.Link)`
   flex-shrink: 0;
   height: 40px;
   width: 40px;
@@ -453,12 +451,12 @@ const Principle = props => (
   <PrincipleContainer>{props.children}</PrincipleContainer>
 );
 
-Principle.Title = styled(Headline)`
+Principle.Title = styled(Components.Headline)`
   margin: 0;
   grid-row: headline;
 `;
 
-Principle.Text = styled(Text)`
+Principle.Text = styled(Components.Text)`
   grid-row: text;
 `;
 
@@ -490,7 +488,7 @@ const Connection = styled.div`
   background: ${props => props.theme.colors.background};
 `;
 
-Connection.Title = styled(Headline)`
+Connection.Title = styled(Components.Headline)`
   font-size: 12vw;
   max-width: 60ch;
   @media screen and (min-width: 500px) {
@@ -498,7 +496,7 @@ Connection.Title = styled(Headline)`
   }
 `;
 
-Connection.Text = styled(Text)`
+Connection.Text = styled(Components.Text)`
   font-size: 6vw;
   text-align: left;
   max-width: 40ch;
@@ -530,7 +528,7 @@ Connection.List = styled.ul`
   }
 `;
 
-Connection.Button = styled(Link)`
+Connection.Button = styled(Components.Link)`
   display: inline-block;
   color: ${props => props.theme.colors.background};
   background: ${props => props.theme.colors.color};

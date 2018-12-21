@@ -4,7 +4,6 @@ const Header = require("../main-header");
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
 const NavigationLabel = require("../navigation-label");
-const Icon = require("../icon");
 
 class Navigation extends React.Component {
   constructor(...args) {

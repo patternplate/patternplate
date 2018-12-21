@@ -1,6 +1,6 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const { Themer } = require("@patternplate/component-utility");
+const { Themer } = require("@patternplate/component-utility");
 const Flag = require(".");
 
 module.exports.default = FlagDemo;

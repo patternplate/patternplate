@@ -29,7 +29,7 @@ import ToggleNavigation from "./toggle-navigation";
 import ToggleSearch from "./toggle-search";
 import Search from "./search";
 
-const selectThemes = createSelector(state => state.config.ui, ui => themes(ui));
+const selectThemes = createSelector(state => state.config.ui, ui => themes.getThemes(ui));
 
 const selectLines = createSelector(
   state => state.messages,

@@ -1,8 +1,8 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
-const Link = require("./link");
-const Icon = require("./icon");
+const Link = require("@patternplate/component-link").Link;
+const Icon = require("@patternplate/component-icon").Icon;
 
 const StyledLink = styled(Link)`
   display: block;

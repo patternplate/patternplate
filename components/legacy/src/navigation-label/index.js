@@ -1,7 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const Icon = require("../icon");
-const Link = require("../link");
+const Icon = require("@patternplate/component-icon").Icon;
+const Link = require("@patternplate/component-link").Link;
 const remark = require("remark");
 const emoji = require("remark-gemoji-to-emoji");
 
