@@ -1,9 +1,8 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const Link = require("../link");
-const Icon = require("../icon");
-const Text = require("../text");
-const InnerInfoPane = require("../info-pane").InnerInfoPane;
+const Link = require("@patternplate/component-link").Link;
+const Icon = require("@patternplate/component-icon").Icon;
+const Text = require("@patternplate/component-text").Text;
 const tag = require("tag-hoc").default;
 
 // import Outside from "./outside";

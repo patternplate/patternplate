@@ -2,11 +2,6 @@ import * as React from "react";
 import styled from "styled-components";
 import { Text } from "@patternplate/component-text";
 
-export interface TextProps {
-  is?: string;
-  className?: string;
-}
-
 const ORDERS = {
   0: 72,
   1: 36,
@@ -17,13 +12,13 @@ const ORDERS = {
 
 interface InnerHeadlineProps {
   id?: string;
-  is?: string;
+  as?: keyof JSX.IntrinsicElements;
   className?: string;
 }
 
 const InnerHeadline: React.SFC<InnerHeadlineProps> = props => {
-  const is = props.is || 'h1';
-  return <Text is={is} className={props.className} id={props.id}>{props.children}</Text>;
+  const as = props.as || 'h1';
+  return <Text as={as} className={props.className} id={props.id}>{props.children}</Text>;
 };
 
 export interface HeadlineProps {

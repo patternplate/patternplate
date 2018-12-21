@@ -47,6 +47,7 @@ export class RawLink extends React.Component<LinkProps> {
 }
 
 export const Link = inject(RawLink);
+(Link as any).RawLink = RawLink;
 
 const StyledLinkContainer = styled.span<{ grow?: boolean; external?: boolean; }>`
   display: inline-flex;

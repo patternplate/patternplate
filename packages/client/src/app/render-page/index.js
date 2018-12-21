@@ -38,7 +38,6 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
 
   const { html, css, status } = await router(uri, render);
   const head = isStatic ? Helmet.peek() : Helmet.rewind();
-  const icons = isStatic ? Icon.peek() : Icon.rewind();
 
   const contents = layout({
     attributes: head.htmlAttributes,
@@ -46,7 +45,6 @@ async function renderPage(uri, { base, config, schema, isStatic, scripts } = {},
     css,
     data: transfer,
     html,
-    icons,
     link: head.link,
     meta: head.meta,
     title: head.title,

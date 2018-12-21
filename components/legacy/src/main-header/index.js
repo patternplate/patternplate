@@ -1,6 +1,5 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const Icon = require("../icon");
 
 module.exports = MainHeader;
 

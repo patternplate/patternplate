@@ -169,6 +169,10 @@ export const icons = {
   search: () => search
 };
 
+export const definitions = {
+  patternplate
+};
+
 function checkers(inverted?: boolean) {
   const length = 20;
   const count = 5;

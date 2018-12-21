@@ -1,6 +1,6 @@
 const React = require("react");
 const PatternList = require(".");
-const { Themer } = require("@patternplate/component-utility");
+const { Themer } = require("@patternplate/component-utility");
 
 module.exports.default = PatternListDemo;
 

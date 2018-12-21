@@ -112,7 +112,7 @@ export const selectType = createSelector(selectItem, match => {
 
 const selectThemes = createSelector(
   state => state.config.color,
-  color => themes(color)
+  color => themes.getThemes(color)
 );
 
 function mapState(state) {

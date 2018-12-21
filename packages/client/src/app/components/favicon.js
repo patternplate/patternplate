@@ -11,7 +11,7 @@ import {
 
 import platform from "platform";
 
-const THEMES = themes();
+const THEMES = themes.getThemes();
 
 const SVG_FAVICON_SUPPORT = ["Firefox"];
 

@@ -35,7 +35,6 @@ function Layout(props) {
         {props.css}
       </head>
       <StyledBody data-base={props.base}>
-        <IconRegistry>{props.icons}</IconRegistry>
         <Content data-application-el="patternplate" content={props.html} />
         <State data-application-state="patternplate" data={props.data} />
         {scripts.map(src => <script key={src} src={src} />)}
@@ -53,14 +52,6 @@ const StyledBody = styled.body`
   margin: 0;
   height: 100%;
 `;
-
-function IconRegistry(props) {
-  return (
-    <div data-icon-registry style={{ display: "none" }}>
-      {props.children}
-    </div>
-  );
-}
 
 function Content(props) {
   return (

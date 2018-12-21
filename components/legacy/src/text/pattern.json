@@ -1,8 +1,0 @@
-{
-  "name": "text",
-  "displayName": "Text",
-  "description": "Style text according to patternplate rules",
-  "version": "1.0.0",
-  "flag": "stable",
-  "tags": ["Primitives", "Typography"]
-}

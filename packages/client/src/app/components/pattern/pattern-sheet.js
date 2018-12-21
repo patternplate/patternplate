@@ -21,7 +21,7 @@ function PatternSheet(props) {
               {props.name}
               <StyledVersion>@{props.version}</StyledVersion>
             </StyledName>
-            <ThemeProvider theme={themes().dark}>
+            <ThemeProvider theme={themes.getThemes().dark}>
               <StyledControlsArea orient="right">
                 <StyledControlsItem>
                   <ToggleOpacity />

@@ -1,5 +1,4 @@
 const React = require("react");
-const PatternDemo = require(".");
 
 module.exports.default = PatternDemoDemo;
 
