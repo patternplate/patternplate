@@ -1,8 +1,0 @@
-{
-  "name": "tag",
-  "displayName": "Tag",
-  "description": "Visual for tags in patternplate",
-  "version": "1.0.0",
-  "flag": "beta",
-  "tags": ["Meta Data"]
-}
