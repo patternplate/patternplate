@@ -3,7 +3,7 @@ const MainNavigation = require(".");
 const { NavigationToolbar } = require(".");
 const { Themer } = require("@patternplate/component-utility");
 const Button = require("@patternplate/component-button").Button;
-const Logo = require("../logo");
+const Logo = require("@patternplate/component-logo").Logo;
 
 const navigation = {
   children: [{}]

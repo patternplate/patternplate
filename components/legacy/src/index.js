@@ -10,7 +10,7 @@ module.exports = {
   injection: require("./injection"),
   keyframes: require("styled-components").keyframes,
   Link: require("@patternplate/component-link").Link,
-  Logo: require("./logo"),
+  Logo: require("@patternplate/component-logo").Logo,
   MainHeader: require("./main-header"),
   MainNavigation: require("./main-navigation"),
   Markdown: require("@patternplate/component-markdown").Markdown,
