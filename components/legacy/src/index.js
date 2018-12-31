@@ -22,17 +22,7 @@ module.exports = {
   NavigationLabel: require("./navigation-label"),
   NavigationToolbar: require("./navigation-toolbar"),
   NavigationTree: require("./navigation-tree"),
-  Search: {
-    Search: require("./search").default,
-    SearchResult: require("./search").SearchResult,
-    SearchResultList: require("./search").SearchResultList,
-    SearchResultHeading: require("./search").SearchResultHeading,
-    SearchResultPreview: require("./search").SearchResultPreview,
-    SearchFieldSlot: require("./search").SearchFieldSlot,
-    PassThroughSlot: require("./search").PassThroughSlot,
-    Close: require("./search").Close
-  },
-  SearchField: require("./search-field"),
+  Search: require("@patternplate/component-search"),
   Symbol: require("@patternplate/component-icon").Symbol,
   Tag: require("@patternplate/component-tag").Tag,
   Text: require("@patternplate/component-text").Text,

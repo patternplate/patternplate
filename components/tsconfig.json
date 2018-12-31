@@ -10,6 +10,7 @@
     {"path": "./next-generation/link"},
     {"path": "./next-generation/logo"},
     {"path": "./next-generation/markdown"},
+    {"path": "./next-generation/search"},
     {"path": "./next-generation/svg"},
     {"path": "./next-generation/tag"},
     {"path": "./next-generation/text"},

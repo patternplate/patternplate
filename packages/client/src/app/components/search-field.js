@@ -1,21 +1,31 @@
 import React from "react";
 import { debounce } from "lodash";
+import * as Components from "@patternplate/components";
 
-import { SearchField as SearchFieldComponent } from "@patternplate/components";
+export default class SearchFieldContainer extends React.Component {
+  static defaultProps = {
+    blur: () => {},
+    onChange: () => {},
+    onFocus: () => {},
+    onUp: () => {},
+    onDown: () => {},
+    onBlur: () => {},
+    onStop: () => {},
+    value: ""
+  }
 
-class SearchField extends React.Component {
   constructor(...args) {
     super(...args);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleStop = debounce(this.props.onStop, 300, { trailing: true });
     this.timer = null;
+    this.onStop = debounce(this.props.onStop, 1000);
   }
 
   handleChange(e) {
     e.persist();
     this.props.onChange(e);
-    this.handleStop(e);
+    this.onStop(e);
   }
 
   handleKeyDown(e) {
@@ -51,7 +61,7 @@ class SearchField extends React.Component {
     const props = this.props;
 
     return (
-      <SearchFieldComponent
+      <Components.Search.SearchField
         autoFocus={props.autoFocus}
         name={props.name}
         onBlur={props.onBlur}
@@ -65,20 +75,8 @@ class SearchField extends React.Component {
         data-search={props.mark}
       >
         {props.children}
-      </SearchFieldComponent>
+      </Components.Search.SearchField>
     );
   }
 }
 
-SearchField.defaultProps = {
-  blur: () => {},
-  onChange: () => {},
-  onFocus: () => {},
-  onUp: () => {},
-  onDown: () => {},
-  onBlur: () => {},
-  onStop: () => {},
-  value: ""
-};
-
-export default SearchField;

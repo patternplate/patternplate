@@ -9,7 +9,7 @@
     "build": "babel src -d lib --source-maps",
     "pack": "cross-env NODE_ENV=production webpack --mode production",
     "clean": "npx rimraf lib",
-    "watch": "concurrently \"webpack -w\" \"babel src -d lib --source-maps -w\"",
+    "watch": "concurrently \"webpack -w --no-render-page\" \"babel src -d lib --source-maps -w\"",
     "deps": "dependency-check . render.js eject.js lib/client.js lib/widgets.js --missing && dependency-check . render.js eject.js lib/client.js lib/widgets.js --extra --no-dev -i @babel/runtime",
     "prepublishOnly": "./.scripts/prune.js --base=lib/static --manifest=lib/static/manifest.json"
   },
