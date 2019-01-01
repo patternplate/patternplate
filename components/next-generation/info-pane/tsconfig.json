@@ -1,0 +1,35 @@
+{
+  "references": [
+    {
+      "path": "../utility"
+    },
+    {
+      "path": "../code"
+     },
+    {
+      "path": "../link"
+     },
+    {
+      "path": "../tag"
+     },
+    {
+      "path": "../text"
+     },
+    {
+      "path": "../flag"
+    }
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react",
+    "outDir": "./lib/",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/**/*.test.ts"]
+}
