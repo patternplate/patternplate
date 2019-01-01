@@ -1,0 +1,46 @@
+{
+  "name": "@patternplate/example-webpack-react-scss",
+  "version": "3.2.3",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"yarn webpack -w\" \"patternplate\"",
+    "build": "webpack",
+    "pp:build": "patternplate build --out .tmp --base '/'",
+    "pp:test": "patternplate-test --project . --no-build --port=1442",
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-webpack-react-less\" --provider=surge"
+  },
+  "author": {
+    "name": "Anil Kumar",
+    "email": "anilbms75@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "patternplate/patternplate"
+  },
+  "xo": false,
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@patternplate/cli": "^3.2.3",
+    "@patternplate/render-react": "^3.1.1",
+    "@patternplate/webpack-entry": "^3.1.1",
+    "babel-loader": "8.0.0-beta.0",
+    "concurrently": "^3.5.1",
+    "css-loader": "^0.28.7",
+    "dependency-check": "^3.1.0",
+    "dev-loader": "^0.1.0",
+    "globby": "^6.1.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.11.0",
+    "raw-loader": "^0.5.1",
+    "sass": "^1.15.2",
+    "sass-loader": "^7.1.0",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "react": "16.6.3"
+  }
+}
