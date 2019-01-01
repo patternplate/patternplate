@@ -16,6 +16,8 @@
     {"path": "./next-generation/text"},
     {"path": "./next-generation/themes"},
     {"path": "./next-generation/utility"},
+    {"path": "./next-generation/widget-demo"},
+    {"path": "./next-generation/widget-list"},
   ],
   "compilerOptions": {
     "composite": true

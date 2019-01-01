@@ -78,7 +78,6 @@
     "color": "^2.0.0",
     "front-matter": "^2.3.0",
     "hast-to-hyperscript": "^3.0.2",
-    "iframe-resizer": "^3.5.16",
     "lodash": "^4.17.4",
     "parse-numeric-range": "^0.0.2",
     "prop-types": "^15.6.0",

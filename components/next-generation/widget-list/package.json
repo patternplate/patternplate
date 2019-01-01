@@ -1,13 +1,15 @@
 {
-  "name": "@patternplate/widgets",
-  "version": "3.2.3",
-  "main": "lib/index.js",
-  "description": "Markdown widgets available in patternplate",
+  "name": "@patternplate/widget-list",
+  "version": "3.1.1",
+  "description": "Show lists of components in your documentation",
+  "main": "./lib/index.js",
   "scripts": {
+    "clean": "rimraf lib",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib"
   ],
   "repository": {
     "type": "git",
@@ -25,13 +27,15 @@
     "node": ">= 4",
     "npm": ">= 3"
   },
-  "xo": false,
-  "dependencies": {
-    "@patternplate/widget-demo": "^3.1.1",
-    "@patternplate/widget-list": "^3.1.1"
-  },
   "devDependencies": {
-    "dependency-check": "^3.1.0"
+    "dependency-check": "^3.1.0",
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1"
   },
-  "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
+  "dependencies": {
+    "@patternplate/component-markdown": "^3.2.3",
+    "@types/react": "16.7.7",
+    "react": "16.6.3",
+    "styled-components": "^4.1.1"
+  }
 }

@@ -15,6 +15,7 @@
     {"path": "./validate-config"},
     {"path": "./validate-manifest"},
     {"path": "./webpack-entry"},
+    {"path": "./widgets"}
   ],
   "compilerOptions": {
     "composite": true
