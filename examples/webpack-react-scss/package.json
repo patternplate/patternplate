@@ -8,7 +8,7 @@
     "build": "webpack",
     "pp:build": "patternplate build --out .tmp --base '/'",
     "pp:test": "patternplate-test --project . --no-build --port=1442",
-    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-webpack-react-less\" --provider=surge"
+    "pp:deploy": "patternplate-deploy --source .tmp --name=\"patternplate-example-webpack-react-scss\" --provider=surge"
   },
   "author": {
     "name": "Anil Kumar",
@@ -32,8 +32,6 @@
     "dependency-check": "^3.1.0",
     "dev-loader": "^0.1.0",
     "globby": "^6.1.0",
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5",
     "node-sass": "^4.11.0",
     "raw-loader": "^0.5.1",
     "sass": "^1.15.2",
