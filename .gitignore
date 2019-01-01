@@ -9,6 +9,7 @@ package-lock.json
 
 /packages/**/yarn.lock
 
+/cover/lib
 /components/**/lib
 /packages/*/lib
 /tools/*/lib

@@ -1,0 +1,51 @@
+{
+  "name": "@patternplate/cover",
+  "version": "3.1.1",
+  "description": "patternplate landing page",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternplate/patternplate.git"
+  },
+  "author": {
+    "name": "Mario Nebl",
+    "email": "mario.nebl@sinnerschrader.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 3"
+  },
+  "patternplate": {
+    "name": "component-button",
+    "displayName": "Component: Button",
+    "flag": "stable"
+  },
+  "devDependencies": {
+    "dependency-check": "^3.1.0",
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1"
+  },
+  "dependencies": {
+    "@patternplate/component-icon": "^3.1.1",
+    "@patternplate/component-link": "^3.1.1",
+    "@patternplate/component-utility": "^3.1.1",
+    "@types/react": "16.7.7",
+    "@types/react-helmet": "^5.0.8",
+    "@types/styled-components": "^4.1.1",
+    "react": "16.6.3",
+    "react-helmet": "^5.2.0",
+    "styled-components": "^4.1.1"
+  }
+}

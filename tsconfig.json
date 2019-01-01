@@ -3,6 +3,7 @@
   "include": [],
   "references": [
     {"path": "./components"},
+    {"path": "./cover"},
     {"path": "./packages"},
     {"path": "./tools"}
   ],

@@ -10,7 +10,7 @@ const ORDERS = {
   4: 18
 };
 
-interface InnerHeadlineProps {
+export interface InnerHeadlineProps {
   id?: string;
   as?: keyof JSX.IntrinsicElements;
   className?: string;
