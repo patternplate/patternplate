@@ -56,7 +56,7 @@
     "@types/read-pkg": "^3.0.0",
     "@types/resolve-from": "^0.0.18",
     "@types/webpack": "^4.4.13",
-    "css-loader": "^0.28.10",
+    "css-loader": "^2.1.0",
     "html-loader": "^0.5.5",
     "loader-utils": "^1.1.0",
     "memory-fs": "^0.4.1",
