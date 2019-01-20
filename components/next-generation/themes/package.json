@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/component-themes",
-  "version": "3.1.1",
+  "version": "3.2.5",
   "description": "Theme definitions for patternpalte components",
   "main": "lib/index.js",
   "scripts": {
@@ -38,7 +38,7 @@
     "typescript": "^3.1"
   },
   "dependencies": {
-    "@patternplate/components": "^3.2.3",
+    "@patternplate/components": "^3.2.5",
     "@patternplate/types": "^3.1.1",
     "@types/color": "^3.0.0",
     "lodash": "^4.17.11",
