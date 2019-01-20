@@ -35,6 +35,7 @@ module.exports = {
   SearchField: require("./search-field"),
   Symbol: require("@patternplate/component-icon").Symbol,
   Tag: require("@patternplate/component-tag").Tag,
+  ThemeProvider: require("styled-components").ThemeProvider,
   Text: require("@patternplate/component-text").Text,
   themes: require("@patternplate/component-themes"),
   svg: require("@patternplate/component-svg")
