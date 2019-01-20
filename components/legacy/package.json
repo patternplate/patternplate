@@ -69,6 +69,7 @@
     "@patternplate/component-logo": "^3.1.1",
     "@patternplate/component-markdown": "^3.2.5",
     "@patternplate/component-svg": "^3.2.5",
+    "@patternplate/component-tag": "^3.1.1",
     "@patternplate/component-text": "^3.2.5",
     "@patternplate/component-themes": "^3.2.5",
     "btoa": "^1.1.2",

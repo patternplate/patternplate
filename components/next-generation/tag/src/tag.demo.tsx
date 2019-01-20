@@ -1,25 +1,23 @@
 const React = require("react");
 const styled = require("styled-components").default;
 const { Themer } = require("@patternplate/component-utility");
-const Flag = require(".");
+import { Tag } from "./tag";
 
-module.exports.default = FlagDemo;
-
-function FlagDemo() {
+export default function TagDemo() {
   return (
     <Themer>
-      <FlagDemoContainer>
-        <Flag>alpha</Flag>
-        <Flag>beta</Flag>
-        <Flag>rc</Flag>
-        <Flag>stable</Flag>
-        <Flag>deprecated</Flag>
-      </FlagDemoContainer>
+      <TagDemoContainer>
+        <Tag>alpha</Tag>
+        <Tag>beta</Tag>
+        <Tag>rc</Tag>
+        <Tag>stable</Tag>
+        <Tag>deprecated</Tag>
+      </TagDemoContainer>
     </Themer>
   );
 }
 
-const FlagDemoContainer = styled.div`
+const TagDemoContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   background: ${props => props.theme.colors.background};

@@ -33,7 +33,7 @@ module.exports = {
   styled: require("styled-components").default,
   StyleSheetManager: require("styled-components").StyleSheetManager,
   Symbol: require("@patternplate/component-icon").Symbol,
-  Tag: require("./tag"),
+  Tag: require("@patternplate/component-tag").Tag,
   ThemeProvider: require("styled-components").ThemeProvider,
   Text: require("@patternplate/component-text").Text,
   themes: require("@patternplate/component-themes"),
