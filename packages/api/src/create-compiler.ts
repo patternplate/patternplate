@@ -81,6 +81,15 @@ export const createCompiler = async function createCompiler({
 
   setInterval(() => send({ type: "heartbeat", target }), 500);
 
+  const logErrorMessage = (payload: { message?: string; details?: string })  => {
+    if (!payload.message && payload.details) {
+      const posLF = `${payload.details}\n`.indexOf('\n');
+      return console.error(payload.details.substr(0, posLF));
+    }
+
+    return console.error(payload.message)
+  };
+
   const onMessage = whenMessage((message: T.QueueMessage) => {
     switch (message.type) {
       case "ready": {
@@ -97,9 +106,9 @@ export const createCompiler = async function createCompiler({
       }
       case "error": {
         if (Array.isArray(message.payload)) {
-          return message.payload.forEach(p => console.error(p.message));
+          return message.payload.forEach(logErrorMessage);
         }
-        return console.error(message.payload.message);
+        return logErrorMessage(message.payload);
       }
       case "shutdown": {
         send({ type: "stop", target });
