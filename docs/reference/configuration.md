@@ -247,7 +247,7 @@ Global CSS Color for warning messages and beta flags.
 ```js
 module.exports = {
   ui: {
-    colorError: `rgb(255, 0, 0)`
+    colorWarning: `rgb(255, 0, 0)`
   }
 };
 ```
