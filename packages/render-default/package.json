@@ -27,7 +27,8 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash": "^4.17.5"
+    "lodash.pick": "^4.4.0",
+    "lodash.merge": "^4.6.1",
   },
   "devDependencies": {
     "dependency-check": "^3.1.0"
