@@ -1,4 +1,4 @@
-const {merge} = require("lodash");
+const merge = require("lodash.merge");
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
 const renderReact = require("@patternplate/render-react/render");
