@@ -1,4 +1,5 @@
-const {merge, pick} = require("lodash");
+const pick = require('lodash.pick');
+const merge = require('lodash.merge');
 
 const IN_SLOTS = ["head", "html", "css", "js", "md", "json"];
 const OUT_SLOTS = [...IN_SLOTS, "before", "after", "script"];
