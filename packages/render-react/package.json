@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@patternplate/render-default": "^3.2.5",
-    "lodash": "^4.17.5",
-    "react": "16.6.3",
-    "react-dom": "16.6.3"
+    "lodash.merge": "^4.6.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
   },
   "devDependencies": {
     "dependency-check": "^3.1.0"
