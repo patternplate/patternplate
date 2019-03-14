@@ -1,6 +1,6 @@
 const React = require("react");
 const styled = require("styled-components").default;
-const Header = require("@patternplate/component-main-header");
+const Header = require("@patternplate/component-main-header").MainHeader;
 const NavigationTree = require("../navigation-tree");
 const NavigationToolbar = require("../navigation-toolbar");
 const NavigationLabel = require("../navigation-label");
