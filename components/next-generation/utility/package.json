@@ -2,7 +2,6 @@
   "name": "@patternplate/component-utility",
   "version": "3.2.5",
   "description": "Render markdown sources to rich HTML documents",
-  "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
