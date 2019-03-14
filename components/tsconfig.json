@@ -10,11 +10,14 @@
     {"path": "./next-generation/link"},
     {"path": "./next-generation/logo"},
     {"path": "./next-generation/markdown"},
+    {"path": "./next-generation/search"},
     {"path": "./next-generation/svg"},
     {"path": "./next-generation/tag"},
     {"path": "./next-generation/text"},
     {"path": "./next-generation/themes"},
     {"path": "./next-generation/utility"},
+    {"path": "./next-generation/widget-demo"},
+    {"path": "./next-generation/widget-list"},
   ],
   "compilerOptions": {
     "composite": true

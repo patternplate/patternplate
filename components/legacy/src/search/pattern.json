@@ -1,8 +1,0 @@
-{
-  "name": "search",
-  "displayName": "Search",
-  "version": "1.0.0",
-  "description": "Rich search panel with query suggestions",
-  "flag": "beta",
-  "tags": ["Search"]
-}

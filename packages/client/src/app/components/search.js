@@ -1,47 +1,21 @@
-import url from "url";
-import { values } from "lodash";
 import React from "react";
-import {
-  Search as SearchComponents,
-  InnerInfoPane,
-  Icon,
-  Link,
-  Markdown,
-  styled,
-  Text
-} from "@patternplate/components";
-import tag from "tag-hoc";
-
-import Outside from "./outside";
+import * as Components from "@patternplate/components";
 import SearchField from "./search-field";
-import withToggleStates from "../connectors/with-toggle-states";
+import SearchPreview from "./search-preview";
 import PassThrough from "../containers/pass-through";
+import SearchResultList from "./search-result-list";
 
-const InfoPane = withToggleStates(InnerInfoPane);
-const {
-  Search: SearchComponent,
-  SearchResult,
-  SearchResultList,
-  SearchResultHeading,
-  SearchResultPreview,
-  SearchFieldSlot,
-  Close: SearchClose,
-  PassThroughSlot: SearchPassThroughSlot
-} = SearchComponents;
+const NOOP = () => {};
 
-const NOOP = () => { };
-
-export default class Search extends React.Component {
+export default class SearchContainer extends React.Component {
   constructor(...args) {
     super(...args);
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUp = this.handleUp.bind(this);
     this.handleDown = this.handleDown.bind(this);
     this.handleActivate = this.handleActivate.bind(this);
     this.handleScrollRequest = this.handleScrollRequest.bind(this);
     this.getListRef = this.getListRef.bind(this);
-    this.getSearchResult = this.getSearchResult.bind(this);
   }
 
   handleScrollRequest(e) {
@@ -62,54 +36,6 @@ export default class Search extends React.Component {
 
   getListRef(ref) {
     this.list = ref;
-  }
-
-  getSearchResult = (item, type) => (
-    <SearchResult
-      active={(this.props.activeItem || {}).id === item.id}
-      href={item.href}
-      id={item.id}
-      index={item.index}
-      icon={item.manifest.icon || item.type}
-      name={item.manifest.displayName}
-      key={item.id}
-      onActivate={this.props.onActivate}
-      onScrollRequest={this.handleScrollRequest}
-      type={type}
-    />
-  );
-
-  getSearchResultPreview = () => {
-    const item = this.props.activeItem;
-
-    switch (item.contentType) {
-      case "doc":
-        return (
-          <SearchResultPreview {...this.props}>
-            <Markdown
-              source={item.contents}
-            />
-          </SearchResultPreview>
-        );
-      default:
-        return (
-          <SearchResultPreview {...this.props}>
-            <InfoPane
-              active
-              demoDependencies={values(item.demoDependencies)}
-              demoDependents={values(item.demoDependents)}
-              dependencies={values(item.dependencies)}
-              dependents={values(item.dependents)}
-              flag={item.manifest.flag}
-              id={item.id}
-              manifest={JSON.stringify(item.manifest, null, "  ")}
-              name={item.manifest.displayName}
-              tags={item.manifest.tags}
-              version={item.manifest.version}
-            />
-          </SearchResultPreview>
-        );
-    }
   }
 
   componentDidMount() {
@@ -159,13 +85,12 @@ export default class Search extends React.Component {
   }
 
   render() {
-    const { props } = this;
-
+    const { props } = this;
     const withComponents = props.components.length > 0;
     const withDocs = props.docs.length > 0;
 
     return (
-      <SearchComponent
+      <Components.Search.Search
         activeItem={props.activeItem}
         docs={props.docs}
         enabled={props.enabled}
@@ -183,27 +108,8 @@ export default class Search extends React.Component {
         onUp={props.inline ? NOOP : this.handleUp}
         shortcuts={props.shortcuts}
         suggestion={props.suggestion}
-        legend={props.legend}
       >
-        <SearchResultList ref={this.getListRef}>
-          {withDocs > 0 && (
-            <SearchResultHeading>Docs ({props.docs.length})</SearchResultHeading>
-          )}
-
-          {props.docs.map(d => this.getSearchResult(d, "doc", props))}
-
-          {withComponents > 0 && (
-            <SearchResultHeading navigationEnabled={props.navigationEnabled}>
-              Components ({props.components.length})
-            </SearchResultHeading>
-          )}
-
-          {props.components.map(d => this.getSearchResult(d, "pattern"))}
-        </SearchResultList>
-
-        {(withComponents || withDocs) && this.getSearchResultPreview()}
-
-        <SearchFieldSlot>
+        <Components.Search.SearchFieldSlot>
           <SearchField
             autoFocus={!props.inline}
             linkTo="/search"
@@ -223,18 +129,42 @@ export default class Search extends React.Component {
             title={`Search for patterns ${props.shortcuts.toggleSearch.toString()}`}
             value={props.value}
           >
-            {props.enabled &&
-              <SearchClose
+            {props.enabled && (
+              <Components.Search.SearchClose
                 shortcut={props.shortcuts.close}
-                clears={typeof props.value === "string" && props.value.length > 0}
+                clears={
+                  typeof props.value === "string" && props.value.length > 0
+                }
               />
-            }
+            )}
           </SearchField>
-        </SearchFieldSlot>
-        <SearchPassThroughSlot>
+        </Components.Search.SearchFieldSlot>
+        <Components.Search.SearchLegendSlot>
+          <Components.Search.SearchLegend {...props.legend}/>
+        </Components.Search.SearchLegendSlot>
+        <Components.Search.SearchPassThroughSlot>
           <PassThrough query={{ "search-enabled": true, search: null }} />
-        </SearchPassThroughSlot>
-      </SearchComponent>
+        </Components.Search.SearchPassThroughSlot>
+        <Components.Search.SearchResultListSlot>
+          <SearchResultList
+            activeItem={this.props.activeItem}
+            components={this.props.components}
+            docs={this.props.docs}
+            getListRef={this.getListRef}
+            onActivate={this.props.onActivate}
+            onScrollRequest={this.handleScrollRequest}
+            />
+        </Components.Search.SearchResultListSlot>
+        <Components.Search.SearchResultPreviewSlot>
+          {(withComponents || withDocs) && <SearchPreview {...this.props} />}
+        </Components.Search.SearchResultPreviewSlot>
+      </Components.Search.Search>
     );
   }
 }
+
+/**
+ *
+
+
+ */
