@@ -1,8 +1,0 @@
-{
-  "name": "cover",
-  "version": "1.0.0",
-  "description": "Cover page for patternplate.github.io",
-  "patternplate": {
-    "displayName": "Cover"
-  }
-}
