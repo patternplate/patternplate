@@ -23,7 +23,6 @@ module.exports = {
   NavigationToolbar: require("./navigation-toolbar"),
   NavigationTree: require("./navigation-tree"),
   Search: require("@patternplate/component-search"),
-  SearchField: require("./search-field"),
   Symbol: require("@patternplate/component-icon").Symbol,
   Tag: require("@patternplate/component-tag").Tag,
   ThemeProvider: require("styled-components").ThemeProvider,
