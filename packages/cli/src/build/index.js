@@ -43,7 +43,7 @@ async function build({flags}) {
   const { entry = [], cover } = config;
 
   const docs = await loadDocsTree({
-    cwd,
+    cwd: configCwd,
     docs: config.docs,
     readme: config.readme
   });
@@ -135,8 +135,8 @@ function selectBase(base) {
   .join('');
 }
 
-function bundle({ cwd, config, target }) {
-  return compiler({ cwd, config, target })
+function bundle({ cwd: configCwd, config, target }) {
+  return compiler({ cwd: configCwd, config, target })
     .then(c => {
       return new Promise((resolve, reject) => {
         c.run((err, stats) => {

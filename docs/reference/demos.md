@@ -43,8 +43,8 @@ any output produced by `default`.
 ```js
 module.exports = {
   default: () => {},
-  html: `<h1 class="hello-world">Hello World</h1>`,
-  css: `.hello-world { font-family: sans-serif; color: cornflowerblue; }`
+  html: () => `<h1 class="hello-world">Hello World</h1>`,
+  css: () => `.hello-world { font-family: sans-serif; color: cornflowerblue; }`
 }
 ```
 
