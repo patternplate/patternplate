@@ -7,6 +7,7 @@
     {"path": "./next-generation/flag"},
     {"path": "./next-generation/headline"},
     {"path": "./next-generation/icon"},
+    {"path": "./next-generation/info-pane"},
     {"path": "./next-generation/link"},
     {"path": "./next-generation/logo"},
     {"path": "./next-generation/markdown"},

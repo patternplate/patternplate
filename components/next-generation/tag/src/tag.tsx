@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Text } from "@patternplate/component-text";
 
-interface InnerTagProps {
+export interface InnerTagProps {
   className?: string;
   children?: React.ReactNode;
 }
