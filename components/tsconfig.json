@@ -10,6 +10,7 @@
     {"path": "./next-generation/info-pane"},
     {"path": "./next-generation/link"},
     {"path": "./next-generation/logo"},
+    {"path": "./next-generation/main-header"},
     {"path": "./next-generation/markdown"},
     {"path": "./next-generation/search"},
     {"path": "./next-generation/svg"},

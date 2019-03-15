@@ -15,7 +15,7 @@ module.exports = {
   injection: require("@patternplate/component-utility/injection"),
   Link: require("@patternplate/component-link").Link,
   Logo: require("@patternplate/component-logo").Logo,
-  MainHeader: require("./main-header"),
+  MainHeader: require("@patternplate/component-main-header").MainHeader,
   MainNavigation: require("./main-navigation"),
   Markdown: require("@patternplate/component-markdown").Markdown,
   NavigationItem: require("./navigation-item"),

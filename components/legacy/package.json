@@ -67,6 +67,7 @@
     "@patternplate/component-flag": "^3.2.5",
     "@patternplate/component-link": "^3.2.5",
     "@patternplate/component-logo": "^3.1.1",
+    "@patternplate/component-main-header": "^3.1.1",
     "@patternplate/component-markdown": "^3.2.5",
     "@patternplate/component-search": "^3.1.1",
     "@patternplate/component-svg": "^3.2.5",
