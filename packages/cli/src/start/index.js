@@ -7,8 +7,17 @@ const { loadConfig } = require("@patternplate/load-config");
 
 module.exports = start;
 
-async function start({flags}) {
-  const spinner = ora({ text: "Starting patternplate server" }).start();
+async function start({flags, execFlags}) {
+  const inspectEnabled = [execFlags.inspect, execFlags.inspectBrk].some(i => typeof i !== 'undefined');
+  const isDebugging = process.env.NODE_DEBUG === 'patternplate';
+  const spinnerEnabled = !(isDebugging || flags.spinner === false || inspectEnabled);
+
+  const spinner = ora({
+    text: "Starting patternplate server",
+    isEnabled: spinnerEnabled
+  });
+
+  spinner.start();
 
   let beat = Date.now();
   let failures = 0;
@@ -44,12 +53,21 @@ async function start({flags}) {
   const cwd = flags.cwd || process.cwd();
   const port = selectPort(flags);
 
+  const inspectPort = typeof execFlags.inspect === 'number' ? execFlags.inspect : undefined;
+  const inspectBrkPort = typeof execFlags.inspectBrk === 'number' ? execFlags.inspectBrk : undefined;
+
+
   try {
     let app = await startPatternplate({
       cwd,
       port,
       spinner,
-      server: flags.server
+      server: flags.server,
+      inspect: {
+        enabled: inspectEnabled,
+        break: typeof execFlags.inspectBrk !== 'undefined',
+        port: inspectPort || inspectBrkPort || 9229,
+      }
     });
 
     const rl = readline.createInterface({
@@ -128,7 +146,7 @@ function selectPort(flags) {
 }
 
 async function startPatternplate(context) {
-  const {port, cwd, spinner, server} = context;
+  const {port, spinner, server, inspect} = context;
   const count = context.count > 0 ?  `(${context.count})` : '';
 
   const patternplate = importFresh("./serve");
@@ -144,7 +162,8 @@ async function startPatternplate(context) {
     port,
     server,
     config,
-    cwd: base
+    cwd: base,
+    inspect
   });
 
   spinner.text = `${doneVerb} on http://localhost:${app.port} ${count}`;

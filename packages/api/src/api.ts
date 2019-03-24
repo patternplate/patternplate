@@ -19,12 +19,17 @@ export interface ApiOptions {
   cwd: string;
   config: Types.PatternplateConfig;
   server: Http.Server;
+  inspect: {
+    enabled: boolean;
+    port: number;
+    break: boolean;
+  }
 }
 
-export async function api({ server, config, cwd }: ApiOptions): Promise<ApiApplication> {
+export async function api({ server, config, cwd, inspect }: ApiOptions): Promise<ApiApplication> {
   const [clientQueue, serverQueue] = await Promise.all([
-    createCompiler({ config, cwd, target: Types.CompileTarget.Web }),
-    createCompiler({ config, cwd, target: Types.CompileTarget.Node })
+    createCompiler({ config, cwd, inspect, target: Types.CompileTarget.Web }),
+    createCompiler({ config, cwd, inspect, target: Types.CompileTarget.Node })
   ]);
 
   const queues = {
@@ -48,6 +53,7 @@ export async function api({ server, config, cwd }: ApiOptions): Promise<ApiAppli
     subscribe: createSubscription({
       cwd,
       config,
+      inspect,
       queues,
       wss,
       watcher

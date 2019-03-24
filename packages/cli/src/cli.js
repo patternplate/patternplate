@@ -2,8 +2,9 @@
 const path = require("path");
 const chalk = require("chalk");
 const meow = require("meow");
+const yargsParser = require("yargs-parser");
 const { loadConfig } = require("@patternplate/load-config");
-const {validate} = require("@patternplate/validate-config");
+const { validate } = require("@patternplate/validate-config");
 
 const cli = meow(
   `
@@ -46,6 +47,7 @@ const cli = meow(
 );
 
 async function main({ input, flags, pkg }) {
+  const execFlags = yargsParser(process.execArgv);
   const [command] = input;
 
   if (command !== "help") {
@@ -75,14 +77,14 @@ async function main({ input, flags, pkg }) {
       return cli.showHelp(0);
     case "build":
       const build = require("./build");
-      return build({ input, flags });
+      return build({ flags });
     case "create":
       const create = require("./create");
-      return create({ input, flags, pkg });
+      return create({ flags, pkg });
     case "start":
     case undefined:
       const start = require("./start");
-      return start({ input, flags });
+      return start({ flags, execFlags });
     default: {
       throw error(`Unknown command "${command}"`);
     }

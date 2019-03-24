@@ -15,6 +15,11 @@ export interface SubscriptionContext {
   };
   config: Types.PatternplateConfig;
   watcher: T.ObservableWatcher;
+  inspect: {
+    port: number;
+    enabled: boolean;
+    break: boolean;
+  }
 }
 
 export const createSubscription = function createSubscription(context: SubscriptionContext): (handler: (m: T.QueueMessage) => void) => void {
@@ -36,11 +41,6 @@ export const createSubscription = function createSubscription(context: Subscript
     });
 
     const send = getSender(wss, handler);
-
-    queues.client.subscribe(queue => {
-      const [message] = queue;
-      send(message);
-    });
 
     queues.client.subscribe(queue => {
       const [message] = queue;
@@ -78,8 +78,8 @@ export const createSubscription = function createSubscription(context: Subscript
           queues.server.stop();
 
           const [clientQueue, serverQueue] = await Promise.all([
-            createCompiler({ config, cwd, target: Types.CompileTarget.Web }),
-            createCompiler({ config, cwd, target: Types.CompileTarget.Node })
+            createCompiler({ config, cwd, inspect: context.inspect, target: Types.CompileTarget.Web }),
+            createCompiler({ config, cwd, inspect: context.inspect, target: Types.CompileTarget.Node })
           ]);
 
           queues.client = clientQueue;
@@ -104,8 +104,18 @@ function getSender(wss: ws.Server, handler: (m: T.QueueMessage) => void) {
     }
     wss.clients.forEach(client => {
       if (client.readyState === ws.OPEN) {
+        const msg = filterMessage(message);
+
         client.send(ARSON.stringify(message));
       }
     });
   };
+}
+
+function filterMessage(message: T.QueueMessage): T.QueueMessage {
+  if (message.type === 'done') {
+    return { type: 'done', target: message.target, payload: { fs: undefined } };
+  }
+
+  return message;
 }

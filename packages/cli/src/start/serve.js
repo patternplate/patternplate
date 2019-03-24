@@ -29,7 +29,8 @@ async function patternplate(options) {
   const clientMiddleware = await client({
     cwd: options.cwd,
     config: options.config,
-    server
+    server,
+    inspect: options.inspect
   });
 
   app

@@ -1247,38 +1247,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patternplate/deploy-site@file:./tools/deploy-site":
-  version "3.2.5"
-  dependencies:
-    "@marionebl/sander" "^0.6.1"
-    execa "^0.9.0"
-    meow "^4.0.0"
-    surge "^0.20.1"
-
-"@patternplate/test-example@file:./tools/test-example":
-  version "3.2.5"
-  dependencies:
-    "@types/ajv" "^1.0.0"
-    "@types/execa" "^0.9.0"
-    "@types/get-port" "^4.0.0"
-    "@types/matcher" "^1.1.0"
-    "@types/node-fetch" "2.1.4"
-    "@types/node-static" "^0.7.2"
-    "@types/ora" "^1.3.4"
-    "@types/puppeteer" "^1.10.1"
-    "@types/yargs-parser" "^11.0.0"
-    ajv "^6.6.1"
-    chalk "^2.4.1"
-    execa "^1.0.0"
-    get-port "^4.0.0"
-    ip "^1.1.5"
-    matcher "^1.1.1"
-    node-fetch "^2.3.0"
-    ora "^3.0.0"
-    puppeteer " ^1.11.0"
-    ts-transform-json-schema "^1.1.1"
-    yargs-parser "^11.1.1"
-
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.npmjs.org/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -3619,6 +3587,15 @@ chalk@^2.3.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
+chalk@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
+  integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
+
 chalk@~0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/chalk/-/chalk-0.4.0.tgz#5199a3ddcd0c1efe23bc08c1b027b06176e0c64f"
@@ -3770,6 +3747,11 @@ cli-spinners@^0.1.2:
 cli-spinners@^1.0.0, cli-spinners@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/cli-spinners/-/cli-spinners-1.1.0.tgz#f1847b168844d917a671eb9d147e3df497c90d06"
+
+cli-spinners@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/cli-spinners/-/cli-spinners-2.0.0.tgz#4b078756fc17a8f72043fdc9f1f14bf4fa87e2df"
+  integrity sha512-yiEBmhaKPPeBj7wWm4GEdtPZK940p9pl3EANIrnJ3JnvWyrPjcFcsEq6qRUuQ7fzB0+Y82ld3p6B34xo95foWw==
 
 cli-table2@^0.2.0:
   version "0.2.0"
@@ -10734,17 +10716,6 @@ ora@^1.1.0:
     cli-spinners "^1.0.0"
     log-symbols "^1.0.2"
 
-ora@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/ora/-/ora-2.0.0.tgz#8ec3a37fa7bffb54a3a0c188a1f6798e7e1827cd"
-  dependencies:
-    chalk "^2.3.1"
-    cli-cursor "^2.1.0"
-    cli-spinners "^1.1.0"
-    log-symbols "^2.2.0"
-    strip-ansi "^4.0.0"
-    wcwidth "^1.0.1"
-
 ora@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/ora/-/ora-3.0.0.tgz#8179e3525b9aafd99242d63cc206fd64732741d0"
@@ -10755,6 +10726,18 @@ ora@^3.0.0:
     cli-spinners "^1.1.0"
     log-symbols "^2.2.0"
     strip-ansi "^4.0.0"
+    wcwidth "^1.0.1"
+
+ora@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/ora/-/ora-3.2.0.tgz#67e98a7e11f7f0ac95deaaaf11bb04de3d09e481"
+  integrity sha512-XHMZA5WieCbtg+tu0uPF8CjvwQdNzKCX6BVh3N6GFsEXH40mTk5dsw/ya1lBTUGJslcEFJFQ8cBhOgkkZXQtMA==
+  dependencies:
+    chalk "^2.4.2"
+    cli-cursor "^2.1.0"
+    cli-spinners "^2.0.0"
+    log-symbols "^2.2.0"
+    strip-ansi "^5.0.0"
     wcwidth "^1.0.1"
 
 os-browserify@^0.2.0:
@@ -14600,6 +14583,11 @@ typescript@3.1.x, typescript@^3.1.6:
 typescript@^3.0.1, typescript@^3.1, typescript@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/typescript/-/typescript-3.1.1.tgz#3362ba9dd1e482ebb2355b02dfe8bcd19a2c7c96"
+
+typescript@^3.2.2:
+  version "3.3.4000"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
+  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
 
 ua-parser-js@^0.7.9:
   version "0.7.14"

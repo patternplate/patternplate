@@ -15,7 +15,8 @@ async function client(options) {
   const apiRoute = await api({
     cwd: options.cwd,
     config: options.config,
-    server: options.server
+    server: options.server,
+    inspect: options.inspect
   });
 
   const mainRoute = await main({

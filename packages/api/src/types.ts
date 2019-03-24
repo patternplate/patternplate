@@ -20,6 +20,7 @@ export type MsgQueue = ObservableQueue<QueueMessage>;
 export type QueueMessage =
   | QueueStartMessage
   | QueueReadyMessage
+  | QueueSerializedDoneMessage
   | QueueDoneMessage
   | QueueErrorMessage
   | QueueExceptionMessage
@@ -43,10 +44,16 @@ export interface QueueShutDownMessage {
   target: Types.CompileTarget;
 }
 
+export interface QueueSerializedDoneMessage {
+  type: "worker-done";
+  target: Types.CompileTarget;
+  payload: { files: { [filename: string]: string  } }
+}
+
 export interface QueueDoneMessage {
   type: "done";
   target: Types.CompileTarget;
-  payload: { fs: any } // typeof fs not compatible with JSONSchema Generator
+  payload: { fs: any }
 }
 
 export interface QueueErrorMessage {

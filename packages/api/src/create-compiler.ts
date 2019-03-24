@@ -15,11 +15,17 @@ export interface CreateCompilerOptions {
   config: Types.PatternplateConfig;
   cwd: string;
   target: Types.CompileTarget;
+  inspect: {
+    port: number;
+    enabled: boolean;
+    break: boolean;
+  }
 }
 
 export const createCompiler = async function createCompiler({
   config,
   cwd,
+  inspect,
   target
 }: CreateCompilerOptions ) {
   let worker: ChildProcess.ChildProcess;
@@ -42,13 +48,21 @@ export const createCompiler = async function createCompiler({
   const next = (q: T.QueueMessage[]) =>
     listeners.forEach(listener => listener.next(q));
 
+  const portOffset = target === 'node' ? 1 : 2;
+  const inspectPort = inspect.port !== 0 ? inspect.port + portOffset : 0;
+
   const start = () => {
     const workerPath = Path.join(__dirname, "compiler-worker.js");
     debug(`starting compiler worker at ${workerPath}`);
     const cp = ChildProcess.fork(
       workerPath,
       dargs({ cwd, target, config: ARSON.stringify(config) }),
-      { stdio: ["pipe", "pipe", "pipe", "ipc"] }
+      {
+        stdio: ["pipe", "pipe", "pipe", "ipc"],
+        execArgv: inspect.enabled
+          ? [`--inspect=${inspectPort}`, inspect.break ? `--inspect-brk` : ''].filter(Boolean)
+          : process.execArgv
+      }
     );
 
     let stderr = ``;
@@ -79,8 +93,6 @@ export const createCompiler = async function createCompiler({
 
   worker = start();
 
-  setInterval(() => send({ type: "heartbeat", target }), 500);
-
   const logErrorMessage = (payload: { message?: string; details?: string })  => {
     if (!payload.message && payload.details) {
       const posLF = `${payload.details}\n`.indexOf('\n');
@@ -95,8 +107,13 @@ export const createCompiler = async function createCompiler({
       case "ready": {
         return send({ type: "start", target });
       }
-      case "done": {
-        const fs = new MemoryFilesystem(message.payload.fs);
+      case "worker-done": {
+        const fs = new MemoryFilesystem();
+
+        Object.keys(message.payload.files).forEach(fileName => {
+          fs.writeFileSync(fileName, message.payload.files[fileName]!);
+        });
+
         queue.unshift({ type: "done", target, payload: { fs } });
         return next(queue);
       }
