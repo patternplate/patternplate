@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/widget-demo",
-  "version": "3.1.1",
+  "version": "3.2.7",
   "description": "Demonstrate components directly inside your documentation",
   "main": "lib/index.js",
   "scripts": {

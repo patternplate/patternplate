@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/api",
-  "version": "3.2.5",
+  "version": "3.2.7",
   "description": "Patternplate JSON API",
   "scripts": {
     "clean": "rimraf lib",

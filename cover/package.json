@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/cover",
-  "version": "3.1.1",
+  "version": "3.2.7",
   "description": "patternplate landing page",
   "main": "lib/index.js",
   "scripts": {
@@ -38,9 +38,9 @@
     "typescript": "^3.1"
   },
   "dependencies": {
-    "@patternplate/component-icon": "^3.1.1",
-    "@patternplate/component-link": "^3.1.1",
-    "@patternplate/component-utility": "^3.1.1",
+    "@patternplate/component-icon": "^3.2.7",
+    "@patternplate/component-link": "^3.2.7",
+    "@patternplate/component-utility": "^3.2.7",
     "@types/react": "16.7.7",
     "@types/react-helmet": "^5.0.8",
     "@types/styled-components": "^4.1.1",

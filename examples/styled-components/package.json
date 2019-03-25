@@ -1,6 +1,6 @@
 {
   "name": "@patternplate/example-styled-components",
-  "version": "3.2.6",
+  "version": "3.2.7",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
     "@babel/core": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
-    "@patternplate/cli": "^3.2.6",
+    "@patternplate/cli": "^3.2.7",
     "concurrently": "^3.5.1",
     "dependency-check": "^3.1.0"
   }
