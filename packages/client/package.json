@@ -77,7 +77,7 @@
     "serve-static": "^1.13.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/cli": "^7.2.3",
     "@marionebl/react-router": "2.6.3",
     "@marionebl/sander": "^0.6.1",
     "@patternplate/babel-preset": "^3.2.5",

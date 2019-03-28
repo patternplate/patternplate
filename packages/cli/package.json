@@ -52,10 +52,9 @@
     "unindent": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/cli": "^7.2.3",
     "@patternplate/babel-preset": "^3.2.5",
     "dependency-check": "^3.1.0",
-    "jest-cli": "^24.5.0",
     "rimraf": "^2.6.2"
   },
   "repository": {

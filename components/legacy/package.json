@@ -54,8 +54,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@babel/core": "^7.0.0-beta.40",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
     "@patternplate/babel-preset": "^3.2.5",
     "@patternplate/render-styled-components": "^3.2.5",
     "concurrently": "^3.5.1",

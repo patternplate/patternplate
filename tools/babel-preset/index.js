@@ -43,7 +43,6 @@ function selectPresets(options) {
 
 function selectPlugins(options) {
   const plugins = [
-    "module:fast-async",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread"
   ];
