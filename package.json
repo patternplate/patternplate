@@ -68,7 +68,7 @@
   "resolutions": {
     "**/react": "16.6.3",
     "**/react-dom": "16.6.3",
-    "serve/**/deep-extend": ">=0.5.1",
+    "**/deep-extend": ">=0.5.1",
     "**/js-yaml": ">=3.13.0",
     "**/atob": ">=2.1.0",
     "**/debug": ">=2.1.0",
