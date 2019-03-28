@@ -43,12 +43,12 @@ function selectPresets(options) {
 
 function selectPlugins(options) {
   const plugins = [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-object-rest-spread"
+    require.resolve("@babel/plugin-proposal-class-properties"),
+    require.resolve("@babel/plugin-proposal-object-rest-spread")
   ];
 
   if (options.sources.indexOf("styled-components") > -1) {
-    plugins.push("babel-plugin-styled-components");
+    plugins.push(require.resolve("babel-plugin-styled-components"));
   }
 
   return plugins;
