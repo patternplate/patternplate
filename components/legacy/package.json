@@ -57,6 +57,8 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@patternplate/babel-preset": "^3.2.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@patternplate/render-styled-components": "^3.2.5",
     "concurrently": "^3.5.1",
     "dependency-check": "^3.1.0",
