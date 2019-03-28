@@ -32,9 +32,9 @@
   "dependencies": {
     "@patternplate/load-manifest": "^3.1.1",
     "@patternplate/types": "^3.1.1",
-    "front-matter": "^2.2.0",
+    "front-matter": "^3.0.1",
     "globby": "^6.1.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "remark": "^8.0.0",
     "shortid": "^2.2.8",
     "unist-util-find": "^1.0.1"

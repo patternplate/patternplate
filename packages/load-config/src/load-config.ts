@@ -24,7 +24,7 @@ export const loadConfig = load;
 
 async function load(input: LoadInput): Promise<LoadOutput> {
   const explorer = cosmiconfig("patternplate");
-  const output = await explorer.load(input.cwd);
+  const output = await explorer.search(input.cwd);
 
   // TODO: Contribute improved resolve-from typings
   const rf = (resolveFrom as any) as {

@@ -63,7 +63,7 @@
     "read-pkg": "^3.0.0",
     "resolve-from": "^4.0.0",
     "to-string-loader": "^1.1.5",
-    "webpack": "^4.5.0",
+    "webpack": "^4.29.6",
     "webpack-node-externals": "^1.6.0"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
