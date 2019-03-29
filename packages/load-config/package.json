@@ -42,16 +42,11 @@
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "@types/node": "^10.9.4",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.4.2",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
-    "jest": "^23.5.0",
     "jest-plugin-fs": "^2.9.0",
     "memfs": "^2.9.4",
     "require-from-string": "^2.0.2",
-    "ts-jest": "^23.1.4",
-    "ts-node": "^7.0.1",
     "typescript": "^3.1"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"

@@ -35,6 +35,7 @@
     "@marionebl/ttypescript": "^1.5.6",
     "@patternplate/deploy-site": "file:./tools/deploy-site",
     "@patternplate/test-example": "file:./tools/test-example",
+    "@types/jest": "^24.0.11",
     "husky": "^0.14.3",
     "jest": "^24.5.0",
     "jest-cli": "^24.5.0",

@@ -3,9 +3,6 @@
   "version": "3.2.7",
   "description": "ui component library for patternplate-client",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps",
-    "watch": "yarn build -w",
     "deps": "dependency-check . lib/**/demo.js --missing && dependency-check . lib/**/demo.js  --extra --no-dev"
   },
   "files": [
@@ -36,29 +33,7 @@
     "npm": ">= 3"
   },
   "xo": false,
-  "babel": {
-    "presets": [
-      [
-        "module:@patternplate/babel-preset",
-        {
-          "targets": [
-            "node",
-            "web"
-          ],
-          "sources": [
-            "react",
-            "styled-components"
-          ]
-        }
-      ]
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
-    "@patternplate/babel-preset": "^3.2.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@patternplate/render-styled-components": "^3.2.5",
     "concurrently": "^3.5.1",
     "dependency-check": "^3.1.0",

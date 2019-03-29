@@ -5,12 +5,10 @@
   "main": "./server.js",
   "scripts": {
     "start": "yarn watch",
-    "babel": "babel src -d lib --source-maps",
-    "build": "babel src -d lib --source-maps",
     "pack": "cross-env NODE_ENV=production webpack --mode production",
     "clean": "npx rimraf lib",
-    "watch": "concurrently \"webpack -w --no-render-page\" \"babel src -d lib --source-maps -w\"",
-    "deps": "dependency-check . render.js eject.js lib/client.js lib/widgets.js --missing && dependency-check . render.js eject.js lib/client.js lib/widgets.js --extra --no-dev -i @babel/runtime",
+    "watch": "webpack -w --no-render-page",
+    "deps": "dependency-check . render.js eject.js lib/client.js lib/widgets.js --missing && dependency-check . render.js eject.js lib/client.js lib/widgets.js --extra --no-dev",
     "prepublishOnly": "./.scripts/prune.js --base=lib/static --manifest=lib/static/manifest.json"
   },
   "files": [
@@ -20,22 +18,6 @@
     "lib"
   ],
   "xo": false,
-  "babel": {
-    "presets": [
-      [
-        "module:@patternplate/babel-preset",
-        {
-          "targets": [
-            "node"
-          ],
-          "sources": [
-            "react",
-            "styled-components"
-          ]
-        }
-      ]
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "patternplate/patternplate"
@@ -74,24 +56,21 @@
     "isomorphic-fetch": "^2.0.2",
     "load-json-file": "^4.0.0",
     "memory-fs": "^0.4.1",
-    "serve-static": "^1.13.2"
+    "serve-static": "^1.13.2",
+    "ts-loader": "^5.3.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@marionebl/react-router": "2.6.3",
     "@marionebl/sander": "^0.6.1",
-    "@patternplate/babel-preset": "^3.2.5",
     "@patternplate/components": "^3.2.7",
     "@patternplate/search": "^3.2.0",
     "@patternplate/websocket-client": "^3.2.5",
     "@patternplate/widgets": "^3.2.7",
     "arson": "^0.2.6",
-    "babel-loader": "8.0.0-beta.0",
     "btoa": "^1.1.2",
     "concurrently": "^3.5.0",
     "cross-env": "^5.1.4",
     "dependency-check": "^3.1.0",
-    "fast-async": "^6.3.0",
     "front-matter": "^2.1.2",
     "fuse.js": "^2.2.0",
     "globby": "^8.0.1",

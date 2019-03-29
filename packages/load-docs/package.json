@@ -40,14 +40,9 @@
     "unist-util-find": "^1.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.2",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^23.10.3",
-    "typescript": "^3.1"
+    "rimraf": "^2.6.2"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }

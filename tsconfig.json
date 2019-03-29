@@ -10,18 +10,6 @@
   "compilerOptions": {
     "sourceMap": true,
     "module": "commonjs",
-    "target": "es2015",
-    "plugins": [
-      {
-        "transform": "ts-transform-json-schema",
-        "type": "program",
-        "options": {
-          "refs": true,
-          "noExtraProps": false,
-          "strictNullChecks": true,
-          "required": true
-        }
-      }
-    ]
+    "target": "es2015"
   }
 }

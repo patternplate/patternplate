@@ -4,6 +4,8 @@
   "references": [
     {"path": "./api"},
     {"path": "./box"},
+    {"path": "./cli"},
+    {"path": "./client"},
     {"path": "./compiler"},
     {"path": "./load-config"},
     {"path": "./load-doc"},
@@ -15,6 +17,7 @@
     {"path": "./validate-config"},
     {"path": "./validate-manifest"},
     {"path": "./webpack-entry"},
+    {"path": "./websocket-client"},
     {"path": "./widgets"}
   ],
   "compilerOptions": {

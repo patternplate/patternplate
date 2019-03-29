@@ -3,9 +3,6 @@
   "version": "3.2.5",
   "description": "Websocket client with automatic retries",
   "scripts": {
-    "start": "yarn build -w",
-    "build": "babel -D src -d lib --source-maps",
-    "watch": "yarn build -w",
     "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [
@@ -29,16 +26,7 @@
     "npm": ">= 3"
   },
   "xo": false,
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@babel/cli": "7.2.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
-    "@patternplate/babel-preset": "^3.2.5",
     "dependency-check": "^3.1.0"
   }
 }
