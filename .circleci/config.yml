@@ -12,7 +12,7 @@ jobs:
 
       - run:
           name: Mount project
-          command: cp -r repo/* .
+          command: cp -r ~/repo/* .
 
       - run:
           name: Install dependencies
