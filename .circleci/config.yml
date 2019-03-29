@@ -2,17 +2,17 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:11.10.1-browsers
+      - image: marionebl/patternplate-cubicle
 
-    working_directory: ~/repo
+    working_directory: ~/src
 
     steps:
-      - checkout
+      - checkout:
+          path: ~/repo
 
-      - restore_cache:
-          keys:
-          - v2-dependencies-{{ checksum "yarn.lock" }}
-          - v2-dependencies-
+      - run:
+          name: Mount project
+          command: cp -r repo/* .
 
       - run:
           name: Install dependencies
@@ -21,41 +21,6 @@ jobs:
       - run:
           name: Audit dependencies
           command: yarn audit
-
-      - save_cache:
-          paths:
-            - alias/patternplate/node_modules
-            - alias/create-patternplate/node_modules
-            - tools/screenshot/node_modules
-            - tools/babel-preset
-            - node_modules
-            - packages/create-default/node_modules
-            - packages/render-styled-components/node_modules
-            - packages/types/node_modules
-            - packages/box/node_modules
-            - packages/load-docs/node_modules
-            - packages/demo-client/node_modules
-            - packages/probe-client/node_modules
-            - packages/load-doc/node_modules
-            - packages/load-meta/node_modules
-            - packages/load-config/node_modules
-            - packages/load-manifest/node_modules
-            - packages/validate-config/node_modules
-            - packages/render-react/node_modules
-            - packages/cli/node_modules
-            - packages/search/node_modules
-            - packages/render-default/node_modules
-            - packages/cover-client/node_modules
-            - packages/api/node_modules
-            - packages/api/node_modules
-            - packages/webpack-entry/node_modules
-            - packages/client/node_modules
-            - packages/compiler/node_modules
-            - packages/websocket-client/node_modules
-            - packages/widgets/node_modules
-            - packages/validate-manifest/node_modules
-            - components/legacy/node_modules
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
 
       - run:
           name: Build
