@@ -1,9 +1,6 @@
 {
   "references": [
     {
-      "path": "../client"
-    },
-    {
       "path": "../compiler"
     },
     {
