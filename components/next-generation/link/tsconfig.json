@@ -1,6 +1,9 @@
 {
   "references": [
     {
+      "path": "../icon"
+    },
+    {
       "path": "../utility"
     },
   ],

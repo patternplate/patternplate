@@ -55,6 +55,39 @@ jobs:
             - packages/widgets/node_modules
             - packages/validate-manifest/node_modules
             - components/legacy/node_modules
+            - components/next-generation/button/tsconfig.tsbuildinfo
+            - components/next-generation/code/tsconfig.tsbuildinfo
+            - components/next-generation/flag/tsconfig.tsbuildinfo
+            - components/next-generation/headline/tsconfig.tsbuildinfo
+            - components/next-generation/info-pane/tsconfig.tsbuildinfo
+            - components/next-generation/link/tsconfig.tsbuildinfo
+            - components/next-generation/logo/tsconfig.tsbuildinfo
+            - components/next-generation/main-header/tsconfig.tsbuildinfo
+            - components/next-generation/markdown/tsconfig.tsbuildinfo
+            - components/next-generation/search/tsconfig.tsbuildinfo
+            - components/next-generation/svg/tsconfig.tsbuildinfo
+            - components/next-generation/tag/tsconfig.tsbuildinfo
+            - components/next-generation/text/tsconfig.tsbuildinfo
+            - components/next-generation/themes/tsconfig.tsbuildinfo
+            - components/next-generation/utility/tsconfig.tsbuildinfo
+            - components/next-generation/widget-demo/tsconfig.tsbuildinfo
+            - components/next-generation/widget-list/tsconfig.tsbuildinfo
+            - cover/tsconfig.tsbuildinfo
+            - packages/api/tsconfig.tsbuildinfo
+            - packages/compiler/tsconfig.tsbuildinfo
+            - packages/load-config/tsconfig.tsbuildinfo
+            - packages/load-doc/tsconfig.tsbuildinfo
+            - packages/load-docs/tsconfig.tsbuildinfo
+            - packages/load-manifest/tsconfig.tsbuildinfo
+            - packages/load-meta/tsconfig.tsbuildinfo
+            - packages/search/tsconfig.tsbuildinfo
+            - packages/types/tsconfig.tsbuildinfo
+            - packages/validate-config/tsconfig.tsbuildinfo
+            - packages/validate-manifest/tsconfig.tsbuildinfo
+            - packages/webpack-entry/tsconfig.tsbuildinfo
+            - packages/websocket-client/tsconfig.tsbuildinfo
+            - packages/widgets/tsconfig.tsbuildinfo
+            - tools/test-example/tsconfig.tsbuildinfo
           key: v2-dependencies-{{ checksum "yarn.lock" }}
 
       - run:

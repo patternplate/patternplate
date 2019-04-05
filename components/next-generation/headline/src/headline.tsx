@@ -26,9 +26,10 @@ export interface HeadlineProps {
   is?: string;
   className?: string;
   order: keyof typeof ORDERS;
+  children?: React.ReactNode;
 }
 
-export const Headline = styled(InnerHeadline)`
+export const Headline = styled(InnerHeadline)<HeadlineProps>`
   color: ${(props: HeadlineProps & { theme?: any }) => props.theme.colors.color};
   font-size: ${props => ORDERS[props.order]}px;
   font-family: ${props => props.theme.fonts.headline};

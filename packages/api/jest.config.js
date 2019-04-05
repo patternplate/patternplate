@@ -5,7 +5,7 @@ module.exports = {
   testMatch: ["**/*.test.ts?(x)"],
   globals: {
     "ts-jest": {
-      compiler: "@marionebl/ttypescript"
+      compiler: "ttypescript"
     }
   }
 };

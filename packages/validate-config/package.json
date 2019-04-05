@@ -31,9 +31,7 @@
   "devDependencies": {
     "@patternplate/types": "^3.1.1",
     "@types/node": "^10.9.4",
-    "dependency-check": "^3.1.0",
-    "ts-transform-json-schema": "^1.1.1",
-    "typescript-json-schema": "^0.32.0"
+    "dependency-check": "^3.1.0"
   },
   "dependencies": {
     "schema-utils": "^1.0.0"

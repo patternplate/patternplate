@@ -27,7 +27,14 @@ export function validate(raw: unknown): CLIFlags {
     removeAdditional: "failing",
     useDefaults: true
   });
-  const schema = Schema.fromType<CLIFlags>()!;
+
+  const schema = Schema.fromType<CLIFlags>({
+    ref: true,
+    noExtraProps: true,
+    strictNullChecks: true,
+    required: true
+  })!;
+
   const valid = ajv.validate(schema, raw);
 
   if (!valid) {
