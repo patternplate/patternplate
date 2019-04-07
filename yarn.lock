@@ -15053,9 +15053,9 @@ ts-node@^7.0.1:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-ts-transform-json-schema@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/ts-transform-json-schema/-/ts-transform-json-schema-2.0.1.tgz#444aac2d02e34d9444b14fe4f7a44951b333dda0"
+ts-transform-json-schema@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/ts-transform-json-schema/-/ts-transform-json-schema-2.0.3.tgz#136124f1c05d07ec76316d50d0860093256e0444"
   dependencies:
     "@marionebl/typescript-json-schema" "^0.36.0"
     "@types/json5" "^0.0.30"
