@@ -16,7 +16,11 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: yarn install --ignore-engines
+          command: yarn install
+
+      - run:
+          name: Audit dependencies
+          command: yarn audit
 
       - save_cache:
           paths:

@@ -25,17 +25,9 @@ const client = {
           return false;
         },
         use: {
-          loader: "babel-loader",
+          loader: "ts-loader",
           options: {
-            presets: [
-              [
-                "module:@patternplate/babel-preset",
-                {
-                  targets: ["web"],
-                  sources: ["react", "styled-components"]
-                }
-              ]
-            ]
+            transpileOnly: true
           }
         }
       }
@@ -81,17 +73,9 @@ const widgets = {
           return false;
         },
         use: {
-          loader: "babel-loader",
+          loader: "ts-loader",
           options: {
-            presets: [
-              [
-                "module:@patternplate/babel-preset",
-                {
-                  targets: ["web"],
-                  sources: ["react", "styled-components"]
-                }
-              ]
-            ]
+            transpileOnly: true
           }
         }
       }
@@ -128,17 +112,9 @@ const renderPage = {
           return false;
         },
         use: {
-          loader: "babel-loader",
+          loader: "ts-loader",
           options: {
-            presets: [
-              [
-                "module:@patternplate/babel-preset",
-                {
-                  targets: ["node"],
-                  sources: ["react", "styled-components"]
-                }
-              ]
-            ]
+            transpileOnly: true
           }
         }
       }

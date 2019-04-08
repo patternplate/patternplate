@@ -1,4 +1,4 @@
-import Types from "@patternplate/types";
+import * as Types from "@patternplate/types";
 
 export { Term } from "./term";
 

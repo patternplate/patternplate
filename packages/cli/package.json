@@ -6,25 +6,14 @@
     "patternplate": "./cli.js"
   },
   "scripts": {
-    "start": "yarn watch",
-    "babel": "babel src -d lib --source-maps",
-    "build": "yarn babel",
-    "clean": "npx rimraf lib",
-    "watch": "yarn babel -w",
-    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev -i @babel/runtime"
+    "deps": "dependency-check . --missing && dependency-check . --extra --no-dev"
   },
   "files": [
     "cli.js",
     "lib"
   ],
   "xo": false,
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.40",
     "@marionebl/sander": "^0.6.1",
     "@patternplate/client": "^3.2.7",
     "@patternplate/compiler": "^3.2.5",
@@ -35,12 +24,12 @@
     "@patternplate/validate-config": "^3.1.1",
     "arson": "^0.2.6",
     "chalk": "^2.3.2",
-    "command-exists": "^1.2.2",
+    "command-exists": "^1.2.8",
     "errorhandler": "^1.5.0",
     "execa": "^0.9.0",
     "express": "^4.16.2",
     "express-slash": "^2.0.1",
-    "import-fresh": "^2.0.0",
+    "import-fresh": "^3.0.0",
     "import-from": "^2.1.0",
     "memory-fs": "^0.4.1",
     "meow": "^3.7.0",
@@ -52,10 +41,7 @@
     "unindent": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@patternplate/babel-preset": "^3.2.5",
-    "dependency-check": "^3.1.0",
-    "rimraf": "^2.6.2"
+    "dependency-check": "^3.1.0"
   },
   "repository": {
     "type": "git",

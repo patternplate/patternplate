@@ -10,6 +10,11 @@ jest.mock("fs", (): Partial<typeof Fs> => {
 
 const MockFs = Fs as typeof Fs & { set(data: any): void };
 
+jest.mock("import-fresh", () => {
+  const requireFromString = require("require-from-string");
+  return id => requireFromString(MockFs.readFileSync(id, 'utf-8'), id);
+});
+
 test("defaults to expected config", async () => {
   const result = await loadConfig({ cwd: process.cwd() });
 

@@ -49,7 +49,7 @@ export async function compiler(options: CompilerOptions): Promise<webpack.Compil
   const compiler = webpack({
     entry,
     target: options.target,
-    externals: options.target === "node" ? [nodeExternals()] : [],
+    externals: options.target === "node" ?nodeExternals() : [],
     mode: "development",
     module: {
       rules: [

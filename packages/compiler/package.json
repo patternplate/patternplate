@@ -28,22 +28,10 @@
     "access": "public"
   },
   "xo": false,
-  "babel": {
-    "presets": [
-      "module:@patternplate/babel-preset"
-    ]
-  },
   "devDependencies": {
-    "@types/jest": "^23.3.2",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^23.10.3",
-    "typescript": "^3.1"
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "@patternplate/cover-client": "^3.1.1",
@@ -63,7 +51,7 @@
     "read-pkg": "^3.0.0",
     "resolve-from": "^4.0.0",
     "to-string-loader": "^1.1.5",
-    "webpack": "^4.5.0",
+    "webpack": "^4.29.6",
     "webpack-node-externals": "^1.6.0"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"

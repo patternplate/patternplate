@@ -21,3 +21,4 @@ package-lock.json
 
 /docs/patterns
 /patternplate-deploy
+tsconfig.tsbuildinfo

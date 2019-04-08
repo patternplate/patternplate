@@ -38,15 +38,8 @@
     "source-map": "^0.7.3"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.2",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
-    "fixturez": "^1.1.0",
-    "jest": "^23.6.0",
-    "jest-cli": "^22.4.2",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.1"
+    "fixturez": "^1.1.0"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }

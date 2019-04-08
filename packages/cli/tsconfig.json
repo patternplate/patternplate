@@ -1,0 +1,41 @@
+{
+  "references": [
+    {
+      "path": "../compiler"
+    },
+    {
+      "path": "../load-config"
+    },
+    {
+      "path": "../load-docs"
+    },
+    {
+      "path": "../load-meta"
+    },
+    {
+      "path": "../validate-config"
+    }
+  ],
+  "compilerOptions": {
+    // "composite": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": "./lib/",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "allowJs": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
+  "exclude": [
+    "src/**/*.test.js"
+  ]
+}

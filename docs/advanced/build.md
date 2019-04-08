@@ -212,9 +212,9 @@ the ubiquitous in the JavaScript ecosystem at the time of writing.
     },
     "license": "MIT",
     "devDependencies": {
-      "@babel/cli": "^7.0.0-beta.42",
-      "@babel/core": "^7.0.0-beta.42",
-      "@babel/preset-env": "^7.0.0-beta.42"
+      "@babel/cli": "^7",
+      "@babel/core": "^7",
+      "@babel/preset-env": "^7"
     }
   }
   ```

@@ -2,7 +2,12 @@ import { fromType } from "ts-transform-json-schema"
 import * as T from './types';
 
 const validateOptions = require("schema-utils");
-const schema = fromType<T.QueueMessage>() as object;
+const schema = fromType<T.QueueMessage>({
+  ref: true,
+  noExtraProps: true,
+  strictNullChecks: true,
+  required: true
+}) as object;
 
 export function isMessage(data: unknown): data is T.QueueMessage {
   try {

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  patternplate:
+    build: .
+    image: marionebl/patternplate-cubicle
+    ports:
+      - '8443:8443'
+    volumes:
+      - ".:/src/"
+    environment:
+      - CARGO_TARGET_DIR=/home/rust/target
+    command: code-server --allow-http --no-auth

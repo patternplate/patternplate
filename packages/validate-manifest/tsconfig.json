@@ -18,13 +18,7 @@
     "plugins": [
       {
         "transform": "ts-transform-json-schema",
-        "type": "program",
-        "options": {
-          "refs": true,
-          "noExtraProps": false,
-          "strictNullChecks": true,
-          "required": true
-        }
+        "type": "program"
       }
     ]
   },

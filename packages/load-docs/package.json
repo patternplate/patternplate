@@ -32,24 +32,17 @@
   "dependencies": {
     "@patternplate/load-manifest": "^3.1.1",
     "@patternplate/types": "^3.1.1",
-    "front-matter": "^2.2.0",
+    "front-matter": "^3.0.1",
     "globby": "^6.1.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "remark": "^8.0.0",
     "shortid": "^2.2.8",
     "unist-util-find": "^1.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.2",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.1",
     "dependency-check": "^3.1.0",
     "fixturez": "^1.1.0",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^23.10.3",
-    "typescript": "^3.1"
+    "rimraf": "^2.6.2"
   },
   "gitHead": "54025e88c20a22803fc196ba7f50e74f5c90cd57"
 }

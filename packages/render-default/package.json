@@ -27,7 +27,7 @@
     "access": "public"
   },
   "dependencies": {
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "dependency-check": "^3.1.0"

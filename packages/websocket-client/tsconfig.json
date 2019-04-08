@@ -1,22 +1,19 @@
 {
-  "references": [
-    {
-      "path": "../icon"
-    },
-    {
-      "path": "../utility"
-    },
-  ],
   "compilerOptions": {
     "composite": true,
+    "moduleResolution": "node",
     "jsx": "react",
     "outDir": "./lib/",
     "rootDir": "./src",
     "sourceMap": true,
+    "declarationMap": true,
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "declarationMap": true
+    "lib": [
+      "dom",
+      "es2015"
+    ]
   },
   "include": [
     "src/**/*.ts",

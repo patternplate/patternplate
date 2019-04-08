@@ -1,6 +1,26 @@
 import * as Schema from "ts-transform-json-schema";
-import * as Types from "@patternplate/types";
+import { PatternManifest, PatternJson, PackageJson } from "@patternplate/types";
 
-export const schema = Schema.fromType<Types.PatternManifest>();
-export const pattern = Schema.fromType<Types.PatternJson>();
-export const pkg = Schema.fromType<Types.PackageJson>();
+export const schema = Schema.fromType<PatternManifest>({
+  ref: true,
+  noExtraProps: false,
+  strictNullChecks: true,
+  required: true,
+  id: 'validate-manifest-schema'
+});
+
+export const pattern = Schema.fromType<PatternJson>({
+  ref: true,
+  noExtraProps: false,
+  strictNullChecks: true,
+  required: true,
+  id: 'validate-manifest-pattern'
+});
+
+export const pkg = Schema.fromType<PackageJson>({
+  ref: true,
+  noExtraProps: false,
+  strictNullChecks: true,
+  required: true,
+  id: 'validate-manifest-pkg'
+});

@@ -53,9 +53,10 @@ export interface ButtonProps {
   type?: ButtonTypes;
   frameless?: boolean;
   transparent?: boolean;
+  children?: React.ReactNode;
 }
 
-export const Button = styled(InnerButton)`
+export const Button = styled(InnerButton)<ButtonProps>`
   appearance: none;
   display: inline-flex;
   height: 40px;

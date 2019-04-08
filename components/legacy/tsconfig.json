@@ -1,0 +1,36 @@
+{
+  "references": [
+    {"path": "../next-generation/button"},
+    {"path": "../next-generation/flag"},
+    {"path": "../next-generation/link"},
+    {"path": "../next-generation/logo"},
+    {"path": "../next-generation/main-header"},
+    {"path": "../next-generation/markdown"},
+    {"path": "../next-generation/search"},
+    {"path": "../next-generation/svg"},
+    {"path": "../next-generation/tag"},
+    {"path": "../next-generation/text"},
+    {"path": "../next-generation/themes"}
+  ],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": "./lib/",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "allowJs": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
+  "exclude": [
+    "src/**/*.test.js"
+  ]
+}

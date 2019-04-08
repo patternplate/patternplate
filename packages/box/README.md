@@ -7,7 +7,7 @@
 * Bring design docs to live with real components
 * Powerful search and meta data system
 
-This is the contributor documentation for `@patternplate/babel-preset`
+This is the contributor documentation for `@patternplate/box`
 For user docs see [patternplate.github.io](https://patternplate.github.io)
 
 ## About @patternplate/box

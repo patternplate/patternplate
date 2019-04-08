@@ -27,10 +27,10 @@
   "xo": false,
   "dependencies": {
     "execa": "^0.10.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "node-static": "^0.7.11",
     "puppeteer": "^1.2.0",
-    "svgo": "^1.0.5",
+    "svgo": "^1.2.0",
     "tempy": "^0.2.1",
     "xmldom": "^0.1.27",
     "yargs-parser": "^9.0.2"
