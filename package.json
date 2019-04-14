@@ -81,6 +81,7 @@
     "**/clean-css": ">=4.1.11",
     "**/fill-range/randomatic": ">=3.0.0",
     "**/braces": ">=2.3.1",
+    "**/tar": ">=4.4.2",
     "jest-cli/**/merge": ">=1.2.1",
     "jest-cli/**/handlebars": ">=4.0.13",
     "jest-cli/**/cryptiles": ">=4.1.2"
