@@ -40,7 +40,7 @@ export async function loadDocs(options: LoadDocsOptions): Promise<Doc[]> {
       const first = find(ast, { type: "heading", depth: 1 });
 
       const front = frontmatter(contents).attributes;
-      const manifest = LoadManifest.normalize(front, { isPatternPkg: false, withDefaults: true });
+      const manifest = LoadManifest.normalize(front, { isPatternPkg: false, withDefaults: true });
 
       const b = Path.basename(file, Path.extname(file)).toLowerCase();
       const name = b === "readme" ? Path.dirname(file) : b;
@@ -48,7 +48,7 @@ export async function loadDocs(options: LoadDocsOptions): Promise<Doc[]> {
       manifest.name =
         manifest.name ||
         (first
-          ? (first.children[0].value || "").replace(/[^\w]/g, "-")
+          ? (first.children[0].value || "").replace(/[^\u{4E00}-\u{9FFF}\w]/gu, "-")
           : manifest.name || shortid.generate()
         ).toLowerCase();
 
