@@ -18,10 +18,6 @@ jobs:
           name: Install dependencies
           command: yarn install
 
-      - run:
-          name: Audit dependencies
-          command: yarn audit
-
       - save_cache:
           paths:
             - alias/patternplate/node_modules
