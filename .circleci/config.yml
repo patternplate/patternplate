@@ -81,6 +81,10 @@ jobs:
           name: Build page
           command: yarn components:build
 
+      - store_artifacts:
+          path: /.tmp
+          destination: patternplate.github.io
+
       - run:
           name: Deploy page
           command: ./.circleci/deploy-pre.sh
