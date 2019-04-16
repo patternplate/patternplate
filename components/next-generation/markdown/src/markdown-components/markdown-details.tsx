@@ -8,13 +8,7 @@ export const MarkdownDetails = styled.details`
   font-family: ${props => props.theme.fonts.default};
   color: ${props => props.theme.colors.color};
 
-  summary {
-    display: flex;
-    align-items: center;
-    > * {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0;
-    }
+  > summary {
+    cursor: pointer;
   }
 `;
