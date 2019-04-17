@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const path = require("path");
 const yargsParser = require("yargs-parser");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const flags = yargsParser(process.argv.slice(2));
 
@@ -39,6 +40,9 @@ const client = {
     path: path.join(__dirname, "lib", "static")
   },
   optimization: {
+    minimizer: [
+      new TerserPlugin()
+    ],
     splitChunks: {
       chunks: "all",
       cacheGroups: {
