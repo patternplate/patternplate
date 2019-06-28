@@ -112,6 +112,7 @@ export interface PatternplateConfig {
   entry: string[];
   mount: string;
   render: string;
+  minify?: boolean;
   cover?: string;
   ui?: PatternplateUiConfig;
 }

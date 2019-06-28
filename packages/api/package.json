@@ -60,6 +60,7 @@
     "dargs": "^5.1.0",
     "express": "^4.16.2",
     "glob-parent": "^3.1.0",
+    "html-minifier": "^4.0.0",
     "memory-fs": "^0.4.1",
     "micromatch": "^3.1.8",
     "require-from-string": "^2.0.1",

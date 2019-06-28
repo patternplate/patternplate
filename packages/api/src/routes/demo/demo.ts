@@ -24,7 +24,7 @@ export const demo = async function demo(options: T.RouteOptions): Promise<expres
       // TODO: Send errors to central observer
       const { patterns } = await loadMeta({
         cwd,
-        entry
+        entry 
       });
 
       const found = patterns.find(pattern => pattern.id === id);
@@ -64,7 +64,7 @@ export const demo = async function demo(options: T.RouteOptions): Promise<expres
       }
 
       const depth = id.split('/').length;
-      res.send(html(content, found, { depth }));
+      res.send(html(content, found, { depth, minify: options.config.minify }));
     } catch (err) {
       const error = Array.isArray(err) ? new AggregateError(err) : err;
       console.error(error);
